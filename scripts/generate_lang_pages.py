@@ -222,18 +222,19 @@ LANGS = [
         "hreflang": "ur",
         "lang": "ur",
         "dir": "rtl",
+        "coming_soon": True,
         "font_query": "family=Noto+Nastaliq+Urdu:wght@400;600;700&family=DM+Sans:wght@400;600;700",
         "font_var": "'Noto Nastaliq Urdu', serif",
-        "title": "اردو بائبل آیات یاد رکھیں — Bible Study with Steffi",
-        "desc": "اردو میں بائبل کی آیات یاد رکھیں۔ اسپیسڈ ریپیٹیشن، متوازی بائبل — Google Play پر مفت ایپ۔",
-        "h1": "اردو میں بائبل کی آیات مضبوطی سے یاد رکھیں",
-        "lead": "Memorize Scripture in <strong>Urdu</strong> with spaced repetition and parallel English — free Bible Study with Steffi on Google Play.",
+        "title": "Urdu Bible memorization — coming soon | Bible Study with Steffi",
+        "desc": "Urdu support is planned for Bible Study with Steffi. This page is honest “coming soon” copy — there is no in-app Urdu pack to install yet. Follow Google Play for updates.",
+        "h1": "اردو — جلد آ رہا ہے",
+        "lead": "Urdu Bible memorization is <strong>not available yet</strong> in Bible Study with Steffi. Other languages on this site are live; Urdu is on our roadmap.",
         "bullets": [
-            "SM2 طرز کا شیڈول: بھولنے سے پہلے دوبارہ نظرثانی۔",
-            "ESV, NKJV, KJV کے ساتھ متوازی مطالعہ۔",
-            "مفت۔ کوئی اشتہارات نہیں۔ ان ایپ خریداری نہیں۔",
+            "We do not claim an installable Urdu pack until it ships inside the app.",
+            "When Urdu launches, expect spaced repetition and parallel English like our other languages.",
+            "Use the Google Play listing only for app updates — not as proof Urdu is ready today.",
         ],
-        "cta": "Google Play سے انسٹال کریں",
+        "cta": "",
         "card_kw": "Urdu Bible",
         "og_loc": "ur_PK",
     },
@@ -241,37 +242,38 @@ LANGS = [
         "slug": "assamese-bible.html",
         "hreflang": "as",
         "lang": "as",
+        "coming_soon": True,
         "font_query": "family=Noto+Sans+Assamese:wght@400;500;600;700&family=DM+Sans:wght@400;600;700",
         "font_var": "'Noto Sans Assamese', sans-serif",
-        "title": "অসমীয়া বাইবেল শ্লোক মনত ৰাখক — Bible Study with Steffi",
-        "desc": "অসমীয়াত বাইবেলৰ শ্লোক মনত ৰাখক। স্পেচড ৰিপিটিশ্বন, পেৰালেল বাইবেল — Google Playত বিনামূলীয়া এপ্।",
-        "h1": "অসমীয়াত বাইবেলৰ শ্লোক দৃঢ়ভাৱে মনত ৰাখক",
-        "lead": "Memorize Scripture in <strong>Assamese</strong> with spaced repetition and parallel English — free Bible Study with Steffi on Google Play.",
+        "title": "Assamese Bible memorization — coming soon | Bible Study with Steffi",
+        "desc": "Assamese support is planned for Bible Study with Steffi. Honest “coming soon” page — no in-app Assamese pack yet. Follow Google Play for updates.",
+        "h1": "অসমীয়া — সোনকালে আহিব",
+        "lead": "Assamese Bible memorization is <strong>not available yet</strong> in Bible Study with Steffi. Other languages on this site are live; Assamese is on our roadmap.",
         "bullets": [
-            "SM2-শৈলীৰ শ্বিডিউলিং: পাহৰোৱাৰ আগতে পুনৰীক্ষণ।",
-            "ESV, NKJV, KJVৰ লগতে পেৰালেল পঠন।",
-            "বিনামূলীয়া। বিজ্ঞাপন নাই। ইন-এপ ক্ৰয় নাই।",
+            "We do not claim an installable Assamese pack until it ships inside the app.",
+            "When Assamese launches, expect spaced repetition and parallel English like our other languages.",
+            "Use the Google Play listing only for app updates — not as proof Assamese is ready today.",
         ],
-        "cta": "Google Playৰ পৰা ইনষ্টল কৰক",
+        "cta": "",
         "card_kw": "Assamese Bible",
         "og_loc": "as_IN",
     },
 ]
 
 MENU = [
-    ("english-bible.html", "English", "ESV · NKJV · KJV"),
-    ("telugu-bible.html", "తెలుగు", "Telugu"),
-    ("hindi-bible.html", "हिन्दी", "Hindi"),
-    ("tamil-bible.html", "தமிழ்", "Tamil"),
-    ("kannada-bible.html", "ಕನ್ನಡ", "Kannada"),
-    ("malayalam-bible.html", "മലയാളം", "Malayalam"),
-    ("bengali-bible.html", "বাংলা", "Bengali"),
-    ("odia-bible.html", "ଓଡ଼ିଆ", "Odia"),
-    ("marathi-bible.html", "मराठी", "Marathi"),
-    ("gujarati-bible.html", "ગુજરાતી", "Gujarati"),
-    ("punjabi-bible.html", "ਪੰਜਾਬੀ", "Punjabi"),
-    ("urdu-bible.html", "اردو", "Urdu"),
-    ("assamese-bible.html", "অসমীয়া", "Assamese"),
+    {"href": "english-bible.html", "primary": "English", "sub": "ESV · NKJV · KJV", "soon": False},
+    {"href": "telugu-bible.html", "primary": "తెలుగు", "sub": "Telugu", "soon": False},
+    {"href": "hindi-bible.html", "primary": "हिन्दी", "sub": "Hindi", "soon": False},
+    {"href": "tamil-bible.html", "primary": "தமிழ்", "sub": "Tamil", "soon": False},
+    {"href": "kannada-bible.html", "primary": "ಕನ್ನಡ", "sub": "Kannada", "soon": False},
+    {"href": "malayalam-bible.html", "primary": "മലയാളം", "sub": "Malayalam", "soon": False},
+    {"href": "bengali-bible.html", "primary": "বাংলা", "sub": "Bengali", "soon": False},
+    {"href": "odia-bible.html", "primary": "ଓଡ଼ିଆ", "sub": "Odia", "soon": False},
+    {"href": "marathi-bible.html", "primary": "मराठी", "sub": "Marathi", "soon": False},
+    {"href": "gujarati-bible.html", "primary": "ગુજરાતી", "sub": "Gujarati", "soon": False},
+    {"href": "punjabi-bible.html", "primary": "ਪੰਜਾਬੀ", "sub": "Punjabi", "soon": False},
+    {"href": "urdu-bible.html", "primary": "اردو", "sub": "Urdu", "soon": True},
+    {"href": "assamese-bible.html", "primary": "অসমীয়া", "sub": "Assamese", "soon": True},
 ]
 
 PLAY = "https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app"
@@ -284,7 +286,12 @@ def dropdown(current_slug: str) -> str:
         '  <summary>Bible languages</summary>',
         '  <nav class="nav-lang-panel" aria-label="Choose language page">',
     ]
-    for href, primary, sub in MENU:
+    for item in MENU:
+        href = item["href"]
+        primary = item["primary"]
+        sub = item["sub"]
+        if item.get("soon"):
+            sub = f"{sub} · coming soon"
         cur = ' aria-current="page"' if href == current_slug else ""
         lines.append(
             f'    <a href="{href}"{cur}><span>{primary}</span><span class="sub">{sub}</span></a>'
@@ -297,25 +304,52 @@ def dropdown(current_slug: str) -> str:
 def render(lang: dict) -> str:
     slug = lang["slug"]
     url = f"{SITE}/{slug}"
+    coming = bool(lang.get("coming_soon"))
     bullets_html = "\n".join(f"      <li>{b}</li>" for b in lang["bullets"])
     menu = dropdown(slug)
-    ld = {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Bible Study with Steffi",
-        "inLanguage": lang["hreflang"],
-        "description": lang["desc"][:220],
-        "applicationCategory": "LifestyleApplication",
-        "operatingSystem": "Android",
-        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
-        "installUrl": PLAY,
-        "url": url,
-    }
+    if coming:
+        ld = {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": lang["title"][:120],
+            "description": lang["desc"][:300],
+            "url": url,
+            "inLanguage": lang["hreflang"],
+        }
+    else:
+        ld = {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Bible Study with Steffi",
+            "inLanguage": lang["hreflang"],
+            "description": lang["desc"][:220],
+            "applicationCategory": "LifestyleApplication",
+            "operatingSystem": "Android",
+            "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+            "installUrl": PLAY,
+            "url": url,
+        }
     ld_json = json.dumps(ld, ensure_ascii=False)
     hreflang_extra = ""
     if lang["hreflang"] != "en":
         hreflang_extra = f'<link rel="alternate" hreflang="en" href="{SITE}/">\n'
     dir_attr = lang.get("dir", "ltr")
+    if coming:
+        hero_badge = "Coming soon · Android app"
+        trust_note = '<p class="trust-note">This language is <strong>not in the app yet</strong>. The Google Play link is for the store listing and release notes — it is <strong>not</strong> a claim that this language pack is installable today.</p>'
+        cta_block = f"""    <div class="cta-disabled" role="status">Coming soon — not in app yet</div>
+    <a href="{PLAY}" class="play-updates-link" target="_blank" rel="noopener noreferrer">Google Play listing (updates)</a>"""
+        card_block = f"""      <h2>About this page</h2>
+      <p>We keep this URL so searchers can find honest status for <strong>{lang["card_kw"]}</strong>. Policies: <a href="contact.html">Contact</a>, Privacy, and Terms below.</p>"""
+    else:
+        hero_badge = "Google Play · Android"
+        trust_note = '<p class="trust-note">We do not publish download counts on this site. See recent <strong>ratings and reviews on Google Play</strong> before you install.</p>'
+        cta_block = f"""    <a href="{PLAY}" class="cta" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.38l2.473 1.449c.63.369.63.997 0 1.366l-2.473 1.449-2.507-2.507 2.507-2.757zM5.864 2.658L16.8 9.002l-2.302 2.302-8.634-8.646z"/></svg>
+      {lang["cta"]}
+    </a>"""
+        card_block = f"""      <h2>About this page</h2>
+      <p>This page helps people searching for <strong>{lang["card_kw"]}</strong> find the official Android app. Policies: <a href="contact.html">Contact</a>, Privacy, and Terms below.</p>"""
     return f"""<!DOCTYPE html>
 <html lang="{lang["lang"]}" dir="{dir_attr}">
 <head>
@@ -350,26 +384,23 @@ def render(lang: dict) -> str:
 </header>
 <main id="main">
   <div class="inner">
-    <div class="hero-badge">Google Play · Android</div>
+    <div class="hero-badge">{hero_badge}</div>
     <h1>{lang["h1"]}</h1>
     <p class="lead-en">{lang["lead"]}</p>
-    <p class="trust-note">We do not publish download counts on this site. See recent <strong>ratings and reviews on Google Play</strong> before you install.</p>
+    {trust_note}
     <ul class="bullets">
 {bullets_html}
     </ul>
-    <a href="{PLAY}" class="cta" target="_blank" rel="noopener noreferrer">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.38l2.473 1.449c.63.369.63.997 0 1.366l-2.473 1.449-2.507-2.507 2.507-2.757zM5.864 2.658L16.8 9.002l-2.302 2.302-8.634-8.646z"/></svg>
-      {lang["cta"]}
-    </a>
+{cta_block}
     <div class="card">
-      <h2>About this page</h2>
-      <p>This page helps people searching for <strong>{lang["card_kw"]}</strong> memorization find the official Android app. Policies: Privacy and Terms below.</p>
+{card_block}
     </div>
   </div>
 </main>
 <footer>
   <nav class="footer-links" aria-label="Footer">
     <a href="/">Home</a>
+    <a href="contact.html">Contact</a>
     <a href="privacy-policy.html">Privacy</a>
     <a href="terms-of-service.html">Terms</a>
   </nav>
