@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 6:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And working together [with him] we entreat also that ye receive not the grace of God in vain</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">(for he saith, At an acceptable time I hearkened unto thee, And in a day of salvation did I succor thee: behold, now is the acceptable time; behold, now is the day of salvation):</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">giving no occasion of stumbling in anything, that our ministration be not blamed;</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">but in everything commending ourselves, as ministers of God, in much patience, in afflictions, in necessities, in distresses,</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">in stripes, in imprisonments, in tumults, in labors, in watchings, in fastings;</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">in pureness, in knowledge, in long suffering, in kindness, in the Holy Spirit, in love unfeigned,</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">in the word of truth, in the power of God; by the armor of righteousness on the right hand and on the left,</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">by glory and dishonor, by evil report and good report; as deceivers, and [yet] true;</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">as unknown, and [yet] well known; as dying, and behold, we live; as chastened, and not killed;</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">as sorrowful, yet always rejoicing; as poor, yet making many rich; as having nothing, and [yet] possessing all things.</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Our mouth is open unto you, O Corinthians, our heart is enlarged.</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Ye are not straitened in us, but ye are straitened in your own affections.</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Now for a recompense in like kind (I speak as unto [my] children), be ye also enlarged.</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Be not unequally yoked with unbelievers: for what fellowship have righteousness and iniquity? or what communion hath light with darkness?</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And what concord hath Christ with Belial? or what portion hath a believer with an unbeliever?</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And what agreement hath a temple of God with idols? for we are a temple of the living God; even as God said, I will dwell in them, and walk in them; and I will be their God, and they shall be my people.</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Wherefore Come ye out from among them, and be ye separate, saith the Lord, And touch no unclean thing; And I will receive you,</span></div>
-<div class="v-row" data-ref="2 Corinthians 6:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And will be to you a Father, And ye shall be to me sons and daughters, saith the Lord Almighty.</span></div>
+    <a class="v-row" href="/bible/asv/2-corinthians/6/1/" data-ref="2 Corinthians 6:1 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/1/"><span class="v-num">1</span><span class="v-txt">And working together [with him] we entreat also that ye receive not the grace of God in vain</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/2/" data-ref="2 Corinthians 6:2 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/2/"><span class="v-num">2</span><span class="v-txt">(for he saith, At an acceptable time I hearkened unto thee, And in a day of salvation did I succor thee: behold, now is the acceptable time; behold, now is the day of salvation):</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/3/" data-ref="2 Corinthians 6:3 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/3/"><span class="v-num">3</span><span class="v-txt">giving no occasion of stumbling in anything, that our ministration be not blamed;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/4/" data-ref="2 Corinthians 6:4 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/4/"><span class="v-num">4</span><span class="v-txt">but in everything commending ourselves, as ministers of God, in much patience, in afflictions, in necessities, in distresses,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/5/" data-ref="2 Corinthians 6:5 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/5/"><span class="v-num">5</span><span class="v-txt">in stripes, in imprisonments, in tumults, in labors, in watchings, in fastings;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/6/" data-ref="2 Corinthians 6:6 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/6/"><span class="v-num">6</span><span class="v-txt">in pureness, in knowledge, in long suffering, in kindness, in the Holy Spirit, in love unfeigned,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/7/" data-ref="2 Corinthians 6:7 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/7/"><span class="v-num">7</span><span class="v-txt">in the word of truth, in the power of God; by the armor of righteousness on the right hand and on the left,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/8/" data-ref="2 Corinthians 6:8 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/8/"><span class="v-num">8</span><span class="v-txt">by glory and dishonor, by evil report and good report; as deceivers, and [yet] true;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/9/" data-ref="2 Corinthians 6:9 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/9/"><span class="v-num">9</span><span class="v-txt">as unknown, and [yet] well known; as dying, and behold, we live; as chastened, and not killed;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/10/" data-ref="2 Corinthians 6:10 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/10/"><span class="v-num">10</span><span class="v-txt">as sorrowful, yet always rejoicing; as poor, yet making many rich; as having nothing, and [yet] possessing all things.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/11/" data-ref="2 Corinthians 6:11 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/11/"><span class="v-num">11</span><span class="v-txt">Our mouth is open unto you, O Corinthians, our heart is enlarged.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/12/" data-ref="2 Corinthians 6:12 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/12/"><span class="v-num">12</span><span class="v-txt">Ye are not straitened in us, but ye are straitened in your own affections.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/13/" data-ref="2 Corinthians 6:13 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/13/"><span class="v-num">13</span><span class="v-txt">Now for a recompense in like kind (I speak as unto [my] children), be ye also enlarged.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/14/" data-ref="2 Corinthians 6:14 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/14/"><span class="v-num">14</span><span class="v-txt">Be not unequally yoked with unbelievers: for what fellowship have righteousness and iniquity? or what communion hath light with darkness?</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/15/" data-ref="2 Corinthians 6:15 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/15/"><span class="v-num">15</span><span class="v-txt">And what concord hath Christ with Belial? or what portion hath a believer with an unbeliever?</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/16/" data-ref="2 Corinthians 6:16 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/16/"><span class="v-num">16</span><span class="v-txt">And what agreement hath a temple of God with idols? for we are a temple of the living God; even as God said, I will dwell in them, and walk in them; and I will be their God, and they shall be my people.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/17/" data-ref="2 Corinthians 6:17 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/17/"><span class="v-num">17</span><span class="v-txt">Wherefore Come ye out from among them, and be ye separate, saith the Lord, And touch no unclean thing; And I will receive you,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/6/18/" data-ref="2 Corinthians 6:18 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/6/18/"><span class="v-num">18</span><span class="v-txt">And will be to you a Father, And ye shall be to me sons and daughters, saith the Lord Almighty.</span></a>
 
     
 <div class="app-cta">

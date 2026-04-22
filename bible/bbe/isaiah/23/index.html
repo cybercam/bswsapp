@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 23</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 23:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word about Tyre. Let a cry of sorrow go up, O ships of Tarshish, because your strong place is made waste; on the way back from the land of Kittim the news is given to them.</span></div>
-<div class="v-row" data-ref="Isaiah 23:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Send out a cry of grief, you men of the sea-land, traders of Zidon, who go over the sea, whose representatives are on great waters;</span></div>
-<div class="v-row" data-ref="Isaiah 23:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Who get in the seed of Shihor, whose wealth is the trade of the nations.</span></div>
-<div class="v-row" data-ref="Isaiah 23:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Be shamed, O Zidon: for the sea, the strong place of the sea has said, I have not been with child, or given birth; I have not taken care of young men, or kept watch over the growth of virgins.</span></div>
-<div class="v-row" data-ref="Isaiah 23:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">When the news comes to Egypt they will be bitterly pained at the fate of Tyre.</span></div>
-<div class="v-row" data-ref="Isaiah 23:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Go over to Tarshish; give cries of sorrow, O men of the sea-land.</span></div>
-<div class="v-row" data-ref="Isaiah 23:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Is this the town which was full of joy, whose start goes back to times long past, whose wanderings took her into far-off countries?</span></div>
-<div class="v-row" data-ref="Isaiah 23:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">By whom was this purposed against Tyre, the crowning town, whose traders are chiefs, whose business men are honoured in the land?</span></div>
-<div class="v-row" data-ref="Isaiah 23:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">It was the purpose of the Lord of armies to put pride to shame, to make sport of the glory of those who are honoured in the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 23:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Let your land be worked with the plough, O daughter of Tarshish; there is no longer any harbour.</span></div>
-<div class="v-row" data-ref="Isaiah 23:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">His hand is stretched out over the sea, the kingdoms are shaking: the Lord has given orders about Canaan, to make waste its strong places.</span></div>
-<div class="v-row" data-ref="Isaiah 23:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And he said, There is no more joy for you, O crushed virgin daughter of Zidon: up! go over to Kittim; even there you will have no rest.</span></div>
-<div class="v-row" data-ref="Isaiah 23:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">...</span></div>
-<div class="v-row" data-ref="Isaiah 23:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Let a cry of sorrow go up, O ships of Tarshish: because your strong place is made waste.</span></div>
-<div class="v-row" data-ref="Isaiah 23:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And it will be in that day that Tyre will go out of mind for seventy years, that is, the days of one king: after the end of seventy years it will be for Tyre as in the song of the loose woman.</span></div>
-<div class="v-row" data-ref="Isaiah 23:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Take an instrument of music, go about the town, O loose woman who has gone out from the memory of man; make sweet melody with songs, so that you may come back to men's minds.</span></div>
-<div class="v-row" data-ref="Isaiah 23:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And it will be after the end of seventy years, that the Lord will have mercy on Tyre, and she will go back to her trade, acting as a loose woman with all the kingdoms of the world on the face of the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 23:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And her goods and her trade will be holy to the Lord: they will not be kept back or stored up; for her produce will be for those living in the Lord's land, to give them food for their needs, and fair clothing.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/23/1/" data-ref="Isaiah 23:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/1/"><span class="v-num">1</span><span class="v-txt">The word about Tyre. Let a cry of sorrow go up, O ships of Tarshish, because your strong place is made waste; on the way back from the land of Kittim the news is given to them.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/2/" data-ref="Isaiah 23:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/2/"><span class="v-num">2</span><span class="v-txt">Send out a cry of grief, you men of the sea-land, traders of Zidon, who go over the sea, whose representatives are on great waters;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/3/" data-ref="Isaiah 23:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/3/"><span class="v-num">3</span><span class="v-txt">Who get in the seed of Shihor, whose wealth is the trade of the nations.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/4/" data-ref="Isaiah 23:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/4/"><span class="v-num">4</span><span class="v-txt">Be shamed, O Zidon: for the sea, the strong place of the sea has said, I have not been with child, or given birth; I have not taken care of young men, or kept watch over the growth of virgins.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/5/" data-ref="Isaiah 23:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/5/"><span class="v-num">5</span><span class="v-txt">When the news comes to Egypt they will be bitterly pained at the fate of Tyre.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/6/" data-ref="Isaiah 23:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/6/"><span class="v-num">6</span><span class="v-txt">Go over to Tarshish; give cries of sorrow, O men of the sea-land.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/7/" data-ref="Isaiah 23:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/7/"><span class="v-num">7</span><span class="v-txt">Is this the town which was full of joy, whose start goes back to times long past, whose wanderings took her into far-off countries?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/8/" data-ref="Isaiah 23:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/8/"><span class="v-num">8</span><span class="v-txt">By whom was this purposed against Tyre, the crowning town, whose traders are chiefs, whose business men are honoured in the land?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/9/" data-ref="Isaiah 23:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/9/"><span class="v-num">9</span><span class="v-txt">It was the purpose of the Lord of armies to put pride to shame, to make sport of the glory of those who are honoured in the earth.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/10/" data-ref="Isaiah 23:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/10/"><span class="v-num">10</span><span class="v-txt">Let your land be worked with the plough, O daughter of Tarshish; there is no longer any harbour.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/11/" data-ref="Isaiah 23:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/11/"><span class="v-num">11</span><span class="v-txt">His hand is stretched out over the sea, the kingdoms are shaking: the Lord has given orders about Canaan, to make waste its strong places.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/12/" data-ref="Isaiah 23:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/12/"><span class="v-num">12</span><span class="v-txt">And he said, There is no more joy for you, O crushed virgin daughter of Zidon: up! go over to Kittim; even there you will have no rest.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/13/" data-ref="Isaiah 23:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/13/"><span class="v-num">13</span><span class="v-txt">...</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/14/" data-ref="Isaiah 23:14 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/14/"><span class="v-num">14</span><span class="v-txt">Let a cry of sorrow go up, O ships of Tarshish: because your strong place is made waste.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/15/" data-ref="Isaiah 23:15 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/15/"><span class="v-num">15</span><span class="v-txt">And it will be in that day that Tyre will go out of mind for seventy years, that is, the days of one king: after the end of seventy years it will be for Tyre as in the song of the loose woman.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/16/" data-ref="Isaiah 23:16 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/16/"><span class="v-num">16</span><span class="v-txt">Take an instrument of music, go about the town, O loose woman who has gone out from the memory of man; make sweet melody with songs, so that you may come back to men's minds.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/17/" data-ref="Isaiah 23:17 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/17/"><span class="v-num">17</span><span class="v-txt">And it will be after the end of seventy years, that the Lord will have mercy on Tyre, and she will go back to her trade, acting as a loose woman with all the kingdoms of the world on the face of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/23/18/" data-ref="Isaiah 23:18 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/23/18/"><span class="v-num">18</span><span class="v-txt">And her goods and her trade will be holy to the Lord: they will not be kept back or stored up; for her produce will be for those living in the Lord's land, to give them food for their needs, and fair clothing.</span></a>
 
     
 <div class="app-cta">

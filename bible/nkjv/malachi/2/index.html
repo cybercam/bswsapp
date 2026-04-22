@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Malachi 2:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"And now, O priests, this commandment is for you.</span></div>
-<div class="v-row" data-ref="Malachi 2:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If you will not hear, And if you will not take [it] to heart, To give glory to My name," Says the LORD of hosts, "I will send a curse upon you, And I will curse your blessings. Yes, I have cursed them already, Because you do not take [it] to heart.</span></div>
-<div class="v-row" data-ref="Malachi 2:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Behold, I will rebuke your descendants And spread refuse on your faces, The refuse of your solemn feasts; And [one] will take you away with it.</span></div>
-<div class="v-row" data-ref="Malachi 2:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then you shall know that I have sent this commandment to you, That My covenant with Levi may continue," Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"My covenant was with him, [one] of life and peace, And I gave them to him [that he might] fear [Me;] So he feared Me And was reverent before My name.</span></div>
-<div class="v-row" data-ref="Malachi 2:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The law of truth was in his mouth, And injustice was not found on his lips. He walked with Me in peace and equity, And turned many away from iniquity.</span></div>
-<div class="v-row" data-ref="Malachi 2:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"For the lips of a priest should keep knowledge, And [people] should seek the law from his mouth; For he is the messenger of the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But you have departed from the way; You have caused many to stumble at the law. You have corrupted the covenant of Levi," Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"Therefore I also have made you contemptible and base Before all the people, Because you have not kept My ways But have shown partiality in the law."</span></div>
-<div class="v-row" data-ref="Malachi 2:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Have we not all one Father? Has not one God created us? Why do we deal treacherously with one another By profaning the covenant of the fathers?</span></div>
-<div class="v-row" data-ref="Malachi 2:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Judah has dealt treacherously, And an abomination has been committed in Israel and in Jerusalem, For Judah has profaned The LORD's holy [institution] which He loves: He has married the daughter of a foreign god.</span></div>
-<div class="v-row" data-ref="Malachi 2:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">May the LORD cut off from the tents of Jacob The man who does this, being awake and aware, Yet who brings an offering to the LORD of hosts!</span></div>
-<div class="v-row" data-ref="Malachi 2:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And this is the second thing you do: You cover the altar of the LORD with tears, With weeping and crying; So He does not regard the offering anymore, Nor receive [it] with goodwill from your hands.</span></div>
-<div class="v-row" data-ref="Malachi 2:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yet you say, "For what reason?" Because the LORD has been witness Between you and the wife of your youth, With whom you have dealt treacherously; Yet she is your companion And your wife by covenant.</span></div>
-<div class="v-row" data-ref="Malachi 2:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But did He not make [them] one, Having a remnant of the Spirit? And why one? He seeks godly offspring. Therefore take heed to your spirit, And let none deal treacherously with the wife of his youth.</span></div>
-<div class="v-row" data-ref="Malachi 2:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"For the LORD God of Israel says That He hates divorce, For it covers one's garment with violence," Says the LORD of hosts. "Therefore take heed to your spirit, That you do not deal treacherously."</span></div>
-<div class="v-row" data-ref="Malachi 2:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">You have wearied the LORD with your words; Yet you say, "In what way have we wearied [Him?"] In that you say, "Everyone who does evil [Is] good in the sight of the LORD, And He delights in them," Or, "Where [is] the God of justice?"</span></div>
+    <a class="v-row" href="/bible/nkjv/malachi/2/1/" data-ref="Malachi 2:1 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/1/"><span class="v-num">1</span><span class="v-txt">"And now, O priests, this commandment is for you.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/2/" data-ref="Malachi 2:2 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/2/"><span class="v-num">2</span><span class="v-txt">If you will not hear, And if you will not take [it] to heart, To give glory to My name," Says the LORD of hosts, "I will send a curse upon you, And I will curse your blessings. Yes, I have cursed them already, Because you do not take [it] to heart.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/3/" data-ref="Malachi 2:3 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/3/"><span class="v-num">3</span><span class="v-txt">"Behold, I will rebuke your descendants And spread refuse on your faces, The refuse of your solemn feasts; And [one] will take you away with it.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/4/" data-ref="Malachi 2:4 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/4/"><span class="v-num">4</span><span class="v-txt">Then you shall know that I have sent this commandment to you, That My covenant with Levi may continue," Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/5/" data-ref="Malachi 2:5 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/5/"><span class="v-num">5</span><span class="v-txt">"My covenant was with him, [one] of life and peace, And I gave them to him [that he might] fear [Me;] So he feared Me And was reverent before My name.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/6/" data-ref="Malachi 2:6 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/6/"><span class="v-num">6</span><span class="v-txt">The law of truth was in his mouth, And injustice was not found on his lips. He walked with Me in peace and equity, And turned many away from iniquity.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/7/" data-ref="Malachi 2:7 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/7/"><span class="v-num">7</span><span class="v-txt">"For the lips of a priest should keep knowledge, And [people] should seek the law from his mouth; For he is the messenger of the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/8/" data-ref="Malachi 2:8 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/8/"><span class="v-num">8</span><span class="v-txt">But you have departed from the way; You have caused many to stumble at the law. You have corrupted the covenant of Levi," Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/9/" data-ref="Malachi 2:9 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/9/"><span class="v-num">9</span><span class="v-txt">"Therefore I also have made you contemptible and base Before all the people, Because you have not kept My ways But have shown partiality in the law."</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/10/" data-ref="Malachi 2:10 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/10/"><span class="v-num">10</span><span class="v-txt">Have we not all one Father? Has not one God created us? Why do we deal treacherously with one another By profaning the covenant of the fathers?</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/11/" data-ref="Malachi 2:11 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/11/"><span class="v-num">11</span><span class="v-txt">Judah has dealt treacherously, And an abomination has been committed in Israel and in Jerusalem, For Judah has profaned The LORD's holy [institution] which He loves: He has married the daughter of a foreign god.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/12/" data-ref="Malachi 2:12 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/12/"><span class="v-num">12</span><span class="v-txt">May the LORD cut off from the tents of Jacob The man who does this, being awake and aware, Yet who brings an offering to the LORD of hosts!</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/13/" data-ref="Malachi 2:13 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/13/"><span class="v-num">13</span><span class="v-txt">And this is the second thing you do: You cover the altar of the LORD with tears, With weeping and crying; So He does not regard the offering anymore, Nor receive [it] with goodwill from your hands.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/14/" data-ref="Malachi 2:14 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/14/"><span class="v-num">14</span><span class="v-txt">Yet you say, "For what reason?" Because the LORD has been witness Between you and the wife of your youth, With whom you have dealt treacherously; Yet she is your companion And your wife by covenant.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/15/" data-ref="Malachi 2:15 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/15/"><span class="v-num">15</span><span class="v-txt">But did He not make [them] one, Having a remnant of the Spirit? And why one? He seeks godly offspring. Therefore take heed to your spirit, And let none deal treacherously with the wife of his youth.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/16/" data-ref="Malachi 2:16 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/16/"><span class="v-num">16</span><span class="v-txt">"For the LORD God of Israel says That He hates divorce, For it covers one's garment with violence," Says the LORD of hosts. "Therefore take heed to your spirit, That you do not deal treacherously."</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/2/17/" data-ref="Malachi 2:17 (New King James Version)" data-verse-url="/bible/nkjv/malachi/2/17/"><span class="v-num">17</span><span class="v-txt">You have wearied the LORD with your words; Yet you say, "In what way have we wearied [Him?"] In that you say, "Everyone who does evil [Is] good in the sight of the LORD, And He delights in them," Or, "Where [is] the God of justice?"</span></a>
 
     
 <div class="app-cta">

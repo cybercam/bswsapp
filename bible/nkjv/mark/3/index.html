@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,41 +204,41 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Mark 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And He entered the synagogue again, and a man was there who had a withered hand.</span></div>
-<div class="v-row" data-ref="Mark 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So they watched Him closely, whether He would heal him on the Sabbath, so that they might accuse Him.</span></div>
-<div class="v-row" data-ref="Mark 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And He said to the man who had the withered hand, "Step forward."</span></div>
-<div class="v-row" data-ref="Mark 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then He said to them, "Is it lawful on the Sabbath to do good or to do evil, to save life or to kill?" But they kept silent.</span></div>
-<div class="v-row" data-ref="Mark 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when He had looked around at them with anger, being grieved by the hardness of their hearts, He said to the man, "Stretch out your hand." And he stretched [it] out, and his hand was restored as whole as the other.</span></div>
-<div class="v-row" data-ref="Mark 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the Pharisees went out and immediately plotted with the Herodians against Him, how they might destroy Him.</span></div>
-<div class="v-row" data-ref="Mark 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But Jesus withdrew with His disciples to the sea. And a great multitude from Galilee followed Him, and from Judea</span></div>
-<div class="v-row" data-ref="Mark 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">and Jerusalem and Idumea and beyond the Jordan; and those from Tyre and Sidon, a great multitude, when they heard how many things He was doing, came to Him.</span></div>
-<div class="v-row" data-ref="Mark 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">So He told His disciples that a small boat should be kept ready for Him because of the multitude, lest they should crush Him.</span></div>
-<div class="v-row" data-ref="Mark 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For He healed many, so that as many as had afflictions pressed about Him to touch Him.</span></div>
-<div class="v-row" data-ref="Mark 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the unclean spirits, whenever they saw Him, fell down before Him and cried out, saying, "You are the Son of God."</span></div>
-<div class="v-row" data-ref="Mark 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But He sternly warned them that they should not make Him known.</span></div>
-<div class="v-row" data-ref="Mark 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And He went up on the mountain and called to [Him] those He Himself wanted. And they came to Him.</span></div>
-<div class="v-row" data-ref="Mark 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then He appointed twelve, that they might be with Him and that He might send them out to preach,</span></div>
-<div class="v-row" data-ref="Mark 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and to have power to heal sicknesses and to cast out demons:</span></div>
-<div class="v-row" data-ref="Mark 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Simon, to whom He gave the name Peter;</span></div>
-<div class="v-row" data-ref="Mark 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">James the [son] of Zebedee and John the brother of James, to whom He gave the name Boanerges, that is, "Sons of Thunder";</span></div>
-<div class="v-row" data-ref="Mark 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Andrew, Philip, Bartholomew, Matthew, Thomas, James the [son] of Alphaeus, Thaddaeus, Simon the Cananite;</span></div>
-<div class="v-row" data-ref="Mark 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and Judas Iscariot, who also betrayed Him. And they went into a house.</span></div>
-<div class="v-row" data-ref="Mark 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Then the multitude came together again, so that they could not so much as eat bread.</span></div>
-<div class="v-row" data-ref="Mark 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But when His own people heard [about this,] they went out to lay hold of Him, for they said, "He is out of His mind."</span></div>
-<div class="v-row" data-ref="Mark 3:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And the scribes who came down from Jerusalem said, "He has Beelzebub," and, "By the ruler of the demons He casts out demons."</span></div>
-<div class="v-row" data-ref="Mark 3:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">So He called them to [Himself] and said to them in parables: "How can Satan cast out Satan?</span></div>
-<div class="v-row" data-ref="Mark 3:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">"If a kingdom is divided against itself, that kingdom cannot stand.</span></div>
-<div class="v-row" data-ref="Mark 3:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">"And if a house is divided against itself, that house cannot stand.</span></div>
-<div class="v-row" data-ref="Mark 3:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">"And if Satan has risen up against himself, and is divided, he cannot stand, but has an end.</span></div>
-<div class="v-row" data-ref="Mark 3:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">"No one can enter a strong man's house and plunder his goods, unless he first binds the strong man. And then he will plunder his house.</span></div>
-<div class="v-row" data-ref="Mark 3:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">" Assuredly, I say to you, all sins will be forgiven the sons of men, and whatever blasphemies they may utter;</span></div>
-<div class="v-row" data-ref="Mark 3:29 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">"but he who blasphemes against the Holy Spirit never has forgiveness, but is subject to eternal condemnation" --</span></div>
-<div class="v-row" data-ref="Mark 3:30 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">because they said, "He has an unclean spirit."</span></div>
-<div class="v-row" data-ref="Mark 3:31 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">Then His brothers and His mother came, and standing outside they sent to Him, calling Him.</span></div>
-<div class="v-row" data-ref="Mark 3:32 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">And a multitude was sitting around Him; and they said to Him, "Look, Your mother and Your brothers are outside seeking You."</span></div>
-<div class="v-row" data-ref="Mark 3:33 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">But He answered them, saying, "Who is My mother, or My brothers?"</span></div>
-<div class="v-row" data-ref="Mark 3:34 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">And He looked around in a circle at those who sat about Him, and said, "Here are My mother and My brothers!</span></div>
-<div class="v-row" data-ref="Mark 3:35 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">"For whoever does the will of God is My brother and My sister and mother."</span></div>
+    <a class="v-row" href="/bible/nkjv/mark/3/1/" data-ref="Mark 3:1 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/1/"><span class="v-num">1</span><span class="v-txt">And He entered the synagogue again, and a man was there who had a withered hand.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/2/" data-ref="Mark 3:2 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/2/"><span class="v-num">2</span><span class="v-txt">So they watched Him closely, whether He would heal him on the Sabbath, so that they might accuse Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/3/" data-ref="Mark 3:3 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/3/"><span class="v-num">3</span><span class="v-txt">And He said to the man who had the withered hand, "Step forward."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/4/" data-ref="Mark 3:4 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/4/"><span class="v-num">4</span><span class="v-txt">Then He said to them, "Is it lawful on the Sabbath to do good or to do evil, to save life or to kill?" But they kept silent.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/5/" data-ref="Mark 3:5 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/5/"><span class="v-num">5</span><span class="v-txt">And when He had looked around at them with anger, being grieved by the hardness of their hearts, He said to the man, "Stretch out your hand." And he stretched [it] out, and his hand was restored as whole as the other.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/6/" data-ref="Mark 3:6 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/6/"><span class="v-num">6</span><span class="v-txt">Then the Pharisees went out and immediately plotted with the Herodians against Him, how they might destroy Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/7/" data-ref="Mark 3:7 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/7/"><span class="v-num">7</span><span class="v-txt">But Jesus withdrew with His disciples to the sea. And a great multitude from Galilee followed Him, and from Judea</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/8/" data-ref="Mark 3:8 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/8/"><span class="v-num">8</span><span class="v-txt">and Jerusalem and Idumea and beyond the Jordan; and those from Tyre and Sidon, a great multitude, when they heard how many things He was doing, came to Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/9/" data-ref="Mark 3:9 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/9/"><span class="v-num">9</span><span class="v-txt">So He told His disciples that a small boat should be kept ready for Him because of the multitude, lest they should crush Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/10/" data-ref="Mark 3:10 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/10/"><span class="v-num">10</span><span class="v-txt">For He healed many, so that as many as had afflictions pressed about Him to touch Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/11/" data-ref="Mark 3:11 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/11/"><span class="v-num">11</span><span class="v-txt">And the unclean spirits, whenever they saw Him, fell down before Him and cried out, saying, "You are the Son of God."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/12/" data-ref="Mark 3:12 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/12/"><span class="v-num">12</span><span class="v-txt">But He sternly warned them that they should not make Him known.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/13/" data-ref="Mark 3:13 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/13/"><span class="v-num">13</span><span class="v-txt">And He went up on the mountain and called to [Him] those He Himself wanted. And they came to Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/14/" data-ref="Mark 3:14 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/14/"><span class="v-num">14</span><span class="v-txt">Then He appointed twelve, that they might be with Him and that He might send them out to preach,</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/15/" data-ref="Mark 3:15 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/15/"><span class="v-num">15</span><span class="v-txt">and to have power to heal sicknesses and to cast out demons:</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/16/" data-ref="Mark 3:16 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/16/"><span class="v-num">16</span><span class="v-txt">Simon, to whom He gave the name Peter;</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/17/" data-ref="Mark 3:17 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/17/"><span class="v-num">17</span><span class="v-txt">James the [son] of Zebedee and John the brother of James, to whom He gave the name Boanerges, that is, "Sons of Thunder";</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/18/" data-ref="Mark 3:18 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/18/"><span class="v-num">18</span><span class="v-txt">Andrew, Philip, Bartholomew, Matthew, Thomas, James the [son] of Alphaeus, Thaddaeus, Simon the Cananite;</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/19/" data-ref="Mark 3:19 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/19/"><span class="v-num">19</span><span class="v-txt">and Judas Iscariot, who also betrayed Him. And they went into a house.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/20/" data-ref="Mark 3:20 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/20/"><span class="v-num">20</span><span class="v-txt">Then the multitude came together again, so that they could not so much as eat bread.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/21/" data-ref="Mark 3:21 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/21/"><span class="v-num">21</span><span class="v-txt">But when His own people heard [about this,] they went out to lay hold of Him, for they said, "He is out of His mind."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/22/" data-ref="Mark 3:22 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/22/"><span class="v-num">22</span><span class="v-txt">And the scribes who came down from Jerusalem said, "He has Beelzebub," and, "By the ruler of the demons He casts out demons."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/23/" data-ref="Mark 3:23 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/23/"><span class="v-num">23</span><span class="v-txt">So He called them to [Himself] and said to them in parables: "How can Satan cast out Satan?</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/24/" data-ref="Mark 3:24 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/24/"><span class="v-num">24</span><span class="v-txt">"If a kingdom is divided against itself, that kingdom cannot stand.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/25/" data-ref="Mark 3:25 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/25/"><span class="v-num">25</span><span class="v-txt">"And if a house is divided against itself, that house cannot stand.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/26/" data-ref="Mark 3:26 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/26/"><span class="v-num">26</span><span class="v-txt">"And if Satan has risen up against himself, and is divided, he cannot stand, but has an end.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/27/" data-ref="Mark 3:27 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/27/"><span class="v-num">27</span><span class="v-txt">"No one can enter a strong man's house and plunder his goods, unless he first binds the strong man. And then he will plunder his house.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/28/" data-ref="Mark 3:28 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/28/"><span class="v-num">28</span><span class="v-txt">" Assuredly, I say to you, all sins will be forgiven the sons of men, and whatever blasphemies they may utter;</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/29/" data-ref="Mark 3:29 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/29/"><span class="v-num">29</span><span class="v-txt">"but he who blasphemes against the Holy Spirit never has forgiveness, but is subject to eternal condemnation" --</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/30/" data-ref="Mark 3:30 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/30/"><span class="v-num">30</span><span class="v-txt">because they said, "He has an unclean spirit."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/31/" data-ref="Mark 3:31 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/31/"><span class="v-num">31</span><span class="v-txt">Then His brothers and His mother came, and standing outside they sent to Him, calling Him.</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/32/" data-ref="Mark 3:32 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/32/"><span class="v-num">32</span><span class="v-txt">And a multitude was sitting around Him; and they said to Him, "Look, Your mother and Your brothers are outside seeking You."</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/33/" data-ref="Mark 3:33 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/33/"><span class="v-num">33</span><span class="v-txt">But He answered them, saying, "Who is My mother, or My brothers?"</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/34/" data-ref="Mark 3:34 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/34/"><span class="v-num">34</span><span class="v-txt">And He looked around in a circle at those who sat about Him, and said, "Here are My mother and My brothers!</span></a>
+<a class="v-row" href="/bible/nkjv/mark/3/35/" data-ref="Mark 3:35 (New King James Version)" data-verse-url="/bible/nkjv/mark/3/35/"><span class="v-num">35</span><span class="v-txt">"For whoever does the will of God is My brother and My sister and mother."</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,37 +204,37 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 31:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The words of king Lemuel, the prophecy that his mother taught him.</span></div>
-<div class="v-row" data-ref="Proverbs 31:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">What, my son? and what, the son of my womb? and what, the son of my vows?</span></div>
-<div class="v-row" data-ref="Proverbs 31:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Give not thy strength unto women, nor thy ways to that which destroyeth kings.</span></div>
-<div class="v-row" data-ref="Proverbs 31:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">It is not for kings, O Lemuel, it is not for kings to drink wine; nor for princes strong drink:</span></div>
-<div class="v-row" data-ref="Proverbs 31:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Lest they drink, and forget the law, and pervert the judgment of any of the afflicted.</span></div>
-<div class="v-row" data-ref="Proverbs 31:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Give strong drink unto him that is ready to perish, and wine unto those that be of heavy hearts.</span></div>
-<div class="v-row" data-ref="Proverbs 31:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Let him drink, and forget his poverty, and remember his misery no more.</span></div>
-<div class="v-row" data-ref="Proverbs 31:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Open thy mouth for the dumb in the cause of all such as are appointed to destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 31:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Open thy mouth, judge righteously, and plead the cause of the poor and needy.</span></div>
-<div class="v-row" data-ref="Proverbs 31:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who can find a virtuous woman? for her price is far above rubies.</span></div>
-<div class="v-row" data-ref="Proverbs 31:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The heart of her husband doth safely trust in her, so that he shall have no need of spoil.</span></div>
-<div class="v-row" data-ref="Proverbs 31:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">She will do him good and not evil all the days of her life.</span></div>
-<div class="v-row" data-ref="Proverbs 31:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">She seeketh wool, and flax, and worketh willingly with her hands.</span></div>
-<div class="v-row" data-ref="Proverbs 31:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">She is like the merchants' ships; she bringeth her food from afar.</span></div>
-<div class="v-row" data-ref="Proverbs 31:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">She riseth also while it is yet night, and giveth meat to her household, and a portion to her maidens.</span></div>
-<div class="v-row" data-ref="Proverbs 31:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">She considereth a field, and buyeth it: with the fruit of her hands she planteth a vineyard.</span></div>
-<div class="v-row" data-ref="Proverbs 31:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">She girdeth her loins with strength, and strengtheneth her arms.</span></div>
-<div class="v-row" data-ref="Proverbs 31:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">She perceiveth that her merchandise is good: her candle goeth not out by night.</span></div>
-<div class="v-row" data-ref="Proverbs 31:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">She layeth her hands to the spindle, and her hands hold the distaff.</span></div>
-<div class="v-row" data-ref="Proverbs 31:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">She stretcheth out her hand to the poor; yea, she reacheth forth her hands to the needy.</span></div>
-<div class="v-row" data-ref="Proverbs 31:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">She is not afraid of the snow for her household: for all her household are clothed with scarlet.</span></div>
-<div class="v-row" data-ref="Proverbs 31:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">She maketh herself coverings of tapestry; her clothing is silk and purple.</span></div>
-<div class="v-row" data-ref="Proverbs 31:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Her husband is known in the gates, when he sitteth among the elders of the land.</span></div>
-<div class="v-row" data-ref="Proverbs 31:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">She maketh fine linen, and selleth it; and delivereth girdles unto the merchant.</span></div>
-<div class="v-row" data-ref="Proverbs 31:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Strength and honour are her clothing; and she shall rejoice in time to come.</span></div>
-<div class="v-row" data-ref="Proverbs 31:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">She openeth her mouth with wisdom; and in her tongue is the law of kindness.</span></div>
-<div class="v-row" data-ref="Proverbs 31:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">She looketh well to the ways of her household, and eateth not the bread of idleness.</span></div>
-<div class="v-row" data-ref="Proverbs 31:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Her children arise up, and call her blessed; her husband also, and he praiseth her.</span></div>
-<div class="v-row" data-ref="Proverbs 31:29 (King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Many daughters have done virtuously, but thou excellest them all.</span></div>
-<div class="v-row" data-ref="Proverbs 31:30 (King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">Favour is deceitful, and beauty is vain: but a woman that feareth the LORD, she shall be praised.</span></div>
-<div class="v-row" data-ref="Proverbs 31:31 (King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">Give her of the fruit of her hands; and let her own works praise her in the gates.</span></div>
+    <a class="v-row" href="/bible/kjv/proverbs/31/1/" data-ref="Proverbs 31:1 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/1/"><span class="v-num">1</span><span class="v-txt">The words of king Lemuel, the prophecy that his mother taught him.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/2/" data-ref="Proverbs 31:2 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/2/"><span class="v-num">2</span><span class="v-txt">What, my son? and what, the son of my womb? and what, the son of my vows?</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/3/" data-ref="Proverbs 31:3 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/3/"><span class="v-num">3</span><span class="v-txt">Give not thy strength unto women, nor thy ways to that which destroyeth kings.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/4/" data-ref="Proverbs 31:4 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/4/"><span class="v-num">4</span><span class="v-txt">It is not for kings, O Lemuel, it is not for kings to drink wine; nor for princes strong drink:</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/5/" data-ref="Proverbs 31:5 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/5/"><span class="v-num">5</span><span class="v-txt">Lest they drink, and forget the law, and pervert the judgment of any of the afflicted.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/6/" data-ref="Proverbs 31:6 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/6/"><span class="v-num">6</span><span class="v-txt">Give strong drink unto him that is ready to perish, and wine unto those that be of heavy hearts.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/7/" data-ref="Proverbs 31:7 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/7/"><span class="v-num">7</span><span class="v-txt">Let him drink, and forget his poverty, and remember his misery no more.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/8/" data-ref="Proverbs 31:8 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/8/"><span class="v-num">8</span><span class="v-txt">Open thy mouth for the dumb in the cause of all such as are appointed to destruction.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/9/" data-ref="Proverbs 31:9 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/9/"><span class="v-num">9</span><span class="v-txt">Open thy mouth, judge righteously, and plead the cause of the poor and needy.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/10/" data-ref="Proverbs 31:10 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/10/"><span class="v-num">10</span><span class="v-txt">Who can find a virtuous woman? for her price is far above rubies.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/11/" data-ref="Proverbs 31:11 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/11/"><span class="v-num">11</span><span class="v-txt">The heart of her husband doth safely trust in her, so that he shall have no need of spoil.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/12/" data-ref="Proverbs 31:12 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/12/"><span class="v-num">12</span><span class="v-txt">She will do him good and not evil all the days of her life.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/13/" data-ref="Proverbs 31:13 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/13/"><span class="v-num">13</span><span class="v-txt">She seeketh wool, and flax, and worketh willingly with her hands.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/14/" data-ref="Proverbs 31:14 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/14/"><span class="v-num">14</span><span class="v-txt">She is like the merchants' ships; she bringeth her food from afar.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/15/" data-ref="Proverbs 31:15 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/15/"><span class="v-num">15</span><span class="v-txt">She riseth also while it is yet night, and giveth meat to her household, and a portion to her maidens.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/16/" data-ref="Proverbs 31:16 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/16/"><span class="v-num">16</span><span class="v-txt">She considereth a field, and buyeth it: with the fruit of her hands she planteth a vineyard.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/17/" data-ref="Proverbs 31:17 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/17/"><span class="v-num">17</span><span class="v-txt">She girdeth her loins with strength, and strengtheneth her arms.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/18/" data-ref="Proverbs 31:18 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/18/"><span class="v-num">18</span><span class="v-txt">She perceiveth that her merchandise is good: her candle goeth not out by night.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/19/" data-ref="Proverbs 31:19 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/19/"><span class="v-num">19</span><span class="v-txt">She layeth her hands to the spindle, and her hands hold the distaff.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/20/" data-ref="Proverbs 31:20 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/20/"><span class="v-num">20</span><span class="v-txt">She stretcheth out her hand to the poor; yea, she reacheth forth her hands to the needy.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/21/" data-ref="Proverbs 31:21 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/21/"><span class="v-num">21</span><span class="v-txt">She is not afraid of the snow for her household: for all her household are clothed with scarlet.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/22/" data-ref="Proverbs 31:22 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/22/"><span class="v-num">22</span><span class="v-txt">She maketh herself coverings of tapestry; her clothing is silk and purple.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/23/" data-ref="Proverbs 31:23 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/23/"><span class="v-num">23</span><span class="v-txt">Her husband is known in the gates, when he sitteth among the elders of the land.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/24/" data-ref="Proverbs 31:24 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/24/"><span class="v-num">24</span><span class="v-txt">She maketh fine linen, and selleth it; and delivereth girdles unto the merchant.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/25/" data-ref="Proverbs 31:25 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/25/"><span class="v-num">25</span><span class="v-txt">Strength and honour are her clothing; and she shall rejoice in time to come.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/26/" data-ref="Proverbs 31:26 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/26/"><span class="v-num">26</span><span class="v-txt">She openeth her mouth with wisdom; and in her tongue is the law of kindness.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/27/" data-ref="Proverbs 31:27 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/27/"><span class="v-num">27</span><span class="v-txt">She looketh well to the ways of her household, and eateth not the bread of idleness.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/28/" data-ref="Proverbs 31:28 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/28/"><span class="v-num">28</span><span class="v-txt">Her children arise up, and call her blessed; her husband also, and he praiseth her.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/29/" data-ref="Proverbs 31:29 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/29/"><span class="v-num">29</span><span class="v-txt">Many daughters have done virtuously, but thou excellest them all.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/30/" data-ref="Proverbs 31:30 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/30/"><span class="v-num">30</span><span class="v-txt">Favour is deceitful, and beauty is vain: but a woman that feareth the LORD, she shall be praised.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/31/31/" data-ref="Proverbs 31:31 (King James Version)" data-verse-url="/bible/kjv/proverbs/31/31/"><span class="v-num">31</span><span class="v-txt">Give her of the fruit of her hands; and let her own works praise her in the gates.</span></a>
 
     
 <div class="app-cta">

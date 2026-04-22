@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Exodus 5:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And afterward Moses and Aaron went in, and told Pharaoh, Thus saith the LORD God of Israel, Let my people go, that they may hold a feast unto me in the wilderness.</span></div>
-<div class="v-row" data-ref="Exodus 5:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Pharaoh said, Who is the LORD, that I should obey his voice to let Israel go? I know not the LORD, neither will I let Israel go.</span></div>
-<div class="v-row" data-ref="Exodus 5:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And they said, The God of the Hebrews hath met with us: let us go, we pray thee, three days' journey into the desert, and sacrifice unto the LORD our God; lest he fall upon us with pestilence, or with the sword.</span></div>
-<div class="v-row" data-ref="Exodus 5:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the king of Egypt said unto them, Wherefore do ye, Moses and Aaron, let the people from their works? get you unto your burdens.</span></div>
-<div class="v-row" data-ref="Exodus 5:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Pharaoh said, Behold, the people of the land now are many, and ye make them rest from their burdens.</span></div>
-<div class="v-row" data-ref="Exodus 5:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Pharaoh commanded the same day the taskmasters of the people, and their officers, saying,</span></div>
-<div class="v-row" data-ref="Exodus 5:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Ye shall no more give the people straw to make brick, as heretofore: let them go and gather straw for themselves.</span></div>
-<div class="v-row" data-ref="Exodus 5:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the tale of the bricks, which they did make heretofore, ye shall lay upon them; ye shall not diminish ought thereof: for they be idle; therefore they cry, saying, Let us go and sacrifice to our God.</span></div>
-<div class="v-row" data-ref="Exodus 5:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let there more work be laid upon the men, that they may labour therein; and let them not regard vain words.</span></div>
-<div class="v-row" data-ref="Exodus 5:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the taskmasters of the people went out, and their officers, and they spake to the people, saying, Thus saith Pharaoh, I will not give you straw.</span></div>
-<div class="v-row" data-ref="Exodus 5:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Go ye, get you straw where ye can find it: yet not ought of your work shall be diminished.</span></div>
-<div class="v-row" data-ref="Exodus 5:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So the people were scattered abroad throughout all the land of Egypt to gather stubble instead of straw.</span></div>
-<div class="v-row" data-ref="Exodus 5:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the taskmasters hasted them, saying, Fulfil your works, your daily tasks, as when there was straw.</span></div>
-<div class="v-row" data-ref="Exodus 5:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the officers of the children of Israel, which Pharaoh's taskmasters had set over them, were beaten, and demanded, Wherefore have ye not fulfilled your task in making brick both yesterday and to day, as heretofore?</span></div>
-<div class="v-row" data-ref="Exodus 5:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then the officers of the children of Israel came and cried unto Pharaoh, saying, Wherefore dealest thou thus with thy servants?</span></div>
-<div class="v-row" data-ref="Exodus 5:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">There is no straw given unto thy servants, and they say to us, Make brick: and, behold, thy servants are beaten; but the fault is in thine own people.</span></div>
-<div class="v-row" data-ref="Exodus 5:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But he said, Ye are idle, ye are idle: therefore ye say, Let us go and do sacrifice to the LORD.</span></div>
-<div class="v-row" data-ref="Exodus 5:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Go therefore now, and work; for there shall no straw be given you, yet shall ye deliver the tale of bricks.</span></div>
-<div class="v-row" data-ref="Exodus 5:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And the officers of the children of Israel did see that they were in evil case, after it was said, Ye shall not minish ought from your bricks of your daily task.</span></div>
-<div class="v-row" data-ref="Exodus 5:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And they met Moses and Aaron, who stood in the way, as they came forth from Pharaoh:</span></div>
-<div class="v-row" data-ref="Exodus 5:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And they said unto them, The LORD look upon you, and judge; because ye have made our savour to be abhorred in the eyes of Pharaoh, and in the eyes of his servants, to put a sword in their hand to slay us.</span></div>
-<div class="v-row" data-ref="Exodus 5:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And Moses returned unto the LORD, and said, Lord, wherefore hast thou so evil entreated this people? why is it that thou hast sent me?</span></div>
-<div class="v-row" data-ref="Exodus 5:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For since I came to Pharaoh to speak in thy name, he hath done evil to this people; neither hast thou delivered thy people at all.</span></div>
+    <a class="v-row" href="/bible/kjv/exodus/5/1/" data-ref="Exodus 5:1 (King James Version)" data-verse-url="/bible/kjv/exodus/5/1/"><span class="v-num">1</span><span class="v-txt">And afterward Moses and Aaron went in, and told Pharaoh, Thus saith the LORD God of Israel, Let my people go, that they may hold a feast unto me in the wilderness.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/2/" data-ref="Exodus 5:2 (King James Version)" data-verse-url="/bible/kjv/exodus/5/2/"><span class="v-num">2</span><span class="v-txt">And Pharaoh said, Who is the LORD, that I should obey his voice to let Israel go? I know not the LORD, neither will I let Israel go.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/3/" data-ref="Exodus 5:3 (King James Version)" data-verse-url="/bible/kjv/exodus/5/3/"><span class="v-num">3</span><span class="v-txt">And they said, The God of the Hebrews hath met with us: let us go, we pray thee, three days' journey into the desert, and sacrifice unto the LORD our God; lest he fall upon us with pestilence, or with the sword.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/4/" data-ref="Exodus 5:4 (King James Version)" data-verse-url="/bible/kjv/exodus/5/4/"><span class="v-num">4</span><span class="v-txt">And the king of Egypt said unto them, Wherefore do ye, Moses and Aaron, let the people from their works? get you unto your burdens.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/5/" data-ref="Exodus 5:5 (King James Version)" data-verse-url="/bible/kjv/exodus/5/5/"><span class="v-num">5</span><span class="v-txt">And Pharaoh said, Behold, the people of the land now are many, and ye make them rest from their burdens.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/6/" data-ref="Exodus 5:6 (King James Version)" data-verse-url="/bible/kjv/exodus/5/6/"><span class="v-num">6</span><span class="v-txt">And Pharaoh commanded the same day the taskmasters of the people, and their officers, saying,</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/7/" data-ref="Exodus 5:7 (King James Version)" data-verse-url="/bible/kjv/exodus/5/7/"><span class="v-num">7</span><span class="v-txt">Ye shall no more give the people straw to make brick, as heretofore: let them go and gather straw for themselves.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/8/" data-ref="Exodus 5:8 (King James Version)" data-verse-url="/bible/kjv/exodus/5/8/"><span class="v-num">8</span><span class="v-txt">And the tale of the bricks, which they did make heretofore, ye shall lay upon them; ye shall not diminish ought thereof: for they be idle; therefore they cry, saying, Let us go and sacrifice to our God.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/9/" data-ref="Exodus 5:9 (King James Version)" data-verse-url="/bible/kjv/exodus/5/9/"><span class="v-num">9</span><span class="v-txt">Let there more work be laid upon the men, that they may labour therein; and let them not regard vain words.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/10/" data-ref="Exodus 5:10 (King James Version)" data-verse-url="/bible/kjv/exodus/5/10/"><span class="v-num">10</span><span class="v-txt">And the taskmasters of the people went out, and their officers, and they spake to the people, saying, Thus saith Pharaoh, I will not give you straw.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/11/" data-ref="Exodus 5:11 (King James Version)" data-verse-url="/bible/kjv/exodus/5/11/"><span class="v-num">11</span><span class="v-txt">Go ye, get you straw where ye can find it: yet not ought of your work shall be diminished.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/12/" data-ref="Exodus 5:12 (King James Version)" data-verse-url="/bible/kjv/exodus/5/12/"><span class="v-num">12</span><span class="v-txt">So the people were scattered abroad throughout all the land of Egypt to gather stubble instead of straw.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/13/" data-ref="Exodus 5:13 (King James Version)" data-verse-url="/bible/kjv/exodus/5/13/"><span class="v-num">13</span><span class="v-txt">And the taskmasters hasted them, saying, Fulfil your works, your daily tasks, as when there was straw.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/14/" data-ref="Exodus 5:14 (King James Version)" data-verse-url="/bible/kjv/exodus/5/14/"><span class="v-num">14</span><span class="v-txt">And the officers of the children of Israel, which Pharaoh's taskmasters had set over them, were beaten, and demanded, Wherefore have ye not fulfilled your task in making brick both yesterday and to day, as heretofore?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/15/" data-ref="Exodus 5:15 (King James Version)" data-verse-url="/bible/kjv/exodus/5/15/"><span class="v-num">15</span><span class="v-txt">Then the officers of the children of Israel came and cried unto Pharaoh, saying, Wherefore dealest thou thus with thy servants?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/16/" data-ref="Exodus 5:16 (King James Version)" data-verse-url="/bible/kjv/exodus/5/16/"><span class="v-num">16</span><span class="v-txt">There is no straw given unto thy servants, and they say to us, Make brick: and, behold, thy servants are beaten; but the fault is in thine own people.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/17/" data-ref="Exodus 5:17 (King James Version)" data-verse-url="/bible/kjv/exodus/5/17/"><span class="v-num">17</span><span class="v-txt">But he said, Ye are idle, ye are idle: therefore ye say, Let us go and do sacrifice to the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/18/" data-ref="Exodus 5:18 (King James Version)" data-verse-url="/bible/kjv/exodus/5/18/"><span class="v-num">18</span><span class="v-txt">Go therefore now, and work; for there shall no straw be given you, yet shall ye deliver the tale of bricks.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/19/" data-ref="Exodus 5:19 (King James Version)" data-verse-url="/bible/kjv/exodus/5/19/"><span class="v-num">19</span><span class="v-txt">And the officers of the children of Israel did see that they were in evil case, after it was said, Ye shall not minish ought from your bricks of your daily task.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/20/" data-ref="Exodus 5:20 (King James Version)" data-verse-url="/bible/kjv/exodus/5/20/"><span class="v-num">20</span><span class="v-txt">And they met Moses and Aaron, who stood in the way, as they came forth from Pharaoh:</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/21/" data-ref="Exodus 5:21 (King James Version)" data-verse-url="/bible/kjv/exodus/5/21/"><span class="v-num">21</span><span class="v-txt">And they said unto them, The LORD look upon you, and judge; because ye have made our savour to be abhorred in the eyes of Pharaoh, and in the eyes of his servants, to put a sword in their hand to slay us.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/22/" data-ref="Exodus 5:22 (King James Version)" data-verse-url="/bible/kjv/exodus/5/22/"><span class="v-num">22</span><span class="v-txt">And Moses returned unto the LORD, and said, Lord, wherefore hast thou so evil entreated this people? why is it that thou hast sent me?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/5/23/" data-ref="Exodus 5:23 (King James Version)" data-verse-url="/bible/kjv/exodus/5/23/"><span class="v-num">23</span><span class="v-txt">For since I came to Pharaoh to speak in thy name, he hath done evil to this people; neither hast thou delivered thy people at all.</span></a>
 
     
 <div class="app-cta">

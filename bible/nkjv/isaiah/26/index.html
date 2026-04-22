@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 26</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 26:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In that day this song will be sung in the land of Judah: "We have a strong city; [God] will appoint salvation [for] walls and bulwarks.</span></div>
-<div class="v-row" data-ref="Isaiah 26:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Open the gates, That the righteous nation which keeps the truth may enter in.</span></div>
-<div class="v-row" data-ref="Isaiah 26:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You will keep [him] in perfect peace, [Whose] mind [is] stayed [on You,] Because he trusts in You.</span></div>
-<div class="v-row" data-ref="Isaiah 26:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Trust in the LORD forever, For in YAH, the LORD, [is] everlasting strength.</span></div>
-<div class="v-row" data-ref="Isaiah 26:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For He brings down those who dwell on high, The lofty city; He lays it low, He lays it low to the ground, He brings it down to the dust.</span></div>
-<div class="v-row" data-ref="Isaiah 26:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The foot shall tread it down -- The feet of the poor [And] the steps of the needy."</span></div>
-<div class="v-row" data-ref="Isaiah 26:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The way of the just [is] uprightness; O Most Upright, You weigh the path of the just.</span></div>
-<div class="v-row" data-ref="Isaiah 26:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Yes, in the way of Your judgments, O LORD, we have waited for You; The desire of [our] soul [is] for Your name And for the remembrance of You.</span></div>
-<div class="v-row" data-ref="Isaiah 26:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">With my soul I have desired You in the night, Yes, by my spirit within me I will seek You early; For when Your judgments [are] in the earth, The inhabitants of the world will learn righteousness.</span></div>
-<div class="v-row" data-ref="Isaiah 26:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Let grace be shown to the wicked, [Yet] he will not learn righteousness; In the land of uprightness he will deal unjustly, And will not behold the majesty of the LORD.</span></div>
-<div class="v-row" data-ref="Isaiah 26:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">LORD, [when] Your hand is lifted up, they will not see. But they will see and be ashamed For [their] envy of people; Yes, the fire of Your enemies shall devour them.</span></div>
-<div class="v-row" data-ref="Isaiah 26:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">LORD, You will establish peace for us, For You have also done all our works in us.</span></div>
-<div class="v-row" data-ref="Isaiah 26:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">O LORD our God, masters besides You Have had dominion over us; [But] by You only we make mention of Your name.</span></div>
-<div class="v-row" data-ref="Isaiah 26:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">[They are] dead, they will not live; [They are] deceased, they will not rise. Therefore You have punished and destroyed them, And made all their memory to perish.</span></div>
-<div class="v-row" data-ref="Isaiah 26:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">You have increased the nation, O LORD, You have increased the nation; You are glorified; You have expanded all the borders of the land.</span></div>
-<div class="v-row" data-ref="Isaiah 26:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">LORD, in trouble they have visited You, They poured out a prayer [when] Your chastening [was] upon them.</span></div>
-<div class="v-row" data-ref="Isaiah 26:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">As a woman with child Is in pain and cries out in her pangs, When she draws near the time of her delivery, So have we been in Your sight, O LORD.</span></div>
-<div class="v-row" data-ref="Isaiah 26:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">We have been with child, we have been in pain; We have, as it were, brought forth wind; We have not accomplished any deliverance in the earth, Nor have the inhabitants of the world fallen.</span></div>
-<div class="v-row" data-ref="Isaiah 26:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Your dead shall live; [Together with] my dead body they shall arise. Awake and sing, you who dwell in dust; For your dew [is like] the dew of herbs, And the earth shall cast out the dead.</span></div>
-<div class="v-row" data-ref="Isaiah 26:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Come, my people, enter your chambers, And shut your doors behind you; Hide yourself, as it were, for a little moment, Until the indignation is past.</span></div>
-<div class="v-row" data-ref="Isaiah 26:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For behold, the LORD comes out of His place To punish the inhabitants of the earth for their iniquity; The earth will also disclose her blood, And will no more cover her slain.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/26/1/" data-ref="Isaiah 26:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/1/"><span class="v-num">1</span><span class="v-txt">In that day this song will be sung in the land of Judah: "We have a strong city; [God] will appoint salvation [for] walls and bulwarks.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/2/" data-ref="Isaiah 26:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/2/"><span class="v-num">2</span><span class="v-txt">Open the gates, That the righteous nation which keeps the truth may enter in.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/3/" data-ref="Isaiah 26:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/3/"><span class="v-num">3</span><span class="v-txt">You will keep [him] in perfect peace, [Whose] mind [is] stayed [on You,] Because he trusts in You.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/4/" data-ref="Isaiah 26:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/4/"><span class="v-num">4</span><span class="v-txt">Trust in the LORD forever, For in YAH, the LORD, [is] everlasting strength.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/5/" data-ref="Isaiah 26:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/5/"><span class="v-num">5</span><span class="v-txt">For He brings down those who dwell on high, The lofty city; He lays it low, He lays it low to the ground, He brings it down to the dust.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/6/" data-ref="Isaiah 26:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/6/"><span class="v-num">6</span><span class="v-txt">The foot shall tread it down -- The feet of the poor [And] the steps of the needy."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/7/" data-ref="Isaiah 26:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/7/"><span class="v-num">7</span><span class="v-txt">The way of the just [is] uprightness; O Most Upright, You weigh the path of the just.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/8/" data-ref="Isaiah 26:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/8/"><span class="v-num">8</span><span class="v-txt">Yes, in the way of Your judgments, O LORD, we have waited for You; The desire of [our] soul [is] for Your name And for the remembrance of You.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/9/" data-ref="Isaiah 26:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/9/"><span class="v-num">9</span><span class="v-txt">With my soul I have desired You in the night, Yes, by my spirit within me I will seek You early; For when Your judgments [are] in the earth, The inhabitants of the world will learn righteousness.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/10/" data-ref="Isaiah 26:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/10/"><span class="v-num">10</span><span class="v-txt">Let grace be shown to the wicked, [Yet] he will not learn righteousness; In the land of uprightness he will deal unjustly, And will not behold the majesty of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/11/" data-ref="Isaiah 26:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/11/"><span class="v-num">11</span><span class="v-txt">LORD, [when] Your hand is lifted up, they will not see. But they will see and be ashamed For [their] envy of people; Yes, the fire of Your enemies shall devour them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/12/" data-ref="Isaiah 26:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/12/"><span class="v-num">12</span><span class="v-txt">LORD, You will establish peace for us, For You have also done all our works in us.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/13/" data-ref="Isaiah 26:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/13/"><span class="v-num">13</span><span class="v-txt">O LORD our God, masters besides You Have had dominion over us; [But] by You only we make mention of Your name.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/14/" data-ref="Isaiah 26:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/14/"><span class="v-num">14</span><span class="v-txt">[They are] dead, they will not live; [They are] deceased, they will not rise. Therefore You have punished and destroyed them, And made all their memory to perish.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/15/" data-ref="Isaiah 26:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/15/"><span class="v-num">15</span><span class="v-txt">You have increased the nation, O LORD, You have increased the nation; You are glorified; You have expanded all the borders of the land.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/16/" data-ref="Isaiah 26:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/16/"><span class="v-num">16</span><span class="v-txt">LORD, in trouble they have visited You, They poured out a prayer [when] Your chastening [was] upon them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/17/" data-ref="Isaiah 26:17 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/17/"><span class="v-num">17</span><span class="v-txt">As a woman with child Is in pain and cries out in her pangs, When she draws near the time of her delivery, So have we been in Your sight, O LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/18/" data-ref="Isaiah 26:18 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/18/"><span class="v-num">18</span><span class="v-txt">We have been with child, we have been in pain; We have, as it were, brought forth wind; We have not accomplished any deliverance in the earth, Nor have the inhabitants of the world fallen.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/19/" data-ref="Isaiah 26:19 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/19/"><span class="v-num">19</span><span class="v-txt">Your dead shall live; [Together with] my dead body they shall arise. Awake and sing, you who dwell in dust; For your dew [is like] the dew of herbs, And the earth shall cast out the dead.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/20/" data-ref="Isaiah 26:20 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/20/"><span class="v-num">20</span><span class="v-txt">Come, my people, enter your chambers, And shut your doors behind you; Hide yourself, as it were, for a little moment, Until the indignation is past.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/26/21/" data-ref="Isaiah 26:21 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/26/21/"><span class="v-num">21</span><span class="v-txt">For behold, the LORD comes out of His place To punish the inhabitants of the earth for their iniquity; The earth will also disclose her blood, And will no more cover her slain.</span></a>
 
     
 <div class="app-cta">

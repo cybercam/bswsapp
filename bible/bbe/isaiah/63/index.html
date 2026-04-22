@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 63</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 63:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Who is this who comes from Edom, with blood-red robes from Bozrah? he whose clothing is fair, stepping with pride in his great strength? I whose glory is in the right, strong for salvation.</span></div>
-<div class="v-row" data-ref="Isaiah 63:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Why is your clothing red, and why are your robes like those of one who is crushing the grapes?</span></div>
-<div class="v-row" data-ref="Isaiah 63:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have been crushing the grapes by myself, and of the peoples there was no man with me: in my wrath and in my passion, they were crushed under my feet; and my robes are marked with their life-blood, and all my clothing is red.</span></div>
-<div class="v-row" data-ref="Isaiah 63:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For the day of punishment is in my heart, and the year for the payment of the price for my people has come.</span></div>
-<div class="v-row" data-ref="Isaiah 63:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And I saw that there was no helper, and I was wondering that no one gave them support: so my arm did the work of salvation, and my wrath was my support.</span></div>
-<div class="v-row" data-ref="Isaiah 63:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And in my passion the peoples were crushed under my feet, and broken in my wrath, and I put down their strength to the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 63:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I will give news of the mercies of the Lord, and his great acts, even all the things the Lord has done for us, in his great grace to the house of Israel; even all he has done for us in his unnumbered mercies.</span></div>
-<div class="v-row" data-ref="Isaiah 63:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For he said, Truly they are my people, children who will not be false: so he was their saviour out of all their trouble.</span></div>
-<div class="v-row" data-ref="Isaiah 63:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">It was no sent one or angel, but he himself who was their saviour: in his love and in his pity he took up their cause, and he took them in his arms, caring for them all through the years.</span></div>
-<div class="v-row" data-ref="Isaiah 63:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But they went against him, causing grief to his holy spirit: so he was turned against them, and made war on them.</span></div>
-<div class="v-row" data-ref="Isaiah 63:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then the early days came to their minds, the days of Moses his servant: and they said, Where is he who made the keeper of his flock come up from the sea? where is he who put his holy spirit among them,</span></div>
-<div class="v-row" data-ref="Isaiah 63:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He who made the arm of his glory go at the right hand of Moses, by whom the waters were parted before them, to make himself an eternal name;</span></div>
-<div class="v-row" data-ref="Isaiah 63:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He who made them go through the deep waters, like a horse in the waste land?</span></div>
-<div class="v-row" data-ref="Isaiah 63:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Like the cattle which go down into the valley, they went without falling, the spirit of the Lord guiding them: so you went before your people, to make yourself a great name.</span></div>
-<div class="v-row" data-ref="Isaiah 63:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let your eyes be looking down from heaven, from your holy and beautiful house: where is your deep feeling, the working of your power? do not keep back the moving of your pity and your mercies:</span></div>
-<div class="v-row" data-ref="Isaiah 63:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For you are our father, though Abraham has no knowledge of us, and Israel gives no thought to us: you, O Lord, are our father; from the earliest days you have taken up our cause.</span></div>
-<div class="v-row" data-ref="Isaiah 63:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">O Lord, why do you send us wandering from your ways, making our hearts hard, so that we have no fear of you? Come back, because of your servants, the tribes of your heritage.</span></div>
-<div class="v-row" data-ref="Isaiah 63:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Why have evil men gone over your holy place, so that it has been crushed under the feet of our haters?</span></div>
-<div class="v-row" data-ref="Isaiah 63:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">We have become as those who were never ruled by you, on whom your name was not named.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/63/1/" data-ref="Isaiah 63:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/1/"><span class="v-num">1</span><span class="v-txt">Who is this who comes from Edom, with blood-red robes from Bozrah? he whose clothing is fair, stepping with pride in his great strength? I whose glory is in the right, strong for salvation.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/2/" data-ref="Isaiah 63:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/2/"><span class="v-num">2</span><span class="v-txt">Why is your clothing red, and why are your robes like those of one who is crushing the grapes?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/3/" data-ref="Isaiah 63:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/3/"><span class="v-num">3</span><span class="v-txt">I have been crushing the grapes by myself, and of the peoples there was no man with me: in my wrath and in my passion, they were crushed under my feet; and my robes are marked with their life-blood, and all my clothing is red.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/4/" data-ref="Isaiah 63:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/4/"><span class="v-num">4</span><span class="v-txt">For the day of punishment is in my heart, and the year for the payment of the price for my people has come.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/5/" data-ref="Isaiah 63:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/5/"><span class="v-num">5</span><span class="v-txt">And I saw that there was no helper, and I was wondering that no one gave them support: so my arm did the work of salvation, and my wrath was my support.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/6/" data-ref="Isaiah 63:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/6/"><span class="v-num">6</span><span class="v-txt">And in my passion the peoples were crushed under my feet, and broken in my wrath, and I put down their strength to the earth.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/7/" data-ref="Isaiah 63:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/7/"><span class="v-num">7</span><span class="v-txt">I will give news of the mercies of the Lord, and his great acts, even all the things the Lord has done for us, in his great grace to the house of Israel; even all he has done for us in his unnumbered mercies.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/8/" data-ref="Isaiah 63:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/8/"><span class="v-num">8</span><span class="v-txt">For he said, Truly they are my people, children who will not be false: so he was their saviour out of all their trouble.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/9/" data-ref="Isaiah 63:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/9/"><span class="v-num">9</span><span class="v-txt">It was no sent one or angel, but he himself who was their saviour: in his love and in his pity he took up their cause, and he took them in his arms, caring for them all through the years.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/10/" data-ref="Isaiah 63:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/10/"><span class="v-num">10</span><span class="v-txt">But they went against him, causing grief to his holy spirit: so he was turned against them, and made war on them.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/11/" data-ref="Isaiah 63:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/11/"><span class="v-num">11</span><span class="v-txt">Then the early days came to their minds, the days of Moses his servant: and they said, Where is he who made the keeper of his flock come up from the sea? where is he who put his holy spirit among them,</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/12/" data-ref="Isaiah 63:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/12/"><span class="v-num">12</span><span class="v-txt">He who made the arm of his glory go at the right hand of Moses, by whom the waters were parted before them, to make himself an eternal name;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/13/" data-ref="Isaiah 63:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/13/"><span class="v-num">13</span><span class="v-txt">He who made them go through the deep waters, like a horse in the waste land?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/14/" data-ref="Isaiah 63:14 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/14/"><span class="v-num">14</span><span class="v-txt">Like the cattle which go down into the valley, they went without falling, the spirit of the Lord guiding them: so you went before your people, to make yourself a great name.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/15/" data-ref="Isaiah 63:15 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/15/"><span class="v-num">15</span><span class="v-txt">Let your eyes be looking down from heaven, from your holy and beautiful house: where is your deep feeling, the working of your power? do not keep back the moving of your pity and your mercies:</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/16/" data-ref="Isaiah 63:16 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/16/"><span class="v-num">16</span><span class="v-txt">For you are our father, though Abraham has no knowledge of us, and Israel gives no thought to us: you, O Lord, are our father; from the earliest days you have taken up our cause.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/17/" data-ref="Isaiah 63:17 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/17/"><span class="v-num">17</span><span class="v-txt">O Lord, why do you send us wandering from your ways, making our hearts hard, so that we have no fear of you? Come back, because of your servants, the tribes of your heritage.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/18/" data-ref="Isaiah 63:18 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/18/"><span class="v-num">18</span><span class="v-txt">Why have evil men gone over your holy place, so that it has been crushed under the feet of our haters?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/63/19/" data-ref="Isaiah 63:19 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/63/19/"><span class="v-num">19</span><span class="v-txt">We have become as those who were never ruled by you, on whom your name was not named.</span></a>
 
     
 <div class="app-cta">

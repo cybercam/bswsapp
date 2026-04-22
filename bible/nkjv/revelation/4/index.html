@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After these things I looked, and behold, a door [standing] open in heaven. And the first voice which I heard [was] like a trumpet speaking with me, saying, "Come up here, and I will show you things which must take place after this."</span></div>
-<div class="v-row" data-ref="Revelation 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Immediately I was in the Spirit; and behold, a throne set in heaven, and [One] sat on the throne.</span></div>
-<div class="v-row" data-ref="Revelation 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And He who sat there was like a jasper and a sardius stone in appearance; and [there was] a rainbow around the throne, in appearance like an emerald.</span></div>
-<div class="v-row" data-ref="Revelation 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Around the throne [were] twenty-four thrones, and on the thrones I saw twenty-four elders sitting, clothed in white robes; and they had crowns of gold on their heads.</span></div>
-<div class="v-row" data-ref="Revelation 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And from the throne proceeded lightnings, thunderings, and voices. Seven lamps of fire [were] burning before the throne, which are the seven Spirits of God.</span></div>
-<div class="v-row" data-ref="Revelation 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Before the throne [there was] a sea of glass, like crystal. And in the midst of the throne, and around the throne, [were] four living creatures full of eyes in front and in back.</span></div>
-<div class="v-row" data-ref="Revelation 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The first living creature [was] like a lion, the second living creature like a calf, the third living creature had a face like a man, and the fourth living creature [was] like a flying eagle.</span></div>
-<div class="v-row" data-ref="Revelation 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">[The] four living creatures, each having six wings, were full of eyes around and within. And they do not rest day or night, saying: "Holy, holy, holy, Lord God Almighty, Who was and is and is to come!"</span></div>
-<div class="v-row" data-ref="Revelation 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Whenever the living creatures give glory and honor and thanks to Him who sits on the throne, who lives forever and ever,</span></div>
-<div class="v-row" data-ref="Revelation 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">the twenty-four elders fall down before Him who sits on the throne and worship Him who lives forever and ever, and cast their crowns before the throne, saying:</span></div>
-<div class="v-row" data-ref="Revelation 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"You are worthy, O Lord, To receive glory and honor and power; For You created all things, And by Your will they exist and were created."</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/4/1/" data-ref="Revelation 4:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/1/"><span class="v-num">1</span><span class="v-txt">After these things I looked, and behold, a door [standing] open in heaven. And the first voice which I heard [was] like a trumpet speaking with me, saying, "Come up here, and I will show you things which must take place after this."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/2/" data-ref="Revelation 4:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/2/"><span class="v-num">2</span><span class="v-txt">Immediately I was in the Spirit; and behold, a throne set in heaven, and [One] sat on the throne.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/3/" data-ref="Revelation 4:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/3/"><span class="v-num">3</span><span class="v-txt">And He who sat there was like a jasper and a sardius stone in appearance; and [there was] a rainbow around the throne, in appearance like an emerald.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/4/" data-ref="Revelation 4:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/4/"><span class="v-num">4</span><span class="v-txt">Around the throne [were] twenty-four thrones, and on the thrones I saw twenty-four elders sitting, clothed in white robes; and they had crowns of gold on their heads.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/5/" data-ref="Revelation 4:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/5/"><span class="v-num">5</span><span class="v-txt">And from the throne proceeded lightnings, thunderings, and voices. Seven lamps of fire [were] burning before the throne, which are the seven Spirits of God.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/6/" data-ref="Revelation 4:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/6/"><span class="v-num">6</span><span class="v-txt">Before the throne [there was] a sea of glass, like crystal. And in the midst of the throne, and around the throne, [were] four living creatures full of eyes in front and in back.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/7/" data-ref="Revelation 4:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/7/"><span class="v-num">7</span><span class="v-txt">The first living creature [was] like a lion, the second living creature like a calf, the third living creature had a face like a man, and the fourth living creature [was] like a flying eagle.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/8/" data-ref="Revelation 4:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/8/"><span class="v-num">8</span><span class="v-txt">[The] four living creatures, each having six wings, were full of eyes around and within. And they do not rest day or night, saying: "Holy, holy, holy, Lord God Almighty, Who was and is and is to come!"</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/9/" data-ref="Revelation 4:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/9/"><span class="v-num">9</span><span class="v-txt">Whenever the living creatures give glory and honor and thanks to Him who sits on the throne, who lives forever and ever,</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/10/" data-ref="Revelation 4:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/10/"><span class="v-num">10</span><span class="v-txt">the twenty-four elders fall down before Him who sits on the throne and worship Him who lives forever and ever, and cast their crowns before the throne, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/4/11/" data-ref="Revelation 4:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/4/11/"><span class="v-num">11</span><span class="v-txt">"You are worthy, O Lord, To receive glory and honor and power; For You created all things, And by Your will they exist and were created."</span></a>
 
     
 <div class="app-cta">

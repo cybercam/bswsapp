@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Song of Solomon 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I have come to my garden, my sister, [my] spouse; I have gathered my myrrh with my spice; I have eaten my honeycomb with my honey; I have drunk my wine with my milk. (TO HIS FRIENDS) Eat, O friends! Drink, yes, drink deeply, O beloved ones! THE SHULAMITE</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I sleep, but my heart is awake; [It is] the voice of my beloved! He knocks, [saying,] "Open for me, my sister, my love, My dove, my perfect one; For my head is covered with dew, My locks with the drops of the night."</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have taken off my robe; How can I put it on [again?] I have washed my feet; How can I defile them?</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">My beloved put his hand By the latch [of the door,] And my heart yearned for him.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I arose to open for my beloved, And my hands dripped [with] myrrh, My fingers with liquid myrrh, On the handles of the lock.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I opened for my beloved, But my beloved had turned away [and] was gone. My heart leaped up when he spoke. I sought him, but I could not find him; I called him, but he gave me no answer.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The watchmen who went about the city found me. They struck me, they wounded me; The keepers of the walls Took my veil away from me.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I charge you, O daughters of Jerusalem, If you find my beloved, That you tell him I [am] lovesick! THE DAUGHTERS OF JERUSALEM</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What [is] your beloved More than [another] beloved, O fairest among women? What [is] your beloved More than [another] beloved, That you so charge us? THE SHULAMITE</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">My beloved [is] white and ruddy, Chief among ten thousand.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">His head [is like] the finest gold; His locks [are] wavy, [And] black as a raven.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">His eyes [are] like doves By the rivers of waters, Washed with milk, [And] fitly set.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">His cheeks [are] like a bed of spices, Banks of scented herbs. His lips [are] lilies, Dripping liquid myrrh.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">His hands [are] rods of gold Set with beryl. His body [is] carved ivory Inlaid [with] sapphires.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">His legs [are] pillars of marble Set on bases of fine gold. His countenance [is] like Lebanon, Excellent as the cedars.</span></div>
-<div class="v-row" data-ref="Song of Solomon 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">His mouth [is] most sweet, Yes, he [is] altogether lovely. This [is] my beloved, And this [is] my friend, O daughters of Jerusalem! THE DAUGHTERS OF JERUSALEM</span></div>
+    <a class="v-row" href="/bible/nkjv/song-of-solomon/5/1/" data-ref="Song of Solomon 5:1 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/1/"><span class="v-num">1</span><span class="v-txt">I have come to my garden, my sister, [my] spouse; I have gathered my myrrh with my spice; I have eaten my honeycomb with my honey; I have drunk my wine with my milk. (TO HIS FRIENDS) Eat, O friends! Drink, yes, drink deeply, O beloved ones! THE SHULAMITE</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/2/" data-ref="Song of Solomon 5:2 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/2/"><span class="v-num">2</span><span class="v-txt">I sleep, but my heart is awake; [It is] the voice of my beloved! He knocks, [saying,] "Open for me, my sister, my love, My dove, my perfect one; For my head is covered with dew, My locks with the drops of the night."</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/3/" data-ref="Song of Solomon 5:3 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/3/"><span class="v-num">3</span><span class="v-txt">I have taken off my robe; How can I put it on [again?] I have washed my feet; How can I defile them?</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/4/" data-ref="Song of Solomon 5:4 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/4/"><span class="v-num">4</span><span class="v-txt">My beloved put his hand By the latch [of the door,] And my heart yearned for him.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/5/" data-ref="Song of Solomon 5:5 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/5/"><span class="v-num">5</span><span class="v-txt">I arose to open for my beloved, And my hands dripped [with] myrrh, My fingers with liquid myrrh, On the handles of the lock.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/6/" data-ref="Song of Solomon 5:6 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/6/"><span class="v-num">6</span><span class="v-txt">I opened for my beloved, But my beloved had turned away [and] was gone. My heart leaped up when he spoke. I sought him, but I could not find him; I called him, but he gave me no answer.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/7/" data-ref="Song of Solomon 5:7 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/7/"><span class="v-num">7</span><span class="v-txt">The watchmen who went about the city found me. They struck me, they wounded me; The keepers of the walls Took my veil away from me.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/8/" data-ref="Song of Solomon 5:8 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/8/"><span class="v-num">8</span><span class="v-txt">I charge you, O daughters of Jerusalem, If you find my beloved, That you tell him I [am] lovesick! THE DAUGHTERS OF JERUSALEM</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/9/" data-ref="Song of Solomon 5:9 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/9/"><span class="v-num">9</span><span class="v-txt">What [is] your beloved More than [another] beloved, O fairest among women? What [is] your beloved More than [another] beloved, That you so charge us? THE SHULAMITE</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/10/" data-ref="Song of Solomon 5:10 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/10/"><span class="v-num">10</span><span class="v-txt">My beloved [is] white and ruddy, Chief among ten thousand.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/11/" data-ref="Song of Solomon 5:11 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/11/"><span class="v-num">11</span><span class="v-txt">His head [is like] the finest gold; His locks [are] wavy, [And] black as a raven.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/12/" data-ref="Song of Solomon 5:12 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/12/"><span class="v-num">12</span><span class="v-txt">His eyes [are] like doves By the rivers of waters, Washed with milk, [And] fitly set.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/13/" data-ref="Song of Solomon 5:13 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/13/"><span class="v-num">13</span><span class="v-txt">His cheeks [are] like a bed of spices, Banks of scented herbs. His lips [are] lilies, Dripping liquid myrrh.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/14/" data-ref="Song of Solomon 5:14 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/14/"><span class="v-num">14</span><span class="v-txt">His hands [are] rods of gold Set with beryl. His body [is] carved ivory Inlaid [with] sapphires.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/15/" data-ref="Song of Solomon 5:15 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/15/"><span class="v-num">15</span><span class="v-txt">His legs [are] pillars of marble Set on bases of fine gold. His countenance [is] like Lebanon, Excellent as the cedars.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/5/16/" data-ref="Song of Solomon 5:16 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/5/16/"><span class="v-num">16</span><span class="v-txt">His mouth [is] most sweet, Yes, he [is] altogether lovely. This [is] my beloved, And this [is] my friend, O daughters of Jerusalem! THE DAUGHTERS OF JERUSALEM</span></a>
 
     
 <div class="app-cta">

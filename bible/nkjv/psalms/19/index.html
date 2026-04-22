@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 19:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. A Psalm of David. The heavens declare the glory of God; And the firmament shows His handiwork.</span></div>
-<div class="v-row" data-ref="Psalm 19:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Day unto day utters speech, And night unto night reveals knowledge.</span></div>
-<div class="v-row" data-ref="Psalm 19:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">[There is] no speech nor language [Where] their voice is not heard.</span></div>
-<div class="v-row" data-ref="Psalm 19:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Their line has gone out through all the earth, And their words to the end of the world. In them He has set a tabernacle for the sun,</span></div>
-<div class="v-row" data-ref="Psalm 19:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Which [is] like a bridegroom coming out of his chamber, [And] rejoices like a strong man to run its race.</span></div>
-<div class="v-row" data-ref="Psalm 19:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Its rising [is] from one end of heaven, And its circuit to the other end; And there is nothing hidden from its heat.</span></div>
-<div class="v-row" data-ref="Psalm 19:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The law of the LORD [is] perfect, converting the soul; The testimony of the LORD [is] sure, making wise the simple;</span></div>
-<div class="v-row" data-ref="Psalm 19:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The statutes of the LORD [are] right, rejoicing the heart; The commandment of the LORD [is] pure, enlightening the eyes;</span></div>
-<div class="v-row" data-ref="Psalm 19:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The fear of the LORD [is] clean, enduring forever; The judgments of the LORD [are] true [and] righteous altogether.</span></div>
-<div class="v-row" data-ref="Psalm 19:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">More to be desired [are they] than gold, Yea, than much fine gold; Sweeter also than honey and the honeycomb.</span></div>
-<div class="v-row" data-ref="Psalm 19:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Moreover by them Your servant is warned, [And] in keeping them [there is] great reward.</span></div>
-<div class="v-row" data-ref="Psalm 19:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who can understand [his] errors? Cleanse me from secret [faults.]</span></div>
-<div class="v-row" data-ref="Psalm 19:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Keep back Your servant also from presumptuous [sins;] Let them not have dominion over me. Then I shall be blameless, And I shall be innocent of great transgression.</span></div>
-<div class="v-row" data-ref="Psalm 19:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Let the words of my mouth and the meditation of my heart Be acceptable in Your sight, O LORD, my strength and my Redeemer.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/19/1/" data-ref="Psalm 19:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/1/"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. A Psalm of David. The heavens declare the glory of God; And the firmament shows His handiwork.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/2/" data-ref="Psalm 19:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/2/"><span class="v-num">2</span><span class="v-txt">Day unto day utters speech, And night unto night reveals knowledge.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/3/" data-ref="Psalm 19:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/3/"><span class="v-num">3</span><span class="v-txt">[There is] no speech nor language [Where] their voice is not heard.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/4/" data-ref="Psalm 19:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/4/"><span class="v-num">4</span><span class="v-txt">Their line has gone out through all the earth, And their words to the end of the world. In them He has set a tabernacle for the sun,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/5/" data-ref="Psalm 19:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/5/"><span class="v-num">5</span><span class="v-txt">Which [is] like a bridegroom coming out of his chamber, [And] rejoices like a strong man to run its race.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/6/" data-ref="Psalm 19:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/6/"><span class="v-num">6</span><span class="v-txt">Its rising [is] from one end of heaven, And its circuit to the other end; And there is nothing hidden from its heat.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/7/" data-ref="Psalm 19:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/7/"><span class="v-num">7</span><span class="v-txt">The law of the LORD [is] perfect, converting the soul; The testimony of the LORD [is] sure, making wise the simple;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/8/" data-ref="Psalm 19:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/8/"><span class="v-num">8</span><span class="v-txt">The statutes of the LORD [are] right, rejoicing the heart; The commandment of the LORD [is] pure, enlightening the eyes;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/9/" data-ref="Psalm 19:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/9/"><span class="v-num">9</span><span class="v-txt">The fear of the LORD [is] clean, enduring forever; The judgments of the LORD [are] true [and] righteous altogether.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/10/" data-ref="Psalm 19:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/10/"><span class="v-num">10</span><span class="v-txt">More to be desired [are they] than gold, Yea, than much fine gold; Sweeter also than honey and the honeycomb.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/11/" data-ref="Psalm 19:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/11/"><span class="v-num">11</span><span class="v-txt">Moreover by them Your servant is warned, [And] in keeping them [there is] great reward.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/12/" data-ref="Psalm 19:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/12/"><span class="v-num">12</span><span class="v-txt">Who can understand [his] errors? Cleanse me from secret [faults.]</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/13/" data-ref="Psalm 19:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/13/"><span class="v-num">13</span><span class="v-txt">Keep back Your servant also from presumptuous [sins;] Let them not have dominion over me. Then I shall be blameless, And I shall be innocent of great transgression.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/19/14/" data-ref="Psalm 19:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/19/14/"><span class="v-num">14</span><span class="v-txt">Let the words of my mouth and the meditation of my heart Be acceptable in Your sight, O LORD, my strength and my Redeemer.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 62</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 62:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For the Chief Musician. To Jeduthan. A Psalm by David. My soul rests in God alone. My salvation is from him.</span></div>
-<div class="v-row" data-ref="Psalm 62:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He alone is my rock and my salvation, my fortress� I will never be greatly shaken.</span></div>
-<div class="v-row" data-ref="Psalm 62:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">How long will you assault a man, Would all of you throw him down, Like a leaning wall, like a tottering fence?</span></div>
-<div class="v-row" data-ref="Psalm 62:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They fully intend to throw him down from his lofty place. They delight in lies. They bless with their mouth, but they curse inwardly. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 62:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My soul, wait in silence for God alone, For my expectation is from him.</span></div>
-<div class="v-row" data-ref="Psalm 62:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He alone is my rock and my salvation, my fortress. I will not be shaken.</span></div>
-<div class="v-row" data-ref="Psalm 62:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">With God is my salvation and my honor. The rock of my strength, and my refuge, is in God.</span></div>
-<div class="v-row" data-ref="Psalm 62:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Trust in him at all times, you people. Pour out your heart before him. God is a refuge for us. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 62:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Surely men of low degree are just a breath, And men of high degree are a lie. In the balances they will go up. They are together lighter than a breath.</span></div>
-<div class="v-row" data-ref="Psalm 62:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Don't trust in oppression. Don't become vain in robbery. If riches increase, Don't set your heart on them.</span></div>
-<div class="v-row" data-ref="Psalm 62:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">God has spoken once, Twice I have heard this, That power belongs to God.</span></div>
-<div class="v-row" data-ref="Psalm 62:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Also to you, Lord, belongs loving kindness, For you reward every man according to his work.</span></div>
+    <a class="v-row" href="/bible/web/psalms/62/1/" data-ref="Psalm 62:1 (World English Bible)" data-verse-url="/bible/web/psalms/62/1/"><span class="v-num">1</span><span class="v-txt">For the Chief Musician. To Jeduthan. A Psalm by David. My soul rests in God alone. My salvation is from him.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/2/" data-ref="Psalm 62:2 (World English Bible)" data-verse-url="/bible/web/psalms/62/2/"><span class="v-num">2</span><span class="v-txt">He alone is my rock and my salvation, my fortress� I will never be greatly shaken.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/3/" data-ref="Psalm 62:3 (World English Bible)" data-verse-url="/bible/web/psalms/62/3/"><span class="v-num">3</span><span class="v-txt">How long will you assault a man, Would all of you throw him down, Like a leaning wall, like a tottering fence?</span></a>
+<a class="v-row" href="/bible/web/psalms/62/4/" data-ref="Psalm 62:4 (World English Bible)" data-verse-url="/bible/web/psalms/62/4/"><span class="v-num">4</span><span class="v-txt">They fully intend to throw him down from his lofty place. They delight in lies. They bless with their mouth, but they curse inwardly. Selah.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/5/" data-ref="Psalm 62:5 (World English Bible)" data-verse-url="/bible/web/psalms/62/5/"><span class="v-num">5</span><span class="v-txt">My soul, wait in silence for God alone, For my expectation is from him.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/6/" data-ref="Psalm 62:6 (World English Bible)" data-verse-url="/bible/web/psalms/62/6/"><span class="v-num">6</span><span class="v-txt">He alone is my rock and my salvation, my fortress. I will not be shaken.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/7/" data-ref="Psalm 62:7 (World English Bible)" data-verse-url="/bible/web/psalms/62/7/"><span class="v-num">7</span><span class="v-txt">With God is my salvation and my honor. The rock of my strength, and my refuge, is in God.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/8/" data-ref="Psalm 62:8 (World English Bible)" data-verse-url="/bible/web/psalms/62/8/"><span class="v-num">8</span><span class="v-txt">Trust in him at all times, you people. Pour out your heart before him. God is a refuge for us. Selah.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/9/" data-ref="Psalm 62:9 (World English Bible)" data-verse-url="/bible/web/psalms/62/9/"><span class="v-num">9</span><span class="v-txt">Surely men of low degree are just a breath, And men of high degree are a lie. In the balances they will go up. They are together lighter than a breath.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/10/" data-ref="Psalm 62:10 (World English Bible)" data-verse-url="/bible/web/psalms/62/10/"><span class="v-num">10</span><span class="v-txt">Don't trust in oppression. Don't become vain in robbery. If riches increase, Don't set your heart on them.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/11/" data-ref="Psalm 62:11 (World English Bible)" data-verse-url="/bible/web/psalms/62/11/"><span class="v-num">11</span><span class="v-txt">God has spoken once, Twice I have heard this, That power belongs to God.</span></a>
+<a class="v-row" href="/bible/web/psalms/62/12/" data-ref="Psalm 62:12 (World English Bible)" data-verse-url="/bible/web/psalms/62/12/"><span class="v-num">12</span><span class="v-txt">Also to you, Lord, belongs loving kindness, For you reward every man according to his work.</span></a>
 
     
 <div class="app-cta">

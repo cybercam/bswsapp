@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Ezra 3:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And when the seventh month was come, and the children of Israel were in the cities, the people gathered themselves together as one man to Jerusalem.</span></div>
-<div class="v-row" data-ref="Ezra 3:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then stood up Jeshua the son of Jozadak, and his brethren the priests, and Zerubbabel the son of Shealtiel, and his brethren, and builded the altar of the God of Israel, to offer burnt-offerings thereon, as it is written in the law of Moses the man of God.</span></div>
-<div class="v-row" data-ref="Ezra 3:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And they set the altar upon its base; for fear was upon them because of the peoples of the countries: and they offered burnt-offerings thereon unto Jehovah, even burnt-offerings morning and evening.</span></div>
-<div class="v-row" data-ref="Ezra 3:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they kept the feast of tabernacles, as it is written, and [offered] the daily burnt-offerings by number, according to the ordinance, as the duty of every day required;</span></div>
-<div class="v-row" data-ref="Ezra 3:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and afterward the continual burnt-offering, and [the offerings] of the new moons, and of all the set feasts of Jehovah that were consecrated, and of every one that willingly offered a freewill-offering unto Jehovah.</span></div>
-<div class="v-row" data-ref="Ezra 3:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">From the first day of the seventh month began they to offer burnt-offerings unto Jehovah: but the foundation of the temple of Jehovah was not yet laid.</span></div>
-<div class="v-row" data-ref="Ezra 3:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They gave money also unto the masons, and to the carpenters; and food, and drink, and oil, unto them of Sidon, and to them of Tyre, to bring cedar-trees from Lebanon to the sea, unto Joppa, according to the grant that they had of Cyrus king of Persia.</span></div>
-<div class="v-row" data-ref="Ezra 3:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now in the second year of their coming unto the house of God at Jerusalem, in the second month, began Zerubbabel the son of Shealtiel, and Jeshua the son of Jozadak, and the rest of their brethren the priests and the Levites, and all they that were come out of the captivity unto Jerusalem, and appointed the Levites, from twenty years old and upward, to have the oversight of the work of the house of Jehovah.</span></div>
-<div class="v-row" data-ref="Ezra 3:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then stood Jeshua with his sons and his brethren, Kadmiel and his sons, the sons of Judah, together, to have the oversight of the workmen in the house of God: the sons of Henadad, with their sons and their brethren the Levites.</span></div>
-<div class="v-row" data-ref="Ezra 3:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And when the builders laid the foundation of the temple of Jehovah, they set the priests in their apparel with trumpets, and the Levites the sons of Asaph with cymbals, to praise Jehovah, after the order of David king of Israel.</span></div>
-<div class="v-row" data-ref="Ezra 3:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they sang one to another in praising and giving thanks unto Jehovah, [saying], For he is good, for his lovingkindness [endureth] for ever toward Israel. And all the people shouted with a great shout, when they praised Jehovah, because the foundation of the house of Jehovah was laid.</span></div>
-<div class="v-row" data-ref="Ezra 3:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But many of the priests and Levites and heads of fathers' [houses], the old men that had seen the first house, when the foundation of this house was laid before their eyes, wept with a loud voice; and many shouted aloud for joy:</span></div>
-<div class="v-row" data-ref="Ezra 3:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">so that the people could not discern the noise of the shout of joy from the noise of the weeping of the people; for the people shouted with a loud shout, and the noise was heard afar off.</span></div>
+    <a class="v-row" href="/bible/asv/ezra/3/1/" data-ref="Ezra 3:1 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/1/"><span class="v-num">1</span><span class="v-txt">And when the seventh month was come, and the children of Israel were in the cities, the people gathered themselves together as one man to Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/2/" data-ref="Ezra 3:2 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/2/"><span class="v-num">2</span><span class="v-txt">Then stood up Jeshua the son of Jozadak, and his brethren the priests, and Zerubbabel the son of Shealtiel, and his brethren, and builded the altar of the God of Israel, to offer burnt-offerings thereon, as it is written in the law of Moses the man of God.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/3/" data-ref="Ezra 3:3 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/3/"><span class="v-num">3</span><span class="v-txt">And they set the altar upon its base; for fear was upon them because of the peoples of the countries: and they offered burnt-offerings thereon unto Jehovah, even burnt-offerings morning and evening.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/4/" data-ref="Ezra 3:4 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/4/"><span class="v-num">4</span><span class="v-txt">And they kept the feast of tabernacles, as it is written, and [offered] the daily burnt-offerings by number, according to the ordinance, as the duty of every day required;</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/5/" data-ref="Ezra 3:5 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/5/"><span class="v-num">5</span><span class="v-txt">and afterward the continual burnt-offering, and [the offerings] of the new moons, and of all the set feasts of Jehovah that were consecrated, and of every one that willingly offered a freewill-offering unto Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/6/" data-ref="Ezra 3:6 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/6/"><span class="v-num">6</span><span class="v-txt">From the first day of the seventh month began they to offer burnt-offerings unto Jehovah: but the foundation of the temple of Jehovah was not yet laid.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/7/" data-ref="Ezra 3:7 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/7/"><span class="v-num">7</span><span class="v-txt">They gave money also unto the masons, and to the carpenters; and food, and drink, and oil, unto them of Sidon, and to them of Tyre, to bring cedar-trees from Lebanon to the sea, unto Joppa, according to the grant that they had of Cyrus king of Persia.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/8/" data-ref="Ezra 3:8 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/8/"><span class="v-num">8</span><span class="v-txt">Now in the second year of their coming unto the house of God at Jerusalem, in the second month, began Zerubbabel the son of Shealtiel, and Jeshua the son of Jozadak, and the rest of their brethren the priests and the Levites, and all they that were come out of the captivity unto Jerusalem, and appointed the Levites, from twenty years old and upward, to have the oversight of the work of the house of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/9/" data-ref="Ezra 3:9 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/9/"><span class="v-num">9</span><span class="v-txt">Then stood Jeshua with his sons and his brethren, Kadmiel and his sons, the sons of Judah, together, to have the oversight of the workmen in the house of God: the sons of Henadad, with their sons and their brethren the Levites.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/10/" data-ref="Ezra 3:10 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/10/"><span class="v-num">10</span><span class="v-txt">And when the builders laid the foundation of the temple of Jehovah, they set the priests in their apparel with trumpets, and the Levites the sons of Asaph with cymbals, to praise Jehovah, after the order of David king of Israel.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/11/" data-ref="Ezra 3:11 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/11/"><span class="v-num">11</span><span class="v-txt">And they sang one to another in praising and giving thanks unto Jehovah, [saying], For he is good, for his lovingkindness [endureth] for ever toward Israel. And all the people shouted with a great shout, when they praised Jehovah, because the foundation of the house of Jehovah was laid.</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/12/" data-ref="Ezra 3:12 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/12/"><span class="v-num">12</span><span class="v-txt">But many of the priests and Levites and heads of fathers' [houses], the old men that had seen the first house, when the foundation of this house was laid before their eyes, wept with a loud voice; and many shouted aloud for joy:</span></a>
+<a class="v-row" href="/bible/asv/ezra/3/13/" data-ref="Ezra 3:13 (American Standard Version)" data-verse-url="/bible/asv/ezra/3/13/"><span class="v-num">13</span><span class="v-txt">so that the people could not discern the noise of the shout of joy from the noise of the weeping of the people; for the people shouted with a loud shout, and the noise was heard afar off.</span></a>
 
     
 <div class="app-cta">

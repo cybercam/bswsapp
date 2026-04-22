@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 17:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the LORD spoke to Moses, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 17:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Speak to Aaron, to his sons, and to all the children of Israel, and say to them, 'This [is] the thing which the LORD has commanded, saying:</span></div>
-<div class="v-row" data-ref="Leviticus 17:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Whatever man of the house of Israel who kills an ox or lamb or goat in the camp, or who kills [it] outside the camp,</span></div>
-<div class="v-row" data-ref="Leviticus 17:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"and does not bring it to the door of the tabernacle of meeting to offer an offering to the LORD before the tabernacle of the LORD, the guilt of bloodshed shall be imputed to that man. He has shed blood; and that man shall be cut off from among his people,</span></div>
-<div class="v-row" data-ref="Leviticus 17:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"to the end that the children of Israel may bring their sacrifices which they offer in the open field, that they may bring them to the LORD at the door of the tabernacle of meeting, to the priest, and offer them [as] peace offerings to the LORD.</span></div>
-<div class="v-row" data-ref="Leviticus 17:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"And the priest shall sprinkle the blood on the altar of the LORD [at] the door of the tabernacle of meeting, and burn the fat for a sweet aroma to the LORD.</span></div>
-<div class="v-row" data-ref="Leviticus 17:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"They shall no more offer their sacrifices to demons, after whom they have played the harlot. This shall be a statute forever for them throughout their generations." '</span></div>
-<div class="v-row" data-ref="Leviticus 17:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"Also you shall say to them: 'Whatever man of the house of Israel, or of the strangers who dwell among you, who offers a burnt offering or sacrifice,</span></div>
-<div class="v-row" data-ref="Leviticus 17:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">'and does not bring it to the door of the tabernacle of meeting, to offer it to the LORD, that man shall be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">' And whatever man of the house of Israel, or of the strangers who dwell among you, who eats any blood, I will set My face against that person who eats blood, and will cut him off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">'For the life of the flesh [is] in the blood, and I have given it to you upon the altar to make atonement for your souls; for it [is] the blood [that] makes atonement for the soul.'</span></div>
-<div class="v-row" data-ref="Leviticus 17:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Therefore I said to the children of Israel, 'No one among you shall eat blood, nor shall any stranger who dwells among you eat blood.'</span></div>
-<div class="v-row" data-ref="Leviticus 17:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"Whatever man of the children of Israel, or of the strangers who dwell among you, who hunts and catches any animal or bird that may be eaten, he shall pour out its blood and cover it with dust;</span></div>
-<div class="v-row" data-ref="Leviticus 17:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"for [it is] the life of all flesh. Its blood sustains its life. Therefore I said to the children of Israel, 'You shall not eat the blood of any flesh, for the life of all flesh is its blood. Whoever eats it shall be cut off.'</span></div>
-<div class="v-row" data-ref="Leviticus 17:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">" And every person who eats what died [naturally] or what was torn [by beasts, whether he is] a native of your own country or a stranger, he shall both wash his clothes and bathe in water, and be unclean until evening. Then he shall be clean.</span></div>
-<div class="v-row" data-ref="Leviticus 17:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"But if he does not wash [them] or bathe his body, then he shall bear his guilt."</span></div>
+    <a class="v-row" href="/bible/nkjv/leviticus/17/1/" data-ref="Leviticus 17:1 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/1/"><span class="v-num">1</span><span class="v-txt">And the LORD spoke to Moses, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/2/" data-ref="Leviticus 17:2 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/2/"><span class="v-num">2</span><span class="v-txt">"Speak to Aaron, to his sons, and to all the children of Israel, and say to them, 'This [is] the thing which the LORD has commanded, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/3/" data-ref="Leviticus 17:3 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/3/"><span class="v-num">3</span><span class="v-txt">"Whatever man of the house of Israel who kills an ox or lamb or goat in the camp, or who kills [it] outside the camp,</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/4/" data-ref="Leviticus 17:4 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/4/"><span class="v-num">4</span><span class="v-txt">"and does not bring it to the door of the tabernacle of meeting to offer an offering to the LORD before the tabernacle of the LORD, the guilt of bloodshed shall be imputed to that man. He has shed blood; and that man shall be cut off from among his people,</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/5/" data-ref="Leviticus 17:5 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/5/"><span class="v-num">5</span><span class="v-txt">"to the end that the children of Israel may bring their sacrifices which they offer in the open field, that they may bring them to the LORD at the door of the tabernacle of meeting, to the priest, and offer them [as] peace offerings to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/6/" data-ref="Leviticus 17:6 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/6/"><span class="v-num">6</span><span class="v-txt">"And the priest shall sprinkle the blood on the altar of the LORD [at] the door of the tabernacle of meeting, and burn the fat for a sweet aroma to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/7/" data-ref="Leviticus 17:7 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/7/"><span class="v-num">7</span><span class="v-txt">"They shall no more offer their sacrifices to demons, after whom they have played the harlot. This shall be a statute forever for them throughout their generations." '</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/8/" data-ref="Leviticus 17:8 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/8/"><span class="v-num">8</span><span class="v-txt">"Also you shall say to them: 'Whatever man of the house of Israel, or of the strangers who dwell among you, who offers a burnt offering or sacrifice,</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/9/" data-ref="Leviticus 17:9 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/9/"><span class="v-num">9</span><span class="v-txt">'and does not bring it to the door of the tabernacle of meeting, to offer it to the LORD, that man shall be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/10/" data-ref="Leviticus 17:10 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/10/"><span class="v-num">10</span><span class="v-txt">' And whatever man of the house of Israel, or of the strangers who dwell among you, who eats any blood, I will set My face against that person who eats blood, and will cut him off from among his people.</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/11/" data-ref="Leviticus 17:11 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/11/"><span class="v-num">11</span><span class="v-txt">'For the life of the flesh [is] in the blood, and I have given it to you upon the altar to make atonement for your souls; for it [is] the blood [that] makes atonement for the soul.'</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/12/" data-ref="Leviticus 17:12 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/12/"><span class="v-num">12</span><span class="v-txt">"Therefore I said to the children of Israel, 'No one among you shall eat blood, nor shall any stranger who dwells among you eat blood.'</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/13/" data-ref="Leviticus 17:13 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/13/"><span class="v-num">13</span><span class="v-txt">"Whatever man of the children of Israel, or of the strangers who dwell among you, who hunts and catches any animal or bird that may be eaten, he shall pour out its blood and cover it with dust;</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/14/" data-ref="Leviticus 17:14 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/14/"><span class="v-num">14</span><span class="v-txt">"for [it is] the life of all flesh. Its blood sustains its life. Therefore I said to the children of Israel, 'You shall not eat the blood of any flesh, for the life of all flesh is its blood. Whoever eats it shall be cut off.'</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/15/" data-ref="Leviticus 17:15 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/15/"><span class="v-num">15</span><span class="v-txt">" And every person who eats what died [naturally] or what was torn [by beasts, whether he is] a native of your own country or a stranger, he shall both wash his clothes and bathe in water, and be unclean until evening. Then he shall be clean.</span></a>
+<a class="v-row" href="/bible/nkjv/leviticus/17/16/" data-ref="Leviticus 17:16 (New King James Version)" data-verse-url="/bible/nkjv/leviticus/17/16/"><span class="v-num">16</span><span class="v-txt">"But if he does not wash [them] or bathe his body, then he shall bear his guilt."</span></a>
 
     
 <div class="app-cta">

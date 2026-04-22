@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 27</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 27:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And David said to himself, Some day death will come to me by the hand of Saul: the only thing for me to do is to get away into the land of the Philistines; then Saul will give up hope of taking me in any part of the land of Israel: and so I may be able to get away from him.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So David and the six hundred men who were with him went over to Achish, the son of Maoch, king of Gath.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And David and his men were living with Achish at Gath; every man had his family with him, and David had his two wives, Ahinoam of Jezreel, and Abigail of Carmel, who had been the wife of Nabal.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Saul, hearing that David had gone to Gath, went after him no longer.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then David said to Achish, If now I have grace in your eyes, let me have a place in one of the smaller towns of your land, to be my living-place; for it is not right for your servant to be living with you in the king's town.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So Achish straight away gave him Ziklag: and for that reason Ziklag has been the property of the kings of Judah to this day.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And David was living in the land of the Philistines for the space of a year and four months.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And David and his men went up and made attacks on the Geshurites and the Girzites and the Amalekites; for these were the people who were living in the land from Telam on the way to Shur, as far as Egypt.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And David again and again made attacks on the land till not a man or a woman was still living; and he took away the sheep and the oxen and the asses and the camels and the clothing; and he came back to Achish.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And every time Achish said, Where have you been fighting today? David said, Against the South of Judah and the South of the Jerahmeelites and the South of the Kenites.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Not one living man or woman did David ever take back with him to Gath, fearing that they might give an account of what had taken place, and say, This is what David did, and so has he been doing all the time while he has been living in the land of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Achish had belief in what David said, saying, He has made himself hated by all his people Israel, and so he will be my servant for ever.</span></div>
+    <a class="v-row" href="/bible/bbe/1-samuel/27/1/" data-ref="1 Samuel 27:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/1/"><span class="v-num">1</span><span class="v-txt">And David said to himself, Some day death will come to me by the hand of Saul: the only thing for me to do is to get away into the land of the Philistines; then Saul will give up hope of taking me in any part of the land of Israel: and so I may be able to get away from him.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/2/" data-ref="1 Samuel 27:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/2/"><span class="v-num">2</span><span class="v-txt">So David and the six hundred men who were with him went over to Achish, the son of Maoch, king of Gath.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/3/" data-ref="1 Samuel 27:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/3/"><span class="v-num">3</span><span class="v-txt">And David and his men were living with Achish at Gath; every man had his family with him, and David had his two wives, Ahinoam of Jezreel, and Abigail of Carmel, who had been the wife of Nabal.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/4/" data-ref="1 Samuel 27:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/4/"><span class="v-num">4</span><span class="v-txt">And Saul, hearing that David had gone to Gath, went after him no longer.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/5/" data-ref="1 Samuel 27:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/5/"><span class="v-num">5</span><span class="v-txt">Then David said to Achish, If now I have grace in your eyes, let me have a place in one of the smaller towns of your land, to be my living-place; for it is not right for your servant to be living with you in the king's town.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/6/" data-ref="1 Samuel 27:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/6/"><span class="v-num">6</span><span class="v-txt">So Achish straight away gave him Ziklag: and for that reason Ziklag has been the property of the kings of Judah to this day.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/7/" data-ref="1 Samuel 27:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/7/"><span class="v-num">7</span><span class="v-txt">And David was living in the land of the Philistines for the space of a year and four months.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/8/" data-ref="1 Samuel 27:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/8/"><span class="v-num">8</span><span class="v-txt">And David and his men went up and made attacks on the Geshurites and the Girzites and the Amalekites; for these were the people who were living in the land from Telam on the way to Shur, as far as Egypt.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/9/" data-ref="1 Samuel 27:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/9/"><span class="v-num">9</span><span class="v-txt">And David again and again made attacks on the land till not a man or a woman was still living; and he took away the sheep and the oxen and the asses and the camels and the clothing; and he came back to Achish.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/10/" data-ref="1 Samuel 27:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/10/"><span class="v-num">10</span><span class="v-txt">And every time Achish said, Where have you been fighting today? David said, Against the South of Judah and the South of the Jerahmeelites and the South of the Kenites.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/11/" data-ref="1 Samuel 27:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/11/"><span class="v-num">11</span><span class="v-txt">Not one living man or woman did David ever take back with him to Gath, fearing that they might give an account of what had taken place, and say, This is what David did, and so has he been doing all the time while he has been living in the land of the Philistines.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/27/12/" data-ref="1 Samuel 27:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/27/12/"><span class="v-num">12</span><span class="v-txt">And Achish had belief in what David said, saying, He has made himself hated by all his people Israel, and so he will be my servant for ever.</span></a>
 
     
 <div class="app-cta">

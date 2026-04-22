@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">But I determined this for myself, that I would not come again to you with sorrow.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For if I make you sorry, who then is he that maketh me glad but he that is made sorry by me?</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And I wrote this very thing, lest, when I came, I should have sorrow from them of whom I ought to rejoice; having confidence in you all, that my joy is [the joy] of you all.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For out of much affliction and anguish of heart I wrote unto you with many tears; not that ye should be made sorry, but that ye might know the love that I have more abundantly unto you.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But if any hath caused sorrow, he hath caused sorrow, not to me, but in part (that I press not too heavily) to you all.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Sufficient to such a one is this punishment which was [inflicted] by the many;</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">so that contrariwise ye should rather forgive him and comfort him, lest by any means such a one should be swallowed up with his overmuch sorrow.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Wherefore I beseech you to confirm [your] love toward him.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For to this end also did I write, that I might know the proof of you, whether ye are obedient in all things.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But to whom ye forgive anything, I [forgive] also: for what I also have forgiven, if I have forgiven anything, for your sakes [have I forgiven it] in the presence of Christ;</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">that no advantage may be gained over us by Satan: for we are not ignorant of his devices.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Now when I came to Troas for the gospel of Christ, and when a door was opened unto me in the Lord,</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I had no relief for my spirit, because I found not Titus my brother: but taking my leave of them, I went forth into Macedonia.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But thanks be unto God, who always leadeth us in triumph in Christ, and maketh manifest through us the savor of his knowledge in every place.</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For we are a sweet savor of Christ unto God, in them that are saved, and in them that perish;</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">to the one a savor from death unto death; to the other a savor from life unto life. And who is sufficient for these things?</span></div>
-<div class="v-row" data-ref="2 Corinthians 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For we are not as the many, corrupting the word of God: but as of sincerity, but as of God, in the sight of God, speak we in Christ.</span></div>
+    <a class="v-row" href="/bible/asv/2-corinthians/2/1/" data-ref="2 Corinthians 2:1 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/1/"><span class="v-num">1</span><span class="v-txt">But I determined this for myself, that I would not come again to you with sorrow.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/2/" data-ref="2 Corinthians 2:2 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/2/"><span class="v-num">2</span><span class="v-txt">For if I make you sorry, who then is he that maketh me glad but he that is made sorry by me?</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/3/" data-ref="2 Corinthians 2:3 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/3/"><span class="v-num">3</span><span class="v-txt">And I wrote this very thing, lest, when I came, I should have sorrow from them of whom I ought to rejoice; having confidence in you all, that my joy is [the joy] of you all.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/4/" data-ref="2 Corinthians 2:4 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/4/"><span class="v-num">4</span><span class="v-txt">For out of much affliction and anguish of heart I wrote unto you with many tears; not that ye should be made sorry, but that ye might know the love that I have more abundantly unto you.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/5/" data-ref="2 Corinthians 2:5 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/5/"><span class="v-num">5</span><span class="v-txt">But if any hath caused sorrow, he hath caused sorrow, not to me, but in part (that I press not too heavily) to you all.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/6/" data-ref="2 Corinthians 2:6 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/6/"><span class="v-num">6</span><span class="v-txt">Sufficient to such a one is this punishment which was [inflicted] by the many;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/7/" data-ref="2 Corinthians 2:7 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/7/"><span class="v-num">7</span><span class="v-txt">so that contrariwise ye should rather forgive him and comfort him, lest by any means such a one should be swallowed up with his overmuch sorrow.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/8/" data-ref="2 Corinthians 2:8 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/8/"><span class="v-num">8</span><span class="v-txt">Wherefore I beseech you to confirm [your] love toward him.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/9/" data-ref="2 Corinthians 2:9 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/9/"><span class="v-num">9</span><span class="v-txt">For to this end also did I write, that I might know the proof of you, whether ye are obedient in all things.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/10/" data-ref="2 Corinthians 2:10 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/10/"><span class="v-num">10</span><span class="v-txt">But to whom ye forgive anything, I [forgive] also: for what I also have forgiven, if I have forgiven anything, for your sakes [have I forgiven it] in the presence of Christ;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/11/" data-ref="2 Corinthians 2:11 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/11/"><span class="v-num">11</span><span class="v-txt">that no advantage may be gained over us by Satan: for we are not ignorant of his devices.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/12/" data-ref="2 Corinthians 2:12 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/12/"><span class="v-num">12</span><span class="v-txt">Now when I came to Troas for the gospel of Christ, and when a door was opened unto me in the Lord,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/13/" data-ref="2 Corinthians 2:13 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/13/"><span class="v-num">13</span><span class="v-txt">I had no relief for my spirit, because I found not Titus my brother: but taking my leave of them, I went forth into Macedonia.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/14/" data-ref="2 Corinthians 2:14 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/14/"><span class="v-num">14</span><span class="v-txt">But thanks be unto God, who always leadeth us in triumph in Christ, and maketh manifest through us the savor of his knowledge in every place.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/15/" data-ref="2 Corinthians 2:15 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/15/"><span class="v-num">15</span><span class="v-txt">For we are a sweet savor of Christ unto God, in them that are saved, and in them that perish;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/16/" data-ref="2 Corinthians 2:16 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/16/"><span class="v-num">16</span><span class="v-txt">to the one a savor from death unto death; to the other a savor from life unto life. And who is sufficient for these things?</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/2/17/" data-ref="2 Corinthians 2:17 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/2/17/"><span class="v-num">17</span><span class="v-txt">For we are not as the many, corrupting the word of God: but as of sincerity, but as of God, in the sight of God, speak we in Christ.</span></a>
 
     
 <div class="app-cta">

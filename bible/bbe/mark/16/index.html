@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Mark 16:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And when the Sabbath was past, Mary Magdalene and Mary, the mother of James, and Salome, got spices, so that they might come and put them on him.</span></div>
-<div class="v-row" data-ref="Mark 16:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And very early after dawn on the first day of the week, they came at the time of the coming up of the sun to the place where the body had been put.</span></div>
-<div class="v-row" data-ref="Mark 16:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And they were saying among themselves, Who will get the stone rolled away from the door for us?</span></div>
-<div class="v-row" data-ref="Mark 16:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And looking up, they saw that the stone was rolled back; and it was of great size.</span></div>
-<div class="v-row" data-ref="Mark 16:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when they went in, they saw a young man seated on the right side, dressed in a white robe; and they were full of wonder.</span></div>
-<div class="v-row" data-ref="Mark 16:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he said to them, Do not be troubled: you are looking for Jesus, the Nazarene, who has been put to death on the cross; he has come back from the dead; he is not here: see, the place where they put him!</span></div>
-<div class="v-row" data-ref="Mark 16:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But go, say to his disciples and to Peter, He goes before you into Galilee: there you will see him, as he said to you.</span></div>
-<div class="v-row" data-ref="Mark 16:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And they went out quickly from the place, because fear and great wonder had come on them: and they said nothing to anyone, because they were full of fear that ...</span></div>
-<div class="v-row" data-ref="Mark 16:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Now when he came back from the dead early on the first day of the week, he went first to Mary Magdalene, from whom he had sent out seven evil spirits.</span></div>
-<div class="v-row" data-ref="Mark 16:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">She went and gave news of it to those who had been with him, while they were sorrowing and weeping.</span></div>
-<div class="v-row" data-ref="Mark 16:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they, when it came to their ears that he was living, and had been seen by her, had no belief in it.</span></div>
-<div class="v-row" data-ref="Mark 16:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And after these things he was seen in another form by two of them, while they were walking on their way into the country.</span></div>
-<div class="v-row" data-ref="Mark 16:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And they went away and gave news of it to the rest; and they had no belief in what was said.</span></div>
-<div class="v-row" data-ref="Mark 16:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And later he was seen by the eleven themselves while they were taking food; and he said sharp words to them because they had no faith and their hearts were hard, and because they had no belief in those who had seen him after he had come back from the dead.</span></div>
-<div class="v-row" data-ref="Mark 16:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And he said to them, Go into all the world, and give the good news to everyone.</span></div>
-<div class="v-row" data-ref="Mark 16:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He who has faith and is given baptism will get salvation; but he who has not faith will be judged.</span></div>
-<div class="v-row" data-ref="Mark 16:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And these signs will be with those who have faith: in my name they will send out evil spirits; and they will make use of new languages;</span></div>
-<div class="v-row" data-ref="Mark 16:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">They will take up snakes, and if there is poison in their drink, it will do them no evil; they will put their hands on those who are ill, and they will get well.</span></div>
-<div class="v-row" data-ref="Mark 16:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So then the Lord Jesus, after he had said these words to them, was taken up into heaven and took his seat at the right hand of God.</span></div>
-<div class="v-row" data-ref="Mark 16:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And they went out, preaching everywhere, the Lord working with them, and giving witness to the word by the signs which came after. So be it.</span></div>
+    <a class="v-row" href="/bible/bbe/mark/16/1/" data-ref="Mark 16:1 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/1/"><span class="v-num">1</span><span class="v-txt">And when the Sabbath was past, Mary Magdalene and Mary, the mother of James, and Salome, got spices, so that they might come and put them on him.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/2/" data-ref="Mark 16:2 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/2/"><span class="v-num">2</span><span class="v-txt">And very early after dawn on the first day of the week, they came at the time of the coming up of the sun to the place where the body had been put.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/3/" data-ref="Mark 16:3 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/3/"><span class="v-num">3</span><span class="v-txt">And they were saying among themselves, Who will get the stone rolled away from the door for us?</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/4/" data-ref="Mark 16:4 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/4/"><span class="v-num">4</span><span class="v-txt">And looking up, they saw that the stone was rolled back; and it was of great size.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/5/" data-ref="Mark 16:5 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/5/"><span class="v-num">5</span><span class="v-txt">And when they went in, they saw a young man seated on the right side, dressed in a white robe; and they were full of wonder.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/6/" data-ref="Mark 16:6 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/6/"><span class="v-num">6</span><span class="v-txt">And he said to them, Do not be troubled: you are looking for Jesus, the Nazarene, who has been put to death on the cross; he has come back from the dead; he is not here: see, the place where they put him!</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/7/" data-ref="Mark 16:7 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/7/"><span class="v-num">7</span><span class="v-txt">But go, say to his disciples and to Peter, He goes before you into Galilee: there you will see him, as he said to you.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/8/" data-ref="Mark 16:8 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/8/"><span class="v-num">8</span><span class="v-txt">And they went out quickly from the place, because fear and great wonder had come on them: and they said nothing to anyone, because they were full of fear that ...</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/9/" data-ref="Mark 16:9 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/9/"><span class="v-num">9</span><span class="v-txt">Now when he came back from the dead early on the first day of the week, he went first to Mary Magdalene, from whom he had sent out seven evil spirits.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/10/" data-ref="Mark 16:10 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/10/"><span class="v-num">10</span><span class="v-txt">She went and gave news of it to those who had been with him, while they were sorrowing and weeping.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/11/" data-ref="Mark 16:11 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/11/"><span class="v-num">11</span><span class="v-txt">And they, when it came to their ears that he was living, and had been seen by her, had no belief in it.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/12/" data-ref="Mark 16:12 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/12/"><span class="v-num">12</span><span class="v-txt">And after these things he was seen in another form by two of them, while they were walking on their way into the country.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/13/" data-ref="Mark 16:13 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/13/"><span class="v-num">13</span><span class="v-txt">And they went away and gave news of it to the rest; and they had no belief in what was said.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/14/" data-ref="Mark 16:14 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/14/"><span class="v-num">14</span><span class="v-txt">And later he was seen by the eleven themselves while they were taking food; and he said sharp words to them because they had no faith and their hearts were hard, and because they had no belief in those who had seen him after he had come back from the dead.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/15/" data-ref="Mark 16:15 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/15/"><span class="v-num">15</span><span class="v-txt">And he said to them, Go into all the world, and give the good news to everyone.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/16/" data-ref="Mark 16:16 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/16/"><span class="v-num">16</span><span class="v-txt">He who has faith and is given baptism will get salvation; but he who has not faith will be judged.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/17/" data-ref="Mark 16:17 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/17/"><span class="v-num">17</span><span class="v-txt">And these signs will be with those who have faith: in my name they will send out evil spirits; and they will make use of new languages;</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/18/" data-ref="Mark 16:18 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/18/"><span class="v-num">18</span><span class="v-txt">They will take up snakes, and if there is poison in their drink, it will do them no evil; they will put their hands on those who are ill, and they will get well.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/19/" data-ref="Mark 16:19 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/19/"><span class="v-num">19</span><span class="v-txt">So then the Lord Jesus, after he had said these words to them, was taken up into heaven and took his seat at the right hand of God.</span></a>
+<a class="v-row" href="/bible/bbe/mark/16/20/" data-ref="Mark 16:20 (Bible in Basic English)" data-verse-url="/bible/bbe/mark/16/20/"><span class="v-num">20</span><span class="v-txt">And they went out, preaching everywhere, the Lord working with them, and giving witness to the word by the signs which came after. So be it.</span></a>
 
     
 <div class="app-cta">

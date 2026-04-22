@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 13:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Behold, my eye has seen all [this,] My ear has heard and understood it.</span></div>
-<div class="v-row" data-ref="Job 13:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">What you know, I also know; I [am] not inferior to you.</span></div>
-<div class="v-row" data-ref="Job 13:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But I would speak to the Almighty, And I desire to reason with God.</span></div>
-<div class="v-row" data-ref="Job 13:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But you forgers of lies, You [are] all worthless physicians.</span></div>
-<div class="v-row" data-ref="Job 13:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Oh, that you would be silent, And it would be your wisdom!</span></div>
-<div class="v-row" data-ref="Job 13:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now hear my reasoning, And heed the pleadings of my lips.</span></div>
-<div class="v-row" data-ref="Job 13:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Will you speak wickedly for God, And talk deceitfully for Him?</span></div>
-<div class="v-row" data-ref="Job 13:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Will you show partiality for Him? Will you contend for God?</span></div>
-<div class="v-row" data-ref="Job 13:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Will it be well when He searches you out? Or can you mock Him as one mocks a man?</span></div>
-<div class="v-row" data-ref="Job 13:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He will surely rebuke you If you secretly show partiality.</span></div>
-<div class="v-row" data-ref="Job 13:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Will not His excellence make you afraid, And the dread of Him fall upon you?</span></div>
-<div class="v-row" data-ref="Job 13:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Your platitudes [are] proverbs of ashes, Your defenses are defenses of clay.</span></div>
-<div class="v-row" data-ref="Job 13:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">" Hold your peace with me, and let me speak, Then let come on me what [may!]</span></div>
-<div class="v-row" data-ref="Job 13:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Why do I take my flesh in my teeth, And put my life in my hands?</span></div>
-<div class="v-row" data-ref="Job 13:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Though He slay me, yet will I trust Him. Even so, I will defend my own ways before Him.</span></div>
-<div class="v-row" data-ref="Job 13:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He also [shall] be my salvation, For a hypocrite could not come before Him.</span></div>
-<div class="v-row" data-ref="Job 13:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Listen carefully to my speech, And to my declaration with your ears.</span></div>
-<div class="v-row" data-ref="Job 13:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">See now, I have prepared [my] case, I know that I shall be vindicated.</span></div>
-<div class="v-row" data-ref="Job 13:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Who [is] he [who] will contend with me? If now I hold my tongue, I perish.</span></div>
-<div class="v-row" data-ref="Job 13:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">" Only two [things] do not do to me, Then I will not hide myself from You:</span></div>
-<div class="v-row" data-ref="Job 13:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Withdraw Your hand far from me, And let not the dread of You make me afraid.</span></div>
-<div class="v-row" data-ref="Job 13:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Then call, and I will answer; Or let me speak, then You respond to me.</span></div>
-<div class="v-row" data-ref="Job 13:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">How many [are] my iniquities and sins? Make me know my transgression and my sin.</span></div>
-<div class="v-row" data-ref="Job 13:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Why do You hide Your face, And regard me as Your enemy?</span></div>
-<div class="v-row" data-ref="Job 13:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Will You frighten a leaf driven to and fro? And will You pursue dry stubble?</span></div>
-<div class="v-row" data-ref="Job 13:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For You write bitter things against me, And make me inherit the iniquities of my youth.</span></div>
-<div class="v-row" data-ref="Job 13:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">You put my feet in the stocks, And watch closely all my paths. You set a limit for the soles of my feet.</span></div>
-<div class="v-row" data-ref="Job 13:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">" Man decays like a rotten thing, Like a garment that is moth-eaten.</span></div>
+    <a class="v-row" href="/bible/nkjv/job/13/1/" data-ref="Job 13:1 (New King James Version)" data-verse-url="/bible/nkjv/job/13/1/"><span class="v-num">1</span><span class="v-txt">"Behold, my eye has seen all [this,] My ear has heard and understood it.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/2/" data-ref="Job 13:2 (New King James Version)" data-verse-url="/bible/nkjv/job/13/2/"><span class="v-num">2</span><span class="v-txt">What you know, I also know; I [am] not inferior to you.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/3/" data-ref="Job 13:3 (New King James Version)" data-verse-url="/bible/nkjv/job/13/3/"><span class="v-num">3</span><span class="v-txt">But I would speak to the Almighty, And I desire to reason with God.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/4/" data-ref="Job 13:4 (New King James Version)" data-verse-url="/bible/nkjv/job/13/4/"><span class="v-num">4</span><span class="v-txt">But you forgers of lies, You [are] all worthless physicians.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/5/" data-ref="Job 13:5 (New King James Version)" data-verse-url="/bible/nkjv/job/13/5/"><span class="v-num">5</span><span class="v-txt">Oh, that you would be silent, And it would be your wisdom!</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/6/" data-ref="Job 13:6 (New King James Version)" data-verse-url="/bible/nkjv/job/13/6/"><span class="v-num">6</span><span class="v-txt">Now hear my reasoning, And heed the pleadings of my lips.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/7/" data-ref="Job 13:7 (New King James Version)" data-verse-url="/bible/nkjv/job/13/7/"><span class="v-num">7</span><span class="v-txt">Will you speak wickedly for God, And talk deceitfully for Him?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/8/" data-ref="Job 13:8 (New King James Version)" data-verse-url="/bible/nkjv/job/13/8/"><span class="v-num">8</span><span class="v-txt">Will you show partiality for Him? Will you contend for God?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/9/" data-ref="Job 13:9 (New King James Version)" data-verse-url="/bible/nkjv/job/13/9/"><span class="v-num">9</span><span class="v-txt">Will it be well when He searches you out? Or can you mock Him as one mocks a man?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/10/" data-ref="Job 13:10 (New King James Version)" data-verse-url="/bible/nkjv/job/13/10/"><span class="v-num">10</span><span class="v-txt">He will surely rebuke you If you secretly show partiality.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/11/" data-ref="Job 13:11 (New King James Version)" data-verse-url="/bible/nkjv/job/13/11/"><span class="v-num">11</span><span class="v-txt">Will not His excellence make you afraid, And the dread of Him fall upon you?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/12/" data-ref="Job 13:12 (New King James Version)" data-verse-url="/bible/nkjv/job/13/12/"><span class="v-num">12</span><span class="v-txt">Your platitudes [are] proverbs of ashes, Your defenses are defenses of clay.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/13/" data-ref="Job 13:13 (New King James Version)" data-verse-url="/bible/nkjv/job/13/13/"><span class="v-num">13</span><span class="v-txt">" Hold your peace with me, and let me speak, Then let come on me what [may!]</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/14/" data-ref="Job 13:14 (New King James Version)" data-verse-url="/bible/nkjv/job/13/14/"><span class="v-num">14</span><span class="v-txt">Why do I take my flesh in my teeth, And put my life in my hands?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/15/" data-ref="Job 13:15 (New King James Version)" data-verse-url="/bible/nkjv/job/13/15/"><span class="v-num">15</span><span class="v-txt">Though He slay me, yet will I trust Him. Even so, I will defend my own ways before Him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/16/" data-ref="Job 13:16 (New King James Version)" data-verse-url="/bible/nkjv/job/13/16/"><span class="v-num">16</span><span class="v-txt">He also [shall] be my salvation, For a hypocrite could not come before Him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/17/" data-ref="Job 13:17 (New King James Version)" data-verse-url="/bible/nkjv/job/13/17/"><span class="v-num">17</span><span class="v-txt">Listen carefully to my speech, And to my declaration with your ears.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/18/" data-ref="Job 13:18 (New King James Version)" data-verse-url="/bible/nkjv/job/13/18/"><span class="v-num">18</span><span class="v-txt">See now, I have prepared [my] case, I know that I shall be vindicated.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/19/" data-ref="Job 13:19 (New King James Version)" data-verse-url="/bible/nkjv/job/13/19/"><span class="v-num">19</span><span class="v-txt">Who [is] he [who] will contend with me? If now I hold my tongue, I perish.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/20/" data-ref="Job 13:20 (New King James Version)" data-verse-url="/bible/nkjv/job/13/20/"><span class="v-num">20</span><span class="v-txt">" Only two [things] do not do to me, Then I will not hide myself from You:</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/21/" data-ref="Job 13:21 (New King James Version)" data-verse-url="/bible/nkjv/job/13/21/"><span class="v-num">21</span><span class="v-txt">Withdraw Your hand far from me, And let not the dread of You make me afraid.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/22/" data-ref="Job 13:22 (New King James Version)" data-verse-url="/bible/nkjv/job/13/22/"><span class="v-num">22</span><span class="v-txt">Then call, and I will answer; Or let me speak, then You respond to me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/23/" data-ref="Job 13:23 (New King James Version)" data-verse-url="/bible/nkjv/job/13/23/"><span class="v-num">23</span><span class="v-txt">How many [are] my iniquities and sins? Make me know my transgression and my sin.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/24/" data-ref="Job 13:24 (New King James Version)" data-verse-url="/bible/nkjv/job/13/24/"><span class="v-num">24</span><span class="v-txt">Why do You hide Your face, And regard me as Your enemy?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/25/" data-ref="Job 13:25 (New King James Version)" data-verse-url="/bible/nkjv/job/13/25/"><span class="v-num">25</span><span class="v-txt">Will You frighten a leaf driven to and fro? And will You pursue dry stubble?</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/26/" data-ref="Job 13:26 (New King James Version)" data-verse-url="/bible/nkjv/job/13/26/"><span class="v-num">26</span><span class="v-txt">For You write bitter things against me, And make me inherit the iniquities of my youth.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/27/" data-ref="Job 13:27 (New King James Version)" data-verse-url="/bible/nkjv/job/13/27/"><span class="v-num">27</span><span class="v-txt">You put my feet in the stocks, And watch closely all my paths. You set a limit for the soles of my feet.</span></a>
+<a class="v-row" href="/bible/nkjv/job/13/28/" data-ref="Job 13:28 (New King James Version)" data-verse-url="/bible/nkjv/job/13/28/"><span class="v-num">28</span><span class="v-txt">" Man decays like a rotten thing, Like a garment that is moth-eaten.</span></a>
 
     
 <div class="app-cta">

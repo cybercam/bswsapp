@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Eliphaz the Temanite made answer and said,</span></div>
-<div class="v-row" data-ref="Job 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If one says a word, will it be a weariness to you? but who is able to keep from saying what is in his mind?</span></div>
-<div class="v-row" data-ref="Job 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Truly, you have been a helper to others, and you have made feeble hands strong;</span></div>
-<div class="v-row" data-ref="Job 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He who was near to falling has been lifted up by your words, and you have given strength to bent knees.</span></div>
-<div class="v-row" data-ref="Job 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But now it has come on you and it is a weariness to you; you are touched by it and your mind is troubled.</span></div>
-<div class="v-row" data-ref="Job 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Is not your fear of God your support, and your upright way of life your hope?</span></div>
-<div class="v-row" data-ref="Job 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Have you ever seen destruction come to an upright man? or when were the god-fearing ever cut off?</span></div>
-<div class="v-row" data-ref="Job 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">What I have seen is that those by whom trouble has been ploughed, and evil planted, get the same for themselves.</span></div>
-<div class="v-row" data-ref="Job 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">By the breath of God destruction takes them, and by the wind of his wrath they are cut off.</span></div>
-<div class="v-row" data-ref="Job 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Though the noise of the lion and the sounding of his voice, may be loud, the teeth of the young lions are broken.</span></div>
-<div class="v-row" data-ref="Job 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The old lion comes to his end for need of food, and the young of the she-lion go wandering in all directions.</span></div>
-<div class="v-row" data-ref="Job 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">A word was given to me secretly, and the low sound of it came to my ears.</span></div>
-<div class="v-row" data-ref="Job 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In troubled thoughts from visions of the night, when deep sleep comes on men,</span></div>
-<div class="v-row" data-ref="Job 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Fear came on me and shaking, and my bones were full of trouble;</span></div>
-<div class="v-row" data-ref="Job 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And a breath was moving over my face; the hair of my flesh became stiff:</span></div>
-<div class="v-row" data-ref="Job 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Something was present before me, but I was not able to see it clearly; there was a form before my eyes: a quiet voice came to my ears, saying:</span></div>
-<div class="v-row" data-ref="Job 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">May a man be upright before God? or a man be clean before his Maker?</span></div>
-<div class="v-row" data-ref="Job 4:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Truly, he puts no faith in his servants, and he sees error in his angels;</span></div>
-<div class="v-row" data-ref="Job 4:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">How much more those living in houses of earth, whose bases are in the dust! They are crushed more quickly than an insect;</span></div>
-<div class="v-row" data-ref="Job 4:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Between morning and evening they are completely broken; they come to an end for ever, and no one takes note.</span></div>
-<div class="v-row" data-ref="Job 4:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">If their tent-cord is pulled up, do they not come to an end, and without wisdom?</span></div>
+    <a class="v-row" href="/bible/bbe/job/4/1/" data-ref="Job 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/1/"><span class="v-num">1</span><span class="v-txt">And Eliphaz the Temanite made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/4/2/" data-ref="Job 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/2/"><span class="v-num">2</span><span class="v-txt">If one says a word, will it be a weariness to you? but who is able to keep from saying what is in his mind?</span></a>
+<a class="v-row" href="/bible/bbe/job/4/3/" data-ref="Job 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/3/"><span class="v-num">3</span><span class="v-txt">Truly, you have been a helper to others, and you have made feeble hands strong;</span></a>
+<a class="v-row" href="/bible/bbe/job/4/4/" data-ref="Job 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/4/"><span class="v-num">4</span><span class="v-txt">He who was near to falling has been lifted up by your words, and you have given strength to bent knees.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/5/" data-ref="Job 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/5/"><span class="v-num">5</span><span class="v-txt">But now it has come on you and it is a weariness to you; you are touched by it and your mind is troubled.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/6/" data-ref="Job 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/6/"><span class="v-num">6</span><span class="v-txt">Is not your fear of God your support, and your upright way of life your hope?</span></a>
+<a class="v-row" href="/bible/bbe/job/4/7/" data-ref="Job 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/7/"><span class="v-num">7</span><span class="v-txt">Have you ever seen destruction come to an upright man? or when were the god-fearing ever cut off?</span></a>
+<a class="v-row" href="/bible/bbe/job/4/8/" data-ref="Job 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/8/"><span class="v-num">8</span><span class="v-txt">What I have seen is that those by whom trouble has been ploughed, and evil planted, get the same for themselves.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/9/" data-ref="Job 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/9/"><span class="v-num">9</span><span class="v-txt">By the breath of God destruction takes them, and by the wind of his wrath they are cut off.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/10/" data-ref="Job 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/10/"><span class="v-num">10</span><span class="v-txt">Though the noise of the lion and the sounding of his voice, may be loud, the teeth of the young lions are broken.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/11/" data-ref="Job 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/11/"><span class="v-num">11</span><span class="v-txt">The old lion comes to his end for need of food, and the young of the she-lion go wandering in all directions.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/12/" data-ref="Job 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/12/"><span class="v-num">12</span><span class="v-txt">A word was given to me secretly, and the low sound of it came to my ears.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/13/" data-ref="Job 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/13/"><span class="v-num">13</span><span class="v-txt">In troubled thoughts from visions of the night, when deep sleep comes on men,</span></a>
+<a class="v-row" href="/bible/bbe/job/4/14/" data-ref="Job 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/14/"><span class="v-num">14</span><span class="v-txt">Fear came on me and shaking, and my bones were full of trouble;</span></a>
+<a class="v-row" href="/bible/bbe/job/4/15/" data-ref="Job 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/15/"><span class="v-num">15</span><span class="v-txt">And a breath was moving over my face; the hair of my flesh became stiff:</span></a>
+<a class="v-row" href="/bible/bbe/job/4/16/" data-ref="Job 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/16/"><span class="v-num">16</span><span class="v-txt">Something was present before me, but I was not able to see it clearly; there was a form before my eyes: a quiet voice came to my ears, saying:</span></a>
+<a class="v-row" href="/bible/bbe/job/4/17/" data-ref="Job 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/17/"><span class="v-num">17</span><span class="v-txt">May a man be upright before God? or a man be clean before his Maker?</span></a>
+<a class="v-row" href="/bible/bbe/job/4/18/" data-ref="Job 4:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/18/"><span class="v-num">18</span><span class="v-txt">Truly, he puts no faith in his servants, and he sees error in his angels;</span></a>
+<a class="v-row" href="/bible/bbe/job/4/19/" data-ref="Job 4:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/19/"><span class="v-num">19</span><span class="v-txt">How much more those living in houses of earth, whose bases are in the dust! They are crushed more quickly than an insect;</span></a>
+<a class="v-row" href="/bible/bbe/job/4/20/" data-ref="Job 4:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/20/"><span class="v-num">20</span><span class="v-txt">Between morning and evening they are completely broken; they come to an end for ever, and no one takes note.</span></a>
+<a class="v-row" href="/bible/bbe/job/4/21/" data-ref="Job 4:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/4/21/"><span class="v-num">21</span><span class="v-txt">If their tent-cord is pulled up, do they not come to an end, and without wisdom?</span></a>
 
     
 <div class="app-cta">

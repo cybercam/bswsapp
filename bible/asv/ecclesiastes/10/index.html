@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 10:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Dead flies cause the oil of the perfumer to send forth an evil odor; [so] doth a little folly outweigh wisdom and honor.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A wise man's heart is at his right hand; but a fool's heart at his left.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Yea also, when the fool walketh by the way, his understanding faileth him, and he saith to every one [that] he is a fool.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If the spirit of the ruler rise up against thee, leave not thy place; for gentleness allayeth great offences.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">There is an evil which I have seen under the sun, as it were an error which proceedeth from the ruler:</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">folly is set in great dignity, and the rich sit in a low place.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I have seen servants upon horses, and princes walking like servants upon the earth.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He that diggeth a pit shall fall into it; and whoso breaketh through a wall, a serpent shall bite him.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Whoso heweth out stones shall be hurt therewith; [and] he that cleaveth wood is endangered thereby.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If the iron be blunt, and one do not whet the edge, then must he put to more strength: but wisdom is profitable to direct.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If the serpent bite before it is charmed, then is there no advantage in the charmer.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The words of a wise man's mouth are gracious; but the lips of a fool will swallow up himself.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The beginning of the words of his mouth is foolishness; and the end of his talk is mischievous madness.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A fool also multiplieth words: [yet] man knoweth not what shall be; and that which shall be after him, who can tell him?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The labor of fools wearieth every one of them; for he knoweth not how to go to the city.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Woe to thee, O land, when thy king is a child, and thy princes eat in the morning!</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Happy art thou, O land, when thy king is the son of nobles, and thy princes eat in due season, for strength, and not for drunkenness!</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">By slothfulness the roof sinketh in; and through idleness of the hands the house leaketh.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">A feast is made for laughter, and wine maketh glad the life; and money answereth all things.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Revile not the king, no, not in thy thought; and revile not the rich in thy bedchamber: for a bird of the heavens shall carry the voice, and that which hath wings shall tell the matter.</span></div>
+    <a class="v-row" href="/bible/asv/ecclesiastes/10/1/" data-ref="Ecclesiastes 10:1 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/1/"><span class="v-num">1</span><span class="v-txt">Dead flies cause the oil of the perfumer to send forth an evil odor; [so] doth a little folly outweigh wisdom and honor.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/2/" data-ref="Ecclesiastes 10:2 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/2/"><span class="v-num">2</span><span class="v-txt">A wise man's heart is at his right hand; but a fool's heart at his left.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/3/" data-ref="Ecclesiastes 10:3 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/3/"><span class="v-num">3</span><span class="v-txt">Yea also, when the fool walketh by the way, his understanding faileth him, and he saith to every one [that] he is a fool.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/4/" data-ref="Ecclesiastes 10:4 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/4/"><span class="v-num">4</span><span class="v-txt">If the spirit of the ruler rise up against thee, leave not thy place; for gentleness allayeth great offences.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/5/" data-ref="Ecclesiastes 10:5 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/5/"><span class="v-num">5</span><span class="v-txt">There is an evil which I have seen under the sun, as it were an error which proceedeth from the ruler:</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/6/" data-ref="Ecclesiastes 10:6 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/6/"><span class="v-num">6</span><span class="v-txt">folly is set in great dignity, and the rich sit in a low place.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/7/" data-ref="Ecclesiastes 10:7 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/7/"><span class="v-num">7</span><span class="v-txt">I have seen servants upon horses, and princes walking like servants upon the earth.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/8/" data-ref="Ecclesiastes 10:8 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/8/"><span class="v-num">8</span><span class="v-txt">He that diggeth a pit shall fall into it; and whoso breaketh through a wall, a serpent shall bite him.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/9/" data-ref="Ecclesiastes 10:9 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/9/"><span class="v-num">9</span><span class="v-txt">Whoso heweth out stones shall be hurt therewith; [and] he that cleaveth wood is endangered thereby.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/10/" data-ref="Ecclesiastes 10:10 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/10/"><span class="v-num">10</span><span class="v-txt">If the iron be blunt, and one do not whet the edge, then must he put to more strength: but wisdom is profitable to direct.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/11/" data-ref="Ecclesiastes 10:11 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/11/"><span class="v-num">11</span><span class="v-txt">If the serpent bite before it is charmed, then is there no advantage in the charmer.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/12/" data-ref="Ecclesiastes 10:12 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/12/"><span class="v-num">12</span><span class="v-txt">The words of a wise man's mouth are gracious; but the lips of a fool will swallow up himself.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/13/" data-ref="Ecclesiastes 10:13 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/13/"><span class="v-num">13</span><span class="v-txt">The beginning of the words of his mouth is foolishness; and the end of his talk is mischievous madness.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/14/" data-ref="Ecclesiastes 10:14 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/14/"><span class="v-num">14</span><span class="v-txt">A fool also multiplieth words: [yet] man knoweth not what shall be; and that which shall be after him, who can tell him?</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/15/" data-ref="Ecclesiastes 10:15 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/15/"><span class="v-num">15</span><span class="v-txt">The labor of fools wearieth every one of them; for he knoweth not how to go to the city.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/16/" data-ref="Ecclesiastes 10:16 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/16/"><span class="v-num">16</span><span class="v-txt">Woe to thee, O land, when thy king is a child, and thy princes eat in the morning!</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/17/" data-ref="Ecclesiastes 10:17 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/17/"><span class="v-num">17</span><span class="v-txt">Happy art thou, O land, when thy king is the son of nobles, and thy princes eat in due season, for strength, and not for drunkenness!</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/18/" data-ref="Ecclesiastes 10:18 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/18/"><span class="v-num">18</span><span class="v-txt">By slothfulness the roof sinketh in; and through idleness of the hands the house leaketh.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/19/" data-ref="Ecclesiastes 10:19 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/19/"><span class="v-num">19</span><span class="v-txt">A feast is made for laughter, and wine maketh glad the life; and money answereth all things.</span></a>
+<a class="v-row" href="/bible/asv/ecclesiastes/10/20/" data-ref="Ecclesiastes 10:20 (American Standard Version)" data-verse-url="/bible/asv/ecclesiastes/10/20/"><span class="v-num">20</span><span class="v-txt">Revile not the king, no, not in thy thought; and revile not the rich in thy bedchamber: for a bird of the heavens shall carry the voice, and that which hath wings shall tell the matter.</span></a>
 
     
 <div class="app-cta">

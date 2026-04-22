@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 3:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Wherefore when we could no longer forbear, we thought it good to be left at Athens alone;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And sent Timotheus, our brother, and minister of God, and our fellowlabourer in the gospel of Christ, to establish you, and to comfort you concerning your faith:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">That no man should be moved by these afflictions: for yourselves know that we are appointed thereunto.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For verily, when we were with you, we told you before that we should suffer tribulation; even as it came to pass, and ye know.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For this cause, when I could no longer forbear, I sent to know your faith, lest by some means the tempter have tempted you, and our labour be in vain.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But now when Timotheus came from you unto us, and brought us good tidings of your faith and charity, and that ye have good remembrance of us always, desiring greatly to see us, as we also to see you:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore, brethren, we were comforted over you in all our affliction and distress by your faith:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For now we live, if ye stand fast in the Lord.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For what thanks can we render to God again for you, for all the joy wherewith we joy for your sakes before our God;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Night and day praying exceedingly that we might see your face, and might perfect that which is lacking in your faith?</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now God himself and our Father, and our Lord Jesus Christ, direct our way unto you.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the Lord make you to increase and abound in love one toward another, and toward all men, even as we do toward you:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">To the end he may stablish your hearts unblameable in holiness before God, even our Father, at the coming of our Lord Jesus Christ with all his saints.</span></div>
+    <a class="v-row" href="/bible/kjv/1-thessalonians/3/1/" data-ref="1 Thessalonians 3:1 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/1/"><span class="v-num">1</span><span class="v-txt">Wherefore when we could no longer forbear, we thought it good to be left at Athens alone;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/2/" data-ref="1 Thessalonians 3:2 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/2/"><span class="v-num">2</span><span class="v-txt">And sent Timotheus, our brother, and minister of God, and our fellowlabourer in the gospel of Christ, to establish you, and to comfort you concerning your faith:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/3/" data-ref="1 Thessalonians 3:3 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/3/"><span class="v-num">3</span><span class="v-txt">That no man should be moved by these afflictions: for yourselves know that we are appointed thereunto.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/4/" data-ref="1 Thessalonians 3:4 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/4/"><span class="v-num">4</span><span class="v-txt">For verily, when we were with you, we told you before that we should suffer tribulation; even as it came to pass, and ye know.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/5/" data-ref="1 Thessalonians 3:5 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/5/"><span class="v-num">5</span><span class="v-txt">For this cause, when I could no longer forbear, I sent to know your faith, lest by some means the tempter have tempted you, and our labour be in vain.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/6/" data-ref="1 Thessalonians 3:6 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/6/"><span class="v-num">6</span><span class="v-txt">But now when Timotheus came from you unto us, and brought us good tidings of your faith and charity, and that ye have good remembrance of us always, desiring greatly to see us, as we also to see you:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/7/" data-ref="1 Thessalonians 3:7 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/7/"><span class="v-num">7</span><span class="v-txt">Therefore, brethren, we were comforted over you in all our affliction and distress by your faith:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/8/" data-ref="1 Thessalonians 3:8 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/8/"><span class="v-num">8</span><span class="v-txt">For now we live, if ye stand fast in the Lord.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/9/" data-ref="1 Thessalonians 3:9 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/9/"><span class="v-num">9</span><span class="v-txt">For what thanks can we render to God again for you, for all the joy wherewith we joy for your sakes before our God;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/10/" data-ref="1 Thessalonians 3:10 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/10/"><span class="v-num">10</span><span class="v-txt">Night and day praying exceedingly that we might see your face, and might perfect that which is lacking in your faith?</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/11/" data-ref="1 Thessalonians 3:11 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/11/"><span class="v-num">11</span><span class="v-txt">Now God himself and our Father, and our Lord Jesus Christ, direct our way unto you.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/12/" data-ref="1 Thessalonians 3:12 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/12/"><span class="v-num">12</span><span class="v-txt">And the Lord make you to increase and abound in love one toward another, and toward all men, even as we do toward you:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/3/13/" data-ref="1 Thessalonians 3:13 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/3/13/"><span class="v-num">13</span><span class="v-txt">To the end he may stablish your hearts unblameable in holiness before God, even our Father, at the coming of our Lord Jesus Christ with all his saints.</span></a>
 
     
 <div class="app-cta">

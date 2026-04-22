@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 25</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Deuteronomy 25:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">If there is an argument between men and they go to law with one another, let the judges give their decision for the upright, and against the wrongdoer.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And if the wrongdoer is to undergo punishment by whipping, the judge will give orders for him to go down on his face and be whipped before him, the number of the blows being in relation to his crime.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He may be given forty blows, not more; for if more are given, your brother may be shamed before you.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Do not keep the ox from taking the grain when he is crushing it.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">If brothers are living together and one of them, at his death, has no son, the wife of the dead man is not to be married outside the family to another man: let her husband's brother go in to her and make her his wife, doing as it is right for a brother-in-law to do.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the first male child she has will take the rights of the brother who is dead, so that his name may not come to an end in Israel.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But if the man says he will not take his brother's wife, then let the wife go to the responsible men of the town, and say, My husband's brother will not keep his brother's name living in Israel; he will not do what it is right for a husband's brother to do.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the responsible men of the town will send for the man, and have talk with him: and if he still says, I will not take her;</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then his brother's wife is to come to him, before the responsible men of the town, and take his shoe off his foot, and put shame on him, and say, So let it be done to the man who will not take care of his brother's name.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And his family will be named in Israel, The house of him whose shoe has been taken off.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If two men are fighting, and the wife of one of them, coming to the help of her husband, takes the other by the private parts;</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Her hand is to be cut off; have no pity on her.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Do not have in your bag different weights, a great and a small;</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Or in your house different measures, a great and a small.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But have a true weight and a true measure: so that your life may be long in the land which the Lord your God is giving you.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For all who do such things, and all whose ways are not upright, are disgusting to the Lord your God.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Keep in mind what Amalek did to you on your way from Egypt;</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">How, meeting you on the way, he made an attack on you when you were tired and without strength, cutting off all the feeble ones at the end of your line; and the fear of God was not in him.</span></div>
-<div class="v-row" data-ref="Deuteronomy 25:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So when the Lord your God has given you rest from all who are against you on every side, in the land which the Lord your God is giving you for your heritage, see to it that the memory of Amalek is cut off from the earth; keep this in mind.</span></div>
+    <a class="v-row" href="/bible/bbe/deuteronomy/25/1/" data-ref="Deuteronomy 25:1 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/1/"><span class="v-num">1</span><span class="v-txt">If there is an argument between men and they go to law with one another, let the judges give their decision for the upright, and against the wrongdoer.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/2/" data-ref="Deuteronomy 25:2 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/2/"><span class="v-num">2</span><span class="v-txt">And if the wrongdoer is to undergo punishment by whipping, the judge will give orders for him to go down on his face and be whipped before him, the number of the blows being in relation to his crime.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/3/" data-ref="Deuteronomy 25:3 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/3/"><span class="v-num">3</span><span class="v-txt">He may be given forty blows, not more; for if more are given, your brother may be shamed before you.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/4/" data-ref="Deuteronomy 25:4 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/4/"><span class="v-num">4</span><span class="v-txt">Do not keep the ox from taking the grain when he is crushing it.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/5/" data-ref="Deuteronomy 25:5 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/5/"><span class="v-num">5</span><span class="v-txt">If brothers are living together and one of them, at his death, has no son, the wife of the dead man is not to be married outside the family to another man: let her husband's brother go in to her and make her his wife, doing as it is right for a brother-in-law to do.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/6/" data-ref="Deuteronomy 25:6 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/6/"><span class="v-num">6</span><span class="v-txt">Then the first male child she has will take the rights of the brother who is dead, so that his name may not come to an end in Israel.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/7/" data-ref="Deuteronomy 25:7 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/7/"><span class="v-num">7</span><span class="v-txt">But if the man says he will not take his brother's wife, then let the wife go to the responsible men of the town, and say, My husband's brother will not keep his brother's name living in Israel; he will not do what it is right for a husband's brother to do.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/8/" data-ref="Deuteronomy 25:8 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/8/"><span class="v-num">8</span><span class="v-txt">Then the responsible men of the town will send for the man, and have talk with him: and if he still says, I will not take her;</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/9/" data-ref="Deuteronomy 25:9 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/9/"><span class="v-num">9</span><span class="v-txt">Then his brother's wife is to come to him, before the responsible men of the town, and take his shoe off his foot, and put shame on him, and say, So let it be done to the man who will not take care of his brother's name.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/10/" data-ref="Deuteronomy 25:10 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/10/"><span class="v-num">10</span><span class="v-txt">And his family will be named in Israel, The house of him whose shoe has been taken off.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/11/" data-ref="Deuteronomy 25:11 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/11/"><span class="v-num">11</span><span class="v-txt">If two men are fighting, and the wife of one of them, coming to the help of her husband, takes the other by the private parts;</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/12/" data-ref="Deuteronomy 25:12 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/12/"><span class="v-num">12</span><span class="v-txt">Her hand is to be cut off; have no pity on her.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/13/" data-ref="Deuteronomy 25:13 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/13/"><span class="v-num">13</span><span class="v-txt">Do not have in your bag different weights, a great and a small;</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/14/" data-ref="Deuteronomy 25:14 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/14/"><span class="v-num">14</span><span class="v-txt">Or in your house different measures, a great and a small.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/15/" data-ref="Deuteronomy 25:15 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/15/"><span class="v-num">15</span><span class="v-txt">But have a true weight and a true measure: so that your life may be long in the land which the Lord your God is giving you.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/16/" data-ref="Deuteronomy 25:16 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/16/"><span class="v-num">16</span><span class="v-txt">For all who do such things, and all whose ways are not upright, are disgusting to the Lord your God.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/17/" data-ref="Deuteronomy 25:17 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/17/"><span class="v-num">17</span><span class="v-txt">Keep in mind what Amalek did to you on your way from Egypt;</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/18/" data-ref="Deuteronomy 25:18 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/18/"><span class="v-num">18</span><span class="v-txt">How, meeting you on the way, he made an attack on you when you were tired and without strength, cutting off all the feeble ones at the end of your line; and the fear of God was not in him.</span></a>
+<a class="v-row" href="/bible/bbe/deuteronomy/25/19/" data-ref="Deuteronomy 25:19 (Bible in Basic English)" data-verse-url="/bible/bbe/deuteronomy/25/19/"><span class="v-num">19</span><span class="v-txt">So when the Lord your God has given you rest from all who are against you on every side, in the land which the Lord your God is giving you for your heritage, see to it that the memory of Amalek is cut off from the earth; keep this in mind.</span></a>
 
     
 <div class="app-cta">

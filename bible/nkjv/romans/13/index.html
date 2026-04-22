@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Romans 13:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let every soul be subject to the governing authorities. For there is no authority except from God, and the authorities that exist are appointed by God.</span></div>
-<div class="v-row" data-ref="Romans 13:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Therefore whoever resists the authority resists the ordinance of God, and those who resist will bring judgment on themselves.</span></div>
-<div class="v-row" data-ref="Romans 13:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For rulers are not a terror to good works, but to evil. Do you want to be unafraid of the authority? Do what is good, and you will have praise from the same.</span></div>
-<div class="v-row" data-ref="Romans 13:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For he is God's minister to you for good. But if you do evil, be afraid; for he does not bear the sword in vain; for he is God's minister, an avenger to [execute] wrath on him who practices evil.</span></div>
-<div class="v-row" data-ref="Romans 13:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Therefore [you] must be subject, not only because of wrath but also for conscience' sake.</span></div>
-<div class="v-row" data-ref="Romans 13:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For because of this you also pay taxes, for they are God's ministers attending continually to this very thing.</span></div>
-<div class="v-row" data-ref="Romans 13:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Render therefore to all their due: taxes to whom taxes [are due,] customs to whom customs, fear to whom fear, honor to whom honor.</span></div>
-<div class="v-row" data-ref="Romans 13:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Owe no one anything except to love one another, for he who loves another has fulfilled the law.</span></div>
-<div class="v-row" data-ref="Romans 13:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For the commandments, "You shall not commit adultery," "You shall not murder," "You shall not steal," "You shall not bear false witness," "You shall not covet," and if [there is] any other commandment, are [all] summed up in this saying, namely, "You shall love your neighbor as yourself."</span></div>
-<div class="v-row" data-ref="Romans 13:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Love does no harm to a neighbor; therefore love [is] the fulfillment of the law.</span></div>
-<div class="v-row" data-ref="Romans 13:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And [do] this, knowing the time, that now [it is] high time to awake out of sleep; for now our salvation [is] nearer than when we [first] believed.</span></div>
-<div class="v-row" data-ref="Romans 13:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The night is far spent, the day is at hand. Therefore let us cast off the works of darkness, and let us put on the armor of light.</span></div>
-<div class="v-row" data-ref="Romans 13:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Let us walk properly, as in the day, not in revelry and drunkenness, not in lewdness and lust, not in strife and envy.</span></div>
-<div class="v-row" data-ref="Romans 13:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But put on the Lord Jesus Christ, and make no provision for the flesh, to [fulfill its] lusts.</span></div>
+    <a class="v-row" href="/bible/nkjv/romans/13/1/" data-ref="Romans 13:1 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/1/"><span class="v-num">1</span><span class="v-txt">Let every soul be subject to the governing authorities. For there is no authority except from God, and the authorities that exist are appointed by God.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/2/" data-ref="Romans 13:2 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/2/"><span class="v-num">2</span><span class="v-txt">Therefore whoever resists the authority resists the ordinance of God, and those who resist will bring judgment on themselves.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/3/" data-ref="Romans 13:3 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/3/"><span class="v-num">3</span><span class="v-txt">For rulers are not a terror to good works, but to evil. Do you want to be unafraid of the authority? Do what is good, and you will have praise from the same.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/4/" data-ref="Romans 13:4 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/4/"><span class="v-num">4</span><span class="v-txt">For he is God's minister to you for good. But if you do evil, be afraid; for he does not bear the sword in vain; for he is God's minister, an avenger to [execute] wrath on him who practices evil.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/5/" data-ref="Romans 13:5 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/5/"><span class="v-num">5</span><span class="v-txt">Therefore [you] must be subject, not only because of wrath but also for conscience' sake.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/6/" data-ref="Romans 13:6 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/6/"><span class="v-num">6</span><span class="v-txt">For because of this you also pay taxes, for they are God's ministers attending continually to this very thing.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/7/" data-ref="Romans 13:7 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/7/"><span class="v-num">7</span><span class="v-txt">Render therefore to all their due: taxes to whom taxes [are due,] customs to whom customs, fear to whom fear, honor to whom honor.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/8/" data-ref="Romans 13:8 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/8/"><span class="v-num">8</span><span class="v-txt">Owe no one anything except to love one another, for he who loves another has fulfilled the law.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/9/" data-ref="Romans 13:9 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/9/"><span class="v-num">9</span><span class="v-txt">For the commandments, "You shall not commit adultery," "You shall not murder," "You shall not steal," "You shall not bear false witness," "You shall not covet," and if [there is] any other commandment, are [all] summed up in this saying, namely, "You shall love your neighbor as yourself."</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/10/" data-ref="Romans 13:10 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/10/"><span class="v-num">10</span><span class="v-txt">Love does no harm to a neighbor; therefore love [is] the fulfillment of the law.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/11/" data-ref="Romans 13:11 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/11/"><span class="v-num">11</span><span class="v-txt">And [do] this, knowing the time, that now [it is] high time to awake out of sleep; for now our salvation [is] nearer than when we [first] believed.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/12/" data-ref="Romans 13:12 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/12/"><span class="v-num">12</span><span class="v-txt">The night is far spent, the day is at hand. Therefore let us cast off the works of darkness, and let us put on the armor of light.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/13/" data-ref="Romans 13:13 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/13/"><span class="v-num">13</span><span class="v-txt">Let us walk properly, as in the day, not in revelry and drunkenness, not in lewdness and lust, not in strife and envy.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/13/14/" data-ref="Romans 13:14 (New King James Version)" data-verse-url="/bible/nkjv/romans/13/14/"><span class="v-num">14</span><span class="v-txt">But put on the Lord Jesus Christ, and make no provision for the flesh, to [fulfill its] lusts.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Timothy 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thou therefore, my child, be strengthened in the grace that is in Christ Jesus.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the things which thou hast heard from me among many witnesses, the same commit thou to faithful men, who shall be able to teach others also.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Suffer hardship with [me], as a good soldier of Christ Jesus.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">No soldier on service entangleth himself in the affairs of [this] life; that he may please him who enrolled him as a soldier.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And if also a man contend in the games, he is not crowned, except he have contended lawfully.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The husbandmen that laboreth must be the first to partake of the fruits.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Consider what I say; for the Lord shall give thee understanding in all things.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Remember Jesus Christ, risen from the dead, of the seed of David, according to my gospel:</span></div>
-<div class="v-row" data-ref="2 Timothy 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">wherein I suffer hardship unto bonds, as a malefactor; but the word of God is not bound.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Therefore I endure all things for the elect's sake, that they also may obtain the salvation which is in Christ Jesus with eternal glory.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Faithful is the saying: For if we died with him, we shall also live with him:</span></div>
-<div class="v-row" data-ref="2 Timothy 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">if we endure, we shall also reign with him: if we shall deny him, he also will deny us:</span></div>
-<div class="v-row" data-ref="2 Timothy 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">if we are faithless, he abideth faithful; for he cannot deny himself.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Of these things put them in remembrance, charging [them] in the sight of the Lord, that they strive not about words, to no profit, to the subverting of them that hear.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Give diligence to present thyself approved unto God, a workman that needeth not to be ashamed, handling aright the word of truth.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But shun profane babblings: for they will proceed further in ungodliness,</span></div>
-<div class="v-row" data-ref="2 Timothy 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">and their word will eat as doth a gangrene: or whom is Hymenaeus an Philetus;</span></div>
-<div class="v-row" data-ref="2 Timothy 2:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">men who concerning the truth have erred, saying that the resurrection is past already, and overthrow the faith of some.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Howbeit the firm foundation of God standeth, having this seal, The Lord knoweth them that are his: and, Let every one that nameth the name of the Lord depart from unrighteousness.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Now in a great house there are not only vessels of gold and of silver, but also of wood and of earth; and some unto honor, and some unto dishonor.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">If a man therefore purge himself from these, he shall be a vessel unto honor, sanctified, meet for the master's use, prepared unto every good work.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But flee youthful lusts, and follow after righteousness, faith, love, peace, with them that call on the Lord out of a pure heart.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">But foolish and ignorant questionings refuse, knowing that they gender strifes.</span></div>
-<div class="v-row" data-ref="2 Timothy 2:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And the Lord's servant must not strive, but be gentle towards all, apt to teach, forbearing,</span></div>
-<div class="v-row" data-ref="2 Timothy 2:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">in meekness correcting them that oppose themselves; if peradventure God may give them repentance unto the knowledge of the truth,</span></div>
-<div class="v-row" data-ref="2 Timothy 2:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">and they may recover themselves out of the snare of the devil, having been taken captive by him unto his will.</span></div>
+    <a class="v-row" href="/bible/asv/2-timothy/2/1/" data-ref="2 Timothy 2:1 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/1/"><span class="v-num">1</span><span class="v-txt">Thou therefore, my child, be strengthened in the grace that is in Christ Jesus.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/2/" data-ref="2 Timothy 2:2 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/2/"><span class="v-num">2</span><span class="v-txt">And the things which thou hast heard from me among many witnesses, the same commit thou to faithful men, who shall be able to teach others also.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/3/" data-ref="2 Timothy 2:3 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/3/"><span class="v-num">3</span><span class="v-txt">Suffer hardship with [me], as a good soldier of Christ Jesus.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/4/" data-ref="2 Timothy 2:4 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/4/"><span class="v-num">4</span><span class="v-txt">No soldier on service entangleth himself in the affairs of [this] life; that he may please him who enrolled him as a soldier.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/5/" data-ref="2 Timothy 2:5 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/5/"><span class="v-num">5</span><span class="v-txt">And if also a man contend in the games, he is not crowned, except he have contended lawfully.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/6/" data-ref="2 Timothy 2:6 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/6/"><span class="v-num">6</span><span class="v-txt">The husbandmen that laboreth must be the first to partake of the fruits.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/7/" data-ref="2 Timothy 2:7 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/7/"><span class="v-num">7</span><span class="v-txt">Consider what I say; for the Lord shall give thee understanding in all things.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/8/" data-ref="2 Timothy 2:8 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/8/"><span class="v-num">8</span><span class="v-txt">Remember Jesus Christ, risen from the dead, of the seed of David, according to my gospel:</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/9/" data-ref="2 Timothy 2:9 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/9/"><span class="v-num">9</span><span class="v-txt">wherein I suffer hardship unto bonds, as a malefactor; but the word of God is not bound.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/10/" data-ref="2 Timothy 2:10 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/10/"><span class="v-num">10</span><span class="v-txt">Therefore I endure all things for the elect's sake, that they also may obtain the salvation which is in Christ Jesus with eternal glory.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/11/" data-ref="2 Timothy 2:11 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/11/"><span class="v-num">11</span><span class="v-txt">Faithful is the saying: For if we died with him, we shall also live with him:</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/12/" data-ref="2 Timothy 2:12 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/12/"><span class="v-num">12</span><span class="v-txt">if we endure, we shall also reign with him: if we shall deny him, he also will deny us:</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/13/" data-ref="2 Timothy 2:13 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/13/"><span class="v-num">13</span><span class="v-txt">if we are faithless, he abideth faithful; for he cannot deny himself.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/14/" data-ref="2 Timothy 2:14 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/14/"><span class="v-num">14</span><span class="v-txt">Of these things put them in remembrance, charging [them] in the sight of the Lord, that they strive not about words, to no profit, to the subverting of them that hear.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/15/" data-ref="2 Timothy 2:15 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/15/"><span class="v-num">15</span><span class="v-txt">Give diligence to present thyself approved unto God, a workman that needeth not to be ashamed, handling aright the word of truth.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/16/" data-ref="2 Timothy 2:16 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/16/"><span class="v-num">16</span><span class="v-txt">But shun profane babblings: for they will proceed further in ungodliness,</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/17/" data-ref="2 Timothy 2:17 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/17/"><span class="v-num">17</span><span class="v-txt">and their word will eat as doth a gangrene: or whom is Hymenaeus an Philetus;</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/18/" data-ref="2 Timothy 2:18 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/18/"><span class="v-num">18</span><span class="v-txt">men who concerning the truth have erred, saying that the resurrection is past already, and overthrow the faith of some.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/19/" data-ref="2 Timothy 2:19 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/19/"><span class="v-num">19</span><span class="v-txt">Howbeit the firm foundation of God standeth, having this seal, The Lord knoweth them that are his: and, Let every one that nameth the name of the Lord depart from unrighteousness.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/20/" data-ref="2 Timothy 2:20 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/20/"><span class="v-num">20</span><span class="v-txt">Now in a great house there are not only vessels of gold and of silver, but also of wood and of earth; and some unto honor, and some unto dishonor.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/21/" data-ref="2 Timothy 2:21 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/21/"><span class="v-num">21</span><span class="v-txt">If a man therefore purge himself from these, he shall be a vessel unto honor, sanctified, meet for the master's use, prepared unto every good work.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/22/" data-ref="2 Timothy 2:22 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/22/"><span class="v-num">22</span><span class="v-txt">But flee youthful lusts, and follow after righteousness, faith, love, peace, with them that call on the Lord out of a pure heart.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/23/" data-ref="2 Timothy 2:23 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/23/"><span class="v-num">23</span><span class="v-txt">But foolish and ignorant questionings refuse, knowing that they gender strifes.</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/24/" data-ref="2 Timothy 2:24 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/24/"><span class="v-num">24</span><span class="v-txt">And the Lord's servant must not strive, but be gentle towards all, apt to teach, forbearing,</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/25/" data-ref="2 Timothy 2:25 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/25/"><span class="v-num">25</span><span class="v-txt">in meekness correcting them that oppose themselves; if peradventure God may give them repentance unto the knowledge of the truth,</span></a>
+<a class="v-row" href="/bible/asv/2-timothy/2/26/" data-ref="2 Timothy 2:26 (American Standard Version)" data-verse-url="/bible/asv/2-timothy/2/26/"><span class="v-num">26</span><span class="v-txt">and they may recover themselves out of the snare of the devil, having been taken captive by him unto his will.</span></a>
 
     
 <div class="app-cta">

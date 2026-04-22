@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then, opening his mouth, and cursing the day of his birth,</span></div>
-<div class="v-row" data-ref="Job 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Job made answer and said,</span></div>
-<div class="v-row" data-ref="Job 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let destruction take the day of my birth, and the night on which it was said, A man child has come into the world.</span></div>
-<div class="v-row" data-ref="Job 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">That day -- let it be dark; let not God take note of it from on high, and let not the light be shining on it;</span></div>
-<div class="v-row" data-ref="Job 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let the dark and the black night take it for themselves; let it be covered with a cloud; let the dark shades of day send fear on it.</span></div>
-<div class="v-row" data-ref="Job 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">That night -- let the thick dark take it; let it not have joy among the days of the year; let it not come into the number of the months.</span></div>
-<div class="v-row" data-ref="Job 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">As for that night, let it have no fruit; let no voice of joy be sounded in it;</span></div>
-<div class="v-row" data-ref="Job 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let it be cursed by those who put a curse on the day; who are ready to make Leviathan awake.</span></div>
-<div class="v-row" data-ref="Job 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let its morning stars be dark; let it be looking for light, but may it not have any; let it not see the eyes of the dawn.</span></div>
-<div class="v-row" data-ref="Job 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because it did not keep the doors of my mother's body shut, so that trouble might be veiled from my eyes.</span></div>
-<div class="v-row" data-ref="Job 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Why did death not take me when I came out of my mother's body, why did I not, when I came out, give up my last breath?</span></div>
-<div class="v-row" data-ref="Job 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Why did the knees take me, or why the breasts that they might give me milk?</span></div>
-<div class="v-row" data-ref="Job 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For then I might have gone to my rest in quiet, and in sleep have been in peace,</span></div>
-<div class="v-row" data-ref="Job 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">With kings and the wise ones of the earth, who put up great houses for themselves;</span></div>
-<div class="v-row" data-ref="Job 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Or with rulers who had gold, and whose houses were full of silver;</span></div>
-<div class="v-row" data-ref="Job 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Or as a child dead at birth I might never have come into existence; like young children who have not seen the light.</span></div>
-<div class="v-row" data-ref="Job 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">There the passions of the evil are over, and those whose strength has come to an end have rest.</span></div>
-<div class="v-row" data-ref="Job 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">There the prisoners are at peace together; the voice of the overseer comes not again to their ears.</span></div>
-<div class="v-row" data-ref="Job 3:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The small and the great are there, and the servant is free from his master.</span></div>
-<div class="v-row" data-ref="Job 3:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Why does he give light to him who is in trouble, and life to the bitter in soul;</span></div>
-<div class="v-row" data-ref="Job 3:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">To those whose desire is for death, but it comes not; who are searching for it more than for secret wealth;</span></div>
-<div class="v-row" data-ref="Job 3:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Who are glad with great joy, and full of delight when they come to their last resting-place;</span></div>
-<div class="v-row" data-ref="Job 3:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">To a man whose way is veiled, and who is shut in by God?</span></div>
-<div class="v-row" data-ref="Job 3:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">In place of my food I have grief, and cries of sorrow come from me like water.</span></div>
-<div class="v-row" data-ref="Job 3:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For I have a fear and it comes on me, and my heart is greatly troubled.</span></div>
-<div class="v-row" data-ref="Job 3:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">I have no peace, no quiet, and no rest; nothing but pain comes on me.</span></div>
+    <a class="v-row" href="/bible/bbe/job/3/1/" data-ref="Job 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/1/"><span class="v-num">1</span><span class="v-txt">Then, opening his mouth, and cursing the day of his birth,</span></a>
+<a class="v-row" href="/bible/bbe/job/3/2/" data-ref="Job 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/2/"><span class="v-num">2</span><span class="v-txt">Job made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/3/3/" data-ref="Job 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/3/"><span class="v-num">3</span><span class="v-txt">Let destruction take the day of my birth, and the night on which it was said, A man child has come into the world.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/4/" data-ref="Job 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/4/"><span class="v-num">4</span><span class="v-txt">That day -- let it be dark; let not God take note of it from on high, and let not the light be shining on it;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/5/" data-ref="Job 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/5/"><span class="v-num">5</span><span class="v-txt">Let the dark and the black night take it for themselves; let it be covered with a cloud; let the dark shades of day send fear on it.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/6/" data-ref="Job 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/6/"><span class="v-num">6</span><span class="v-txt">That night -- let the thick dark take it; let it not have joy among the days of the year; let it not come into the number of the months.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/7/" data-ref="Job 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/7/"><span class="v-num">7</span><span class="v-txt">As for that night, let it have no fruit; let no voice of joy be sounded in it;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/8/" data-ref="Job 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/8/"><span class="v-num">8</span><span class="v-txt">Let it be cursed by those who put a curse on the day; who are ready to make Leviathan awake.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/9/" data-ref="Job 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/9/"><span class="v-num">9</span><span class="v-txt">Let its morning stars be dark; let it be looking for light, but may it not have any; let it not see the eyes of the dawn.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/10/" data-ref="Job 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/10/"><span class="v-num">10</span><span class="v-txt">Because it did not keep the doors of my mother's body shut, so that trouble might be veiled from my eyes.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/11/" data-ref="Job 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/11/"><span class="v-num">11</span><span class="v-txt">Why did death not take me when I came out of my mother's body, why did I not, when I came out, give up my last breath?</span></a>
+<a class="v-row" href="/bible/bbe/job/3/12/" data-ref="Job 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/12/"><span class="v-num">12</span><span class="v-txt">Why did the knees take me, or why the breasts that they might give me milk?</span></a>
+<a class="v-row" href="/bible/bbe/job/3/13/" data-ref="Job 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/13/"><span class="v-num">13</span><span class="v-txt">For then I might have gone to my rest in quiet, and in sleep have been in peace,</span></a>
+<a class="v-row" href="/bible/bbe/job/3/14/" data-ref="Job 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/14/"><span class="v-num">14</span><span class="v-txt">With kings and the wise ones of the earth, who put up great houses for themselves;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/15/" data-ref="Job 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/15/"><span class="v-num">15</span><span class="v-txt">Or with rulers who had gold, and whose houses were full of silver;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/16/" data-ref="Job 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/16/"><span class="v-num">16</span><span class="v-txt">Or as a child dead at birth I might never have come into existence; like young children who have not seen the light.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/17/" data-ref="Job 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/17/"><span class="v-num">17</span><span class="v-txt">There the passions of the evil are over, and those whose strength has come to an end have rest.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/18/" data-ref="Job 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/18/"><span class="v-num">18</span><span class="v-txt">There the prisoners are at peace together; the voice of the overseer comes not again to their ears.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/19/" data-ref="Job 3:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/19/"><span class="v-num">19</span><span class="v-txt">The small and the great are there, and the servant is free from his master.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/20/" data-ref="Job 3:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/20/"><span class="v-num">20</span><span class="v-txt">Why does he give light to him who is in trouble, and life to the bitter in soul;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/21/" data-ref="Job 3:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/21/"><span class="v-num">21</span><span class="v-txt">To those whose desire is for death, but it comes not; who are searching for it more than for secret wealth;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/22/" data-ref="Job 3:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/22/"><span class="v-num">22</span><span class="v-txt">Who are glad with great joy, and full of delight when they come to their last resting-place;</span></a>
+<a class="v-row" href="/bible/bbe/job/3/23/" data-ref="Job 3:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/23/"><span class="v-num">23</span><span class="v-txt">To a man whose way is veiled, and who is shut in by God?</span></a>
+<a class="v-row" href="/bible/bbe/job/3/24/" data-ref="Job 3:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/24/"><span class="v-num">24</span><span class="v-txt">In place of my food I have grief, and cries of sorrow come from me like water.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/25/" data-ref="Job 3:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/25/"><span class="v-num">25</span><span class="v-txt">For I have a fear and it comes on me, and my heart is greatly troubled.</span></a>
+<a class="v-row" href="/bible/bbe/job/3/26/" data-ref="Job 3:26 (Bible in Basic English)" data-verse-url="/bible/bbe/job/3/26/"><span class="v-num">26</span><span class="v-txt">I have no peace, no quiet, and no rest; nothing but pain comes on me.</span></a>
 
     
 <div class="app-cta">

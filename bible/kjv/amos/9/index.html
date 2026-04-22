@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Amos 9:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I saw the Lord standing upon the altar: and he said, Smite the lintel of the door, that the posts may shake: and cut them in the head, all of them; and I will slay the last of them with the sword: he that fleeth of them shall not flee away, and he that escapeth of them shall not be delivered.</span></div>
-<div class="v-row" data-ref="Amos 9:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Though they dig into hell, thence shall mine hand take them; though they climb up to heaven, thence will I bring them down:</span></div>
-<div class="v-row" data-ref="Amos 9:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And though they hide themselves in the top of Carmel, I will search and take them out thence; and though they be hid from my sight in the bottom of the sea, thence will I command the serpent, and he shall bite them:</span></div>
-<div class="v-row" data-ref="Amos 9:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And though they go into captivity before their enemies, thence will I command the sword, and it shall slay them: and I will set mine eyes upon them for evil, and not for good.</span></div>
-<div class="v-row" data-ref="Amos 9:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the Lord GOD of hosts is he that toucheth the land, and it shall melt, and all that dwell therein shall mourn: and it shall rise up wholly like a flood; and shall be drowned, as by the flood of Egypt.</span></div>
-<div class="v-row" data-ref="Amos 9:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">It is he that buildeth his stories in the heaven, and hath founded his troop in the earth; he that calleth for the waters of the sea, and poureth them out upon the face of the earth: The LORD is his name.</span></div>
-<div class="v-row" data-ref="Amos 9:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Are ye not as children of the Ethiopians unto me, O children of Israel? saith the LORD. Have not I brought up Israel out of the land of Egypt? and the Philistines from Caphtor, and the Syrians from Kir?</span></div>
-<div class="v-row" data-ref="Amos 9:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Behold, the eyes of the Lord GOD are upon the sinful kingdom, and I will destroy it from off the face of the earth; saving that I will not utterly destroy the house of Jacob, saith the LORD.</span></div>
-<div class="v-row" data-ref="Amos 9:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For, lo, I will command, and I will sift the house of Israel among all nations, like as corn is sifted in a sieve, yet shall not the least grain fall upon the earth.</span></div>
-<div class="v-row" data-ref="Amos 9:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All the sinners of my people shall die by the sword, which say, The evil shall not overtake nor prevent us.</span></div>
-<div class="v-row" data-ref="Amos 9:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In that day will I raise up the tabernacle of David that is fallen, and close up the breaches thereof; and I will raise up his ruins, and I will build it as in the days of old:</span></div>
-<div class="v-row" data-ref="Amos 9:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">That they may possess the remnant of Edom, and of all the heathen, which are called by my name, saith the LORD that doeth this.</span></div>
-<div class="v-row" data-ref="Amos 9:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Behold, the days come, saith the LORD, that the plowman shall overtake the reaper, and the treader of grapes him that soweth seed; and the mountains shall drop sweet wine, and all the hills shall melt.</span></div>
-<div class="v-row" data-ref="Amos 9:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And I will bring again the captivity of my people of Israel, and they shall build the waste cities, and inhabit them; and they shall plant vineyards, and drink the wine thereof; they shall also make gardens, and eat the fruit of them.</span></div>
-<div class="v-row" data-ref="Amos 9:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And I will plant them upon their land, and they shall no more be pulled up out of their land which I have given them, saith the LORD thy God.</span></div>
+    <a class="v-row" href="/bible/kjv/amos/9/1/" data-ref="Amos 9:1 (King James Version)" data-verse-url="/bible/kjv/amos/9/1/"><span class="v-num">1</span><span class="v-txt">I saw the Lord standing upon the altar: and he said, Smite the lintel of the door, that the posts may shake: and cut them in the head, all of them; and I will slay the last of them with the sword: he that fleeth of them shall not flee away, and he that escapeth of them shall not be delivered.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/2/" data-ref="Amos 9:2 (King James Version)" data-verse-url="/bible/kjv/amos/9/2/"><span class="v-num">2</span><span class="v-txt">Though they dig into hell, thence shall mine hand take them; though they climb up to heaven, thence will I bring them down:</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/3/" data-ref="Amos 9:3 (King James Version)" data-verse-url="/bible/kjv/amos/9/3/"><span class="v-num">3</span><span class="v-txt">And though they hide themselves in the top of Carmel, I will search and take them out thence; and though they be hid from my sight in the bottom of the sea, thence will I command the serpent, and he shall bite them:</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/4/" data-ref="Amos 9:4 (King James Version)" data-verse-url="/bible/kjv/amos/9/4/"><span class="v-num">4</span><span class="v-txt">And though they go into captivity before their enemies, thence will I command the sword, and it shall slay them: and I will set mine eyes upon them for evil, and not for good.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/5/" data-ref="Amos 9:5 (King James Version)" data-verse-url="/bible/kjv/amos/9/5/"><span class="v-num">5</span><span class="v-txt">And the Lord GOD of hosts is he that toucheth the land, and it shall melt, and all that dwell therein shall mourn: and it shall rise up wholly like a flood; and shall be drowned, as by the flood of Egypt.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/6/" data-ref="Amos 9:6 (King James Version)" data-verse-url="/bible/kjv/amos/9/6/"><span class="v-num">6</span><span class="v-txt">It is he that buildeth his stories in the heaven, and hath founded his troop in the earth; he that calleth for the waters of the sea, and poureth them out upon the face of the earth: The LORD is his name.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/7/" data-ref="Amos 9:7 (King James Version)" data-verse-url="/bible/kjv/amos/9/7/"><span class="v-num">7</span><span class="v-txt">Are ye not as children of the Ethiopians unto me, O children of Israel? saith the LORD. Have not I brought up Israel out of the land of Egypt? and the Philistines from Caphtor, and the Syrians from Kir?</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/8/" data-ref="Amos 9:8 (King James Version)" data-verse-url="/bible/kjv/amos/9/8/"><span class="v-num">8</span><span class="v-txt">Behold, the eyes of the Lord GOD are upon the sinful kingdom, and I will destroy it from off the face of the earth; saving that I will not utterly destroy the house of Jacob, saith the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/9/" data-ref="Amos 9:9 (King James Version)" data-verse-url="/bible/kjv/amos/9/9/"><span class="v-num">9</span><span class="v-txt">For, lo, I will command, and I will sift the house of Israel among all nations, like as corn is sifted in a sieve, yet shall not the least grain fall upon the earth.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/10/" data-ref="Amos 9:10 (King James Version)" data-verse-url="/bible/kjv/amos/9/10/"><span class="v-num">10</span><span class="v-txt">All the sinners of my people shall die by the sword, which say, The evil shall not overtake nor prevent us.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/11/" data-ref="Amos 9:11 (King James Version)" data-verse-url="/bible/kjv/amos/9/11/"><span class="v-num">11</span><span class="v-txt">In that day will I raise up the tabernacle of David that is fallen, and close up the breaches thereof; and I will raise up his ruins, and I will build it as in the days of old:</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/12/" data-ref="Amos 9:12 (King James Version)" data-verse-url="/bible/kjv/amos/9/12/"><span class="v-num">12</span><span class="v-txt">That they may possess the remnant of Edom, and of all the heathen, which are called by my name, saith the LORD that doeth this.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/13/" data-ref="Amos 9:13 (King James Version)" data-verse-url="/bible/kjv/amos/9/13/"><span class="v-num">13</span><span class="v-txt">Behold, the days come, saith the LORD, that the plowman shall overtake the reaper, and the treader of grapes him that soweth seed; and the mountains shall drop sweet wine, and all the hills shall melt.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/14/" data-ref="Amos 9:14 (King James Version)" data-verse-url="/bible/kjv/amos/9/14/"><span class="v-num">14</span><span class="v-txt">And I will bring again the captivity of my people of Israel, and they shall build the waste cities, and inhabit them; and they shall plant vineyards, and drink the wine thereof; they shall also make gardens, and eat the fruit of them.</span></a>
+<a class="v-row" href="/bible/kjv/amos/9/15/" data-ref="Amos 9:15 (King James Version)" data-verse-url="/bible/kjv/amos/9/15/"><span class="v-num">15</span><span class="v-txt">And I will plant them upon their land, and they shall no more be pulled up out of their land which I have given them, saith the LORD thy God.</span></a>
 
     
 <div class="app-cta">

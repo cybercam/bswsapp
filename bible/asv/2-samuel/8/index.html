@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Samuel 8:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And after this it came to pass, that David smote the Philistines, and subdued them: and David took the bridle of the mother city out of the hand of the Philistines.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he smote Moab, and measured them with the line, making them to lie down on the ground; and he measured two lines to put to death, and one full line to keep alive. And the Moabites became servants to David, and brought tribute.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">David smote also Hadadezer the son of Rehob, king of Zobah, as he went to recover his dominion at the River.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And David took from him a thousand and seven hundred horsemen, and twenty thousand footmen: and David hocked all the chariot horses, but reserved of them for a hundred chariots.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when the Syrians of Damascus came to succor Hadadezer king of Zobah, David smote of the Syrians two and twenty thousand men.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then David put garrisons in Syria of Damascus; and the Syrians became servants to David, and brought tribute. And Jehovah gave victory to David whithersoever he went.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And David took the shields of gold that were on the servants of Hadadezer, and brought them to Jerusalem.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And from Betah and from Berothai, cities of Hadadezer, king David took exceeding much brass.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And when Toi king of Hamath heard that David had smitten all the host of Hadadezer,</span></div>
-<div class="v-row" data-ref="2 Samuel 8:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">then Toi sent Joram his son unto king David, to salute him, and to bless him, because he had fought against Hadadezer and smitten him: for Hadadezer had wars with Toi. And [Joram] brought with him vessels of silver, and vessels of gold, and vessels of brass:</span></div>
-<div class="v-row" data-ref="2 Samuel 8:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">These also did king David dedicate unto Jehovah, with the silver and gold that he dedicated of all the nations which he subdued;</span></div>
-<div class="v-row" data-ref="2 Samuel 8:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">of Syria, and of Moab, and of the children of Ammon, and of the Philistines, and of Amalek, and of the spoil of Hadadezer, son of Rehob, king of Zobah.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And David gat him a name when he returned from smiting the Syrians in the Valley of Salt, even eighteen thousand men.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he put garrisons in Edom; throughout all Edom put he garrisons, and all the Edomites became servants to David. And Jehovah gave victory to David whithersoever he went.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And David reigned over all Israel; and David executed justice and righteousness unto all his people.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Joab the son of Zeruiah was over the host; and Jehoshaphat the son of Ahilud was recorder;</span></div>
-<div class="v-row" data-ref="2 Samuel 8:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">and Zadok the son of Ahitub, and Ahimelech the son of Abiathar, were priests; and Seraiah was scribe;</span></div>
-<div class="v-row" data-ref="2 Samuel 8:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">and Benaiah the son of Jehoiada [was over] the Cherethites and the Pelethites; and David's sons were chief ministers.</span></div>
+    <a class="v-row" href="/bible/asv/2-samuel/8/1/" data-ref="2 Samuel 8:1 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/1/"><span class="v-num">1</span><span class="v-txt">And after this it came to pass, that David smote the Philistines, and subdued them: and David took the bridle of the mother city out of the hand of the Philistines.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/2/" data-ref="2 Samuel 8:2 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/2/"><span class="v-num">2</span><span class="v-txt">And he smote Moab, and measured them with the line, making them to lie down on the ground; and he measured two lines to put to death, and one full line to keep alive. And the Moabites became servants to David, and brought tribute.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/3/" data-ref="2 Samuel 8:3 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/3/"><span class="v-num">3</span><span class="v-txt">David smote also Hadadezer the son of Rehob, king of Zobah, as he went to recover his dominion at the River.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/4/" data-ref="2 Samuel 8:4 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/4/"><span class="v-num">4</span><span class="v-txt">And David took from him a thousand and seven hundred horsemen, and twenty thousand footmen: and David hocked all the chariot horses, but reserved of them for a hundred chariots.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/5/" data-ref="2 Samuel 8:5 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/5/"><span class="v-num">5</span><span class="v-txt">And when the Syrians of Damascus came to succor Hadadezer king of Zobah, David smote of the Syrians two and twenty thousand men.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/6/" data-ref="2 Samuel 8:6 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/6/"><span class="v-num">6</span><span class="v-txt">Then David put garrisons in Syria of Damascus; and the Syrians became servants to David, and brought tribute. And Jehovah gave victory to David whithersoever he went.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/7/" data-ref="2 Samuel 8:7 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/7/"><span class="v-num">7</span><span class="v-txt">And David took the shields of gold that were on the servants of Hadadezer, and brought them to Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/8/" data-ref="2 Samuel 8:8 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/8/"><span class="v-num">8</span><span class="v-txt">And from Betah and from Berothai, cities of Hadadezer, king David took exceeding much brass.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/9/" data-ref="2 Samuel 8:9 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/9/"><span class="v-num">9</span><span class="v-txt">And when Toi king of Hamath heard that David had smitten all the host of Hadadezer,</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/10/" data-ref="2 Samuel 8:10 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/10/"><span class="v-num">10</span><span class="v-txt">then Toi sent Joram his son unto king David, to salute him, and to bless him, because he had fought against Hadadezer and smitten him: for Hadadezer had wars with Toi. And [Joram] brought with him vessels of silver, and vessels of gold, and vessels of brass:</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/11/" data-ref="2 Samuel 8:11 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/11/"><span class="v-num">11</span><span class="v-txt">These also did king David dedicate unto Jehovah, with the silver and gold that he dedicated of all the nations which he subdued;</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/12/" data-ref="2 Samuel 8:12 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/12/"><span class="v-num">12</span><span class="v-txt">of Syria, and of Moab, and of the children of Ammon, and of the Philistines, and of Amalek, and of the spoil of Hadadezer, son of Rehob, king of Zobah.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/13/" data-ref="2 Samuel 8:13 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/13/"><span class="v-num">13</span><span class="v-txt">And David gat him a name when he returned from smiting the Syrians in the Valley of Salt, even eighteen thousand men.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/14/" data-ref="2 Samuel 8:14 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/14/"><span class="v-num">14</span><span class="v-txt">And he put garrisons in Edom; throughout all Edom put he garrisons, and all the Edomites became servants to David. And Jehovah gave victory to David whithersoever he went.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/15/" data-ref="2 Samuel 8:15 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/15/"><span class="v-num">15</span><span class="v-txt">And David reigned over all Israel; and David executed justice and righteousness unto all his people.</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/16/" data-ref="2 Samuel 8:16 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/16/"><span class="v-num">16</span><span class="v-txt">And Joab the son of Zeruiah was over the host; and Jehoshaphat the son of Ahilud was recorder;</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/17/" data-ref="2 Samuel 8:17 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/17/"><span class="v-num">17</span><span class="v-txt">and Zadok the son of Ahitub, and Ahimelech the son of Abiathar, were priests; and Seraiah was scribe;</span></a>
+<a class="v-row" href="/bible/asv/2-samuel/8/18/" data-ref="2 Samuel 8:18 (American Standard Version)" data-verse-url="/bible/asv/2-samuel/8/18/"><span class="v-num">18</span><span class="v-txt">and Benaiah the son of Jehoiada [was over] the Cherethites and the Pelethites; and David's sons were chief ministers.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,41 +204,41 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My son, keep my teaching in your memory, and my rules in your heart:</span></div>
-<div class="v-row" data-ref="Proverbs 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For they will give you increase of days, years of life, and peace.</span></div>
-<div class="v-row" data-ref="Proverbs 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let not mercy and good faith go from you; let them be hanging round your neck, recorded on your heart;</span></div>
-<div class="v-row" data-ref="Proverbs 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So you will have grace and a good name in the eyes of God and men.</span></div>
-<div class="v-row" data-ref="Proverbs 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Put all your hope in God, not looking to your reason for support.</span></div>
-<div class="v-row" data-ref="Proverbs 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In all your ways give ear to him, and he will make straight your footsteps.</span></div>
-<div class="v-row" data-ref="Proverbs 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Put no high value on your wisdom: let the fear of the Lord be before you, and keep yourself from evil:</span></div>
-<div class="v-row" data-ref="Proverbs 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">This will give strength to your flesh, and new life to your bones.</span></div>
-<div class="v-row" data-ref="Proverbs 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Give honour to the Lord with your wealth, and with the first-fruits of all your increase:</span></div>
-<div class="v-row" data-ref="Proverbs 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So your store-houses will be full of grain, and your vessels overflowing with new wine.</span></div>
-<div class="v-row" data-ref="Proverbs 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My son, do not make your heart hard against the Lord's teaching; do not be made angry by his training:</span></div>
-<div class="v-row" data-ref="Proverbs 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For to those who are dear to him the Lord says sharp words, and makes the son in whom he has delight undergo pain.</span></div>
-<div class="v-row" data-ref="Proverbs 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Happy is the man who makes discovery of wisdom, and he who gets knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For trading in it is better than trading in silver, and its profit greater than bright gold.</span></div>
-<div class="v-row" data-ref="Proverbs 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">She is of more value than jewels, and nothing for which you may have a desire is fair in comparison with her.</span></div>
-<div class="v-row" data-ref="Proverbs 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Long life is in her right hand, and in her left are wealth and honour.</span></div>
-<div class="v-row" data-ref="Proverbs 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Her ways are ways of delight, and all her goings are peace.</span></div>
-<div class="v-row" data-ref="Proverbs 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">She is a tree of life to all who take her in their hands, and happy is everyone who keeps her.</span></div>
-<div class="v-row" data-ref="Proverbs 3:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The Lord by wisdom put in position the bases of the earth; by reason he put the heavens in their place.</span></div>
-<div class="v-row" data-ref="Proverbs 3:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">By his knowledge the deep was parted, and dew came dropping from the skies.</span></div>
-<div class="v-row" data-ref="Proverbs 3:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">My son, keep good sense, and do not let wise purpose go from your eyes.</span></div>
-<div class="v-row" data-ref="Proverbs 3:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">So they will be life for your soul, and grace for your neck.</span></div>
-<div class="v-row" data-ref="Proverbs 3:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Then you will go safely on your way, and your feet will have no cause for slipping.</span></div>
-<div class="v-row" data-ref="Proverbs 3:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">When you take your rest you will have no fear, and on your bed sleep will be sweet to you.</span></div>
-<div class="v-row" data-ref="Proverbs 3:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Have no fear of sudden danger, or of the storm which will come on evil-doers:</span></div>
-<div class="v-row" data-ref="Proverbs 3:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For the Lord will be your hope, and will keep your foot from being taken in the net.</span></div>
-<div class="v-row" data-ref="Proverbs 3:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Do not keep back good from those who have a right to it, when it is in the power of your hand to do it.</span></div>
-<div class="v-row" data-ref="Proverbs 3:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Say not to your neighbour, Go, and come again, and tomorrow I will give; when you have it by you at the time.</span></div>
-<div class="v-row" data-ref="Proverbs 3:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Do not make evil designs against your neighbour, when he is living with you without fear.</span></div>
-<div class="v-row" data-ref="Proverbs 3:30 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">Do not take up a cause at law against a man for nothing, if he has done you no wrong.</span></div>
-<div class="v-row" data-ref="Proverbs 3:31 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">Have no envy of the violent man, or take any of his ways as an example.</span></div>
-<div class="v-row" data-ref="Proverbs 3:32 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">For the wrong-hearted man is hated by the Lord, but he is a friend to the upright.</span></div>
-<div class="v-row" data-ref="Proverbs 3:33 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">The curse of the Lord is on the house of the evil-doer, but his blessing is on the tent of the upright.</span></div>
-<div class="v-row" data-ref="Proverbs 3:34 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">He makes sport of the men of pride, but he gives grace to the gentle-hearted.</span></div>
-<div class="v-row" data-ref="Proverbs 3:35 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">The wise will have glory for their heritage, but shame will be the reward of the foolish.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/3/1/" data-ref="Proverbs 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/1/"><span class="v-num">1</span><span class="v-txt">My son, keep my teaching in your memory, and my rules in your heart:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/2/" data-ref="Proverbs 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/2/"><span class="v-num">2</span><span class="v-txt">For they will give you increase of days, years of life, and peace.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/3/" data-ref="Proverbs 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/3/"><span class="v-num">3</span><span class="v-txt">Let not mercy and good faith go from you; let them be hanging round your neck, recorded on your heart;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/4/" data-ref="Proverbs 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/4/"><span class="v-num">4</span><span class="v-txt">So you will have grace and a good name in the eyes of God and men.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/5/" data-ref="Proverbs 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/5/"><span class="v-num">5</span><span class="v-txt">Put all your hope in God, not looking to your reason for support.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/6/" data-ref="Proverbs 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/6/"><span class="v-num">6</span><span class="v-txt">In all your ways give ear to him, and he will make straight your footsteps.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/7/" data-ref="Proverbs 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/7/"><span class="v-num">7</span><span class="v-txt">Put no high value on your wisdom: let the fear of the Lord be before you, and keep yourself from evil:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/8/" data-ref="Proverbs 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/8/"><span class="v-num">8</span><span class="v-txt">This will give strength to your flesh, and new life to your bones.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/9/" data-ref="Proverbs 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/9/"><span class="v-num">9</span><span class="v-txt">Give honour to the Lord with your wealth, and with the first-fruits of all your increase:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/10/" data-ref="Proverbs 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/10/"><span class="v-num">10</span><span class="v-txt">So your store-houses will be full of grain, and your vessels overflowing with new wine.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/11/" data-ref="Proverbs 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/11/"><span class="v-num">11</span><span class="v-txt">My son, do not make your heart hard against the Lord's teaching; do not be made angry by his training:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/12/" data-ref="Proverbs 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/12/"><span class="v-num">12</span><span class="v-txt">For to those who are dear to him the Lord says sharp words, and makes the son in whom he has delight undergo pain.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/13/" data-ref="Proverbs 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/13/"><span class="v-num">13</span><span class="v-txt">Happy is the man who makes discovery of wisdom, and he who gets knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/14/" data-ref="Proverbs 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/14/"><span class="v-num">14</span><span class="v-txt">For trading in it is better than trading in silver, and its profit greater than bright gold.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/15/" data-ref="Proverbs 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/15/"><span class="v-num">15</span><span class="v-txt">She is of more value than jewels, and nothing for which you may have a desire is fair in comparison with her.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/16/" data-ref="Proverbs 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/16/"><span class="v-num">16</span><span class="v-txt">Long life is in her right hand, and in her left are wealth and honour.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/17/" data-ref="Proverbs 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/17/"><span class="v-num">17</span><span class="v-txt">Her ways are ways of delight, and all her goings are peace.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/18/" data-ref="Proverbs 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/18/"><span class="v-num">18</span><span class="v-txt">She is a tree of life to all who take her in their hands, and happy is everyone who keeps her.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/19/" data-ref="Proverbs 3:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/19/"><span class="v-num">19</span><span class="v-txt">The Lord by wisdom put in position the bases of the earth; by reason he put the heavens in their place.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/20/" data-ref="Proverbs 3:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/20/"><span class="v-num">20</span><span class="v-txt">By his knowledge the deep was parted, and dew came dropping from the skies.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/21/" data-ref="Proverbs 3:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/21/"><span class="v-num">21</span><span class="v-txt">My son, keep good sense, and do not let wise purpose go from your eyes.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/22/" data-ref="Proverbs 3:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/22/"><span class="v-num">22</span><span class="v-txt">So they will be life for your soul, and grace for your neck.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/23/" data-ref="Proverbs 3:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/23/"><span class="v-num">23</span><span class="v-txt">Then you will go safely on your way, and your feet will have no cause for slipping.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/24/" data-ref="Proverbs 3:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/24/"><span class="v-num">24</span><span class="v-txt">When you take your rest you will have no fear, and on your bed sleep will be sweet to you.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/25/" data-ref="Proverbs 3:25 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/25/"><span class="v-num">25</span><span class="v-txt">Have no fear of sudden danger, or of the storm which will come on evil-doers:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/26/" data-ref="Proverbs 3:26 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/26/"><span class="v-num">26</span><span class="v-txt">For the Lord will be your hope, and will keep your foot from being taken in the net.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/27/" data-ref="Proverbs 3:27 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/27/"><span class="v-num">27</span><span class="v-txt">Do not keep back good from those who have a right to it, when it is in the power of your hand to do it.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/28/" data-ref="Proverbs 3:28 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/28/"><span class="v-num">28</span><span class="v-txt">Say not to your neighbour, Go, and come again, and tomorrow I will give; when you have it by you at the time.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/29/" data-ref="Proverbs 3:29 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/29/"><span class="v-num">29</span><span class="v-txt">Do not make evil designs against your neighbour, when he is living with you without fear.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/30/" data-ref="Proverbs 3:30 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/30/"><span class="v-num">30</span><span class="v-txt">Do not take up a cause at law against a man for nothing, if he has done you no wrong.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/31/" data-ref="Proverbs 3:31 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/31/"><span class="v-num">31</span><span class="v-txt">Have no envy of the violent man, or take any of his ways as an example.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/32/" data-ref="Proverbs 3:32 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/32/"><span class="v-num">32</span><span class="v-txt">For the wrong-hearted man is hated by the Lord, but he is a friend to the upright.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/33/" data-ref="Proverbs 3:33 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/33/"><span class="v-num">33</span><span class="v-txt">The curse of the Lord is on the house of the evil-doer, but his blessing is on the tent of the upright.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/34/" data-ref="Proverbs 3:34 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/34/"><span class="v-num">34</span><span class="v-txt">He makes sport of the men of pride, but he gives grace to the gentle-hearted.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/3/35/" data-ref="Proverbs 3:35 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/3/35/"><span class="v-num">35</span><span class="v-txt">The wise will have glory for their heritage, but shame will be the reward of the foolish.</span></a>
 
     
 <div class="app-cta">

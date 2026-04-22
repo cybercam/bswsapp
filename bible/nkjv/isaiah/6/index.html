@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 6:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In the year that King Uzziah died, I saw the Lord sitting on a throne, high and lifted up, and the train of His [robe] filled the temple.</span></div>
-<div class="v-row" data-ref="Isaiah 6:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Above it stood seraphim; each one had six wings: with two he covered his face, with two he covered his feet, and with two he flew.</span></div>
-<div class="v-row" data-ref="Isaiah 6:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And one cried to another and said: "Holy, holy, holy [is] the LORD of hosts; The whole earth [is] full of His glory!"</span></div>
-<div class="v-row" data-ref="Isaiah 6:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the posts of the door were shaken by the voice of him who cried out, and the house was filled with smoke.</span></div>
-<div class="v-row" data-ref="Isaiah 6:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So I said: "Woe [is] me, for I am undone! Because I [am] a man of unclean lips, And I dwell in the midst of a people of unclean lips; For my eyes have seen the King, The LORD of hosts."</span></div>
-<div class="v-row" data-ref="Isaiah 6:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then one of the seraphim flew to me, having in his hand a live coal [which] he had taken with the tongs from the altar.</span></div>
-<div class="v-row" data-ref="Isaiah 6:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he touched my mouth [with it,] and said: "Behold, this has touched your lips; Your iniquity is taken away, And your sin purged."</span></div>
-<div class="v-row" data-ref="Isaiah 6:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Also I heard the voice of the Lord, saying: "Whom shall I send, And who will go for Us?" Then I said, "Here [am] I! Send me."</span></div>
-<div class="v-row" data-ref="Isaiah 6:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And He said, "Go, and tell this people: 'Keep on hearing, but do not understand; Keep on seeing, but do not perceive.'</span></div>
-<div class="v-row" data-ref="Isaiah 6:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Make the heart of this people dull, And their ears heavy, And shut their eyes; Lest they see with their eyes, And hear with their ears, And understand with their heart, And return and be healed."</span></div>
-<div class="v-row" data-ref="Isaiah 6:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then I said, "Lord, how long?" And He answered: "Until the cities are laid waste and without inhabitant, The houses are without a man, The land is utterly desolate,</span></div>
-<div class="v-row" data-ref="Isaiah 6:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The LORD has removed men far away, And the forsaken places [are] many in the midst of the land.</span></div>
-<div class="v-row" data-ref="Isaiah 6:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But yet a tenth [will be] in it, And will return and be for consuming, As a terebinth tree or as an oak, Whose stump [remains] when it is cut down. So the holy seed [shall be] its stump."</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/6/1/" data-ref="Isaiah 6:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/1/"><span class="v-num">1</span><span class="v-txt">In the year that King Uzziah died, I saw the Lord sitting on a throne, high and lifted up, and the train of His [robe] filled the temple.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/2/" data-ref="Isaiah 6:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/2/"><span class="v-num">2</span><span class="v-txt">Above it stood seraphim; each one had six wings: with two he covered his face, with two he covered his feet, and with two he flew.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/3/" data-ref="Isaiah 6:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/3/"><span class="v-num">3</span><span class="v-txt">And one cried to another and said: "Holy, holy, holy [is] the LORD of hosts; The whole earth [is] full of His glory!"</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/4/" data-ref="Isaiah 6:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/4/"><span class="v-num">4</span><span class="v-txt">And the posts of the door were shaken by the voice of him who cried out, and the house was filled with smoke.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/5/" data-ref="Isaiah 6:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/5/"><span class="v-num">5</span><span class="v-txt">So I said: "Woe [is] me, for I am undone! Because I [am] a man of unclean lips, And I dwell in the midst of a people of unclean lips; For my eyes have seen the King, The LORD of hosts."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/6/" data-ref="Isaiah 6:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/6/"><span class="v-num">6</span><span class="v-txt">Then one of the seraphim flew to me, having in his hand a live coal [which] he had taken with the tongs from the altar.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/7/" data-ref="Isaiah 6:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/7/"><span class="v-num">7</span><span class="v-txt">And he touched my mouth [with it,] and said: "Behold, this has touched your lips; Your iniquity is taken away, And your sin purged."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/8/" data-ref="Isaiah 6:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/8/"><span class="v-num">8</span><span class="v-txt">Also I heard the voice of the Lord, saying: "Whom shall I send, And who will go for Us?" Then I said, "Here [am] I! Send me."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/9/" data-ref="Isaiah 6:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/9/"><span class="v-num">9</span><span class="v-txt">And He said, "Go, and tell this people: 'Keep on hearing, but do not understand; Keep on seeing, but do not perceive.'</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/10/" data-ref="Isaiah 6:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/10/"><span class="v-num">10</span><span class="v-txt">"Make the heart of this people dull, And their ears heavy, And shut their eyes; Lest they see with their eyes, And hear with their ears, And understand with their heart, And return and be healed."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/11/" data-ref="Isaiah 6:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/11/"><span class="v-num">11</span><span class="v-txt">Then I said, "Lord, how long?" And He answered: "Until the cities are laid waste and without inhabitant, The houses are without a man, The land is utterly desolate,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/12/" data-ref="Isaiah 6:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/12/"><span class="v-num">12</span><span class="v-txt">The LORD has removed men far away, And the forsaken places [are] many in the midst of the land.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/6/13/" data-ref="Isaiah 6:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/6/13/"><span class="v-num">13</span><span class="v-txt">But yet a tenth [will be] in it, And will return and be for consuming, As a terebinth tree or as an oak, Whose stump [remains] when it is cut down. So the holy seed [shall be] its stump."</span></a>
 
     
 <div class="app-cta">

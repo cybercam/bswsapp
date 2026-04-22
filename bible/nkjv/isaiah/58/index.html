@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 58</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 58:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Cry aloud, spare not; Lift up your voice like a trumpet; Tell My people their transgression, And the house of Jacob their sins.</span></div>
-<div class="v-row" data-ref="Isaiah 58:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Yet they seek Me daily, And delight to know My ways, As a nation that did righteousness, And did not forsake the ordinance of their God. They ask of Me the ordinances of justice; They take delight in approaching God.</span></div>
-<div class="v-row" data-ref="Isaiah 58:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">'Why have we fasted,' [they say,] 'and You have not seen? [Why] have we afflicted our souls, and You take no notice?' "In fact, in the day of your fast you find pleasure, And exploit all your laborers.</span></div>
-<div class="v-row" data-ref="Isaiah 58:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Indeed you fast for strife and debate, And to strike with the fist of wickedness. You will not fast as [you do] this day, To make your voice heard on high.</span></div>
-<div class="v-row" data-ref="Isaiah 58:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Is it a fast that I have chosen, A day for a man to afflict his soul? [Is it] to bow down his head like a bulrush, And to spread out sackcloth and ashes? Would you call this a fast, And an acceptable day to the LORD?</span></div>
-<div class="v-row" data-ref="Isaiah 58:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" [Is] this not the fast that I have chosen: To loose the bonds of wickedness, To undo the heavy burdens, To let the oppressed go free, And that you break every yoke?</span></div>
-<div class="v-row" data-ref="Isaiah 58:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">[Is it] not to share your bread with the hungry, And that you bring to your house the poor who are cast out; When you see the naked, that you cover him, And not hide yourself from your own flesh?</span></div>
-<div class="v-row" data-ref="Isaiah 58:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then your light shall break forth like the morning, Your healing shall spring forth speedily, And your righteousness shall go before you; The glory of the LORD shall be your rear guard.</span></div>
-<div class="v-row" data-ref="Isaiah 58:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then you shall call, and the LORD will answer; You shall cry, and He will say, 'Here I [am.'] "If you take away the yoke from your midst, The pointing of the finger, and speaking wickedness,</span></div>
-<div class="v-row" data-ref="Isaiah 58:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">[If] you extend your soul to the hungry And satisfy the afflicted soul, Then your light shall dawn in the darkness, And your darkness shall [be] as the noonday.</span></div>
-<div class="v-row" data-ref="Isaiah 58:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The LORD will guide you continually, And satisfy your soul in drought, And strengthen your bones; You shall be like a watered garden, And like a spring of water, whose waters do not fail.</span></div>
-<div class="v-row" data-ref="Isaiah 58:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Those from among you Shall build the old waste places; You shall raise up the foundations of many generations; And you shall be called the Repairer of the Breach, The Restorer of Streets to Dwell In.</span></div>
-<div class="v-row" data-ref="Isaiah 58:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">" If you turn away your foot from the Sabbath, [From] doing your pleasure on My holy day, And call the Sabbath a delight, The holy [day] of the LORD honorable, And shall honor Him, not doing your own ways, Nor finding your own pleasure, Nor speaking [your own] words,</span></div>
-<div class="v-row" data-ref="Isaiah 58:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then you shall delight yourself in the LORD; And I will cause you to ride on the high hills of the earth, And feed you with the heritage of Jacob your father. The mouth of the LORD has spoken."</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/58/1/" data-ref="Isaiah 58:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/1/"><span class="v-num">1</span><span class="v-txt">"Cry aloud, spare not; Lift up your voice like a trumpet; Tell My people their transgression, And the house of Jacob their sins.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/2/" data-ref="Isaiah 58:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/2/"><span class="v-num">2</span><span class="v-txt">Yet they seek Me daily, And delight to know My ways, As a nation that did righteousness, And did not forsake the ordinance of their God. They ask of Me the ordinances of justice; They take delight in approaching God.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/3/" data-ref="Isaiah 58:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/3/"><span class="v-num">3</span><span class="v-txt">'Why have we fasted,' [they say,] 'and You have not seen? [Why] have we afflicted our souls, and You take no notice?' "In fact, in the day of your fast you find pleasure, And exploit all your laborers.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/4/" data-ref="Isaiah 58:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/4/"><span class="v-num">4</span><span class="v-txt">Indeed you fast for strife and debate, And to strike with the fist of wickedness. You will not fast as [you do] this day, To make your voice heard on high.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/5/" data-ref="Isaiah 58:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/5/"><span class="v-num">5</span><span class="v-txt">Is it a fast that I have chosen, A day for a man to afflict his soul? [Is it] to bow down his head like a bulrush, And to spread out sackcloth and ashes? Would you call this a fast, And an acceptable day to the LORD?</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/6/" data-ref="Isaiah 58:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/6/"><span class="v-num">6</span><span class="v-txt">" [Is] this not the fast that I have chosen: To loose the bonds of wickedness, To undo the heavy burdens, To let the oppressed go free, And that you break every yoke?</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/7/" data-ref="Isaiah 58:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/7/"><span class="v-num">7</span><span class="v-txt">[Is it] not to share your bread with the hungry, And that you bring to your house the poor who are cast out; When you see the naked, that you cover him, And not hide yourself from your own flesh?</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/8/" data-ref="Isaiah 58:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/8/"><span class="v-num">8</span><span class="v-txt">Then your light shall break forth like the morning, Your healing shall spring forth speedily, And your righteousness shall go before you; The glory of the LORD shall be your rear guard.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/9/" data-ref="Isaiah 58:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/9/"><span class="v-num">9</span><span class="v-txt">Then you shall call, and the LORD will answer; You shall cry, and He will say, 'Here I [am.'] "If you take away the yoke from your midst, The pointing of the finger, and speaking wickedness,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/10/" data-ref="Isaiah 58:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/10/"><span class="v-num">10</span><span class="v-txt">[If] you extend your soul to the hungry And satisfy the afflicted soul, Then your light shall dawn in the darkness, And your darkness shall [be] as the noonday.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/11/" data-ref="Isaiah 58:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/11/"><span class="v-num">11</span><span class="v-txt">The LORD will guide you continually, And satisfy your soul in drought, And strengthen your bones; You shall be like a watered garden, And like a spring of water, whose waters do not fail.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/12/" data-ref="Isaiah 58:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/12/"><span class="v-num">12</span><span class="v-txt">Those from among you Shall build the old waste places; You shall raise up the foundations of many generations; And you shall be called the Repairer of the Breach, The Restorer of Streets to Dwell In.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/13/" data-ref="Isaiah 58:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/13/"><span class="v-num">13</span><span class="v-txt">" If you turn away your foot from the Sabbath, [From] doing your pleasure on My holy day, And call the Sabbath a delight, The holy [day] of the LORD honorable, And shall honor Him, not doing your own ways, Nor finding your own pleasure, Nor speaking [your own] words,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/58/14/" data-ref="Isaiah 58:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/58/14/"><span class="v-num">14</span><span class="v-txt">Then you shall delight yourself in the LORD; And I will cause you to ride on the high hills of the earth, And feed you with the heritage of Jacob your father. The mouth of the LORD has spoken."</span></a>
 
     
 <div class="app-cta">

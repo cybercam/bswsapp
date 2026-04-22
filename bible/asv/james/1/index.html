@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="James 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">James, a servant of God and of the Lord Jesus Christ, to the twelve tribes which are of the Dispersion, greeting.</span></div>
-<div class="v-row" data-ref="James 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Count it all joy, my brethren, when ye fall into manifold temptations;</span></div>
-<div class="v-row" data-ref="James 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Knowing that the proving of your faith worketh patience.</span></div>
-<div class="v-row" data-ref="James 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And let patience have [its] perfect work, that ye may be perfect and entire, lacking in nothing.</span></div>
-<div class="v-row" data-ref="James 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But if any of you lacketh wisdom, let him ask of God, who giveth to all liberally and upbraideth not; and it shall be given him.</span></div>
-<div class="v-row" data-ref="James 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But let him ask in faith, nothing doubting: for he that doubteth is like the surge of the sea driven by the wind and tossed.</span></div>
-<div class="v-row" data-ref="James 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For let not that man think that he shall receive anything of the Lord;</span></div>
-<div class="v-row" data-ref="James 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">a doubleminded man, unstable in all his ways.</span></div>
-<div class="v-row" data-ref="James 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But let the brother of low degree glory in his high estate:</span></div>
-<div class="v-row" data-ref="James 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">and the rich, in that he is made low: because as the flower of the grass he shall pass away.</span></div>
-<div class="v-row" data-ref="James 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the sun ariseth with the scorching wind, and withereth the grass: and the flower thereof falleth, and the grace of the fashion of it perisheth: so also shall the rich man fade away in his goings.</span></div>
-<div class="v-row" data-ref="James 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Blessed is the man that endureth temptation; for when he hath been approved, he shall receive the crown of life, which [the Lord] promised to them that love him.</span></div>
-<div class="v-row" data-ref="James 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Let no man say when he is tempted, I am tempted of God; for God cannot be tempted with evil, and he himself tempteth no man:</span></div>
-<div class="v-row" data-ref="James 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">but each man is tempted, when he is drawn away by his own lust, and enticed.</span></div>
-<div class="v-row" data-ref="James 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then the lust, when it hath conceived, beareth sin: and the sin, when it is fullgrown, bringeth forth death.</span></div>
-<div class="v-row" data-ref="James 1:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Be not deceived, my beloved brethren.</span></div>
-<div class="v-row" data-ref="James 1:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Every good gift and every perfect gift is from above, coming down from the Father of lights, with whom can be no variation, neither shadow that is cast by turning.</span></div>
-<div class="v-row" data-ref="James 1:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Of his own will he brought us forth by the word of truth, that we should be a kind of firstfruits of his creatures.</span></div>
-<div class="v-row" data-ref="James 1:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Ye know [this], my beloved brethren. But let every man be swift to hear, slow to speak, slow to wrath:</span></div>
-<div class="v-row" data-ref="James 1:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">for the wrath of man worketh not the righteousness of God.</span></div>
-<div class="v-row" data-ref="James 1:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Wherefore putting away all filthiness and overflowing of wickedness, receive with meekness the implanted word, which is able to save your souls.</span></div>
-<div class="v-row" data-ref="James 1:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But be ye doers of the word, and not hearers only, deluding your own selves.</span></div>
-<div class="v-row" data-ref="James 1:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For if any one is a hearer of the word and not a doer, he is like unto a man beholding his natural face in a mirror:</span></div>
-<div class="v-row" data-ref="James 1:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">for he beholdeth himself, and goeth away, and straightway forgetteth what manner of man he was.</span></div>
-<div class="v-row" data-ref="James 1:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">But he that looketh into the perfect law, the [law] of liberty, and [so] continueth, being not a hearer that forgetteth but a doer that worketh, this man shall be blessed in his doing.</span></div>
-<div class="v-row" data-ref="James 1:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">If any man thinketh himself to be religious, while he bridleth not his tongue but deceiveth his heart, this man's religion is vain.</span></div>
-<div class="v-row" data-ref="James 1:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Pure religion and undefiled before our God and Father is this, to visit the fatherless and widows in their affliction, [and] to keep oneself unspotted from the world.</span></div>
+    <a class="v-row" href="/bible/asv/james/1/1/" data-ref="James 1:1 (American Standard Version)" data-verse-url="/bible/asv/james/1/1/"><span class="v-num">1</span><span class="v-txt">James, a servant of God and of the Lord Jesus Christ, to the twelve tribes which are of the Dispersion, greeting.</span></a>
+<a class="v-row" href="/bible/asv/james/1/2/" data-ref="James 1:2 (American Standard Version)" data-verse-url="/bible/asv/james/1/2/"><span class="v-num">2</span><span class="v-txt">Count it all joy, my brethren, when ye fall into manifold temptations;</span></a>
+<a class="v-row" href="/bible/asv/james/1/3/" data-ref="James 1:3 (American Standard Version)" data-verse-url="/bible/asv/james/1/3/"><span class="v-num">3</span><span class="v-txt">Knowing that the proving of your faith worketh patience.</span></a>
+<a class="v-row" href="/bible/asv/james/1/4/" data-ref="James 1:4 (American Standard Version)" data-verse-url="/bible/asv/james/1/4/"><span class="v-num">4</span><span class="v-txt">And let patience have [its] perfect work, that ye may be perfect and entire, lacking in nothing.</span></a>
+<a class="v-row" href="/bible/asv/james/1/5/" data-ref="James 1:5 (American Standard Version)" data-verse-url="/bible/asv/james/1/5/"><span class="v-num">5</span><span class="v-txt">But if any of you lacketh wisdom, let him ask of God, who giveth to all liberally and upbraideth not; and it shall be given him.</span></a>
+<a class="v-row" href="/bible/asv/james/1/6/" data-ref="James 1:6 (American Standard Version)" data-verse-url="/bible/asv/james/1/6/"><span class="v-num">6</span><span class="v-txt">But let him ask in faith, nothing doubting: for he that doubteth is like the surge of the sea driven by the wind and tossed.</span></a>
+<a class="v-row" href="/bible/asv/james/1/7/" data-ref="James 1:7 (American Standard Version)" data-verse-url="/bible/asv/james/1/7/"><span class="v-num">7</span><span class="v-txt">For let not that man think that he shall receive anything of the Lord;</span></a>
+<a class="v-row" href="/bible/asv/james/1/8/" data-ref="James 1:8 (American Standard Version)" data-verse-url="/bible/asv/james/1/8/"><span class="v-num">8</span><span class="v-txt">a doubleminded man, unstable in all his ways.</span></a>
+<a class="v-row" href="/bible/asv/james/1/9/" data-ref="James 1:9 (American Standard Version)" data-verse-url="/bible/asv/james/1/9/"><span class="v-num">9</span><span class="v-txt">But let the brother of low degree glory in his high estate:</span></a>
+<a class="v-row" href="/bible/asv/james/1/10/" data-ref="James 1:10 (American Standard Version)" data-verse-url="/bible/asv/james/1/10/"><span class="v-num">10</span><span class="v-txt">and the rich, in that he is made low: because as the flower of the grass he shall pass away.</span></a>
+<a class="v-row" href="/bible/asv/james/1/11/" data-ref="James 1:11 (American Standard Version)" data-verse-url="/bible/asv/james/1/11/"><span class="v-num">11</span><span class="v-txt">For the sun ariseth with the scorching wind, and withereth the grass: and the flower thereof falleth, and the grace of the fashion of it perisheth: so also shall the rich man fade away in his goings.</span></a>
+<a class="v-row" href="/bible/asv/james/1/12/" data-ref="James 1:12 (American Standard Version)" data-verse-url="/bible/asv/james/1/12/"><span class="v-num">12</span><span class="v-txt">Blessed is the man that endureth temptation; for when he hath been approved, he shall receive the crown of life, which [the Lord] promised to them that love him.</span></a>
+<a class="v-row" href="/bible/asv/james/1/13/" data-ref="James 1:13 (American Standard Version)" data-verse-url="/bible/asv/james/1/13/"><span class="v-num">13</span><span class="v-txt">Let no man say when he is tempted, I am tempted of God; for God cannot be tempted with evil, and he himself tempteth no man:</span></a>
+<a class="v-row" href="/bible/asv/james/1/14/" data-ref="James 1:14 (American Standard Version)" data-verse-url="/bible/asv/james/1/14/"><span class="v-num">14</span><span class="v-txt">but each man is tempted, when he is drawn away by his own lust, and enticed.</span></a>
+<a class="v-row" href="/bible/asv/james/1/15/" data-ref="James 1:15 (American Standard Version)" data-verse-url="/bible/asv/james/1/15/"><span class="v-num">15</span><span class="v-txt">Then the lust, when it hath conceived, beareth sin: and the sin, when it is fullgrown, bringeth forth death.</span></a>
+<a class="v-row" href="/bible/asv/james/1/16/" data-ref="James 1:16 (American Standard Version)" data-verse-url="/bible/asv/james/1/16/"><span class="v-num">16</span><span class="v-txt">Be not deceived, my beloved brethren.</span></a>
+<a class="v-row" href="/bible/asv/james/1/17/" data-ref="James 1:17 (American Standard Version)" data-verse-url="/bible/asv/james/1/17/"><span class="v-num">17</span><span class="v-txt">Every good gift and every perfect gift is from above, coming down from the Father of lights, with whom can be no variation, neither shadow that is cast by turning.</span></a>
+<a class="v-row" href="/bible/asv/james/1/18/" data-ref="James 1:18 (American Standard Version)" data-verse-url="/bible/asv/james/1/18/"><span class="v-num">18</span><span class="v-txt">Of his own will he brought us forth by the word of truth, that we should be a kind of firstfruits of his creatures.</span></a>
+<a class="v-row" href="/bible/asv/james/1/19/" data-ref="James 1:19 (American Standard Version)" data-verse-url="/bible/asv/james/1/19/"><span class="v-num">19</span><span class="v-txt">Ye know [this], my beloved brethren. But let every man be swift to hear, slow to speak, slow to wrath:</span></a>
+<a class="v-row" href="/bible/asv/james/1/20/" data-ref="James 1:20 (American Standard Version)" data-verse-url="/bible/asv/james/1/20/"><span class="v-num">20</span><span class="v-txt">for the wrath of man worketh not the righteousness of God.</span></a>
+<a class="v-row" href="/bible/asv/james/1/21/" data-ref="James 1:21 (American Standard Version)" data-verse-url="/bible/asv/james/1/21/"><span class="v-num">21</span><span class="v-txt">Wherefore putting away all filthiness and overflowing of wickedness, receive with meekness the implanted word, which is able to save your souls.</span></a>
+<a class="v-row" href="/bible/asv/james/1/22/" data-ref="James 1:22 (American Standard Version)" data-verse-url="/bible/asv/james/1/22/"><span class="v-num">22</span><span class="v-txt">But be ye doers of the word, and not hearers only, deluding your own selves.</span></a>
+<a class="v-row" href="/bible/asv/james/1/23/" data-ref="James 1:23 (American Standard Version)" data-verse-url="/bible/asv/james/1/23/"><span class="v-num">23</span><span class="v-txt">For if any one is a hearer of the word and not a doer, he is like unto a man beholding his natural face in a mirror:</span></a>
+<a class="v-row" href="/bible/asv/james/1/24/" data-ref="James 1:24 (American Standard Version)" data-verse-url="/bible/asv/james/1/24/"><span class="v-num">24</span><span class="v-txt">for he beholdeth himself, and goeth away, and straightway forgetteth what manner of man he was.</span></a>
+<a class="v-row" href="/bible/asv/james/1/25/" data-ref="James 1:25 (American Standard Version)" data-verse-url="/bible/asv/james/1/25/"><span class="v-num">25</span><span class="v-txt">But he that looketh into the perfect law, the [law] of liberty, and [so] continueth, being not a hearer that forgetteth but a doer that worketh, this man shall be blessed in his doing.</span></a>
+<a class="v-row" href="/bible/asv/james/1/26/" data-ref="James 1:26 (American Standard Version)" data-verse-url="/bible/asv/james/1/26/"><span class="v-num">26</span><span class="v-txt">If any man thinketh himself to be religious, while he bridleth not his tongue but deceiveth his heart, this man's religion is vain.</span></a>
+<a class="v-row" href="/bible/asv/james/1/27/" data-ref="James 1:27 (American Standard Version)" data-verse-url="/bible/asv/james/1/27/"><span class="v-num">27</span><span class="v-txt">Pure religion and undefiled before our God and Father is this, to visit the fatherless and widows in their affliction, [and] to keep oneself unspotted from the world.</span></a>
 
     
 <div class="app-cta">

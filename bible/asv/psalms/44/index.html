@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 44</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 44:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">We have heard with our ears, O God, Our fathers have told us, What work thou didst in their days, In the days of old.</span></div>
-<div class="v-row" data-ref="Psalm 44:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Thou didst drive out the nations with thy hand; But them thou didst plant: Thou didst afflict the peoples; But them thou didst spread abroad.</span></div>
-<div class="v-row" data-ref="Psalm 44:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For they gat not the land in possession by their own sword, Neither did their own arm save them; But thy right hand, and thine arm, and the light of thy countenance, Because thou wast favorable unto them.</span></div>
-<div class="v-row" data-ref="Psalm 44:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Thou art my King, O God: Command deliverance for Jacob.</span></div>
-<div class="v-row" data-ref="Psalm 44:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Through thee will we push down our adversaries: Through thy name will we tread them under that rise up against us.</span></div>
-<div class="v-row" data-ref="Psalm 44:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For I will not trust in my bow, Neither shall my sword save me.</span></div>
-<div class="v-row" data-ref="Psalm 44:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But thou hast saved us from our adversaries, And hast put them to shame that hate us.</span></div>
-<div class="v-row" data-ref="Psalm 44:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">In God have we made our boast all the day long, And we will give thanks unto thy name for ever. [Selah]</span></div>
-<div class="v-row" data-ref="Psalm 44:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But now thou hast cast [us] off, and brought us to dishonor, And goest not forth with our hosts.</span></div>
-<div class="v-row" data-ref="Psalm 44:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Thou makest us to turn back from the adversary; And they that hate us take spoil for themselves.</span></div>
-<div class="v-row" data-ref="Psalm 44:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Thou hast made us like sheep [appointed] for food, And hast scattered us among the nations.</span></div>
-<div class="v-row" data-ref="Psalm 44:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Thou sellest thy people for nought, And hast not increased [thy wealth] by their price.</span></div>
-<div class="v-row" data-ref="Psalm 44:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thou makest us a reproach to our neighbors, A scoffing and a derision to them that are round about us.</span></div>
-<div class="v-row" data-ref="Psalm 44:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thou makest us a byword among the nations, A shaking of the head among the peoples.</span></div>
-<div class="v-row" data-ref="Psalm 44:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">All the day long is my dishonor before me, And the shame of my face hath covered me,</span></div>
-<div class="v-row" data-ref="Psalm 44:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the voice of him that reproacheth and blasphemeth, By reason of the enemy and the avenger.</span></div>
-<div class="v-row" data-ref="Psalm 44:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">All this is come upon us; Yet have we not forgotten thee, Neither have we dealt falsely in thy covenant.</span></div>
-<div class="v-row" data-ref="Psalm 44:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Our heart is not turned back, Neither have our steps declined from thy way,</span></div>
-<div class="v-row" data-ref="Psalm 44:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">That thou hast sore broken us in the place of jackals, And covered us with the shadow of death.</span></div>
-<div class="v-row" data-ref="Psalm 44:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If we have forgotten the name of our God, Or spread forth our hands to a strange god;</span></div>
-<div class="v-row" data-ref="Psalm 44:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Will not God search this out? For he knoweth the secrets of the heart.</span></div>
-<div class="v-row" data-ref="Psalm 44:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Yea, for thy sake are we killed all the day long; We are accounted as sheep for the slaughter.</span></div>
-<div class="v-row" data-ref="Psalm 44:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Awake, why sleepest thou, O Lord? Arise, cast [us] not off for ever.</span></div>
-<div class="v-row" data-ref="Psalm 44:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Wherefore hidest thou thy face, And forgettest our affliction and our oppression?</span></div>
-<div class="v-row" data-ref="Psalm 44:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For our soul is bowed down to the dust: Our body cleaveth unto the earth.</span></div>
-<div class="v-row" data-ref="Psalm 44:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Rise up for our help, And redeem us for thy lovingkindness' sake.</span></div>
+    <a class="v-row" href="/bible/asv/psalms/44/1/" data-ref="Psalm 44:1 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/1/"><span class="v-num">1</span><span class="v-txt">We have heard with our ears, O God, Our fathers have told us, What work thou didst in their days, In the days of old.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/2/" data-ref="Psalm 44:2 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/2/"><span class="v-num">2</span><span class="v-txt">Thou didst drive out the nations with thy hand; But them thou didst plant: Thou didst afflict the peoples; But them thou didst spread abroad.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/3/" data-ref="Psalm 44:3 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/3/"><span class="v-num">3</span><span class="v-txt">For they gat not the land in possession by their own sword, Neither did their own arm save them; But thy right hand, and thine arm, and the light of thy countenance, Because thou wast favorable unto them.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/4/" data-ref="Psalm 44:4 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/4/"><span class="v-num">4</span><span class="v-txt">Thou art my King, O God: Command deliverance for Jacob.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/5/" data-ref="Psalm 44:5 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/5/"><span class="v-num">5</span><span class="v-txt">Through thee will we push down our adversaries: Through thy name will we tread them under that rise up against us.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/6/" data-ref="Psalm 44:6 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/6/"><span class="v-num">6</span><span class="v-txt">For I will not trust in my bow, Neither shall my sword save me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/7/" data-ref="Psalm 44:7 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/7/"><span class="v-num">7</span><span class="v-txt">But thou hast saved us from our adversaries, And hast put them to shame that hate us.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/8/" data-ref="Psalm 44:8 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/8/"><span class="v-num">8</span><span class="v-txt">In God have we made our boast all the day long, And we will give thanks unto thy name for ever. [Selah]</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/9/" data-ref="Psalm 44:9 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/9/"><span class="v-num">9</span><span class="v-txt">But now thou hast cast [us] off, and brought us to dishonor, And goest not forth with our hosts.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/10/" data-ref="Psalm 44:10 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/10/"><span class="v-num">10</span><span class="v-txt">Thou makest us to turn back from the adversary; And they that hate us take spoil for themselves.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/11/" data-ref="Psalm 44:11 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/11/"><span class="v-num">11</span><span class="v-txt">Thou hast made us like sheep [appointed] for food, And hast scattered us among the nations.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/12/" data-ref="Psalm 44:12 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/12/"><span class="v-num">12</span><span class="v-txt">Thou sellest thy people for nought, And hast not increased [thy wealth] by their price.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/13/" data-ref="Psalm 44:13 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/13/"><span class="v-num">13</span><span class="v-txt">Thou makest us a reproach to our neighbors, A scoffing and a derision to them that are round about us.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/14/" data-ref="Psalm 44:14 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/14/"><span class="v-num">14</span><span class="v-txt">Thou makest us a byword among the nations, A shaking of the head among the peoples.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/15/" data-ref="Psalm 44:15 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/15/"><span class="v-num">15</span><span class="v-txt">All the day long is my dishonor before me, And the shame of my face hath covered me,</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/16/" data-ref="Psalm 44:16 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/16/"><span class="v-num">16</span><span class="v-txt">For the voice of him that reproacheth and blasphemeth, By reason of the enemy and the avenger.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/17/" data-ref="Psalm 44:17 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/17/"><span class="v-num">17</span><span class="v-txt">All this is come upon us; Yet have we not forgotten thee, Neither have we dealt falsely in thy covenant.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/18/" data-ref="Psalm 44:18 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/18/"><span class="v-num">18</span><span class="v-txt">Our heart is not turned back, Neither have our steps declined from thy way,</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/19/" data-ref="Psalm 44:19 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/19/"><span class="v-num">19</span><span class="v-txt">That thou hast sore broken us in the place of jackals, And covered us with the shadow of death.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/20/" data-ref="Psalm 44:20 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/20/"><span class="v-num">20</span><span class="v-txt">If we have forgotten the name of our God, Or spread forth our hands to a strange god;</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/21/" data-ref="Psalm 44:21 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/21/"><span class="v-num">21</span><span class="v-txt">Will not God search this out? For he knoweth the secrets of the heart.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/22/" data-ref="Psalm 44:22 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/22/"><span class="v-num">22</span><span class="v-txt">Yea, for thy sake are we killed all the day long; We are accounted as sheep for the slaughter.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/23/" data-ref="Psalm 44:23 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/23/"><span class="v-num">23</span><span class="v-txt">Awake, why sleepest thou, O Lord? Arise, cast [us] not off for ever.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/24/" data-ref="Psalm 44:24 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/24/"><span class="v-num">24</span><span class="v-txt">Wherefore hidest thou thy face, And forgettest our affliction and our oppression?</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/25/" data-ref="Psalm 44:25 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/25/"><span class="v-num">25</span><span class="v-txt">For our soul is bowed down to the dust: Our body cleaveth unto the earth.</span></a>
+<a class="v-row" href="/bible/asv/psalms/44/26/" data-ref="Psalm 44:26 (American Standard Version)" data-verse-url="/bible/asv/psalms/44/26/"><span class="v-num">26</span><span class="v-txt">Rise up for our help, And redeem us for thy lovingkindness' sake.</span></a>
 
     
 <div class="app-cta">

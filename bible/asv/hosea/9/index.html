@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 9:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Rejoice not, O Israel, for joy, like the peoples; for thou hast played the harlot, [departing] from thy God; thou hast loved hire upon every grain-floor.</span></div>
-<div class="v-row" data-ref="Hosea 9:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The threshing-floor and the winepress shall not feed them, and the new wine shall fail her.</span></div>
-<div class="v-row" data-ref="Hosea 9:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They shall not dwell in Jehovah's land; but Ephraim shall return to Egypt, and they shall eat unclean food in Assyria.</span></div>
-<div class="v-row" data-ref="Hosea 9:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They shall not pour out wine-offerings to Jehovah, neither shall they be pleasing unto him: their sacrifices shall be unto them as the bread of mourners; all that eat thereof shall be polluted; for their bread shall be for their appetite; it shall not come into the house of Jehovah.</span></div>
-<div class="v-row" data-ref="Hosea 9:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">What will ye do in the day of solemn assembly, and in the day of the feast of Jehovah?</span></div>
-<div class="v-row" data-ref="Hosea 9:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For, lo, they are gone away from destruction; [yet] Egypt shall gather them up, Memphis shall bury them; their pleasant things of silver, nettles shall possess them; thorns shall be in their tents.</span></div>
-<div class="v-row" data-ref="Hosea 9:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The days of visitation are come, the days of recompense are come; Israel shall know it: the prophet is a fool, the man that hath the spirit is mad, for the abundance of thine iniquity, and because the enmity is great.</span></div>
-<div class="v-row" data-ref="Hosea 9:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Ephraim [was] a watchman with my God: as for the prophet, a fowler's snare is in all his ways, [and] enmity in the house of his God.</span></div>
-<div class="v-row" data-ref="Hosea 9:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They have deeply corrupted themselves, as in the days of Gibeah: he will remember their iniquity, he will visit their sins.</span></div>
-<div class="v-row" data-ref="Hosea 9:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I found Israel like grapes in the wilderness; I saw your fathers as the first-ripe in the fig-tree at its first season: but they came to Baal-peor, and consecrated themselves unto the shameful thing, and became abominable like that which they loved.</span></div>
-<div class="v-row" data-ref="Hosea 9:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">As for Ephraim, their glory shall fly away like a bird: there shall be no birth, and none with child, and no conception.</span></div>
-<div class="v-row" data-ref="Hosea 9:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Though they bring up their children, yet will I bereave them, so that not a man shall be left: yea, woe also to them when I depart from them!</span></div>
-<div class="v-row" data-ref="Hosea 9:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Ephraim, like as I have seen Tyre, is planted in a pleasant place: but Ephraim shall bring out his children to the slayer.</span></div>
-<div class="v-row" data-ref="Hosea 9:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Give them, O Jehovah -- what wilt thou give? give them a miscarrying womb and dry breasts.</span></div>
-<div class="v-row" data-ref="Hosea 9:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">All their wickedness is in Gilgal; for there I hated them: because of the wickedness of their doings I will drive them out of my house; I will love them no more; all their princes are revolters.</span></div>
-<div class="v-row" data-ref="Hosea 9:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Ephraim is smitten, their root is dried up, they shall bear no fruit: yea, though they bring forth, yet will I slay the beloved fruit of their womb.</span></div>
-<div class="v-row" data-ref="Hosea 9:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">My God will cast them away, because they did not hearken unto him; and they shall be wanderers among the nations.</span></div>
+    <a class="v-row" href="/bible/asv/hosea/9/1/" data-ref="Hosea 9:1 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/1/"><span class="v-num">1</span><span class="v-txt">Rejoice not, O Israel, for joy, like the peoples; for thou hast played the harlot, [departing] from thy God; thou hast loved hire upon every grain-floor.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/2/" data-ref="Hosea 9:2 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/2/"><span class="v-num">2</span><span class="v-txt">The threshing-floor and the winepress shall not feed them, and the new wine shall fail her.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/3/" data-ref="Hosea 9:3 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/3/"><span class="v-num">3</span><span class="v-txt">They shall not dwell in Jehovah's land; but Ephraim shall return to Egypt, and they shall eat unclean food in Assyria.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/4/" data-ref="Hosea 9:4 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/4/"><span class="v-num">4</span><span class="v-txt">They shall not pour out wine-offerings to Jehovah, neither shall they be pleasing unto him: their sacrifices shall be unto them as the bread of mourners; all that eat thereof shall be polluted; for their bread shall be for their appetite; it shall not come into the house of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/5/" data-ref="Hosea 9:5 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/5/"><span class="v-num">5</span><span class="v-txt">What will ye do in the day of solemn assembly, and in the day of the feast of Jehovah?</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/6/" data-ref="Hosea 9:6 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/6/"><span class="v-num">6</span><span class="v-txt">For, lo, they are gone away from destruction; [yet] Egypt shall gather them up, Memphis shall bury them; their pleasant things of silver, nettles shall possess them; thorns shall be in their tents.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/7/" data-ref="Hosea 9:7 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/7/"><span class="v-num">7</span><span class="v-txt">The days of visitation are come, the days of recompense are come; Israel shall know it: the prophet is a fool, the man that hath the spirit is mad, for the abundance of thine iniquity, and because the enmity is great.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/8/" data-ref="Hosea 9:8 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/8/"><span class="v-num">8</span><span class="v-txt">Ephraim [was] a watchman with my God: as for the prophet, a fowler's snare is in all his ways, [and] enmity in the house of his God.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/9/" data-ref="Hosea 9:9 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/9/"><span class="v-num">9</span><span class="v-txt">They have deeply corrupted themselves, as in the days of Gibeah: he will remember their iniquity, he will visit their sins.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/10/" data-ref="Hosea 9:10 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/10/"><span class="v-num">10</span><span class="v-txt">I found Israel like grapes in the wilderness; I saw your fathers as the first-ripe in the fig-tree at its first season: but they came to Baal-peor, and consecrated themselves unto the shameful thing, and became abominable like that which they loved.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/11/" data-ref="Hosea 9:11 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/11/"><span class="v-num">11</span><span class="v-txt">As for Ephraim, their glory shall fly away like a bird: there shall be no birth, and none with child, and no conception.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/12/" data-ref="Hosea 9:12 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/12/"><span class="v-num">12</span><span class="v-txt">Though they bring up their children, yet will I bereave them, so that not a man shall be left: yea, woe also to them when I depart from them!</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/13/" data-ref="Hosea 9:13 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/13/"><span class="v-num">13</span><span class="v-txt">Ephraim, like as I have seen Tyre, is planted in a pleasant place: but Ephraim shall bring out his children to the slayer.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/14/" data-ref="Hosea 9:14 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/14/"><span class="v-num">14</span><span class="v-txt">Give them, O Jehovah -- what wilt thou give? give them a miscarrying womb and dry breasts.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/15/" data-ref="Hosea 9:15 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/15/"><span class="v-num">15</span><span class="v-txt">All their wickedness is in Gilgal; for there I hated them: because of the wickedness of their doings I will drive them out of my house; I will love them no more; all their princes are revolters.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/16/" data-ref="Hosea 9:16 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/16/"><span class="v-num">16</span><span class="v-txt">Ephraim is smitten, their root is dried up, they shall bear no fruit: yea, though they bring forth, yet will I slay the beloved fruit of their womb.</span></a>
+<a class="v-row" href="/bible/asv/hosea/9/17/" data-ref="Hosea 9:17 (American Standard Version)" data-verse-url="/bible/asv/hosea/9/17/"><span class="v-num">17</span><span class="v-txt">My God will cast them away, because they did not hearken unto him; and they shall be wanderers among the nations.</span></a>
 
     
 <div class="app-cta">

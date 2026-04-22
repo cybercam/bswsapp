@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="John 17:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Jesus said these things; then, lifting his eyes to heaven, he said, Father, the time has now come; give glory to your Son, so that the Son may give glory to you:</span></div>
-<div class="v-row" data-ref="John 17:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Even as you gave him authority over all flesh, to give eternal life to all those whom you have given to him.</span></div>
-<div class="v-row" data-ref="John 17:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And this is eternal life: to have knowledge of you, the only true God, and of him whom you have sent, even Jesus Christ.</span></div>
-<div class="v-row" data-ref="John 17:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I have given you glory on the earth, having done all the work which you gave me to do.</span></div>
-<div class="v-row" data-ref="John 17:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And now, Father, let me have glory with you, even that glory which I had with you before the world was.</span></div>
-<div class="v-row" data-ref="John 17:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I have given knowledge of your name to the men whom you gave me out of the world: yours they were, and you gave them to me, and they have kept your words.</span></div>
-<div class="v-row" data-ref="John 17:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now it is clear to them that whatever you have given to me comes from you:</span></div>
-<div class="v-row" data-ref="John 17:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Because I have given them the words which you gave to me; and they have taken them to heart, and have certain knowledge that I came from you, and they have faith that you sent me.</span></div>
-<div class="v-row" data-ref="John 17:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My prayer is for them: my prayer is not for the world, but for those whom you have given to me, because they are yours</span></div>
-<div class="v-row" data-ref="John 17:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">(All mine are yours, and yours are mine) and I have glory in them.</span></div>
-<div class="v-row" data-ref="John 17:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And now I will be no longer in the world, but they are in the world and I come to you. Holy Father, keep them in your name which you have given to me, so that they may be one even as we are one.</span></div>
-<div class="v-row" data-ref="John 17:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">While I was with them I kept them safe in your name which you have given to me: I took care of them and not one of them has come to destruction, but only the son of destruction, so that the Writings might come true.</span></div>
-<div class="v-row" data-ref="John 17:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And now I come to you; and these things I say in the world so that they may have my joy complete in them.</span></div>
-<div class="v-row" data-ref="John 17:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I have given your word to them; and they are hated by the world, because they are not of the world, even as I am not of the world.</span></div>
-<div class="v-row" data-ref="John 17:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My prayer is not that you will take them out of the world, but that you will keep them from the Evil One.</span></div>
-<div class="v-row" data-ref="John 17:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">They are not of the world any more than I am of the world.</span></div>
-<div class="v-row" data-ref="John 17:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Make them holy by the true word: your word is the true word.</span></div>
-<div class="v-row" data-ref="John 17:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Even as you have sent me into the world, so I have sent them into the world.</span></div>
-<div class="v-row" data-ref="John 17:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And for them I make myself holy, so that they may be made truly holy.</span></div>
-<div class="v-row" data-ref="John 17:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My prayer is not for them only, but for all who will have faith in me through their word;</span></div>
-<div class="v-row" data-ref="John 17:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">May they all be one! Even as you, Father, are in me and I am in you, so let them be in us, so that all men may come to have faith that you sent me.</span></div>
-<div class="v-row" data-ref="John 17:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And the glory which you have given to me I have given to them, so that they may be one even as we are one;</span></div>
-<div class="v-row" data-ref="John 17:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">I in them, and you in me, so that they may be made completely one, and so that it may become clear to all men that you have sent me and that they are loved by you as I am loved by you.</span></div>
-<div class="v-row" data-ref="John 17:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Father, it is my desire that these whom you have given to me may be by my side where I am, so that they may see my glory which you have given to me, because you had love for me before the world came into being.</span></div>
-<div class="v-row" data-ref="John 17:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Father of righteousness, I have knowledge of you, though the world has not; and to these it is clear that you sent me;</span></div>
-<div class="v-row" data-ref="John 17:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">And I have given to them knowledge of your name, and will give it, so that the love which you have for me may be in them and I in them.</span></div>
+    <a class="v-row" href="/bible/bbe/john/17/1/" data-ref="John 17:1 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/1/"><span class="v-num">1</span><span class="v-txt">Jesus said these things; then, lifting his eyes to heaven, he said, Father, the time has now come; give glory to your Son, so that the Son may give glory to you:</span></a>
+<a class="v-row" href="/bible/bbe/john/17/2/" data-ref="John 17:2 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/2/"><span class="v-num">2</span><span class="v-txt">Even as you gave him authority over all flesh, to give eternal life to all those whom you have given to him.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/3/" data-ref="John 17:3 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/3/"><span class="v-num">3</span><span class="v-txt">And this is eternal life: to have knowledge of you, the only true God, and of him whom you have sent, even Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/4/" data-ref="John 17:4 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/4/"><span class="v-num">4</span><span class="v-txt">I have given you glory on the earth, having done all the work which you gave me to do.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/5/" data-ref="John 17:5 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/5/"><span class="v-num">5</span><span class="v-txt">And now, Father, let me have glory with you, even that glory which I had with you before the world was.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/6/" data-ref="John 17:6 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/6/"><span class="v-num">6</span><span class="v-txt">I have given knowledge of your name to the men whom you gave me out of the world: yours they were, and you gave them to me, and they have kept your words.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/7/" data-ref="John 17:7 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/7/"><span class="v-num">7</span><span class="v-txt">Now it is clear to them that whatever you have given to me comes from you:</span></a>
+<a class="v-row" href="/bible/bbe/john/17/8/" data-ref="John 17:8 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/8/"><span class="v-num">8</span><span class="v-txt">Because I have given them the words which you gave to me; and they have taken them to heart, and have certain knowledge that I came from you, and they have faith that you sent me.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/9/" data-ref="John 17:9 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/9/"><span class="v-num">9</span><span class="v-txt">My prayer is for them: my prayer is not for the world, but for those whom you have given to me, because they are yours</span></a>
+<a class="v-row" href="/bible/bbe/john/17/10/" data-ref="John 17:10 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/10/"><span class="v-num">10</span><span class="v-txt">(All mine are yours, and yours are mine) and I have glory in them.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/11/" data-ref="John 17:11 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/11/"><span class="v-num">11</span><span class="v-txt">And now I will be no longer in the world, but they are in the world and I come to you. Holy Father, keep them in your name which you have given to me, so that they may be one even as we are one.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/12/" data-ref="John 17:12 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/12/"><span class="v-num">12</span><span class="v-txt">While I was with them I kept them safe in your name which you have given to me: I took care of them and not one of them has come to destruction, but only the son of destruction, so that the Writings might come true.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/13/" data-ref="John 17:13 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/13/"><span class="v-num">13</span><span class="v-txt">And now I come to you; and these things I say in the world so that they may have my joy complete in them.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/14/" data-ref="John 17:14 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/14/"><span class="v-num">14</span><span class="v-txt">I have given your word to them; and they are hated by the world, because they are not of the world, even as I am not of the world.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/15/" data-ref="John 17:15 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/15/"><span class="v-num">15</span><span class="v-txt">My prayer is not that you will take them out of the world, but that you will keep them from the Evil One.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/16/" data-ref="John 17:16 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/16/"><span class="v-num">16</span><span class="v-txt">They are not of the world any more than I am of the world.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/17/" data-ref="John 17:17 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/17/"><span class="v-num">17</span><span class="v-txt">Make them holy by the true word: your word is the true word.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/18/" data-ref="John 17:18 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/18/"><span class="v-num">18</span><span class="v-txt">Even as you have sent me into the world, so I have sent them into the world.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/19/" data-ref="John 17:19 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/19/"><span class="v-num">19</span><span class="v-txt">And for them I make myself holy, so that they may be made truly holy.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/20/" data-ref="John 17:20 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/20/"><span class="v-num">20</span><span class="v-txt">My prayer is not for them only, but for all who will have faith in me through their word;</span></a>
+<a class="v-row" href="/bible/bbe/john/17/21/" data-ref="John 17:21 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/21/"><span class="v-num">21</span><span class="v-txt">May they all be one! Even as you, Father, are in me and I am in you, so let them be in us, so that all men may come to have faith that you sent me.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/22/" data-ref="John 17:22 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/22/"><span class="v-num">22</span><span class="v-txt">And the glory which you have given to me I have given to them, so that they may be one even as we are one;</span></a>
+<a class="v-row" href="/bible/bbe/john/17/23/" data-ref="John 17:23 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/23/"><span class="v-num">23</span><span class="v-txt">I in them, and you in me, so that they may be made completely one, and so that it may become clear to all men that you have sent me and that they are loved by you as I am loved by you.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/24/" data-ref="John 17:24 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/24/"><span class="v-num">24</span><span class="v-txt">Father, it is my desire that these whom you have given to me may be by my side where I am, so that they may see my glory which you have given to me, because you had love for me before the world came into being.</span></a>
+<a class="v-row" href="/bible/bbe/john/17/25/" data-ref="John 17:25 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/25/"><span class="v-num">25</span><span class="v-txt">Father of righteousness, I have knowledge of you, though the world has not; and to these it is clear that you sent me;</span></a>
+<a class="v-row" href="/bible/bbe/john/17/26/" data-ref="John 17:26 (Bible in Basic English)" data-verse-url="/bible/bbe/john/17/26/"><span class="v-num">26</span><span class="v-txt">And I have given to them knowledge of your name, and will give it, so that the love which you have for me may be in them and I in them.</span></a>
 
     
 <div class="app-cta">

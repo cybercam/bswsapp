@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 16:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Send ye the lambs for the ruler of the land from Selah to the wilderness, unto the mount of the daughter of Zion.</span></div>
-<div class="v-row" data-ref="Isaiah 16:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For it shall be that, as wandering birds, as a scattered nest, so shall the daughters of Moab be at the fords of the Arnon.</span></div>
-<div class="v-row" data-ref="Isaiah 16:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Give counsel, execute justice; make thy shade as the night in the midst of the noonday; hide the outcasts; betray not the fugitive.</span></div>
-<div class="v-row" data-ref="Isaiah 16:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Let mine outcasts dwell with thee; as for Moab, be thou a covert to him from the face of the destroyer. For the extortioner is brought to nought, destruction ceaseth, the oppressors are consumed out of the land.</span></div>
-<div class="v-row" data-ref="Isaiah 16:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And a throne shall be established in lovingkindness; and one shall sit thereon in truth, in the tent of David, judging, and seeking justice, and swift to do righteousness.</span></div>
-<div class="v-row" data-ref="Isaiah 16:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">We have heard of the pride of Moab, [that] he is very proud; even of his arrogancy, and his pride, and his wrath; his boastings are nought.</span></div>
-<div class="v-row" data-ref="Isaiah 16:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore shall Moab wail for Moab, every one shall wail: for the raisin-cakes of Kir-hareseth shall ye mourn, utterly stricken.</span></div>
-<div class="v-row" data-ref="Isaiah 16:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the fields of Heshbon languish, [and] the vine of Sibmah; the lords of the nations have broken down the choice branches thereof, which reached even unto Jazer, which wandered into the wilderness; its shoots were spread abroad, they passed over the sea.</span></div>
-<div class="v-row" data-ref="Isaiah 16:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore I will weep with the weeping of Jazer for the vine of Sibmah; I will water thee with my tears, O Heshbon, and Elealeh: for upon thy summer fruits and upon thy harvest the [battle] shout is fallen.</span></div>
-<div class="v-row" data-ref="Isaiah 16:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And gladness is taken away, and joy out of the fruitful field; and in the vineyards there shall be no singing, neither joyful noise: no treader shall tread out wine in the presses; I have made the [vintage] shout to cease.</span></div>
-<div class="v-row" data-ref="Isaiah 16:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Wherefore my heart soundeth like a harp for Moab, and mine inward parts for Kir-heres.</span></div>
-<div class="v-row" data-ref="Isaiah 16:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And it shall come to pass, when Moab presenteth himself, when he wearieth himself upon the high place, and shall come to his sanctuary to pray, that he shall not prevail.</span></div>
-<div class="v-row" data-ref="Isaiah 16:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">This is the word that Jehovah spake concerning Moab in time past.</span></div>
-<div class="v-row" data-ref="Isaiah 16:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But now Jehovah hath spoken, saying, Within three years, as the years of a hireling, the glory of Moab shall be brought into contempt, with all his great multitude; and the remnant shall be very small and of no account.</span></div>
+    <a class="v-row" href="/bible/asv/isaiah/16/1/" data-ref="Isaiah 16:1 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/1/"><span class="v-num">1</span><span class="v-txt">Send ye the lambs for the ruler of the land from Selah to the wilderness, unto the mount of the daughter of Zion.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/2/" data-ref="Isaiah 16:2 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/2/"><span class="v-num">2</span><span class="v-txt">For it shall be that, as wandering birds, as a scattered nest, so shall the daughters of Moab be at the fords of the Arnon.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/3/" data-ref="Isaiah 16:3 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/3/"><span class="v-num">3</span><span class="v-txt">Give counsel, execute justice; make thy shade as the night in the midst of the noonday; hide the outcasts; betray not the fugitive.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/4/" data-ref="Isaiah 16:4 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/4/"><span class="v-num">4</span><span class="v-txt">Let mine outcasts dwell with thee; as for Moab, be thou a covert to him from the face of the destroyer. For the extortioner is brought to nought, destruction ceaseth, the oppressors are consumed out of the land.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/5/" data-ref="Isaiah 16:5 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/5/"><span class="v-num">5</span><span class="v-txt">And a throne shall be established in lovingkindness; and one shall sit thereon in truth, in the tent of David, judging, and seeking justice, and swift to do righteousness.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/6/" data-ref="Isaiah 16:6 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/6/"><span class="v-num">6</span><span class="v-txt">We have heard of the pride of Moab, [that] he is very proud; even of his arrogancy, and his pride, and his wrath; his boastings are nought.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/7/" data-ref="Isaiah 16:7 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/7/"><span class="v-num">7</span><span class="v-txt">Therefore shall Moab wail for Moab, every one shall wail: for the raisin-cakes of Kir-hareseth shall ye mourn, utterly stricken.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/8/" data-ref="Isaiah 16:8 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/8/"><span class="v-num">8</span><span class="v-txt">For the fields of Heshbon languish, [and] the vine of Sibmah; the lords of the nations have broken down the choice branches thereof, which reached even unto Jazer, which wandered into the wilderness; its shoots were spread abroad, they passed over the sea.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/9/" data-ref="Isaiah 16:9 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/9/"><span class="v-num">9</span><span class="v-txt">Therefore I will weep with the weeping of Jazer for the vine of Sibmah; I will water thee with my tears, O Heshbon, and Elealeh: for upon thy summer fruits and upon thy harvest the [battle] shout is fallen.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/10/" data-ref="Isaiah 16:10 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/10/"><span class="v-num">10</span><span class="v-txt">And gladness is taken away, and joy out of the fruitful field; and in the vineyards there shall be no singing, neither joyful noise: no treader shall tread out wine in the presses; I have made the [vintage] shout to cease.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/11/" data-ref="Isaiah 16:11 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/11/"><span class="v-num">11</span><span class="v-txt">Wherefore my heart soundeth like a harp for Moab, and mine inward parts for Kir-heres.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/12/" data-ref="Isaiah 16:12 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/12/"><span class="v-num">12</span><span class="v-txt">And it shall come to pass, when Moab presenteth himself, when he wearieth himself upon the high place, and shall come to his sanctuary to pray, that he shall not prevail.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/13/" data-ref="Isaiah 16:13 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/13/"><span class="v-num">13</span><span class="v-txt">This is the word that Jehovah spake concerning Moab in time past.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/16/14/" data-ref="Isaiah 16:14 (American Standard Version)" data-verse-url="/bible/asv/isaiah/16/14/"><span class="v-num">14</span><span class="v-txt">But now Jehovah hath spoken, saying, Within three years, as the years of a hireling, the glory of Moab shall be brought into contempt, with all his great multitude; and the remnant shall be very small and of no account.</span></a>
 
     
 <div class="app-cta">

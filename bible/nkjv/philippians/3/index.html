@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Philippians 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Finally, my brethren, rejoice in the Lord. For me to write the same things to you [is] not tedious, but for you [it is] safe.</span></div>
-<div class="v-row" data-ref="Philippians 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Beware of dogs, beware of evil workers, beware of the mutilation!</span></div>
-<div class="v-row" data-ref="Philippians 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For we are the circumcision, who worship God in the Spirit, rejoice in Christ Jesus, and have no confidence in the flesh,</span></div>
-<div class="v-row" data-ref="Philippians 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">though I also might have confidence in the flesh. If anyone else thinks he may have confidence in the flesh, I more so:</span></div>
-<div class="v-row" data-ref="Philippians 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">circumcised the eighth day, of the stock of Israel, [of] the tribe of Benjamin, a Hebrew of the Hebrews; concerning the law, a Pharisee;</span></div>
-<div class="v-row" data-ref="Philippians 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">concerning zeal, persecuting the church; concerning the righteousness which is in the law, blameless.</span></div>
-<div class="v-row" data-ref="Philippians 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But what things were gain to me, these I have counted loss for Christ.</span></div>
-<div class="v-row" data-ref="Philippians 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Yet indeed I also count all things loss for the excellence of the knowledge of Christ Jesus my Lord, for whom I have suffered the loss of all things, and count them as rubbish, that I may gain Christ</span></div>
-<div class="v-row" data-ref="Philippians 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">and be found in Him, not having my own righteousness, which [is] from the law, but that which [is] through faith in Christ, the righteousness which is from God by faith;</span></div>
-<div class="v-row" data-ref="Philippians 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">that I may know Him and the power of His resurrection, and the fellowship of His sufferings, being conformed to His death,</span></div>
-<div class="v-row" data-ref="Philippians 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">if, by any means, I may attain to the resurrection from the dead.</span></div>
-<div class="v-row" data-ref="Philippians 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.</span></div>
-<div class="v-row" data-ref="Philippians 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Brethren, I do not count myself to have apprehended; but one thing [I do,] forgetting those things which are behind and reaching forward to those things which are ahead,</span></div>
-<div class="v-row" data-ref="Philippians 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I press toward the goal for the prize of the upward call of God in Christ Jesus.</span></div>
-<div class="v-row" data-ref="Philippians 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore let us, as many as are mature, have this mind; and if in anything you think otherwise, God will reveal even this to you.</span></div>
-<div class="v-row" data-ref="Philippians 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Nevertheless, to [the degree] that we have already attained, let us walk by the same rule, let us be of the same mind.</span></div>
-<div class="v-row" data-ref="Philippians 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Brethren, join in following my example, and note those who so walk, as you have us for a pattern.</span></div>
-<div class="v-row" data-ref="Philippians 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For many walk, of whom I have told you often, and now tell you even weeping, [that they are] the enemies of the cross of Christ:</span></div>
-<div class="v-row" data-ref="Philippians 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">whose end [is] destruction, whose god [is their] belly, and [whose] glory [is] in their shame -- who set their mind on earthly things.</span></div>
-<div class="v-row" data-ref="Philippians 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For our citizenship is in heaven, from which we also eagerly wait for the Savior, the Lord Jesus Christ,</span></div>
-<div class="v-row" data-ref="Philippians 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">who will transform our lowly body that it may be conformed to His glorious body, according to the working by which He is able even to subdue all things to Himself.</span></div>
+    <a class="v-row" href="/bible/nkjv/philippians/3/1/" data-ref="Philippians 3:1 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/1/"><span class="v-num">1</span><span class="v-txt">Finally, my brethren, rejoice in the Lord. For me to write the same things to you [is] not tedious, but for you [it is] safe.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/2/" data-ref="Philippians 3:2 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/2/"><span class="v-num">2</span><span class="v-txt">Beware of dogs, beware of evil workers, beware of the mutilation!</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/3/" data-ref="Philippians 3:3 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/3/"><span class="v-num">3</span><span class="v-txt">For we are the circumcision, who worship God in the Spirit, rejoice in Christ Jesus, and have no confidence in the flesh,</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/4/" data-ref="Philippians 3:4 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/4/"><span class="v-num">4</span><span class="v-txt">though I also might have confidence in the flesh. If anyone else thinks he may have confidence in the flesh, I more so:</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/5/" data-ref="Philippians 3:5 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/5/"><span class="v-num">5</span><span class="v-txt">circumcised the eighth day, of the stock of Israel, [of] the tribe of Benjamin, a Hebrew of the Hebrews; concerning the law, a Pharisee;</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/6/" data-ref="Philippians 3:6 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/6/"><span class="v-num">6</span><span class="v-txt">concerning zeal, persecuting the church; concerning the righteousness which is in the law, blameless.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/7/" data-ref="Philippians 3:7 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/7/"><span class="v-num">7</span><span class="v-txt">But what things were gain to me, these I have counted loss for Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/8/" data-ref="Philippians 3:8 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/8/"><span class="v-num">8</span><span class="v-txt">Yet indeed I also count all things loss for the excellence of the knowledge of Christ Jesus my Lord, for whom I have suffered the loss of all things, and count them as rubbish, that I may gain Christ</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/9/" data-ref="Philippians 3:9 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/9/"><span class="v-num">9</span><span class="v-txt">and be found in Him, not having my own righteousness, which [is] from the law, but that which [is] through faith in Christ, the righteousness which is from God by faith;</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/10/" data-ref="Philippians 3:10 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/10/"><span class="v-num">10</span><span class="v-txt">that I may know Him and the power of His resurrection, and the fellowship of His sufferings, being conformed to His death,</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/11/" data-ref="Philippians 3:11 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/11/"><span class="v-num">11</span><span class="v-txt">if, by any means, I may attain to the resurrection from the dead.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/12/" data-ref="Philippians 3:12 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/12/"><span class="v-num">12</span><span class="v-txt">Not that I have already attained, or am already perfected; but I press on, that I may lay hold of that for which Christ Jesus has also laid hold of me.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/13/" data-ref="Philippians 3:13 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/13/"><span class="v-num">13</span><span class="v-txt">Brethren, I do not count myself to have apprehended; but one thing [I do,] forgetting those things which are behind and reaching forward to those things which are ahead,</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/14/" data-ref="Philippians 3:14 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/14/"><span class="v-num">14</span><span class="v-txt">I press toward the goal for the prize of the upward call of God in Christ Jesus.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/15/" data-ref="Philippians 3:15 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/15/"><span class="v-num">15</span><span class="v-txt">Therefore let us, as many as are mature, have this mind; and if in anything you think otherwise, God will reveal even this to you.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/16/" data-ref="Philippians 3:16 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/16/"><span class="v-num">16</span><span class="v-txt">Nevertheless, to [the degree] that we have already attained, let us walk by the same rule, let us be of the same mind.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/17/" data-ref="Philippians 3:17 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/17/"><span class="v-num">17</span><span class="v-txt">Brethren, join in following my example, and note those who so walk, as you have us for a pattern.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/18/" data-ref="Philippians 3:18 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/18/"><span class="v-num">18</span><span class="v-txt">For many walk, of whom I have told you often, and now tell you even weeping, [that they are] the enemies of the cross of Christ:</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/19/" data-ref="Philippians 3:19 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/19/"><span class="v-num">19</span><span class="v-txt">whose end [is] destruction, whose god [is their] belly, and [whose] glory [is] in their shame -- who set their mind on earthly things.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/20/" data-ref="Philippians 3:20 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/20/"><span class="v-num">20</span><span class="v-txt">For our citizenship is in heaven, from which we also eagerly wait for the Savior, the Lord Jesus Christ,</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/3/21/" data-ref="Philippians 3:21 (New King James Version)" data-verse-url="/bible/nkjv/philippians/3/21/"><span class="v-num">21</span><span class="v-txt">who will transform our lowly body that it may be conformed to His glorious body, according to the working by which He is able even to subdue all things to Himself.</span></a>
 
     
 <div class="app-cta">

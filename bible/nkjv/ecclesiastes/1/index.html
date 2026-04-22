@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The words of the Preacher, the son of David, king in Jerusalem.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Vanity of vanities," says the Preacher; "Vanity of vanities, all [is] vanity."</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">What profit has a man from all his labor In which he toils under the sun?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">[One] generation passes away, and [another] generation comes; But the earth abides forever.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The sun also rises, and the sun goes down, And hastens to the place where it arose.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The wind goes toward the south, And turns around to the north; The wind whirls about continually, And comes again on its circuit.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">All the rivers run into the sea, Yet the sea [is] not full; To the place from which the rivers come, There they return again.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">All things [are] full of labor; Man cannot express [it.] The eye is not satisfied with seeing, Nor the ear filled with hearing.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">That which has been [is] what will be, That which [is] done is what will be done, And [there is] nothing new under the sun.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Is there anything of which it may be said, "See, this [is] new"? It has already been in ancient times before us.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">[There is] no remembrance of former [things,] Nor will there be any remembrance of [things] that are to come By [those] who will come after.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I, the Preacher, was king over Israel in Jerusalem.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And I set my heart to seek and search out by wisdom concerning all that is done under heaven; this burdensome task God has given to the sons of man, by which they may be exercised.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I have seen all the works that are done under the sun; and indeed, all [is] vanity and grasping for the wind.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">[What is] crooked cannot be made straight, And what is lacking cannot be numbered.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I communed with my heart, saying, "Look, I have attained greatness, and have gained more wisdom than all who were before me in Jerusalem. My heart has understood great wisdom and knowledge."</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And I set my heart to know wisdom and to know madness and folly. I perceived that this also is grasping for the wind.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 1:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For in much wisdom [is] much grief, And he who increases knowledge increases sorrow.</span></div>
+    <a class="v-row" href="/bible/nkjv/ecclesiastes/1/1/" data-ref="Ecclesiastes 1:1 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/1/"><span class="v-num">1</span><span class="v-txt">The words of the Preacher, the son of David, king in Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/2/" data-ref="Ecclesiastes 1:2 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/2/"><span class="v-num">2</span><span class="v-txt">"Vanity of vanities," says the Preacher; "Vanity of vanities, all [is] vanity."</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/3/" data-ref="Ecclesiastes 1:3 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/3/"><span class="v-num">3</span><span class="v-txt">What profit has a man from all his labor In which he toils under the sun?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/4/" data-ref="Ecclesiastes 1:4 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/4/"><span class="v-num">4</span><span class="v-txt">[One] generation passes away, and [another] generation comes; But the earth abides forever.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/5/" data-ref="Ecclesiastes 1:5 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/5/"><span class="v-num">5</span><span class="v-txt">The sun also rises, and the sun goes down, And hastens to the place where it arose.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/6/" data-ref="Ecclesiastes 1:6 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/6/"><span class="v-num">6</span><span class="v-txt">The wind goes toward the south, And turns around to the north; The wind whirls about continually, And comes again on its circuit.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/7/" data-ref="Ecclesiastes 1:7 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/7/"><span class="v-num">7</span><span class="v-txt">All the rivers run into the sea, Yet the sea [is] not full; To the place from which the rivers come, There they return again.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/8/" data-ref="Ecclesiastes 1:8 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/8/"><span class="v-num">8</span><span class="v-txt">All things [are] full of labor; Man cannot express [it.] The eye is not satisfied with seeing, Nor the ear filled with hearing.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/9/" data-ref="Ecclesiastes 1:9 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/9/"><span class="v-num">9</span><span class="v-txt">That which has been [is] what will be, That which [is] done is what will be done, And [there is] nothing new under the sun.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/10/" data-ref="Ecclesiastes 1:10 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/10/"><span class="v-num">10</span><span class="v-txt">Is there anything of which it may be said, "See, this [is] new"? It has already been in ancient times before us.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/11/" data-ref="Ecclesiastes 1:11 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/11/"><span class="v-num">11</span><span class="v-txt">[There is] no remembrance of former [things,] Nor will there be any remembrance of [things] that are to come By [those] who will come after.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/12/" data-ref="Ecclesiastes 1:12 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/12/"><span class="v-num">12</span><span class="v-txt">I, the Preacher, was king over Israel in Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/13/" data-ref="Ecclesiastes 1:13 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/13/"><span class="v-num">13</span><span class="v-txt">And I set my heart to seek and search out by wisdom concerning all that is done under heaven; this burdensome task God has given to the sons of man, by which they may be exercised.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/14/" data-ref="Ecclesiastes 1:14 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/14/"><span class="v-num">14</span><span class="v-txt">I have seen all the works that are done under the sun; and indeed, all [is] vanity and grasping for the wind.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/15/" data-ref="Ecclesiastes 1:15 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/15/"><span class="v-num">15</span><span class="v-txt">[What is] crooked cannot be made straight, And what is lacking cannot be numbered.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/16/" data-ref="Ecclesiastes 1:16 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/16/"><span class="v-num">16</span><span class="v-txt">I communed with my heart, saying, "Look, I have attained greatness, and have gained more wisdom than all who were before me in Jerusalem. My heart has understood great wisdom and knowledge."</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/17/" data-ref="Ecclesiastes 1:17 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/17/"><span class="v-num">17</span><span class="v-txt">And I set my heart to know wisdom and to know madness and folly. I perceived that this also is grasping for the wind.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/1/18/" data-ref="Ecclesiastes 1:18 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/1/18/"><span class="v-num">18</span><span class="v-txt">For in much wisdom [is] much grief, And he who increases knowledge increases sorrow.</span></a>
 
     
 <div class="app-cta">

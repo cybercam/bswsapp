@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then I turned and raised my eyes, and saw there a flying scroll.</span></div>
-<div class="v-row" data-ref="Zechariah 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said to me, "What do you see?" So I answered, "I see a flying scroll. Its length [is] twenty cubits and its width ten cubits."</span></div>
-<div class="v-row" data-ref="Zechariah 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then he said to me, "This [is] the curse that goes out over the face of the whole earth: 'Every thief shall be expelled,' according [to] this side of [the scroll;] and, 'Every perjurer shall be expelled,' according [to] that side of it."</span></div>
-<div class="v-row" data-ref="Zechariah 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"I will send out [the curse,"] says the LORD of hosts; "It shall enter the house of the thief And the house of the one who swears falsely by My name. It shall remain in the midst of his house And consume it, with its timber and stones."</span></div>
-<div class="v-row" data-ref="Zechariah 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the angel who talked with me came out and said to me, "Lift your eyes now, and see what this [is] that goes forth."</span></div>
-<div class="v-row" data-ref="Zechariah 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So I asked, "What [is] it?" And he said, "It [is] a basket that is going forth." He also said, "This [is] their resemblance throughout the earth:</span></div>
-<div class="v-row" data-ref="Zechariah 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Here [is] a lead disc lifted up, and this [is] a woman sitting inside the basket";</span></div>
-<div class="v-row" data-ref="Zechariah 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">then he said, "This [is] Wickedness!" And he thrust her down into the basket, and threw the lead cover over its mouth.</span></div>
-<div class="v-row" data-ref="Zechariah 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then I raised my eyes and looked, and there [were] two women, coming with the wind in their wings; for they had wings like the wings of a stork, and they lifted up the basket between earth and heaven.</span></div>
-<div class="v-row" data-ref="Zechariah 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So I said to the angel who talked with me, "Where are they carrying the basket?"</span></div>
-<div class="v-row" data-ref="Zechariah 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he said to me, "To build a house for it in the land of Shinar; when it is ready, [the basket] will be set there on its base."</span></div>
+    <a class="v-row" href="/bible/nkjv/zechariah/5/1/" data-ref="Zechariah 5:1 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/1/"><span class="v-num">1</span><span class="v-txt">Then I turned and raised my eyes, and saw there a flying scroll.</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/2/" data-ref="Zechariah 5:2 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/2/"><span class="v-num">2</span><span class="v-txt">And he said to me, "What do you see?" So I answered, "I see a flying scroll. Its length [is] twenty cubits and its width ten cubits."</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/3/" data-ref="Zechariah 5:3 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/3/"><span class="v-num">3</span><span class="v-txt">Then he said to me, "This [is] the curse that goes out over the face of the whole earth: 'Every thief shall be expelled,' according [to] this side of [the scroll;] and, 'Every perjurer shall be expelled,' according [to] that side of it."</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/4/" data-ref="Zechariah 5:4 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/4/"><span class="v-num">4</span><span class="v-txt">"I will send out [the curse,"] says the LORD of hosts; "It shall enter the house of the thief And the house of the one who swears falsely by My name. It shall remain in the midst of his house And consume it, with its timber and stones."</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/5/" data-ref="Zechariah 5:5 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/5/"><span class="v-num">5</span><span class="v-txt">Then the angel who talked with me came out and said to me, "Lift your eyes now, and see what this [is] that goes forth."</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/6/" data-ref="Zechariah 5:6 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/6/"><span class="v-num">6</span><span class="v-txt">So I asked, "What [is] it?" And he said, "It [is] a basket that is going forth." He also said, "This [is] their resemblance throughout the earth:</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/7/" data-ref="Zechariah 5:7 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/7/"><span class="v-num">7</span><span class="v-txt">"Here [is] a lead disc lifted up, and this [is] a woman sitting inside the basket";</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/8/" data-ref="Zechariah 5:8 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/8/"><span class="v-num">8</span><span class="v-txt">then he said, "This [is] Wickedness!" And he thrust her down into the basket, and threw the lead cover over its mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/9/" data-ref="Zechariah 5:9 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/9/"><span class="v-num">9</span><span class="v-txt">Then I raised my eyes and looked, and there [were] two women, coming with the wind in their wings; for they had wings like the wings of a stork, and they lifted up the basket between earth and heaven.</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/10/" data-ref="Zechariah 5:10 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/10/"><span class="v-num">10</span><span class="v-txt">So I said to the angel who talked with me, "Where are they carrying the basket?"</span></a>
+<a class="v-row" href="/bible/nkjv/zechariah/5/11/" data-ref="Zechariah 5:11 (New King James Version)" data-verse-url="/bible/nkjv/zechariah/5/11/"><span class="v-num">11</span><span class="v-txt">And he said to me, "To build a house for it in the land of Shinar; when it is ready, [the basket] will be set there on its base."</span></a>
 
     
 <div class="app-cta">

@@ -71,6 +71,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -97,11 +99,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -174,6 +186,7 @@ a:hover{text-decoration:underline}
       <a class="cta-btn" href="/bible/kjv/john/1/">Start Reading — John 1</a>
     </div>
     <div class="group-title">English Versions</div><div class="ver-grid"><a href="/bible/asv/john/1/" class="ver-card"><div class="vc-label">American Standard Version</div><div class="vc-sub">English · EN</div></a><a href="/bible/bbe/john/1/" class="ver-card"><div class="vc-label">Bible in Basic English</div><div class="vc-sub">English · EN</div></a><a href="/bible/kjv/john/1/" class="ver-card"><div class="vc-label">King James Version</div><div class="vc-sub">English · EN</div></a><a href="/bible/nkjv/john/1/" class="ver-card"><div class="vc-label">New King James Version</div><div class="vc-sub">English · EN</div></a><a href="/bible/web/john/1/" class="ver-card"><div class="vc-label">World English Bible</div><div class="vc-sub">English · EN</div></a><a href="/bible/ylt/john/1/" class="ver-card"><div class="vc-label">Young's Literal Translation</div><div class="vc-sub">English · EN</div></a></div><div class="group-title">Indian Languages</div><div class="ver-grid"><a href="/bible/bengali/john/1/" class="ver-card"><div class="vc-label">বাংলা বাইবেল</div><div class="vc-sub">Indian · BN</div></a><a href="/bible/gujarati/john/1/" class="ver-card"><div class="vc-label">ગુજરાતી બાઇબલ</div><div class="vc-sub">Indian · GU</div></a><a href="/bible/hindi/john/1/" class="ver-card"><div class="vc-label">हिन्दी बाइबिल</div><div class="vc-sub">Indian · HI</div></a><a href="/bible/kannada/john/1/" class="ver-card"><div class="vc-label">ಕನ್ನಡ ಬೈಬಲ್</div><div class="vc-sub">Indian · KN</div></a><a href="/bible/malayalam/john/1/" class="ver-card"><div class="vc-label">മലയാളം ബൈബിൾ</div><div class="vc-sub">Indian · ML</div></a><a href="/bible/marathi/john/1/" class="ver-card"><div class="vc-label">मराठी बायबल</div><div class="vc-sub">Indian · MR</div></a><a href="/bible/nepali/john/1/" class="ver-card"><div class="vc-label">नेपाली बाइबल</div><div class="vc-sub">Indian · NE</div></a><a href="/bible/odia/john/1/" class="ver-card"><div class="vc-label">ଓଡ଼ିଆ ବାଇବେଲ</div><div class="vc-sub">Indian · OR</div></a><a href="/bible/tamil/john/1/" class="ver-card"><div class="vc-label">தமிழ் பரிசுத்த வேதாகமம்</div><div class="vc-sub">Indian · TA</div></a><a href="/bible/telugu/john/1/" class="ver-card"><div class="vc-label">తెలుగు బైబిల్</div><div class="vc-sub">Indian · TE</div></a></div>
+    <div class="group-title">Other Language Bibles</div><div class="ver-grid"><a href="/telugu-bible.html" class="ver-card"><div class="vc-label">Telugu Bible</div><div class="vc-sub">Language landing page</div></a><a href="/english-bible.html" class="ver-card"><div class="vc-label">English Bible</div><div class="vc-sub">Language landing page</div></a><a href="/hindi-bible.html" class="ver-card"><div class="vc-label">Hindi Bible</div><div class="vc-sub">Language landing page</div></a><a href="/tamil-bible.html" class="ver-card"><div class="vc-label">Tamil Bible</div><div class="vc-sub">Language landing page</div></a><a href="/kannada-bible.html" class="ver-card"><div class="vc-label">Kannada Bible</div><div class="vc-sub">Language landing page</div></a><a href="/malayalam-bible.html" class="ver-card"><div class="vc-label">Malayalam Bible</div><div class="vc-sub">Language landing page</div></a><a href="/bengali-bible.html" class="ver-card"><div class="vc-label">Bengali Bible</div><div class="vc-sub">Language landing page</div></a><a href="/marathi-bible.html" class="ver-card"><div class="vc-label">Marathi Bible</div><div class="vc-sub">Language landing page</div></a></div>
     
 <div class="app-cta">
   <div>

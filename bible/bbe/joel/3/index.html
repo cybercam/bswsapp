@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Joel 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For in those days and in that time, when I let the fate of Judah and Jerusalem be changed,</span></div>
-<div class="v-row" data-ref="Joel 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will get together all the nations, and make them come down into the valley of Jehoshaphat; and there I will take up with them the cause of my people and of my heritage Israel, whom they have sent wandering among the nations, and of my land which has been parted by them.</span></div>
-<div class="v-row" data-ref="Joel 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And they have put the fate of my people to the decision of chance: giving a boy for the price of a loose woman and a girl for a drink of wine.</span></div>
-<div class="v-row" data-ref="Joel 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And further, what are you to me, O Tyre and Zidon and all the circle of Philistia? will you give me back any payment? and if you do, quickly and suddenly I will send it back on your head,</span></div>
-<div class="v-row" data-ref="Joel 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For you have taken my silver and my gold, putting in the houses of your gods my beautiful and pleasing things.</span></div>
-<div class="v-row" data-ref="Joel 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the children of Judah and the children of Jerusalem you have given for a price to the sons of the Greeks, to send them far away from their land:</span></div>
-<div class="v-row" data-ref="Joel 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">See, I will have them moved from the place where you have sent them, and will let what you have done come back on your head;</span></div>
-<div class="v-row" data-ref="Joel 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I will give your sons and your daughters into the hands of the children of Judah for a price, and they will give them for a price to the men of Sheba, a nation far off: for the Lord has said it.</span></div>
-<div class="v-row" data-ref="Joel 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Give this out among the nations; make ready for war: get the strong men awake; let all the men of war come near, let them come up.</span></div>
-<div class="v-row" data-ref="Joel 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Get your plough-blades hammered into swords, and your vine-knives into spears: let the feeble say, I am strong.</span></div>
-<div class="v-row" data-ref="Joel 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Come quickly, all you nations round about, and get yourselves together there: make your strong ones come down, O Lord.</span></div>
-<div class="v-row" data-ref="Joel 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let the nations be awake, and come to the valley of Jehoshaphat: for there I will be seated as judge of all the nations round about.</span></div>
-<div class="v-row" data-ref="Joel 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Put in the blade, for the grain is ready: come, get you down, for the wine-crusher is full, the vessels are overflowing; for great is their evil-doing.</span></div>
-<div class="v-row" data-ref="Joel 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Masses on masses in the valley of decision! for the day of the Lord is near in the valley of decision.</span></div>
-<div class="v-row" data-ref="Joel 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The sun and the moon have become dark, and the stars keep back their shining.</span></div>
-<div class="v-row" data-ref="Joel 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the Lord will be thundering from Zion, and his voice will be sounding from Jerusalem; and the heavens and the earth will be shaking: but the Lord will be a breastplate for his people and a strong place for the children of Israel.</span></div>
-<div class="v-row" data-ref="Joel 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And you will be certain that I am the Lord your God, living in Zion, my holy mountain: and Jerusalem will be holy, and no strange person will ever again go through her.</span></div>
-<div class="v-row" data-ref="Joel 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And it will come about in that day that the mountains will be dropping sweet wine, and the hills will be flowing with milk, and all the streams of Judah will be flowing with water; and a fountain will come out from the house of the Lord, watering the valley of acacia-trees.</span></div>
-<div class="v-row" data-ref="Joel 3:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Egypt will be a waste and Edom a land of destruction, because of the evil done to the children of Judah, because they have let blood be drained out in their land without cause.</span></div>
-<div class="v-row" data-ref="Joel 3:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But Judah will be peopled for ever, and Jerusalem from generation to generation.</span></div>
-<div class="v-row" data-ref="Joel 3:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And I will send punishment for their blood, for which punishment has not been sent, for the Lord is living in Zion.</span></div>
+    <a class="v-row" href="/bible/bbe/joel/3/1/" data-ref="Joel 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/1/"><span class="v-num">1</span><span class="v-txt">For in those days and in that time, when I let the fate of Judah and Jerusalem be changed,</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/2/" data-ref="Joel 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/2/"><span class="v-num">2</span><span class="v-txt">I will get together all the nations, and make them come down into the valley of Jehoshaphat; and there I will take up with them the cause of my people and of my heritage Israel, whom they have sent wandering among the nations, and of my land which has been parted by them.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/3/" data-ref="Joel 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/3/"><span class="v-num">3</span><span class="v-txt">And they have put the fate of my people to the decision of chance: giving a boy for the price of a loose woman and a girl for a drink of wine.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/4/" data-ref="Joel 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/4/"><span class="v-num">4</span><span class="v-txt">And further, what are you to me, O Tyre and Zidon and all the circle of Philistia? will you give me back any payment? and if you do, quickly and suddenly I will send it back on your head,</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/5/" data-ref="Joel 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/5/"><span class="v-num">5</span><span class="v-txt">For you have taken my silver and my gold, putting in the houses of your gods my beautiful and pleasing things.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/6/" data-ref="Joel 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/6/"><span class="v-num">6</span><span class="v-txt">And the children of Judah and the children of Jerusalem you have given for a price to the sons of the Greeks, to send them far away from their land:</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/7/" data-ref="Joel 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/7/"><span class="v-num">7</span><span class="v-txt">See, I will have them moved from the place where you have sent them, and will let what you have done come back on your head;</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/8/" data-ref="Joel 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/8/"><span class="v-num">8</span><span class="v-txt">I will give your sons and your daughters into the hands of the children of Judah for a price, and they will give them for a price to the men of Sheba, a nation far off: for the Lord has said it.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/9/" data-ref="Joel 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/9/"><span class="v-num">9</span><span class="v-txt">Give this out among the nations; make ready for war: get the strong men awake; let all the men of war come near, let them come up.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/10/" data-ref="Joel 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/10/"><span class="v-num">10</span><span class="v-txt">Get your plough-blades hammered into swords, and your vine-knives into spears: let the feeble say, I am strong.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/11/" data-ref="Joel 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/11/"><span class="v-num">11</span><span class="v-txt">Come quickly, all you nations round about, and get yourselves together there: make your strong ones come down, O Lord.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/12/" data-ref="Joel 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/12/"><span class="v-num">12</span><span class="v-txt">Let the nations be awake, and come to the valley of Jehoshaphat: for there I will be seated as judge of all the nations round about.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/13/" data-ref="Joel 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/13/"><span class="v-num">13</span><span class="v-txt">Put in the blade, for the grain is ready: come, get you down, for the wine-crusher is full, the vessels are overflowing; for great is their evil-doing.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/14/" data-ref="Joel 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/14/"><span class="v-num">14</span><span class="v-txt">Masses on masses in the valley of decision! for the day of the Lord is near in the valley of decision.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/15/" data-ref="Joel 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/15/"><span class="v-num">15</span><span class="v-txt">The sun and the moon have become dark, and the stars keep back their shining.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/16/" data-ref="Joel 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/16/"><span class="v-num">16</span><span class="v-txt">And the Lord will be thundering from Zion, and his voice will be sounding from Jerusalem; and the heavens and the earth will be shaking: but the Lord will be a breastplate for his people and a strong place for the children of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/17/" data-ref="Joel 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/17/"><span class="v-num">17</span><span class="v-txt">And you will be certain that I am the Lord your God, living in Zion, my holy mountain: and Jerusalem will be holy, and no strange person will ever again go through her.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/18/" data-ref="Joel 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/18/"><span class="v-num">18</span><span class="v-txt">And it will come about in that day that the mountains will be dropping sweet wine, and the hills will be flowing with milk, and all the streams of Judah will be flowing with water; and a fountain will come out from the house of the Lord, watering the valley of acacia-trees.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/19/" data-ref="Joel 3:19 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/19/"><span class="v-num">19</span><span class="v-txt">Egypt will be a waste and Edom a land of destruction, because of the evil done to the children of Judah, because they have let blood be drained out in their land without cause.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/20/" data-ref="Joel 3:20 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/20/"><span class="v-num">20</span><span class="v-txt">But Judah will be peopled for ever, and Jerusalem from generation to generation.</span></a>
+<a class="v-row" href="/bible/bbe/joel/3/21/" data-ref="Joel 3:21 (Bible in Basic English)" data-verse-url="/bible/bbe/joel/3/21/"><span class="v-num">21</span><span class="v-txt">And I will send punishment for their blood, for which punishment has not been sent, for the Lord is living in Zion.</span></a>
 
     
 <div class="app-cta">

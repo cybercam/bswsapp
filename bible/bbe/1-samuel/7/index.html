@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 7:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So the men of Kiriath-jearim came and took the ark of the Lord to the house of Abinadab in Gibeah, and they made his son Eleazar holy and put the ark in his care.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the ark was in Kiriath-jearim for a long time, as much as twenty years: and all Israel was searching after the Lord with weeping.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then Samuel said to all Israel, If with all your hearts you would come back to the Lord, then put away all the strange gods and the Astartes from among you, and let your hearts be turned to the Lord, and be servants to him only: and he will make you safe from the hands of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So the children of Israel gave up the worship of Baal and Astarte, and became worshippers of the Lord only.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then Samuel said, Let all Israel come to Mizpah and I will make prayer to the Lord for you.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So they came together to Mizpah, and got water, draining it out before the Lord, and they took no food that day, and they said, We have done evil against the Lord. And Samuel was judge of the children of Israel in Mizpah.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now when the Philistines had news that the children of Israel had come together at Mizpah, the lords of the Philistines went up against Israel. And the children of Israel, hearing of it, were full of fear.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the children of Israel said to Samuel, Go on crying to the Lord our God for us to make us safe from the hands of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Samuel took a young lamb, offering all of it as a burned offering to the Lord; and Samuel made prayers to the Lord for Israel and the Lord gave him an answer.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And while Samuel was offering the burned offering, the Philistines came near for the attack on Israel; but at the thunder of the Lord's voice that day the Philistines were overcome with fear, and they gave way before Israel.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the men of Israel went out from Mizpah and went after the Philistines, attacking them till they came under Beth-car.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then Samuel took a stone and put it up between Mizpah and Jeshanah, naming it Eben-ezer, and saying, Up to now the Lord has been our help.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So the Philistines were overcome, and did not come into the country of Israel again: and all the days of Samuel the hand of the Lord was against the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the towns which the Philistines had taken were given back to Israel, from Ekron to Gath, and all the country round them Israel made free from the power of the Philistines. And there was peace between Israel and the Amorites.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Samuel was judge of Israel all the days of his life.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">From year to year he went in turn to Beth-el and Gilgal and Mizpah, judging Israel in all those places.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And his base was at Ramah, where his house was; there he was judge of Israel and there he made an altar to the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/1-samuel/7/1/" data-ref="1 Samuel 7:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/1/"><span class="v-num">1</span><span class="v-txt">So the men of Kiriath-jearim came and took the ark of the Lord to the house of Abinadab in Gibeah, and they made his son Eleazar holy and put the ark in his care.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/2/" data-ref="1 Samuel 7:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/2/"><span class="v-num">2</span><span class="v-txt">And the ark was in Kiriath-jearim for a long time, as much as twenty years: and all Israel was searching after the Lord with weeping.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/3/" data-ref="1 Samuel 7:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/3/"><span class="v-num">3</span><span class="v-txt">Then Samuel said to all Israel, If with all your hearts you would come back to the Lord, then put away all the strange gods and the Astartes from among you, and let your hearts be turned to the Lord, and be servants to him only: and he will make you safe from the hands of the Philistines.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/4/" data-ref="1 Samuel 7:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/4/"><span class="v-num">4</span><span class="v-txt">So the children of Israel gave up the worship of Baal and Astarte, and became worshippers of the Lord only.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/5/" data-ref="1 Samuel 7:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/5/"><span class="v-num">5</span><span class="v-txt">Then Samuel said, Let all Israel come to Mizpah and I will make prayer to the Lord for you.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/6/" data-ref="1 Samuel 7:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/6/"><span class="v-num">6</span><span class="v-txt">So they came together to Mizpah, and got water, draining it out before the Lord, and they took no food that day, and they said, We have done evil against the Lord. And Samuel was judge of the children of Israel in Mizpah.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/7/" data-ref="1 Samuel 7:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/7/"><span class="v-num">7</span><span class="v-txt">Now when the Philistines had news that the children of Israel had come together at Mizpah, the lords of the Philistines went up against Israel. And the children of Israel, hearing of it, were full of fear.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/8/" data-ref="1 Samuel 7:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/8/"><span class="v-num">8</span><span class="v-txt">And the children of Israel said to Samuel, Go on crying to the Lord our God for us to make us safe from the hands of the Philistines.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/9/" data-ref="1 Samuel 7:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/9/"><span class="v-num">9</span><span class="v-txt">And Samuel took a young lamb, offering all of it as a burned offering to the Lord; and Samuel made prayers to the Lord for Israel and the Lord gave him an answer.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/10/" data-ref="1 Samuel 7:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/10/"><span class="v-num">10</span><span class="v-txt">And while Samuel was offering the burned offering, the Philistines came near for the attack on Israel; but at the thunder of the Lord's voice that day the Philistines were overcome with fear, and they gave way before Israel.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/11/" data-ref="1 Samuel 7:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/11/"><span class="v-num">11</span><span class="v-txt">And the men of Israel went out from Mizpah and went after the Philistines, attacking them till they came under Beth-car.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/12/" data-ref="1 Samuel 7:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/12/"><span class="v-num">12</span><span class="v-txt">Then Samuel took a stone and put it up between Mizpah and Jeshanah, naming it Eben-ezer, and saying, Up to now the Lord has been our help.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/13/" data-ref="1 Samuel 7:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/13/"><span class="v-num">13</span><span class="v-txt">So the Philistines were overcome, and did not come into the country of Israel again: and all the days of Samuel the hand of the Lord was against the Philistines.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/14/" data-ref="1 Samuel 7:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/14/"><span class="v-num">14</span><span class="v-txt">And the towns which the Philistines had taken were given back to Israel, from Ekron to Gath, and all the country round them Israel made free from the power of the Philistines. And there was peace between Israel and the Amorites.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/15/" data-ref="1 Samuel 7:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/15/"><span class="v-num">15</span><span class="v-txt">And Samuel was judge of Israel all the days of his life.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/16/" data-ref="1 Samuel 7:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/16/"><span class="v-num">16</span><span class="v-txt">From year to year he went in turn to Beth-el and Gilgal and Mizpah, judging Israel in all those places.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/7/17/" data-ref="1 Samuel 7:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/7/17/"><span class="v-num">17</span><span class="v-txt">And his base was at Ramah, where his house was; there he was judge of Israel and there he made an altar to the Lord.</span></a>
 
     
 <div class="app-cta">

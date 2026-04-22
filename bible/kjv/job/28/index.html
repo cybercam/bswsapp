@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 28:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Surely there is a vein for the silver, and a place for gold where they fine it.</span></div>
-<div class="v-row" data-ref="Job 28:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Iron is taken out of the earth, and brass is molten out of the stone.</span></div>
-<div class="v-row" data-ref="Job 28:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He setteth an end to darkness, and searcheth out all perfection: the stones of darkness, and the shadow of death.</span></div>
-<div class="v-row" data-ref="Job 28:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The flood breaketh out from the inhabitant; even the waters forgotten of the foot: they are dried up, they are gone away from men.</span></div>
-<div class="v-row" data-ref="Job 28:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">As for the earth, out of it cometh bread: and under it is turned up as it were fire.</span></div>
-<div class="v-row" data-ref="Job 28:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The stones of it are the place of sapphires: and it hath dust of gold.</span></div>
-<div class="v-row" data-ref="Job 28:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">There is a path which no fowl knoweth, and which the vulture's eye hath not seen:</span></div>
-<div class="v-row" data-ref="Job 28:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The lion's whelps have not trodden it, nor the fierce lion passed by it.</span></div>
-<div class="v-row" data-ref="Job 28:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He putteth forth his hand upon the rock; he overturneth the mountains by the roots.</span></div>
-<div class="v-row" data-ref="Job 28:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He cutteth out rivers among the rocks; and his eye seeth every precious thing.</span></div>
-<div class="v-row" data-ref="Job 28:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He bindeth the floods from overflowing; and the thing that is hid bringeth he forth to light.</span></div>
-<div class="v-row" data-ref="Job 28:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But where shall wisdom be found? and where is the place of understanding?</span></div>
-<div class="v-row" data-ref="Job 28:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Man knoweth not the price thereof; neither is it found in the land of the living.</span></div>
-<div class="v-row" data-ref="Job 28:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The depth saith, It is not in me: and the sea saith, It is not with me.</span></div>
-<div class="v-row" data-ref="Job 28:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">It cannot be gotten for gold, neither shall silver be weighed for the price thereof.</span></div>
-<div class="v-row" data-ref="Job 28:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">It cannot be valued with the gold of Ophir, with the precious onyx, or the sapphire.</span></div>
-<div class="v-row" data-ref="Job 28:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The gold and the crystal cannot equal it: and the exchange of it shall not be for jewels of fine gold.</span></div>
-<div class="v-row" data-ref="Job 28:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">No mention shall be made of coral, or of pearls: for the price of wisdom is above rubies.</span></div>
-<div class="v-row" data-ref="Job 28:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The topaz of Ethiopia shall not equal it, neither shall it be valued with pure gold.</span></div>
-<div class="v-row" data-ref="Job 28:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Whence then cometh wisdom? and where is the place of understanding?</span></div>
-<div class="v-row" data-ref="Job 28:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Seeing it is hid from the eyes of all living, and kept close from the fowls of the air.</span></div>
-<div class="v-row" data-ref="Job 28:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Destruction and death say, We have heard the fame thereof with our ears.</span></div>
-<div class="v-row" data-ref="Job 28:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">God understandeth the way thereof, and he knoweth the place thereof.</span></div>
-<div class="v-row" data-ref="Job 28:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For he looketh to the ends of the earth, and seeth under the whole heaven;</span></div>
-<div class="v-row" data-ref="Job 28:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">To make the weight for the winds; and he weigheth the waters by measure.</span></div>
-<div class="v-row" data-ref="Job 28:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">When he made a decree for the rain, and a way for the lightning of the thunder:</span></div>
-<div class="v-row" data-ref="Job 28:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Then did he see it, and declare it; he prepared it, yea, and searched it out.</span></div>
-<div class="v-row" data-ref="Job 28:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And unto man he said, Behold, the fear of the Lord, that is wisdom; and to depart from evil is understanding.</span></div>
+    <a class="v-row" href="/bible/kjv/job/28/1/" data-ref="Job 28:1 (King James Version)" data-verse-url="/bible/kjv/job/28/1/"><span class="v-num">1</span><span class="v-txt">Surely there is a vein for the silver, and a place for gold where they fine it.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/2/" data-ref="Job 28:2 (King James Version)" data-verse-url="/bible/kjv/job/28/2/"><span class="v-num">2</span><span class="v-txt">Iron is taken out of the earth, and brass is molten out of the stone.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/3/" data-ref="Job 28:3 (King James Version)" data-verse-url="/bible/kjv/job/28/3/"><span class="v-num">3</span><span class="v-txt">He setteth an end to darkness, and searcheth out all perfection: the stones of darkness, and the shadow of death.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/4/" data-ref="Job 28:4 (King James Version)" data-verse-url="/bible/kjv/job/28/4/"><span class="v-num">4</span><span class="v-txt">The flood breaketh out from the inhabitant; even the waters forgotten of the foot: they are dried up, they are gone away from men.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/5/" data-ref="Job 28:5 (King James Version)" data-verse-url="/bible/kjv/job/28/5/"><span class="v-num">5</span><span class="v-txt">As for the earth, out of it cometh bread: and under it is turned up as it were fire.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/6/" data-ref="Job 28:6 (King James Version)" data-verse-url="/bible/kjv/job/28/6/"><span class="v-num">6</span><span class="v-txt">The stones of it are the place of sapphires: and it hath dust of gold.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/7/" data-ref="Job 28:7 (King James Version)" data-verse-url="/bible/kjv/job/28/7/"><span class="v-num">7</span><span class="v-txt">There is a path which no fowl knoweth, and which the vulture's eye hath not seen:</span></a>
+<a class="v-row" href="/bible/kjv/job/28/8/" data-ref="Job 28:8 (King James Version)" data-verse-url="/bible/kjv/job/28/8/"><span class="v-num">8</span><span class="v-txt">The lion's whelps have not trodden it, nor the fierce lion passed by it.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/9/" data-ref="Job 28:9 (King James Version)" data-verse-url="/bible/kjv/job/28/9/"><span class="v-num">9</span><span class="v-txt">He putteth forth his hand upon the rock; he overturneth the mountains by the roots.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/10/" data-ref="Job 28:10 (King James Version)" data-verse-url="/bible/kjv/job/28/10/"><span class="v-num">10</span><span class="v-txt">He cutteth out rivers among the rocks; and his eye seeth every precious thing.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/11/" data-ref="Job 28:11 (King James Version)" data-verse-url="/bible/kjv/job/28/11/"><span class="v-num">11</span><span class="v-txt">He bindeth the floods from overflowing; and the thing that is hid bringeth he forth to light.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/12/" data-ref="Job 28:12 (King James Version)" data-verse-url="/bible/kjv/job/28/12/"><span class="v-num">12</span><span class="v-txt">But where shall wisdom be found? and where is the place of understanding?</span></a>
+<a class="v-row" href="/bible/kjv/job/28/13/" data-ref="Job 28:13 (King James Version)" data-verse-url="/bible/kjv/job/28/13/"><span class="v-num">13</span><span class="v-txt">Man knoweth not the price thereof; neither is it found in the land of the living.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/14/" data-ref="Job 28:14 (King James Version)" data-verse-url="/bible/kjv/job/28/14/"><span class="v-num">14</span><span class="v-txt">The depth saith, It is not in me: and the sea saith, It is not with me.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/15/" data-ref="Job 28:15 (King James Version)" data-verse-url="/bible/kjv/job/28/15/"><span class="v-num">15</span><span class="v-txt">It cannot be gotten for gold, neither shall silver be weighed for the price thereof.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/16/" data-ref="Job 28:16 (King James Version)" data-verse-url="/bible/kjv/job/28/16/"><span class="v-num">16</span><span class="v-txt">It cannot be valued with the gold of Ophir, with the precious onyx, or the sapphire.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/17/" data-ref="Job 28:17 (King James Version)" data-verse-url="/bible/kjv/job/28/17/"><span class="v-num">17</span><span class="v-txt">The gold and the crystal cannot equal it: and the exchange of it shall not be for jewels of fine gold.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/18/" data-ref="Job 28:18 (King James Version)" data-verse-url="/bible/kjv/job/28/18/"><span class="v-num">18</span><span class="v-txt">No mention shall be made of coral, or of pearls: for the price of wisdom is above rubies.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/19/" data-ref="Job 28:19 (King James Version)" data-verse-url="/bible/kjv/job/28/19/"><span class="v-num">19</span><span class="v-txt">The topaz of Ethiopia shall not equal it, neither shall it be valued with pure gold.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/20/" data-ref="Job 28:20 (King James Version)" data-verse-url="/bible/kjv/job/28/20/"><span class="v-num">20</span><span class="v-txt">Whence then cometh wisdom? and where is the place of understanding?</span></a>
+<a class="v-row" href="/bible/kjv/job/28/21/" data-ref="Job 28:21 (King James Version)" data-verse-url="/bible/kjv/job/28/21/"><span class="v-num">21</span><span class="v-txt">Seeing it is hid from the eyes of all living, and kept close from the fowls of the air.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/22/" data-ref="Job 28:22 (King James Version)" data-verse-url="/bible/kjv/job/28/22/"><span class="v-num">22</span><span class="v-txt">Destruction and death say, We have heard the fame thereof with our ears.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/23/" data-ref="Job 28:23 (King James Version)" data-verse-url="/bible/kjv/job/28/23/"><span class="v-num">23</span><span class="v-txt">God understandeth the way thereof, and he knoweth the place thereof.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/24/" data-ref="Job 28:24 (King James Version)" data-verse-url="/bible/kjv/job/28/24/"><span class="v-num">24</span><span class="v-txt">For he looketh to the ends of the earth, and seeth under the whole heaven;</span></a>
+<a class="v-row" href="/bible/kjv/job/28/25/" data-ref="Job 28:25 (King James Version)" data-verse-url="/bible/kjv/job/28/25/"><span class="v-num">25</span><span class="v-txt">To make the weight for the winds; and he weigheth the waters by measure.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/26/" data-ref="Job 28:26 (King James Version)" data-verse-url="/bible/kjv/job/28/26/"><span class="v-num">26</span><span class="v-txt">When he made a decree for the rain, and a way for the lightning of the thunder:</span></a>
+<a class="v-row" href="/bible/kjv/job/28/27/" data-ref="Job 28:27 (King James Version)" data-verse-url="/bible/kjv/job/28/27/"><span class="v-num">27</span><span class="v-txt">Then did he see it, and declare it; he prepared it, yea, and searched it out.</span></a>
+<a class="v-row" href="/bible/kjv/job/28/28/" data-ref="Job 28:28 (King James Version)" data-verse-url="/bible/kjv/job/28/28/"><span class="v-num">28</span><span class="v-txt">And unto man he said, Behold, the fear of the Lord, that is wisdom; and to depart from evil is understanding.</span></a>
 
     
 <div class="app-cta">

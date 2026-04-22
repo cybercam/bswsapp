@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Amos 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The words of Amos, who was among the herdsmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel, two years before the earthquake.</span></div>
-<div class="v-row" data-ref="Amos 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said, Jehovah will roar from Zion, and utter his voice from Jerusalem; and the pastures of the shepherds shall mourn, and the top of Carmel shall wither.</span></div>
-<div class="v-row" data-ref="Amos 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Damascus, yea, for four, I will not turn away the punishment thereof; because they have threshed Gilead with threshing instruments of iron:</span></div>
-<div class="v-row" data-ref="Amos 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">but I will send a fire into the house of Hazael, and it shall devour the palaces of Ben-hadad.</span></div>
-<div class="v-row" data-ref="Amos 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And I will break the bar of Damascus, and cut off the inhabitant from the valley of Aven, and him that holdeth the sceptre from the house of Eden; and the people of Syria shall go into captivity unto Kir, saith Jehovah.</span></div>
-<div class="v-row" data-ref="Amos 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Gaza, yea, for four, I will not turn away the punishment thereof; because they carried away captive the whole people, to deliver them up to Edom:</span></div>
-<div class="v-row" data-ref="Amos 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">but I will send a fire on the wall of Gaza, and it shall devour the palaces thereof.</span></div>
-<div class="v-row" data-ref="Amos 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I will cut off the inhabitant from Ashdod, and him that holdeth the sceptre from Ashkelon; and I will turn my hand against Ekron; and the remnant of the Philistines shall perish, saith the Lord Jehovah.</span></div>
-<div class="v-row" data-ref="Amos 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Tyre, yea, for four, I will not turn away the punishment thereof; because they delivered up the whole people to Edom, and remembered not the brotherly covenant:</span></div>
-<div class="v-row" data-ref="Amos 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">but I will send a fire on the wall of Tyre, and it shall devour the palaces thereof.</span></div>
-<div class="v-row" data-ref="Amos 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Edom, yea, for four, I will not turn away the punishment thereof; because he did pursue his brother with the sword, and did cast off all pity, and his anger did tear perpetually, and he kept his wrath for ever:</span></div>
-<div class="v-row" data-ref="Amos 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">but I will send a fire upon Teman, and it shall devour the palaces of Bozrah.</span></div>
-<div class="v-row" data-ref="Amos 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thus saith Jehovah: For three transgressions of the children of Ammon, yea, for four, I will not turn away the punishment thereof; because they have ripped up the women with child of Gilead, that they may enlarge their border.</span></div>
-<div class="v-row" data-ref="Amos 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I will kindle a fire in the wall of Rabbah, and it shall devour the palaces thereof, with shouting in the day of battle, with a tempest in the day of the whirlwind;</span></div>
-<div class="v-row" data-ref="Amos 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and their king shall go into captivity, he and his princes together, saith Jehovah.</span></div>
+    <a class="v-row" href="/bible/asv/amos/1/1/" data-ref="Amos 1:1 (American Standard Version)" data-verse-url="/bible/asv/amos/1/1/"><span class="v-num">1</span><span class="v-txt">The words of Amos, who was among the herdsmen of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash king of Israel, two years before the earthquake.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/2/" data-ref="Amos 1:2 (American Standard Version)" data-verse-url="/bible/asv/amos/1/2/"><span class="v-num">2</span><span class="v-txt">And he said, Jehovah will roar from Zion, and utter his voice from Jerusalem; and the pastures of the shepherds shall mourn, and the top of Carmel shall wither.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/3/" data-ref="Amos 1:3 (American Standard Version)" data-verse-url="/bible/asv/amos/1/3/"><span class="v-num">3</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Damascus, yea, for four, I will not turn away the punishment thereof; because they have threshed Gilead with threshing instruments of iron:</span></a>
+<a class="v-row" href="/bible/asv/amos/1/4/" data-ref="Amos 1:4 (American Standard Version)" data-verse-url="/bible/asv/amos/1/4/"><span class="v-num">4</span><span class="v-txt">but I will send a fire into the house of Hazael, and it shall devour the palaces of Ben-hadad.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/5/" data-ref="Amos 1:5 (American Standard Version)" data-verse-url="/bible/asv/amos/1/5/"><span class="v-num">5</span><span class="v-txt">And I will break the bar of Damascus, and cut off the inhabitant from the valley of Aven, and him that holdeth the sceptre from the house of Eden; and the people of Syria shall go into captivity unto Kir, saith Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/6/" data-ref="Amos 1:6 (American Standard Version)" data-verse-url="/bible/asv/amos/1/6/"><span class="v-num">6</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Gaza, yea, for four, I will not turn away the punishment thereof; because they carried away captive the whole people, to deliver them up to Edom:</span></a>
+<a class="v-row" href="/bible/asv/amos/1/7/" data-ref="Amos 1:7 (American Standard Version)" data-verse-url="/bible/asv/amos/1/7/"><span class="v-num">7</span><span class="v-txt">but I will send a fire on the wall of Gaza, and it shall devour the palaces thereof.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/8/" data-ref="Amos 1:8 (American Standard Version)" data-verse-url="/bible/asv/amos/1/8/"><span class="v-num">8</span><span class="v-txt">And I will cut off the inhabitant from Ashdod, and him that holdeth the sceptre from Ashkelon; and I will turn my hand against Ekron; and the remnant of the Philistines shall perish, saith the Lord Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/9/" data-ref="Amos 1:9 (American Standard Version)" data-verse-url="/bible/asv/amos/1/9/"><span class="v-num">9</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Tyre, yea, for four, I will not turn away the punishment thereof; because they delivered up the whole people to Edom, and remembered not the brotherly covenant:</span></a>
+<a class="v-row" href="/bible/asv/amos/1/10/" data-ref="Amos 1:10 (American Standard Version)" data-verse-url="/bible/asv/amos/1/10/"><span class="v-num">10</span><span class="v-txt">but I will send a fire on the wall of Tyre, and it shall devour the palaces thereof.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/11/" data-ref="Amos 1:11 (American Standard Version)" data-verse-url="/bible/asv/amos/1/11/"><span class="v-num">11</span><span class="v-txt">Thus saith Jehovah: For three transgressions of Edom, yea, for four, I will not turn away the punishment thereof; because he did pursue his brother with the sword, and did cast off all pity, and his anger did tear perpetually, and he kept his wrath for ever:</span></a>
+<a class="v-row" href="/bible/asv/amos/1/12/" data-ref="Amos 1:12 (American Standard Version)" data-verse-url="/bible/asv/amos/1/12/"><span class="v-num">12</span><span class="v-txt">but I will send a fire upon Teman, and it shall devour the palaces of Bozrah.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/13/" data-ref="Amos 1:13 (American Standard Version)" data-verse-url="/bible/asv/amos/1/13/"><span class="v-num">13</span><span class="v-txt">Thus saith Jehovah: For three transgressions of the children of Ammon, yea, for four, I will not turn away the punishment thereof; because they have ripped up the women with child of Gilead, that they may enlarge their border.</span></a>
+<a class="v-row" href="/bible/asv/amos/1/14/" data-ref="Amos 1:14 (American Standard Version)" data-verse-url="/bible/asv/amos/1/14/"><span class="v-num">14</span><span class="v-txt">But I will kindle a fire in the wall of Rabbah, and it shall devour the palaces thereof, with shouting in the day of battle, with a tempest in the day of the whirlwind;</span></a>
+<a class="v-row" href="/bible/asv/amos/1/15/" data-ref="Amos 1:15 (American Standard Version)" data-verse-url="/bible/asv/amos/1/15/"><span class="v-num">15</span><span class="v-txt">and their king shall go into captivity, he and his princes together, saith Jehovah.</span></a>
 
     
 <div class="app-cta">

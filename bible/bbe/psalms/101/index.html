@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,14 +204,14 @@ a:hover{text-decoration:underline}
       <h2>Chapter 101</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 101:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm. Of David. I will make a song of mercy and righteousness; to you, O Lord, will I make melody.</span></div>
-<div class="v-row" data-ref="Psalm 101:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will do wisely in the way of righteousness: O when will you come to me? I will be walking in my house with a true heart.</span></div>
-<div class="v-row" data-ref="Psalm 101:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I will not put any evil thing before my eyes; I am against all turning to one side; I will not have it near me.</span></div>
-<div class="v-row" data-ref="Psalm 101:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The false heart I will send away from me: I will not have an evil-doer for a friend.</span></div>
-<div class="v-row" data-ref="Psalm 101:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I will put to death anyone who says evil of his neighbour secretly; the man with a high look and a heart of pride is disgusting to me.</span></div>
-<div class="v-row" data-ref="Psalm 101:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">My eyes will be on those of good faith in the land, so that they may be living in my house; he who is walking in the right way will be my servant.</span></div>
-<div class="v-row" data-ref="Psalm 101:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The worker of deceit will not come into my house; the false man will have no place before my eyes.</span></div>
-<div class="v-row" data-ref="Psalm 101:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Morning by morning will I put to death all the sinners in the land, so that all evil-doers may be cut off from Jerusalem.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/101/1/" data-ref="Psalm 101:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/1/"><span class="v-num">1</span><span class="v-txt">A Psalm. Of David. I will make a song of mercy and righteousness; to you, O Lord, will I make melody.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/2/" data-ref="Psalm 101:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/2/"><span class="v-num">2</span><span class="v-txt">I will do wisely in the way of righteousness: O when will you come to me? I will be walking in my house with a true heart.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/3/" data-ref="Psalm 101:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/3/"><span class="v-num">3</span><span class="v-txt">I will not put any evil thing before my eyes; I am against all turning to one side; I will not have it near me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/4/" data-ref="Psalm 101:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/4/"><span class="v-num">4</span><span class="v-txt">The false heart I will send away from me: I will not have an evil-doer for a friend.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/5/" data-ref="Psalm 101:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/5/"><span class="v-num">5</span><span class="v-txt">I will put to death anyone who says evil of his neighbour secretly; the man with a high look and a heart of pride is disgusting to me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/6/" data-ref="Psalm 101:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/6/"><span class="v-num">6</span><span class="v-txt">My eyes will be on those of good faith in the land, so that they may be living in my house; he who is walking in the right way will be my servant.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/7/" data-ref="Psalm 101:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/7/"><span class="v-num">7</span><span class="v-txt">The worker of deceit will not come into my house; the false man will have no place before my eyes.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/101/8/" data-ref="Psalm 101:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/101/8/"><span class="v-num">8</span><span class="v-txt">Morning by morning will I put to death all the sinners in the land, so that all evil-doers may be cut off from Jerusalem.</span></a>
 
     
 <div class="app-cta">

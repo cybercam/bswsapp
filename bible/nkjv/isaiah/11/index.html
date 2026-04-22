@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 11</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 11:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">There shall come forth a Rod from the stem of Jesse, And a Branch shall grow out of his roots.</span></div>
-<div class="v-row" data-ref="Isaiah 11:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The Spirit of the LORD shall rest upon Him, The Spirit of wisdom and understanding, The Spirit of counsel and might, The Spirit of knowledge and of the fear of the LORD.</span></div>
-<div class="v-row" data-ref="Isaiah 11:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">His delight [is] in the fear of the LORD, And He shall not judge by the sight of His eyes, Nor decide by the hearing of His ears;</span></div>
-<div class="v-row" data-ref="Isaiah 11:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But with righteousness He shall judge the poor, And decide with equity for the meek of the earth; He shall strike the earth with the rod of His mouth, And with the breath of His lips He shall slay the wicked.</span></div>
-<div class="v-row" data-ref="Isaiah 11:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Righteousness shall be the belt of His loins, And faithfulness the belt of His waist.</span></div>
-<div class="v-row" data-ref="Isaiah 11:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" The wolf also shall dwell with the lamb, The leopard shall lie down with the young goat, The calf and the young lion and the fatling together; And a little child shall lead them.</span></div>
-<div class="v-row" data-ref="Isaiah 11:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The cow and the bear shall graze; Their young ones shall lie down together; And the lion shall eat straw like the ox.</span></div>
-<div class="v-row" data-ref="Isaiah 11:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The nursing child shall play by the cobra's hole, And the weaned child shall put his hand in the viper's den.</span></div>
-<div class="v-row" data-ref="Isaiah 11:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They shall not hurt nor destroy in all My holy mountain, For the earth shall be full of the knowledge of the LORD As the waters cover the sea.</span></div>
-<div class="v-row" data-ref="Isaiah 11:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">" And in that day there shall be a Root of Jesse, Who shall stand as a banner to the people; For the Gentiles shall seek Him, And His resting place shall be glorious."</span></div>
-<div class="v-row" data-ref="Isaiah 11:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">It shall come to pass in that day [That] the LORD shall set His hand again the second time To recover the remnant of His people who are left, From Assyria and Egypt, From Pathros and Cush, From Elam and Shinar, From Hamath and the islands of the sea.</span></div>
-<div class="v-row" data-ref="Isaiah 11:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He will set up a banner for the nations, And will assemble the outcasts of Israel, And gather together the dispersed of Judah From the four corners of the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 11:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Also the envy of Ephraim shall depart, And the adversaries of Judah shall be cut off; Ephraim shall not envy Judah, And Judah shall not harass Ephraim.</span></div>
-<div class="v-row" data-ref="Isaiah 11:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But they shall fly down upon the shoulder of the Philistines toward the west; Together they shall plunder the people of the East; They shall lay their hand on Edom and Moab; And the people of Ammon shall obey them.</span></div>
-<div class="v-row" data-ref="Isaiah 11:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The LORD will utterly destroy the tongue of the Sea of Egypt; With His mighty wind He will shake His fist over the River, And strike it in the seven streams, And make [men] cross over dry-shod.</span></div>
-<div class="v-row" data-ref="Isaiah 11:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">There will be a highway for the remnant of His people Who will be left from Assyria, As it was for Israel In the day that he came up from the land of Egypt.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/11/1/" data-ref="Isaiah 11:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/1/"><span class="v-num">1</span><span class="v-txt">There shall come forth a Rod from the stem of Jesse, And a Branch shall grow out of his roots.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/2/" data-ref="Isaiah 11:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/2/"><span class="v-num">2</span><span class="v-txt">The Spirit of the LORD shall rest upon Him, The Spirit of wisdom and understanding, The Spirit of counsel and might, The Spirit of knowledge and of the fear of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/3/" data-ref="Isaiah 11:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/3/"><span class="v-num">3</span><span class="v-txt">His delight [is] in the fear of the LORD, And He shall not judge by the sight of His eyes, Nor decide by the hearing of His ears;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/4/" data-ref="Isaiah 11:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/4/"><span class="v-num">4</span><span class="v-txt">But with righteousness He shall judge the poor, And decide with equity for the meek of the earth; He shall strike the earth with the rod of His mouth, And with the breath of His lips He shall slay the wicked.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/5/" data-ref="Isaiah 11:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/5/"><span class="v-num">5</span><span class="v-txt">Righteousness shall be the belt of His loins, And faithfulness the belt of His waist.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/6/" data-ref="Isaiah 11:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/6/"><span class="v-num">6</span><span class="v-txt">" The wolf also shall dwell with the lamb, The leopard shall lie down with the young goat, The calf and the young lion and the fatling together; And a little child shall lead them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/7/" data-ref="Isaiah 11:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/7/"><span class="v-num">7</span><span class="v-txt">The cow and the bear shall graze; Their young ones shall lie down together; And the lion shall eat straw like the ox.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/8/" data-ref="Isaiah 11:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/8/"><span class="v-num">8</span><span class="v-txt">The nursing child shall play by the cobra's hole, And the weaned child shall put his hand in the viper's den.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/9/" data-ref="Isaiah 11:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/9/"><span class="v-num">9</span><span class="v-txt">They shall not hurt nor destroy in all My holy mountain, For the earth shall be full of the knowledge of the LORD As the waters cover the sea.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/10/" data-ref="Isaiah 11:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/10/"><span class="v-num">10</span><span class="v-txt">" And in that day there shall be a Root of Jesse, Who shall stand as a banner to the people; For the Gentiles shall seek Him, And His resting place shall be glorious."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/11/" data-ref="Isaiah 11:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/11/"><span class="v-num">11</span><span class="v-txt">It shall come to pass in that day [That] the LORD shall set His hand again the second time To recover the remnant of His people who are left, From Assyria and Egypt, From Pathros and Cush, From Elam and Shinar, From Hamath and the islands of the sea.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/12/" data-ref="Isaiah 11:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/12/"><span class="v-num">12</span><span class="v-txt">He will set up a banner for the nations, And will assemble the outcasts of Israel, And gather together the dispersed of Judah From the four corners of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/13/" data-ref="Isaiah 11:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/13/"><span class="v-num">13</span><span class="v-txt">Also the envy of Ephraim shall depart, And the adversaries of Judah shall be cut off; Ephraim shall not envy Judah, And Judah shall not harass Ephraim.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/14/" data-ref="Isaiah 11:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/14/"><span class="v-num">14</span><span class="v-txt">But they shall fly down upon the shoulder of the Philistines toward the west; Together they shall plunder the people of the East; They shall lay their hand on Edom and Moab; And the people of Ammon shall obey them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/15/" data-ref="Isaiah 11:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/15/"><span class="v-num">15</span><span class="v-txt">The LORD will utterly destroy the tongue of the Sea of Egypt; With His mighty wind He will shake His fist over the River, And strike it in the seven streams, And make [men] cross over dry-shod.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/11/16/" data-ref="Isaiah 11:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/11/16/"><span class="v-num">16</span><span class="v-txt">There will be a highway for the remnant of His people Who will be left from Assyria, As it was for Israel In the day that he came up from the land of Egypt.</span></a>
 
     
 <div class="app-cta">

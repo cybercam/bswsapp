@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Rebuke not an elder, but exhort him as a father; the younger men as brethren:</span></div>
-<div class="v-row" data-ref="1 Timothy 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">the elder women as mothers; the younger as sisters, in all purity.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Honor widows that are widows indeed.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But if any widow hath children or grandchildren, let them learn first to show piety towards their own family, and to requite their parents: for this is acceptable in the sight of God.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now she that is a widow indeed, and desolate, hath her hope set on God, and continueth in supplications and prayers night and day.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But she that giveth herself to pleasure is dead while she liveth.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">These things also command, that they may be without reproach.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But if any provideth not for his own, and specially his own household, he hath denied the faith, and is worse than an unbeliever.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let none be enrolled as a widow under threescore years old, [having been] the wife of one man,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">well reported of for good works; if she hath brought up children, if she hath used hospitality to strangers, if she hath washed the saints' feet, if she hath relieved the afflicted, if she hath diligently followed every good work.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But younger widows refuse: for when they have waxed wanton against Christ, they desire to marry;</span></div>
-<div class="v-row" data-ref="1 Timothy 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">having condemnation, because they have rejected their first pledge.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And withal they learn also [to be] idle, going about from house to house; and not only idle, but tattlers also and busybodies, speaking things which they ought not.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I desire therefore that the younger [widows] marry, bear children, rule the household, give no occasion to the adversary for reviling:</span></div>
-<div class="v-row" data-ref="1 Timothy 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">for already some are turned aside after Satan.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If any woman that believeth hath widows, let her relieve them, and let not the church be burdened; that it mat relieve them that are widows indeed.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let the elders that rule well be counted worthy of double honor, especially those who labor in the word and in teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For the scripture saith, Thou shalt not muzzle the ox when he treadeth out the corn. And, The laborer is worthy of his hire.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Against an elder receive not an accusation, except at [the mouth of] two or three witnesses.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Them that sin reprove in the sight of all, that the rest also may be in fear.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I charge [thee] in the sight of God, and Christ Jesus, and the elect angels, that thou observe these things without prejudice, doing nothing by partiality.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Lay hands hastily on no man, neither be partaker of other men's sins: keep thyself pure.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Be no longer a drinker of water, but use a little wine for thy stomach's sake and thine often infirmities.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Some men's sins are evident, going before unto judgment; and some men also they follow after.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">In like manner also there are good works that are evident; and such as are otherwise cannot be hid.</span></div>
+    <a class="v-row" href="/bible/asv/1-timothy/5/1/" data-ref="1 Timothy 5:1 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/1/"><span class="v-num">1</span><span class="v-txt">Rebuke not an elder, but exhort him as a father; the younger men as brethren:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/2/" data-ref="1 Timothy 5:2 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/2/"><span class="v-num">2</span><span class="v-txt">the elder women as mothers; the younger as sisters, in all purity.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/3/" data-ref="1 Timothy 5:3 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/3/"><span class="v-num">3</span><span class="v-txt">Honor widows that are widows indeed.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/4/" data-ref="1 Timothy 5:4 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/4/"><span class="v-num">4</span><span class="v-txt">But if any widow hath children or grandchildren, let them learn first to show piety towards their own family, and to requite their parents: for this is acceptable in the sight of God.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/5/" data-ref="1 Timothy 5:5 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/5/"><span class="v-num">5</span><span class="v-txt">Now she that is a widow indeed, and desolate, hath her hope set on God, and continueth in supplications and prayers night and day.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/6/" data-ref="1 Timothy 5:6 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/6/"><span class="v-num">6</span><span class="v-txt">But she that giveth herself to pleasure is dead while she liveth.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/7/" data-ref="1 Timothy 5:7 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/7/"><span class="v-num">7</span><span class="v-txt">These things also command, that they may be without reproach.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/8/" data-ref="1 Timothy 5:8 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/8/"><span class="v-num">8</span><span class="v-txt">But if any provideth not for his own, and specially his own household, he hath denied the faith, and is worse than an unbeliever.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/9/" data-ref="1 Timothy 5:9 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/9/"><span class="v-num">9</span><span class="v-txt">Let none be enrolled as a widow under threescore years old, [having been] the wife of one man,</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/10/" data-ref="1 Timothy 5:10 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/10/"><span class="v-num">10</span><span class="v-txt">well reported of for good works; if she hath brought up children, if she hath used hospitality to strangers, if she hath washed the saints' feet, if she hath relieved the afflicted, if she hath diligently followed every good work.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/11/" data-ref="1 Timothy 5:11 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/11/"><span class="v-num">11</span><span class="v-txt">But younger widows refuse: for when they have waxed wanton against Christ, they desire to marry;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/12/" data-ref="1 Timothy 5:12 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/12/"><span class="v-num">12</span><span class="v-txt">having condemnation, because they have rejected their first pledge.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/13/" data-ref="1 Timothy 5:13 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/13/"><span class="v-num">13</span><span class="v-txt">And withal they learn also [to be] idle, going about from house to house; and not only idle, but tattlers also and busybodies, speaking things which they ought not.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/14/" data-ref="1 Timothy 5:14 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/14/"><span class="v-num">14</span><span class="v-txt">I desire therefore that the younger [widows] marry, bear children, rule the household, give no occasion to the adversary for reviling:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/15/" data-ref="1 Timothy 5:15 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/15/"><span class="v-num">15</span><span class="v-txt">for already some are turned aside after Satan.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/16/" data-ref="1 Timothy 5:16 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/16/"><span class="v-num">16</span><span class="v-txt">If any woman that believeth hath widows, let her relieve them, and let not the church be burdened; that it mat relieve them that are widows indeed.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/17/" data-ref="1 Timothy 5:17 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/17/"><span class="v-num">17</span><span class="v-txt">Let the elders that rule well be counted worthy of double honor, especially those who labor in the word and in teaching.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/18/" data-ref="1 Timothy 5:18 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/18/"><span class="v-num">18</span><span class="v-txt">For the scripture saith, Thou shalt not muzzle the ox when he treadeth out the corn. And, The laborer is worthy of his hire.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/19/" data-ref="1 Timothy 5:19 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/19/"><span class="v-num">19</span><span class="v-txt">Against an elder receive not an accusation, except at [the mouth of] two or three witnesses.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/20/" data-ref="1 Timothy 5:20 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/20/"><span class="v-num">20</span><span class="v-txt">Them that sin reprove in the sight of all, that the rest also may be in fear.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/21/" data-ref="1 Timothy 5:21 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/21/"><span class="v-num">21</span><span class="v-txt">I charge [thee] in the sight of God, and Christ Jesus, and the elect angels, that thou observe these things without prejudice, doing nothing by partiality.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/22/" data-ref="1 Timothy 5:22 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/22/"><span class="v-num">22</span><span class="v-txt">Lay hands hastily on no man, neither be partaker of other men's sins: keep thyself pure.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/23/" data-ref="1 Timothy 5:23 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/23/"><span class="v-num">23</span><span class="v-txt">Be no longer a drinker of water, but use a little wine for thy stomach's sake and thine often infirmities.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/24/" data-ref="1 Timothy 5:24 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/24/"><span class="v-num">24</span><span class="v-txt">Some men's sins are evident, going before unto judgment; and some men also they follow after.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/5/25/" data-ref="1 Timothy 5:25 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/5/25/"><span class="v-num">25</span><span class="v-txt">In like manner also there are good works that are evident; and such as are otherwise cannot be hid.</span></a>
 
     
 <div class="app-cta">

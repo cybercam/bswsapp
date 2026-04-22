@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 8:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">God remembered Noah, all the animals, and all the cattle that were with him in the ark; and God made a wind to pass over the earth. The waters subsided.</span></div>
-<div class="v-row" data-ref="Genesis 8:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The deep's fountains and the sky's windows were also stopped, and the rain from the sky was restrained.</span></div>
-<div class="v-row" data-ref="Genesis 8:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The waters receded from off the earth continually. After the end of one hundred fifty days the waters decreased.</span></div>
-<div class="v-row" data-ref="Genesis 8:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The ark rested in the seventh month, on the seventeenth day of the month, on Ararat's mountains.</span></div>
-<div class="v-row" data-ref="Genesis 8:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The waters receded continually until the tenth month. In the tenth month, on the first day of the month, the tops of the mountains were seen.</span></div>
-<div class="v-row" data-ref="Genesis 8:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">It happened at the end of forty days, that Noah opened the window of the ark which he had made,</span></div>
-<div class="v-row" data-ref="Genesis 8:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">and he sent forth a raven. It went back and forth, until the waters were dried up from off the earth.</span></div>
-<div class="v-row" data-ref="Genesis 8:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He sent forth a dove from him, to see if the waters were abated from off the surface of the ground,</span></div>
-<div class="v-row" data-ref="Genesis 8:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">but the dove found no place to rest her foot, and she returned to him into the ark; for the waters were on the surface of the whole earth. He put forth his hand, and took her, and brought her to him into the ark.</span></div>
-<div class="v-row" data-ref="Genesis 8:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He stayed yet another seven days; and again he sent forth the dove out of the ark.</span></div>
-<div class="v-row" data-ref="Genesis 8:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The dove came back to him at evening, and, behold, in her mouth was an olive leaf plucked off. So Noah knew that the waters were abated from off the earth.</span></div>
-<div class="v-row" data-ref="Genesis 8:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He stayed yet another seven days, and sent forth the dove; and she didn't return to him any more.</span></div>
-<div class="v-row" data-ref="Genesis 8:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">It happened in the six hundred first year, in the first month, the first day of the month, the waters were dried up from off the earth. Noah removed the covering of the ark, and looked. He saw that the surface of the ground was dried.</span></div>
-<div class="v-row" data-ref="Genesis 8:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">In the second month, on the twenty-seventh day of the month, the earth was dry.</span></div>
-<div class="v-row" data-ref="Genesis 8:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">God spoke to Noah, saying,</span></div>
-<div class="v-row" data-ref="Genesis 8:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"Go forth from the ark, you, and your wife, and your sons, and your sons' wives with you.</span></div>
-<div class="v-row" data-ref="Genesis 8:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Bring forth with you every living thing that is with you of all flesh, including birds, cattle, and every creeping thing that creeps on the earth; that they may breed abundantly in the earth, and be fruitful, and multiply on the earth."</span></div>
-<div class="v-row" data-ref="Genesis 8:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Noah went forth, with his sons, his wife, and his sons' wives with him.</span></div>
-<div class="v-row" data-ref="Genesis 8:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Every animal, every creeping thing, and every bird, whatever moves on the earth, after their families, went forth out of the ark.</span></div>
-<div class="v-row" data-ref="Genesis 8:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Noah built an altar to Yahweh, and took of every clean animal, and of every clean bird, and offered burnt offerings on the altar.</span></div>
-<div class="v-row" data-ref="Genesis 8:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Yahweh smelled the sweet savor. Yahweh said in his heart, "I will not again curse the ground any more for man's sake, because the imagination of man's heart is evil from his youth; neither will I ever again strike everything living, as I have done.</span></div>
-<div class="v-row" data-ref="Genesis 8:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">While the earth remains, seed time and harvest, and cold and heat, and summer and winter, and day and night shall not cease."</span></div>
+    <a class="v-row" href="/bible/web/genesis/8/1/" data-ref="Genesis 8:1 (World English Bible)" data-verse-url="/bible/web/genesis/8/1/"><span class="v-num">1</span><span class="v-txt">God remembered Noah, all the animals, and all the cattle that were with him in the ark; and God made a wind to pass over the earth. The waters subsided.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/2/" data-ref="Genesis 8:2 (World English Bible)" data-verse-url="/bible/web/genesis/8/2/"><span class="v-num">2</span><span class="v-txt">The deep's fountains and the sky's windows were also stopped, and the rain from the sky was restrained.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/3/" data-ref="Genesis 8:3 (World English Bible)" data-verse-url="/bible/web/genesis/8/3/"><span class="v-num">3</span><span class="v-txt">The waters receded from off the earth continually. After the end of one hundred fifty days the waters decreased.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/4/" data-ref="Genesis 8:4 (World English Bible)" data-verse-url="/bible/web/genesis/8/4/"><span class="v-num">4</span><span class="v-txt">The ark rested in the seventh month, on the seventeenth day of the month, on Ararat's mountains.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/5/" data-ref="Genesis 8:5 (World English Bible)" data-verse-url="/bible/web/genesis/8/5/"><span class="v-num">5</span><span class="v-txt">The waters receded continually until the tenth month. In the tenth month, on the first day of the month, the tops of the mountains were seen.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/6/" data-ref="Genesis 8:6 (World English Bible)" data-verse-url="/bible/web/genesis/8/6/"><span class="v-num">6</span><span class="v-txt">It happened at the end of forty days, that Noah opened the window of the ark which he had made,</span></a>
+<a class="v-row" href="/bible/web/genesis/8/7/" data-ref="Genesis 8:7 (World English Bible)" data-verse-url="/bible/web/genesis/8/7/"><span class="v-num">7</span><span class="v-txt">and he sent forth a raven. It went back and forth, until the waters were dried up from off the earth.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/8/" data-ref="Genesis 8:8 (World English Bible)" data-verse-url="/bible/web/genesis/8/8/"><span class="v-num">8</span><span class="v-txt">He sent forth a dove from him, to see if the waters were abated from off the surface of the ground,</span></a>
+<a class="v-row" href="/bible/web/genesis/8/9/" data-ref="Genesis 8:9 (World English Bible)" data-verse-url="/bible/web/genesis/8/9/"><span class="v-num">9</span><span class="v-txt">but the dove found no place to rest her foot, and she returned to him into the ark; for the waters were on the surface of the whole earth. He put forth his hand, and took her, and brought her to him into the ark.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/10/" data-ref="Genesis 8:10 (World English Bible)" data-verse-url="/bible/web/genesis/8/10/"><span class="v-num">10</span><span class="v-txt">He stayed yet another seven days; and again he sent forth the dove out of the ark.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/11/" data-ref="Genesis 8:11 (World English Bible)" data-verse-url="/bible/web/genesis/8/11/"><span class="v-num">11</span><span class="v-txt">The dove came back to him at evening, and, behold, in her mouth was an olive leaf plucked off. So Noah knew that the waters were abated from off the earth.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/12/" data-ref="Genesis 8:12 (World English Bible)" data-verse-url="/bible/web/genesis/8/12/"><span class="v-num">12</span><span class="v-txt">He stayed yet another seven days, and sent forth the dove; and she didn't return to him any more.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/13/" data-ref="Genesis 8:13 (World English Bible)" data-verse-url="/bible/web/genesis/8/13/"><span class="v-num">13</span><span class="v-txt">It happened in the six hundred first year, in the first month, the first day of the month, the waters were dried up from off the earth. Noah removed the covering of the ark, and looked. He saw that the surface of the ground was dried.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/14/" data-ref="Genesis 8:14 (World English Bible)" data-verse-url="/bible/web/genesis/8/14/"><span class="v-num">14</span><span class="v-txt">In the second month, on the twenty-seventh day of the month, the earth was dry.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/15/" data-ref="Genesis 8:15 (World English Bible)" data-verse-url="/bible/web/genesis/8/15/"><span class="v-num">15</span><span class="v-txt">God spoke to Noah, saying,</span></a>
+<a class="v-row" href="/bible/web/genesis/8/16/" data-ref="Genesis 8:16 (World English Bible)" data-verse-url="/bible/web/genesis/8/16/"><span class="v-num">16</span><span class="v-txt">"Go forth from the ark, you, and your wife, and your sons, and your sons' wives with you.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/17/" data-ref="Genesis 8:17 (World English Bible)" data-verse-url="/bible/web/genesis/8/17/"><span class="v-num">17</span><span class="v-txt">Bring forth with you every living thing that is with you of all flesh, including birds, cattle, and every creeping thing that creeps on the earth; that they may breed abundantly in the earth, and be fruitful, and multiply on the earth."</span></a>
+<a class="v-row" href="/bible/web/genesis/8/18/" data-ref="Genesis 8:18 (World English Bible)" data-verse-url="/bible/web/genesis/8/18/"><span class="v-num">18</span><span class="v-txt">Noah went forth, with his sons, his wife, and his sons' wives with him.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/19/" data-ref="Genesis 8:19 (World English Bible)" data-verse-url="/bible/web/genesis/8/19/"><span class="v-num">19</span><span class="v-txt">Every animal, every creeping thing, and every bird, whatever moves on the earth, after their families, went forth out of the ark.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/20/" data-ref="Genesis 8:20 (World English Bible)" data-verse-url="/bible/web/genesis/8/20/"><span class="v-num">20</span><span class="v-txt">Noah built an altar to Yahweh, and took of every clean animal, and of every clean bird, and offered burnt offerings on the altar.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/21/" data-ref="Genesis 8:21 (World English Bible)" data-verse-url="/bible/web/genesis/8/21/"><span class="v-num">21</span><span class="v-txt">Yahweh smelled the sweet savor. Yahweh said in his heart, "I will not again curse the ground any more for man's sake, because the imagination of man's heart is evil from his youth; neither will I ever again strike everything living, as I have done.</span></a>
+<a class="v-row" href="/bible/web/genesis/8/22/" data-ref="Genesis 8:22 (World English Bible)" data-verse-url="/bible/web/genesis/8/22/"><span class="v-num">22</span><span class="v-txt">While the earth remains, seed time and harvest, and cold and heat, and summer and winter, and day and night shall not cease."</span></a>
 
     
 <div class="app-cta">

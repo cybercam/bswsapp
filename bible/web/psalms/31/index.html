@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 31:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For the Chief Musician. A Psalm by David. In you, Yahweh, I take refuge. Let me never be disappointed: Deliver me in your righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 31:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Bow down your ear to me. Deliver me speedily. Be to me a strong rock, A house of defense to save me.</span></div>
-<div class="v-row" data-ref="Psalm 31:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For you are my rock and my fortress, Therefore for your name's sake lead me and guide me.</span></div>
-<div class="v-row" data-ref="Psalm 31:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Pluck me out of the net that they have laid secretly for me, For you are my stronghold.</span></div>
-<div class="v-row" data-ref="Psalm 31:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Into your hand I commend my spirit. You redeem me, Yahweh, God of truth.</span></div>
-<div class="v-row" data-ref="Psalm 31:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I hate those who regard lying vanities, But I trust in Yahweh.</span></div>
-<div class="v-row" data-ref="Psalm 31:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I will be glad and rejoice in your loving kindness, For you have seen my affliction. You have known my soul in adversities.</span></div>
-<div class="v-row" data-ref="Psalm 31:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You have not shut me up into the hand of the enemy. You have set my feet in a large place.</span></div>
-<div class="v-row" data-ref="Psalm 31:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Have mercy on me, Yahweh, for I am in distress. My eye, my soul, and my body waste away with grief.</span></div>
-<div class="v-row" data-ref="Psalm 31:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For my life is spent with sorrow, My years with sighing. My strength fails because of my iniquity. My bones are wasted away.</span></div>
-<div class="v-row" data-ref="Psalm 31:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Because of all my adversaries I have become utterly contemptible to my neighbors, A fear to my acquaintances. Those who saw me on the street fled from me.</span></div>
-<div class="v-row" data-ref="Psalm 31:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I am forgotten from their hearts like a dead man. I am like broken pottery.</span></div>
-<div class="v-row" data-ref="Psalm 31:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For I have heard the slander of many, terror on every side, While they conspire together against me, They plot to take away my life.</span></div>
-<div class="v-row" data-ref="Psalm 31:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I trust in you, Yahweh. I said, "You are my God."</span></div>
-<div class="v-row" data-ref="Psalm 31:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My times are in your hand. Deliver me from the hand of my enemies, and from those who persecute me.</span></div>
-<div class="v-row" data-ref="Psalm 31:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Make your face to shine on your servant. Save me in your loving kindness.</span></div>
-<div class="v-row" data-ref="Psalm 31:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let me not be disappointed, Yahweh, for I have called on you. Let the wicked be disappointed. Let them be silent in Sheol.</span></div>
-<div class="v-row" data-ref="Psalm 31:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let the lying lips be mute, Which speak against the righteous insolently, with pride and contempt.</span></div>
-<div class="v-row" data-ref="Psalm 31:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Oh how great is your goodness, Which you have laid up for those who fear you, Which you have worked for those who take refuge in you, Before the sons of men!</span></div>
-<div class="v-row" data-ref="Psalm 31:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">In the shelter of your presence you will hide them from the plotting of man. You will keep them secretly in a dwelling away from the strife of tongues.</span></div>
-<div class="v-row" data-ref="Psalm 31:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Praise be to Yahweh, For he has shown me his marvelous loving kindness in a strong city.</span></div>
-<div class="v-row" data-ref="Psalm 31:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">As for me, I said in my haste, "I am cut off from before your eyes." Nevertheless you heard the voice of my petitions when I cried to you.</span></div>
-<div class="v-row" data-ref="Psalm 31:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Oh love Yahweh, all you his saints! Yahweh preserves the faithful, And pays back him who deals proudly in full.</span></div>
-<div class="v-row" data-ref="Psalm 31:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Be strong, and let your heart take courage, All you who hope in Yahweh.</span></div>
+    <a class="v-row" href="/bible/web/psalms/31/1/" data-ref="Psalm 31:1 (World English Bible)" data-verse-url="/bible/web/psalms/31/1/"><span class="v-num">1</span><span class="v-txt">For the Chief Musician. A Psalm by David. In you, Yahweh, I take refuge. Let me never be disappointed: Deliver me in your righteousness.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/2/" data-ref="Psalm 31:2 (World English Bible)" data-verse-url="/bible/web/psalms/31/2/"><span class="v-num">2</span><span class="v-txt">Bow down your ear to me. Deliver me speedily. Be to me a strong rock, A house of defense to save me.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/3/" data-ref="Psalm 31:3 (World English Bible)" data-verse-url="/bible/web/psalms/31/3/"><span class="v-num">3</span><span class="v-txt">For you are my rock and my fortress, Therefore for your name's sake lead me and guide me.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/4/" data-ref="Psalm 31:4 (World English Bible)" data-verse-url="/bible/web/psalms/31/4/"><span class="v-num">4</span><span class="v-txt">Pluck me out of the net that they have laid secretly for me, For you are my stronghold.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/5/" data-ref="Psalm 31:5 (World English Bible)" data-verse-url="/bible/web/psalms/31/5/"><span class="v-num">5</span><span class="v-txt">Into your hand I commend my spirit. You redeem me, Yahweh, God of truth.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/6/" data-ref="Psalm 31:6 (World English Bible)" data-verse-url="/bible/web/psalms/31/6/"><span class="v-num">6</span><span class="v-txt">I hate those who regard lying vanities, But I trust in Yahweh.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/7/" data-ref="Psalm 31:7 (World English Bible)" data-verse-url="/bible/web/psalms/31/7/"><span class="v-num">7</span><span class="v-txt">I will be glad and rejoice in your loving kindness, For you have seen my affliction. You have known my soul in adversities.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/8/" data-ref="Psalm 31:8 (World English Bible)" data-verse-url="/bible/web/psalms/31/8/"><span class="v-num">8</span><span class="v-txt">You have not shut me up into the hand of the enemy. You have set my feet in a large place.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/9/" data-ref="Psalm 31:9 (World English Bible)" data-verse-url="/bible/web/psalms/31/9/"><span class="v-num">9</span><span class="v-txt">Have mercy on me, Yahweh, for I am in distress. My eye, my soul, and my body waste away with grief.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/10/" data-ref="Psalm 31:10 (World English Bible)" data-verse-url="/bible/web/psalms/31/10/"><span class="v-num">10</span><span class="v-txt">For my life is spent with sorrow, My years with sighing. My strength fails because of my iniquity. My bones are wasted away.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/11/" data-ref="Psalm 31:11 (World English Bible)" data-verse-url="/bible/web/psalms/31/11/"><span class="v-num">11</span><span class="v-txt">Because of all my adversaries I have become utterly contemptible to my neighbors, A fear to my acquaintances. Those who saw me on the street fled from me.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/12/" data-ref="Psalm 31:12 (World English Bible)" data-verse-url="/bible/web/psalms/31/12/"><span class="v-num">12</span><span class="v-txt">I am forgotten from their hearts like a dead man. I am like broken pottery.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/13/" data-ref="Psalm 31:13 (World English Bible)" data-verse-url="/bible/web/psalms/31/13/"><span class="v-num">13</span><span class="v-txt">For I have heard the slander of many, terror on every side, While they conspire together against me, They plot to take away my life.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/14/" data-ref="Psalm 31:14 (World English Bible)" data-verse-url="/bible/web/psalms/31/14/"><span class="v-num">14</span><span class="v-txt">But I trust in you, Yahweh. I said, "You are my God."</span></a>
+<a class="v-row" href="/bible/web/psalms/31/15/" data-ref="Psalm 31:15 (World English Bible)" data-verse-url="/bible/web/psalms/31/15/"><span class="v-num">15</span><span class="v-txt">My times are in your hand. Deliver me from the hand of my enemies, and from those who persecute me.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/16/" data-ref="Psalm 31:16 (World English Bible)" data-verse-url="/bible/web/psalms/31/16/"><span class="v-num">16</span><span class="v-txt">Make your face to shine on your servant. Save me in your loving kindness.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/17/" data-ref="Psalm 31:17 (World English Bible)" data-verse-url="/bible/web/psalms/31/17/"><span class="v-num">17</span><span class="v-txt">Let me not be disappointed, Yahweh, for I have called on you. Let the wicked be disappointed. Let them be silent in Sheol.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/18/" data-ref="Psalm 31:18 (World English Bible)" data-verse-url="/bible/web/psalms/31/18/"><span class="v-num">18</span><span class="v-txt">Let the lying lips be mute, Which speak against the righteous insolently, with pride and contempt.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/19/" data-ref="Psalm 31:19 (World English Bible)" data-verse-url="/bible/web/psalms/31/19/"><span class="v-num">19</span><span class="v-txt">Oh how great is your goodness, Which you have laid up for those who fear you, Which you have worked for those who take refuge in you, Before the sons of men!</span></a>
+<a class="v-row" href="/bible/web/psalms/31/20/" data-ref="Psalm 31:20 (World English Bible)" data-verse-url="/bible/web/psalms/31/20/"><span class="v-num">20</span><span class="v-txt">In the shelter of your presence you will hide them from the plotting of man. You will keep them secretly in a dwelling away from the strife of tongues.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/21/" data-ref="Psalm 31:21 (World English Bible)" data-verse-url="/bible/web/psalms/31/21/"><span class="v-num">21</span><span class="v-txt">Praise be to Yahweh, For he has shown me his marvelous loving kindness in a strong city.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/22/" data-ref="Psalm 31:22 (World English Bible)" data-verse-url="/bible/web/psalms/31/22/"><span class="v-num">22</span><span class="v-txt">As for me, I said in my haste, "I am cut off from before your eyes." Nevertheless you heard the voice of my petitions when I cried to you.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/23/" data-ref="Psalm 31:23 (World English Bible)" data-verse-url="/bible/web/psalms/31/23/"><span class="v-num">23</span><span class="v-txt">Oh love Yahweh, all you his saints! Yahweh preserves the faithful, And pays back him who deals proudly in full.</span></a>
+<a class="v-row" href="/bible/web/psalms/31/24/" data-ref="Psalm 31:24 (World English Bible)" data-verse-url="/bible/web/psalms/31/24/"><span class="v-num">24</span><span class="v-txt">Be strong, and let your heart take courage, All you who hope in Yahweh.</span></a>
 
     
 <div class="app-cta">

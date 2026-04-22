@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Exodus 31:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then the LORD spoke to Moses, saying:</span></div>
-<div class="v-row" data-ref="Exodus 31:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah.</span></div>
-<div class="v-row" data-ref="Exodus 31:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"And I have filled him with the Spirit of God, in wisdom, in understanding, in knowledge, and in all [manner of] workmanship,</span></div>
-<div class="v-row" data-ref="Exodus 31:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"to design artistic works, to work in gold, in silver, in bronze,</span></div>
-<div class="v-row" data-ref="Exodus 31:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"in cutting jewels for setting, in carving wood, and to work in all [manner of] workmanship.</span></div>
-<div class="v-row" data-ref="Exodus 31:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"And I, indeed I, have appointed with him Aholiab the son of Ahisamach, of the tribe of Dan; and I have put wisdom in the hearts of all who are gifted artisans, that they may make all that I have commanded you:</span></div>
-<div class="v-row" data-ref="Exodus 31:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"the tabernacle of meeting, the ark of the Testimony and the mercy seat that [is] on it, and all the furniture of the tabernacle --</span></div>
-<div class="v-row" data-ref="Exodus 31:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"the table and its utensils, the pure [gold] lampstand with all its utensils, the altar of incense,</span></div>
-<div class="v-row" data-ref="Exodus 31:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"the altar of burnt offering with all its utensils, and the laver and its base --</span></div>
-<div class="v-row" data-ref="Exodus 31:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"the garments of ministry, the holy garments for Aaron the priest and the garments of his sons, to minister as priests,</span></div>
-<div class="v-row" data-ref="Exodus 31:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"and the anointing oil and sweet incense for the holy [place.] According to all that I have commanded you they shall do."</span></div>
-<div class="v-row" data-ref="Exodus 31:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the LORD spoke to Moses, saying,</span></div>
-<div class="v-row" data-ref="Exodus 31:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"Speak also to the children of Israel, saying: 'Surely My Sabbaths you shall keep, for it [is] a sign between Me and you throughout your generations, that [you] may know that I [am] the LORD who sanctifies you.</span></div>
-<div class="v-row" data-ref="Exodus 31:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">'You shall keep the Sabbath, therefore, for [it is] holy to you. Everyone who profanes it shall surely be put to death; for whoever does [any] work on it, that person shall be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Exodus 31:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">'Work shall be done for six days, but the seventh [is] the Sabbath of rest, holy to the LORD. Whoever does [any] work on the Sabbath day, he shall surely be put to death.</span></div>
-<div class="v-row" data-ref="Exodus 31:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">'Therefore the children of Israel shall keep the Sabbath, to observe the Sabbath throughout their generations [as] a perpetual covenant.</span></div>
-<div class="v-row" data-ref="Exodus 31:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">'It [is] a sign between Me and the children of Israel forever; for [in] six days the LORD made the heavens and the earth, and on the seventh day He rested and was refreshed.' "</span></div>
-<div class="v-row" data-ref="Exodus 31:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And when He had made an end of speaking with him on Mount Sinai, He gave Moses two tablets of the Testimony, tablets of stone, written with the finger of God.</span></div>
+    <a class="v-row" href="/bible/nkjv/exodus/31/1/" data-ref="Exodus 31:1 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/1/"><span class="v-num">1</span><span class="v-txt">Then the LORD spoke to Moses, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/2/" data-ref="Exodus 31:2 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/2/"><span class="v-num">2</span><span class="v-txt">"See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/3/" data-ref="Exodus 31:3 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/3/"><span class="v-num">3</span><span class="v-txt">"And I have filled him with the Spirit of God, in wisdom, in understanding, in knowledge, and in all [manner of] workmanship,</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/4/" data-ref="Exodus 31:4 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/4/"><span class="v-num">4</span><span class="v-txt">"to design artistic works, to work in gold, in silver, in bronze,</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/5/" data-ref="Exodus 31:5 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/5/"><span class="v-num">5</span><span class="v-txt">"in cutting jewels for setting, in carving wood, and to work in all [manner of] workmanship.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/6/" data-ref="Exodus 31:6 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/6/"><span class="v-num">6</span><span class="v-txt">"And I, indeed I, have appointed with him Aholiab the son of Ahisamach, of the tribe of Dan; and I have put wisdom in the hearts of all who are gifted artisans, that they may make all that I have commanded you:</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/7/" data-ref="Exodus 31:7 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/7/"><span class="v-num">7</span><span class="v-txt">"the tabernacle of meeting, the ark of the Testimony and the mercy seat that [is] on it, and all the furniture of the tabernacle --</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/8/" data-ref="Exodus 31:8 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/8/"><span class="v-num">8</span><span class="v-txt">"the table and its utensils, the pure [gold] lampstand with all its utensils, the altar of incense,</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/9/" data-ref="Exodus 31:9 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/9/"><span class="v-num">9</span><span class="v-txt">"the altar of burnt offering with all its utensils, and the laver and its base --</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/10/" data-ref="Exodus 31:10 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/10/"><span class="v-num">10</span><span class="v-txt">"the garments of ministry, the holy garments for Aaron the priest and the garments of his sons, to minister as priests,</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/11/" data-ref="Exodus 31:11 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/11/"><span class="v-num">11</span><span class="v-txt">"and the anointing oil and sweet incense for the holy [place.] According to all that I have commanded you they shall do."</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/12/" data-ref="Exodus 31:12 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/12/"><span class="v-num">12</span><span class="v-txt">And the LORD spoke to Moses, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/13/" data-ref="Exodus 31:13 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/13/"><span class="v-num">13</span><span class="v-txt">"Speak also to the children of Israel, saying: 'Surely My Sabbaths you shall keep, for it [is] a sign between Me and you throughout your generations, that [you] may know that I [am] the LORD who sanctifies you.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/14/" data-ref="Exodus 31:14 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/14/"><span class="v-num">14</span><span class="v-txt">'You shall keep the Sabbath, therefore, for [it is] holy to you. Everyone who profanes it shall surely be put to death; for whoever does [any] work on it, that person shall be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/15/" data-ref="Exodus 31:15 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/15/"><span class="v-num">15</span><span class="v-txt">'Work shall be done for six days, but the seventh [is] the Sabbath of rest, holy to the LORD. Whoever does [any] work on the Sabbath day, he shall surely be put to death.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/16/" data-ref="Exodus 31:16 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/16/"><span class="v-num">16</span><span class="v-txt">'Therefore the children of Israel shall keep the Sabbath, to observe the Sabbath throughout their generations [as] a perpetual covenant.</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/17/" data-ref="Exodus 31:17 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/17/"><span class="v-num">17</span><span class="v-txt">'It [is] a sign between Me and the children of Israel forever; for [in] six days the LORD made the heavens and the earth, and on the seventh day He rested and was refreshed.' "</span></a>
+<a class="v-row" href="/bible/nkjv/exodus/31/18/" data-ref="Exodus 31:18 (New King James Version)" data-verse-url="/bible/nkjv/exodus/31/18/"><span class="v-num">18</span><span class="v-txt">And when He had made an end of speaking with him on Mount Sinai, He gave Moses two tablets of the Testimony, tablets of stone, written with the finger of God.</span></a>
 
     
 <div class="app-cta">

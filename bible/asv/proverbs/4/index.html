@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 4:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear, [my] sons, the instruction of a father, And attend to know understanding:</span></div>
-<div class="v-row" data-ref="Proverbs 4:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For I give you good doctrine; Forsake ye not my law.</span></div>
-<div class="v-row" data-ref="Proverbs 4:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For I was a son unto my father, Tender and only beloved in the sight of my mother.</span></div>
-<div class="v-row" data-ref="Proverbs 4:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he taught me, and said unto me: Let thy heart retain my words; Keep my commandments, and live;</span></div>
-<div class="v-row" data-ref="Proverbs 4:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Get wisdom, get understanding; Forget not, neither decline from the words of my mouth;</span></div>
-<div class="v-row" data-ref="Proverbs 4:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Forsake her not, and she will preserve thee; Love her, and she will keep thee.</span></div>
-<div class="v-row" data-ref="Proverbs 4:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Wisdom [is] the principal thing; [Therefore] get wisdom; Yea, with all thy getting get understanding.</span></div>
-<div class="v-row" data-ref="Proverbs 4:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Exalt her, and she will promote thee; She will bring thee to honor, when thou dost embrace her.</span></div>
-<div class="v-row" data-ref="Proverbs 4:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">She will give to thy head a chaplet of grace; A crown of beauty will she deliver to thee.</span></div>
-<div class="v-row" data-ref="Proverbs 4:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Hear, O my son, and receive my sayings; And the years of thy life shall be many.</span></div>
-<div class="v-row" data-ref="Proverbs 4:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I have taught thee in the way of wisdom; I have led thee in paths of uprightness.</span></div>
-<div class="v-row" data-ref="Proverbs 4:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When thou goest, thy steps shall not be straitened; And if thou runnest, thou shalt not stumble.</span></div>
-<div class="v-row" data-ref="Proverbs 4:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Take fast hold of instruction; Let her not go: Keep her; For she is thy life.</span></div>
-<div class="v-row" data-ref="Proverbs 4:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Enter not into the path of the wicked, And walk not in the way of evil men.</span></div>
-<div class="v-row" data-ref="Proverbs 4:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Avoid it, pass not by it; Turn from it, and pass on.</span></div>
-<div class="v-row" data-ref="Proverbs 4:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For they sleep not, except they do evil; And their sleep is taken away, unless they cause some to fall.</span></div>
-<div class="v-row" data-ref="Proverbs 4:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For they eat the bread of wickedness, And drink the wine of violence.</span></div>
-<div class="v-row" data-ref="Proverbs 4:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But the path of the righteous is as the dawning light, That shineth more and more unto the perfect day.</span></div>
-<div class="v-row" data-ref="Proverbs 4:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The way of the wicked is as darkness: They know not at what they stumble.</span></div>
-<div class="v-row" data-ref="Proverbs 4:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My son, attend to my words; Incline thine ear unto my sayings.</span></div>
-<div class="v-row" data-ref="Proverbs 4:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Let them not depart from thine eyes; Keep them in the midst of thy heart.</span></div>
-<div class="v-row" data-ref="Proverbs 4:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For they are life unto those that find them, And health to all their flesh.</span></div>
-<div class="v-row" data-ref="Proverbs 4:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Keep thy heart with all diligence; For out of it are the issues of life.</span></div>
-<div class="v-row" data-ref="Proverbs 4:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Put away from thee a wayward mouth, And perverse lips put far from thee.</span></div>
-<div class="v-row" data-ref="Proverbs 4:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Let thine eyes look right on, And let thine eyelids look straight before thee.</span></div>
-<div class="v-row" data-ref="Proverbs 4:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Make level the path of thy feet, And let all thy ways be established.</span></div>
-<div class="v-row" data-ref="Proverbs 4:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Turn not to the right hand nor to the left: Remove thy foot from evil.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/4/1/" data-ref="Proverbs 4:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/1/"><span class="v-num">1</span><span class="v-txt">Hear, [my] sons, the instruction of a father, And attend to know understanding:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/2/" data-ref="Proverbs 4:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/2/"><span class="v-num">2</span><span class="v-txt">For I give you good doctrine; Forsake ye not my law.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/3/" data-ref="Proverbs 4:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/3/"><span class="v-num">3</span><span class="v-txt">For I was a son unto my father, Tender and only beloved in the sight of my mother.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/4/" data-ref="Proverbs 4:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/4/"><span class="v-num">4</span><span class="v-txt">And he taught me, and said unto me: Let thy heart retain my words; Keep my commandments, and live;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/5/" data-ref="Proverbs 4:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/5/"><span class="v-num">5</span><span class="v-txt">Get wisdom, get understanding; Forget not, neither decline from the words of my mouth;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/6/" data-ref="Proverbs 4:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/6/"><span class="v-num">6</span><span class="v-txt">Forsake her not, and she will preserve thee; Love her, and she will keep thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/7/" data-ref="Proverbs 4:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/7/"><span class="v-num">7</span><span class="v-txt">Wisdom [is] the principal thing; [Therefore] get wisdom; Yea, with all thy getting get understanding.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/8/" data-ref="Proverbs 4:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/8/"><span class="v-num">8</span><span class="v-txt">Exalt her, and she will promote thee; She will bring thee to honor, when thou dost embrace her.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/9/" data-ref="Proverbs 4:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/9/"><span class="v-num">9</span><span class="v-txt">She will give to thy head a chaplet of grace; A crown of beauty will she deliver to thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/10/" data-ref="Proverbs 4:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/10/"><span class="v-num">10</span><span class="v-txt">Hear, O my son, and receive my sayings; And the years of thy life shall be many.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/11/" data-ref="Proverbs 4:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/11/"><span class="v-num">11</span><span class="v-txt">I have taught thee in the way of wisdom; I have led thee in paths of uprightness.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/12/" data-ref="Proverbs 4:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/12/"><span class="v-num">12</span><span class="v-txt">When thou goest, thy steps shall not be straitened; And if thou runnest, thou shalt not stumble.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/13/" data-ref="Proverbs 4:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/13/"><span class="v-num">13</span><span class="v-txt">Take fast hold of instruction; Let her not go: Keep her; For she is thy life.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/14/" data-ref="Proverbs 4:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/14/"><span class="v-num">14</span><span class="v-txt">Enter not into the path of the wicked, And walk not in the way of evil men.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/15/" data-ref="Proverbs 4:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/15/"><span class="v-num">15</span><span class="v-txt">Avoid it, pass not by it; Turn from it, and pass on.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/16/" data-ref="Proverbs 4:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/16/"><span class="v-num">16</span><span class="v-txt">For they sleep not, except they do evil; And their sleep is taken away, unless they cause some to fall.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/17/" data-ref="Proverbs 4:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/17/"><span class="v-num">17</span><span class="v-txt">For they eat the bread of wickedness, And drink the wine of violence.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/18/" data-ref="Proverbs 4:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/18/"><span class="v-num">18</span><span class="v-txt">But the path of the righteous is as the dawning light, That shineth more and more unto the perfect day.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/19/" data-ref="Proverbs 4:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/19/"><span class="v-num">19</span><span class="v-txt">The way of the wicked is as darkness: They know not at what they stumble.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/20/" data-ref="Proverbs 4:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/20/"><span class="v-num">20</span><span class="v-txt">My son, attend to my words; Incline thine ear unto my sayings.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/21/" data-ref="Proverbs 4:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/21/"><span class="v-num">21</span><span class="v-txt">Let them not depart from thine eyes; Keep them in the midst of thy heart.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/22/" data-ref="Proverbs 4:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/22/"><span class="v-num">22</span><span class="v-txt">For they are life unto those that find them, And health to all their flesh.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/23/" data-ref="Proverbs 4:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/23/"><span class="v-num">23</span><span class="v-txt">Keep thy heart with all diligence; For out of it are the issues of life.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/24/" data-ref="Proverbs 4:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/24/"><span class="v-num">24</span><span class="v-txt">Put away from thee a wayward mouth, And perverse lips put far from thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/25/" data-ref="Proverbs 4:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/25/"><span class="v-num">25</span><span class="v-txt">Let thine eyes look right on, And let thine eyelids look straight before thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/26/" data-ref="Proverbs 4:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/26/"><span class="v-num">26</span><span class="v-txt">Make level the path of thy feet, And let all thy ways be established.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/4/27/" data-ref="Proverbs 4:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/4/27/"><span class="v-num">27</span><span class="v-txt">Turn not to the right hand nor to the left: Remove thy foot from evil.</span></a>
 
     
 <div class="app-cta">

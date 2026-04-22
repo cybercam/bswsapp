@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 12:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Righteous [are] You, O LORD, when I plead with You; Yet let me talk with You about [Your] judgments. Why does the way of the wicked prosper? [Why] are those happy who deal so treacherously?</span></div>
-<div class="v-row" data-ref="Jeremiah 12:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You have planted them, yes, they have taken root; They grow, yes, they bear fruit. You [are] near in their mouth But far from their mind.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But You, O LORD, know me; You have seen me, And You have tested my heart toward You. Pull them out like sheep for the slaughter, And prepare them for the day of slaughter.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">How long will the land mourn, And the herbs of every field wither? The beasts and birds are consumed, For the wickedness of those who dwell there, Because they said, "He will not see our final end."</span></div>
-<div class="v-row" data-ref="Jeremiah 12:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">" If you have run with the footmen, and they have wearied you, Then how can you contend with horses? And [if] in the land of peace, [In which] you trusted, [they wearied you,] Then how will you do in the floodplain of the Jordan?</span></div>
-<div class="v-row" data-ref="Jeremiah 12:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For even your brothers, the house of your father, Even they have dealt treacherously with you; Yes, they have called a multitude after you. Do not believe them, Even though they speak smooth words to you.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">" I have forsaken My house, I have left My heritage; I have given the dearly beloved of My soul into the hand of her enemies.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">My heritage is to Me like a lion in the forest; It cries out against Me; Therefore I have hated it.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My heritage [is] to Me [like] a speckled vulture; The vultures all around [are] against her. Come, assemble all the beasts of the field, Bring them to devour!</span></div>
-<div class="v-row" data-ref="Jeremiah 12:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Many rulers have destroyed My vineyard, They have trodden My portion underfoot; They have made My pleasant portion a desolate wilderness.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">They have made it desolate; Desolate, it mourns to Me; The whole land is made desolate, Because no one takes [it] to heart.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The plunderers have come On all the desolate heights in the wilderness, For the sword of the LORD shall devour From [one] end of the land to the [other] end of the land; No flesh shall have peace.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">They have sown wheat but reaped thorns; They have put themselves to pain [but] do not profit. But be ashamed of your harvest Because of the fierce anger of the LORD."</span></div>
-<div class="v-row" data-ref="Jeremiah 12:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thus says the LORD: "Against all My evil neighbors who touch the inheritance which I have caused My people Israel to inherit -- behold, I will pluck them out of their land and pluck out the house of Judah from among them.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"Then it shall be, after I have plucked them out, that I will return and have compassion on them and bring them back, everyone to his heritage and everyone to his land.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"And it shall be, if they will learn carefully the ways of My people, to swear by My name, 'As the LORD lives,' as they taught My people to swear by Baal, then they shall be established in the midst of My people.</span></div>
-<div class="v-row" data-ref="Jeremiah 12:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"But if they do not obey, I will utterly pluck up and destroy that nation," says the LORD.</span></div>
+    <a class="v-row" href="/bible/nkjv/jeremiah/12/1/" data-ref="Jeremiah 12:1 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/1/"><span class="v-num">1</span><span class="v-txt">Righteous [are] You, O LORD, when I plead with You; Yet let me talk with You about [Your] judgments. Why does the way of the wicked prosper? [Why] are those happy who deal so treacherously?</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/2/" data-ref="Jeremiah 12:2 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/2/"><span class="v-num">2</span><span class="v-txt">You have planted them, yes, they have taken root; They grow, yes, they bear fruit. You [are] near in their mouth But far from their mind.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/3/" data-ref="Jeremiah 12:3 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/3/"><span class="v-num">3</span><span class="v-txt">But You, O LORD, know me; You have seen me, And You have tested my heart toward You. Pull them out like sheep for the slaughter, And prepare them for the day of slaughter.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/4/" data-ref="Jeremiah 12:4 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/4/"><span class="v-num">4</span><span class="v-txt">How long will the land mourn, And the herbs of every field wither? The beasts and birds are consumed, For the wickedness of those who dwell there, Because they said, "He will not see our final end."</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/5/" data-ref="Jeremiah 12:5 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/5/"><span class="v-num">5</span><span class="v-txt">" If you have run with the footmen, and they have wearied you, Then how can you contend with horses? And [if] in the land of peace, [In which] you trusted, [they wearied you,] Then how will you do in the floodplain of the Jordan?</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/6/" data-ref="Jeremiah 12:6 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/6/"><span class="v-num">6</span><span class="v-txt">For even your brothers, the house of your father, Even they have dealt treacherously with you; Yes, they have called a multitude after you. Do not believe them, Even though they speak smooth words to you.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/7/" data-ref="Jeremiah 12:7 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/7/"><span class="v-num">7</span><span class="v-txt">" I have forsaken My house, I have left My heritage; I have given the dearly beloved of My soul into the hand of her enemies.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/8/" data-ref="Jeremiah 12:8 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/8/"><span class="v-num">8</span><span class="v-txt">My heritage is to Me like a lion in the forest; It cries out against Me; Therefore I have hated it.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/9/" data-ref="Jeremiah 12:9 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/9/"><span class="v-num">9</span><span class="v-txt">My heritage [is] to Me [like] a speckled vulture; The vultures all around [are] against her. Come, assemble all the beasts of the field, Bring them to devour!</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/10/" data-ref="Jeremiah 12:10 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/10/"><span class="v-num">10</span><span class="v-txt">"Many rulers have destroyed My vineyard, They have trodden My portion underfoot; They have made My pleasant portion a desolate wilderness.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/11/" data-ref="Jeremiah 12:11 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/11/"><span class="v-num">11</span><span class="v-txt">They have made it desolate; Desolate, it mourns to Me; The whole land is made desolate, Because no one takes [it] to heart.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/12/" data-ref="Jeremiah 12:12 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/12/"><span class="v-num">12</span><span class="v-txt">The plunderers have come On all the desolate heights in the wilderness, For the sword of the LORD shall devour From [one] end of the land to the [other] end of the land; No flesh shall have peace.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/13/" data-ref="Jeremiah 12:13 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/13/"><span class="v-num">13</span><span class="v-txt">They have sown wheat but reaped thorns; They have put themselves to pain [but] do not profit. But be ashamed of your harvest Because of the fierce anger of the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/14/" data-ref="Jeremiah 12:14 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/14/"><span class="v-num">14</span><span class="v-txt">Thus says the LORD: "Against all My evil neighbors who touch the inheritance which I have caused My people Israel to inherit -- behold, I will pluck them out of their land and pluck out the house of Judah from among them.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/15/" data-ref="Jeremiah 12:15 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/15/"><span class="v-num">15</span><span class="v-txt">"Then it shall be, after I have plucked them out, that I will return and have compassion on them and bring them back, everyone to his heritage and everyone to his land.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/16/" data-ref="Jeremiah 12:16 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/16/"><span class="v-num">16</span><span class="v-txt">"And it shall be, if they will learn carefully the ways of My people, to swear by My name, 'As the LORD lives,' as they taught My people to swear by Baal, then they shall be established in the midst of My people.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/12/17/" data-ref="Jeremiah 12:17 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/12/17/"><span class="v-num">17</span><span class="v-txt">"But if they do not obey, I will utterly pluck up and destroy that nation," says the LORD.</span></a>
 
     
 <div class="app-cta">

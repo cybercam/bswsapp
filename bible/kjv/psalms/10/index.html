@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 10:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Why standest thou afar off, O LORD? why hidest thou thyself in times of trouble?</span></div>
-<div class="v-row" data-ref="Psalm 10:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The wicked in his pride doth persecute the poor: let them be taken in the devices that they have imagined.</span></div>
-<div class="v-row" data-ref="Psalm 10:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the wicked boasteth of his heart's desire, and blesseth the covetous, whom the LORD abhorreth.</span></div>
-<div class="v-row" data-ref="Psalm 10:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The wicked, through the pride of his countenance, will not seek after God: God is not in all his thoughts.</span></div>
-<div class="v-row" data-ref="Psalm 10:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">His ways are always grievous; thy judgments are far above out of his sight: as for all his enemies, he puffeth at them.</span></div>
-<div class="v-row" data-ref="Psalm 10:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He hath said in his heart, I shall not be moved: for I shall never be in adversity.</span></div>
-<div class="v-row" data-ref="Psalm 10:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing and deceit and fraud: under his tongue is mischief and vanity.</span></div>
-<div class="v-row" data-ref="Psalm 10:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He sitteth in the lurking places of the villages: in the secret places doth he murder the innocent: his eyes are privily set against the poor.</span></div>
-<div class="v-row" data-ref="Psalm 10:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He lieth in wait secretly as a lion in his den: he lieth in wait to catch the poor: he doth catch the poor, when he draweth him into his net.</span></div>
-<div class="v-row" data-ref="Psalm 10:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He croucheth, and humbleth himself, that the poor may fall by his strong ones.</span></div>
-<div class="v-row" data-ref="Psalm 10:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He hath said in his heart, God hath forgotten: he hideth his face; he will never see it.</span></div>
-<div class="v-row" data-ref="Psalm 10:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Arise, O LORD; O God, lift up thine hand: forget not the humble.</span></div>
-<div class="v-row" data-ref="Psalm 10:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Wherefore doth the wicked contemn God? he hath said in his heart, Thou wilt not require it.</span></div>
-<div class="v-row" data-ref="Psalm 10:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thou hast seen it; for thou beholdest mischief and spite, to requite it with thy hand: the poor committeth himself unto thee; thou art the helper of the fatherless.</span></div>
-<div class="v-row" data-ref="Psalm 10:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Break thou the arm of the wicked and the evil man: seek out his wickedness till thou find none.</span></div>
-<div class="v-row" data-ref="Psalm 10:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The LORD is King for ever and ever: the heathen are perished out of his land.</span></div>
-<div class="v-row" data-ref="Psalm 10:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">LORD, thou hast heard the desire of the humble: thou wilt prepare their heart, thou wilt cause thine ear to hear:</span></div>
-<div class="v-row" data-ref="Psalm 10:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To judge the fatherless and the oppressed, that the man of the earth may no more oppress.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/10/1/" data-ref="Psalm 10:1 (King James Version)" data-verse-url="/bible/kjv/psalms/10/1/"><span class="v-num">1</span><span class="v-txt">Why standest thou afar off, O LORD? why hidest thou thyself in times of trouble?</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/2/" data-ref="Psalm 10:2 (King James Version)" data-verse-url="/bible/kjv/psalms/10/2/"><span class="v-num">2</span><span class="v-txt">The wicked in his pride doth persecute the poor: let them be taken in the devices that they have imagined.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/3/" data-ref="Psalm 10:3 (King James Version)" data-verse-url="/bible/kjv/psalms/10/3/"><span class="v-num">3</span><span class="v-txt">For the wicked boasteth of his heart's desire, and blesseth the covetous, whom the LORD abhorreth.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/4/" data-ref="Psalm 10:4 (King James Version)" data-verse-url="/bible/kjv/psalms/10/4/"><span class="v-num">4</span><span class="v-txt">The wicked, through the pride of his countenance, will not seek after God: God is not in all his thoughts.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/5/" data-ref="Psalm 10:5 (King James Version)" data-verse-url="/bible/kjv/psalms/10/5/"><span class="v-num">5</span><span class="v-txt">His ways are always grievous; thy judgments are far above out of his sight: as for all his enemies, he puffeth at them.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/6/" data-ref="Psalm 10:6 (King James Version)" data-verse-url="/bible/kjv/psalms/10/6/"><span class="v-num">6</span><span class="v-txt">He hath said in his heart, I shall not be moved: for I shall never be in adversity.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/7/" data-ref="Psalm 10:7 (King James Version)" data-verse-url="/bible/kjv/psalms/10/7/"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing and deceit and fraud: under his tongue is mischief and vanity.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/8/" data-ref="Psalm 10:8 (King James Version)" data-verse-url="/bible/kjv/psalms/10/8/"><span class="v-num">8</span><span class="v-txt">He sitteth in the lurking places of the villages: in the secret places doth he murder the innocent: his eyes are privily set against the poor.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/9/" data-ref="Psalm 10:9 (King James Version)" data-verse-url="/bible/kjv/psalms/10/9/"><span class="v-num">9</span><span class="v-txt">He lieth in wait secretly as a lion in his den: he lieth in wait to catch the poor: he doth catch the poor, when he draweth him into his net.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/10/" data-ref="Psalm 10:10 (King James Version)" data-verse-url="/bible/kjv/psalms/10/10/"><span class="v-num">10</span><span class="v-txt">He croucheth, and humbleth himself, that the poor may fall by his strong ones.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/11/" data-ref="Psalm 10:11 (King James Version)" data-verse-url="/bible/kjv/psalms/10/11/"><span class="v-num">11</span><span class="v-txt">He hath said in his heart, God hath forgotten: he hideth his face; he will never see it.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/12/" data-ref="Psalm 10:12 (King James Version)" data-verse-url="/bible/kjv/psalms/10/12/"><span class="v-num">12</span><span class="v-txt">Arise, O LORD; O God, lift up thine hand: forget not the humble.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/13/" data-ref="Psalm 10:13 (King James Version)" data-verse-url="/bible/kjv/psalms/10/13/"><span class="v-num">13</span><span class="v-txt">Wherefore doth the wicked contemn God? he hath said in his heart, Thou wilt not require it.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/14/" data-ref="Psalm 10:14 (King James Version)" data-verse-url="/bible/kjv/psalms/10/14/"><span class="v-num">14</span><span class="v-txt">Thou hast seen it; for thou beholdest mischief and spite, to requite it with thy hand: the poor committeth himself unto thee; thou art the helper of the fatherless.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/15/" data-ref="Psalm 10:15 (King James Version)" data-verse-url="/bible/kjv/psalms/10/15/"><span class="v-num">15</span><span class="v-txt">Break thou the arm of the wicked and the evil man: seek out his wickedness till thou find none.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/16/" data-ref="Psalm 10:16 (King James Version)" data-verse-url="/bible/kjv/psalms/10/16/"><span class="v-num">16</span><span class="v-txt">The LORD is King for ever and ever: the heathen are perished out of his land.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/17/" data-ref="Psalm 10:17 (King James Version)" data-verse-url="/bible/kjv/psalms/10/17/"><span class="v-num">17</span><span class="v-txt">LORD, thou hast heard the desire of the humble: thou wilt prepare their heart, thou wilt cause thine ear to hear:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/10/18/" data-ref="Psalm 10:18 (King James Version)" data-verse-url="/bible/kjv/psalms/10/18/"><span class="v-num">18</span><span class="v-txt">To judge the fatherless and the oppressed, that the man of the earth may no more oppress.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">But about the times and their order, my brothers, there is no need for me to say anything to you.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For you yourselves have the knowledge that the day of the Lord will come like a thief in the night.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When they say, There is peace and no danger, then sudden destruction will come on them, as birth-pains on a woman with child; and they will not be able to get away from it.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But you, my brothers, are not in the dark, for that day to overtake you like a thief:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For you are all sons of light and of the day: we are not of the night or of the dark.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So then, let us not take our rest as the others do, but let us be self-controlled and awake.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For those who are sleeping do so in the night; and those who are the worse for drink are so in the night;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But let us, who are of the day, be serious, putting on the breastplate of faith and love, and on our heads, the hope of salvation.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For God's purpose for us is not wrath, but salvation through our Lord Jesus Christ,</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who was put to death for us, so that, awake or sleeping, we may have a part in his life.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So then, go on comforting and building up one another, as you have been doing.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But we make this request to you, my brothers: give attention to those who are working among you, who are over you in the Lord to keep order among you;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And have a high opinion of them in love because of their work. Be at peace among yourselves.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And our desire is that you will keep control over those whose lives are not well ordered, giving comfort to the feeble-hearted, supporting those with little strength, and putting up with much from all.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let no one give evil for evil; but ever go after what is good, for one another and for all.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Have joy at all times.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Keep on with your prayers.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">In everything give praise: for this is the purpose of God in Christ Jesus for you.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Do not put out the light of the Spirit;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Do not make little of the words of the prophets;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Let all things be tested; keep to what is good;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Keep from every form of evil.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And may the God of peace himself make you holy in every way; and may your spirit and soul and body be free from all sin at the coming of our Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">God, by whom you have been marked out in his purpose, is unchanging and will make it complete.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Brothers, keep us in mind in your prayers.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Give all the brothers a holy kiss.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">I give orders in the name of the Lord that all the brothers are to be present at the reading of this letter.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 5:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">The grace of our Lord Jesus Christ be with you.</span></div>
+    <a class="v-row" href="/bible/bbe/1-thessalonians/5/1/" data-ref="1 Thessalonians 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/1/"><span class="v-num">1</span><span class="v-txt">But about the times and their order, my brothers, there is no need for me to say anything to you.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/2/" data-ref="1 Thessalonians 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/2/"><span class="v-num">2</span><span class="v-txt">For you yourselves have the knowledge that the day of the Lord will come like a thief in the night.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/3/" data-ref="1 Thessalonians 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/3/"><span class="v-num">3</span><span class="v-txt">When they say, There is peace and no danger, then sudden destruction will come on them, as birth-pains on a woman with child; and they will not be able to get away from it.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/4/" data-ref="1 Thessalonians 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/4/"><span class="v-num">4</span><span class="v-txt">But you, my brothers, are not in the dark, for that day to overtake you like a thief:</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/5/" data-ref="1 Thessalonians 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/5/"><span class="v-num">5</span><span class="v-txt">For you are all sons of light and of the day: we are not of the night or of the dark.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/6/" data-ref="1 Thessalonians 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/6/"><span class="v-num">6</span><span class="v-txt">So then, let us not take our rest as the others do, but let us be self-controlled and awake.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/7/" data-ref="1 Thessalonians 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/7/"><span class="v-num">7</span><span class="v-txt">For those who are sleeping do so in the night; and those who are the worse for drink are so in the night;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/8/" data-ref="1 Thessalonians 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/8/"><span class="v-num">8</span><span class="v-txt">But let us, who are of the day, be serious, putting on the breastplate of faith and love, and on our heads, the hope of salvation.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/9/" data-ref="1 Thessalonians 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/9/"><span class="v-num">9</span><span class="v-txt">For God's purpose for us is not wrath, but salvation through our Lord Jesus Christ,</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/10/" data-ref="1 Thessalonians 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/10/"><span class="v-num">10</span><span class="v-txt">Who was put to death for us, so that, awake or sleeping, we may have a part in his life.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/11/" data-ref="1 Thessalonians 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/11/"><span class="v-num">11</span><span class="v-txt">So then, go on comforting and building up one another, as you have been doing.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/12/" data-ref="1 Thessalonians 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/12/"><span class="v-num">12</span><span class="v-txt">But we make this request to you, my brothers: give attention to those who are working among you, who are over you in the Lord to keep order among you;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/13/" data-ref="1 Thessalonians 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/13/"><span class="v-num">13</span><span class="v-txt">And have a high opinion of them in love because of their work. Be at peace among yourselves.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/14/" data-ref="1 Thessalonians 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/14/"><span class="v-num">14</span><span class="v-txt">And our desire is that you will keep control over those whose lives are not well ordered, giving comfort to the feeble-hearted, supporting those with little strength, and putting up with much from all.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/15/" data-ref="1 Thessalonians 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/15/"><span class="v-num">15</span><span class="v-txt">Let no one give evil for evil; but ever go after what is good, for one another and for all.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/16/" data-ref="1 Thessalonians 5:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/16/"><span class="v-num">16</span><span class="v-txt">Have joy at all times.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/17/" data-ref="1 Thessalonians 5:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/17/"><span class="v-num">17</span><span class="v-txt">Keep on with your prayers.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/18/" data-ref="1 Thessalonians 5:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/18/"><span class="v-num">18</span><span class="v-txt">In everything give praise: for this is the purpose of God in Christ Jesus for you.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/19/" data-ref="1 Thessalonians 5:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/19/"><span class="v-num">19</span><span class="v-txt">Do not put out the light of the Spirit;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/20/" data-ref="1 Thessalonians 5:20 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/20/"><span class="v-num">20</span><span class="v-txt">Do not make little of the words of the prophets;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/21/" data-ref="1 Thessalonians 5:21 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/21/"><span class="v-num">21</span><span class="v-txt">Let all things be tested; keep to what is good;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/22/" data-ref="1 Thessalonians 5:22 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/22/"><span class="v-num">22</span><span class="v-txt">Keep from every form of evil.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/23/" data-ref="1 Thessalonians 5:23 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/23/"><span class="v-num">23</span><span class="v-txt">And may the God of peace himself make you holy in every way; and may your spirit and soul and body be free from all sin at the coming of our Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/24/" data-ref="1 Thessalonians 5:24 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/24/"><span class="v-num">24</span><span class="v-txt">God, by whom you have been marked out in his purpose, is unchanging and will make it complete.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/25/" data-ref="1 Thessalonians 5:25 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/25/"><span class="v-num">25</span><span class="v-txt">Brothers, keep us in mind in your prayers.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/26/" data-ref="1 Thessalonians 5:26 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/26/"><span class="v-num">26</span><span class="v-txt">Give all the brothers a holy kiss.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/27/" data-ref="1 Thessalonians 5:27 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/27/"><span class="v-num">27</span><span class="v-txt">I give orders in the name of the Lord that all the brothers are to be present at the reading of this letter.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/5/28/" data-ref="1 Thessalonians 5:28 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/5/28/"><span class="v-num">28</span><span class="v-txt">The grace of our Lord Jesus Christ be with you.</span></a>
 
     
 <div class="app-cta">

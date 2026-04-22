@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 3:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Solomon began to build the house of Jehovah at Jerusalem on mount Moriah, where [Jehovah] appeared unto David his father, which he made ready in the place that David had appointed, in the threshing-floor of Ornan the Jebusite.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he began to build in the second [day] of the second month, in the fourth year of his reign.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Now these are the foundations which Solomon laid for the building of the house of God. The length by cubits after the first measure was threescore cubits, and the breadth twenty cubits.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the porch that was before [the house], the length of it, according to the breadth of the house, was twenty cubits, and the height a hundred and twenty; and he overlaid it within with pure gold.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the greater house he ceiled with fir-wood, which he overlaid with fine gold, and wrought thereon palm-trees and chains.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he garnished the house with precious stones for beauty: and the gold was gold of Parvaim.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He overlaid also the house, the beams, the thresholds, and the walls thereof, and the doors thereof, with gold; and graved cherubim on the walls.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he made the most holy house: the length thereof, according to the breadth of the house, was twenty cubits, and the breadth thereof twenty cubits; and he overlaid it with fine gold, amounting to six hundred talents.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the weight of the nails was fifty shekels of gold. And he overlaid the upper chambers with gold.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And in the most holy house he made two cherubim of image work; and they overlaid them with gold.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the wings of the cherubim were twenty cubits long: the wing of the one [cherub] was five cubits, reaching to the wall of the house; and the other wing was [likewise] five cubits, reaching to the wing of the other cherub.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits [also], joining to the wing of the other cherub.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The wings of these cherubim spread themselves forth twenty cubits: and they stood on their feet, and their faces were toward the house.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he made the veil of blue, and purple, and crimson, and fine linen, and wrought cherubim thereon.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Also he made before the house two pillars of thirty and five cubits high, and the capital that was on the top of each of them was five cubits.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he made chains in the oracle, and put [them] on the tops of the pillars; and he made a hundred pomegranates, and put them on the chains.</span></div>
-<div class="v-row" data-ref="2 Chronicles 3:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And he set up the pillars before the temple, one on the right hand, and the other on the left; and called the name of that on the right hand Jachin, and the name of that on the left Boaz.</span></div>
+    <a class="v-row" href="/bible/asv/2-chronicles/3/1/" data-ref="2 Chronicles 3:1 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/1/"><span class="v-num">1</span><span class="v-txt">Then Solomon began to build the house of Jehovah at Jerusalem on mount Moriah, where [Jehovah] appeared unto David his father, which he made ready in the place that David had appointed, in the threshing-floor of Ornan the Jebusite.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/2/" data-ref="2 Chronicles 3:2 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/2/"><span class="v-num">2</span><span class="v-txt">And he began to build in the second [day] of the second month, in the fourth year of his reign.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/3/" data-ref="2 Chronicles 3:3 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/3/"><span class="v-num">3</span><span class="v-txt">Now these are the foundations which Solomon laid for the building of the house of God. The length by cubits after the first measure was threescore cubits, and the breadth twenty cubits.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/4/" data-ref="2 Chronicles 3:4 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/4/"><span class="v-num">4</span><span class="v-txt">And the porch that was before [the house], the length of it, according to the breadth of the house, was twenty cubits, and the height a hundred and twenty; and he overlaid it within with pure gold.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/5/" data-ref="2 Chronicles 3:5 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/5/"><span class="v-num">5</span><span class="v-txt">And the greater house he ceiled with fir-wood, which he overlaid with fine gold, and wrought thereon palm-trees and chains.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/6/" data-ref="2 Chronicles 3:6 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/6/"><span class="v-num">6</span><span class="v-txt">And he garnished the house with precious stones for beauty: and the gold was gold of Parvaim.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/7/" data-ref="2 Chronicles 3:7 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/7/"><span class="v-num">7</span><span class="v-txt">He overlaid also the house, the beams, the thresholds, and the walls thereof, and the doors thereof, with gold; and graved cherubim on the walls.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/8/" data-ref="2 Chronicles 3:8 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/8/"><span class="v-num">8</span><span class="v-txt">And he made the most holy house: the length thereof, according to the breadth of the house, was twenty cubits, and the breadth thereof twenty cubits; and he overlaid it with fine gold, amounting to six hundred talents.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/9/" data-ref="2 Chronicles 3:9 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/9/"><span class="v-num">9</span><span class="v-txt">And the weight of the nails was fifty shekels of gold. And he overlaid the upper chambers with gold.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/10/" data-ref="2 Chronicles 3:10 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/10/"><span class="v-num">10</span><span class="v-txt">And in the most holy house he made two cherubim of image work; and they overlaid them with gold.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/11/" data-ref="2 Chronicles 3:11 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/11/"><span class="v-num">11</span><span class="v-txt">And the wings of the cherubim were twenty cubits long: the wing of the one [cherub] was five cubits, reaching to the wall of the house; and the other wing was [likewise] five cubits, reaching to the wing of the other cherub.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/12/" data-ref="2 Chronicles 3:12 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/12/"><span class="v-num">12</span><span class="v-txt">And the wing of the other cherub was five cubits, reaching to the wall of the house; and the other wing was five cubits [also], joining to the wing of the other cherub.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/13/" data-ref="2 Chronicles 3:13 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/13/"><span class="v-num">13</span><span class="v-txt">The wings of these cherubim spread themselves forth twenty cubits: and they stood on their feet, and their faces were toward the house.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/14/" data-ref="2 Chronicles 3:14 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/14/"><span class="v-num">14</span><span class="v-txt">And he made the veil of blue, and purple, and crimson, and fine linen, and wrought cherubim thereon.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/15/" data-ref="2 Chronicles 3:15 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/15/"><span class="v-num">15</span><span class="v-txt">Also he made before the house two pillars of thirty and five cubits high, and the capital that was on the top of each of them was five cubits.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/16/" data-ref="2 Chronicles 3:16 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/16/"><span class="v-num">16</span><span class="v-txt">And he made chains in the oracle, and put [them] on the tops of the pillars; and he made a hundred pomegranates, and put them on the chains.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/3/17/" data-ref="2 Chronicles 3:17 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/3/17/"><span class="v-num">17</span><span class="v-txt">And he set up the pillars before the temple, one on the right hand, and the other on the left; and called the name of that on the right hand Jachin, and the name of that on the left Boaz.</span></a>
 
     
 <div class="app-cta">

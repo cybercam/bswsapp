@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For we are conscious that if this our tent of flesh is taken down, we have a building from God, a house not made with hands, eternal, in heaven.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For in this we are crying in weariness, greatly desiring to be clothed with our house from heaven:</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">So that our spirits may not be unclothed.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For truly, we who are in this tent do give out cries of weariness, for the weight of care which is on us; not because we are desiring to be free from the body, but so that we may have our new body, and death may be overcome by life.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now he who has made us for this very thing is God, who has given us the Spirit as a witness of what is to come.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So, then, we are ever without fear, and though conscious that while we are in the body we are away from the Lord,</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">(For we are walking by faith, not by seeing,)</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">We are without fear, desiring to be free from the body, and to be with the Lord.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For this reason we make it our purpose, in the body or away from it, to be well-pleasing to him.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For we all have to come before Christ to be judged; so that every one of us may get his reward for the things done in the body, good or bad.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Having in mind, then, the fear of the Lord, we put these things before men, but God sees our hearts; and it is my hope that we may seem right in your eyes.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">We are not again requesting your approval, but we are giving you the chance of taking pride in us, so that you may be able to give an answer to those whose glory is in seeming, and not in the heart.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For if we are foolish, it is to God; or if we are serious, it is for you.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For it is the love of Christ which is moving us; because we are of the opinion that if one was put to death for all, then all have undergone death;</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And that he underwent death for all, so that the living might no longer be living to themselves, but to him who underwent death for them and came back from the dead.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For this reason, from this time forward we have knowledge of no man after the flesh: even if we have had knowledge of Christ after the flesh, we have no longer any such knowledge.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So if any man is in Christ, he is in a new world: the old things have come to an end; they have truly become new.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But all things are of God, who has made us at peace with himself through Christ, and has given to us the work of making peace;</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">That is, that God was in Christ making peace between the world and himself, not putting their sins to their account, and having given to us the preaching of this news of peace.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">So we are the representatives of Christ, as if God was making a request to you through us: we make our request to you, in the name of Christ, be at peace with God.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For him who had no knowledge of sin God made to be sin for us; so that we might become the righteousness of God in him.</span></div>
+    <a class="v-row" href="/bible/bbe/2-corinthians/5/1/" data-ref="2 Corinthians 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/1/"><span class="v-num">1</span><span class="v-txt">For we are conscious that if this our tent of flesh is taken down, we have a building from God, a house not made with hands, eternal, in heaven.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/2/" data-ref="2 Corinthians 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/2/"><span class="v-num">2</span><span class="v-txt">For in this we are crying in weariness, greatly desiring to be clothed with our house from heaven:</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/3/" data-ref="2 Corinthians 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/3/"><span class="v-num">3</span><span class="v-txt">So that our spirits may not be unclothed.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/4/" data-ref="2 Corinthians 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/4/"><span class="v-num">4</span><span class="v-txt">For truly, we who are in this tent do give out cries of weariness, for the weight of care which is on us; not because we are desiring to be free from the body, but so that we may have our new body, and death may be overcome by life.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/5/" data-ref="2 Corinthians 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/5/"><span class="v-num">5</span><span class="v-txt">Now he who has made us for this very thing is God, who has given us the Spirit as a witness of what is to come.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/6/" data-ref="2 Corinthians 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/6/"><span class="v-num">6</span><span class="v-txt">So, then, we are ever without fear, and though conscious that while we are in the body we are away from the Lord,</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/7/" data-ref="2 Corinthians 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/7/"><span class="v-num">7</span><span class="v-txt">(For we are walking by faith, not by seeing,)</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/8/" data-ref="2 Corinthians 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/8/"><span class="v-num">8</span><span class="v-txt">We are without fear, desiring to be free from the body, and to be with the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/9/" data-ref="2 Corinthians 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/9/"><span class="v-num">9</span><span class="v-txt">For this reason we make it our purpose, in the body or away from it, to be well-pleasing to him.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/10/" data-ref="2 Corinthians 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/10/"><span class="v-num">10</span><span class="v-txt">For we all have to come before Christ to be judged; so that every one of us may get his reward for the things done in the body, good or bad.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/11/" data-ref="2 Corinthians 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/11/"><span class="v-num">11</span><span class="v-txt">Having in mind, then, the fear of the Lord, we put these things before men, but God sees our hearts; and it is my hope that we may seem right in your eyes.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/12/" data-ref="2 Corinthians 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/12/"><span class="v-num">12</span><span class="v-txt">We are not again requesting your approval, but we are giving you the chance of taking pride in us, so that you may be able to give an answer to those whose glory is in seeming, and not in the heart.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/13/" data-ref="2 Corinthians 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/13/"><span class="v-num">13</span><span class="v-txt">For if we are foolish, it is to God; or if we are serious, it is for you.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/14/" data-ref="2 Corinthians 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/14/"><span class="v-num">14</span><span class="v-txt">For it is the love of Christ which is moving us; because we are of the opinion that if one was put to death for all, then all have undergone death;</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/15/" data-ref="2 Corinthians 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/15/"><span class="v-num">15</span><span class="v-txt">And that he underwent death for all, so that the living might no longer be living to themselves, but to him who underwent death for them and came back from the dead.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/16/" data-ref="2 Corinthians 5:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/16/"><span class="v-num">16</span><span class="v-txt">For this reason, from this time forward we have knowledge of no man after the flesh: even if we have had knowledge of Christ after the flesh, we have no longer any such knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/17/" data-ref="2 Corinthians 5:17 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/17/"><span class="v-num">17</span><span class="v-txt">So if any man is in Christ, he is in a new world: the old things have come to an end; they have truly become new.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/18/" data-ref="2 Corinthians 5:18 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/18/"><span class="v-num">18</span><span class="v-txt">But all things are of God, who has made us at peace with himself through Christ, and has given to us the work of making peace;</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/19/" data-ref="2 Corinthians 5:19 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/19/"><span class="v-num">19</span><span class="v-txt">That is, that God was in Christ making peace between the world and himself, not putting their sins to their account, and having given to us the preaching of this news of peace.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/20/" data-ref="2 Corinthians 5:20 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/20/"><span class="v-num">20</span><span class="v-txt">So we are the representatives of Christ, as if God was making a request to you through us: we make our request to you, in the name of Christ, be at peace with God.</span></a>
+<a class="v-row" href="/bible/bbe/2-corinthians/5/21/" data-ref="2 Corinthians 5:21 (Bible in Basic English)" data-verse-url="/bible/bbe/2-corinthians/5/21/"><span class="v-num">21</span><span class="v-txt">For him who had no knowledge of sin God made to be sin for us; so that we might become the righteousness of God in him.</span></a>
 
     
 <div class="app-cta">

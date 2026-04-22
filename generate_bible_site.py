@@ -16,8 +16,9 @@ Then:
 
 Output:
   bible/index.html              ← landing page with version/language grid
-  bible/sitemap.xml             ← all chapter URLs for Google
-  bible/<version>/<book>/<ch>/index.html   ← one page per chapter
+  bible/sitemap.xml             ← chapter + verse detail URLs for Google
+  bible/<version>/<book>/<ch>/index.html           ← one page per chapter
+  bible/<version>/<book>/<ch>/<verse>/index.html   ← one page per verse
 """
 
 import argparse
@@ -48,6 +49,16 @@ CDN_BASE       = "https://cdn.jsdelivr.net/gh/cybercam/bibles_json@main"
 GITHUB_RAW     = "https://raw.githubusercontent.com/cybercam/bibles_json/main"
 PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app"
 READER_UI_SCRIPT_SRC = f"/{OUT_DIR}/assets/reader-ui.js"
+OTHER_LANGUAGE_PAGES = [
+    ("telugu-bible.html", "Telugu Bible"),
+    ("english-bible.html", "English Bible"),
+    ("hindi-bible.html", "Hindi Bible"),
+    ("tamil-bible.html", "Tamil Bible"),
+    ("kannada-bible.html", "Kannada Bible"),
+    ("malayalam-bible.html", "Malayalam Bible"),
+    ("bengali-bible.html", "Bengali Bible"),
+    ("marathi-bible.html", "Marathi Bible"),
+]
 
 # All 15 versions confirmed in the repo
 VERSIONS = [
@@ -256,6 +267,10 @@ def first_verse_preview(verses, max_len=120):
     return text[:max_len] if text else ""
 
 
+def verse_detail_rel_url(version_id, bslug, ch_num, v_num):
+    return f"/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{v_num}/"
+
+
 def version_label(version_id):
     for vid, label, *_ in VERSIONS:
         if vid == version_id:
@@ -307,6 +322,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -333,11 +350,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -889,7 +916,8 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
         ref = f"{book_name} {ch_num}:{vnum} ({vlabel})"
         safe_ref = ref.replace('"', "&quot;")
         safe_text = str(text).replace("<", "&lt;").replace(">", "&gt;")
-        verse_rows += f'<div class="v-row" data-ref="{safe_ref}" onclick="selectVerse(this)"><span class="v-num">{vnum}</span><span class="v-txt">{safe_text}</span></div>\n'
+        verse_url = verse_detail_rel_url(version_id, bslug, ch_num, vnum)
+        verse_rows += f'<a class="v-row" href="{verse_url}" data-ref="{safe_ref}" data-verse-url="{verse_url}"><span class="v-num">{vnum}</span><span class="v-txt">{safe_text}</span></a>\n'
 
     # Prev / next nav
     prev_link = f'<a href="{prev_url}">← Previous</a>' if prev_url else '<a class="disabled">← Previous</a>'
@@ -919,6 +947,78 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
     </select>
     <p style="font-size:13px;color:var(--muted)">Select a version above to compare.</p>
   </aside>
+</div>
+{theme_sheet()}
+<script src="{READER_UI_SCRIPT_SRC}" defer></script>
+</body>
+</html>"""
+
+
+def generate_verse_detail_page(
+    version_id,
+    vlabel,
+    lang_code,
+    book_name,
+    book_name_source,
+    bslug,
+    ch_num,
+    vnum,
+    verse_text,
+    prev_verse_url,
+    next_verse_url,
+    chapter_url,
+    active_versions,
+    x_default_id,
+):
+    canonical = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/"
+    title = f"{book_name} {ch_num}:{vnum} — {vlabel} | Bible Study with Steffi"
+    description = f"Read {book_name} {ch_num}:{vnum} in {vlabel}. Bible verse detail with chapter navigation and context."
+    keywords = f"{book_name} {ch_num}:{vnum}, {book_name} chapter {ch_num} verse {vnum}, {vlabel} bible verse, bswsapp"
+
+    hreflang_parts = []
+    for vid, vlab, vlng, *_ in active_versions:
+        url = f"{SITE_URL}/{OUT_DIR}/{vid}/{bslug}/{ch_num}/{vnum}/"
+        hreflang_parts.append(f'<link rel="alternate" hreflang="{HREFLANG.get(vid, vlng)}" href="{url}"/>')
+    hreflang_parts.append(
+        f'<link rel="alternate" hreflang="x-default" href="{SITE_URL}/{OUT_DIR}/{x_default_id}/{bslug}/{ch_num}/{vnum}/"/>'
+    )
+    hreflang_str = "\n".join(hreflang_parts)
+
+    safe_verse = html.escape(str(verse_text))
+    crumb = f"{book_name} {ch_num}:{vnum} · {vlabel}"
+    prev_link = (
+        f'<a href="{prev_verse_url}" rel="prev">← Previous Verse</a>'
+        if prev_verse_url
+        else '<a class="disabled">← Previous Verse</a>'
+    )
+    next_link = (
+        f'<a href="{next_verse_url}" rel="next">Next Verse →</a>'
+        if next_verse_url
+        else '<a class="disabled">Next Verse →</a>'
+    )
+
+    head = html_head(title, description, canonical, lang_code, hreflang_str, keywords)
+    return f"""{head}
+<body>
+{topbar_html(crumb)}
+<div id="wrap">
+  <main id="reader">
+    <div class="ch-head">
+      <h1>{book_name}</h1>
+      <h2>Chapter {ch_num} · Verse {vnum}</h2>
+      <span class="version-tag">{vlabel}</span>
+    </div>
+    <article class="verse-detail-card">
+      <p class="verse-detail-ref">{book_name} {ch_num}:{vnum}</p>
+      <p class="verse-detail-text">{safe_verse}</p>
+      <p class="verse-detail-meta">Book: {book_name_source} · Chapter: {ch_num} · Verse: {vnum}</p>
+      <div class="verse-detail-links">
+        <a href="{chapter_url}">Open Full Chapter</a>
+      </div>
+    </article>
+    <nav class="ch-nav">{prev_link}{next_link}</nav>
+    {app_cta_banner()}
+  </main>
 </div>
 {theme_sheet()}
 <script src="{READER_UI_SCRIPT_SRC}" defer></script>
@@ -991,6 +1091,16 @@ def generate_bible_index(active_versions, x_default_id):
         )
         one_grid = english_section + indian_section
 
+    language_cards = "".join(
+        f'<a href="/{fname}" class="ver-card"><div class="vc-label">{label}</div><div class="vc-sub">Language landing page</div></a>'
+        for fname, label in OTHER_LANGUAGE_PAGES
+    )
+    language_section = (
+        '<div class="group-title">Other Language Bibles</div><div class="ver-grid">'
+        + language_cards
+        + "</div>"
+    )
+
     hreflang = "\n".join([
         f'<link rel="alternate" hreflang="{HREFLANG.get(vid, "en")}" href="{SITE_URL}/{OUT_DIR}/{vid}/john/1/"/>'
         for vid, *_ in active_versions
@@ -1027,6 +1137,7 @@ def generate_bible_index(active_versions, x_default_id):
       <a class="cta-btn" href="{hero_cta_href}">{hero_cta_label}</a>
     </div>
     {one_grid}
+    {language_section}
     {app_cta_banner()}
   </div>
 </div>
@@ -1144,6 +1255,7 @@ def main():
         ver_dir.mkdir(exist_ok=True)
 
         version_pages = 0
+        version_verse_pages = 0
         for idx, (book, chapter) in enumerate(all_chapters):
             bslug  = book_slug(book["n"])
             ch_num = chapter["c"]
@@ -1182,7 +1294,47 @@ def main():
             total_pages += 1
             version_pages += 1
 
-        print(f"    ✓ {version_pages} chapter pages for {version_id} (running total: {total_pages})")
+            verse_items = sorted(chapter["v"].items(), key=lambda x: int(x[0]))
+            for v_idx, (vnum, vtext) in enumerate(verse_items):
+                prev_verse_url = (
+                    verse_detail_rel_url(version_id, bslug, ch_num, verse_items[v_idx - 1][0])
+                    if v_idx > 0
+                    else None
+                )
+                next_verse_url = (
+                    verse_detail_rel_url(version_id, bslug, ch_num, verse_items[v_idx + 1][0])
+                    if v_idx < len(verse_items) - 1
+                    else None
+                )
+                chapter_url = f"/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/"
+                verse_html = generate_verse_detail_page(
+                    version_id=version_id,
+                    vlabel=vlabel,
+                    lang_code=lang_code,
+                    book_name=display_book_name(book, version_id),
+                    book_name_source=book["n"],
+                    bslug=bslug,
+                    ch_num=ch_num,
+                    vnum=vnum,
+                    verse_text=vtext,
+                    prev_verse_url=prev_verse_url,
+                    next_verse_url=next_verse_url,
+                    chapter_url=chapter_url,
+                    active_versions=active_versions,
+                    x_default_id=x_default_id,
+                )
+                verse_out_path = ver_dir / bslug / str(ch_num) / str(vnum)
+                verse_out_path.mkdir(parents=True, exist_ok=True)
+                with open(verse_out_path / "index.html", "w", encoding="utf-8") as f:
+                    f.write(verse_html)
+                all_sitemap_urls.append(f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/")
+                total_pages += 1
+                version_verse_pages += 1
+
+        print(
+            f"    ✓ {version_pages} chapter pages + {version_verse_pages} verse pages "
+            f"for {version_id} (running total: {total_pages})"
+        )
 
     # Sitemap
     print(f"\n[3/3] Writing sitemap.xml ({len(all_sitemap_urls)} URLs)...")

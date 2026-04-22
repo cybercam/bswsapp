@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 38</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 38:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm. Of David. To keep in memory. O Lord, be not bitter with me in your wrath; let not your hand be on me in the heat of your passion.</span></div>
-<div class="v-row" data-ref="Psalm 38:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For your arrows have gone into my flesh, and I am crushed under the weight of your hand.</span></div>
-<div class="v-row" data-ref="Psalm 38:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">My flesh is wasted because of your wrath; and there is no peace in my bones because of my sin.</span></div>
-<div class="v-row" data-ref="Psalm 38:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For my crimes have gone over my head; they are like a great weight which is more than my strength.</span></div>
-<div class="v-row" data-ref="Psalm 38:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My wounds are poisoned and evil-smelling, because of my foolish behaviour.</span></div>
-<div class="v-row" data-ref="Psalm 38:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I am troubled, I am made low; I go weeping all the day.</span></div>
-<div class="v-row" data-ref="Psalm 38:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For my body is full of burning; all my flesh is unhealthy.</span></div>
-<div class="v-row" data-ref="Psalm 38:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I am feeble and crushed down; I gave a cry like a lion because of the grief in my heart.</span></div>
-<div class="v-row" data-ref="Psalm 38:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Lord, all my desire is before you; my sorrow is not kept secret from you.</span></div>
-<div class="v-row" data-ref="Psalm 38:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">My heart goes out in pain, my strength is wasting away; as for the light of my eyes, it is gone from me.</span></div>
-<div class="v-row" data-ref="Psalm 38:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My lovers and my friends keep away from my disease; my relations keep far away.</span></div>
-<div class="v-row" data-ref="Psalm 38:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Those who have a desire to take my life put nets for me; those who are designing my destruction say evil things against me, all the day their minds are full of deceit.</span></div>
-<div class="v-row" data-ref="Psalm 38:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But I kept my ears shut like a man without hearing; like a man without a voice, never opening his mouth.</span></div>
-<div class="v-row" data-ref="Psalm 38:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">So I was like a man whose ears are shut, and in whose mouth there are no sharp words.</span></div>
-<div class="v-row" data-ref="Psalm 38:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">In you, O Lord, is my hope: you will give me an answer, O Lord, my God.</span></div>
-<div class="v-row" data-ref="Psalm 38:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I said, Let them not be glad over me; when my foot is moved, let them not be lifted up with pride against me.</span></div>
-<div class="v-row" data-ref="Psalm 38:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">My feet are near to falling, and my sorrow is ever before me.</span></div>
-<div class="v-row" data-ref="Psalm 38:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I will make clear my wrongdoing, with sorrow in my heart for my sin.</span></div>
-<div class="v-row" data-ref="Psalm 38:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">But they are strong who have hate for me without cause: those who are against me falsely are increased in numbers.</span></div>
-<div class="v-row" data-ref="Psalm 38:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">They give me back evil for good; they are my haters because I go after the thing which is right.</span></div>
-<div class="v-row" data-ref="Psalm 38:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Do not give me up, O Lord; O my God, be near to me.</span></div>
-<div class="v-row" data-ref="Psalm 38:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Come quickly to give me help, O Lord, my salvation.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/38/1/" data-ref="Psalm 38:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/1/"><span class="v-num">1</span><span class="v-txt">A Psalm. Of David. To keep in memory. O Lord, be not bitter with me in your wrath; let not your hand be on me in the heat of your passion.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/2/" data-ref="Psalm 38:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/2/"><span class="v-num">2</span><span class="v-txt">For your arrows have gone into my flesh, and I am crushed under the weight of your hand.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/3/" data-ref="Psalm 38:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/3/"><span class="v-num">3</span><span class="v-txt">My flesh is wasted because of your wrath; and there is no peace in my bones because of my sin.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/4/" data-ref="Psalm 38:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/4/"><span class="v-num">4</span><span class="v-txt">For my crimes have gone over my head; they are like a great weight which is more than my strength.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/5/" data-ref="Psalm 38:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/5/"><span class="v-num">5</span><span class="v-txt">My wounds are poisoned and evil-smelling, because of my foolish behaviour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/6/" data-ref="Psalm 38:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/6/"><span class="v-num">6</span><span class="v-txt">I am troubled, I am made low; I go weeping all the day.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/7/" data-ref="Psalm 38:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/7/"><span class="v-num">7</span><span class="v-txt">For my body is full of burning; all my flesh is unhealthy.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/8/" data-ref="Psalm 38:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/8/"><span class="v-num">8</span><span class="v-txt">I am feeble and crushed down; I gave a cry like a lion because of the grief in my heart.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/9/" data-ref="Psalm 38:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/9/"><span class="v-num">9</span><span class="v-txt">Lord, all my desire is before you; my sorrow is not kept secret from you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/10/" data-ref="Psalm 38:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/10/"><span class="v-num">10</span><span class="v-txt">My heart goes out in pain, my strength is wasting away; as for the light of my eyes, it is gone from me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/11/" data-ref="Psalm 38:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/11/"><span class="v-num">11</span><span class="v-txt">My lovers and my friends keep away from my disease; my relations keep far away.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/12/" data-ref="Psalm 38:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/12/"><span class="v-num">12</span><span class="v-txt">Those who have a desire to take my life put nets for me; those who are designing my destruction say evil things against me, all the day their minds are full of deceit.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/13/" data-ref="Psalm 38:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/13/"><span class="v-num">13</span><span class="v-txt">But I kept my ears shut like a man without hearing; like a man without a voice, never opening his mouth.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/14/" data-ref="Psalm 38:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/14/"><span class="v-num">14</span><span class="v-txt">So I was like a man whose ears are shut, and in whose mouth there are no sharp words.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/15/" data-ref="Psalm 38:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/15/"><span class="v-num">15</span><span class="v-txt">In you, O Lord, is my hope: you will give me an answer, O Lord, my God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/16/" data-ref="Psalm 38:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/16/"><span class="v-num">16</span><span class="v-txt">I said, Let them not be glad over me; when my foot is moved, let them not be lifted up with pride against me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/17/" data-ref="Psalm 38:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/17/"><span class="v-num">17</span><span class="v-txt">My feet are near to falling, and my sorrow is ever before me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/18/" data-ref="Psalm 38:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/18/"><span class="v-num">18</span><span class="v-txt">I will make clear my wrongdoing, with sorrow in my heart for my sin.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/19/" data-ref="Psalm 38:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/19/"><span class="v-num">19</span><span class="v-txt">But they are strong who have hate for me without cause: those who are against me falsely are increased in numbers.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/20/" data-ref="Psalm 38:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/20/"><span class="v-num">20</span><span class="v-txt">They give me back evil for good; they are my haters because I go after the thing which is right.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/21/" data-ref="Psalm 38:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/21/"><span class="v-num">21</span><span class="v-txt">Do not give me up, O Lord; O my God, be near to me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/38/22/" data-ref="Psalm 38:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/38/22/"><span class="v-num">22</span><span class="v-txt">Come quickly to give me help, O Lord, my salvation.</span></a>
 
     
 <div class="app-cta">

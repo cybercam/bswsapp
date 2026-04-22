@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Do not say sharp words to one who has authority in the church, but let your talk be as to a father, and to the younger men as to brothers:</span></div>
-<div class="v-row" data-ref="1 Timothy 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">To the older women as to mothers, to the younger as to sisters, with a clean heart.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Give honour to widows who are truly widows.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But if any widow has children or children's children, let these see that it is right to take care of their family and their fathers and mothers: for this is pleasing in the eyes of God.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now she who is truly a widow and without family puts her hope in God, giving herself to prayer day and night.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But she who gives herself to pleasure is dead while she is living.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Give orders to this effect, so that no evil may be said of anyone.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">If anyone has no care for his family and those in his house, he is false to the faith, and is worse than one who has no faith.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let no woman be numbered among the widows who is under sixty years old, and only if she has been the wife of one man,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And if witness is given of her good works; if she has had the care of children, if she has been kind to travellers, washing the feet of the saints, helping those who are in trouble, giving herself to good works.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But to the younger widows say No: for when their love is turned away from Christ, they have a desire to be married;</span></div>
-<div class="v-row" data-ref="1 Timothy 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And they are judged because they have been false to their first faith;</span></div>
-<div class="v-row" data-ref="1 Timothy 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And they get into the way of doing no work, going about from house to house; and not only doing no work, but talking foolishly, being over-interested in the business of others, saying things which they have no right to say.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">So it is my desire that the younger widows may be married and have children, controlling their families, and giving the Evil One no chance to say anything against them,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For even now some are turned away to Satan.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If any woman of the faith has relations who are widows, let her give them help, so that the care of them does not come on the church, and so it may give help to those who are truly widowed.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let rulers whose rule is good be honoured twice over, specially those whose work is preaching and teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For the Writings say, It is not right to keep the ox from taking the grain when he is crushing it. And, The worker has a right to his reward.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Do not take as true any statement made against one in authority, but only if two or three give witness to it.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Say sharp words to sinners when all are present, so that the rest may be in fear.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I give you orders before God and Christ Jesus and the angels of God's selection, to keep these orders without giving thought to one side more than another.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Do not put hands on any man without thought, and have no part in other men's sins: keep yourself clean.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Do not take only water as your drink, but take a little wine for the good of your stomach, and because you are frequently ill.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The sins of some men are clearly seen, going before them to be judged; but with others, their sins go after them.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">In the same way, there are good works which are clearly seen; and those which are not so, may not be kept secret.</span></div>
+    <a class="v-row" href="/bible/bbe/1-timothy/5/1/" data-ref="1 Timothy 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/1/"><span class="v-num">1</span><span class="v-txt">Do not say sharp words to one who has authority in the church, but let your talk be as to a father, and to the younger men as to brothers:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/2/" data-ref="1 Timothy 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/2/"><span class="v-num">2</span><span class="v-txt">To the older women as to mothers, to the younger as to sisters, with a clean heart.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/3/" data-ref="1 Timothy 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/3/"><span class="v-num">3</span><span class="v-txt">Give honour to widows who are truly widows.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/4/" data-ref="1 Timothy 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/4/"><span class="v-num">4</span><span class="v-txt">But if any widow has children or children's children, let these see that it is right to take care of their family and their fathers and mothers: for this is pleasing in the eyes of God.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/5/" data-ref="1 Timothy 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/5/"><span class="v-num">5</span><span class="v-txt">Now she who is truly a widow and without family puts her hope in God, giving herself to prayer day and night.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/6/" data-ref="1 Timothy 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/6/"><span class="v-num">6</span><span class="v-txt">But she who gives herself to pleasure is dead while she is living.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/7/" data-ref="1 Timothy 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/7/"><span class="v-num">7</span><span class="v-txt">Give orders to this effect, so that no evil may be said of anyone.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/8/" data-ref="1 Timothy 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/8/"><span class="v-num">8</span><span class="v-txt">If anyone has no care for his family and those in his house, he is false to the faith, and is worse than one who has no faith.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/9/" data-ref="1 Timothy 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/9/"><span class="v-num">9</span><span class="v-txt">Let no woman be numbered among the widows who is under sixty years old, and only if she has been the wife of one man,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/10/" data-ref="1 Timothy 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/10/"><span class="v-num">10</span><span class="v-txt">And if witness is given of her good works; if she has had the care of children, if she has been kind to travellers, washing the feet of the saints, helping those who are in trouble, giving herself to good works.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/11/" data-ref="1 Timothy 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/11/"><span class="v-num">11</span><span class="v-txt">But to the younger widows say No: for when their love is turned away from Christ, they have a desire to be married;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/12/" data-ref="1 Timothy 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/12/"><span class="v-num">12</span><span class="v-txt">And they are judged because they have been false to their first faith;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/13/" data-ref="1 Timothy 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/13/"><span class="v-num">13</span><span class="v-txt">And they get into the way of doing no work, going about from house to house; and not only doing no work, but talking foolishly, being over-interested in the business of others, saying things which they have no right to say.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/14/" data-ref="1 Timothy 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/14/"><span class="v-num">14</span><span class="v-txt">So it is my desire that the younger widows may be married and have children, controlling their families, and giving the Evil One no chance to say anything against them,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/15/" data-ref="1 Timothy 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/15/"><span class="v-num">15</span><span class="v-txt">For even now some are turned away to Satan.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/16/" data-ref="1 Timothy 5:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/16/"><span class="v-num">16</span><span class="v-txt">If any woman of the faith has relations who are widows, let her give them help, so that the care of them does not come on the church, and so it may give help to those who are truly widowed.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/17/" data-ref="1 Timothy 5:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/17/"><span class="v-num">17</span><span class="v-txt">Let rulers whose rule is good be honoured twice over, specially those whose work is preaching and teaching.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/18/" data-ref="1 Timothy 5:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/18/"><span class="v-num">18</span><span class="v-txt">For the Writings say, It is not right to keep the ox from taking the grain when he is crushing it. And, The worker has a right to his reward.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/19/" data-ref="1 Timothy 5:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/19/"><span class="v-num">19</span><span class="v-txt">Do not take as true any statement made against one in authority, but only if two or three give witness to it.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/20/" data-ref="1 Timothy 5:20 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/20/"><span class="v-num">20</span><span class="v-txt">Say sharp words to sinners when all are present, so that the rest may be in fear.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/21/" data-ref="1 Timothy 5:21 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/21/"><span class="v-num">21</span><span class="v-txt">I give you orders before God and Christ Jesus and the angels of God's selection, to keep these orders without giving thought to one side more than another.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/22/" data-ref="1 Timothy 5:22 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/22/"><span class="v-num">22</span><span class="v-txt">Do not put hands on any man without thought, and have no part in other men's sins: keep yourself clean.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/23/" data-ref="1 Timothy 5:23 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/23/"><span class="v-num">23</span><span class="v-txt">Do not take only water as your drink, but take a little wine for the good of your stomach, and because you are frequently ill.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/24/" data-ref="1 Timothy 5:24 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/24/"><span class="v-num">24</span><span class="v-txt">The sins of some men are clearly seen, going before them to be judged; but with others, their sins go after them.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/5/25/" data-ref="1 Timothy 5:25 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/5/25/"><span class="v-num">25</span><span class="v-txt">In the same way, there are good works which are clearly seen; and those which are not so, may not be kept secret.</span></a>
 
     
 <div class="app-cta">

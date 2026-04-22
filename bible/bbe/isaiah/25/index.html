@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 25</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 25:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">O Lord, you are my God; I will give praise to you, I will give honour to your name; for you have done great acts of power; your purposes in the past have been made true and certain in effect.</span></div>
-<div class="v-row" data-ref="Isaiah 25:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For you have made a town a waste place: a strong town a mass of broken walls; the tower of the men of pride has come to an end; it will never be put up again.</span></div>
-<div class="v-row" data-ref="Isaiah 25:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For this cause will the strong people give glory to you, the town of the cruel ones will be in fear of you.</span></div>
-<div class="v-row" data-ref="Isaiah 25:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For you have been a strong place for the poor and the crushed in their trouble, a safe place from the storm, a shade from the heat, when the wrath of the cruel ones is like a winter storm.</span></div>
-<div class="v-row" data-ref="Isaiah 25:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">As heat by the shade of a cloud, the noise of the men of pride has been made quiet by you; as heat by the shade of a cloud, the song of the cruel ones has been stopped.</span></div>
-<div class="v-row" data-ref="Isaiah 25:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And in this mountain will the Lord of armies make for all peoples a feast of good things, a feast of wines long stored, of good things sweet to the taste, of wines long kept and tested.</span></div>
-<div class="v-row" data-ref="Isaiah 25:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And in this mountain he will put an end to the shade covering the face of all peoples, and the veil which is stretched over all nations.</span></div>
-<div class="v-row" data-ref="Isaiah 25:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He has put an end to death for ever; and the Lord God will take away all weeping; and he will put an end to the shame of his people in all the earth: for the Lord has said it.</span></div>
-<div class="v-row" data-ref="Isaiah 25:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And in that day it will be said, See, this is our God; we have been waiting for him, and he will be our saviour: this is the Lord in whom is our hope; we will be glad and have delight in his salvation.</span></div>
-<div class="v-row" data-ref="Isaiah 25:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For in this mountain will the hand of the Lord come to rest, and Moab will be crushed down in his place, even as the dry stems of the grain are crushed under foot in the waste place.</span></div>
-<div class="v-row" data-ref="Isaiah 25:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And if he puts out his hands, like a man stretching out his hands in swimming, the Lord will make low his pride, however expert his designs.</span></div>
-<div class="v-row" data-ref="Isaiah 25:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the strong tower of your walls has been broken by him, made low, and crushed even to the dust.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/25/1/" data-ref="Isaiah 25:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/1/"><span class="v-num">1</span><span class="v-txt">O Lord, you are my God; I will give praise to you, I will give honour to your name; for you have done great acts of power; your purposes in the past have been made true and certain in effect.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/2/" data-ref="Isaiah 25:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/2/"><span class="v-num">2</span><span class="v-txt">For you have made a town a waste place: a strong town a mass of broken walls; the tower of the men of pride has come to an end; it will never be put up again.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/3/" data-ref="Isaiah 25:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/3/"><span class="v-num">3</span><span class="v-txt">For this cause will the strong people give glory to you, the town of the cruel ones will be in fear of you.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/4/" data-ref="Isaiah 25:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/4/"><span class="v-num">4</span><span class="v-txt">For you have been a strong place for the poor and the crushed in their trouble, a safe place from the storm, a shade from the heat, when the wrath of the cruel ones is like a winter storm.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/5/" data-ref="Isaiah 25:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/5/"><span class="v-num">5</span><span class="v-txt">As heat by the shade of a cloud, the noise of the men of pride has been made quiet by you; as heat by the shade of a cloud, the song of the cruel ones has been stopped.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/6/" data-ref="Isaiah 25:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/6/"><span class="v-num">6</span><span class="v-txt">And in this mountain will the Lord of armies make for all peoples a feast of good things, a feast of wines long stored, of good things sweet to the taste, of wines long kept and tested.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/7/" data-ref="Isaiah 25:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/7/"><span class="v-num">7</span><span class="v-txt">And in this mountain he will put an end to the shade covering the face of all peoples, and the veil which is stretched over all nations.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/8/" data-ref="Isaiah 25:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/8/"><span class="v-num">8</span><span class="v-txt">He has put an end to death for ever; and the Lord God will take away all weeping; and he will put an end to the shame of his people in all the earth: for the Lord has said it.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/9/" data-ref="Isaiah 25:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/9/"><span class="v-num">9</span><span class="v-txt">And in that day it will be said, See, this is our God; we have been waiting for him, and he will be our saviour: this is the Lord in whom is our hope; we will be glad and have delight in his salvation.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/10/" data-ref="Isaiah 25:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/10/"><span class="v-num">10</span><span class="v-txt">For in this mountain will the hand of the Lord come to rest, and Moab will be crushed down in his place, even as the dry stems of the grain are crushed under foot in the waste place.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/11/" data-ref="Isaiah 25:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/11/"><span class="v-num">11</span><span class="v-txt">And if he puts out his hands, like a man stretching out his hands in swimming, the Lord will make low his pride, however expert his designs.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/25/12/" data-ref="Isaiah 25:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/25/12/"><span class="v-num">12</span><span class="v-txt">And the strong tower of your walls has been broken by him, made low, and crushed even to the dust.</span></a>
 
     
 <div class="app-cta">

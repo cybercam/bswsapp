@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Galatians 6:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Brethren, if a man is overtaken in any trespass, you who [are] spiritual restore such a one in a spirit of gentleness, considering yourself lest you also be tempted.</span></div>
-<div class="v-row" data-ref="Galatians 6:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Bear one another's burdens, and so fulfill the law of Christ.</span></div>
-<div class="v-row" data-ref="Galatians 6:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For if anyone thinks himself to be something, when he is nothing, he deceives himself.</span></div>
-<div class="v-row" data-ref="Galatians 6:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But let each one examine his own work, and then he will have rejoicing in himself alone, and not in another.</span></div>
-<div class="v-row" data-ref="Galatians 6:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For each one shall bear his own load.</span></div>
-<div class="v-row" data-ref="Galatians 6:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let him who is taught the word share in all good things with him who teaches.</span></div>
-<div class="v-row" data-ref="Galatians 6:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Do not be deceived, God is not mocked; for whatever a man sows, that he will also reap.</span></div>
-<div class="v-row" data-ref="Galatians 6:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For he who sows to his flesh will of the flesh reap corruption, but he who sows to the Spirit will of the Spirit reap everlasting life.</span></div>
-<div class="v-row" data-ref="Galatians 6:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And let us not grow weary while doing good, for in due season we shall reap if we do not lose heart.</span></div>
-<div class="v-row" data-ref="Galatians 6:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Therefore, as we have opportunity, let us do good to all, especially to those who are of the household of faith.</span></div>
-<div class="v-row" data-ref="Galatians 6:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">See with what large letters I have written to you with my own hand!</span></div>
-<div class="v-row" data-ref="Galatians 6:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">As many as desire to make a good showing in the flesh, these [would] compel you to be circumcised, only that they may not suffer persecution for the cross of Christ.</span></div>
-<div class="v-row" data-ref="Galatians 6:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For not even those who are circumcised keep the law, but they desire to have you circumcised that they may boast in your flesh.</span></div>
-<div class="v-row" data-ref="Galatians 6:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But God forbid that I should boast except in the cross of our Lord Jesus Christ, by whom the world has been crucified to me, and I to the world.</span></div>
-<div class="v-row" data-ref="Galatians 6:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For in Christ Jesus neither circumcision nor uncircumcision avails anything, but a new creation.</span></div>
-<div class="v-row" data-ref="Galatians 6:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And as many as walk according to this rule, peace and mercy [be] upon them, and upon the Israel of God.</span></div>
-<div class="v-row" data-ref="Galatians 6:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">From now on let no one trouble me, for I bear in my body the marks of the Lord Jesus.</span></div>
-<div class="v-row" data-ref="Galatians 6:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Brethren, the grace of our Lord Jesus Christ [be] with your spirit. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/galatians/6/1/" data-ref="Galatians 6:1 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/1/"><span class="v-num">1</span><span class="v-txt">Brethren, if a man is overtaken in any trespass, you who [are] spiritual restore such a one in a spirit of gentleness, considering yourself lest you also be tempted.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/2/" data-ref="Galatians 6:2 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/2/"><span class="v-num">2</span><span class="v-txt">Bear one another's burdens, and so fulfill the law of Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/3/" data-ref="Galatians 6:3 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/3/"><span class="v-num">3</span><span class="v-txt">For if anyone thinks himself to be something, when he is nothing, he deceives himself.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/4/" data-ref="Galatians 6:4 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/4/"><span class="v-num">4</span><span class="v-txt">But let each one examine his own work, and then he will have rejoicing in himself alone, and not in another.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/5/" data-ref="Galatians 6:5 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/5/"><span class="v-num">5</span><span class="v-txt">For each one shall bear his own load.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/6/" data-ref="Galatians 6:6 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/6/"><span class="v-num">6</span><span class="v-txt">Let him who is taught the word share in all good things with him who teaches.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/7/" data-ref="Galatians 6:7 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/7/"><span class="v-num">7</span><span class="v-txt">Do not be deceived, God is not mocked; for whatever a man sows, that he will also reap.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/8/" data-ref="Galatians 6:8 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/8/"><span class="v-num">8</span><span class="v-txt">For he who sows to his flesh will of the flesh reap corruption, but he who sows to the Spirit will of the Spirit reap everlasting life.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/9/" data-ref="Galatians 6:9 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/9/"><span class="v-num">9</span><span class="v-txt">And let us not grow weary while doing good, for in due season we shall reap if we do not lose heart.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/10/" data-ref="Galatians 6:10 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/10/"><span class="v-num">10</span><span class="v-txt">Therefore, as we have opportunity, let us do good to all, especially to those who are of the household of faith.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/11/" data-ref="Galatians 6:11 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/11/"><span class="v-num">11</span><span class="v-txt">See with what large letters I have written to you with my own hand!</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/12/" data-ref="Galatians 6:12 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/12/"><span class="v-num">12</span><span class="v-txt">As many as desire to make a good showing in the flesh, these [would] compel you to be circumcised, only that they may not suffer persecution for the cross of Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/13/" data-ref="Galatians 6:13 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/13/"><span class="v-num">13</span><span class="v-txt">For not even those who are circumcised keep the law, but they desire to have you circumcised that they may boast in your flesh.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/14/" data-ref="Galatians 6:14 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/14/"><span class="v-num">14</span><span class="v-txt">But God forbid that I should boast except in the cross of our Lord Jesus Christ, by whom the world has been crucified to me, and I to the world.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/15/" data-ref="Galatians 6:15 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/15/"><span class="v-num">15</span><span class="v-txt">For in Christ Jesus neither circumcision nor uncircumcision avails anything, but a new creation.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/16/" data-ref="Galatians 6:16 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/16/"><span class="v-num">16</span><span class="v-txt">And as many as walk according to this rule, peace and mercy [be] upon them, and upon the Israel of God.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/17/" data-ref="Galatians 6:17 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/17/"><span class="v-num">17</span><span class="v-txt">From now on let no one trouble me, for I bear in my body the marks of the Lord Jesus.</span></a>
+<a class="v-row" href="/bible/nkjv/galatians/6/18/" data-ref="Galatians 6:18 (New King James Version)" data-verse-url="/bible/nkjv/galatians/6/18/"><span class="v-num">18</span><span class="v-txt">Brethren, the grace of our Lord Jesus Christ [be] with your spirit. Amen.</span></a>
 
     
 <div class="app-cta">

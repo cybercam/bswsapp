@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 10:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Dead flies make the oil of the perfumer give out an evil smell; more valued is a little wisdom than the great glory of the foolish.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The heart of the wise man goes in the right direction; but the heart of a foolish man in the wrong.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when the foolish man is walking in the way, he has no sense and lets everyone see that he is foolish.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If the wrath of the ruler is against you, keep in your place; in him who keeps quiet even great sins may be overlooked.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">There is an evil which I have seen under the sun, like an error which comes by chance from a ruler:</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The foolish are placed in high positions, but men of wealth are kept low.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I have seen servants on horses, and rulers walking on the earth as servants.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He who makes a hole for others will himself go into it, and for him who makes a hole through a wall the bite of a snake will be a punishment.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He who gets out stones from the earth will be damaged by them, and in the cutting of wood there is danger.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If the iron has no edge, and he does not make it sharp, then he has to put out more strength; but wisdom makes things go well.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If a snake gives a bite before the word of power is said, then there is no longer any use in the word of power.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The words of a wise man's mouth are sweet to all, but the lips of a foolish man are his destruction.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The first words of his mouth are foolish, and the end of his talk is evil crime.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The foolish are full of words; man has no knowledge of what will be; and who is able to say what will be after him?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The work of the foolish will be a weariness to him, because he has no knowledge of the way to the town.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Unhappy is the land whose king is a boy, and whose rulers are feasting in the morning.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Happy is the land whose ruler is of noble birth, and whose chiefs take food at the right time, for strength and not for feasting.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">When no work is done the roof goes in, and when the hands do nothing water comes into the house.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">A feast is for laughing, and wine makes glad the heart; but by the one and the other money is wasted.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 10:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Say not a curse against the king, even in your thoughts; and even secretly say not a curse against the man of wealth; because a bird of the air will take the voice, and that which has wings will give news of it.</span></div>
+    <a class="v-row" href="/bible/bbe/ecclesiastes/10/1/" data-ref="Ecclesiastes 10:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/1/"><span class="v-num">1</span><span class="v-txt">Dead flies make the oil of the perfumer give out an evil smell; more valued is a little wisdom than the great glory of the foolish.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/2/" data-ref="Ecclesiastes 10:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/2/"><span class="v-num">2</span><span class="v-txt">The heart of the wise man goes in the right direction; but the heart of a foolish man in the wrong.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/3/" data-ref="Ecclesiastes 10:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/3/"><span class="v-num">3</span><span class="v-txt">And when the foolish man is walking in the way, he has no sense and lets everyone see that he is foolish.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/4/" data-ref="Ecclesiastes 10:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/4/"><span class="v-num">4</span><span class="v-txt">If the wrath of the ruler is against you, keep in your place; in him who keeps quiet even great sins may be overlooked.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/5/" data-ref="Ecclesiastes 10:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/5/"><span class="v-num">5</span><span class="v-txt">There is an evil which I have seen under the sun, like an error which comes by chance from a ruler:</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/6/" data-ref="Ecclesiastes 10:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/6/"><span class="v-num">6</span><span class="v-txt">The foolish are placed in high positions, but men of wealth are kept low.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/7/" data-ref="Ecclesiastes 10:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/7/"><span class="v-num">7</span><span class="v-txt">I have seen servants on horses, and rulers walking on the earth as servants.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/8/" data-ref="Ecclesiastes 10:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/8/"><span class="v-num">8</span><span class="v-txt">He who makes a hole for others will himself go into it, and for him who makes a hole through a wall the bite of a snake will be a punishment.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/9/" data-ref="Ecclesiastes 10:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/9/"><span class="v-num">9</span><span class="v-txt">He who gets out stones from the earth will be damaged by them, and in the cutting of wood there is danger.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/10/" data-ref="Ecclesiastes 10:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/10/"><span class="v-num">10</span><span class="v-txt">If the iron has no edge, and he does not make it sharp, then he has to put out more strength; but wisdom makes things go well.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/11/" data-ref="Ecclesiastes 10:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/11/"><span class="v-num">11</span><span class="v-txt">If a snake gives a bite before the word of power is said, then there is no longer any use in the word of power.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/12/" data-ref="Ecclesiastes 10:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/12/"><span class="v-num">12</span><span class="v-txt">The words of a wise man's mouth are sweet to all, but the lips of a foolish man are his destruction.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/13/" data-ref="Ecclesiastes 10:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/13/"><span class="v-num">13</span><span class="v-txt">The first words of his mouth are foolish, and the end of his talk is evil crime.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/14/" data-ref="Ecclesiastes 10:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/14/"><span class="v-num">14</span><span class="v-txt">The foolish are full of words; man has no knowledge of what will be; and who is able to say what will be after him?</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/15/" data-ref="Ecclesiastes 10:15 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/15/"><span class="v-num">15</span><span class="v-txt">The work of the foolish will be a weariness to him, because he has no knowledge of the way to the town.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/16/" data-ref="Ecclesiastes 10:16 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/16/"><span class="v-num">16</span><span class="v-txt">Unhappy is the land whose king is a boy, and whose rulers are feasting in the morning.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/17/" data-ref="Ecclesiastes 10:17 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/17/"><span class="v-num">17</span><span class="v-txt">Happy is the land whose ruler is of noble birth, and whose chiefs take food at the right time, for strength and not for feasting.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/18/" data-ref="Ecclesiastes 10:18 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/18/"><span class="v-num">18</span><span class="v-txt">When no work is done the roof goes in, and when the hands do nothing water comes into the house.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/19/" data-ref="Ecclesiastes 10:19 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/19/"><span class="v-num">19</span><span class="v-txt">A feast is for laughing, and wine makes glad the heart; but by the one and the other money is wasted.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/10/20/" data-ref="Ecclesiastes 10:20 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/10/20/"><span class="v-num">20</span><span class="v-txt">Say not a curse against the king, even in your thoughts; and even secretly say not a curse against the man of wealth; because a bird of the air will take the voice, and that which has wings will give news of it.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 27</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Exodus 27:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And make an altar of hard wood, a square altar, five cubits long, five cubits wide and three cubits high.</span></div>
-<div class="v-row" data-ref="Exodus 27:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Put horns at the four angles of it, made of the same, plating it all with brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And make all its vessels, the baskets for taking away the dust of the fire, the spades and basins and meat-hooks and fire-trays, of brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And make a network of brass, with four brass rings at its four angles.</span></div>
-<div class="v-row" data-ref="Exodus 27:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And put the network under the shelf round the altar so that the net comes half-way up the altar.</span></div>
-<div class="v-row" data-ref="Exodus 27:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And make rods for the altar, of hard wood, plated with brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And put the rods through the rings at the two opposite sides of the altar, for lifting it.</span></div>
-<div class="v-row" data-ref="Exodus 27:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The altar is to be hollow, boarded in with wood; make it from the design which you saw on the mountain.</span></div>
-<div class="v-row" data-ref="Exodus 27:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And let there be an open space round the House, with hangings for its south side of the best linen, a hundred cubits long.</span></div>
-<div class="v-row" data-ref="Exodus 27:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Their twenty pillars and their twenty bases are to be of brass; the hooks of the pillars and their bands are to be of silver.</span></div>
-<div class="v-row" data-ref="Exodus 27:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And on the north side in the same way, hangings a hundred cubits long, with twenty pillars of brass on bases of brass; their hooks and their bands are to be of silver.</span></div>
-<div class="v-row" data-ref="Exodus 27:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And for the open space on the west side, the hangings are to be fifty cubits wide, with ten pillars and ten bases;</span></div>
-<div class="v-row" data-ref="Exodus 27:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And on the east side the space is to be fifty cubits wide.</span></div>
-<div class="v-row" data-ref="Exodus 27:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">On the one side of the doorway will be hangings fifteen cubits long, with three pillars and three bases;</span></div>
-<div class="v-row" data-ref="Exodus 27:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And on the other side, hangings fifteen cubits long, with three pillars and three bases.</span></div>
-<div class="v-row" data-ref="Exodus 27:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And across the doorway, a veil of twenty cubits of the best linen, made of needlework of blue and purple and red, with four pillars and four bases.</span></div>
-<div class="v-row" data-ref="Exodus 27:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">All the pillars round the open space are to have silver bands, with hooks of silver and bases of brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The open space is to be a hundred cubits long, fifty cubits wide, with sides five cubits high, curtained with the best linen, with bases of brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">All the instruments for the work of the House, and all its nails, and the nails of the open space are to be of brass.</span></div>
-<div class="v-row" data-ref="Exodus 27:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Give orders to the children of Israel to give you clear olive oil for the lights, so that a light may be burning there at all times.</span></div>
-<div class="v-row" data-ref="Exodus 27:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Let Aaron and his sons put this in order, evening and morning, before the Lord, inside the Tent of meeting, outside the veil which is before the ark; this is to be an order for ever, from generation to generation, to be kept by the children of Israel.</span></div>
+    <a class="v-row" href="/bible/bbe/exodus/27/1/" data-ref="Exodus 27:1 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/1/"><span class="v-num">1</span><span class="v-txt">And make an altar of hard wood, a square altar, five cubits long, five cubits wide and three cubits high.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/2/" data-ref="Exodus 27:2 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/2/"><span class="v-num">2</span><span class="v-txt">Put horns at the four angles of it, made of the same, plating it all with brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/3/" data-ref="Exodus 27:3 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/3/"><span class="v-num">3</span><span class="v-txt">And make all its vessels, the baskets for taking away the dust of the fire, the spades and basins and meat-hooks and fire-trays, of brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/4/" data-ref="Exodus 27:4 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/4/"><span class="v-num">4</span><span class="v-txt">And make a network of brass, with four brass rings at its four angles.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/5/" data-ref="Exodus 27:5 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/5/"><span class="v-num">5</span><span class="v-txt">And put the network under the shelf round the altar so that the net comes half-way up the altar.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/6/" data-ref="Exodus 27:6 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/6/"><span class="v-num">6</span><span class="v-txt">And make rods for the altar, of hard wood, plated with brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/7/" data-ref="Exodus 27:7 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/7/"><span class="v-num">7</span><span class="v-txt">And put the rods through the rings at the two opposite sides of the altar, for lifting it.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/8/" data-ref="Exodus 27:8 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/8/"><span class="v-num">8</span><span class="v-txt">The altar is to be hollow, boarded in with wood; make it from the design which you saw on the mountain.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/9/" data-ref="Exodus 27:9 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/9/"><span class="v-num">9</span><span class="v-txt">And let there be an open space round the House, with hangings for its south side of the best linen, a hundred cubits long.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/10/" data-ref="Exodus 27:10 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/10/"><span class="v-num">10</span><span class="v-txt">Their twenty pillars and their twenty bases are to be of brass; the hooks of the pillars and their bands are to be of silver.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/11/" data-ref="Exodus 27:11 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/11/"><span class="v-num">11</span><span class="v-txt">And on the north side in the same way, hangings a hundred cubits long, with twenty pillars of brass on bases of brass; their hooks and their bands are to be of silver.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/12/" data-ref="Exodus 27:12 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/12/"><span class="v-num">12</span><span class="v-txt">And for the open space on the west side, the hangings are to be fifty cubits wide, with ten pillars and ten bases;</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/13/" data-ref="Exodus 27:13 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/13/"><span class="v-num">13</span><span class="v-txt">And on the east side the space is to be fifty cubits wide.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/14/" data-ref="Exodus 27:14 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/14/"><span class="v-num">14</span><span class="v-txt">On the one side of the doorway will be hangings fifteen cubits long, with three pillars and three bases;</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/15/" data-ref="Exodus 27:15 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/15/"><span class="v-num">15</span><span class="v-txt">And on the other side, hangings fifteen cubits long, with three pillars and three bases.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/16/" data-ref="Exodus 27:16 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/16/"><span class="v-num">16</span><span class="v-txt">And across the doorway, a veil of twenty cubits of the best linen, made of needlework of blue and purple and red, with four pillars and four bases.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/17/" data-ref="Exodus 27:17 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/17/"><span class="v-num">17</span><span class="v-txt">All the pillars round the open space are to have silver bands, with hooks of silver and bases of brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/18/" data-ref="Exodus 27:18 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/18/"><span class="v-num">18</span><span class="v-txt">The open space is to be a hundred cubits long, fifty cubits wide, with sides five cubits high, curtained with the best linen, with bases of brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/19/" data-ref="Exodus 27:19 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/19/"><span class="v-num">19</span><span class="v-txt">All the instruments for the work of the House, and all its nails, and the nails of the open space are to be of brass.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/20/" data-ref="Exodus 27:20 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/20/"><span class="v-num">20</span><span class="v-txt">Give orders to the children of Israel to give you clear olive oil for the lights, so that a light may be burning there at all times.</span></a>
+<a class="v-row" href="/bible/bbe/exodus/27/21/" data-ref="Exodus 27:21 (Bible in Basic English)" data-verse-url="/bible/bbe/exodus/27/21/"><span class="v-num">21</span><span class="v-txt">Let Aaron and his sons put this in order, evening and morning, before the Lord, inside the Tent of meeting, outside the veil which is before the ark; this is to be an order for ever, from generation to generation, to be kept by the children of Israel.</span></a>
 
     
 <div class="app-cta">

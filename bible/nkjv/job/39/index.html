@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,36 +204,36 @@ a:hover{text-decoration:underline}
       <h2>Chapter 39</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 39:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Do you know the time when the wild mountain goats bear young? [Or] can you mark when the deer gives birth?</span></div>
-<div class="v-row" data-ref="Job 39:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Can you number the months [that] they fulfill? Or do you know the time when they bear young?</span></div>
-<div class="v-row" data-ref="Job 39:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They bow down, They bring forth their young, They deliver their offspring.</span></div>
-<div class="v-row" data-ref="Job 39:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Their young ones are healthy, They grow strong with grain; They depart and do not return to them.</span></div>
-<div class="v-row" data-ref="Job 39:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"Who set the wild donkey free? Who loosed the bonds of the onager,</span></div>
-<div class="v-row" data-ref="Job 39:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Whose home I have made the wilderness, And the barren land his dwelling?</span></div>
-<div class="v-row" data-ref="Job 39:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He scorns the tumult of the city; He does not heed the shouts of the driver.</span></div>
-<div class="v-row" data-ref="Job 39:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The range of the mountains [is] his pasture, And he searches after every green thing.</span></div>
-<div class="v-row" data-ref="Job 39:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"Will the wild ox be willing to serve you? Will he bed by your manger?</span></div>
-<div class="v-row" data-ref="Job 39:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Can you bind the wild ox in the furrow with ropes? Or will he plow the valleys behind you?</span></div>
-<div class="v-row" data-ref="Job 39:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Will you trust him because his strength [is] great? Or will you leave your labor to him?</span></div>
-<div class="v-row" data-ref="Job 39:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Will you trust him to bring home your grain, And gather it to your threshing floor?</span></div>
-<div class="v-row" data-ref="Job 39:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"The wings of the ostrich wave proudly, But are her wings and pinions [like the] kindly stork's?</span></div>
-<div class="v-row" data-ref="Job 39:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For she leaves her eggs on the ground, And warms them in the dust;</span></div>
-<div class="v-row" data-ref="Job 39:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">She forgets that a foot may crush them, Or that a wild beast may break them.</span></div>
-<div class="v-row" data-ref="Job 39:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">She treats her young harshly, as though [they were] not hers; Her labor is in vain, without concern,</span></div>
-<div class="v-row" data-ref="Job 39:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Because God deprived her of wisdom, And did not endow her with understanding.</span></div>
-<div class="v-row" data-ref="Job 39:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">When she lifts herself on high, She scorns the horse and its rider.</span></div>
-<div class="v-row" data-ref="Job 39:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"Have you given the horse strength? Have you clothed his neck with thunder?</span></div>
-<div class="v-row" data-ref="Job 39:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Can you frighten him like a locust? His majestic snorting strikes terror.</span></div>
-<div class="v-row" data-ref="Job 39:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He paws in the valley, and rejoices in [his] strength; He gallops into the clash of arms.</span></div>
-<div class="v-row" data-ref="Job 39:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He mocks at fear, and is not frightened; Nor does he turn back from the sword.</span></div>
-<div class="v-row" data-ref="Job 39:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The quiver rattles against him, The glittering spear and javelin.</span></div>
-<div class="v-row" data-ref="Job 39:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He devours the distance with fierceness and rage; Nor does he come to a halt because the trumpet [has] sounded.</span></div>
-<div class="v-row" data-ref="Job 39:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">At the [blast of] the trumpet he says, 'Aha!' He smells the battle from afar, The thunder of captains and shouting.</span></div>
-<div class="v-row" data-ref="Job 39:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">"Does the hawk fly by your wisdom, [And] spread its wings toward the south?</span></div>
-<div class="v-row" data-ref="Job 39:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Does the eagle mount up at your command, And make its nest on high?</span></div>
-<div class="v-row" data-ref="Job 39:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">On the rocks it dwells and resides, On the crag of the rock and the stronghold.</span></div>
-<div class="v-row" data-ref="Job 39:29 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">From there it spies out the prey; Its eyes observe from afar.</span></div>
-<div class="v-row" data-ref="Job 39:30 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">Its young ones suck up blood; And where the slain [are,] there it [is."]</span></div>
+    <a class="v-row" href="/bible/nkjv/job/39/1/" data-ref="Job 39:1 (New King James Version)" data-verse-url="/bible/nkjv/job/39/1/"><span class="v-num">1</span><span class="v-txt">"Do you know the time when the wild mountain goats bear young? [Or] can you mark when the deer gives birth?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/2/" data-ref="Job 39:2 (New King James Version)" data-verse-url="/bible/nkjv/job/39/2/"><span class="v-num">2</span><span class="v-txt">Can you number the months [that] they fulfill? Or do you know the time when they bear young?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/3/" data-ref="Job 39:3 (New King James Version)" data-verse-url="/bible/nkjv/job/39/3/"><span class="v-num">3</span><span class="v-txt">They bow down, They bring forth their young, They deliver their offspring.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/4/" data-ref="Job 39:4 (New King James Version)" data-verse-url="/bible/nkjv/job/39/4/"><span class="v-num">4</span><span class="v-txt">Their young ones are healthy, They grow strong with grain; They depart and do not return to them.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/5/" data-ref="Job 39:5 (New King James Version)" data-verse-url="/bible/nkjv/job/39/5/"><span class="v-num">5</span><span class="v-txt">"Who set the wild donkey free? Who loosed the bonds of the onager,</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/6/" data-ref="Job 39:6 (New King James Version)" data-verse-url="/bible/nkjv/job/39/6/"><span class="v-num">6</span><span class="v-txt">Whose home I have made the wilderness, And the barren land his dwelling?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/7/" data-ref="Job 39:7 (New King James Version)" data-verse-url="/bible/nkjv/job/39/7/"><span class="v-num">7</span><span class="v-txt">He scorns the tumult of the city; He does not heed the shouts of the driver.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/8/" data-ref="Job 39:8 (New King James Version)" data-verse-url="/bible/nkjv/job/39/8/"><span class="v-num">8</span><span class="v-txt">The range of the mountains [is] his pasture, And he searches after every green thing.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/9/" data-ref="Job 39:9 (New King James Version)" data-verse-url="/bible/nkjv/job/39/9/"><span class="v-num">9</span><span class="v-txt">"Will the wild ox be willing to serve you? Will he bed by your manger?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/10/" data-ref="Job 39:10 (New King James Version)" data-verse-url="/bible/nkjv/job/39/10/"><span class="v-num">10</span><span class="v-txt">Can you bind the wild ox in the furrow with ropes? Or will he plow the valleys behind you?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/11/" data-ref="Job 39:11 (New King James Version)" data-verse-url="/bible/nkjv/job/39/11/"><span class="v-num">11</span><span class="v-txt">Will you trust him because his strength [is] great? Or will you leave your labor to him?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/12/" data-ref="Job 39:12 (New King James Version)" data-verse-url="/bible/nkjv/job/39/12/"><span class="v-num">12</span><span class="v-txt">Will you trust him to bring home your grain, And gather it to your threshing floor?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/13/" data-ref="Job 39:13 (New King James Version)" data-verse-url="/bible/nkjv/job/39/13/"><span class="v-num">13</span><span class="v-txt">"The wings of the ostrich wave proudly, But are her wings and pinions [like the] kindly stork's?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/14/" data-ref="Job 39:14 (New King James Version)" data-verse-url="/bible/nkjv/job/39/14/"><span class="v-num">14</span><span class="v-txt">For she leaves her eggs on the ground, And warms them in the dust;</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/15/" data-ref="Job 39:15 (New King James Version)" data-verse-url="/bible/nkjv/job/39/15/"><span class="v-num">15</span><span class="v-txt">She forgets that a foot may crush them, Or that a wild beast may break them.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/16/" data-ref="Job 39:16 (New King James Version)" data-verse-url="/bible/nkjv/job/39/16/"><span class="v-num">16</span><span class="v-txt">She treats her young harshly, as though [they were] not hers; Her labor is in vain, without concern,</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/17/" data-ref="Job 39:17 (New King James Version)" data-verse-url="/bible/nkjv/job/39/17/"><span class="v-num">17</span><span class="v-txt">Because God deprived her of wisdom, And did not endow her with understanding.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/18/" data-ref="Job 39:18 (New King James Version)" data-verse-url="/bible/nkjv/job/39/18/"><span class="v-num">18</span><span class="v-txt">When she lifts herself on high, She scorns the horse and its rider.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/19/" data-ref="Job 39:19 (New King James Version)" data-verse-url="/bible/nkjv/job/39/19/"><span class="v-num">19</span><span class="v-txt">"Have you given the horse strength? Have you clothed his neck with thunder?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/20/" data-ref="Job 39:20 (New King James Version)" data-verse-url="/bible/nkjv/job/39/20/"><span class="v-num">20</span><span class="v-txt">Can you frighten him like a locust? His majestic snorting strikes terror.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/21/" data-ref="Job 39:21 (New King James Version)" data-verse-url="/bible/nkjv/job/39/21/"><span class="v-num">21</span><span class="v-txt">He paws in the valley, and rejoices in [his] strength; He gallops into the clash of arms.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/22/" data-ref="Job 39:22 (New King James Version)" data-verse-url="/bible/nkjv/job/39/22/"><span class="v-num">22</span><span class="v-txt">He mocks at fear, and is not frightened; Nor does he turn back from the sword.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/23/" data-ref="Job 39:23 (New King James Version)" data-verse-url="/bible/nkjv/job/39/23/"><span class="v-num">23</span><span class="v-txt">The quiver rattles against him, The glittering spear and javelin.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/24/" data-ref="Job 39:24 (New King James Version)" data-verse-url="/bible/nkjv/job/39/24/"><span class="v-num">24</span><span class="v-txt">He devours the distance with fierceness and rage; Nor does he come to a halt because the trumpet [has] sounded.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/25/" data-ref="Job 39:25 (New King James Version)" data-verse-url="/bible/nkjv/job/39/25/"><span class="v-num">25</span><span class="v-txt">At the [blast of] the trumpet he says, 'Aha!' He smells the battle from afar, The thunder of captains and shouting.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/26/" data-ref="Job 39:26 (New King James Version)" data-verse-url="/bible/nkjv/job/39/26/"><span class="v-num">26</span><span class="v-txt">"Does the hawk fly by your wisdom, [And] spread its wings toward the south?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/27/" data-ref="Job 39:27 (New King James Version)" data-verse-url="/bible/nkjv/job/39/27/"><span class="v-num">27</span><span class="v-txt">Does the eagle mount up at your command, And make its nest on high?</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/28/" data-ref="Job 39:28 (New King James Version)" data-verse-url="/bible/nkjv/job/39/28/"><span class="v-num">28</span><span class="v-txt">On the rocks it dwells and resides, On the crag of the rock and the stronghold.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/29/" data-ref="Job 39:29 (New King James Version)" data-verse-url="/bible/nkjv/job/39/29/"><span class="v-num">29</span><span class="v-txt">From there it spies out the prey; Its eyes observe from afar.</span></a>
+<a class="v-row" href="/bible/nkjv/job/39/30/" data-ref="Job 39:30 (New King James Version)" data-verse-url="/bible/nkjv/job/39/30/"><span class="v-num">30</span><span class="v-txt">Its young ones suck up blood; And where the slain [are,] there it [is."]</span></a>
 
     
 <div class="app-cta">

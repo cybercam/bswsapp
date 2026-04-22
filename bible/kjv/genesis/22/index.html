@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 22</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 22:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came to pass after these things, that God did tempt Abraham, and said unto him, Abraham: and he said, Behold, here I am.</span></div>
-<div class="v-row" data-ref="Genesis 22:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said, Take now thy son, thine only son Isaac, whom thou lovest, and get thee into the land of Moriah; and offer him there for a burnt offering upon one of the mountains which I will tell thee of.</span></div>
-<div class="v-row" data-ref="Genesis 22:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Abraham rose up early in the morning, and saddled his ass, and took two of his young men with him, and Isaac his son, and clave the wood for the burnt offering, and rose up, and went unto the place of which God had told him.</span></div>
-<div class="v-row" data-ref="Genesis 22:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then on the third day Abraham lifted up his eyes, and saw the place afar off.</span></div>
-<div class="v-row" data-ref="Genesis 22:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Abraham said unto his young men, Abide ye here with the ass; and I and the lad will go yonder and worship, and come again to you.</span></div>
-<div class="v-row" data-ref="Genesis 22:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Abraham took the wood of the burnt offering, and laid it upon Isaac his son; and he took the fire in his hand, and a knife; and they went both of them together.</span></div>
-<div class="v-row" data-ref="Genesis 22:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And Isaac spake unto Abraham his father, and said, My father: and he said, Here am I, my son. And he said, Behold the fire and the wood: but where is the lamb for a burnt offering?</span></div>
-<div class="v-row" data-ref="Genesis 22:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Abraham said, My son, God will provide himself a lamb for a burnt offering: so they went both of them together.</span></div>
-<div class="v-row" data-ref="Genesis 22:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And they came to the place which God had told him of; and Abraham built an altar there, and laid the wood in order, and bound Isaac his son, and laid him on the altar upon the wood.</span></div>
-<div class="v-row" data-ref="Genesis 22:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Abraham stretched forth his hand, and took the knife to slay his son.</span></div>
-<div class="v-row" data-ref="Genesis 22:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the angel of the LORD called unto him out of heaven, and said, Abraham, Abraham: and he said, Here am I.</span></div>
-<div class="v-row" data-ref="Genesis 22:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And he said, Lay not thine hand upon the lad, neither do thou any thing unto him: for now I know that thou fearest God, seeing thou hast not withheld thy son, thine only son from me.</span></div>
-<div class="v-row" data-ref="Genesis 22:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns: and Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son.</span></div>
-<div class="v-row" data-ref="Genesis 22:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Abraham called the name of that place Jehovahjireh: as it is said to this day, In the mount of the LORD it shall be seen.</span></div>
-<div class="v-row" data-ref="Genesis 22:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the angel of the LORD called unto Abraham out of heaven the second time,</span></div>
-<div class="v-row" data-ref="Genesis 22:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And said, By myself have I sworn, saith the LORD, for because thou hast done this thing, and hast not withheld thy son, thine only son:</span></div>
-<div class="v-row" data-ref="Genesis 22:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">That in blessing I will bless thee, and in multiplying I will multiply thy seed as the stars of the heaven, and as the sand which is upon the sea shore; and thy seed shall possess the gate of his enemies;</span></div>
-<div class="v-row" data-ref="Genesis 22:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And in thy seed shall all the nations of the earth be blessed; because thou hast obeyed my voice.</span></div>
-<div class="v-row" data-ref="Genesis 22:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So Abraham returned unto his young men, and they rose up and went together to Beersheba; and Abraham dwelt at Beersheba.</span></div>
-<div class="v-row" data-ref="Genesis 22:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And it came to pass after these things, that it was told Abraham, saying, Behold, Milcah, she hath also born children unto thy brother Nahor;</span></div>
-<div class="v-row" data-ref="Genesis 22:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Huz his firstborn, and Buz his brother, and Kemuel the father of Aram,</span></div>
-<div class="v-row" data-ref="Genesis 22:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And Chesed, and Hazo, and Pildash, and Jidlaph, and Bethuel.</span></div>
-<div class="v-row" data-ref="Genesis 22:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And Bethuel begat Rebekah: these eight Milcah did bear to Nahor, Abraham's brother.</span></div>
-<div class="v-row" data-ref="Genesis 22:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And his concubine, whose name was Reumah, she bare also Tebah, and Gaham, and Thahash, and Maachah.</span></div>
+    <a class="v-row" href="/bible/kjv/genesis/22/1/" data-ref="Genesis 22:1 (King James Version)" data-verse-url="/bible/kjv/genesis/22/1/"><span class="v-num">1</span><span class="v-txt">And it came to pass after these things, that God did tempt Abraham, and said unto him, Abraham: and he said, Behold, here I am.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/2/" data-ref="Genesis 22:2 (King James Version)" data-verse-url="/bible/kjv/genesis/22/2/"><span class="v-num">2</span><span class="v-txt">And he said, Take now thy son, thine only son Isaac, whom thou lovest, and get thee into the land of Moriah; and offer him there for a burnt offering upon one of the mountains which I will tell thee of.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/3/" data-ref="Genesis 22:3 (King James Version)" data-verse-url="/bible/kjv/genesis/22/3/"><span class="v-num">3</span><span class="v-txt">And Abraham rose up early in the morning, and saddled his ass, and took two of his young men with him, and Isaac his son, and clave the wood for the burnt offering, and rose up, and went unto the place of which God had told him.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/4/" data-ref="Genesis 22:4 (King James Version)" data-verse-url="/bible/kjv/genesis/22/4/"><span class="v-num">4</span><span class="v-txt">Then on the third day Abraham lifted up his eyes, and saw the place afar off.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/5/" data-ref="Genesis 22:5 (King James Version)" data-verse-url="/bible/kjv/genesis/22/5/"><span class="v-num">5</span><span class="v-txt">And Abraham said unto his young men, Abide ye here with the ass; and I and the lad will go yonder and worship, and come again to you.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/6/" data-ref="Genesis 22:6 (King James Version)" data-verse-url="/bible/kjv/genesis/22/6/"><span class="v-num">6</span><span class="v-txt">And Abraham took the wood of the burnt offering, and laid it upon Isaac his son; and he took the fire in his hand, and a knife; and they went both of them together.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/7/" data-ref="Genesis 22:7 (King James Version)" data-verse-url="/bible/kjv/genesis/22/7/"><span class="v-num">7</span><span class="v-txt">And Isaac spake unto Abraham his father, and said, My father: and he said, Here am I, my son. And he said, Behold the fire and the wood: but where is the lamb for a burnt offering?</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/8/" data-ref="Genesis 22:8 (King James Version)" data-verse-url="/bible/kjv/genesis/22/8/"><span class="v-num">8</span><span class="v-txt">And Abraham said, My son, God will provide himself a lamb for a burnt offering: so they went both of them together.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/9/" data-ref="Genesis 22:9 (King James Version)" data-verse-url="/bible/kjv/genesis/22/9/"><span class="v-num">9</span><span class="v-txt">And they came to the place which God had told him of; and Abraham built an altar there, and laid the wood in order, and bound Isaac his son, and laid him on the altar upon the wood.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/10/" data-ref="Genesis 22:10 (King James Version)" data-verse-url="/bible/kjv/genesis/22/10/"><span class="v-num">10</span><span class="v-txt">And Abraham stretched forth his hand, and took the knife to slay his son.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/11/" data-ref="Genesis 22:11 (King James Version)" data-verse-url="/bible/kjv/genesis/22/11/"><span class="v-num">11</span><span class="v-txt">And the angel of the LORD called unto him out of heaven, and said, Abraham, Abraham: and he said, Here am I.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/12/" data-ref="Genesis 22:12 (King James Version)" data-verse-url="/bible/kjv/genesis/22/12/"><span class="v-num">12</span><span class="v-txt">And he said, Lay not thine hand upon the lad, neither do thou any thing unto him: for now I know that thou fearest God, seeing thou hast not withheld thy son, thine only son from me.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/13/" data-ref="Genesis 22:13 (King James Version)" data-verse-url="/bible/kjv/genesis/22/13/"><span class="v-num">13</span><span class="v-txt">And Abraham lifted up his eyes, and looked, and behold behind him a ram caught in a thicket by his horns: and Abraham went and took the ram, and offered him up for a burnt offering in the stead of his son.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/14/" data-ref="Genesis 22:14 (King James Version)" data-verse-url="/bible/kjv/genesis/22/14/"><span class="v-num">14</span><span class="v-txt">And Abraham called the name of that place Jehovahjireh: as it is said to this day, In the mount of the LORD it shall be seen.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/15/" data-ref="Genesis 22:15 (King James Version)" data-verse-url="/bible/kjv/genesis/22/15/"><span class="v-num">15</span><span class="v-txt">And the angel of the LORD called unto Abraham out of heaven the second time,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/16/" data-ref="Genesis 22:16 (King James Version)" data-verse-url="/bible/kjv/genesis/22/16/"><span class="v-num">16</span><span class="v-txt">And said, By myself have I sworn, saith the LORD, for because thou hast done this thing, and hast not withheld thy son, thine only son:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/17/" data-ref="Genesis 22:17 (King James Version)" data-verse-url="/bible/kjv/genesis/22/17/"><span class="v-num">17</span><span class="v-txt">That in blessing I will bless thee, and in multiplying I will multiply thy seed as the stars of the heaven, and as the sand which is upon the sea shore; and thy seed shall possess the gate of his enemies;</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/18/" data-ref="Genesis 22:18 (King James Version)" data-verse-url="/bible/kjv/genesis/22/18/"><span class="v-num">18</span><span class="v-txt">And in thy seed shall all the nations of the earth be blessed; because thou hast obeyed my voice.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/19/" data-ref="Genesis 22:19 (King James Version)" data-verse-url="/bible/kjv/genesis/22/19/"><span class="v-num">19</span><span class="v-txt">So Abraham returned unto his young men, and they rose up and went together to Beersheba; and Abraham dwelt at Beersheba.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/20/" data-ref="Genesis 22:20 (King James Version)" data-verse-url="/bible/kjv/genesis/22/20/"><span class="v-num">20</span><span class="v-txt">And it came to pass after these things, that it was told Abraham, saying, Behold, Milcah, she hath also born children unto thy brother Nahor;</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/21/" data-ref="Genesis 22:21 (King James Version)" data-verse-url="/bible/kjv/genesis/22/21/"><span class="v-num">21</span><span class="v-txt">Huz his firstborn, and Buz his brother, and Kemuel the father of Aram,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/22/" data-ref="Genesis 22:22 (King James Version)" data-verse-url="/bible/kjv/genesis/22/22/"><span class="v-num">22</span><span class="v-txt">And Chesed, and Hazo, and Pildash, and Jidlaph, and Bethuel.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/23/" data-ref="Genesis 22:23 (King James Version)" data-verse-url="/bible/kjv/genesis/22/23/"><span class="v-num">23</span><span class="v-txt">And Bethuel begat Rebekah: these eight Milcah did bear to Nahor, Abraham's brother.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/22/24/" data-ref="Genesis 22:24 (King James Version)" data-verse-url="/bible/kjv/genesis/22/24/"><span class="v-num">24</span><span class="v-txt">And his concubine, whose name was Reumah, she bare also Tebah, and Gaham, and Thahash, and Maachah.</span></a>
 
     
 <div class="app-cta">

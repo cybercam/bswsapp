@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Job 12:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></div>
-<div class="v-row" data-ref="Job 12:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">No doubt but ye are the people, And wisdom shall die with you.</span></div>
-<div class="v-row" data-ref="Job 12:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But I have understanding as well as you; I am not inferior to you: Yea, who knoweth not such things as these?</span></div>
-<div class="v-row" data-ref="Job 12:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I am as one that is a laughing-stock to his neighbor, I who called upon God, and he answered: The just, the perfect man is a laughing-stock.</span></div>
-<div class="v-row" data-ref="Job 12:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">In the thought of him that is at ease there is contempt for misfortune; It is ready for them whose foot slippeth.</span></div>
-<div class="v-row" data-ref="Job 12:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The tents of robbers prosper, And they that provoke God are secure; Into whose hand God bringeth [abundantly].</span></div>
-<div class="v-row" data-ref="Job 12:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But ask now the beasts, and they shall teach thee; And the birds of the heavens, and they shall tell thee:</span></div>
-<div class="v-row" data-ref="Job 12:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Or speak to the earth, and it shall teach thee; And the fishes of the sea shall declare unto thee.</span></div>
-<div class="v-row" data-ref="Job 12:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Who knoweth not in all these, That the hand of Jehovah hath wrought this,</span></div>
-<div class="v-row" data-ref="Job 12:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In whose hand is the soul of every living thing, And the breath of all mankind?</span></div>
-<div class="v-row" data-ref="Job 12:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Doth not the ear try words, Even as the palate tasteth its food?</span></div>
-<div class="v-row" data-ref="Job 12:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">With aged men is wisdom, And in length of days understanding.</span></div>
-<div class="v-row" data-ref="Job 12:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">With [God] is wisdom and might; He hath counsel and understanding.</span></div>
-<div class="v-row" data-ref="Job 12:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Behold, he breaketh down, and it cannot be built again; He shutteth up a man, and there can be no opening.</span></div>
-<div class="v-row" data-ref="Job 12:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Behold, he withholdeth the waters, and they dry up; Again, he sendeth them out, and they overturn the earth.</span></div>
-<div class="v-row" data-ref="Job 12:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">With him is strength and wisdom; The deceived and the deceiver are his.</span></div>
-<div class="v-row" data-ref="Job 12:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He leadeth counsellors away stripped, And judges maketh he fools.</span></div>
-<div class="v-row" data-ref="Job 12:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He looseth the bond of kings, And he bindeth their loins with a girdle.</span></div>
-<div class="v-row" data-ref="Job 12:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He leadeth priests away stripped, And overthroweth the mighty.</span></div>
-<div class="v-row" data-ref="Job 12:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He removeth the speech of the trusty, And taketh away the understanding of the elders.</span></div>
-<div class="v-row" data-ref="Job 12:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He poureth contempt upon princes, And looseth the belt of the strong.</span></div>
-<div class="v-row" data-ref="Job 12:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He uncovereth deep things out of darkness, And bringeth out to light the shadow of death.</span></div>
-<div class="v-row" data-ref="Job 12:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He increaseth the nations, and he destroyeth them: He enlargeth the nations, and he leadeth them captive.</span></div>
-<div class="v-row" data-ref="Job 12:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He taketh away understanding from the chiefs of the people of the earth, And causeth them to wander in a wilderness where there is no way.</span></div>
-<div class="v-row" data-ref="Job 12:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">They grope in the dark without light; And he maketh them to stagger like a drunken man.</span></div>
+    <a class="v-row" href="/bible/asv/job/12/1/" data-ref="Job 12:1 (American Standard Version)" data-verse-url="/bible/asv/job/12/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></a>
+<a class="v-row" href="/bible/asv/job/12/2/" data-ref="Job 12:2 (American Standard Version)" data-verse-url="/bible/asv/job/12/2/"><span class="v-num">2</span><span class="v-txt">No doubt but ye are the people, And wisdom shall die with you.</span></a>
+<a class="v-row" href="/bible/asv/job/12/3/" data-ref="Job 12:3 (American Standard Version)" data-verse-url="/bible/asv/job/12/3/"><span class="v-num">3</span><span class="v-txt">But I have understanding as well as you; I am not inferior to you: Yea, who knoweth not such things as these?</span></a>
+<a class="v-row" href="/bible/asv/job/12/4/" data-ref="Job 12:4 (American Standard Version)" data-verse-url="/bible/asv/job/12/4/"><span class="v-num">4</span><span class="v-txt">I am as one that is a laughing-stock to his neighbor, I who called upon God, and he answered: The just, the perfect man is a laughing-stock.</span></a>
+<a class="v-row" href="/bible/asv/job/12/5/" data-ref="Job 12:5 (American Standard Version)" data-verse-url="/bible/asv/job/12/5/"><span class="v-num">5</span><span class="v-txt">In the thought of him that is at ease there is contempt for misfortune; It is ready for them whose foot slippeth.</span></a>
+<a class="v-row" href="/bible/asv/job/12/6/" data-ref="Job 12:6 (American Standard Version)" data-verse-url="/bible/asv/job/12/6/"><span class="v-num">6</span><span class="v-txt">The tents of robbers prosper, And they that provoke God are secure; Into whose hand God bringeth [abundantly].</span></a>
+<a class="v-row" href="/bible/asv/job/12/7/" data-ref="Job 12:7 (American Standard Version)" data-verse-url="/bible/asv/job/12/7/"><span class="v-num">7</span><span class="v-txt">But ask now the beasts, and they shall teach thee; And the birds of the heavens, and they shall tell thee:</span></a>
+<a class="v-row" href="/bible/asv/job/12/8/" data-ref="Job 12:8 (American Standard Version)" data-verse-url="/bible/asv/job/12/8/"><span class="v-num">8</span><span class="v-txt">Or speak to the earth, and it shall teach thee; And the fishes of the sea shall declare unto thee.</span></a>
+<a class="v-row" href="/bible/asv/job/12/9/" data-ref="Job 12:9 (American Standard Version)" data-verse-url="/bible/asv/job/12/9/"><span class="v-num">9</span><span class="v-txt">Who knoweth not in all these, That the hand of Jehovah hath wrought this,</span></a>
+<a class="v-row" href="/bible/asv/job/12/10/" data-ref="Job 12:10 (American Standard Version)" data-verse-url="/bible/asv/job/12/10/"><span class="v-num">10</span><span class="v-txt">In whose hand is the soul of every living thing, And the breath of all mankind?</span></a>
+<a class="v-row" href="/bible/asv/job/12/11/" data-ref="Job 12:11 (American Standard Version)" data-verse-url="/bible/asv/job/12/11/"><span class="v-num">11</span><span class="v-txt">Doth not the ear try words, Even as the palate tasteth its food?</span></a>
+<a class="v-row" href="/bible/asv/job/12/12/" data-ref="Job 12:12 (American Standard Version)" data-verse-url="/bible/asv/job/12/12/"><span class="v-num">12</span><span class="v-txt">With aged men is wisdom, And in length of days understanding.</span></a>
+<a class="v-row" href="/bible/asv/job/12/13/" data-ref="Job 12:13 (American Standard Version)" data-verse-url="/bible/asv/job/12/13/"><span class="v-num">13</span><span class="v-txt">With [God] is wisdom and might; He hath counsel and understanding.</span></a>
+<a class="v-row" href="/bible/asv/job/12/14/" data-ref="Job 12:14 (American Standard Version)" data-verse-url="/bible/asv/job/12/14/"><span class="v-num">14</span><span class="v-txt">Behold, he breaketh down, and it cannot be built again; He shutteth up a man, and there can be no opening.</span></a>
+<a class="v-row" href="/bible/asv/job/12/15/" data-ref="Job 12:15 (American Standard Version)" data-verse-url="/bible/asv/job/12/15/"><span class="v-num">15</span><span class="v-txt">Behold, he withholdeth the waters, and they dry up; Again, he sendeth them out, and they overturn the earth.</span></a>
+<a class="v-row" href="/bible/asv/job/12/16/" data-ref="Job 12:16 (American Standard Version)" data-verse-url="/bible/asv/job/12/16/"><span class="v-num">16</span><span class="v-txt">With him is strength and wisdom; The deceived and the deceiver are his.</span></a>
+<a class="v-row" href="/bible/asv/job/12/17/" data-ref="Job 12:17 (American Standard Version)" data-verse-url="/bible/asv/job/12/17/"><span class="v-num">17</span><span class="v-txt">He leadeth counsellors away stripped, And judges maketh he fools.</span></a>
+<a class="v-row" href="/bible/asv/job/12/18/" data-ref="Job 12:18 (American Standard Version)" data-verse-url="/bible/asv/job/12/18/"><span class="v-num">18</span><span class="v-txt">He looseth the bond of kings, And he bindeth their loins with a girdle.</span></a>
+<a class="v-row" href="/bible/asv/job/12/19/" data-ref="Job 12:19 (American Standard Version)" data-verse-url="/bible/asv/job/12/19/"><span class="v-num">19</span><span class="v-txt">He leadeth priests away stripped, And overthroweth the mighty.</span></a>
+<a class="v-row" href="/bible/asv/job/12/20/" data-ref="Job 12:20 (American Standard Version)" data-verse-url="/bible/asv/job/12/20/"><span class="v-num">20</span><span class="v-txt">He removeth the speech of the trusty, And taketh away the understanding of the elders.</span></a>
+<a class="v-row" href="/bible/asv/job/12/21/" data-ref="Job 12:21 (American Standard Version)" data-verse-url="/bible/asv/job/12/21/"><span class="v-num">21</span><span class="v-txt">He poureth contempt upon princes, And looseth the belt of the strong.</span></a>
+<a class="v-row" href="/bible/asv/job/12/22/" data-ref="Job 12:22 (American Standard Version)" data-verse-url="/bible/asv/job/12/22/"><span class="v-num">22</span><span class="v-txt">He uncovereth deep things out of darkness, And bringeth out to light the shadow of death.</span></a>
+<a class="v-row" href="/bible/asv/job/12/23/" data-ref="Job 12:23 (American Standard Version)" data-verse-url="/bible/asv/job/12/23/"><span class="v-num">23</span><span class="v-txt">He increaseth the nations, and he destroyeth them: He enlargeth the nations, and he leadeth them captive.</span></a>
+<a class="v-row" href="/bible/asv/job/12/24/" data-ref="Job 12:24 (American Standard Version)" data-verse-url="/bible/asv/job/12/24/"><span class="v-num">24</span><span class="v-txt">He taketh away understanding from the chiefs of the people of the earth, And causeth them to wander in a wilderness where there is no way.</span></a>
+<a class="v-row" href="/bible/asv/job/12/25/" data-ref="Job 12:25 (American Standard Version)" data-verse-url="/bible/asv/job/12/25/"><span class="v-num">25</span><span class="v-txt">They grope in the dark without light; And he maketh them to stagger like a drunken man.</span></a>
 
     
 <div class="app-cta">

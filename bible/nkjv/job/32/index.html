@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 32</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 32:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So these three men ceased answering Job, because he [was] righteous in his own eyes.</span></div>
-<div class="v-row" data-ref="Job 32:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then the wrath of Elihu, the son of Barachel the Buzite, of the family of Ram, was aroused against Job; his wrath was aroused because he justified himself rather than God.</span></div>
-<div class="v-row" data-ref="Job 32:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Also against his three friends his wrath was aroused, because they had found no answer, and [yet] had condemned Job.</span></div>
-<div class="v-row" data-ref="Job 32:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now because they [were] years older than he, Elihu had waited to speak to Job.</span></div>
-<div class="v-row" data-ref="Job 32:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">When Elihu saw that [there was] no answer in the mouth of these three men, his wrath was aroused.</span></div>
-<div class="v-row" data-ref="Job 32:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So Elihu, the son of Barachel the Buzite, answered and said: "I [am] young in years, and you [are] very old; Therefore I was afraid, And dared not declare my opinion to you.</span></div>
-<div class="v-row" data-ref="Job 32:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I said, 'Age should speak, And multitude of years should teach wisdom.'</span></div>
-<div class="v-row" data-ref="Job 32:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But [there is] a spirit in man, And the breath of the Almighty gives him understanding.</span></div>
-<div class="v-row" data-ref="Job 32:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Great men are not [always] wise, Nor do the aged [always] understand justice.</span></div>
-<div class="v-row" data-ref="Job 32:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Therefore I say, 'Listen to me, I also will declare my opinion.'</span></div>
-<div class="v-row" data-ref="Job 32:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Indeed I waited for your words, I listened to your reasonings, while you searched out what to say.</span></div>
-<div class="v-row" data-ref="Job 32:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I paid close attention to you; And surely not one of you convinced Job, [Or] answered his words --</span></div>
-<div class="v-row" data-ref="Job 32:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Lest you say, 'We have found wisdom'; God will vanquish him, not man.</span></div>
-<div class="v-row" data-ref="Job 32:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Now he has not directed [his] words against me; So I will not answer him with your words.</span></div>
-<div class="v-row" data-ref="Job 32:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">" They are dismayed and answer no more; Words escape them.</span></div>
-<div class="v-row" data-ref="Job 32:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And I have waited, because they did not speak, Because they stood still [and] answered no more.</span></div>
-<div class="v-row" data-ref="Job 32:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I also will answer my part, I too will declare my opinion.</span></div>
-<div class="v-row" data-ref="Job 32:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For I am full of words; The spirit within me compels me.</span></div>
-<div class="v-row" data-ref="Job 32:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Indeed my belly [is] like wine [that] has no vent; It is ready to burst like new wineskins.</span></div>
-<div class="v-row" data-ref="Job 32:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">I will speak, that I may find relief; I must open my lips and answer.</span></div>
-<div class="v-row" data-ref="Job 32:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Let me not, I pray, show partiality to anyone; Nor let me flatter any man.</span></div>
-<div class="v-row" data-ref="Job 32:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For I do not know how to flatter, [Else] my Maker would soon take me away.</span></div>
+    <a class="v-row" href="/bible/nkjv/job/32/1/" data-ref="Job 32:1 (New King James Version)" data-verse-url="/bible/nkjv/job/32/1/"><span class="v-num">1</span><span class="v-txt">So these three men ceased answering Job, because he [was] righteous in his own eyes.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/2/" data-ref="Job 32:2 (New King James Version)" data-verse-url="/bible/nkjv/job/32/2/"><span class="v-num">2</span><span class="v-txt">Then the wrath of Elihu, the son of Barachel the Buzite, of the family of Ram, was aroused against Job; his wrath was aroused because he justified himself rather than God.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/3/" data-ref="Job 32:3 (New King James Version)" data-verse-url="/bible/nkjv/job/32/3/"><span class="v-num">3</span><span class="v-txt">Also against his three friends his wrath was aroused, because they had found no answer, and [yet] had condemned Job.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/4/" data-ref="Job 32:4 (New King James Version)" data-verse-url="/bible/nkjv/job/32/4/"><span class="v-num">4</span><span class="v-txt">Now because they [were] years older than he, Elihu had waited to speak to Job.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/5/" data-ref="Job 32:5 (New King James Version)" data-verse-url="/bible/nkjv/job/32/5/"><span class="v-num">5</span><span class="v-txt">When Elihu saw that [there was] no answer in the mouth of these three men, his wrath was aroused.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/6/" data-ref="Job 32:6 (New King James Version)" data-verse-url="/bible/nkjv/job/32/6/"><span class="v-num">6</span><span class="v-txt">So Elihu, the son of Barachel the Buzite, answered and said: "I [am] young in years, and you [are] very old; Therefore I was afraid, And dared not declare my opinion to you.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/7/" data-ref="Job 32:7 (New King James Version)" data-verse-url="/bible/nkjv/job/32/7/"><span class="v-num">7</span><span class="v-txt">I said, 'Age should speak, And multitude of years should teach wisdom.'</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/8/" data-ref="Job 32:8 (New King James Version)" data-verse-url="/bible/nkjv/job/32/8/"><span class="v-num">8</span><span class="v-txt">But [there is] a spirit in man, And the breath of the Almighty gives him understanding.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/9/" data-ref="Job 32:9 (New King James Version)" data-verse-url="/bible/nkjv/job/32/9/"><span class="v-num">9</span><span class="v-txt">Great men are not [always] wise, Nor do the aged [always] understand justice.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/10/" data-ref="Job 32:10 (New King James Version)" data-verse-url="/bible/nkjv/job/32/10/"><span class="v-num">10</span><span class="v-txt">"Therefore I say, 'Listen to me, I also will declare my opinion.'</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/11/" data-ref="Job 32:11 (New King James Version)" data-verse-url="/bible/nkjv/job/32/11/"><span class="v-num">11</span><span class="v-txt">Indeed I waited for your words, I listened to your reasonings, while you searched out what to say.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/12/" data-ref="Job 32:12 (New King James Version)" data-verse-url="/bible/nkjv/job/32/12/"><span class="v-num">12</span><span class="v-txt">I paid close attention to you; And surely not one of you convinced Job, [Or] answered his words --</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/13/" data-ref="Job 32:13 (New King James Version)" data-verse-url="/bible/nkjv/job/32/13/"><span class="v-num">13</span><span class="v-txt">Lest you say, 'We have found wisdom'; God will vanquish him, not man.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/14/" data-ref="Job 32:14 (New King James Version)" data-verse-url="/bible/nkjv/job/32/14/"><span class="v-num">14</span><span class="v-txt">Now he has not directed [his] words against me; So I will not answer him with your words.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/15/" data-ref="Job 32:15 (New King James Version)" data-verse-url="/bible/nkjv/job/32/15/"><span class="v-num">15</span><span class="v-txt">" They are dismayed and answer no more; Words escape them.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/16/" data-ref="Job 32:16 (New King James Version)" data-verse-url="/bible/nkjv/job/32/16/"><span class="v-num">16</span><span class="v-txt">And I have waited, because they did not speak, Because they stood still [and] answered no more.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/17/" data-ref="Job 32:17 (New King James Version)" data-verse-url="/bible/nkjv/job/32/17/"><span class="v-num">17</span><span class="v-txt">I also will answer my part, I too will declare my opinion.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/18/" data-ref="Job 32:18 (New King James Version)" data-verse-url="/bible/nkjv/job/32/18/"><span class="v-num">18</span><span class="v-txt">For I am full of words; The spirit within me compels me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/19/" data-ref="Job 32:19 (New King James Version)" data-verse-url="/bible/nkjv/job/32/19/"><span class="v-num">19</span><span class="v-txt">Indeed my belly [is] like wine [that] has no vent; It is ready to burst like new wineskins.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/20/" data-ref="Job 32:20 (New King James Version)" data-verse-url="/bible/nkjv/job/32/20/"><span class="v-num">20</span><span class="v-txt">I will speak, that I may find relief; I must open my lips and answer.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/21/" data-ref="Job 32:21 (New King James Version)" data-verse-url="/bible/nkjv/job/32/21/"><span class="v-num">21</span><span class="v-txt">Let me not, I pray, show partiality to anyone; Nor let me flatter any man.</span></a>
+<a class="v-row" href="/bible/nkjv/job/32/22/" data-ref="Job 32:22 (New King James Version)" data-verse-url="/bible/nkjv/job/32/22/"><span class="v-num">22</span><span class="v-txt">For I do not know how to flatter, [Else] my Maker would soon take me away.</span></a>
 
     
 <div class="app-cta">

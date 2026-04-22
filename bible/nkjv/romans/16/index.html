@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Romans 16:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I commend to you Phoebe our sister, who is a servant of the church in Cenchrea,</span></div>
-<div class="v-row" data-ref="Romans 16:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">that you may receive her in the Lord in a manner worthy of the saints, and assist her in whatever business she has need of you; for indeed she has been a helper of many and of myself also.</span></div>
-<div class="v-row" data-ref="Romans 16:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Greet Priscilla and Aquila, my fellow workers in Christ Jesus,</span></div>
-<div class="v-row" data-ref="Romans 16:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">who risked their own necks for my life, to whom not only I give thanks, but also all the churches of the Gentiles.</span></div>
-<div class="v-row" data-ref="Romans 16:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Likewise [greet] the church that is in their house. Greet my beloved Epaenetus, who is the firstfruits of Achaia to Christ.</span></div>
-<div class="v-row" data-ref="Romans 16:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Greet Mary, who labored much for us.</span></div>
-<div class="v-row" data-ref="Romans 16:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Greet Andronicus and Junia, my countrymen and my fellow prisoners, who are of note among the apostles, who also were in Christ before me.</span></div>
-<div class="v-row" data-ref="Romans 16:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Greet Amplias, my beloved in the Lord.</span></div>
-<div class="v-row" data-ref="Romans 16:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Greet Urbanus, our fellow worker in Christ, and Stachys, my beloved.</span></div>
-<div class="v-row" data-ref="Romans 16:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Greet Apelles, approved in Christ. Greet those who are of the [household] of Aristobulus.</span></div>
-<div class="v-row" data-ref="Romans 16:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Greet Herodion, my countryman. Greet those who are of the [household] of Narcissus who are in the Lord.</span></div>
-<div class="v-row" data-ref="Romans 16:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Greet Tryphena and Tryphosa, who have labored in the Lord. Greet the beloved Persis, who labored much in the Lord.</span></div>
-<div class="v-row" data-ref="Romans 16:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Greet Rufus, chosen in the Lord, and his mother and mine.</span></div>
-<div class="v-row" data-ref="Romans 16:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Greet Asyncritus, Phlegon, Hermas, Patrobas, Hermes, and the brethren who are with them.</span></div>
-<div class="v-row" data-ref="Romans 16:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the saints who are with them.</span></div>
-<div class="v-row" data-ref="Romans 16:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Greet one another with a holy kiss. The churches of Christ greet you.</span></div>
-<div class="v-row" data-ref="Romans 16:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Now I urge you, brethren, note those who cause divisions and offenses, contrary to the doctrine which you learned, and avoid them.</span></div>
-<div class="v-row" data-ref="Romans 16:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For those who are such do not serve our Lord Jesus Christ, but their own belly, and by smooth words and flattering speech deceive the hearts of the simple.</span></div>
-<div class="v-row" data-ref="Romans 16:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For your obedience has become known to all. Therefore I am glad on your behalf; but I want you to be wise in what is good, and simple concerning evil.</span></div>
-<div class="v-row" data-ref="Romans 16:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And the God of peace will crush Satan under your feet shortly. The grace of our Lord Jesus Christ [be] with you. Amen.</span></div>
-<div class="v-row" data-ref="Romans 16:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Timothy, my fellow worker, and Lucius, Jason, and Sosipater, my countrymen, greet you.</span></div>
-<div class="v-row" data-ref="Romans 16:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">I, Tertius, who wrote [this] epistle, greet you in the Lord.</span></div>
-<div class="v-row" data-ref="Romans 16:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Gaius, my host and [the host] of the whole church, greets you. Erastus, the treasurer of the city, greets you, and Quartus, a brother.</span></div>
-<div class="v-row" data-ref="Romans 16:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The grace of our Lord Jesus Christ [be] with you all. Amen.</span></div>
-<div class="v-row" data-ref="Romans 16:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Now to Him who is able to establish you according to my gospel and the preaching of Jesus Christ, according to the revelation of the mystery kept secret since the world began</span></div>
-<div class="v-row" data-ref="Romans 16:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">but now has been made manifest, and by the prophetic Scriptures has been made known to all nations, according to the commandment of the everlasting God, for obedience to the faith --</span></div>
-<div class="v-row" data-ref="Romans 16:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">to God, alone wise, [be] glory through Jesus Christ forever. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/romans/16/1/" data-ref="Romans 16:1 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/1/"><span class="v-num">1</span><span class="v-txt">I commend to you Phoebe our sister, who is a servant of the church in Cenchrea,</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/2/" data-ref="Romans 16:2 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/2/"><span class="v-num">2</span><span class="v-txt">that you may receive her in the Lord in a manner worthy of the saints, and assist her in whatever business she has need of you; for indeed she has been a helper of many and of myself also.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/3/" data-ref="Romans 16:3 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/3/"><span class="v-num">3</span><span class="v-txt">Greet Priscilla and Aquila, my fellow workers in Christ Jesus,</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/4/" data-ref="Romans 16:4 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/4/"><span class="v-num">4</span><span class="v-txt">who risked their own necks for my life, to whom not only I give thanks, but also all the churches of the Gentiles.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/5/" data-ref="Romans 16:5 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/5/"><span class="v-num">5</span><span class="v-txt">Likewise [greet] the church that is in their house. Greet my beloved Epaenetus, who is the firstfruits of Achaia to Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/6/" data-ref="Romans 16:6 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/6/"><span class="v-num">6</span><span class="v-txt">Greet Mary, who labored much for us.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/7/" data-ref="Romans 16:7 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/7/"><span class="v-num">7</span><span class="v-txt">Greet Andronicus and Junia, my countrymen and my fellow prisoners, who are of note among the apostles, who also were in Christ before me.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/8/" data-ref="Romans 16:8 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/8/"><span class="v-num">8</span><span class="v-txt">Greet Amplias, my beloved in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/9/" data-ref="Romans 16:9 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/9/"><span class="v-num">9</span><span class="v-txt">Greet Urbanus, our fellow worker in Christ, and Stachys, my beloved.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/10/" data-ref="Romans 16:10 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/10/"><span class="v-num">10</span><span class="v-txt">Greet Apelles, approved in Christ. Greet those who are of the [household] of Aristobulus.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/11/" data-ref="Romans 16:11 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/11/"><span class="v-num">11</span><span class="v-txt">Greet Herodion, my countryman. Greet those who are of the [household] of Narcissus who are in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/12/" data-ref="Romans 16:12 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/12/"><span class="v-num">12</span><span class="v-txt">Greet Tryphena and Tryphosa, who have labored in the Lord. Greet the beloved Persis, who labored much in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/13/" data-ref="Romans 16:13 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/13/"><span class="v-num">13</span><span class="v-txt">Greet Rufus, chosen in the Lord, and his mother and mine.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/14/" data-ref="Romans 16:14 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/14/"><span class="v-num">14</span><span class="v-txt">Greet Asyncritus, Phlegon, Hermas, Patrobas, Hermes, and the brethren who are with them.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/15/" data-ref="Romans 16:15 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/15/"><span class="v-num">15</span><span class="v-txt">Greet Philologus and Julia, Nereus and his sister, and Olympas, and all the saints who are with them.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/16/" data-ref="Romans 16:16 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/16/"><span class="v-num">16</span><span class="v-txt">Greet one another with a holy kiss. The churches of Christ greet you.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/17/" data-ref="Romans 16:17 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/17/"><span class="v-num">17</span><span class="v-txt">Now I urge you, brethren, note those who cause divisions and offenses, contrary to the doctrine which you learned, and avoid them.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/18/" data-ref="Romans 16:18 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/18/"><span class="v-num">18</span><span class="v-txt">For those who are such do not serve our Lord Jesus Christ, but their own belly, and by smooth words and flattering speech deceive the hearts of the simple.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/19/" data-ref="Romans 16:19 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/19/"><span class="v-num">19</span><span class="v-txt">For your obedience has become known to all. Therefore I am glad on your behalf; but I want you to be wise in what is good, and simple concerning evil.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/20/" data-ref="Romans 16:20 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/20/"><span class="v-num">20</span><span class="v-txt">And the God of peace will crush Satan under your feet shortly. The grace of our Lord Jesus Christ [be] with you. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/21/" data-ref="Romans 16:21 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/21/"><span class="v-num">21</span><span class="v-txt">Timothy, my fellow worker, and Lucius, Jason, and Sosipater, my countrymen, greet you.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/22/" data-ref="Romans 16:22 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/22/"><span class="v-num">22</span><span class="v-txt">I, Tertius, who wrote [this] epistle, greet you in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/23/" data-ref="Romans 16:23 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/23/"><span class="v-num">23</span><span class="v-txt">Gaius, my host and [the host] of the whole church, greets you. Erastus, the treasurer of the city, greets you, and Quartus, a brother.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/24/" data-ref="Romans 16:24 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/24/"><span class="v-num">24</span><span class="v-txt">The grace of our Lord Jesus Christ [be] with you all. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/25/" data-ref="Romans 16:25 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/25/"><span class="v-num">25</span><span class="v-txt">Now to Him who is able to establish you according to my gospel and the preaching of Jesus Christ, according to the revelation of the mystery kept secret since the world began</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/26/" data-ref="Romans 16:26 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/26/"><span class="v-num">26</span><span class="v-txt">but now has been made manifest, and by the prophetic Scriptures has been made known to all nations, according to the commandment of the everlasting God, for obedience to the faith --</span></a>
+<a class="v-row" href="/bible/nkjv/romans/16/27/" data-ref="Romans 16:27 (New King James Version)" data-verse-url="/bible/nkjv/romans/16/27/"><span class="v-num">27</span><span class="v-txt">to God, alone wise, [be] glory through Jesus Christ forever. Amen.</span></a>
 
     
 <div class="app-cta">

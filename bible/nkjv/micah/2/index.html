@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Micah 2:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Woe to those who devise iniquity, And work out evil on their beds! At morning light they practice it, Because it is in the power of their hand.</span></div>
-<div class="v-row" data-ref="Micah 2:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They covet fields and take [them] by violence, Also houses, and seize [them.] So they oppress a man and his house, A man and his inheritance.</span></div>
-<div class="v-row" data-ref="Micah 2:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Therefore thus says the LORD: "Behold, against this family I am devising disaster, From which you cannot remove your necks; Nor shall you walk haughtily, For this [is] an evil time.</span></div>
-<div class="v-row" data-ref="Micah 2:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">In that day [one] shall take up a proverb against you, And lament with a bitter lamentation, saying: 'We are utterly destroyed! He has changed the heritage of my people; How He has removed [it] from me! To a turncoat He has divided our fields.' "</span></div>
-<div class="v-row" data-ref="Micah 2:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Therefore you will have no one to determine boundaries by lot In the assembly of the LORD.</span></div>
-<div class="v-row" data-ref="Micah 2:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" Do not prattle," [you say to those] who prophesy. So they shall not prophesy to you; They shall not return insult for insult.</span></div>
-<div class="v-row" data-ref="Micah 2:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">[You who are] named the house of Jacob: "Is the Spirit of the LORD restricted? [Are] these His doings? Do not My words do good To him who walks uprightly?</span></div>
-<div class="v-row" data-ref="Micah 2:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"Lately My people have risen up as an enemy -- You pull off the robe with the garment From those who trust [you,] as they pass by, Like men returned from war.</span></div>
-<div class="v-row" data-ref="Micah 2:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The women of My people you cast out From their pleasant houses; From their children You have taken away My glory forever.</span></div>
-<div class="v-row" data-ref="Micah 2:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Arise and depart, For this [is] not [your] rest; Because it is defiled, it shall destroy, Yes, with utter destruction.</span></div>
-<div class="v-row" data-ref="Micah 2:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If a man should walk in a false spirit And speak a lie, [saying,] 'I will prophesy to you of wine and drink,' Even he would be the prattler of this people.</span></div>
-<div class="v-row" data-ref="Micah 2:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">" I will surely assemble all of you, O Jacob, I will surely gather the remnant of Israel; I will put them together like sheep of the fold, Like a flock in the midst of their pasture; They shall make a loud noise because of [so many] people.</span></div>
-<div class="v-row" data-ref="Micah 2:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The one who breaks open will come up before them; They will break out, Pass through the gate, And go out by it; Their king will pass before them, With the LORD at their head."</span></div>
+    <a class="v-row" href="/bible/nkjv/micah/2/1/" data-ref="Micah 2:1 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/1/"><span class="v-num">1</span><span class="v-txt">Woe to those who devise iniquity, And work out evil on their beds! At morning light they practice it, Because it is in the power of their hand.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/2/" data-ref="Micah 2:2 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/2/"><span class="v-num">2</span><span class="v-txt">They covet fields and take [them] by violence, Also houses, and seize [them.] So they oppress a man and his house, A man and his inheritance.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/3/" data-ref="Micah 2:3 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/3/"><span class="v-num">3</span><span class="v-txt">Therefore thus says the LORD: "Behold, against this family I am devising disaster, From which you cannot remove your necks; Nor shall you walk haughtily, For this [is] an evil time.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/4/" data-ref="Micah 2:4 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/4/"><span class="v-num">4</span><span class="v-txt">In that day [one] shall take up a proverb against you, And lament with a bitter lamentation, saying: 'We are utterly destroyed! He has changed the heritage of my people; How He has removed [it] from me! To a turncoat He has divided our fields.' "</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/5/" data-ref="Micah 2:5 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/5/"><span class="v-num">5</span><span class="v-txt">Therefore you will have no one to determine boundaries by lot In the assembly of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/6/" data-ref="Micah 2:6 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/6/"><span class="v-num">6</span><span class="v-txt">" Do not prattle," [you say to those] who prophesy. So they shall not prophesy to you; They shall not return insult for insult.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/7/" data-ref="Micah 2:7 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/7/"><span class="v-num">7</span><span class="v-txt">[You who are] named the house of Jacob: "Is the Spirit of the LORD restricted? [Are] these His doings? Do not My words do good To him who walks uprightly?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/8/" data-ref="Micah 2:8 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/8/"><span class="v-num">8</span><span class="v-txt">"Lately My people have risen up as an enemy -- You pull off the robe with the garment From those who trust [you,] as they pass by, Like men returned from war.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/9/" data-ref="Micah 2:9 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/9/"><span class="v-num">9</span><span class="v-txt">The women of My people you cast out From their pleasant houses; From their children You have taken away My glory forever.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/10/" data-ref="Micah 2:10 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/10/"><span class="v-num">10</span><span class="v-txt">"Arise and depart, For this [is] not [your] rest; Because it is defiled, it shall destroy, Yes, with utter destruction.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/11/" data-ref="Micah 2:11 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/11/"><span class="v-num">11</span><span class="v-txt">If a man should walk in a false spirit And speak a lie, [saying,] 'I will prophesy to you of wine and drink,' Even he would be the prattler of this people.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/12/" data-ref="Micah 2:12 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/12/"><span class="v-num">12</span><span class="v-txt">" I will surely assemble all of you, O Jacob, I will surely gather the remnant of Israel; I will put them together like sheep of the fold, Like a flock in the midst of their pasture; They shall make a loud noise because of [so many] people.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/2/13/" data-ref="Micah 2:13 (New King James Version)" data-verse-url="/bible/nkjv/micah/2/13/"><span class="v-num">13</span><span class="v-txt">The one who breaks open will come up before them; They will break out, Pass through the gate, And go out by it; Their king will pass before them, With the LORD at their head."</span></a>
 
     
 <div class="app-cta">

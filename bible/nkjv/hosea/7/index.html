@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"When I would have healed Israel, Then the iniquity of Ephraim was uncovered, And the wickedness of Samaria. For they have committed fraud; A thief comes in; A band of robbers takes spoil outside.</span></div>
-<div class="v-row" data-ref="Hosea 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They do not consider in their hearts [That] I remember all their wickedness; Now their own deeds have surrounded them; They are before My face.</span></div>
-<div class="v-row" data-ref="Hosea 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They make a king glad with their wickedness, And princes with their lies.</span></div>
-<div class="v-row" data-ref="Hosea 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">" They [are] all adulterers. Like an oven heated by a baker -- He ceases stirring [the fire] after kneading the dough, Until it is leavened.</span></div>
-<div class="v-row" data-ref="Hosea 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">In the day of our king Princes have made [him] sick, inflamed with wine; He stretched out his hand with scoffers.</span></div>
-<div class="v-row" data-ref="Hosea 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They prepare their heart like an oven, While they lie in wait; Their baker sleeps all night; In the morning it burns like a flaming fire.</span></div>
-<div class="v-row" data-ref="Hosea 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They are all hot, like an oven, And have devoured their judges; All their kings have fallen. None among them calls upon Me.</span></div>
-<div class="v-row" data-ref="Hosea 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">" Ephraim has mixed himself among the peoples; Ephraim is a cake unturned.</span></div>
-<div class="v-row" data-ref="Hosea 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Aliens have devoured his strength, But he does not know [it;] Yes, gray hairs are here and there on him, Yet he does not know [it.]</span></div>
-<div class="v-row" data-ref="Hosea 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the pride of Israel testifies to his face, But they do not return to the LORD their God, Nor seek Him for all this.</span></div>
-<div class="v-row" data-ref="Hosea 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">" Ephraim also is like a silly dove, without sense -- They call to Egypt, They go to Assyria.</span></div>
-<div class="v-row" data-ref="Hosea 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Wherever they go, I will spread My net on them; I will bring them down like birds of the air; I will chastise them According to what their congregation has heard.</span></div>
-<div class="v-row" data-ref="Hosea 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">" Woe to them, for they have fled from Me! Destruction to them, Because they have transgressed against Me! Though I redeemed them, Yet they have spoken lies against Me.</span></div>
-<div class="v-row" data-ref="Hosea 7:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">They did not cry out to Me with their heart When they wailed upon their beds. "They assemble together for grain and new wine, They rebel against Me;</span></div>
-<div class="v-row" data-ref="Hosea 7:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Though I disciplined [and] strengthened their arms, Yet they devise evil against Me;</span></div>
-<div class="v-row" data-ref="Hosea 7:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">They return, [but] not to the Most High; They are like a treacherous bow. Their princes shall fall by the sword For the cursings of their tongue. This [shall be] their derision in the land of Egypt.</span></div>
+    <a class="v-row" href="/bible/nkjv/hosea/7/1/" data-ref="Hosea 7:1 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/1/"><span class="v-num">1</span><span class="v-txt">"When I would have healed Israel, Then the iniquity of Ephraim was uncovered, And the wickedness of Samaria. For they have committed fraud; A thief comes in; A band of robbers takes spoil outside.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/2/" data-ref="Hosea 7:2 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/2/"><span class="v-num">2</span><span class="v-txt">They do not consider in their hearts [That] I remember all their wickedness; Now their own deeds have surrounded them; They are before My face.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/3/" data-ref="Hosea 7:3 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/3/"><span class="v-num">3</span><span class="v-txt">They make a king glad with their wickedness, And princes with their lies.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/4/" data-ref="Hosea 7:4 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/4/"><span class="v-num">4</span><span class="v-txt">" They [are] all adulterers. Like an oven heated by a baker -- He ceases stirring [the fire] after kneading the dough, Until it is leavened.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/5/" data-ref="Hosea 7:5 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/5/"><span class="v-num">5</span><span class="v-txt">In the day of our king Princes have made [him] sick, inflamed with wine; He stretched out his hand with scoffers.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/6/" data-ref="Hosea 7:6 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/6/"><span class="v-num">6</span><span class="v-txt">They prepare their heart like an oven, While they lie in wait; Their baker sleeps all night; In the morning it burns like a flaming fire.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/7/" data-ref="Hosea 7:7 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/7/"><span class="v-num">7</span><span class="v-txt">They are all hot, like an oven, And have devoured their judges; All their kings have fallen. None among them calls upon Me.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/8/" data-ref="Hosea 7:8 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/8/"><span class="v-num">8</span><span class="v-txt">" Ephraim has mixed himself among the peoples; Ephraim is a cake unturned.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/9/" data-ref="Hosea 7:9 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/9/"><span class="v-num">9</span><span class="v-txt">Aliens have devoured his strength, But he does not know [it;] Yes, gray hairs are here and there on him, Yet he does not know [it.]</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/10/" data-ref="Hosea 7:10 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/10/"><span class="v-num">10</span><span class="v-txt">And the pride of Israel testifies to his face, But they do not return to the LORD their God, Nor seek Him for all this.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/11/" data-ref="Hosea 7:11 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/11/"><span class="v-num">11</span><span class="v-txt">" Ephraim also is like a silly dove, without sense -- They call to Egypt, They go to Assyria.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/12/" data-ref="Hosea 7:12 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/12/"><span class="v-num">12</span><span class="v-txt">Wherever they go, I will spread My net on them; I will bring them down like birds of the air; I will chastise them According to what their congregation has heard.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/13/" data-ref="Hosea 7:13 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/13/"><span class="v-num">13</span><span class="v-txt">" Woe to them, for they have fled from Me! Destruction to them, Because they have transgressed against Me! Though I redeemed them, Yet they have spoken lies against Me.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/14/" data-ref="Hosea 7:14 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/14/"><span class="v-num">14</span><span class="v-txt">They did not cry out to Me with their heart When they wailed upon their beds. "They assemble together for grain and new wine, They rebel against Me;</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/15/" data-ref="Hosea 7:15 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/15/"><span class="v-num">15</span><span class="v-txt">Though I disciplined [and] strengthened their arms, Yet they devise evil against Me;</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/7/16/" data-ref="Hosea 7:16 (New King James Version)" data-verse-url="/bible/nkjv/hosea/7/16/"><span class="v-num">16</span><span class="v-txt">They return, [but] not to the Most High; They are like a treacherous bow. Their princes shall fall by the sword For the cursings of their tongue. This [shall be] their derision in the land of Egypt.</span></a>
 
     
 <div class="app-cta">

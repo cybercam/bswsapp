@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And you, son of man, take a back and put it before you and on it make a picture of a town, even Jerusalem.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And make an attack on it, shutting it in, building strong places against it, and making high an earthwork against it; and put up tents against it, placing engines all round it for smashing down its walls.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And take a flat iron plate, and put it for a wall of iron between you and the town: and let your face be turned to it, and it will be shut in and you will make an attack on it. This will be a sign to the children of Israel.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then, stretching yourself out on your left side, take the sin of the children of Israel on yourself: for as long as you are stretched out, so long will the sin of the children of Israel be on you.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For I have had the years of their sin measured for you by a number of days, even three hundred and ninety days: and you will take on yourself the sin of the children of Israel.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And when these days are ended, turning on your right side, you are to take on yourself the sin of the children of Judah: forty days, a day for a year, I have had it fixed for you.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And let your face be turned to where Jerusalem is shut in, with your arm uncovered, and be a prophet against it.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And see, I will put bands on you; and you will be stretched out without turning from one side to the other till the days of your attack are ended.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And take for yourself wheat and barley and different sorts of grain, and put them in one vessel and make bread for yourself from them; all the days when you are stretched on your side it will be your food.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And you are to take your food by weight, twenty shekels a day: you are to take it at regular times.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And you are to take water by measure, the sixth part of a hin: you are to take it at regular times.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And let your food be barley cakes, cooking it before their eyes with the waste which comes out of a man.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the Lord said, Even so the children of Israel will have unclean bread for their food among the nations where I am driving them.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then I said, Ah, Lord! see, my soul has never been unclean, and I have never taken as my food anything which has come to a natural death or has been broken by beasts, from the time when I was young even till now; no disgusting flesh has ever come into my mouth.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then he said to me, See, I have given you cow's waste in place of man's waste, and you will make your bread ready on it.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he said to me, Son of man, see, I will take away from Jerusalem her necessary bread: they will take their bread by weight and with care, measuring out their drinking-water with fear and wonder:</span></div>
-<div class="v-row" data-ref="Ezekiel 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So that they may be in need of bread and water and be wondering at one another, wasting away in their sin.</span></div>
+    <a class="v-row" href="/bible/bbe/ezekiel/4/1/" data-ref="Ezekiel 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/1/"><span class="v-num">1</span><span class="v-txt">And you, son of man, take a back and put it before you and on it make a picture of a town, even Jerusalem.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/2/" data-ref="Ezekiel 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/2/"><span class="v-num">2</span><span class="v-txt">And make an attack on it, shutting it in, building strong places against it, and making high an earthwork against it; and put up tents against it, placing engines all round it for smashing down its walls.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/3/" data-ref="Ezekiel 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/3/"><span class="v-num">3</span><span class="v-txt">And take a flat iron plate, and put it for a wall of iron between you and the town: and let your face be turned to it, and it will be shut in and you will make an attack on it. This will be a sign to the children of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/4/" data-ref="Ezekiel 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/4/"><span class="v-num">4</span><span class="v-txt">Then, stretching yourself out on your left side, take the sin of the children of Israel on yourself: for as long as you are stretched out, so long will the sin of the children of Israel be on you.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/5/" data-ref="Ezekiel 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/5/"><span class="v-num">5</span><span class="v-txt">For I have had the years of their sin measured for you by a number of days, even three hundred and ninety days: and you will take on yourself the sin of the children of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/6/" data-ref="Ezekiel 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/6/"><span class="v-num">6</span><span class="v-txt">And when these days are ended, turning on your right side, you are to take on yourself the sin of the children of Judah: forty days, a day for a year, I have had it fixed for you.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/7/" data-ref="Ezekiel 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/7/"><span class="v-num">7</span><span class="v-txt">And let your face be turned to where Jerusalem is shut in, with your arm uncovered, and be a prophet against it.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/8/" data-ref="Ezekiel 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/8/"><span class="v-num">8</span><span class="v-txt">And see, I will put bands on you; and you will be stretched out without turning from one side to the other till the days of your attack are ended.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/9/" data-ref="Ezekiel 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/9/"><span class="v-num">9</span><span class="v-txt">And take for yourself wheat and barley and different sorts of grain, and put them in one vessel and make bread for yourself from them; all the days when you are stretched on your side it will be your food.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/10/" data-ref="Ezekiel 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/10/"><span class="v-num">10</span><span class="v-txt">And you are to take your food by weight, twenty shekels a day: you are to take it at regular times.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/11/" data-ref="Ezekiel 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/11/"><span class="v-num">11</span><span class="v-txt">And you are to take water by measure, the sixth part of a hin: you are to take it at regular times.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/12/" data-ref="Ezekiel 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/12/"><span class="v-num">12</span><span class="v-txt">And let your food be barley cakes, cooking it before their eyes with the waste which comes out of a man.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/13/" data-ref="Ezekiel 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/13/"><span class="v-num">13</span><span class="v-txt">And the Lord said, Even so the children of Israel will have unclean bread for their food among the nations where I am driving them.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/14/" data-ref="Ezekiel 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/14/"><span class="v-num">14</span><span class="v-txt">Then I said, Ah, Lord! see, my soul has never been unclean, and I have never taken as my food anything which has come to a natural death or has been broken by beasts, from the time when I was young even till now; no disgusting flesh has ever come into my mouth.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/15/" data-ref="Ezekiel 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/15/"><span class="v-num">15</span><span class="v-txt">Then he said to me, See, I have given you cow's waste in place of man's waste, and you will make your bread ready on it.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/16/" data-ref="Ezekiel 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/16/"><span class="v-num">16</span><span class="v-txt">And he said to me, Son of man, see, I will take away from Jerusalem her necessary bread: they will take their bread by weight and with care, measuring out their drinking-water with fear and wonder:</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/4/17/" data-ref="Ezekiel 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/4/17/"><span class="v-num">17</span><span class="v-txt">So that they may be in need of bread and water and be wondering at one another, wasting away in their sin.</span></a>
 
     
 <div class="app-cta">

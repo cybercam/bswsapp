@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Galatians 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For freedom did Christ set us free: stand fast therefore, and be not entangled again in a yoke of bondage.</span></div>
-<div class="v-row" data-ref="Galatians 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Behold, I Paul say unto you, that, if ye receive circumcision, Christ will profit you nothing.</span></div>
-<div class="v-row" data-ref="Galatians 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Yea, I testify again to every man that receiveth circumcision, that he is a debtor to do the whole law.</span></div>
-<div class="v-row" data-ref="Galatians 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Ye are severed from Christ, ye who would be justified by the law; ye are fallen away from grace.</span></div>
-<div class="v-row" data-ref="Galatians 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For we through the Spirit by faith wait for the hope of righteousness.</span></div>
-<div class="v-row" data-ref="Galatians 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For in Christ Jesus neither circumcision availeth anything, nor uncircumcision; but faith working through love.</span></div>
-<div class="v-row" data-ref="Galatians 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Ye were running well; who hindered you that ye should not obey the truth?</span></div>
-<div class="v-row" data-ref="Galatians 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">This persuasion [came] not of him that calleth you.</span></div>
-<div class="v-row" data-ref="Galatians 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">A little leaven leaveneth the whole lump.</span></div>
-<div class="v-row" data-ref="Galatians 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I have confidence to you-ward in the Lord, that ye will be none otherwise minded: but he that troubleth you shall bear his judgment, whosoever he be.</span></div>
-<div class="v-row" data-ref="Galatians 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But I, brethren, if I still preach circumcision, why am I still persecuted? then hath the stumbling-block of the cross been done away.</span></div>
-<div class="v-row" data-ref="Galatians 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I would that they that unsettle you would even go beyond circumcision.</span></div>
-<div class="v-row" data-ref="Galatians 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For ye, brethren, were called for freedom; only [use] not your freedom for an occasion to the flesh, but through love be servants one to another.</span></div>
-<div class="v-row" data-ref="Galatians 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For the whole law is fulfilled in one word, [even] in this: Thou shalt love thy neighbor as thyself.</span></div>
-<div class="v-row" data-ref="Galatians 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But if ye bite and devour one another, take heed that ye be not consumed one of another.</span></div>
-<div class="v-row" data-ref="Galatians 5:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But I say, walk by the Spirit, and ye shall not fulfil the lust of the flesh.</span></div>
-<div class="v-row" data-ref="Galatians 5:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the flesh lusteth against the Spirit, and the Spirit against the flesh; for these are contrary the one to the other; that ye may not do the things that ye would.</span></div>
-<div class="v-row" data-ref="Galatians 5:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But if ye are led by the Spirit, ye are not under the law.</span></div>
-<div class="v-row" data-ref="Galatians 5:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Now the works of the flesh are manifest, which are [these]: fornication, uncleanness, lasciviousness,</span></div>
-<div class="v-row" data-ref="Galatians 5:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">idolatry, sorcery, enmities, strife, jealousies, wraths, factions, divisions, parties,</span></div>
-<div class="v-row" data-ref="Galatians 5:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">envyings, drunkenness, revellings, and such like; of which I forewarn you, even as I did forewarn you, that they who practise such things shall not inherit the kingdom of God.</span></div>
-<div class="v-row" data-ref="Galatians 5:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But the fruit of the Spirit is love, joy, peace, longsuffering, kindness, goodness, faithfulness,</span></div>
-<div class="v-row" data-ref="Galatians 5:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">meekness, self-control; against such there is no law.</span></div>
-<div class="v-row" data-ref="Galatians 5:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And they that are of Christ Jesus have crucified the flesh with the passions and the lusts thereof.</span></div>
-<div class="v-row" data-ref="Galatians 5:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">If we live by the Spirit, by the Spirit let us also walk.</span></div>
-<div class="v-row" data-ref="Galatians 5:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Let us not become vainglorious, provoking one another, envying one another.</span></div>
+    <a class="v-row" href="/bible/asv/galatians/5/1/" data-ref="Galatians 5:1 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/1/"><span class="v-num">1</span><span class="v-txt">For freedom did Christ set us free: stand fast therefore, and be not entangled again in a yoke of bondage.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/2/" data-ref="Galatians 5:2 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/2/"><span class="v-num">2</span><span class="v-txt">Behold, I Paul say unto you, that, if ye receive circumcision, Christ will profit you nothing.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/3/" data-ref="Galatians 5:3 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/3/"><span class="v-num">3</span><span class="v-txt">Yea, I testify again to every man that receiveth circumcision, that he is a debtor to do the whole law.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/4/" data-ref="Galatians 5:4 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/4/"><span class="v-num">4</span><span class="v-txt">Ye are severed from Christ, ye who would be justified by the law; ye are fallen away from grace.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/5/" data-ref="Galatians 5:5 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/5/"><span class="v-num">5</span><span class="v-txt">For we through the Spirit by faith wait for the hope of righteousness.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/6/" data-ref="Galatians 5:6 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/6/"><span class="v-num">6</span><span class="v-txt">For in Christ Jesus neither circumcision availeth anything, nor uncircumcision; but faith working through love.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/7/" data-ref="Galatians 5:7 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/7/"><span class="v-num">7</span><span class="v-txt">Ye were running well; who hindered you that ye should not obey the truth?</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/8/" data-ref="Galatians 5:8 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/8/"><span class="v-num">8</span><span class="v-txt">This persuasion [came] not of him that calleth you.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/9/" data-ref="Galatians 5:9 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/9/"><span class="v-num">9</span><span class="v-txt">A little leaven leaveneth the whole lump.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/10/" data-ref="Galatians 5:10 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/10/"><span class="v-num">10</span><span class="v-txt">I have confidence to you-ward in the Lord, that ye will be none otherwise minded: but he that troubleth you shall bear his judgment, whosoever he be.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/11/" data-ref="Galatians 5:11 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/11/"><span class="v-num">11</span><span class="v-txt">But I, brethren, if I still preach circumcision, why am I still persecuted? then hath the stumbling-block of the cross been done away.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/12/" data-ref="Galatians 5:12 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/12/"><span class="v-num">12</span><span class="v-txt">I would that they that unsettle you would even go beyond circumcision.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/13/" data-ref="Galatians 5:13 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/13/"><span class="v-num">13</span><span class="v-txt">For ye, brethren, were called for freedom; only [use] not your freedom for an occasion to the flesh, but through love be servants one to another.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/14/" data-ref="Galatians 5:14 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/14/"><span class="v-num">14</span><span class="v-txt">For the whole law is fulfilled in one word, [even] in this: Thou shalt love thy neighbor as thyself.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/15/" data-ref="Galatians 5:15 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/15/"><span class="v-num">15</span><span class="v-txt">But if ye bite and devour one another, take heed that ye be not consumed one of another.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/16/" data-ref="Galatians 5:16 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/16/"><span class="v-num">16</span><span class="v-txt">But I say, walk by the Spirit, and ye shall not fulfil the lust of the flesh.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/17/" data-ref="Galatians 5:17 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/17/"><span class="v-num">17</span><span class="v-txt">For the flesh lusteth against the Spirit, and the Spirit against the flesh; for these are contrary the one to the other; that ye may not do the things that ye would.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/18/" data-ref="Galatians 5:18 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/18/"><span class="v-num">18</span><span class="v-txt">But if ye are led by the Spirit, ye are not under the law.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/19/" data-ref="Galatians 5:19 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/19/"><span class="v-num">19</span><span class="v-txt">Now the works of the flesh are manifest, which are [these]: fornication, uncleanness, lasciviousness,</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/20/" data-ref="Galatians 5:20 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/20/"><span class="v-num">20</span><span class="v-txt">idolatry, sorcery, enmities, strife, jealousies, wraths, factions, divisions, parties,</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/21/" data-ref="Galatians 5:21 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/21/"><span class="v-num">21</span><span class="v-txt">envyings, drunkenness, revellings, and such like; of which I forewarn you, even as I did forewarn you, that they who practise such things shall not inherit the kingdom of God.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/22/" data-ref="Galatians 5:22 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/22/"><span class="v-num">22</span><span class="v-txt">But the fruit of the Spirit is love, joy, peace, longsuffering, kindness, goodness, faithfulness,</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/23/" data-ref="Galatians 5:23 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/23/"><span class="v-num">23</span><span class="v-txt">meekness, self-control; against such there is no law.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/24/" data-ref="Galatians 5:24 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/24/"><span class="v-num">24</span><span class="v-txt">And they that are of Christ Jesus have crucified the flesh with the passions and the lusts thereof.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/25/" data-ref="Galatians 5:25 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/25/"><span class="v-num">25</span><span class="v-txt">If we live by the Spirit, by the Spirit let us also walk.</span></a>
+<a class="v-row" href="/bible/asv/galatians/5/26/" data-ref="Galatians 5:26 (American Standard Version)" data-verse-url="/bible/asv/galatians/5/26/"><span class="v-num">26</span><span class="v-txt">Let us not become vainglorious, provoking one another, envying one another.</span></a>
 
     
 <div class="app-cta">

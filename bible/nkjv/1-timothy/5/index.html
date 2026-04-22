@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Do not rebuke an older man, but exhort [him] as a father, younger men as brothers,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">older women as mothers, younger as sisters, with all purity.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Honor widows who are really widows.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But if any widow has children or grandchildren, let them first learn to show piety at home and to repay their parents; for this is good and acceptable before God.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now she who is really a widow, and left alone, trusts in God and continues in supplications and prayers night and day.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But she who lives in pleasure is dead while she lives.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And these things command, that they may be blameless.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But if anyone does not provide for his own, and especially for those of his household, he has denied the faith and is worse than an unbeliever.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Do not let a widow under sixty years old be taken into the number, [and not unless] she has been the wife of one man,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">well reported for good works: if she has brought up children, if she has lodged strangers, if she has washed the saints' feet, if she has relieved the afflicted, if she has diligently followed every good work.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But refuse [the] younger widows; for when they have begun to grow wanton against Christ, they desire to marry,</span></div>
-<div class="v-row" data-ref="1 Timothy 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">having condemnation because they have cast off their first faith.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And besides they learn [to be] idle, wandering about from house to house, and not only idle but also gossips and busybodies, saying things which they ought not.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Therefore I desire that [the] younger [widows] marry, bear children, manage the house, give no opportunity to the adversary to speak reproachfully.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For some have already turned aside after Satan.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If any believing man or woman has widows, let them relieve them, and do not let the church be burdened, that it may relieve those who are really widows.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let the elders who rule well be counted worthy of double honor, especially those who labor in the word and doctrine.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For the Scripture says, "You shall not muzzle an ox while it treads out the grain," and, "The laborer [is] worthy of his wages."</span></div>
-<div class="v-row" data-ref="1 Timothy 5:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Do not receive an accusation against an elder except from two or three witnesses.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Those who are sinning rebuke in the presence of all, that the rest also may fear.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I charge [you] before God and the Lord Jesus Christ and the elect angels that you observe these things without prejudice, doing nothing with partiality.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Do not lay hands on anyone hastily, nor share in other people's sins; keep yourself pure.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">No longer drink only water, but use a little wine for your stomach's sake and your frequent infirmities.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Some men's sins are clearly evident, preceding [them] to judgment, but those of some [men] follow later.</span></div>
-<div class="v-row" data-ref="1 Timothy 5:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Likewise, the good works [of some] are clearly evident, and those that are otherwise cannot be hidden.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-timothy/5/1/" data-ref="1 Timothy 5:1 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/1/"><span class="v-num">1</span><span class="v-txt">Do not rebuke an older man, but exhort [him] as a father, younger men as brothers,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/2/" data-ref="1 Timothy 5:2 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/2/"><span class="v-num">2</span><span class="v-txt">older women as mothers, younger as sisters, with all purity.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/3/" data-ref="1 Timothy 5:3 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/3/"><span class="v-num">3</span><span class="v-txt">Honor widows who are really widows.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/4/" data-ref="1 Timothy 5:4 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/4/"><span class="v-num">4</span><span class="v-txt">But if any widow has children or grandchildren, let them first learn to show piety at home and to repay their parents; for this is good and acceptable before God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/5/" data-ref="1 Timothy 5:5 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/5/"><span class="v-num">5</span><span class="v-txt">Now she who is really a widow, and left alone, trusts in God and continues in supplications and prayers night and day.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/6/" data-ref="1 Timothy 5:6 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/6/"><span class="v-num">6</span><span class="v-txt">But she who lives in pleasure is dead while she lives.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/7/" data-ref="1 Timothy 5:7 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/7/"><span class="v-num">7</span><span class="v-txt">And these things command, that they may be blameless.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/8/" data-ref="1 Timothy 5:8 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/8/"><span class="v-num">8</span><span class="v-txt">But if anyone does not provide for his own, and especially for those of his household, he has denied the faith and is worse than an unbeliever.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/9/" data-ref="1 Timothy 5:9 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/9/"><span class="v-num">9</span><span class="v-txt">Do not let a widow under sixty years old be taken into the number, [and not unless] she has been the wife of one man,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/10/" data-ref="1 Timothy 5:10 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/10/"><span class="v-num">10</span><span class="v-txt">well reported for good works: if she has brought up children, if she has lodged strangers, if she has washed the saints' feet, if she has relieved the afflicted, if she has diligently followed every good work.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/11/" data-ref="1 Timothy 5:11 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/11/"><span class="v-num">11</span><span class="v-txt">But refuse [the] younger widows; for when they have begun to grow wanton against Christ, they desire to marry,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/12/" data-ref="1 Timothy 5:12 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/12/"><span class="v-num">12</span><span class="v-txt">having condemnation because they have cast off their first faith.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/13/" data-ref="1 Timothy 5:13 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/13/"><span class="v-num">13</span><span class="v-txt">And besides they learn [to be] idle, wandering about from house to house, and not only idle but also gossips and busybodies, saying things which they ought not.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/14/" data-ref="1 Timothy 5:14 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/14/"><span class="v-num">14</span><span class="v-txt">Therefore I desire that [the] younger [widows] marry, bear children, manage the house, give no opportunity to the adversary to speak reproachfully.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/15/" data-ref="1 Timothy 5:15 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/15/"><span class="v-num">15</span><span class="v-txt">For some have already turned aside after Satan.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/16/" data-ref="1 Timothy 5:16 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/16/"><span class="v-num">16</span><span class="v-txt">If any believing man or woman has widows, let them relieve them, and do not let the church be burdened, that it may relieve those who are really widows.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/17/" data-ref="1 Timothy 5:17 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/17/"><span class="v-num">17</span><span class="v-txt">Let the elders who rule well be counted worthy of double honor, especially those who labor in the word and doctrine.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/18/" data-ref="1 Timothy 5:18 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/18/"><span class="v-num">18</span><span class="v-txt">For the Scripture says, "You shall not muzzle an ox while it treads out the grain," and, "The laborer [is] worthy of his wages."</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/19/" data-ref="1 Timothy 5:19 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/19/"><span class="v-num">19</span><span class="v-txt">Do not receive an accusation against an elder except from two or three witnesses.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/20/" data-ref="1 Timothy 5:20 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/20/"><span class="v-num">20</span><span class="v-txt">Those who are sinning rebuke in the presence of all, that the rest also may fear.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/21/" data-ref="1 Timothy 5:21 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/21/"><span class="v-num">21</span><span class="v-txt">I charge [you] before God and the Lord Jesus Christ and the elect angels that you observe these things without prejudice, doing nothing with partiality.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/22/" data-ref="1 Timothy 5:22 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/22/"><span class="v-num">22</span><span class="v-txt">Do not lay hands on anyone hastily, nor share in other people's sins; keep yourself pure.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/23/" data-ref="1 Timothy 5:23 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/23/"><span class="v-num">23</span><span class="v-txt">No longer drink only water, but use a little wine for your stomach's sake and your frequent infirmities.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/24/" data-ref="1 Timothy 5:24 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/24/"><span class="v-num">24</span><span class="v-txt">Some men's sins are clearly evident, preceding [them] to judgment, but those of some [men] follow later.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/5/25/" data-ref="1 Timothy 5:25 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/5/25/"><span class="v-num">25</span><span class="v-txt">Likewise, the good works [of some] are clearly evident, and those that are otherwise cannot be hidden.</span></a>
 
     
 <div class="app-cta">

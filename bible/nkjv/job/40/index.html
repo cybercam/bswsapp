@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 40</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 40:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Moreover the LORD answered Job, and said:</span></div>
-<div class="v-row" data-ref="Job 40:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Shall the one who contends with the Almighty correct [Him?] He who rebukes God, let him answer it."</span></div>
-<div class="v-row" data-ref="Job 40:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then Job answered the LORD and said:</span></div>
-<div class="v-row" data-ref="Job 40:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"Behold, I am vile; What shall I answer You? I lay my hand over my mouth.</span></div>
-<div class="v-row" data-ref="Job 40:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Once I have spoken, but I will not answer; Yes, twice, but I will proceed no further."</span></div>
-<div class="v-row" data-ref="Job 40:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the LORD answered Job out of the whirlwind, and said:</span></div>
-<div class="v-row" data-ref="Job 40:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Now prepare yourself like a man; I will question you, and you shall answer Me:</span></div>
-<div class="v-row" data-ref="Job 40:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"Would you indeed annul My judgment? Would you condemn Me that you may be justified?</span></div>
-<div class="v-row" data-ref="Job 40:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Have you an arm like God? Or can you thunder with a voice like His?</span></div>
-<div class="v-row" data-ref="Job 40:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then adorn yourself [with] majesty and splendor, and array yourself with glory and beauty.</span></div>
-<div class="v-row" data-ref="Job 40:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Disperse the rage of your wrath; Look on everyone [who is] proud, and humble him.</span></div>
-<div class="v-row" data-ref="Job 40:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Look on everyone [who is] proud, [and] bring him low; Tread down the wicked in their place.</span></div>
-<div class="v-row" data-ref="Job 40:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Hide them in the dust together, Bind their faces in hidden [darkness.]</span></div>
-<div class="v-row" data-ref="Job 40:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then I will also confess to you That your own right hand can save you.</span></div>
-<div class="v-row" data-ref="Job 40:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">" Look now at the behemoth, which I made [along] with you; He eats grass like an ox.</span></div>
-<div class="v-row" data-ref="Job 40:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">See now, his strength [is] in his hips, And his power [is] in his stomach muscles.</span></div>
-<div class="v-row" data-ref="Job 40:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He moves his tail like a cedar; The sinews of his thighs are tightly knit.</span></div>
-<div class="v-row" data-ref="Job 40:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">His bones [are like] beams of bronze, His ribs like bars of iron.</span></div>
-<div class="v-row" data-ref="Job 40:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He [is] the first of the ways of God; Only He who made him can bring near His sword.</span></div>
-<div class="v-row" data-ref="Job 40:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Surely the mountains yield food for him, And all the beasts of the field play there.</span></div>
-<div class="v-row" data-ref="Job 40:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He lies under the lotus trees, In a covert of reeds and marsh.</span></div>
-<div class="v-row" data-ref="Job 40:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The lotus trees cover him [with] their shade; The willows by the brook surround him.</span></div>
-<div class="v-row" data-ref="Job 40:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Indeed the river may rage, [Yet] he is not disturbed; He is confident, though the Jordan gushes into his mouth,</span></div>
-<div class="v-row" data-ref="Job 40:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">[Though] he takes it in his eyes, [Or] one pierces [his] nose with a snare.</span></div>
+    <a class="v-row" href="/bible/nkjv/job/40/1/" data-ref="Job 40:1 (New King James Version)" data-verse-url="/bible/nkjv/job/40/1/"><span class="v-num">1</span><span class="v-txt">Moreover the LORD answered Job, and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/2/" data-ref="Job 40:2 (New King James Version)" data-verse-url="/bible/nkjv/job/40/2/"><span class="v-num">2</span><span class="v-txt">"Shall the one who contends with the Almighty correct [Him?] He who rebukes God, let him answer it."</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/3/" data-ref="Job 40:3 (New King James Version)" data-verse-url="/bible/nkjv/job/40/3/"><span class="v-num">3</span><span class="v-txt">Then Job answered the LORD and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/4/" data-ref="Job 40:4 (New King James Version)" data-verse-url="/bible/nkjv/job/40/4/"><span class="v-num">4</span><span class="v-txt">"Behold, I am vile; What shall I answer You? I lay my hand over my mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/5/" data-ref="Job 40:5 (New King James Version)" data-verse-url="/bible/nkjv/job/40/5/"><span class="v-num">5</span><span class="v-txt">Once I have spoken, but I will not answer; Yes, twice, but I will proceed no further."</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/6/" data-ref="Job 40:6 (New King James Version)" data-verse-url="/bible/nkjv/job/40/6/"><span class="v-num">6</span><span class="v-txt">Then the LORD answered Job out of the whirlwind, and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/7/" data-ref="Job 40:7 (New King James Version)" data-verse-url="/bible/nkjv/job/40/7/"><span class="v-num">7</span><span class="v-txt">"Now prepare yourself like a man; I will question you, and you shall answer Me:</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/8/" data-ref="Job 40:8 (New King James Version)" data-verse-url="/bible/nkjv/job/40/8/"><span class="v-num">8</span><span class="v-txt">"Would you indeed annul My judgment? Would you condemn Me that you may be justified?</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/9/" data-ref="Job 40:9 (New King James Version)" data-verse-url="/bible/nkjv/job/40/9/"><span class="v-num">9</span><span class="v-txt">Have you an arm like God? Or can you thunder with a voice like His?</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/10/" data-ref="Job 40:10 (New King James Version)" data-verse-url="/bible/nkjv/job/40/10/"><span class="v-num">10</span><span class="v-txt">Then adorn yourself [with] majesty and splendor, and array yourself with glory and beauty.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/11/" data-ref="Job 40:11 (New King James Version)" data-verse-url="/bible/nkjv/job/40/11/"><span class="v-num">11</span><span class="v-txt">Disperse the rage of your wrath; Look on everyone [who is] proud, and humble him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/12/" data-ref="Job 40:12 (New King James Version)" data-verse-url="/bible/nkjv/job/40/12/"><span class="v-num">12</span><span class="v-txt">Look on everyone [who is] proud, [and] bring him low; Tread down the wicked in their place.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/13/" data-ref="Job 40:13 (New King James Version)" data-verse-url="/bible/nkjv/job/40/13/"><span class="v-num">13</span><span class="v-txt">Hide them in the dust together, Bind their faces in hidden [darkness.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/14/" data-ref="Job 40:14 (New King James Version)" data-verse-url="/bible/nkjv/job/40/14/"><span class="v-num">14</span><span class="v-txt">Then I will also confess to you That your own right hand can save you.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/15/" data-ref="Job 40:15 (New King James Version)" data-verse-url="/bible/nkjv/job/40/15/"><span class="v-num">15</span><span class="v-txt">" Look now at the behemoth, which I made [along] with you; He eats grass like an ox.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/16/" data-ref="Job 40:16 (New King James Version)" data-verse-url="/bible/nkjv/job/40/16/"><span class="v-num">16</span><span class="v-txt">See now, his strength [is] in his hips, And his power [is] in his stomach muscles.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/17/" data-ref="Job 40:17 (New King James Version)" data-verse-url="/bible/nkjv/job/40/17/"><span class="v-num">17</span><span class="v-txt">He moves his tail like a cedar; The sinews of his thighs are tightly knit.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/18/" data-ref="Job 40:18 (New King James Version)" data-verse-url="/bible/nkjv/job/40/18/"><span class="v-num">18</span><span class="v-txt">His bones [are like] beams of bronze, His ribs like bars of iron.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/19/" data-ref="Job 40:19 (New King James Version)" data-verse-url="/bible/nkjv/job/40/19/"><span class="v-num">19</span><span class="v-txt">He [is] the first of the ways of God; Only He who made him can bring near His sword.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/20/" data-ref="Job 40:20 (New King James Version)" data-verse-url="/bible/nkjv/job/40/20/"><span class="v-num">20</span><span class="v-txt">Surely the mountains yield food for him, And all the beasts of the field play there.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/21/" data-ref="Job 40:21 (New King James Version)" data-verse-url="/bible/nkjv/job/40/21/"><span class="v-num">21</span><span class="v-txt">He lies under the lotus trees, In a covert of reeds and marsh.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/22/" data-ref="Job 40:22 (New King James Version)" data-verse-url="/bible/nkjv/job/40/22/"><span class="v-num">22</span><span class="v-txt">The lotus trees cover him [with] their shade; The willows by the brook surround him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/23/" data-ref="Job 40:23 (New King James Version)" data-verse-url="/bible/nkjv/job/40/23/"><span class="v-num">23</span><span class="v-txt">Indeed the river may rage, [Yet] he is not disturbed; He is confident, though the Jordan gushes into his mouth,</span></a>
+<a class="v-row" href="/bible/nkjv/job/40/24/" data-ref="Job 40:24 (New King James Version)" data-verse-url="/bible/nkjv/job/40/24/"><span class="v-num">24</span><span class="v-txt">[Though] he takes it in his eyes, [Or] one pierces [his] nose with a snare.</span></a>
 
     
 <div class="app-cta">

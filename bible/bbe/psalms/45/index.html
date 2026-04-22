@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 45</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 45:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker; put to Shoshannim. Of the sons of Korah. Maschil. A Song of loves. My heart is flowing over with good things; my words are of that which I have made for a king; my tongue is the pen of a ready writer.</span></div>
-<div class="v-row" data-ref="Psalm 45:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You are fairer than the children of men; grace is flowing through your lips; for this cause the blessing of God is with you for ever.</span></div>
-<div class="v-row" data-ref="Psalm 45:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Put on your sword, make it ready at your side, O strong chief, with your glory and power.</span></div>
-<div class="v-row" data-ref="Psalm 45:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And go nobly on in your power, because you are good and true and without pride; and your right hand will be teaching you things of fear.</span></div>
-<div class="v-row" data-ref="Psalm 45:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Your arrows are sharp in the heart of the king's haters; because of them the peoples are falling under you.</span></div>
-<div class="v-row" data-ref="Psalm 45:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Your seat of power, O God, is for ever and ever; the rod of your kingdom is a rod of honour.</span></div>
-<div class="v-row" data-ref="Psalm 45:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You have been a lover of righteousness and a hater of evil: and so God, your God, has put the oil of joy on your head, lifting you high over all other kings.</span></div>
-<div class="v-row" data-ref="Psalm 45:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Your robes are full of the smell of all sorts of perfumes and spices; music from the king's ivory houses has made you glad.</span></div>
-<div class="v-row" data-ref="Psalm 45:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Kings' daughters are among your noble women: on your right is the queen in gold of Ophir.</span></div>
-<div class="v-row" data-ref="Psalm 45:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">O daughter, give thought and attention, and let your ear be open; no longer keep in mind your people, and your father's house;</span></div>
-<div class="v-row" data-ref="Psalm 45:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So will the king have a great desire for you, seeing how beautiful you are; because he is your lord, give him honour.</span></div>
-<div class="v-row" data-ref="Psalm 45:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the daughters of Tyre will be there with an offering; those who have wealth among the people will be looking for your approval.</span></div>
-<div class="v-row" data-ref="Psalm 45:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In the great house the king's daughter is all shining: her clothing is worked with gold.</span></div>
-<div class="v-row" data-ref="Psalm 45:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">She will come before the king in robes of needlework; the virgins in her train will come before you.</span></div>
-<div class="v-row" data-ref="Psalm 45:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">With joy and rapture will they come; they will go into the king's house.</span></div>
-<div class="v-row" data-ref="Psalm 45:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Your children will take the place of your fathers; so that you may make them rulers over all the earth.</span></div>
-<div class="v-row" data-ref="Psalm 45:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I will keep the memory of your name living through all generations; and because of this the people will give you praise for ever.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/45/1/" data-ref="Psalm 45:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker; put to Shoshannim. Of the sons of Korah. Maschil. A Song of loves. My heart is flowing over with good things; my words are of that which I have made for a king; my tongue is the pen of a ready writer.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/2/" data-ref="Psalm 45:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/2/"><span class="v-num">2</span><span class="v-txt">You are fairer than the children of men; grace is flowing through your lips; for this cause the blessing of God is with you for ever.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/3/" data-ref="Psalm 45:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/3/"><span class="v-num">3</span><span class="v-txt">Put on your sword, make it ready at your side, O strong chief, with your glory and power.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/4/" data-ref="Psalm 45:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/4/"><span class="v-num">4</span><span class="v-txt">And go nobly on in your power, because you are good and true and without pride; and your right hand will be teaching you things of fear.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/5/" data-ref="Psalm 45:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/5/"><span class="v-num">5</span><span class="v-txt">Your arrows are sharp in the heart of the king's haters; because of them the peoples are falling under you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/6/" data-ref="Psalm 45:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/6/"><span class="v-num">6</span><span class="v-txt">Your seat of power, O God, is for ever and ever; the rod of your kingdom is a rod of honour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/7/" data-ref="Psalm 45:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/7/"><span class="v-num">7</span><span class="v-txt">You have been a lover of righteousness and a hater of evil: and so God, your God, has put the oil of joy on your head, lifting you high over all other kings.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/8/" data-ref="Psalm 45:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/8/"><span class="v-num">8</span><span class="v-txt">Your robes are full of the smell of all sorts of perfumes and spices; music from the king's ivory houses has made you glad.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/9/" data-ref="Psalm 45:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/9/"><span class="v-num">9</span><span class="v-txt">Kings' daughters are among your noble women: on your right is the queen in gold of Ophir.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/10/" data-ref="Psalm 45:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/10/"><span class="v-num">10</span><span class="v-txt">O daughter, give thought and attention, and let your ear be open; no longer keep in mind your people, and your father's house;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/11/" data-ref="Psalm 45:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/11/"><span class="v-num">11</span><span class="v-txt">So will the king have a great desire for you, seeing how beautiful you are; because he is your lord, give him honour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/12/" data-ref="Psalm 45:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/12/"><span class="v-num">12</span><span class="v-txt">And the daughters of Tyre will be there with an offering; those who have wealth among the people will be looking for your approval.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/13/" data-ref="Psalm 45:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/13/"><span class="v-num">13</span><span class="v-txt">In the great house the king's daughter is all shining: her clothing is worked with gold.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/14/" data-ref="Psalm 45:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/14/"><span class="v-num">14</span><span class="v-txt">She will come before the king in robes of needlework; the virgins in her train will come before you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/15/" data-ref="Psalm 45:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/15/"><span class="v-num">15</span><span class="v-txt">With joy and rapture will they come; they will go into the king's house.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/16/" data-ref="Psalm 45:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/16/"><span class="v-num">16</span><span class="v-txt">Your children will take the place of your fathers; so that you may make them rulers over all the earth.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/45/17/" data-ref="Psalm 45:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/45/17/"><span class="v-num">17</span><span class="v-txt">I will keep the memory of your name living through all generations; and because of this the people will give you praise for ever.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 19:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. A Psalm. Of David. The heavens are sounding the glory of God; the arch of the sky makes clear the work of his hands.</span></div>
-<div class="v-row" data-ref="Psalm 19:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Day after day it sends out its word, and night after night it gives knowledge.</span></div>
-<div class="v-row" data-ref="Psalm 19:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">There are no words or language; their voice makes no sound.</span></div>
-<div class="v-row" data-ref="Psalm 19:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Their line has gone out through all the earth, and their words to the end of the world. In them has he put a tent for the sun,</span></div>
-<div class="v-row" data-ref="Psalm 19:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Who is like a newly married man coming from his bride-tent, and is glad like a strong runner starting on his way.</span></div>
-<div class="v-row" data-ref="Psalm 19:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">His going out is from the end of the heaven, and his circle to the ends of it; there is nothing which is not open to his heat.</span></div>
-<div class="v-row" data-ref="Psalm 19:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The law of the Lord is good, giving new life to the soul: the witness of the Lord is certain, giving wisdom to the foolish.</span></div>
-<div class="v-row" data-ref="Psalm 19:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The orders of the Lord are right, making glad the heart: the rule of the Lord is holy, giving light to the eyes.</span></div>
-<div class="v-row" data-ref="Psalm 19:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The fear of the Lord is clean, and has no end; the decisions of the Lord are true and full of righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 19:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">More to be desired are they than gold, even than much shining gold; sweeter than the dropping honey.</span></div>
-<div class="v-row" data-ref="Psalm 19:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">By them is your servant made conscious of danger, and in keeping them there is great reward.</span></div>
-<div class="v-row" data-ref="Psalm 19:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who has full knowledge of his errors? make me clean from secret evil.</span></div>
-<div class="v-row" data-ref="Psalm 19:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Keep your servant back from sins of pride; let them not have rule over me: then will I be upright and free from great sin.</span></div>
-<div class="v-row" data-ref="Psalm 19:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Let the words of my mouth and the thoughts of my heart be pleasing in your eyes, O Lord, my strength and my salvation.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/19/1/" data-ref="Psalm 19:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. A Psalm. Of David. The heavens are sounding the glory of God; the arch of the sky makes clear the work of his hands.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/2/" data-ref="Psalm 19:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/2/"><span class="v-num">2</span><span class="v-txt">Day after day it sends out its word, and night after night it gives knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/3/" data-ref="Psalm 19:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/3/"><span class="v-num">3</span><span class="v-txt">There are no words or language; their voice makes no sound.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/4/" data-ref="Psalm 19:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/4/"><span class="v-num">4</span><span class="v-txt">Their line has gone out through all the earth, and their words to the end of the world. In them has he put a tent for the sun,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/5/" data-ref="Psalm 19:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/5/"><span class="v-num">5</span><span class="v-txt">Who is like a newly married man coming from his bride-tent, and is glad like a strong runner starting on his way.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/6/" data-ref="Psalm 19:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/6/"><span class="v-num">6</span><span class="v-txt">His going out is from the end of the heaven, and his circle to the ends of it; there is nothing which is not open to his heat.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/7/" data-ref="Psalm 19:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/7/"><span class="v-num">7</span><span class="v-txt">The law of the Lord is good, giving new life to the soul: the witness of the Lord is certain, giving wisdom to the foolish.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/8/" data-ref="Psalm 19:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/8/"><span class="v-num">8</span><span class="v-txt">The orders of the Lord are right, making glad the heart: the rule of the Lord is holy, giving light to the eyes.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/9/" data-ref="Psalm 19:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/9/"><span class="v-num">9</span><span class="v-txt">The fear of the Lord is clean, and has no end; the decisions of the Lord are true and full of righteousness.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/10/" data-ref="Psalm 19:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/10/"><span class="v-num">10</span><span class="v-txt">More to be desired are they than gold, even than much shining gold; sweeter than the dropping honey.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/11/" data-ref="Psalm 19:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/11/"><span class="v-num">11</span><span class="v-txt">By them is your servant made conscious of danger, and in keeping them there is great reward.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/12/" data-ref="Psalm 19:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/12/"><span class="v-num">12</span><span class="v-txt">Who has full knowledge of his errors? make me clean from secret evil.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/13/" data-ref="Psalm 19:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/13/"><span class="v-num">13</span><span class="v-txt">Keep your servant back from sins of pride; let them not have rule over me: then will I be upright and free from great sin.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/19/14/" data-ref="Psalm 19:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/19/14/"><span class="v-num">14</span><span class="v-txt">Let the words of my mouth and the thoughts of my heart be pleasing in your eyes, O Lord, my strength and my salvation.</span></a>
 
     
 <div class="app-cta">

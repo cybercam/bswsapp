@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 74</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 74:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Contemplation of Asaph. O God, why have You cast [us] off forever? [Why] does Your anger smoke against the sheep of Your pasture?</span></div>
-<div class="v-row" data-ref="Psalm 74:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Remember Your congregation, [which] You have purchased of old, The tribe of Your inheritance, [which] You have redeemed -- This Mount Zion where You have dwelt.</span></div>
-<div class="v-row" data-ref="Psalm 74:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Lift up Your feet to the perpetual desolations. The enemy has damaged everything in the sanctuary.</span></div>
-<div class="v-row" data-ref="Psalm 74:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Your enemies roar in the midst of Your meeting place; They set up their banners [for] signs.</span></div>
-<div class="v-row" data-ref="Psalm 74:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They seem like men who lift up Axes among the thick trees.</span></div>
-<div class="v-row" data-ref="Psalm 74:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And now they break down its carved work, all at once, With axes and hammers.</span></div>
-<div class="v-row" data-ref="Psalm 74:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They have set fire to Your sanctuary; They have defiled the dwelling place of Your name to the ground.</span></div>
-<div class="v-row" data-ref="Psalm 74:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They said in their hearts, "Let us destroy them altogether." They have burned up all the meeting places of God in the land.</span></div>
-<div class="v-row" data-ref="Psalm 74:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">We do not see our signs; [There is] no longer any prophet; Nor [is there] any among us who knows how long.</span></div>
-<div class="v-row" data-ref="Psalm 74:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">O God, how long will the adversary reproach? Will the enemy blaspheme Your name forever?</span></div>
-<div class="v-row" data-ref="Psalm 74:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Why do You withdraw Your hand, even Your right hand? [Take it] out of Your bosom and destroy [them.]</span></div>
-<div class="v-row" data-ref="Psalm 74:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For God [is] my King from of old, Working salvation in the midst of the earth.</span></div>
-<div class="v-row" data-ref="Psalm 74:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">You divided the sea by Your strength; You broke the heads of the sea serpents in the waters.</span></div>
-<div class="v-row" data-ref="Psalm 74:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You broke the heads of Leviathan in pieces, [And] gave him [as] food to the people inhabiting the wilderness.</span></div>
-<div class="v-row" data-ref="Psalm 74:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">You broke open the fountain and the flood; You dried up mighty rivers.</span></div>
-<div class="v-row" data-ref="Psalm 74:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The day [is] Yours, the night also [is] Yours; You have prepared the light and the sun.</span></div>
-<div class="v-row" data-ref="Psalm 74:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">You have set all the borders of the earth; You have made summer and winter.</span></div>
-<div class="v-row" data-ref="Psalm 74:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Remember this, [that] the enemy has reproached, O LORD, And [that] a foolish people has blasphemed Your name.</span></div>
-<div class="v-row" data-ref="Psalm 74:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Oh, do not deliver the life of Your turtledove to the wild beast! Do not forget the life of Your poor forever.</span></div>
-<div class="v-row" data-ref="Psalm 74:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Have respect to the covenant; For the dark places of the earth are full of the haunts of cruelty.</span></div>
-<div class="v-row" data-ref="Psalm 74:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Oh, do not let the oppressed return ashamed! Let the poor and needy praise Your name.</span></div>
-<div class="v-row" data-ref="Psalm 74:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Arise, O God, plead Your own cause; Remember how the foolish man reproaches You daily.</span></div>
-<div class="v-row" data-ref="Psalm 74:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Do not forget the voice of Your enemies; The tumult of those who rise up against You increases continually.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/74/1/" data-ref="Psalm 74:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/1/"><span class="v-num">1</span><span class="v-txt">A Contemplation of Asaph. O God, why have You cast [us] off forever? [Why] does Your anger smoke against the sheep of Your pasture?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/2/" data-ref="Psalm 74:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/2/"><span class="v-num">2</span><span class="v-txt">Remember Your congregation, [which] You have purchased of old, The tribe of Your inheritance, [which] You have redeemed -- This Mount Zion where You have dwelt.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/3/" data-ref="Psalm 74:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/3/"><span class="v-num">3</span><span class="v-txt">Lift up Your feet to the perpetual desolations. The enemy has damaged everything in the sanctuary.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/4/" data-ref="Psalm 74:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/4/"><span class="v-num">4</span><span class="v-txt">Your enemies roar in the midst of Your meeting place; They set up their banners [for] signs.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/5/" data-ref="Psalm 74:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/5/"><span class="v-num">5</span><span class="v-txt">They seem like men who lift up Axes among the thick trees.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/6/" data-ref="Psalm 74:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/6/"><span class="v-num">6</span><span class="v-txt">And now they break down its carved work, all at once, With axes and hammers.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/7/" data-ref="Psalm 74:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/7/"><span class="v-num">7</span><span class="v-txt">They have set fire to Your sanctuary; They have defiled the dwelling place of Your name to the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/8/" data-ref="Psalm 74:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/8/"><span class="v-num">8</span><span class="v-txt">They said in their hearts, "Let us destroy them altogether." They have burned up all the meeting places of God in the land.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/9/" data-ref="Psalm 74:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/9/"><span class="v-num">9</span><span class="v-txt">We do not see our signs; [There is] no longer any prophet; Nor [is there] any among us who knows how long.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/10/" data-ref="Psalm 74:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/10/"><span class="v-num">10</span><span class="v-txt">O God, how long will the adversary reproach? Will the enemy blaspheme Your name forever?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/11/" data-ref="Psalm 74:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/11/"><span class="v-num">11</span><span class="v-txt">Why do You withdraw Your hand, even Your right hand? [Take it] out of Your bosom and destroy [them.]</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/12/" data-ref="Psalm 74:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/12/"><span class="v-num">12</span><span class="v-txt">For God [is] my King from of old, Working salvation in the midst of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/13/" data-ref="Psalm 74:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/13/"><span class="v-num">13</span><span class="v-txt">You divided the sea by Your strength; You broke the heads of the sea serpents in the waters.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/14/" data-ref="Psalm 74:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/14/"><span class="v-num">14</span><span class="v-txt">You broke the heads of Leviathan in pieces, [And] gave him [as] food to the people inhabiting the wilderness.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/15/" data-ref="Psalm 74:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/15/"><span class="v-num">15</span><span class="v-txt">You broke open the fountain and the flood; You dried up mighty rivers.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/16/" data-ref="Psalm 74:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/16/"><span class="v-num">16</span><span class="v-txt">The day [is] Yours, the night also [is] Yours; You have prepared the light and the sun.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/17/" data-ref="Psalm 74:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/17/"><span class="v-num">17</span><span class="v-txt">You have set all the borders of the earth; You have made summer and winter.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/18/" data-ref="Psalm 74:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/18/"><span class="v-num">18</span><span class="v-txt">Remember this, [that] the enemy has reproached, O LORD, And [that] a foolish people has blasphemed Your name.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/19/" data-ref="Psalm 74:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/19/"><span class="v-num">19</span><span class="v-txt">Oh, do not deliver the life of Your turtledove to the wild beast! Do not forget the life of Your poor forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/20/" data-ref="Psalm 74:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/20/"><span class="v-num">20</span><span class="v-txt">Have respect to the covenant; For the dark places of the earth are full of the haunts of cruelty.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/21/" data-ref="Psalm 74:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/21/"><span class="v-num">21</span><span class="v-txt">Oh, do not let the oppressed return ashamed! Let the poor and needy praise Your name.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/22/" data-ref="Psalm 74:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/22/"><span class="v-num">22</span><span class="v-txt">Arise, O God, plead Your own cause; Remember how the foolish man reproaches You daily.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/74/23/" data-ref="Psalm 74:23 (New King James Version)" data-verse-url="/bible/nkjv/psalms/74/23/"><span class="v-num">23</span><span class="v-txt">Do not forget the voice of Your enemies; The tumult of those who rise up against You increases continually.</span></a>
 
     
 <div class="app-cta">

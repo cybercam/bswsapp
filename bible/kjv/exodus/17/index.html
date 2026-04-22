@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Exodus 17:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And all the congregation of the children of Israel journeyed from the wilderness of Sin, after their journeys, according to the commandment of the LORD, and pitched in Rephidim: and there was no water for the people to drink.</span></div>
-<div class="v-row" data-ref="Exodus 17:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Wherefore the people did chide with Moses, and said, Give us water that we may drink. And Moses said unto them, Why chide ye with me? wherefore do ye tempt the LORD?</span></div>
-<div class="v-row" data-ref="Exodus 17:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the people thirsted there for water; and the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?</span></div>
-<div class="v-row" data-ref="Exodus 17:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Moses cried unto the LORD, saying, What shall I do unto this people? they be almost ready to stone me.</span></div>
-<div class="v-row" data-ref="Exodus 17:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the LORD said unto Moses, Go on before the people, and take with thee of the elders of Israel; and thy rod, wherewith thou smotest the river, take in thine hand, and go.</span></div>
-<div class="v-row" data-ref="Exodus 17:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Behold, I will stand before thee there upon the rock in Horeb; and thou shalt smite the rock, and there shall come water out of it, that the people may drink. And Moses did so in the sight of the elders of Israel.</span></div>
-<div class="v-row" data-ref="Exodus 17:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he called the name of the place Massah, and Meribah, because of the chiding of the children of Israel, and because they tempted the LORD, saying, Is the LORD among us, or not?</span></div>
-<div class="v-row" data-ref="Exodus 17:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then came Amalek, and fought with Israel in Rephidim.</span></div>
-<div class="v-row" data-ref="Exodus 17:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Moses said unto Joshua, Choose us out men, and go out, fight with Amalek: to morrow I will stand on the top of the hill with the rod of God in mine hand.</span></div>
-<div class="v-row" data-ref="Exodus 17:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So Joshua did as Moses had said to him, and fought with Amalek: and Moses, Aaron, and Hur went up to the top of the hill.</span></div>
-<div class="v-row" data-ref="Exodus 17:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And it came to pass, when Moses held up his hand, that Israel prevailed: and when he let down his hand, Amalek prevailed.</span></div>
-<div class="v-row" data-ref="Exodus 17:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But Moses' hands were heavy; and they took a stone, and put it under him, and he sat thereon; and Aaron and Hur stayed up his hands, the one on the one side, and the other on the other side; and his hands were steady until the going down of the sun.</span></div>
-<div class="v-row" data-ref="Exodus 17:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Joshua discomfited Amalek and his people with the edge of the sword.</span></div>
-<div class="v-row" data-ref="Exodus 17:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the LORD said unto Moses, Write this for a memorial in a book, and rehearse it in the ears of Joshua: for I will utterly put out the remembrance of Amalek from under heaven.</span></div>
-<div class="v-row" data-ref="Exodus 17:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Moses built an altar, and called the name of it Jehovahnissi:</span></div>
-<div class="v-row" data-ref="Exodus 17:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For he said, Because the LORD hath sworn that the LORD will have war with Amalek from generation to generation.</span></div>
+    <a class="v-row" href="/bible/kjv/exodus/17/1/" data-ref="Exodus 17:1 (King James Version)" data-verse-url="/bible/kjv/exodus/17/1/"><span class="v-num">1</span><span class="v-txt">And all the congregation of the children of Israel journeyed from the wilderness of Sin, after their journeys, according to the commandment of the LORD, and pitched in Rephidim: and there was no water for the people to drink.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/2/" data-ref="Exodus 17:2 (King James Version)" data-verse-url="/bible/kjv/exodus/17/2/"><span class="v-num">2</span><span class="v-txt">Wherefore the people did chide with Moses, and said, Give us water that we may drink. And Moses said unto them, Why chide ye with me? wherefore do ye tempt the LORD?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/3/" data-ref="Exodus 17:3 (King James Version)" data-verse-url="/bible/kjv/exodus/17/3/"><span class="v-num">3</span><span class="v-txt">And the people thirsted there for water; and the people murmured against Moses, and said, Wherefore is this that thou hast brought us up out of Egypt, to kill us and our children and our cattle with thirst?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/4/" data-ref="Exodus 17:4 (King James Version)" data-verse-url="/bible/kjv/exodus/17/4/"><span class="v-num">4</span><span class="v-txt">And Moses cried unto the LORD, saying, What shall I do unto this people? they be almost ready to stone me.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/5/" data-ref="Exodus 17:5 (King James Version)" data-verse-url="/bible/kjv/exodus/17/5/"><span class="v-num">5</span><span class="v-txt">And the LORD said unto Moses, Go on before the people, and take with thee of the elders of Israel; and thy rod, wherewith thou smotest the river, take in thine hand, and go.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/6/" data-ref="Exodus 17:6 (King James Version)" data-verse-url="/bible/kjv/exodus/17/6/"><span class="v-num">6</span><span class="v-txt">Behold, I will stand before thee there upon the rock in Horeb; and thou shalt smite the rock, and there shall come water out of it, that the people may drink. And Moses did so in the sight of the elders of Israel.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/7/" data-ref="Exodus 17:7 (King James Version)" data-verse-url="/bible/kjv/exodus/17/7/"><span class="v-num">7</span><span class="v-txt">And he called the name of the place Massah, and Meribah, because of the chiding of the children of Israel, and because they tempted the LORD, saying, Is the LORD among us, or not?</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/8/" data-ref="Exodus 17:8 (King James Version)" data-verse-url="/bible/kjv/exodus/17/8/"><span class="v-num">8</span><span class="v-txt">Then came Amalek, and fought with Israel in Rephidim.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/9/" data-ref="Exodus 17:9 (King James Version)" data-verse-url="/bible/kjv/exodus/17/9/"><span class="v-num">9</span><span class="v-txt">And Moses said unto Joshua, Choose us out men, and go out, fight with Amalek: to morrow I will stand on the top of the hill with the rod of God in mine hand.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/10/" data-ref="Exodus 17:10 (King James Version)" data-verse-url="/bible/kjv/exodus/17/10/"><span class="v-num">10</span><span class="v-txt">So Joshua did as Moses had said to him, and fought with Amalek: and Moses, Aaron, and Hur went up to the top of the hill.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/11/" data-ref="Exodus 17:11 (King James Version)" data-verse-url="/bible/kjv/exodus/17/11/"><span class="v-num">11</span><span class="v-txt">And it came to pass, when Moses held up his hand, that Israel prevailed: and when he let down his hand, Amalek prevailed.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/12/" data-ref="Exodus 17:12 (King James Version)" data-verse-url="/bible/kjv/exodus/17/12/"><span class="v-num">12</span><span class="v-txt">But Moses' hands were heavy; and they took a stone, and put it under him, and he sat thereon; and Aaron and Hur stayed up his hands, the one on the one side, and the other on the other side; and his hands were steady until the going down of the sun.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/13/" data-ref="Exodus 17:13 (King James Version)" data-verse-url="/bible/kjv/exodus/17/13/"><span class="v-num">13</span><span class="v-txt">And Joshua discomfited Amalek and his people with the edge of the sword.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/14/" data-ref="Exodus 17:14 (King James Version)" data-verse-url="/bible/kjv/exodus/17/14/"><span class="v-num">14</span><span class="v-txt">And the LORD said unto Moses, Write this for a memorial in a book, and rehearse it in the ears of Joshua: for I will utterly put out the remembrance of Amalek from under heaven.</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/15/" data-ref="Exodus 17:15 (King James Version)" data-verse-url="/bible/kjv/exodus/17/15/"><span class="v-num">15</span><span class="v-txt">And Moses built an altar, and called the name of it Jehovahnissi:</span></a>
+<a class="v-row" href="/bible/kjv/exodus/17/16/" data-ref="Exodus 17:16 (King James Version)" data-verse-url="/bible/kjv/exodus/17/16/"><span class="v-num">16</span><span class="v-txt">For he said, Because the LORD hath sworn that the LORD will have war with Amalek from generation to generation.</span></a>
 
     
 <div class="app-cta">

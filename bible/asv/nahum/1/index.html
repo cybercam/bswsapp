@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Nahum 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden of Nineveh. The book of the vision of Nahum the Elkoshite.</span></div>
-<div class="v-row" data-ref="Nahum 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Jehovah is a jealous God and avengeth; Jehovah avengeth and is full of wrath; Jehovah taketh vengeance on his adversaries, and he reserveth [wrath] for his enemies.</span></div>
-<div class="v-row" data-ref="Nahum 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Jehovah is slow to anger, and great in power, and will by no means clear [the guilty]: Jehovah hath his way in the whirlwind and in the storm, and the clouds are the dust of his feet.</span></div>
-<div class="v-row" data-ref="Nahum 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He rebuketh the sea, and maketh it dry, and drieth up all the rivers: Bashan languisheth, and Carmel; and the flower of Lebanon languisheth.</span></div>
-<div class="v-row" data-ref="Nahum 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The mountains quake at him, and the hills melt; and the earth is upheaved at his presence, yea, the world, and all that dwell therein.</span></div>
-<div class="v-row" data-ref="Nahum 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Who can stand before his indignation? and who can abide in the fierceness of his anger? his wrath is poured out like fire, and the rocks are broken asunder by him.</span></div>
-<div class="v-row" data-ref="Nahum 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Jehovah is good, a stronghold in the day of trouble; and he knoweth them that take refuge in him.</span></div>
-<div class="v-row" data-ref="Nahum 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But with an over-running flood he will make a full end of her place, and will pursue his enemies into darkness.</span></div>
-<div class="v-row" data-ref="Nahum 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What do ye devise against Jehovah? he will make a full end; affliction shall not rise up the second time.</span></div>
-<div class="v-row" data-ref="Nahum 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For entangled like thorns, and drunken as with their drink, they are consumed utterly as dry stubble.</span></div>
-<div class="v-row" data-ref="Nahum 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">There is one gone forth out of thee, that deviseth evil against Jehovah, that counselleth wickedness.</span></div>
-<div class="v-row" data-ref="Nahum 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Thus saith Jehovah: Though they be in full strength, and likewise many, even so shall they be cut down, and he shall pass away. Though I have afflicted thee, I will afflict thee no more.</span></div>
-<div class="v-row" data-ref="Nahum 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And now will I break his yoke from off thee, and will burst thy bonds in sunder.</span></div>
-<div class="v-row" data-ref="Nahum 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Jehovah hath given commandment concerning thee, that no more of thy name be sown: out of the house of thy gods will I cut off the graven image and the molten image; I will make thy grave; for thou art vile.</span></div>
-<div class="v-row" data-ref="Nahum 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Behold, upon the mountains the feet of him that bringeth good tidings, that publisheth peace! Keep thy feasts, O Judah, perform thy vows; for the wicked one shall no more pass through thee; he is utterly cut off.</span></div>
+    <a class="v-row" href="/bible/asv/nahum/1/1/" data-ref="Nahum 1:1 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/1/"><span class="v-num">1</span><span class="v-txt">The burden of Nineveh. The book of the vision of Nahum the Elkoshite.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/2/" data-ref="Nahum 1:2 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/2/"><span class="v-num">2</span><span class="v-txt">Jehovah is a jealous God and avengeth; Jehovah avengeth and is full of wrath; Jehovah taketh vengeance on his adversaries, and he reserveth [wrath] for his enemies.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/3/" data-ref="Nahum 1:3 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/3/"><span class="v-num">3</span><span class="v-txt">Jehovah is slow to anger, and great in power, and will by no means clear [the guilty]: Jehovah hath his way in the whirlwind and in the storm, and the clouds are the dust of his feet.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/4/" data-ref="Nahum 1:4 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/4/"><span class="v-num">4</span><span class="v-txt">He rebuketh the sea, and maketh it dry, and drieth up all the rivers: Bashan languisheth, and Carmel; and the flower of Lebanon languisheth.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/5/" data-ref="Nahum 1:5 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/5/"><span class="v-num">5</span><span class="v-txt">The mountains quake at him, and the hills melt; and the earth is upheaved at his presence, yea, the world, and all that dwell therein.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/6/" data-ref="Nahum 1:6 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/6/"><span class="v-num">6</span><span class="v-txt">Who can stand before his indignation? and who can abide in the fierceness of his anger? his wrath is poured out like fire, and the rocks are broken asunder by him.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/7/" data-ref="Nahum 1:7 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/7/"><span class="v-num">7</span><span class="v-txt">Jehovah is good, a stronghold in the day of trouble; and he knoweth them that take refuge in him.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/8/" data-ref="Nahum 1:8 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/8/"><span class="v-num">8</span><span class="v-txt">But with an over-running flood he will make a full end of her place, and will pursue his enemies into darkness.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/9/" data-ref="Nahum 1:9 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/9/"><span class="v-num">9</span><span class="v-txt">What do ye devise against Jehovah? he will make a full end; affliction shall not rise up the second time.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/10/" data-ref="Nahum 1:10 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/10/"><span class="v-num">10</span><span class="v-txt">For entangled like thorns, and drunken as with their drink, they are consumed utterly as dry stubble.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/11/" data-ref="Nahum 1:11 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/11/"><span class="v-num">11</span><span class="v-txt">There is one gone forth out of thee, that deviseth evil against Jehovah, that counselleth wickedness.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/12/" data-ref="Nahum 1:12 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/12/"><span class="v-num">12</span><span class="v-txt">Thus saith Jehovah: Though they be in full strength, and likewise many, even so shall they be cut down, and he shall pass away. Though I have afflicted thee, I will afflict thee no more.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/13/" data-ref="Nahum 1:13 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/13/"><span class="v-num">13</span><span class="v-txt">And now will I break his yoke from off thee, and will burst thy bonds in sunder.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/14/" data-ref="Nahum 1:14 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/14/"><span class="v-num">14</span><span class="v-txt">And Jehovah hath given commandment concerning thee, that no more of thy name be sown: out of the house of thy gods will I cut off the graven image and the molten image; I will make thy grave; for thou art vile.</span></a>
+<a class="v-row" href="/bible/asv/nahum/1/15/" data-ref="Nahum 1:15 (American Standard Version)" data-verse-url="/bible/asv/nahum/1/15/"><span class="v-num">15</span><span class="v-txt">Behold, upon the mountains the feet of him that bringeth good tidings, that publisheth peace! Keep thy feasts, O Judah, perform thy vows; for the wicked one shall no more pass through thee; he is utterly cut off.</span></a>
 
     
 <div class="app-cta">

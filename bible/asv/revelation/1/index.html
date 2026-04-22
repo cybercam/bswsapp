@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The Revelation of Jesus Christ, which God gave him to show unto his servants, [even] the things which must shortly come to pass: and he sent and signified [it] by his angel unto his servant John;</span></div>
-<div class="v-row" data-ref="Revelation 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">who bare witness of the word of God, and of the testimony of Jesus Christ, [even] of all things that he saw.</span></div>
-<div class="v-row" data-ref="Revelation 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Blessed is he that readeth, and they that hear the words of the prophecy, and keep the things that are written therein: for the time is at hand.</span></div>
-<div class="v-row" data-ref="Revelation 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">John to the seven churches that are in Asia: Grace to you and peace, from him who is and who was and who is to come; and from the seven Spirits that are before his throne;</span></div>
-<div class="v-row" data-ref="Revelation 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and from Jesus Christ, [who is] the faithful witness, the firstborn of the dead, and the ruler of the kings of the earth. Unto him that loveth us, and loosed us from our sins by his blood;</span></div>
-<div class="v-row" data-ref="Revelation 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and he made us [to be] a kingdom, [to be] priests unto his God and Father; to him [be] the glory and the dominion for ever and ever. Amen.</span></div>
-<div class="v-row" data-ref="Revelation 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Behold, he cometh with the clouds; and every eye shall see him, and they that pierced him; and all the tribes of the earth shall mourn over him. Even so, Amen.</span></div>
-<div class="v-row" data-ref="Revelation 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I am the Alpha and the Omega, saith the Lord God, who is and who was and who is to come, the Almighty.</span></div>
-<div class="v-row" data-ref="Revelation 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I John, your brother and partaker with you in tribulation and kingdom and patience [which are] in Jesus, was in the isle that is called Patmos, for the word of God and the testimony of Jesus.</span></div>
-<div class="v-row" data-ref="Revelation 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I was in the Spirit on the Lord's day, and I heard behind me a great voice, as of a trumpet</span></div>
-<div class="v-row" data-ref="Revelation 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">saying, What thou seest, write in a book and send [it] to the seven churches: unto Ephesus, and unto Smyrna, and unto Pergamum, and unto Thyatira, and unto Sardis, and unto Philadelphia, and unto Laodicea.</span></div>
-<div class="v-row" data-ref="Revelation 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I turned to see the voice that spake with me. And having turned I saw seven golden candlesticks;</span></div>
-<div class="v-row" data-ref="Revelation 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and in the midst of the candlesticks one like unto a son of man, clothed with a garment down to the foot, and girt about at the breasts with a golden girdle.</span></div>
-<div class="v-row" data-ref="Revelation 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And his head and his hair were white as white wool, [white] as snow; and his eyes were as a flame of fire;</span></div>
-<div class="v-row" data-ref="Revelation 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and his feet like unto burnished brass, as if it had been refined in a furnace; and his voice as the voice of many waters.</span></div>
-<div class="v-row" data-ref="Revelation 1:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he had in his right hand seven stars: and out of his mouth proceeded a sharp two-edged sword: and his countenance was as the sun shineth in his strength.</span></div>
-<div class="v-row" data-ref="Revelation 1:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And when I saw him, I fell at his feet as one dead. And he laid his right hand upon me, saying, Fear not; I am the first and the last,</span></div>
-<div class="v-row" data-ref="Revelation 1:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">and the Living one; and I was dead, and behold, I am alive for evermore, and I have the keys of death and of Hades.</span></div>
-<div class="v-row" data-ref="Revelation 1:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Write therefore the things which thou sawest, and the things which are, and the things which shall come to pass hereafter;</span></div>
-<div class="v-row" data-ref="Revelation 1:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">the mystery of the seven stars which thou sawest in my right hand, and the seven golden candlesticks. The seven stars are the angels of the seven churches: and the seven candlesticks are seven churches.</span></div>
+    <a class="v-row" href="/bible/asv/revelation/1/1/" data-ref="Revelation 1:1 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/1/"><span class="v-num">1</span><span class="v-txt">The Revelation of Jesus Christ, which God gave him to show unto his servants, [even] the things which must shortly come to pass: and he sent and signified [it] by his angel unto his servant John;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/2/" data-ref="Revelation 1:2 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/2/"><span class="v-num">2</span><span class="v-txt">who bare witness of the word of God, and of the testimony of Jesus Christ, [even] of all things that he saw.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/3/" data-ref="Revelation 1:3 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/3/"><span class="v-num">3</span><span class="v-txt">Blessed is he that readeth, and they that hear the words of the prophecy, and keep the things that are written therein: for the time is at hand.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/4/" data-ref="Revelation 1:4 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/4/"><span class="v-num">4</span><span class="v-txt">John to the seven churches that are in Asia: Grace to you and peace, from him who is and who was and who is to come; and from the seven Spirits that are before his throne;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/5/" data-ref="Revelation 1:5 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/5/"><span class="v-num">5</span><span class="v-txt">and from Jesus Christ, [who is] the faithful witness, the firstborn of the dead, and the ruler of the kings of the earth. Unto him that loveth us, and loosed us from our sins by his blood;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/6/" data-ref="Revelation 1:6 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/6/"><span class="v-num">6</span><span class="v-txt">and he made us [to be] a kingdom, [to be] priests unto his God and Father; to him [be] the glory and the dominion for ever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/7/" data-ref="Revelation 1:7 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/7/"><span class="v-num">7</span><span class="v-txt">Behold, he cometh with the clouds; and every eye shall see him, and they that pierced him; and all the tribes of the earth shall mourn over him. Even so, Amen.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/8/" data-ref="Revelation 1:8 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/8/"><span class="v-num">8</span><span class="v-txt">I am the Alpha and the Omega, saith the Lord God, who is and who was and who is to come, the Almighty.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/9/" data-ref="Revelation 1:9 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/9/"><span class="v-num">9</span><span class="v-txt">I John, your brother and partaker with you in tribulation and kingdom and patience [which are] in Jesus, was in the isle that is called Patmos, for the word of God and the testimony of Jesus.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/10/" data-ref="Revelation 1:10 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/10/"><span class="v-num">10</span><span class="v-txt">I was in the Spirit on the Lord's day, and I heard behind me a great voice, as of a trumpet</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/11/" data-ref="Revelation 1:11 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/11/"><span class="v-num">11</span><span class="v-txt">saying, What thou seest, write in a book and send [it] to the seven churches: unto Ephesus, and unto Smyrna, and unto Pergamum, and unto Thyatira, and unto Sardis, and unto Philadelphia, and unto Laodicea.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/12/" data-ref="Revelation 1:12 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/12/"><span class="v-num">12</span><span class="v-txt">And I turned to see the voice that spake with me. And having turned I saw seven golden candlesticks;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/13/" data-ref="Revelation 1:13 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/13/"><span class="v-num">13</span><span class="v-txt">and in the midst of the candlesticks one like unto a son of man, clothed with a garment down to the foot, and girt about at the breasts with a golden girdle.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/14/" data-ref="Revelation 1:14 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/14/"><span class="v-num">14</span><span class="v-txt">And his head and his hair were white as white wool, [white] as snow; and his eyes were as a flame of fire;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/15/" data-ref="Revelation 1:15 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/15/"><span class="v-num">15</span><span class="v-txt">and his feet like unto burnished brass, as if it had been refined in a furnace; and his voice as the voice of many waters.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/16/" data-ref="Revelation 1:16 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/16/"><span class="v-num">16</span><span class="v-txt">And he had in his right hand seven stars: and out of his mouth proceeded a sharp two-edged sword: and his countenance was as the sun shineth in his strength.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/17/" data-ref="Revelation 1:17 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/17/"><span class="v-num">17</span><span class="v-txt">And when I saw him, I fell at his feet as one dead. And he laid his right hand upon me, saying, Fear not; I am the first and the last,</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/18/" data-ref="Revelation 1:18 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/18/"><span class="v-num">18</span><span class="v-txt">and the Living one; and I was dead, and behold, I am alive for evermore, and I have the keys of death and of Hades.</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/19/" data-ref="Revelation 1:19 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/19/"><span class="v-num">19</span><span class="v-txt">Write therefore the things which thou sawest, and the things which are, and the things which shall come to pass hereafter;</span></a>
+<a class="v-row" href="/bible/asv/revelation/1/20/" data-ref="Revelation 1:20 (American Standard Version)" data-verse-url="/bible/asv/revelation/1/20/"><span class="v-num">20</span><span class="v-txt">the mystery of the seven stars which thou sawest in my right hand, and the seven golden candlesticks. The seven stars are the angels of the seven churches: and the seven candlesticks are seven churches.</span></a>
 
     
 <div class="app-cta">

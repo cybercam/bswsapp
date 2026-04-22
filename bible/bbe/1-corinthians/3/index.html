@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the teaching I gave you, my brothers, was such as I was able to give, not to those who have the Spirit, but to those who are still in the flesh, even to children in Christ.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I gave you milk and not meat, because you were, then, unable to take it, and even now you are not able;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Because you are still in the flesh: for when there is envy and division among you, are you not still walking after the way of the flesh, even as natural men?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For when one says, I am of Paul; and another says, I am of Apollos; are you not talking like natural men?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">What then is Apollos? and what is Paul? They are but servants who gave you the good news as God gave it to them.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I did the planting, Apollos did the watering, but God gave the increase.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So then the planter is nothing, and the waterer is nothing; but God who gives the increase.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now the planter and the waterer are working for the same end: but they will have their separate rewards in the measure of their work.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For we are workers with God: you are God's planting, God's building.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In the measure of the grace given to me, I, as a wise master-builder, have put the base in position, and another goes on building on it. But let every man take care what he puts on it.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For there is no other base for the building but that which has been put down, which is Jesus Christ.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But on the base a man may put gold, silver, stones of great price, wood, dry grass, cut stems;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Every man's work will be made clear in that day, because it will be tested by fire; and the fire itself will make clear the quality of every man's work.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If any man's work comes through the test, he will have a reward.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If the fire puts an end to any man's work, it will be his loss: but he will get salvation himself, though as by fire.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Do you not see that you are God's holy house, and that the Spirit of God has his place in you?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">If anyone makes the house of God unclean, God will put an end to him; for the house of God is holy, and you are his house.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let no man have a false idea. If any man seems to himself to be wise among you, let him become foolish, so that he may be wise.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For the wisdom of this world is foolish before God. As it is said in the holy Writings, He who takes the wise in their secret designs:</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And again, The Lord has knowledge of the reasonings of the wise, that they are nothing.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">So let no one take pride in men. For all things are yours;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Paul, or Apollos, or Cephas, or the world, or life, or death, or things present, or things to come; all are yours;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And you are Christ's; and Christ is God's.</span></div>
+    <a class="v-row" href="/bible/bbe/1-corinthians/3/1/" data-ref="1 Corinthians 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/1/"><span class="v-num">1</span><span class="v-txt">And the teaching I gave you, my brothers, was such as I was able to give, not to those who have the Spirit, but to those who are still in the flesh, even to children in Christ.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/2/" data-ref="1 Corinthians 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/2/"><span class="v-num">2</span><span class="v-txt">I gave you milk and not meat, because you were, then, unable to take it, and even now you are not able;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/3/" data-ref="1 Corinthians 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/3/"><span class="v-num">3</span><span class="v-txt">Because you are still in the flesh: for when there is envy and division among you, are you not still walking after the way of the flesh, even as natural men?</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/4/" data-ref="1 Corinthians 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/4/"><span class="v-num">4</span><span class="v-txt">For when one says, I am of Paul; and another says, I am of Apollos; are you not talking like natural men?</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/5/" data-ref="1 Corinthians 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/5/"><span class="v-num">5</span><span class="v-txt">What then is Apollos? and what is Paul? They are but servants who gave you the good news as God gave it to them.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/6/" data-ref="1 Corinthians 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/6/"><span class="v-num">6</span><span class="v-txt">I did the planting, Apollos did the watering, but God gave the increase.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/7/" data-ref="1 Corinthians 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/7/"><span class="v-num">7</span><span class="v-txt">So then the planter is nothing, and the waterer is nothing; but God who gives the increase.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/8/" data-ref="1 Corinthians 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/8/"><span class="v-num">8</span><span class="v-txt">Now the planter and the waterer are working for the same end: but they will have their separate rewards in the measure of their work.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/9/" data-ref="1 Corinthians 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/9/"><span class="v-num">9</span><span class="v-txt">For we are workers with God: you are God's planting, God's building.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/10/" data-ref="1 Corinthians 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/10/"><span class="v-num">10</span><span class="v-txt">In the measure of the grace given to me, I, as a wise master-builder, have put the base in position, and another goes on building on it. But let every man take care what he puts on it.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/11/" data-ref="1 Corinthians 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/11/"><span class="v-num">11</span><span class="v-txt">For there is no other base for the building but that which has been put down, which is Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/12/" data-ref="1 Corinthians 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/12/"><span class="v-num">12</span><span class="v-txt">But on the base a man may put gold, silver, stones of great price, wood, dry grass, cut stems;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/13/" data-ref="1 Corinthians 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/13/"><span class="v-num">13</span><span class="v-txt">Every man's work will be made clear in that day, because it will be tested by fire; and the fire itself will make clear the quality of every man's work.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/14/" data-ref="1 Corinthians 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/14/"><span class="v-num">14</span><span class="v-txt">If any man's work comes through the test, he will have a reward.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/15/" data-ref="1 Corinthians 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/15/"><span class="v-num">15</span><span class="v-txt">If the fire puts an end to any man's work, it will be his loss: but he will get salvation himself, though as by fire.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/16/" data-ref="1 Corinthians 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/16/"><span class="v-num">16</span><span class="v-txt">Do you not see that you are God's holy house, and that the Spirit of God has his place in you?</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/17/" data-ref="1 Corinthians 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/17/"><span class="v-num">17</span><span class="v-txt">If anyone makes the house of God unclean, God will put an end to him; for the house of God is holy, and you are his house.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/18/" data-ref="1 Corinthians 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/18/"><span class="v-num">18</span><span class="v-txt">Let no man have a false idea. If any man seems to himself to be wise among you, let him become foolish, so that he may be wise.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/19/" data-ref="1 Corinthians 3:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/19/"><span class="v-num">19</span><span class="v-txt">For the wisdom of this world is foolish before God. As it is said in the holy Writings, He who takes the wise in their secret designs:</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/20/" data-ref="1 Corinthians 3:20 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/20/"><span class="v-num">20</span><span class="v-txt">And again, The Lord has knowledge of the reasonings of the wise, that they are nothing.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/21/" data-ref="1 Corinthians 3:21 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/21/"><span class="v-num">21</span><span class="v-txt">So let no one take pride in men. For all things are yours;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/22/" data-ref="1 Corinthians 3:22 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/22/"><span class="v-num">22</span><span class="v-txt">Paul, or Apollos, or Cephas, or the world, or life, or death, or things present, or things to come; all are yours;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/3/23/" data-ref="1 Corinthians 3:23 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/3/23/"><span class="v-num">23</span><span class="v-txt">And you are Christ's; and Christ is God's.</span></a>
 
     
 <div class="app-cta">

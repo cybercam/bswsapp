@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 88</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 88:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm of the sons of Korah. To the Chief Musician. Set to "Mahalath Leannoth." A Contemplation of Heman the Ezrahite. O LORD, God of my salvation, I have cried out day and night before You.</span></div>
-<div class="v-row" data-ref="Psalm 88:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let my prayer come before You; Incline Your ear to my cry.</span></div>
-<div class="v-row" data-ref="Psalm 88:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For my soul is full of troubles, And my life draws near to the grave.</span></div>
-<div class="v-row" data-ref="Psalm 88:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I am counted with those who go down to the pit; I am like a man [who has] no strength,</span></div>
-<div class="v-row" data-ref="Psalm 88:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Adrift among the dead, Like the slain who lie in the grave, Whom You remember no more, And who are cut off from Your hand.</span></div>
-<div class="v-row" data-ref="Psalm 88:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">You have laid me in the lowest pit, In darkness, in the depths.</span></div>
-<div class="v-row" data-ref="Psalm 88:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Your wrath lies heavy upon me, And You have afflicted [me] with all Your waves. Selah</span></div>
-<div class="v-row" data-ref="Psalm 88:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You have put away my acquaintances far from me; You have made me an abomination to them; [I am] shut up, and I cannot get out;</span></div>
-<div class="v-row" data-ref="Psalm 88:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My eye wastes away because of affliction. LORD, I have called daily upon You; I have stretched out my hands to You.</span></div>
-<div class="v-row" data-ref="Psalm 88:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Will You work wonders for the dead? Shall the dead arise [and] praise You? Selah</span></div>
-<div class="v-row" data-ref="Psalm 88:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Shall Your lovingkindness be declared in the grave? [Or] Your faithfulness in the place of destruction?</span></div>
-<div class="v-row" data-ref="Psalm 88:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Shall Your wonders be known in the dark? And Your righteousness in the land of forgetfulness?</span></div>
-<div class="v-row" data-ref="Psalm 88:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But to You I have cried out, O LORD, And in the morning my prayer comes before You.</span></div>
-<div class="v-row" data-ref="Psalm 88:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">LORD, why do You cast off my soul? [Why] do You hide Your face from me?</span></div>
-<div class="v-row" data-ref="Psalm 88:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I [have been] afflicted and ready to die from [my] youth; I suffer Your terrors; I am distraught.</span></div>
-<div class="v-row" data-ref="Psalm 88:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Your fierce wrath has gone over me; Your terrors have cut me off.</span></div>
-<div class="v-row" data-ref="Psalm 88:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">They came around me all day long like water; They engulfed me altogether.</span></div>
-<div class="v-row" data-ref="Psalm 88:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Loved one and friend You have put far from me, [And] my acquaintances into darkness.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/88/1/" data-ref="Psalm 88:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/1/"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm of the sons of Korah. To the Chief Musician. Set to "Mahalath Leannoth." A Contemplation of Heman the Ezrahite. O LORD, God of my salvation, I have cried out day and night before You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/2/" data-ref="Psalm 88:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/2/"><span class="v-num">2</span><span class="v-txt">Let my prayer come before You; Incline Your ear to my cry.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/3/" data-ref="Psalm 88:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/3/"><span class="v-num">3</span><span class="v-txt">For my soul is full of troubles, And my life draws near to the grave.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/4/" data-ref="Psalm 88:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/4/"><span class="v-num">4</span><span class="v-txt">I am counted with those who go down to the pit; I am like a man [who has] no strength,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/5/" data-ref="Psalm 88:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/5/"><span class="v-num">5</span><span class="v-txt">Adrift among the dead, Like the slain who lie in the grave, Whom You remember no more, And who are cut off from Your hand.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/6/" data-ref="Psalm 88:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/6/"><span class="v-num">6</span><span class="v-txt">You have laid me in the lowest pit, In darkness, in the depths.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/7/" data-ref="Psalm 88:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/7/"><span class="v-num">7</span><span class="v-txt">Your wrath lies heavy upon me, And You have afflicted [me] with all Your waves. Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/8/" data-ref="Psalm 88:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/8/"><span class="v-num">8</span><span class="v-txt">You have put away my acquaintances far from me; You have made me an abomination to them; [I am] shut up, and I cannot get out;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/9/" data-ref="Psalm 88:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/9/"><span class="v-num">9</span><span class="v-txt">My eye wastes away because of affliction. LORD, I have called daily upon You; I have stretched out my hands to You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/10/" data-ref="Psalm 88:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/10/"><span class="v-num">10</span><span class="v-txt">Will You work wonders for the dead? Shall the dead arise [and] praise You? Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/11/" data-ref="Psalm 88:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/11/"><span class="v-num">11</span><span class="v-txt">Shall Your lovingkindness be declared in the grave? [Or] Your faithfulness in the place of destruction?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/12/" data-ref="Psalm 88:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/12/"><span class="v-num">12</span><span class="v-txt">Shall Your wonders be known in the dark? And Your righteousness in the land of forgetfulness?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/13/" data-ref="Psalm 88:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/13/"><span class="v-num">13</span><span class="v-txt">But to You I have cried out, O LORD, And in the morning my prayer comes before You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/14/" data-ref="Psalm 88:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/14/"><span class="v-num">14</span><span class="v-txt">LORD, why do You cast off my soul? [Why] do You hide Your face from me?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/15/" data-ref="Psalm 88:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/15/"><span class="v-num">15</span><span class="v-txt">I [have been] afflicted and ready to die from [my] youth; I suffer Your terrors; I am distraught.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/16/" data-ref="Psalm 88:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/16/"><span class="v-num">16</span><span class="v-txt">Your fierce wrath has gone over me; Your terrors have cut me off.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/17/" data-ref="Psalm 88:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/17/"><span class="v-num">17</span><span class="v-txt">They came around me all day long like water; They engulfed me altogether.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/88/18/" data-ref="Psalm 88:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/88/18/"><span class="v-num">18</span><span class="v-txt">Loved one and friend You have put far from me, [And] my acquaintances into darkness.</span></a>
 
     
 <div class="app-cta">

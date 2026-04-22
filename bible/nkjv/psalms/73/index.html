@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 73</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 73:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm of Asaph. Truly God [is] good to Israel, To such as are pure in heart.</span></div>
-<div class="v-row" data-ref="Psalm 73:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">But as for me, my feet had almost stumbled; My steps had nearly slipped.</span></div>
-<div class="v-row" data-ref="Psalm 73:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For I [was] envious of the boastful, When I saw the prosperity of the wicked.</span></div>
-<div class="v-row" data-ref="Psalm 73:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For [there are] no pangs in their death, But their strength [is] firm.</span></div>
-<div class="v-row" data-ref="Psalm 73:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They [are] not in trouble [as other] men, Nor are they plagued like [other] men.</span></div>
-<div class="v-row" data-ref="Psalm 73:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Therefore pride serves as their necklace; Violence covers them [like] a garment.</span></div>
-<div class="v-row" data-ref="Psalm 73:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Their eyes bulge with abundance; They have more than heart could wish.</span></div>
-<div class="v-row" data-ref="Psalm 73:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They scoff and speak wickedly [concerning] oppression; They speak loftily.</span></div>
-<div class="v-row" data-ref="Psalm 73:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They set their mouth against the heavens, And their tongue walks through the earth.</span></div>
-<div class="v-row" data-ref="Psalm 73:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Therefore his people return here, And waters of a full [cup] are drained by them.</span></div>
-<div class="v-row" data-ref="Psalm 73:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they say, "How does God know? And is there knowledge in the Most High?"</span></div>
-<div class="v-row" data-ref="Psalm 73:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Behold, these [are] the ungodly, Who are always at ease; They increase [in] riches.</span></div>
-<div class="v-row" data-ref="Psalm 73:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Surely I have cleansed my heart [in] vain, And washed my hands in innocence.</span></div>
-<div class="v-row" data-ref="Psalm 73:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For all day long I have been plagued, And chastened every morning.</span></div>
-<div class="v-row" data-ref="Psalm 73:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If I had said, "I will speak thus," Behold, I would have been untrue to the generation of Your children.</span></div>
-<div class="v-row" data-ref="Psalm 73:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">When I thought [how] to understand this, It [was] too painful for me --</span></div>
-<div class="v-row" data-ref="Psalm 73:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Until I went into the sanctuary of God; [Then] I understood their end.</span></div>
-<div class="v-row" data-ref="Psalm 73:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Surely You set them in slippery places; You cast them down to destruction.</span></div>
-<div class="v-row" data-ref="Psalm 73:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Oh, how they are [brought] to desolation, as in a moment! They are utterly consumed with terrors.</span></div>
-<div class="v-row" data-ref="Psalm 73:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">As a dream when [one] awakes, [So,] Lord, when You awake, You shall despise their image.</span></div>
-<div class="v-row" data-ref="Psalm 73:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Thus my heart was grieved, And I was vexed in my mind.</span></div>
-<div class="v-row" data-ref="Psalm 73:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">I [was] so foolish and ignorant; I was [like] a beast before You.</span></div>
-<div class="v-row" data-ref="Psalm 73:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Nevertheless I [am] continually with You; You hold [me] by my right hand.</span></div>
-<div class="v-row" data-ref="Psalm 73:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">You will guide me with Your counsel, And afterward receive me [to] glory.</span></div>
-<div class="v-row" data-ref="Psalm 73:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Whom have I in heaven [but You?] And [there is] none upon earth [that] I desire besides You.</span></div>
-<div class="v-row" data-ref="Psalm 73:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">My flesh and my heart fail; [But] God [is] the strength of my heart and my portion forever.</span></div>
-<div class="v-row" data-ref="Psalm 73:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">For indeed, those who are far from You shall perish; You have destroyed all those who desert You for harlotry.</span></div>
-<div class="v-row" data-ref="Psalm 73:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">But [it is] good for me to draw near to God; I have put my trust in the Lord GOD, That I may declare all Your works.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/73/1/" data-ref="Psalm 73:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/1/"><span class="v-num">1</span><span class="v-txt">A Psalm of Asaph. Truly God [is] good to Israel, To such as are pure in heart.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/2/" data-ref="Psalm 73:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/2/"><span class="v-num">2</span><span class="v-txt">But as for me, my feet had almost stumbled; My steps had nearly slipped.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/3/" data-ref="Psalm 73:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/3/"><span class="v-num">3</span><span class="v-txt">For I [was] envious of the boastful, When I saw the prosperity of the wicked.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/4/" data-ref="Psalm 73:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/4/"><span class="v-num">4</span><span class="v-txt">For [there are] no pangs in their death, But their strength [is] firm.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/5/" data-ref="Psalm 73:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/5/"><span class="v-num">5</span><span class="v-txt">They [are] not in trouble [as other] men, Nor are they plagued like [other] men.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/6/" data-ref="Psalm 73:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/6/"><span class="v-num">6</span><span class="v-txt">Therefore pride serves as their necklace; Violence covers them [like] a garment.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/7/" data-ref="Psalm 73:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/7/"><span class="v-num">7</span><span class="v-txt">Their eyes bulge with abundance; They have more than heart could wish.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/8/" data-ref="Psalm 73:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/8/"><span class="v-num">8</span><span class="v-txt">They scoff and speak wickedly [concerning] oppression; They speak loftily.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/9/" data-ref="Psalm 73:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/9/"><span class="v-num">9</span><span class="v-txt">They set their mouth against the heavens, And their tongue walks through the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/10/" data-ref="Psalm 73:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/10/"><span class="v-num">10</span><span class="v-txt">Therefore his people return here, And waters of a full [cup] are drained by them.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/11/" data-ref="Psalm 73:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/11/"><span class="v-num">11</span><span class="v-txt">And they say, "How does God know? And is there knowledge in the Most High?"</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/12/" data-ref="Psalm 73:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/12/"><span class="v-num">12</span><span class="v-txt">Behold, these [are] the ungodly, Who are always at ease; They increase [in] riches.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/13/" data-ref="Psalm 73:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/13/"><span class="v-num">13</span><span class="v-txt">Surely I have cleansed my heart [in] vain, And washed my hands in innocence.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/14/" data-ref="Psalm 73:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/14/"><span class="v-num">14</span><span class="v-txt">For all day long I have been plagued, And chastened every morning.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/15/" data-ref="Psalm 73:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/15/"><span class="v-num">15</span><span class="v-txt">If I had said, "I will speak thus," Behold, I would have been untrue to the generation of Your children.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/16/" data-ref="Psalm 73:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/16/"><span class="v-num">16</span><span class="v-txt">When I thought [how] to understand this, It [was] too painful for me --</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/17/" data-ref="Psalm 73:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/17/"><span class="v-num">17</span><span class="v-txt">Until I went into the sanctuary of God; [Then] I understood their end.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/18/" data-ref="Psalm 73:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/18/"><span class="v-num">18</span><span class="v-txt">Surely You set them in slippery places; You cast them down to destruction.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/19/" data-ref="Psalm 73:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/19/"><span class="v-num">19</span><span class="v-txt">Oh, how they are [brought] to desolation, as in a moment! They are utterly consumed with terrors.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/20/" data-ref="Psalm 73:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/20/"><span class="v-num">20</span><span class="v-txt">As a dream when [one] awakes, [So,] Lord, when You awake, You shall despise their image.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/21/" data-ref="Psalm 73:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/21/"><span class="v-num">21</span><span class="v-txt">Thus my heart was grieved, And I was vexed in my mind.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/22/" data-ref="Psalm 73:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/22/"><span class="v-num">22</span><span class="v-txt">I [was] so foolish and ignorant; I was [like] a beast before You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/23/" data-ref="Psalm 73:23 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/23/"><span class="v-num">23</span><span class="v-txt">Nevertheless I [am] continually with You; You hold [me] by my right hand.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/24/" data-ref="Psalm 73:24 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/24/"><span class="v-num">24</span><span class="v-txt">You will guide me with Your counsel, And afterward receive me [to] glory.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/25/" data-ref="Psalm 73:25 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/25/"><span class="v-num">25</span><span class="v-txt">Whom have I in heaven [but You?] And [there is] none upon earth [that] I desire besides You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/26/" data-ref="Psalm 73:26 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/26/"><span class="v-num">26</span><span class="v-txt">My flesh and my heart fail; [But] God [is] the strength of my heart and my portion forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/27/" data-ref="Psalm 73:27 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/27/"><span class="v-num">27</span><span class="v-txt">For indeed, those who are far from You shall perish; You have destroyed all those who desert You for harlotry.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/73/28/" data-ref="Psalm 73:28 (New King James Version)" data-verse-url="/bible/nkjv/psalms/73/28/"><span class="v-num">28</span><span class="v-txt">But [it is] good for me to draw near to God; I have put my trust in the Lord GOD, That I may declare all Your works.</span></a>
 
     
 <div class="app-cta">

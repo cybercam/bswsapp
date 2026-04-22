@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Hosea 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Come, let us go back to the Lord; for he has given us wounds and he will make us well; he has given blows and he will give help.</span></div>
-<div class="v-row" data-ref="Hosea 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">After two days he will give us life, and on the third day he will make us get up, and we will be living before him.</span></div>
-<div class="v-row" data-ref="Hosea 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And let us have knowledge, let us go after the knowledge of the Lord; his going out is certain as the dawn, his decisions go out like the light; he will come to us like the rain, like the spring rain watering the earth.</span></div>
-<div class="v-row" data-ref="Hosea 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">O Ephraim, what am I to do to you? O Judah, what am I to do to you? For your love is like a morning cloud, and like the dew which goes early away.</span></div>
-<div class="v-row" data-ref="Hosea 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So I have had it cut in stones; I gave them teaching by the words of my mouth;</span></div>
-<div class="v-row" data-ref="Hosea 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Because my desire is for mercy and not offerings; for the knowledge of God more than for burned offerings.</span></div>
-<div class="v-row" data-ref="Hosea 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But like a man, they have gone against the agreement; there they were false to me.</span></div>
-<div class="v-row" data-ref="Hosea 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Gilead is a town of evil-doers, marked with blood.</span></div>
-<div class="v-row" data-ref="Hosea 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And like a band of thieves waiting for a man, so are the priests watching secretly the way of those going quickly to Shechem, for they are working with an evil design.</span></div>
-<div class="v-row" data-ref="Hosea 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In Israel I have seen a very evil thing; there false ways are seen in Ephraim, Israel is unclean;</span></div>
-<div class="v-row" data-ref="Hosea 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Judah has put up disgusting images for himself.</span></div>
+    <a class="v-row" href="/bible/bbe/hosea/6/1/" data-ref="Hosea 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/1/"><span class="v-num">1</span><span class="v-txt">Come, let us go back to the Lord; for he has given us wounds and he will make us well; he has given blows and he will give help.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/2/" data-ref="Hosea 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/2/"><span class="v-num">2</span><span class="v-txt">After two days he will give us life, and on the third day he will make us get up, and we will be living before him.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/3/" data-ref="Hosea 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/3/"><span class="v-num">3</span><span class="v-txt">And let us have knowledge, let us go after the knowledge of the Lord; his going out is certain as the dawn, his decisions go out like the light; he will come to us like the rain, like the spring rain watering the earth.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/4/" data-ref="Hosea 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/4/"><span class="v-num">4</span><span class="v-txt">O Ephraim, what am I to do to you? O Judah, what am I to do to you? For your love is like a morning cloud, and like the dew which goes early away.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/5/" data-ref="Hosea 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/5/"><span class="v-num">5</span><span class="v-txt">So I have had it cut in stones; I gave them teaching by the words of my mouth;</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/6/" data-ref="Hosea 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/6/"><span class="v-num">6</span><span class="v-txt">Because my desire is for mercy and not offerings; for the knowledge of God more than for burned offerings.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/7/" data-ref="Hosea 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/7/"><span class="v-num">7</span><span class="v-txt">But like a man, they have gone against the agreement; there they were false to me.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/8/" data-ref="Hosea 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/8/"><span class="v-num">8</span><span class="v-txt">Gilead is a town of evil-doers, marked with blood.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/9/" data-ref="Hosea 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/9/"><span class="v-num">9</span><span class="v-txt">And like a band of thieves waiting for a man, so are the priests watching secretly the way of those going quickly to Shechem, for they are working with an evil design.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/10/" data-ref="Hosea 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/10/"><span class="v-num">10</span><span class="v-txt">In Israel I have seen a very evil thing; there false ways are seen in Ephraim, Israel is unclean;</span></a>
+<a class="v-row" href="/bible/bbe/hosea/6/11/" data-ref="Hosea 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/6/11/"><span class="v-num">11</span><span class="v-txt">And Judah has put up disgusting images for himself.</span></a>
 
     
 <div class="app-cta">

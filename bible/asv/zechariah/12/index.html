@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 12:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden of the word of Jehovah concerning Israel. [Thus] saith Jehovah, who stretcheth forth the heavens, and layeth the foundation of the earth, and formeth the spirit of man within him:</span></div>
-<div class="v-row" data-ref="Zechariah 12:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">behold, I will make Jerusalem a cup of reeling unto all the peoples round about, and upon Judah also shall it be in the siege against Jerusalem.</span></div>
-<div class="v-row" data-ref="Zechariah 12:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And it shall come to pass in that day, that I will make Jerusalem a burdensome stone for all the peoples; all that burden themselves with it shall be sore wounded; and all the nations of the earth shall be gathered together against it.</span></div>
-<div class="v-row" data-ref="Zechariah 12:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">In that day, saith Jehovah, I will smite every horse with terror, and his rider with madness; and I will open mine eyes upon the house of Judah, and will smite every horse of the peoples with blindness.</span></div>
-<div class="v-row" data-ref="Zechariah 12:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the chieftains of Judah shall say in their heart, The inhabitants of Jerusalem are my strength in Jehovah of hosts their God.</span></div>
-<div class="v-row" data-ref="Zechariah 12:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In that day will I make the chieftains of Judah like a pan of fire among wood, and like a flaming torch among sheaves; and they shall devour all the peoples round about, on the right hand and on the left; and [they of] Jerusalem shall yet again dwell in their own place, even in Jerusalem.</span></div>
-<div class="v-row" data-ref="Zechariah 12:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Jehovah also shall save the tents of Judah first, that the glory of the house of David and the glory of the inhabitants of Jerusalem be not magnified above Judah.</span></div>
-<div class="v-row" data-ref="Zechariah 12:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">In that day shall Jehovah defend the inhabitants of Jerusalem: and he that is feeble among them at that day shall be as David; and the house of David shall be as God, as the angel of Jehovah before them.</span></div>
-<div class="v-row" data-ref="Zechariah 12:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And it shall come to pass in that day, that I will seek to destroy all the nations that come against Jerusalem.</span></div>
-<div class="v-row" data-ref="Zechariah 12:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And I will pour upon the house of David, and upon the inhabitants of Jerusalem, the spirit of grace and of supplication; and they shall look unto me whom they have pierced; and they shall mourn for him, as one mourneth for his only son, and shall be in bitterness for him, as one that is in bitterness for his first-born.</span></div>
-<div class="v-row" data-ref="Zechariah 12:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In that day shall there be a great mourning in Jerusalem, as the mourning of Hadadrimmon in the valley of Megiddon.</span></div>
-<div class="v-row" data-ref="Zechariah 12:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the land shall mourn, every family apart; the family of the house of David apart, and their wives apart; the family of the house of Nathan apart, and their wives apart;</span></div>
-<div class="v-row" data-ref="Zechariah 12:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">the family of the house of Levi apart, and their wives apart; the family of the Shimeites apart, and their wives apart;</span></div>
-<div class="v-row" data-ref="Zechariah 12:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">all the families that remain, every family apart, and their wives apart.</span></div>
+    <a class="v-row" href="/bible/asv/zechariah/12/1/" data-ref="Zechariah 12:1 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/1/"><span class="v-num">1</span><span class="v-txt">The burden of the word of Jehovah concerning Israel. [Thus] saith Jehovah, who stretcheth forth the heavens, and layeth the foundation of the earth, and formeth the spirit of man within him:</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/2/" data-ref="Zechariah 12:2 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/2/"><span class="v-num">2</span><span class="v-txt">behold, I will make Jerusalem a cup of reeling unto all the peoples round about, and upon Judah also shall it be in the siege against Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/3/" data-ref="Zechariah 12:3 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/3/"><span class="v-num">3</span><span class="v-txt">And it shall come to pass in that day, that I will make Jerusalem a burdensome stone for all the peoples; all that burden themselves with it shall be sore wounded; and all the nations of the earth shall be gathered together against it.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/4/" data-ref="Zechariah 12:4 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/4/"><span class="v-num">4</span><span class="v-txt">In that day, saith Jehovah, I will smite every horse with terror, and his rider with madness; and I will open mine eyes upon the house of Judah, and will smite every horse of the peoples with blindness.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/5/" data-ref="Zechariah 12:5 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/5/"><span class="v-num">5</span><span class="v-txt">And the chieftains of Judah shall say in their heart, The inhabitants of Jerusalem are my strength in Jehovah of hosts their God.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/6/" data-ref="Zechariah 12:6 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/6/"><span class="v-num">6</span><span class="v-txt">In that day will I make the chieftains of Judah like a pan of fire among wood, and like a flaming torch among sheaves; and they shall devour all the peoples round about, on the right hand and on the left; and [they of] Jerusalem shall yet again dwell in their own place, even in Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/7/" data-ref="Zechariah 12:7 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/7/"><span class="v-num">7</span><span class="v-txt">Jehovah also shall save the tents of Judah first, that the glory of the house of David and the glory of the inhabitants of Jerusalem be not magnified above Judah.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/8/" data-ref="Zechariah 12:8 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/8/"><span class="v-num">8</span><span class="v-txt">In that day shall Jehovah defend the inhabitants of Jerusalem: and he that is feeble among them at that day shall be as David; and the house of David shall be as God, as the angel of Jehovah before them.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/9/" data-ref="Zechariah 12:9 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/9/"><span class="v-num">9</span><span class="v-txt">And it shall come to pass in that day, that I will seek to destroy all the nations that come against Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/10/" data-ref="Zechariah 12:10 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/10/"><span class="v-num">10</span><span class="v-txt">And I will pour upon the house of David, and upon the inhabitants of Jerusalem, the spirit of grace and of supplication; and they shall look unto me whom they have pierced; and they shall mourn for him, as one mourneth for his only son, and shall be in bitterness for him, as one that is in bitterness for his first-born.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/11/" data-ref="Zechariah 12:11 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/11/"><span class="v-num">11</span><span class="v-txt">In that day shall there be a great mourning in Jerusalem, as the mourning of Hadadrimmon in the valley of Megiddon.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/12/" data-ref="Zechariah 12:12 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/12/"><span class="v-num">12</span><span class="v-txt">And the land shall mourn, every family apart; the family of the house of David apart, and their wives apart; the family of the house of Nathan apart, and their wives apart;</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/13/" data-ref="Zechariah 12:13 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/13/"><span class="v-num">13</span><span class="v-txt">the family of the house of Levi apart, and their wives apart; the family of the Shimeites apart, and their wives apart;</span></a>
+<a class="v-row" href="/bible/asv/zechariah/12/14/" data-ref="Zechariah 12:14 (American Standard Version)" data-verse-url="/bible/asv/zechariah/12/14/"><span class="v-num">14</span><span class="v-txt">all the families that remain, every family apart, and their wives apart.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 9:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. To [the tune of] "Death of the Son." A Psalm of David. I will praise [You,] O LORD, with my whole heart; I will tell of all Your marvelous works.</span></div>
-<div class="v-row" data-ref="Psalm 9:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will be glad and rejoice in You; I will sing praise to Your name, O Most High.</span></div>
-<div class="v-row" data-ref="Psalm 9:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When my enemies turn back, They shall fall and perish at Your presence.</span></div>
-<div class="v-row" data-ref="Psalm 9:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For You have maintained my right and my cause; You sat on the throne judging in righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 9:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">You have rebuked the nations, You have destroyed the wicked; You have blotted out their name forever and ever.</span></div>
-<div class="v-row" data-ref="Psalm 9:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">O enemy, destructions are finished forever! And you have destroyed cities; Even their memory has perished.</span></div>
-<div class="v-row" data-ref="Psalm 9:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But the LORD shall endure forever; He has prepared His throne for judgment.</span></div>
-<div class="v-row" data-ref="Psalm 9:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He shall judge the world in righteousness, And He shall administer judgment for the peoples in uprightness.</span></div>
-<div class="v-row" data-ref="Psalm 9:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The LORD also will be a refuge for the oppressed, A refuge in times of trouble.</span></div>
-<div class="v-row" data-ref="Psalm 9:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And those who know Your name will put their trust in You; For You, LORD, have not forsaken those who seek You.</span></div>
-<div class="v-row" data-ref="Psalm 9:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Sing praises to the LORD, who dwells in Zion! Declare His deeds among the people.</span></div>
-<div class="v-row" data-ref="Psalm 9:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When He avenges blood, He remembers them; He does not forget the cry of the humble.</span></div>
-<div class="v-row" data-ref="Psalm 9:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Have mercy on me, O LORD! Consider my trouble from those who hate me, You who lift me up from the gates of death,</span></div>
-<div class="v-row" data-ref="Psalm 9:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">That I may tell of all Your praise In the gates of the daughter of Zion. I will rejoice in Your salvation.</span></div>
-<div class="v-row" data-ref="Psalm 9:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The nations have sunk down in the pit [which] they made; In the net which they hid, their own foot is caught.</span></div>
-<div class="v-row" data-ref="Psalm 9:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The LORD is known [by] the judgment He executes; The wicked is snared in the work of his own hands. Meditation. Selah</span></div>
-<div class="v-row" data-ref="Psalm 9:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The wicked shall be turned into hell, [And] all the nations that forget God.</span></div>
-<div class="v-row" data-ref="Psalm 9:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For the needy shall not always be forgotten; The expectation of the poor shall [not] perish forever.</span></div>
-<div class="v-row" data-ref="Psalm 9:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Arise, O LORD, Do not let man prevail; Let the nations be judged in Your sight.</span></div>
-<div class="v-row" data-ref="Psalm 9:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Put them in fear, O LORD, [That] the nations may know themselves [to be but] men. Selah</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/9/1/" data-ref="Psalm 9:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/1/"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. To [the tune of] "Death of the Son." A Psalm of David. I will praise [You,] O LORD, with my whole heart; I will tell of all Your marvelous works.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/2/" data-ref="Psalm 9:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/2/"><span class="v-num">2</span><span class="v-txt">I will be glad and rejoice in You; I will sing praise to Your name, O Most High.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/3/" data-ref="Psalm 9:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/3/"><span class="v-num">3</span><span class="v-txt">When my enemies turn back, They shall fall and perish at Your presence.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/4/" data-ref="Psalm 9:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/4/"><span class="v-num">4</span><span class="v-txt">For You have maintained my right and my cause; You sat on the throne judging in righteousness.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/5/" data-ref="Psalm 9:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/5/"><span class="v-num">5</span><span class="v-txt">You have rebuked the nations, You have destroyed the wicked; You have blotted out their name forever and ever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/6/" data-ref="Psalm 9:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/6/"><span class="v-num">6</span><span class="v-txt">O enemy, destructions are finished forever! And you have destroyed cities; Even their memory has perished.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/7/" data-ref="Psalm 9:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/7/"><span class="v-num">7</span><span class="v-txt">But the LORD shall endure forever; He has prepared His throne for judgment.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/8/" data-ref="Psalm 9:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/8/"><span class="v-num">8</span><span class="v-txt">He shall judge the world in righteousness, And He shall administer judgment for the peoples in uprightness.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/9/" data-ref="Psalm 9:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/9/"><span class="v-num">9</span><span class="v-txt">The LORD also will be a refuge for the oppressed, A refuge in times of trouble.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/10/" data-ref="Psalm 9:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/10/"><span class="v-num">10</span><span class="v-txt">And those who know Your name will put their trust in You; For You, LORD, have not forsaken those who seek You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/11/" data-ref="Psalm 9:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/11/"><span class="v-num">11</span><span class="v-txt">Sing praises to the LORD, who dwells in Zion! Declare His deeds among the people.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/12/" data-ref="Psalm 9:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/12/"><span class="v-num">12</span><span class="v-txt">When He avenges blood, He remembers them; He does not forget the cry of the humble.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/13/" data-ref="Psalm 9:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/13/"><span class="v-num">13</span><span class="v-txt">Have mercy on me, O LORD! Consider my trouble from those who hate me, You who lift me up from the gates of death,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/14/" data-ref="Psalm 9:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/14/"><span class="v-num">14</span><span class="v-txt">That I may tell of all Your praise In the gates of the daughter of Zion. I will rejoice in Your salvation.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/15/" data-ref="Psalm 9:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/15/"><span class="v-num">15</span><span class="v-txt">The nations have sunk down in the pit [which] they made; In the net which they hid, their own foot is caught.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/16/" data-ref="Psalm 9:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/16/"><span class="v-num">16</span><span class="v-txt">The LORD is known [by] the judgment He executes; The wicked is snared in the work of his own hands. Meditation. Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/17/" data-ref="Psalm 9:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/17/"><span class="v-num">17</span><span class="v-txt">The wicked shall be turned into hell, [And] all the nations that forget God.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/18/" data-ref="Psalm 9:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/18/"><span class="v-num">18</span><span class="v-txt">For the needy shall not always be forgotten; The expectation of the poor shall [not] perish forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/19/" data-ref="Psalm 9:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/19/"><span class="v-num">19</span><span class="v-txt">Arise, O LORD, Do not let man prevail; Let the nations be judged in Your sight.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/9/20/" data-ref="Psalm 9:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/9/20/"><span class="v-num">20</span><span class="v-txt">Put them in fear, O LORD, [That] the nations may know themselves [to be but] men. Selah</span></a>
 
     
 <div class="app-cta">

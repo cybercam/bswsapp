@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 12:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Whoso loveth correction loveth knowledge; But he that hateth reproof is brutish.</span></div>
-<div class="v-row" data-ref="Proverbs 12:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A good man shall obtain favor of Jehovah; But a man of wicked devices will he condemn.</span></div>
-<div class="v-row" data-ref="Proverbs 12:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A man shall not be established by wickedness; But the root of the righteous shall not be moved.</span></div>
-<div class="v-row" data-ref="Proverbs 12:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">A worthy woman is the crown of her husband; But she that maketh ashamed is as rottenness in his bones.</span></div>
-<div class="v-row" data-ref="Proverbs 12:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The thoughts of the righteous are just; [But] the counsels of the wicked are deceit.</span></div>
-<div class="v-row" data-ref="Proverbs 12:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The words of the wicked are of lying in wait for blood; But the mouth of the upright shall deliver them.</span></div>
-<div class="v-row" data-ref="Proverbs 12:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The wicked are overthrown, and are not; But the house of the righteous shall stand.</span></div>
-<div class="v-row" data-ref="Proverbs 12:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A man shall be commended according to his wisdom; But he that is of a perverse heart shall be despised.</span></div>
-<div class="v-row" data-ref="Proverbs 12:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Better is he that is lightly esteemed, and hath a servant, Than he that honoreth himself, and lacketh bread.</span></div>
-<div class="v-row" data-ref="Proverbs 12:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">A righteous man regardeth the life of his beast; But the tender mercies of the wicked are cruel.</span></div>
-<div class="v-row" data-ref="Proverbs 12:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He that tilleth his land shall have plenty of bread; But he that followeth after vain [persons] is void of understanding.</span></div>
-<div class="v-row" data-ref="Proverbs 12:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The wicked desireth the net of evil men; But the root of the righteous yieldeth [fruit].</span></div>
-<div class="v-row" data-ref="Proverbs 12:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In the transgression of the lips is a snare to the evil man; But the righteous shall come out of trouble.</span></div>
-<div class="v-row" data-ref="Proverbs 12:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A man shall be satisfied with good by the fruit of his mouth; And the doings of a man's hands shall be rendered unto him.</span></div>
-<div class="v-row" data-ref="Proverbs 12:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The way of a fool is right in his own eyes; But he that is wise hearkeneth unto counsel.</span></div>
-<div class="v-row" data-ref="Proverbs 12:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">A fool's vexation is presently known; But a prudent man concealeth shame.</span></div>
-<div class="v-row" data-ref="Proverbs 12:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He that uttereth truth showeth forth righteousness; But a false witness, deceit.</span></div>
-<div class="v-row" data-ref="Proverbs 12:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">There is that speaketh rashly like the piercings of a sword; But the tongue of the wise is health.</span></div>
-<div class="v-row" data-ref="Proverbs 12:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The lip of truth shall be established for ever; But a lying tongue is but for a moment.</span></div>
-<div class="v-row" data-ref="Proverbs 12:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of them that devise evil; But to the counsellors of peace is joy.</span></div>
-<div class="v-row" data-ref="Proverbs 12:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">There shall no mischief happen to the righteous; But the wicked shall be filled with evil.</span></div>
-<div class="v-row" data-ref="Proverbs 12:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Lying lips are an abomination to Jehovah; But they that deal truly are his delight.</span></div>
-<div class="v-row" data-ref="Proverbs 12:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A prudent man concealeth knowledge; But the heart of fools proclaimeth foolishness.</span></div>
-<div class="v-row" data-ref="Proverbs 12:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The hand of the diligent shall bear rule; But the slothful shall be put under taskwork.</span></div>
-<div class="v-row" data-ref="Proverbs 12:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Heaviness in the heart of a man maketh it stoop; But a good word maketh it glad.</span></div>
-<div class="v-row" data-ref="Proverbs 12:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">The righteous is a guide to his neighbor; But the way of the wicked causeth them to err.</span></div>
-<div class="v-row" data-ref="Proverbs 12:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">The slothful man roasteth not that which he took in hunting; But the precious substance of men [is to] the diligent.</span></div>
-<div class="v-row" data-ref="Proverbs 12:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">In the way of righteousness is life; And in the pathway thereof there is no death.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/12/1/" data-ref="Proverbs 12:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/1/"><span class="v-num">1</span><span class="v-txt">Whoso loveth correction loveth knowledge; But he that hateth reproof is brutish.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/2/" data-ref="Proverbs 12:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/2/"><span class="v-num">2</span><span class="v-txt">A good man shall obtain favor of Jehovah; But a man of wicked devices will he condemn.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/3/" data-ref="Proverbs 12:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/3/"><span class="v-num">3</span><span class="v-txt">A man shall not be established by wickedness; But the root of the righteous shall not be moved.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/4/" data-ref="Proverbs 12:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/4/"><span class="v-num">4</span><span class="v-txt">A worthy woman is the crown of her husband; But she that maketh ashamed is as rottenness in his bones.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/5/" data-ref="Proverbs 12:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/5/"><span class="v-num">5</span><span class="v-txt">The thoughts of the righteous are just; [But] the counsels of the wicked are deceit.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/6/" data-ref="Proverbs 12:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/6/"><span class="v-num">6</span><span class="v-txt">The words of the wicked are of lying in wait for blood; But the mouth of the upright shall deliver them.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/7/" data-ref="Proverbs 12:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/7/"><span class="v-num">7</span><span class="v-txt">The wicked are overthrown, and are not; But the house of the righteous shall stand.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/8/" data-ref="Proverbs 12:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/8/"><span class="v-num">8</span><span class="v-txt">A man shall be commended according to his wisdom; But he that is of a perverse heart shall be despised.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/9/" data-ref="Proverbs 12:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/9/"><span class="v-num">9</span><span class="v-txt">Better is he that is lightly esteemed, and hath a servant, Than he that honoreth himself, and lacketh bread.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/10/" data-ref="Proverbs 12:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/10/"><span class="v-num">10</span><span class="v-txt">A righteous man regardeth the life of his beast; But the tender mercies of the wicked are cruel.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/11/" data-ref="Proverbs 12:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/11/"><span class="v-num">11</span><span class="v-txt">He that tilleth his land shall have plenty of bread; But he that followeth after vain [persons] is void of understanding.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/12/" data-ref="Proverbs 12:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/12/"><span class="v-num">12</span><span class="v-txt">The wicked desireth the net of evil men; But the root of the righteous yieldeth [fruit].</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/13/" data-ref="Proverbs 12:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/13/"><span class="v-num">13</span><span class="v-txt">In the transgression of the lips is a snare to the evil man; But the righteous shall come out of trouble.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/14/" data-ref="Proverbs 12:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/14/"><span class="v-num">14</span><span class="v-txt">A man shall be satisfied with good by the fruit of his mouth; And the doings of a man's hands shall be rendered unto him.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/15/" data-ref="Proverbs 12:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/15/"><span class="v-num">15</span><span class="v-txt">The way of a fool is right in his own eyes; But he that is wise hearkeneth unto counsel.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/16/" data-ref="Proverbs 12:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/16/"><span class="v-num">16</span><span class="v-txt">A fool's vexation is presently known; But a prudent man concealeth shame.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/17/" data-ref="Proverbs 12:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/17/"><span class="v-num">17</span><span class="v-txt">He that uttereth truth showeth forth righteousness; But a false witness, deceit.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/18/" data-ref="Proverbs 12:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/18/"><span class="v-num">18</span><span class="v-txt">There is that speaketh rashly like the piercings of a sword; But the tongue of the wise is health.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/19/" data-ref="Proverbs 12:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/19/"><span class="v-num">19</span><span class="v-txt">The lip of truth shall be established for ever; But a lying tongue is but for a moment.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/20/" data-ref="Proverbs 12:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/20/"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of them that devise evil; But to the counsellors of peace is joy.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/21/" data-ref="Proverbs 12:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/21/"><span class="v-num">21</span><span class="v-txt">There shall no mischief happen to the righteous; But the wicked shall be filled with evil.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/22/" data-ref="Proverbs 12:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/22/"><span class="v-num">22</span><span class="v-txt">Lying lips are an abomination to Jehovah; But they that deal truly are his delight.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/23/" data-ref="Proverbs 12:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/23/"><span class="v-num">23</span><span class="v-txt">A prudent man concealeth knowledge; But the heart of fools proclaimeth foolishness.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/24/" data-ref="Proverbs 12:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/24/"><span class="v-num">24</span><span class="v-txt">The hand of the diligent shall bear rule; But the slothful shall be put under taskwork.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/25/" data-ref="Proverbs 12:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/25/"><span class="v-num">25</span><span class="v-txt">Heaviness in the heart of a man maketh it stoop; But a good word maketh it glad.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/26/" data-ref="Proverbs 12:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/26/"><span class="v-num">26</span><span class="v-txt">The righteous is a guide to his neighbor; But the way of the wicked causeth them to err.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/27/" data-ref="Proverbs 12:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/27/"><span class="v-num">27</span><span class="v-txt">The slothful man roasteth not that which he took in hunting; But the precious substance of men [is to] the diligent.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/12/28/" data-ref="Proverbs 12:28 (American Standard Version)" data-verse-url="/bible/asv/proverbs/12/28/"><span class="v-num">28</span><span class="v-txt">In the way of righteousness is life; And in the pathway thereof there is no death.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Solomon the son of David was strengthened in his kingdom, and Jehovah his God was with him, and magnified him exceedingly.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Solomon spake unto all Israel, to the captains of thousands and of hundreds, and to the judges, and to every prince in all Israel, the heads of the fathers' [houses].</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">So Solomon, and all the assembly with him, went to the high place that was at Gibeon; for there was the tent of meeting of God, which Moses the servant of Jehovah had made in the wilderness.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But the ark of God had David brought up from Kiriath-jearim to [the place] that David had prepared for it; for he had pitched a tent for it at Jerusalem.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Moreover the brazen altar, that Bezalel the son of Uri, the son of Hur, had made, was there before the tabernacle of Jehovah: and Solomon and the assembly sought unto it.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Solomon went up thither to the brazen altar before Jehovah, which was at the tent of meeting, and offered a thousand burnt-offerings upon it.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">In that night did God appear unto Solomon, and said unto him, Ask what I shall give thee.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Solomon said unto God, Thou hast showed great lovingkindness unto David my father, and hast made me king in his stead.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Now, O Jehovah God, let thy promise unto David my father be established; for thou hast made me king over a people like the dust of the earth in multitude.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Give me now wisdom and knowledge, that I may go out and come in before this people; for who can judge this thy people, that is so great?</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And God said to Solomon, Because this was in thy heart, and thou hast not asked riches, wealth, or honor, nor the life of them that hate thee, neither yet hast asked long life; but hast asked wisdom and knowledge for thyself, that thou mayest judge my people, over whom I have made thee king:</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">wisdom and knowledge is granted unto thee; and I will give thee riches, and wealth, and honor, such as none of the kings have had that have been before thee; neither shall there any after thee have the like.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So Solomon came from the high place that was at Gibeon, from before the tent of meeting, unto Jerusalem; and he reigned over Israel.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Solomon gathered chariots and horsemen: and he had a thousand and four hundred chariots, and twelve thousand horsemen, that he placed in the chariot cities, and with the king at Jerusalem.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the king made silver and gold to be in Jerusalem as stones, and cedars made he to be as the sycomore-trees that are in the lowland, for abundance.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the horses which Solomon had were brought out of Egypt; the king's merchants received them in droves, each drove at a price.</span></div>
-<div class="v-row" data-ref="2 Chronicles 1:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And they fetched up and brought out of Egypt a chariot for six hundred [shekels] of silver, and a horse for a hundred and fifty: and so for all the kings of the Hittites, and the kings of Syria, did they bring them out by their means.</span></div>
+    <a class="v-row" href="/bible/asv/2-chronicles/1/1/" data-ref="2 Chronicles 1:1 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/1/"><span class="v-num">1</span><span class="v-txt">And Solomon the son of David was strengthened in his kingdom, and Jehovah his God was with him, and magnified him exceedingly.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/2/" data-ref="2 Chronicles 1:2 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/2/"><span class="v-num">2</span><span class="v-txt">And Solomon spake unto all Israel, to the captains of thousands and of hundreds, and to the judges, and to every prince in all Israel, the heads of the fathers' [houses].</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/3/" data-ref="2 Chronicles 1:3 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/3/"><span class="v-num">3</span><span class="v-txt">So Solomon, and all the assembly with him, went to the high place that was at Gibeon; for there was the tent of meeting of God, which Moses the servant of Jehovah had made in the wilderness.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/4/" data-ref="2 Chronicles 1:4 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/4/"><span class="v-num">4</span><span class="v-txt">But the ark of God had David brought up from Kiriath-jearim to [the place] that David had prepared for it; for he had pitched a tent for it at Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/5/" data-ref="2 Chronicles 1:5 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/5/"><span class="v-num">5</span><span class="v-txt">Moreover the brazen altar, that Bezalel the son of Uri, the son of Hur, had made, was there before the tabernacle of Jehovah: and Solomon and the assembly sought unto it.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/6/" data-ref="2 Chronicles 1:6 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/6/"><span class="v-num">6</span><span class="v-txt">And Solomon went up thither to the brazen altar before Jehovah, which was at the tent of meeting, and offered a thousand burnt-offerings upon it.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/7/" data-ref="2 Chronicles 1:7 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/7/"><span class="v-num">7</span><span class="v-txt">In that night did God appear unto Solomon, and said unto him, Ask what I shall give thee.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/8/" data-ref="2 Chronicles 1:8 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/8/"><span class="v-num">8</span><span class="v-txt">And Solomon said unto God, Thou hast showed great lovingkindness unto David my father, and hast made me king in his stead.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/9/" data-ref="2 Chronicles 1:9 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/9/"><span class="v-num">9</span><span class="v-txt">Now, O Jehovah God, let thy promise unto David my father be established; for thou hast made me king over a people like the dust of the earth in multitude.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/10/" data-ref="2 Chronicles 1:10 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/10/"><span class="v-num">10</span><span class="v-txt">Give me now wisdom and knowledge, that I may go out and come in before this people; for who can judge this thy people, that is so great?</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/11/" data-ref="2 Chronicles 1:11 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/11/"><span class="v-num">11</span><span class="v-txt">And God said to Solomon, Because this was in thy heart, and thou hast not asked riches, wealth, or honor, nor the life of them that hate thee, neither yet hast asked long life; but hast asked wisdom and knowledge for thyself, that thou mayest judge my people, over whom I have made thee king:</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/12/" data-ref="2 Chronicles 1:12 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/12/"><span class="v-num">12</span><span class="v-txt">wisdom and knowledge is granted unto thee; and I will give thee riches, and wealth, and honor, such as none of the kings have had that have been before thee; neither shall there any after thee have the like.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/13/" data-ref="2 Chronicles 1:13 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/13/"><span class="v-num">13</span><span class="v-txt">So Solomon came from the high place that was at Gibeon, from before the tent of meeting, unto Jerusalem; and he reigned over Israel.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/14/" data-ref="2 Chronicles 1:14 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/14/"><span class="v-num">14</span><span class="v-txt">And Solomon gathered chariots and horsemen: and he had a thousand and four hundred chariots, and twelve thousand horsemen, that he placed in the chariot cities, and with the king at Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/15/" data-ref="2 Chronicles 1:15 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/15/"><span class="v-num">15</span><span class="v-txt">And the king made silver and gold to be in Jerusalem as stones, and cedars made he to be as the sycomore-trees that are in the lowland, for abundance.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/16/" data-ref="2 Chronicles 1:16 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/16/"><span class="v-num">16</span><span class="v-txt">And the horses which Solomon had were brought out of Egypt; the king's merchants received them in droves, each drove at a price.</span></a>
+<a class="v-row" href="/bible/asv/2-chronicles/1/17/" data-ref="2 Chronicles 1:17 (American Standard Version)" data-verse-url="/bible/asv/2-chronicles/1/17/"><span class="v-num">17</span><span class="v-txt">And they fetched up and brought out of Egypt a chariot for six hundred [shekels] of silver, and a horse for a hundred and fifty: and so for all the kings of the Hittites, and the kings of Syria, did they bring them out by their means.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 3:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the serpent was more subtle than any animal of the field which Yahweh God had made. He said to the woman, "Yes, has God said, 'You shall not eat of any tree of the garden?'"</span></div>
-<div class="v-row" data-ref="Genesis 3:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The woman said to the serpent, "Of the fruit of the trees of the garden we may eat,</span></div>
-<div class="v-row" data-ref="Genesis 3:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">but of the fruit of the tree which is in the midst of the garden, God has said, 'You shall not eat of it, neither shall you touch it, lest you die.'"</span></div>
-<div class="v-row" data-ref="Genesis 3:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The serpent said to the woman, "You won't surely die,</span></div>
-<div class="v-row" data-ref="Genesis 3:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">for God knows that in the day you eat it, your eyes will be opened, and you will be like God, knowing good and evil."</span></div>
-<div class="v-row" data-ref="Genesis 3:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">When the woman saw that the tree was good for food, and that it was a delight to the eyes, and that the tree was to be desired to make one wise, she took of the fruit of it, and ate; and she gave some to her husband with her, and he ate.</span></div>
-<div class="v-row" data-ref="Genesis 3:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Both of their eyes were opened, and they knew that they were naked. They sewed fig leaves together, and made themselves aprons.</span></div>
-<div class="v-row" data-ref="Genesis 3:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They heard the voice of Yahweh God walking in the garden in the cool of the day, and the man and his wife hid themselves from the presence of Yahweh God among the trees of the garden.</span></div>
-<div class="v-row" data-ref="Genesis 3:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Yahweh God called to the man, and said to him, "Where are you?"</span></div>
-<div class="v-row" data-ref="Genesis 3:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The man said, "I heard your voice in the garden, and I was afraid, because I was naked; and I hid myself."</span></div>
-<div class="v-row" data-ref="Genesis 3:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">God said, "Who told you that you were naked? Have you eaten from the tree that I commanded you not to eat from?"</span></div>
-<div class="v-row" data-ref="Genesis 3:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The man said, "The woman whom you gave to be with me, she gave me of the tree, and I ate."</span></div>
-<div class="v-row" data-ref="Genesis 3:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Yahweh God said to the woman, "What is this you have done?" The woman said, "The serpent deceived me, and I ate."</span></div>
-<div class="v-row" data-ref="Genesis 3:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yahweh God said to the serpent, "Because you have done this, cursed are you above all cattle, and above every animal of the field. On your belly shall you go, and you shall eat dust all the days of your life.</span></div>
-<div class="v-row" data-ref="Genesis 3:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I will put enmity between you and the woman, and between your offspring and her offspring. He will bruise your head, and you will bruise his heel."</span></div>
-<div class="v-row" data-ref="Genesis 3:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">To the woman he said, "I will greatly multiply your pain in childbirth. In pain you will bring forth children. Your desire will be for your husband, and he will rule over you."</span></div>
-<div class="v-row" data-ref="Genesis 3:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">To Adam he said, "Because you have listened to your wife's voice, and have eaten of the tree, of which I commanded you, saying, 'You shall not eat of it,' cursed is the ground for your sake. In toil you will eat of it all the days of your life.</span></div>
-<div class="v-row" data-ref="Genesis 3:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Thorns also and thistles will it bring forth to you; and you will eat the herb of the field.</span></div>
-<div class="v-row" data-ref="Genesis 3:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">By the sweat of your face will you eat bread until you return to the ground, for out of it you were taken. For you are dust, and to dust you shall return."</span></div>
-<div class="v-row" data-ref="Genesis 3:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The man called his wife Eve, because she was the mother of all living.</span></div>
-<div class="v-row" data-ref="Genesis 3:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Yahweh God made coats of skins for Adam and for his wife, and clothed them.</span></div>
-<div class="v-row" data-ref="Genesis 3:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Yahweh God said, "Behold, the man has become like one of us, knowing good and evil. Now, lest he put forth his hand, and also take of the tree of life, and eat, and live forever..."</span></div>
-<div class="v-row" data-ref="Genesis 3:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Therefore Yahweh God sent him forth from the garden of Eden, to till the ground from whence he was taken.</span></div>
-<div class="v-row" data-ref="Genesis 3:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">So he drove out the man; and he placed Cherubs at the east of the garden of Eden, and the flame of a sword which turned every way, to guard the way to the tree of life.</span></div>
+    <a class="v-row" href="/bible/web/genesis/3/1/" data-ref="Genesis 3:1 (World English Bible)" data-verse-url="/bible/web/genesis/3/1/"><span class="v-num">1</span><span class="v-txt">Now the serpent was more subtle than any animal of the field which Yahweh God had made. He said to the woman, "Yes, has God said, 'You shall not eat of any tree of the garden?'"</span></a>
+<a class="v-row" href="/bible/web/genesis/3/2/" data-ref="Genesis 3:2 (World English Bible)" data-verse-url="/bible/web/genesis/3/2/"><span class="v-num">2</span><span class="v-txt">The woman said to the serpent, "Of the fruit of the trees of the garden we may eat,</span></a>
+<a class="v-row" href="/bible/web/genesis/3/3/" data-ref="Genesis 3:3 (World English Bible)" data-verse-url="/bible/web/genesis/3/3/"><span class="v-num">3</span><span class="v-txt">but of the fruit of the tree which is in the midst of the garden, God has said, 'You shall not eat of it, neither shall you touch it, lest you die.'"</span></a>
+<a class="v-row" href="/bible/web/genesis/3/4/" data-ref="Genesis 3:4 (World English Bible)" data-verse-url="/bible/web/genesis/3/4/"><span class="v-num">4</span><span class="v-txt">The serpent said to the woman, "You won't surely die,</span></a>
+<a class="v-row" href="/bible/web/genesis/3/5/" data-ref="Genesis 3:5 (World English Bible)" data-verse-url="/bible/web/genesis/3/5/"><span class="v-num">5</span><span class="v-txt">for God knows that in the day you eat it, your eyes will be opened, and you will be like God, knowing good and evil."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/6/" data-ref="Genesis 3:6 (World English Bible)" data-verse-url="/bible/web/genesis/3/6/"><span class="v-num">6</span><span class="v-txt">When the woman saw that the tree was good for food, and that it was a delight to the eyes, and that the tree was to be desired to make one wise, she took of the fruit of it, and ate; and she gave some to her husband with her, and he ate.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/7/" data-ref="Genesis 3:7 (World English Bible)" data-verse-url="/bible/web/genesis/3/7/"><span class="v-num">7</span><span class="v-txt">Both of their eyes were opened, and they knew that they were naked. They sewed fig leaves together, and made themselves aprons.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/8/" data-ref="Genesis 3:8 (World English Bible)" data-verse-url="/bible/web/genesis/3/8/"><span class="v-num">8</span><span class="v-txt">They heard the voice of Yahweh God walking in the garden in the cool of the day, and the man and his wife hid themselves from the presence of Yahweh God among the trees of the garden.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/9/" data-ref="Genesis 3:9 (World English Bible)" data-verse-url="/bible/web/genesis/3/9/"><span class="v-num">9</span><span class="v-txt">Yahweh God called to the man, and said to him, "Where are you?"</span></a>
+<a class="v-row" href="/bible/web/genesis/3/10/" data-ref="Genesis 3:10 (World English Bible)" data-verse-url="/bible/web/genesis/3/10/"><span class="v-num">10</span><span class="v-txt">The man said, "I heard your voice in the garden, and I was afraid, because I was naked; and I hid myself."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/11/" data-ref="Genesis 3:11 (World English Bible)" data-verse-url="/bible/web/genesis/3/11/"><span class="v-num">11</span><span class="v-txt">God said, "Who told you that you were naked? Have you eaten from the tree that I commanded you not to eat from?"</span></a>
+<a class="v-row" href="/bible/web/genesis/3/12/" data-ref="Genesis 3:12 (World English Bible)" data-verse-url="/bible/web/genesis/3/12/"><span class="v-num">12</span><span class="v-txt">The man said, "The woman whom you gave to be with me, she gave me of the tree, and I ate."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/13/" data-ref="Genesis 3:13 (World English Bible)" data-verse-url="/bible/web/genesis/3/13/"><span class="v-num">13</span><span class="v-txt">Yahweh God said to the woman, "What is this you have done?" The woman said, "The serpent deceived me, and I ate."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/14/" data-ref="Genesis 3:14 (World English Bible)" data-verse-url="/bible/web/genesis/3/14/"><span class="v-num">14</span><span class="v-txt">Yahweh God said to the serpent, "Because you have done this, cursed are you above all cattle, and above every animal of the field. On your belly shall you go, and you shall eat dust all the days of your life.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/15/" data-ref="Genesis 3:15 (World English Bible)" data-verse-url="/bible/web/genesis/3/15/"><span class="v-num">15</span><span class="v-txt">I will put enmity between you and the woman, and between your offspring and her offspring. He will bruise your head, and you will bruise his heel."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/16/" data-ref="Genesis 3:16 (World English Bible)" data-verse-url="/bible/web/genesis/3/16/"><span class="v-num">16</span><span class="v-txt">To the woman he said, "I will greatly multiply your pain in childbirth. In pain you will bring forth children. Your desire will be for your husband, and he will rule over you."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/17/" data-ref="Genesis 3:17 (World English Bible)" data-verse-url="/bible/web/genesis/3/17/"><span class="v-num">17</span><span class="v-txt">To Adam he said, "Because you have listened to your wife's voice, and have eaten of the tree, of which I commanded you, saying, 'You shall not eat of it,' cursed is the ground for your sake. In toil you will eat of it all the days of your life.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/18/" data-ref="Genesis 3:18 (World English Bible)" data-verse-url="/bible/web/genesis/3/18/"><span class="v-num">18</span><span class="v-txt">Thorns also and thistles will it bring forth to you; and you will eat the herb of the field.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/19/" data-ref="Genesis 3:19 (World English Bible)" data-verse-url="/bible/web/genesis/3/19/"><span class="v-num">19</span><span class="v-txt">By the sweat of your face will you eat bread until you return to the ground, for out of it you were taken. For you are dust, and to dust you shall return."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/20/" data-ref="Genesis 3:20 (World English Bible)" data-verse-url="/bible/web/genesis/3/20/"><span class="v-num">20</span><span class="v-txt">The man called his wife Eve, because she was the mother of all living.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/21/" data-ref="Genesis 3:21 (World English Bible)" data-verse-url="/bible/web/genesis/3/21/"><span class="v-num">21</span><span class="v-txt">Yahweh God made coats of skins for Adam and for his wife, and clothed them.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/22/" data-ref="Genesis 3:22 (World English Bible)" data-verse-url="/bible/web/genesis/3/22/"><span class="v-num">22</span><span class="v-txt">Yahweh God said, "Behold, the man has become like one of us, knowing good and evil. Now, lest he put forth his hand, and also take of the tree of life, and eat, and live forever..."</span></a>
+<a class="v-row" href="/bible/web/genesis/3/23/" data-ref="Genesis 3:23 (World English Bible)" data-verse-url="/bible/web/genesis/3/23/"><span class="v-num">23</span><span class="v-txt">Therefore Yahweh God sent him forth from the garden of Eden, to till the ground from whence he was taken.</span></a>
+<a class="v-row" href="/bible/web/genesis/3/24/" data-ref="Genesis 3:24 (World English Bible)" data-verse-url="/bible/web/genesis/3/24/"><span class="v-num">24</span><span class="v-txt">So he drove out the man; and he placed Cherubs at the east of the garden of Eden, and the flame of a sword which turned every way, to guard the way to the tree of life.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Timothy 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I charge [you] therefore before God and the Lord Jesus Christ, who will judge the living and the dead at His appearing and His kingdom:</span></div>
-<div class="v-row" data-ref="2 Timothy 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Preach the word! Be ready in season [and] out of season. Convince, rebuke, exhort, with all longsuffering and teaching.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the time will come when they will not endure sound doctrine, but according to their own desires, [because] they have itching ears, they will heap up for themselves teachers;</span></div>
-<div class="v-row" data-ref="2 Timothy 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">and they will turn [their] ears away from the truth, and be turned aside to fables.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But you be watchful in all things, endure afflictions, do the work of an evangelist, fulfill your ministry.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For I am already being poured out as a drink offering, and the time of my departure is at hand.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I have fought the good fight, I have finished the race, I have kept the faith.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Finally, there is laid up for me the crown of righteousness, which the Lord, the righteous Judge, will give to me on that Day, and not to me only but also to all who have loved His appearing.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Be diligent to come to me quickly;</span></div>
-<div class="v-row" data-ref="2 Timothy 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">for Demas has forsaken me, having loved this present world, and has departed for Thessalonica -- Crescens for Galatia, Titus for Dalmatia.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Only Luke is with me. Get Mark and bring him with you, for he is useful to me for ministry.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Tychicus I have sent to Ephesus.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Bring the cloak that I left with Carpus at Troas when you come -- and the books, especially the parchments.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Alexander the coppersmith did me much harm. May the Lord repay him according to his works.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">You also must beware of him, for he has greatly resisted our words.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">At my first defense no one stood with me, but all forsook me. May it not be charged against them.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the Lord stood with me and strengthened me, so that the message might be preached fully through me, and [that] all the Gentiles might hear. And I was delivered out of the mouth of the lion.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And the Lord will deliver me from every evil work and preserve [me] for His heavenly kingdom. To Him [be] glory forever and ever. Amen!</span></div>
-<div class="v-row" data-ref="2 Timothy 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Greet Prisca and Aquila, and the household of Onesiphorus.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Erastus stayed in Corinth, but Trophimus I have left in Miletus sick.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Do your utmost to come before winter. Eubulus greets you, as well as Pudens, Linus, Claudia, and all the brethren.</span></div>
-<div class="v-row" data-ref="2 Timothy 4:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The Lord Jesus Christ be with your spirit. Grace be with you. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-timothy/4/1/" data-ref="2 Timothy 4:1 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/1/"><span class="v-num">1</span><span class="v-txt">I charge [you] therefore before God and the Lord Jesus Christ, who will judge the living and the dead at His appearing and His kingdom:</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/2/" data-ref="2 Timothy 4:2 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/2/"><span class="v-num">2</span><span class="v-txt">Preach the word! Be ready in season [and] out of season. Convince, rebuke, exhort, with all longsuffering and teaching.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/3/" data-ref="2 Timothy 4:3 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/3/"><span class="v-num">3</span><span class="v-txt">For the time will come when they will not endure sound doctrine, but according to their own desires, [because] they have itching ears, they will heap up for themselves teachers;</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/4/" data-ref="2 Timothy 4:4 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/4/"><span class="v-num">4</span><span class="v-txt">and they will turn [their] ears away from the truth, and be turned aside to fables.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/5/" data-ref="2 Timothy 4:5 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/5/"><span class="v-num">5</span><span class="v-txt">But you be watchful in all things, endure afflictions, do the work of an evangelist, fulfill your ministry.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/6/" data-ref="2 Timothy 4:6 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/6/"><span class="v-num">6</span><span class="v-txt">For I am already being poured out as a drink offering, and the time of my departure is at hand.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/7/" data-ref="2 Timothy 4:7 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/7/"><span class="v-num">7</span><span class="v-txt">I have fought the good fight, I have finished the race, I have kept the faith.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/8/" data-ref="2 Timothy 4:8 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/8/"><span class="v-num">8</span><span class="v-txt">Finally, there is laid up for me the crown of righteousness, which the Lord, the righteous Judge, will give to me on that Day, and not to me only but also to all who have loved His appearing.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/9/" data-ref="2 Timothy 4:9 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/9/"><span class="v-num">9</span><span class="v-txt">Be diligent to come to me quickly;</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/10/" data-ref="2 Timothy 4:10 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/10/"><span class="v-num">10</span><span class="v-txt">for Demas has forsaken me, having loved this present world, and has departed for Thessalonica -- Crescens for Galatia, Titus for Dalmatia.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/11/" data-ref="2 Timothy 4:11 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/11/"><span class="v-num">11</span><span class="v-txt">Only Luke is with me. Get Mark and bring him with you, for he is useful to me for ministry.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/12/" data-ref="2 Timothy 4:12 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/12/"><span class="v-num">12</span><span class="v-txt">And Tychicus I have sent to Ephesus.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/13/" data-ref="2 Timothy 4:13 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/13/"><span class="v-num">13</span><span class="v-txt">Bring the cloak that I left with Carpus at Troas when you come -- and the books, especially the parchments.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/14/" data-ref="2 Timothy 4:14 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/14/"><span class="v-num">14</span><span class="v-txt">Alexander the coppersmith did me much harm. May the Lord repay him according to his works.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/15/" data-ref="2 Timothy 4:15 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/15/"><span class="v-num">15</span><span class="v-txt">You also must beware of him, for he has greatly resisted our words.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/16/" data-ref="2 Timothy 4:16 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/16/"><span class="v-num">16</span><span class="v-txt">At my first defense no one stood with me, but all forsook me. May it not be charged against them.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/17/" data-ref="2 Timothy 4:17 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/17/"><span class="v-num">17</span><span class="v-txt">But the Lord stood with me and strengthened me, so that the message might be preached fully through me, and [that] all the Gentiles might hear. And I was delivered out of the mouth of the lion.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/18/" data-ref="2 Timothy 4:18 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/18/"><span class="v-num">18</span><span class="v-txt">And the Lord will deliver me from every evil work and preserve [me] for His heavenly kingdom. To Him [be] glory forever and ever. Amen!</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/19/" data-ref="2 Timothy 4:19 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/19/"><span class="v-num">19</span><span class="v-txt">Greet Prisca and Aquila, and the household of Onesiphorus.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/20/" data-ref="2 Timothy 4:20 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/20/"><span class="v-num">20</span><span class="v-txt">Erastus stayed in Corinth, but Trophimus I have left in Miletus sick.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/21/" data-ref="2 Timothy 4:21 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/21/"><span class="v-num">21</span><span class="v-txt">Do your utmost to come before winter. Eubulus greets you, as well as Pudens, Linus, Claudia, and all the brethren.</span></a>
+<a class="v-row" href="/bible/nkjv/2-timothy/4/22/" data-ref="2 Timothy 4:22 (New King James Version)" data-verse-url="/bible/nkjv/2-timothy/4/22/"><span class="v-num">22</span><span class="v-txt">The Lord Jesus Christ be with your spirit. Grace be with you. Amen.</span></a>
 
     
 <div class="app-cta">

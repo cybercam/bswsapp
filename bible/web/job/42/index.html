@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 42</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Job 42:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered Yahweh,</span></div>
-<div class="v-row" data-ref="Job 42:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"I know that you can do all things, And that no purpose of yours can be restrained.</span></div>
-<div class="v-row" data-ref="Job 42:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You asked, 'Who is this who hides counsel without knowledge?' Therefore I have uttered that which I did not understand, Things too wonderful for me, which I didn't know.</span></div>
-<div class="v-row" data-ref="Job 42:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">You said, 'Listen, now, and I will speak; I will question you, and you will answer me.'</span></div>
-<div class="v-row" data-ref="Job 42:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I had heard of you by the hearing of the ear, But now my eye sees you.</span></div>
-<div class="v-row" data-ref="Job 42:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Therefore I abhor myself, And repent in dust and ashes."</span></div>
-<div class="v-row" data-ref="Job 42:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">It was so, that after Yahweh had spoken these words to Job, Yahweh said to Eliphaz the Temanite, "My wrath is kindled against you, and against your two friends; for you have not spoken of me the thing that is right, as my servant Job has.</span></div>
-<div class="v-row" data-ref="Job 42:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now therefore, take to yourselves seven bulls and seven rams, and go to my servant Job, and offer up for yourselves a burnt offering; and my servant Job shall pray for you, for I will accept him, that I not deal with you according to your folly. For you have not spoken of me the thing that is right, as my servant Job has."</span></div>
-<div class="v-row" data-ref="Job 42:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">So Eliphaz the Temanite and Bildad the Shuhite and Zophar the Naamathite went, and did what Yahweh commanded them, and Yahweh accepted Job.</span></div>
-<div class="v-row" data-ref="Job 42:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Yahweh turned the captivity of Job, when he prayed for his friends. Yahweh gave Job twice as much as he had before.</span></div>
-<div class="v-row" data-ref="Job 42:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then came there to him all his brothers, and all his sisters, and all those who had been of his acquaintance before, and ate bread with him in his house. They comforted him, and consoled him concerning all the evil that Yahweh had brought on him. Everyone also gave him a piece of money, and everyone a ring of gold.</span></div>
-<div class="v-row" data-ref="Job 42:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So Yahweh blessed the latter end of Job more than his beginning. He had fourteen thousand sheep, six thousand camels, one thousand yoke of oxen, and a thousand female donkeys.</span></div>
-<div class="v-row" data-ref="Job 42:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He had also seven sons and three daughters.</span></div>
-<div class="v-row" data-ref="Job 42:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He called the name of the first, Jemimah; and the name of the second, Keziah; and the name of the third, Keren Happuch.</span></div>
-<div class="v-row" data-ref="Job 42:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">In all the land were no women found so beautiful as the daughters of Job. Their father gave them an inheritance among their brothers.</span></div>
-<div class="v-row" data-ref="Job 42:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">After this Job lived one hundred forty years, and saw his sons, and his sons' sons, to four generations.</span></div>
-<div class="v-row" data-ref="Job 42:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So Job died, being old and full of days.</span></div>
+    <a class="v-row" href="/bible/web/job/42/1/" data-ref="Job 42:1 (World English Bible)" data-verse-url="/bible/web/job/42/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered Yahweh,</span></a>
+<a class="v-row" href="/bible/web/job/42/2/" data-ref="Job 42:2 (World English Bible)" data-verse-url="/bible/web/job/42/2/"><span class="v-num">2</span><span class="v-txt">"I know that you can do all things, And that no purpose of yours can be restrained.</span></a>
+<a class="v-row" href="/bible/web/job/42/3/" data-ref="Job 42:3 (World English Bible)" data-verse-url="/bible/web/job/42/3/"><span class="v-num">3</span><span class="v-txt">You asked, 'Who is this who hides counsel without knowledge?' Therefore I have uttered that which I did not understand, Things too wonderful for me, which I didn't know.</span></a>
+<a class="v-row" href="/bible/web/job/42/4/" data-ref="Job 42:4 (World English Bible)" data-verse-url="/bible/web/job/42/4/"><span class="v-num">4</span><span class="v-txt">You said, 'Listen, now, and I will speak; I will question you, and you will answer me.'</span></a>
+<a class="v-row" href="/bible/web/job/42/5/" data-ref="Job 42:5 (World English Bible)" data-verse-url="/bible/web/job/42/5/"><span class="v-num">5</span><span class="v-txt">I had heard of you by the hearing of the ear, But now my eye sees you.</span></a>
+<a class="v-row" href="/bible/web/job/42/6/" data-ref="Job 42:6 (World English Bible)" data-verse-url="/bible/web/job/42/6/"><span class="v-num">6</span><span class="v-txt">Therefore I abhor myself, And repent in dust and ashes."</span></a>
+<a class="v-row" href="/bible/web/job/42/7/" data-ref="Job 42:7 (World English Bible)" data-verse-url="/bible/web/job/42/7/"><span class="v-num">7</span><span class="v-txt">It was so, that after Yahweh had spoken these words to Job, Yahweh said to Eliphaz the Temanite, "My wrath is kindled against you, and against your two friends; for you have not spoken of me the thing that is right, as my servant Job has.</span></a>
+<a class="v-row" href="/bible/web/job/42/8/" data-ref="Job 42:8 (World English Bible)" data-verse-url="/bible/web/job/42/8/"><span class="v-num">8</span><span class="v-txt">Now therefore, take to yourselves seven bulls and seven rams, and go to my servant Job, and offer up for yourselves a burnt offering; and my servant Job shall pray for you, for I will accept him, that I not deal with you according to your folly. For you have not spoken of me the thing that is right, as my servant Job has."</span></a>
+<a class="v-row" href="/bible/web/job/42/9/" data-ref="Job 42:9 (World English Bible)" data-verse-url="/bible/web/job/42/9/"><span class="v-num">9</span><span class="v-txt">So Eliphaz the Temanite and Bildad the Shuhite and Zophar the Naamathite went, and did what Yahweh commanded them, and Yahweh accepted Job.</span></a>
+<a class="v-row" href="/bible/web/job/42/10/" data-ref="Job 42:10 (World English Bible)" data-verse-url="/bible/web/job/42/10/"><span class="v-num">10</span><span class="v-txt">Yahweh turned the captivity of Job, when he prayed for his friends. Yahweh gave Job twice as much as he had before.</span></a>
+<a class="v-row" href="/bible/web/job/42/11/" data-ref="Job 42:11 (World English Bible)" data-verse-url="/bible/web/job/42/11/"><span class="v-num">11</span><span class="v-txt">Then came there to him all his brothers, and all his sisters, and all those who had been of his acquaintance before, and ate bread with him in his house. They comforted him, and consoled him concerning all the evil that Yahweh had brought on him. Everyone also gave him a piece of money, and everyone a ring of gold.</span></a>
+<a class="v-row" href="/bible/web/job/42/12/" data-ref="Job 42:12 (World English Bible)" data-verse-url="/bible/web/job/42/12/"><span class="v-num">12</span><span class="v-txt">So Yahweh blessed the latter end of Job more than his beginning. He had fourteen thousand sheep, six thousand camels, one thousand yoke of oxen, and a thousand female donkeys.</span></a>
+<a class="v-row" href="/bible/web/job/42/13/" data-ref="Job 42:13 (World English Bible)" data-verse-url="/bible/web/job/42/13/"><span class="v-num">13</span><span class="v-txt">He had also seven sons and three daughters.</span></a>
+<a class="v-row" href="/bible/web/job/42/14/" data-ref="Job 42:14 (World English Bible)" data-verse-url="/bible/web/job/42/14/"><span class="v-num">14</span><span class="v-txt">He called the name of the first, Jemimah; and the name of the second, Keziah; and the name of the third, Keren Happuch.</span></a>
+<a class="v-row" href="/bible/web/job/42/15/" data-ref="Job 42:15 (World English Bible)" data-verse-url="/bible/web/job/42/15/"><span class="v-num">15</span><span class="v-txt">In all the land were no women found so beautiful as the daughters of Job. Their father gave them an inheritance among their brothers.</span></a>
+<a class="v-row" href="/bible/web/job/42/16/" data-ref="Job 42:16 (World English Bible)" data-verse-url="/bible/web/job/42/16/"><span class="v-num">16</span><span class="v-txt">After this Job lived one hundred forty years, and saw his sons, and his sons' sons, to four generations.</span></a>
+<a class="v-row" href="/bible/web/job/42/17/" data-ref="Job 42:17 (World English Bible)" data-verse-url="/bible/web/job/42/17/"><span class="v-num">17</span><span class="v-txt">So Job died, being old and full of days.</span></a>
 
     
 <div class="app-cta">

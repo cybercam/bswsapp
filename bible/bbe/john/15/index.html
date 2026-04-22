@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="John 15:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I am the true vine and my Father is the gardener.</span></div>
-<div class="v-row" data-ref="John 15:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He takes away every branch in me which has no fruit, and every branch which has fruit he makes clean, so that it may have more fruit.</span></div>
-<div class="v-row" data-ref="John 15:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You are clean, even now, through the teaching which I have given you.</span></div>
-<div class="v-row" data-ref="John 15:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Be in me at all times as I am in you. As the branch is not able to give fruit of itself, if it is not still on the vine, so you are not able to do so if you are not in me.</span></div>
-<div class="v-row" data-ref="John 15:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I am the vine, you are the branches: he who is in me at all times as I am in him, gives much fruit, because without me you are able to do nothing.</span></div>
-<div class="v-row" data-ref="John 15:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If a man does not keep himself in me, he becomes dead and is cut off like a dry branch; such branches are taken up and put in the fire and burned.</span></div>
-<div class="v-row" data-ref="John 15:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If you are in me at all times, and my words are in you, then anything for which you make a request will be done for you.</span></div>
-<div class="v-row" data-ref="John 15:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Here is my Father's glory, in that you give much fruit and so are my true disciples.</span></div>
-<div class="v-row" data-ref="John 15:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Even as the Father has given me his love, so I have given my love to you: be ever in my love.</span></div>
-<div class="v-row" data-ref="John 15:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If you keep my laws, you will be ever in my love, even as I have kept my Father's laws, and am ever in his love.</span></div>
-<div class="v-row" data-ref="John 15:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I have said these things to you so that I may have joy in you and so that your joy may be complete.</span></div>
-<div class="v-row" data-ref="John 15:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">This is the law I give you: Have love one for another, even as I have love for you.</span></div>
-<div class="v-row" data-ref="John 15:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Greater love has no man than this, that a man gives up his life for his friends.</span></div>
-<div class="v-row" data-ref="John 15:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You are my friends, if you do what I give you orders to do.</span></div>
-<div class="v-row" data-ref="John 15:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">No longer do I give you the name of servants; because a servant is without knowledge of what his master is doing: I give you the name of friends, because I have given you knowledge of all the things which my Father has said to me.</span></div>
-<div class="v-row" data-ref="John 15:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">You did not take me for yourselves, but I took you for myself; and I gave you the work of going about and producing fruit which will be for ever; so that whatever request you make to the Father in my name he may give it to you.</span></div>
-<div class="v-row" data-ref="John 15:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So this is my law for you: Have love one for another.</span></div>
-<div class="v-row" data-ref="John 15:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">If you are hated by the world, keep in mind that I was hated by the world before you.</span></div>
-<div class="v-row" data-ref="John 15:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">If you were of the world, you would be loved by the world: but because you are not of the world, but I have taken you out of the world, you are hated by the world.</span></div>
-<div class="v-row" data-ref="John 15:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Keep in mind the words I said to you, A servant is not greater than his lord. If they were cruel to me, they will be cruel to you; if they kept my words, they will keep yours.</span></div>
-<div class="v-row" data-ref="John 15:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">They will do all this to you because of my name -- because they have no knowledge of him who sent me.</span></div>
-<div class="v-row" data-ref="John 15:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">If I had not come and been their teacher they would have had no sin: but now they have no reason to give for their sin.</span></div>
-<div class="v-row" data-ref="John 15:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He who has hate for me has hate for my Father.</span></div>
-<div class="v-row" data-ref="John 15:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If I had not done among them the works which no other man ever did, they would have had no sin: but now they have seen, and they have had hate in their hearts for me and my Father.</span></div>
-<div class="v-row" data-ref="John 15:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">This comes about so that the writing in their law may be made true, Their hate for me was without cause.</span></div>
-<div class="v-row" data-ref="John 15:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">When the Helper comes, whom I will send to you from the Father even the Spirit of true knowledge who comes from the Father -- he will give witness about me;</span></div>
-<div class="v-row" data-ref="John 15:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">And you, in addition, will give witness because you have been with me from the first.</span></div>
+    <a class="v-row" href="/bible/bbe/john/15/1/" data-ref="John 15:1 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/1/"><span class="v-num">1</span><span class="v-txt">I am the true vine and my Father is the gardener.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/2/" data-ref="John 15:2 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/2/"><span class="v-num">2</span><span class="v-txt">He takes away every branch in me which has no fruit, and every branch which has fruit he makes clean, so that it may have more fruit.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/3/" data-ref="John 15:3 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/3/"><span class="v-num">3</span><span class="v-txt">You are clean, even now, through the teaching which I have given you.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/4/" data-ref="John 15:4 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/4/"><span class="v-num">4</span><span class="v-txt">Be in me at all times as I am in you. As the branch is not able to give fruit of itself, if it is not still on the vine, so you are not able to do so if you are not in me.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/5/" data-ref="John 15:5 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/5/"><span class="v-num">5</span><span class="v-txt">I am the vine, you are the branches: he who is in me at all times as I am in him, gives much fruit, because without me you are able to do nothing.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/6/" data-ref="John 15:6 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/6/"><span class="v-num">6</span><span class="v-txt">If a man does not keep himself in me, he becomes dead and is cut off like a dry branch; such branches are taken up and put in the fire and burned.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/7/" data-ref="John 15:7 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/7/"><span class="v-num">7</span><span class="v-txt">If you are in me at all times, and my words are in you, then anything for which you make a request will be done for you.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/8/" data-ref="John 15:8 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/8/"><span class="v-num">8</span><span class="v-txt">Here is my Father's glory, in that you give much fruit and so are my true disciples.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/9/" data-ref="John 15:9 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/9/"><span class="v-num">9</span><span class="v-txt">Even as the Father has given me his love, so I have given my love to you: be ever in my love.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/10/" data-ref="John 15:10 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/10/"><span class="v-num">10</span><span class="v-txt">If you keep my laws, you will be ever in my love, even as I have kept my Father's laws, and am ever in his love.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/11/" data-ref="John 15:11 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/11/"><span class="v-num">11</span><span class="v-txt">I have said these things to you so that I may have joy in you and so that your joy may be complete.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/12/" data-ref="John 15:12 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/12/"><span class="v-num">12</span><span class="v-txt">This is the law I give you: Have love one for another, even as I have love for you.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/13/" data-ref="John 15:13 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/13/"><span class="v-num">13</span><span class="v-txt">Greater love has no man than this, that a man gives up his life for his friends.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/14/" data-ref="John 15:14 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/14/"><span class="v-num">14</span><span class="v-txt">You are my friends, if you do what I give you orders to do.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/15/" data-ref="John 15:15 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/15/"><span class="v-num">15</span><span class="v-txt">No longer do I give you the name of servants; because a servant is without knowledge of what his master is doing: I give you the name of friends, because I have given you knowledge of all the things which my Father has said to me.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/16/" data-ref="John 15:16 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/16/"><span class="v-num">16</span><span class="v-txt">You did not take me for yourselves, but I took you for myself; and I gave you the work of going about and producing fruit which will be for ever; so that whatever request you make to the Father in my name he may give it to you.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/17/" data-ref="John 15:17 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/17/"><span class="v-num">17</span><span class="v-txt">So this is my law for you: Have love one for another.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/18/" data-ref="John 15:18 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/18/"><span class="v-num">18</span><span class="v-txt">If you are hated by the world, keep in mind that I was hated by the world before you.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/19/" data-ref="John 15:19 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/19/"><span class="v-num">19</span><span class="v-txt">If you were of the world, you would be loved by the world: but because you are not of the world, but I have taken you out of the world, you are hated by the world.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/20/" data-ref="John 15:20 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/20/"><span class="v-num">20</span><span class="v-txt">Keep in mind the words I said to you, A servant is not greater than his lord. If they were cruel to me, they will be cruel to you; if they kept my words, they will keep yours.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/21/" data-ref="John 15:21 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/21/"><span class="v-num">21</span><span class="v-txt">They will do all this to you because of my name -- because they have no knowledge of him who sent me.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/22/" data-ref="John 15:22 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/22/"><span class="v-num">22</span><span class="v-txt">If I had not come and been their teacher they would have had no sin: but now they have no reason to give for their sin.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/23/" data-ref="John 15:23 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/23/"><span class="v-num">23</span><span class="v-txt">He who has hate for me has hate for my Father.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/24/" data-ref="John 15:24 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/24/"><span class="v-num">24</span><span class="v-txt">If I had not done among them the works which no other man ever did, they would have had no sin: but now they have seen, and they have had hate in their hearts for me and my Father.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/25/" data-ref="John 15:25 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/25/"><span class="v-num">25</span><span class="v-txt">This comes about so that the writing in their law may be made true, Their hate for me was without cause.</span></a>
+<a class="v-row" href="/bible/bbe/john/15/26/" data-ref="John 15:26 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/26/"><span class="v-num">26</span><span class="v-txt">When the Helper comes, whom I will send to you from the Father even the Spirit of true knowledge who comes from the Father -- he will give witness about me;</span></a>
+<a class="v-row" href="/bible/bbe/john/15/27/" data-ref="John 15:27 (Bible in Basic English)" data-verse-url="/bible/bbe/john/15/27/"><span class="v-num">27</span><span class="v-txt">And you, in addition, will give witness because you have been with me from the first.</span></a>
 
     
 <div class="app-cta">

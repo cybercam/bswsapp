@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 19:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Better is the poor man whose ways are upright, than the man of wealth whose ways are twisted.</span></div>
-<div class="v-row" data-ref="Proverbs 19:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Further, without knowledge desire is not good; and he who is over-quick in acting goes out of the right way.</span></div>
-<div class="v-row" data-ref="Proverbs 19:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">By his foolish behaviour a man's ways are turned upside down, and his heart is bitter against the Lord.</span></div>
-<div class="v-row" data-ref="Proverbs 19:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Wealth makes a great number of friends; but the poor man is parted from his friend.</span></div>
-<div class="v-row" data-ref="Proverbs 19:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">A false witness will not go without punishment, and the breather out of deceit will not go free.</span></div>
-<div class="v-row" data-ref="Proverbs 19:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Great numbers will make attempts to get the approval of a ruler: and every man is the special friend of him who has something to give.</span></div>
-<div class="v-row" data-ref="Proverbs 19:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">All the brothers of the poor man are against him: how much more do his friends go far from him! ...</span></div>
-<div class="v-row" data-ref="Proverbs 19:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He who gets wisdom has love for his soul: he who keeps good sense will get what is truly good.</span></div>
-<div class="v-row" data-ref="Proverbs 19:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">A false witness will not go without punishment, and the breather out of deceit will be cut off.</span></div>
-<div class="v-row" data-ref="Proverbs 19:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Material comfort is not good for the foolish; much less for a servant to be put over rulers.</span></div>
-<div class="v-row" data-ref="Proverbs 19:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">A man's good sense makes him slow to wrath, and the overlooking of wrongdoing is his glory.</span></div>
-<div class="v-row" data-ref="Proverbs 19:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The king's wrath is like the loud cry of a lion, but his approval is like dew on the grass.</span></div>
-<div class="v-row" data-ref="Proverbs 19:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">A foolish son is the destruction of his father; and the bitter arguments of a wife are like drops of rain falling without end.</span></div>
-<div class="v-row" data-ref="Proverbs 19:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">House and wealth are a heritage from fathers, but a wife with good sense is from the Lord.</span></div>
-<div class="v-row" data-ref="Proverbs 19:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Hate of work sends deep sleep on a man: and he who has no industry will go without food.</span></div>
-<div class="v-row" data-ref="Proverbs 19:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He who keeps the law keeps his soul; but death will be the fate of him who takes no note of the word.</span></div>
-<div class="v-row" data-ref="Proverbs 19:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He who has pity on the poor gives to the Lord, and the Lord will give him his reward.</span></div>
-<div class="v-row" data-ref="Proverbs 19:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Give your son training while there is hope; let not your heart be purposing his death.</span></div>
-<div class="v-row" data-ref="Proverbs 19:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">A man of great wrath will have to take his punishment: for if you get him out of trouble you will have to do it again.</span></div>
-<div class="v-row" data-ref="Proverbs 19:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Let your ear be open to suggestion and take teaching, so that at the end you may be wise.</span></div>
-<div class="v-row" data-ref="Proverbs 19:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">A man's heart may be full of designs, but the purpose of the Lord is unchanging.</span></div>
-<div class="v-row" data-ref="Proverbs 19:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The ornament of a man is his mercy, and a poor man is better than one who is false.</span></div>
-<div class="v-row" data-ref="Proverbs 19:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The fear of the Lord gives life: and he who has it will have need of nothing; no evil will come his way.</span></div>
-<div class="v-row" data-ref="Proverbs 19:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The hater of work puts his hand deep into the basin, and will not even take it to his mouth again.</span></div>
-<div class="v-row" data-ref="Proverbs 19:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">When blows overtake the man of pride, the simple will get sense; say sharp words to the wise, and knowledge will be made clear to him.</span></div>
-<div class="v-row" data-ref="Proverbs 19:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">He who is violent to his father, driving away his mother, is a son causing shame and a bad name.</span></div>
-<div class="v-row" data-ref="Proverbs 19:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">A son who no longer gives attention to teaching is turned away from the words of knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 19:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">A good-for-nothing witness makes sport of the judge's decision: and the mouth of evil-doers sends out evil like a stream.</span></div>
-<div class="v-row" data-ref="Proverbs 19:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Rods are being made ready for the man of pride, and blows for the back of the foolish.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/19/1/" data-ref="Proverbs 19:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/1/"><span class="v-num">1</span><span class="v-txt">Better is the poor man whose ways are upright, than the man of wealth whose ways are twisted.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/2/" data-ref="Proverbs 19:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/2/"><span class="v-num">2</span><span class="v-txt">Further, without knowledge desire is not good; and he who is over-quick in acting goes out of the right way.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/3/" data-ref="Proverbs 19:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/3/"><span class="v-num">3</span><span class="v-txt">By his foolish behaviour a man's ways are turned upside down, and his heart is bitter against the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/4/" data-ref="Proverbs 19:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/4/"><span class="v-num">4</span><span class="v-txt">Wealth makes a great number of friends; but the poor man is parted from his friend.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/5/" data-ref="Proverbs 19:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/5/"><span class="v-num">5</span><span class="v-txt">A false witness will not go without punishment, and the breather out of deceit will not go free.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/6/" data-ref="Proverbs 19:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/6/"><span class="v-num">6</span><span class="v-txt">Great numbers will make attempts to get the approval of a ruler: and every man is the special friend of him who has something to give.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/7/" data-ref="Proverbs 19:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/7/"><span class="v-num">7</span><span class="v-txt">All the brothers of the poor man are against him: how much more do his friends go far from him! ...</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/8/" data-ref="Proverbs 19:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/8/"><span class="v-num">8</span><span class="v-txt">He who gets wisdom has love for his soul: he who keeps good sense will get what is truly good.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/9/" data-ref="Proverbs 19:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/9/"><span class="v-num">9</span><span class="v-txt">A false witness will not go without punishment, and the breather out of deceit will be cut off.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/10/" data-ref="Proverbs 19:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/10/"><span class="v-num">10</span><span class="v-txt">Material comfort is not good for the foolish; much less for a servant to be put over rulers.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/11/" data-ref="Proverbs 19:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/11/"><span class="v-num">11</span><span class="v-txt">A man's good sense makes him slow to wrath, and the overlooking of wrongdoing is his glory.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/12/" data-ref="Proverbs 19:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/12/"><span class="v-num">12</span><span class="v-txt">The king's wrath is like the loud cry of a lion, but his approval is like dew on the grass.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/13/" data-ref="Proverbs 19:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/13/"><span class="v-num">13</span><span class="v-txt">A foolish son is the destruction of his father; and the bitter arguments of a wife are like drops of rain falling without end.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/14/" data-ref="Proverbs 19:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/14/"><span class="v-num">14</span><span class="v-txt">House and wealth are a heritage from fathers, but a wife with good sense is from the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/15/" data-ref="Proverbs 19:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/15/"><span class="v-num">15</span><span class="v-txt">Hate of work sends deep sleep on a man: and he who has no industry will go without food.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/16/" data-ref="Proverbs 19:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/16/"><span class="v-num">16</span><span class="v-txt">He who keeps the law keeps his soul; but death will be the fate of him who takes no note of the word.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/17/" data-ref="Proverbs 19:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/17/"><span class="v-num">17</span><span class="v-txt">He who has pity on the poor gives to the Lord, and the Lord will give him his reward.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/18/" data-ref="Proverbs 19:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/18/"><span class="v-num">18</span><span class="v-txt">Give your son training while there is hope; let not your heart be purposing his death.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/19/" data-ref="Proverbs 19:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/19/"><span class="v-num">19</span><span class="v-txt">A man of great wrath will have to take his punishment: for if you get him out of trouble you will have to do it again.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/20/" data-ref="Proverbs 19:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/20/"><span class="v-num">20</span><span class="v-txt">Let your ear be open to suggestion and take teaching, so that at the end you may be wise.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/21/" data-ref="Proverbs 19:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/21/"><span class="v-num">21</span><span class="v-txt">A man's heart may be full of designs, but the purpose of the Lord is unchanging.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/22/" data-ref="Proverbs 19:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/22/"><span class="v-num">22</span><span class="v-txt">The ornament of a man is his mercy, and a poor man is better than one who is false.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/23/" data-ref="Proverbs 19:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/23/"><span class="v-num">23</span><span class="v-txt">The fear of the Lord gives life: and he who has it will have need of nothing; no evil will come his way.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/24/" data-ref="Proverbs 19:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/24/"><span class="v-num">24</span><span class="v-txt">The hater of work puts his hand deep into the basin, and will not even take it to his mouth again.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/25/" data-ref="Proverbs 19:25 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/25/"><span class="v-num">25</span><span class="v-txt">When blows overtake the man of pride, the simple will get sense; say sharp words to the wise, and knowledge will be made clear to him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/26/" data-ref="Proverbs 19:26 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/26/"><span class="v-num">26</span><span class="v-txt">He who is violent to his father, driving away his mother, is a son causing shame and a bad name.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/27/" data-ref="Proverbs 19:27 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/27/"><span class="v-num">27</span><span class="v-txt">A son who no longer gives attention to teaching is turned away from the words of knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/28/" data-ref="Proverbs 19:28 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/28/"><span class="v-num">28</span><span class="v-txt">A good-for-nothing witness makes sport of the judge's decision: and the mouth of evil-doers sends out evil like a stream.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/19/29/" data-ref="Proverbs 19:29 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/19/29/"><span class="v-num">29</span><span class="v-txt">Rods are being made ready for the man of pride, and blows for the back of the foolish.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Song of Solomon 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">How beautiful are your feet in sandals, O prince's daughter! The curves of your thighs [are] like jewels, The work of the hands of a skillful workman.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Your navel [is] a rounded goblet; It lacks no blended beverage. Your waist [is] a heap of wheat Set about with lilies.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Your two breasts [are] like two fawns, Twins of a gazelle.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Your neck [is] like an ivory tower, Your eyes [like] the pools in Heshbon By the gate of Bath Rabbim. Your nose [is] like the tower of Lebanon Which looks toward Damascus.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Your head [crowns] you like [Mount] Carmel, And the hair of your head [is] like purple; A king [is] held captive by [your] tresses.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">How fair and how pleasant you are, O love, with your delights!</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">This stature of yours is like a palm tree, And your breasts [like] its clusters.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I said, "I will go up to the palm tree, I will take hold of its branches." Let now your breasts be like clusters of the vine, The fragrance of your breath like apples,</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the roof of your mouth like the best wine. THE SHULAMITE [The wine] goes [down] smoothly for my beloved, Moving gently the lips of sleepers.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I [am] my beloved's, And his desire [is] toward me.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Come, my beloved, Let us go forth to the field; Let us lodge in the villages.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let us get up early to the vineyards; Let us see if the vine has budded, [Whether] the grape blossoms are open, [And] the pomegranates are in bloom. There I will give you my love.</span></div>
-<div class="v-row" data-ref="Song of Solomon 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The mandrakes give off a fragrance, And at our gates [are] pleasant [fruits,] All manner, new and old, Which I have laid up for you, my beloved.</span></div>
+    <a class="v-row" href="/bible/nkjv/song-of-solomon/7/1/" data-ref="Song of Solomon 7:1 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/1/"><span class="v-num">1</span><span class="v-txt">How beautiful are your feet in sandals, O prince's daughter! The curves of your thighs [are] like jewels, The work of the hands of a skillful workman.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/2/" data-ref="Song of Solomon 7:2 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/2/"><span class="v-num">2</span><span class="v-txt">Your navel [is] a rounded goblet; It lacks no blended beverage. Your waist [is] a heap of wheat Set about with lilies.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/3/" data-ref="Song of Solomon 7:3 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/3/"><span class="v-num">3</span><span class="v-txt">Your two breasts [are] like two fawns, Twins of a gazelle.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/4/" data-ref="Song of Solomon 7:4 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/4/"><span class="v-num">4</span><span class="v-txt">Your neck [is] like an ivory tower, Your eyes [like] the pools in Heshbon By the gate of Bath Rabbim. Your nose [is] like the tower of Lebanon Which looks toward Damascus.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/5/" data-ref="Song of Solomon 7:5 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/5/"><span class="v-num">5</span><span class="v-txt">Your head [crowns] you like [Mount] Carmel, And the hair of your head [is] like purple; A king [is] held captive by [your] tresses.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/6/" data-ref="Song of Solomon 7:6 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/6/"><span class="v-num">6</span><span class="v-txt">How fair and how pleasant you are, O love, with your delights!</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/7/" data-ref="Song of Solomon 7:7 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/7/"><span class="v-num">7</span><span class="v-txt">This stature of yours is like a palm tree, And your breasts [like] its clusters.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/8/" data-ref="Song of Solomon 7:8 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/8/"><span class="v-num">8</span><span class="v-txt">I said, "I will go up to the palm tree, I will take hold of its branches." Let now your breasts be like clusters of the vine, The fragrance of your breath like apples,</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/9/" data-ref="Song of Solomon 7:9 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/9/"><span class="v-num">9</span><span class="v-txt">And the roof of your mouth like the best wine. THE SHULAMITE [The wine] goes [down] smoothly for my beloved, Moving gently the lips of sleepers.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/10/" data-ref="Song of Solomon 7:10 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/10/"><span class="v-num">10</span><span class="v-txt">I [am] my beloved's, And his desire [is] toward me.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/11/" data-ref="Song of Solomon 7:11 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/11/"><span class="v-num">11</span><span class="v-txt">Come, my beloved, Let us go forth to the field; Let us lodge in the villages.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/12/" data-ref="Song of Solomon 7:12 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/12/"><span class="v-num">12</span><span class="v-txt">Let us get up early to the vineyards; Let us see if the vine has budded, [Whether] the grape blossoms are open, [And] the pomegranates are in bloom. There I will give you my love.</span></a>
+<a class="v-row" href="/bible/nkjv/song-of-solomon/7/13/" data-ref="Song of Solomon 7:13 (New King James Version)" data-verse-url="/bible/nkjv/song-of-solomon/7/13/"><span class="v-num">13</span><span class="v-txt">The mandrakes give off a fragrance, And at our gates [are] pleasant [fruits,] All manner, new and old, Which I have laid up for you, my beloved.</span></a>
 
     
 <div class="app-cta">

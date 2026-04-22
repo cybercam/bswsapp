@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 17:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the Lord said to Moses,</span></div>
-<div class="v-row" data-ref="Leviticus 17:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Say to Aaron and to his sons and to all the children of Israel: This is the order which the Lord has given.</span></div>
-<div class="v-row" data-ref="Leviticus 17:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If any man of Israel puts to death an ox or a lamb or a goat, in or outside the tent-circle;</span></div>
-<div class="v-row" data-ref="Leviticus 17:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And has not taken it to the door of the Tent of meeting, to make an offering to the Lord, before the Lord's House, its blood will be on him, for he has taken life, and he will be cut off from among his people:</span></div>
-<div class="v-row" data-ref="Leviticus 17:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So that the children of Israel may take to the Lord, to the door of the Tent of meeting and to the priest, the offerings which they have put to death in the open country, and that they may make their peace-offerings to the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 17:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the priest will put blood on the altar of the Lord at the door of the Tent of meeting, burning the fat for a sweet smell to the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 17:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And let them make no more offerings to evil spirits, after which they have gone, turning away from the Lord. Let this be a law to them for ever, through all their generations.</span></div>
-<div class="v-row" data-ref="Leviticus 17:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And say to them, If any man of Israel, or any other living among them, makes a burned offering or other offering,</span></div>
-<div class="v-row" data-ref="Leviticus 17:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And does not take it to the door of the Tent of meeting to make an offering to the Lord, that man will be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And if any man of Israel, or any other living among them, takes any sort of blood for food, my wrath will be turned against that man and he will be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the life of the flesh is in its blood; and I have given it to you on the altar to take away your sin: for it is the blood which makes free from sin because of the life in it.</span></div>
-<div class="v-row" data-ref="Leviticus 17:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For this reason I have said to the children of Israel, No man among you, or any others living with you, may take blood as food.</span></div>
-<div class="v-row" data-ref="Leviticus 17:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And any man of Israel, or any other living among them, who gets with his bow any beast or bird used for food, is to see that its blood is covered with earth.</span></div>
-<div class="v-row" data-ref="Leviticus 17:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For the blood is the life of all flesh: and so I have said to the children of Israel, You may not take any sort of blood as food, and any man who does so will be cut of.</span></div>
-<div class="v-row" data-ref="Leviticus 17:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And anyone who takes as food anything which has come to a natural end, or anything which has been put to death by beasts, if he is one of you by birth, or of another nation, will have to have his clothing washed and his body bathed in water and be unclean till evening, and then he will be clean.</span></div>
-<div class="v-row" data-ref="Leviticus 17:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But if his clothing is not washed and his body bathed, his sin will be on him.</span></div>
+    <a class="v-row" href="/bible/bbe/leviticus/17/1/" data-ref="Leviticus 17:1 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/1/"><span class="v-num">1</span><span class="v-txt">And the Lord said to Moses,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/2/" data-ref="Leviticus 17:2 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/2/"><span class="v-num">2</span><span class="v-txt">Say to Aaron and to his sons and to all the children of Israel: This is the order which the Lord has given.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/3/" data-ref="Leviticus 17:3 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/3/"><span class="v-num">3</span><span class="v-txt">If any man of Israel puts to death an ox or a lamb or a goat, in or outside the tent-circle;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/4/" data-ref="Leviticus 17:4 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/4/"><span class="v-num">4</span><span class="v-txt">And has not taken it to the door of the Tent of meeting, to make an offering to the Lord, before the Lord's House, its blood will be on him, for he has taken life, and he will be cut off from among his people:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/5/" data-ref="Leviticus 17:5 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/5/"><span class="v-num">5</span><span class="v-txt">So that the children of Israel may take to the Lord, to the door of the Tent of meeting and to the priest, the offerings which they have put to death in the open country, and that they may make their peace-offerings to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/6/" data-ref="Leviticus 17:6 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/6/"><span class="v-num">6</span><span class="v-txt">And the priest will put blood on the altar of the Lord at the door of the Tent of meeting, burning the fat for a sweet smell to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/7/" data-ref="Leviticus 17:7 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/7/"><span class="v-num">7</span><span class="v-txt">And let them make no more offerings to evil spirits, after which they have gone, turning away from the Lord. Let this be a law to them for ever, through all their generations.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/8/" data-ref="Leviticus 17:8 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/8/"><span class="v-num">8</span><span class="v-txt">And say to them, If any man of Israel, or any other living among them, makes a burned offering or other offering,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/9/" data-ref="Leviticus 17:9 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/9/"><span class="v-num">9</span><span class="v-txt">And does not take it to the door of the Tent of meeting to make an offering to the Lord, that man will be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/10/" data-ref="Leviticus 17:10 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/10/"><span class="v-num">10</span><span class="v-txt">And if any man of Israel, or any other living among them, takes any sort of blood for food, my wrath will be turned against that man and he will be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/11/" data-ref="Leviticus 17:11 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/11/"><span class="v-num">11</span><span class="v-txt">For the life of the flesh is in its blood; and I have given it to you on the altar to take away your sin: for it is the blood which makes free from sin because of the life in it.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/12/" data-ref="Leviticus 17:12 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/12/"><span class="v-num">12</span><span class="v-txt">For this reason I have said to the children of Israel, No man among you, or any others living with you, may take blood as food.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/13/" data-ref="Leviticus 17:13 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/13/"><span class="v-num">13</span><span class="v-txt">And any man of Israel, or any other living among them, who gets with his bow any beast or bird used for food, is to see that its blood is covered with earth.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/14/" data-ref="Leviticus 17:14 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/14/"><span class="v-num">14</span><span class="v-txt">For the blood is the life of all flesh: and so I have said to the children of Israel, You may not take any sort of blood as food, and any man who does so will be cut of.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/15/" data-ref="Leviticus 17:15 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/15/"><span class="v-num">15</span><span class="v-txt">And anyone who takes as food anything which has come to a natural end, or anything which has been put to death by beasts, if he is one of you by birth, or of another nation, will have to have his clothing washed and his body bathed in water and be unclean till evening, and then he will be clean.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/17/16/" data-ref="Leviticus 17:16 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/17/16/"><span class="v-num">16</span><span class="v-txt">But if his clothing is not washed and his body bathed, his sin will be on him.</span></a>
 
     
 <div class="app-cta">

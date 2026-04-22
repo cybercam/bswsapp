@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">There is an evil which I have seen under the sun, and it is hard on men;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A man to whom God gives money, wealth, and honour so that he has all his desires but God does not give him the power to have joy of it, and a strange man takes it. This is to no purpose and an evil disease.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If a man has a hundred children, and his life is long so that the days of his years are great in number, but his soul takes no pleasure in good, and he is not honoured at his death; I say that a birth before its time is better than he.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">In wind it came and to the dark it will go, and with the dark will its name be covered.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Yes, it saw not the sun, and it had no knowledge; it is better with this than with the other.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And though he goes on living a thousand years twice over and does not see good, are not the two going to the same place?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">All the work of man is for his mouth, and still he has a desire for food.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">What have the wise more than the foolish? and what has the poor man by walking wisely before the living?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What the eyes see is better than the wandering of desire. This is to no purpose and a desire for wind.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">That which is, has been named before, and of what man is there is knowledge. He has no power against one stronger than he.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">There are words without number for increasing what is to no purpose, but what is man profited by them?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who is able to say what is good for man in life all the days of his foolish life which he goes through like a shade? who will say what is to be after him under the sun?</span></div>
+    <a class="v-row" href="/bible/bbe/ecclesiastes/6/1/" data-ref="Ecclesiastes 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/1/"><span class="v-num">1</span><span class="v-txt">There is an evil which I have seen under the sun, and it is hard on men;</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/2/" data-ref="Ecclesiastes 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/2/"><span class="v-num">2</span><span class="v-txt">A man to whom God gives money, wealth, and honour so that he has all his desires but God does not give him the power to have joy of it, and a strange man takes it. This is to no purpose and an evil disease.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/3/" data-ref="Ecclesiastes 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/3/"><span class="v-num">3</span><span class="v-txt">If a man has a hundred children, and his life is long so that the days of his years are great in number, but his soul takes no pleasure in good, and he is not honoured at his death; I say that a birth before its time is better than he.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/4/" data-ref="Ecclesiastes 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/4/"><span class="v-num">4</span><span class="v-txt">In wind it came and to the dark it will go, and with the dark will its name be covered.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/5/" data-ref="Ecclesiastes 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/5/"><span class="v-num">5</span><span class="v-txt">Yes, it saw not the sun, and it had no knowledge; it is better with this than with the other.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/6/" data-ref="Ecclesiastes 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/6/"><span class="v-num">6</span><span class="v-txt">And though he goes on living a thousand years twice over and does not see good, are not the two going to the same place?</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/7/" data-ref="Ecclesiastes 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/7/"><span class="v-num">7</span><span class="v-txt">All the work of man is for his mouth, and still he has a desire for food.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/8/" data-ref="Ecclesiastes 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/8/"><span class="v-num">8</span><span class="v-txt">What have the wise more than the foolish? and what has the poor man by walking wisely before the living?</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/9/" data-ref="Ecclesiastes 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/9/"><span class="v-num">9</span><span class="v-txt">What the eyes see is better than the wandering of desire. This is to no purpose and a desire for wind.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/10/" data-ref="Ecclesiastes 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/10/"><span class="v-num">10</span><span class="v-txt">That which is, has been named before, and of what man is there is knowledge. He has no power against one stronger than he.</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/11/" data-ref="Ecclesiastes 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/11/"><span class="v-num">11</span><span class="v-txt">There are words without number for increasing what is to no purpose, but what is man profited by them?</span></a>
+<a class="v-row" href="/bible/bbe/ecclesiastes/6/12/" data-ref="Ecclesiastes 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ecclesiastes/6/12/"><span class="v-num">12</span><span class="v-txt">Who is able to say what is good for man in life all the days of his foolish life which he goes through like a shade? who will say what is to be after him under the sun?</span></a>
 
     
 <div class="app-cta">

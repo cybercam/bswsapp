@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Exodus 31:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Jehovah spake unto Moses, saying,</span></div>
-<div class="v-row" data-ref="Exodus 31:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah:</span></div>
-<div class="v-row" data-ref="Exodus 31:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and I have filled him with the Spirit of God, in wisdom, and in understanding, and in knowledge, and in all manner of workmanship,</span></div>
-<div class="v-row" data-ref="Exodus 31:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">to devise skilful works, to work in gold, and in silver, and in brass,</span></div>
-<div class="v-row" data-ref="Exodus 31:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and in cutting of stones for setting, and in carving of wood, to work in all manner of workmanship.</span></div>
-<div class="v-row" data-ref="Exodus 31:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And I, behold, I have appointed with him Oholiab, the son of Ahisamach, of the tribe of Dan; and in the heart of all that are wise-hearted I have put wisdom, that they may make all that I have commanded thee:</span></div>
-<div class="v-row" data-ref="Exodus 31:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">the tent of meeting, and the ark of the testimony, and the mercy-seat that is thereupon, and all the furniture of the Tent,</span></div>
-<div class="v-row" data-ref="Exodus 31:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">and the table and its vessels, and the pure candlestick with all its vessels, and the altar of incense,</span></div>
-<div class="v-row" data-ref="Exodus 31:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">and the altar of burnt-offering with all its vessels, and the laver and its base,</span></div>
-<div class="v-row" data-ref="Exodus 31:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">and the finely wrought garments, and the holy garments for Aaron the priest, and the garments of his sons, to minister in the priest's office,</span></div>
-<div class="v-row" data-ref="Exodus 31:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">and the anointing oil, and the incense of sweet spices for the holy place: according to all that I have commanded thee shall they do.</span></div>
-<div class="v-row" data-ref="Exodus 31:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Jehovah spake unto Moses, saying,</span></div>
-<div class="v-row" data-ref="Exodus 31:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Speak thou also unto the children of Israel, saying, Verily ye shall keep my sabbaths: for it is a sign between me and you throughout your generations; that ye may know that I am Jehovah who sanctifieth you.</span></div>
-<div class="v-row" data-ref="Exodus 31:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Ye shall keep the sabbath therefore; for it is holy unto you: every one that profaneth it shall surely be put to death; for whosoever doeth any work therein, that soul shall be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Exodus 31:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Six days shall work be done, but on the seventh day is a sabbath of solemn rest, holy to Jehovah: whosoever doeth any work on the sabbath day, he shall surely be put to death.</span></div>
-<div class="v-row" data-ref="Exodus 31:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Wherefore the children of Israel shall keep the sabbath, to observe the sabbath throughout their generations, for a perpetual covenant.</span></div>
-<div class="v-row" data-ref="Exodus 31:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">It is a sign between me and the children of Israel for ever: for in six days Jehovah made heaven and earth, and on the seventh day he rested, and was refreshed.</span></div>
-<div class="v-row" data-ref="Exodus 31:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And he gave unto Moses, when he had made an end of communing with him upon mount Sinai, the two tables of the testimony, tables of stone, written with the finger of God.</span></div>
+    <a class="v-row" href="/bible/asv/exodus/31/1/" data-ref="Exodus 31:1 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/1/"><span class="v-num">1</span><span class="v-txt">And Jehovah spake unto Moses, saying,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/2/" data-ref="Exodus 31:2 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/2/"><span class="v-num">2</span><span class="v-txt">See, I have called by name Bezalel the son of Uri, the son of Hur, of the tribe of Judah:</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/3/" data-ref="Exodus 31:3 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/3/"><span class="v-num">3</span><span class="v-txt">and I have filled him with the Spirit of God, in wisdom, and in understanding, and in knowledge, and in all manner of workmanship,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/4/" data-ref="Exodus 31:4 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/4/"><span class="v-num">4</span><span class="v-txt">to devise skilful works, to work in gold, and in silver, and in brass,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/5/" data-ref="Exodus 31:5 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/5/"><span class="v-num">5</span><span class="v-txt">and in cutting of stones for setting, and in carving of wood, to work in all manner of workmanship.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/6/" data-ref="Exodus 31:6 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/6/"><span class="v-num">6</span><span class="v-txt">And I, behold, I have appointed with him Oholiab, the son of Ahisamach, of the tribe of Dan; and in the heart of all that are wise-hearted I have put wisdom, that they may make all that I have commanded thee:</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/7/" data-ref="Exodus 31:7 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/7/"><span class="v-num">7</span><span class="v-txt">the tent of meeting, and the ark of the testimony, and the mercy-seat that is thereupon, and all the furniture of the Tent,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/8/" data-ref="Exodus 31:8 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/8/"><span class="v-num">8</span><span class="v-txt">and the table and its vessels, and the pure candlestick with all its vessels, and the altar of incense,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/9/" data-ref="Exodus 31:9 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/9/"><span class="v-num">9</span><span class="v-txt">and the altar of burnt-offering with all its vessels, and the laver and its base,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/10/" data-ref="Exodus 31:10 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/10/"><span class="v-num">10</span><span class="v-txt">and the finely wrought garments, and the holy garments for Aaron the priest, and the garments of his sons, to minister in the priest's office,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/11/" data-ref="Exodus 31:11 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/11/"><span class="v-num">11</span><span class="v-txt">and the anointing oil, and the incense of sweet spices for the holy place: according to all that I have commanded thee shall they do.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/12/" data-ref="Exodus 31:12 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/12/"><span class="v-num">12</span><span class="v-txt">And Jehovah spake unto Moses, saying,</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/13/" data-ref="Exodus 31:13 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/13/"><span class="v-num">13</span><span class="v-txt">Speak thou also unto the children of Israel, saying, Verily ye shall keep my sabbaths: for it is a sign between me and you throughout your generations; that ye may know that I am Jehovah who sanctifieth you.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/14/" data-ref="Exodus 31:14 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/14/"><span class="v-num">14</span><span class="v-txt">Ye shall keep the sabbath therefore; for it is holy unto you: every one that profaneth it shall surely be put to death; for whosoever doeth any work therein, that soul shall be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/15/" data-ref="Exodus 31:15 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/15/"><span class="v-num">15</span><span class="v-txt">Six days shall work be done, but on the seventh day is a sabbath of solemn rest, holy to Jehovah: whosoever doeth any work on the sabbath day, he shall surely be put to death.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/16/" data-ref="Exodus 31:16 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/16/"><span class="v-num">16</span><span class="v-txt">Wherefore the children of Israel shall keep the sabbath, to observe the sabbath throughout their generations, for a perpetual covenant.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/17/" data-ref="Exodus 31:17 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/17/"><span class="v-num">17</span><span class="v-txt">It is a sign between me and the children of Israel for ever: for in six days Jehovah made heaven and earth, and on the seventh day he rested, and was refreshed.</span></a>
+<a class="v-row" href="/bible/asv/exodus/31/18/" data-ref="Exodus 31:18 (American Standard Version)" data-verse-url="/bible/asv/exodus/31/18/"><span class="v-num">18</span><span class="v-txt">And he gave unto Moses, when he had made an end of communing with him upon mount Sinai, the two tables of the testimony, tables of stone, written with the finger of God.</span></a>
 
     
 <div class="app-cta">

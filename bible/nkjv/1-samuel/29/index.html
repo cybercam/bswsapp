@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 29</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 29:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then the Philistines gathered together all their armies at Aphek, and the Israelites encamped by a fountain which [is] in Jezreel.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the lords of the Philistines passed in review by hundreds and by thousands, but David and his men passed in review at the rear with Achish.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then the princes of the Philistines said, "What [are] these Hebrews [doing here?"] And Achish said to the princes of the Philistines, "[Is] this not David, the servant of Saul king of Israel, who has been with me these days, or these years? And to this day I have found no fault in him since he defected [to me."]</span></div>
-<div class="v-row" data-ref="1 Samuel 29:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But the princes of the Philistines were angry with him; so the princes of the Philistines said to him, "Make this fellow return, that he may go back to the place which you have appointed for him, and do not let him go down with us to battle, lest in the battle he become our adversary. For with what could he reconcile himself to his master, if not with the heads of these men?</span></div>
-<div class="v-row" data-ref="1 Samuel 29:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"[Is] this not David, of whom they sang to one another in dances, saying: 'Saul has slain his thousands, And David his ten thousands'?"</span></div>
-<div class="v-row" data-ref="1 Samuel 29:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then Achish called David and said to him, "Surely, [as] the LORD lives, you have been upright, and your going out and your coming in with me in the army [is] good in my sight. For to this day I have not found evil in you since the day of your coming to me. Nevertheless the lords do not favor you.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Therefore return now, and go in peace, that you may not displease the lords of the Philistines."</span></div>
-<div class="v-row" data-ref="1 Samuel 29:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">So David said to Achish, "But what have I done? And to this day what have you found in your servant as long as I have been with you, that I may not go and fight against the enemies of my lord the king?"</span></div>
-<div class="v-row" data-ref="1 Samuel 29:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then Achish answered and said to David, "I know that you [are] as good in my sight as an angel of God; nevertheless the princes of the Philistines have said, 'He shall not go up with us to the battle.'</span></div>
-<div class="v-row" data-ref="1 Samuel 29:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Now therefore, rise early in the morning with your master's servants who have come with you. And as soon as you are up early in the morning and have light, depart."</span></div>
-<div class="v-row" data-ref="1 Samuel 29:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So David and his men rose early to depart in the morning, to return to the land of the Philistines. And the Philistines went up to Jezreel.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-samuel/29/1/" data-ref="1 Samuel 29:1 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/1/"><span class="v-num">1</span><span class="v-txt">Then the Philistines gathered together all their armies at Aphek, and the Israelites encamped by a fountain which [is] in Jezreel.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/2/" data-ref="1 Samuel 29:2 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/2/"><span class="v-num">2</span><span class="v-txt">And the lords of the Philistines passed in review by hundreds and by thousands, but David and his men passed in review at the rear with Achish.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/3/" data-ref="1 Samuel 29:3 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/3/"><span class="v-num">3</span><span class="v-txt">Then the princes of the Philistines said, "What [are] these Hebrews [doing here?"] And Achish said to the princes of the Philistines, "[Is] this not David, the servant of Saul king of Israel, who has been with me these days, or these years? And to this day I have found no fault in him since he defected [to me."]</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/4/" data-ref="1 Samuel 29:4 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/4/"><span class="v-num">4</span><span class="v-txt">But the princes of the Philistines were angry with him; so the princes of the Philistines said to him, "Make this fellow return, that he may go back to the place which you have appointed for him, and do not let him go down with us to battle, lest in the battle he become our adversary. For with what could he reconcile himself to his master, if not with the heads of these men?</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/5/" data-ref="1 Samuel 29:5 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/5/"><span class="v-num">5</span><span class="v-txt">"[Is] this not David, of whom they sang to one another in dances, saying: 'Saul has slain his thousands, And David his ten thousands'?"</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/6/" data-ref="1 Samuel 29:6 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/6/"><span class="v-num">6</span><span class="v-txt">Then Achish called David and said to him, "Surely, [as] the LORD lives, you have been upright, and your going out and your coming in with me in the army [is] good in my sight. For to this day I have not found evil in you since the day of your coming to me. Nevertheless the lords do not favor you.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/7/" data-ref="1 Samuel 29:7 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/7/"><span class="v-num">7</span><span class="v-txt">"Therefore return now, and go in peace, that you may not displease the lords of the Philistines."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/8/" data-ref="1 Samuel 29:8 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/8/"><span class="v-num">8</span><span class="v-txt">So David said to Achish, "But what have I done? And to this day what have you found in your servant as long as I have been with you, that I may not go and fight against the enemies of my lord the king?"</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/9/" data-ref="1 Samuel 29:9 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/9/"><span class="v-num">9</span><span class="v-txt">Then Achish answered and said to David, "I know that you [are] as good in my sight as an angel of God; nevertheless the princes of the Philistines have said, 'He shall not go up with us to the battle.'</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/10/" data-ref="1 Samuel 29:10 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/10/"><span class="v-num">10</span><span class="v-txt">"Now therefore, rise early in the morning with your master's servants who have come with you. And as soon as you are up early in the morning and have light, depart."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/29/11/" data-ref="1 Samuel 29:11 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/29/11/"><span class="v-num">11</span><span class="v-txt">So David and his men rose early to depart in the morning, to return to the land of the Philistines. And the Philistines went up to Jezreel.</span></a>
 
     
 <div class="app-cta">

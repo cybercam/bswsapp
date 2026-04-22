@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 2:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thus the heavens and the earth, and all the host of them, were finished.</span></div>
-<div class="v-row" data-ref="Genesis 2:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And on the seventh day God ended His work which He had done, and He rested on the seventh day from all His work which He had done.</span></div>
-<div class="v-row" data-ref="Genesis 2:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then God blessed the seventh day and sanctified it, because in it He rested from all His work which God had created and made.</span></div>
-<div class="v-row" data-ref="Genesis 2:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">This [is] the history of the heavens and the earth when they were created, in the day that the LORD God made the earth and the heavens,</span></div>
-<div class="v-row" data-ref="Genesis 2:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">before any plant of the field was in the earth and before any herb of the field had grown. For the LORD God had not caused it to rain on the earth, and [there was] no man to till the ground;</span></div>
-<div class="v-row" data-ref="Genesis 2:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">but a mist went up from the earth and watered the whole face of the ground.</span></div>
-<div class="v-row" data-ref="Genesis 2:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the LORD God formed man [of] the dust of the ground, and breathed into his nostrils the breath of life; and man became a living being.</span></div>
-<div class="v-row" data-ref="Genesis 2:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The LORD God planted a garden eastward in Eden, and there He put the man whom He had formed.</span></div>
-<div class="v-row" data-ref="Genesis 2:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And out of the ground the LORD God made every tree grow that is pleasant to the sight and good for food. The tree of life [was] also in the midst of the garden, and the tree of the knowledge of good and evil.</span></div>
-<div class="v-row" data-ref="Genesis 2:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now a river went out of Eden to water the garden, and from there it parted and became four riverheads.</span></div>
-<div class="v-row" data-ref="Genesis 2:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The name of the first [is] Pishon; it [is] the one which skirts the whole land of Havilah, where [there is] gold.</span></div>
-<div class="v-row" data-ref="Genesis 2:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the gold of that land [is] good. Bdellium and the onyx stone [are] there.</span></div>
-<div class="v-row" data-ref="Genesis 2:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The name of the second river [is] Gihon; it [is] the one which goes around the whole land of Cush.</span></div>
-<div class="v-row" data-ref="Genesis 2:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The name of the third river [is] Hiddekel; it [is] the one which goes toward the east of Assyria. The fourth river [is] the Euphrates.</span></div>
-<div class="v-row" data-ref="Genesis 2:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then the LORD God took the man and put him in the garden of Eden to tend and keep it.</span></div>
-<div class="v-row" data-ref="Genesis 2:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the LORD God commanded the man, saying, "Of every tree of the garden you may freely eat;</span></div>
-<div class="v-row" data-ref="Genesis 2:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die."</span></div>
-<div class="v-row" data-ref="Genesis 2:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And the LORD God said, "[It is] not good that man should be alone; I will make him a helper comparable to him."</span></div>
-<div class="v-row" data-ref="Genesis 2:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Out of the ground the LORD God formed every beast of the field and every bird of the air, and brought [them] to Adam to see what he would call them. And whatever Adam called each living creature, that [was] its name.</span></div>
-<div class="v-row" data-ref="Genesis 2:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">So Adam gave names to all cattle, to the birds of the air, and to every beast of the field. But for Adam there was not found a helper comparable to him.</span></div>
-<div class="v-row" data-ref="Genesis 2:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And the LORD God caused a deep sleep to fall on Adam, and he slept; and He took one of his ribs, and closed up the flesh in its place.</span></div>
-<div class="v-row" data-ref="Genesis 2:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Then the rib which the LORD God had taken from man He made into a woman, and He brought her to the man.</span></div>
-<div class="v-row" data-ref="Genesis 2:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And Adam said: "This [is] now bone of my bones And flesh of my flesh; She shall be called Woman, Because she was taken out of Man."</span></div>
-<div class="v-row" data-ref="Genesis 2:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Therefore a man shall leave his father and mother and be joined to his wife, and they shall become one flesh.</span></div>
-<div class="v-row" data-ref="Genesis 2:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And they were both naked, the man and his wife, and were not ashamed.</span></div>
+    <a class="v-row" href="/bible/nkjv/genesis/2/1/" data-ref="Genesis 2:1 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/1/"><span class="v-num">1</span><span class="v-txt">Thus the heavens and the earth, and all the host of them, were finished.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/2/" data-ref="Genesis 2:2 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/2/"><span class="v-num">2</span><span class="v-txt">And on the seventh day God ended His work which He had done, and He rested on the seventh day from all His work which He had done.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/3/" data-ref="Genesis 2:3 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/3/"><span class="v-num">3</span><span class="v-txt">Then God blessed the seventh day and sanctified it, because in it He rested from all His work which God had created and made.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/4/" data-ref="Genesis 2:4 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/4/"><span class="v-num">4</span><span class="v-txt">This [is] the history of the heavens and the earth when they were created, in the day that the LORD God made the earth and the heavens,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/5/" data-ref="Genesis 2:5 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/5/"><span class="v-num">5</span><span class="v-txt">before any plant of the field was in the earth and before any herb of the field had grown. For the LORD God had not caused it to rain on the earth, and [there was] no man to till the ground;</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/6/" data-ref="Genesis 2:6 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/6/"><span class="v-num">6</span><span class="v-txt">but a mist went up from the earth and watered the whole face of the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/7/" data-ref="Genesis 2:7 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/7/"><span class="v-num">7</span><span class="v-txt">And the LORD God formed man [of] the dust of the ground, and breathed into his nostrils the breath of life; and man became a living being.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/8/" data-ref="Genesis 2:8 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/8/"><span class="v-num">8</span><span class="v-txt">The LORD God planted a garden eastward in Eden, and there He put the man whom He had formed.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/9/" data-ref="Genesis 2:9 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/9/"><span class="v-num">9</span><span class="v-txt">And out of the ground the LORD God made every tree grow that is pleasant to the sight and good for food. The tree of life [was] also in the midst of the garden, and the tree of the knowledge of good and evil.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/10/" data-ref="Genesis 2:10 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/10/"><span class="v-num">10</span><span class="v-txt">Now a river went out of Eden to water the garden, and from there it parted and became four riverheads.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/11/" data-ref="Genesis 2:11 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/11/"><span class="v-num">11</span><span class="v-txt">The name of the first [is] Pishon; it [is] the one which skirts the whole land of Havilah, where [there is] gold.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/12/" data-ref="Genesis 2:12 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/12/"><span class="v-num">12</span><span class="v-txt">And the gold of that land [is] good. Bdellium and the onyx stone [are] there.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/13/" data-ref="Genesis 2:13 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/13/"><span class="v-num">13</span><span class="v-txt">The name of the second river [is] Gihon; it [is] the one which goes around the whole land of Cush.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/14/" data-ref="Genesis 2:14 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/14/"><span class="v-num">14</span><span class="v-txt">The name of the third river [is] Hiddekel; it [is] the one which goes toward the east of Assyria. The fourth river [is] the Euphrates.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/15/" data-ref="Genesis 2:15 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/15/"><span class="v-num">15</span><span class="v-txt">Then the LORD God took the man and put him in the garden of Eden to tend and keep it.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/16/" data-ref="Genesis 2:16 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/16/"><span class="v-num">16</span><span class="v-txt">And the LORD God commanded the man, saying, "Of every tree of the garden you may freely eat;</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/17/" data-ref="Genesis 2:17 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/17/"><span class="v-num">17</span><span class="v-txt">"but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/18/" data-ref="Genesis 2:18 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/18/"><span class="v-num">18</span><span class="v-txt">And the LORD God said, "[It is] not good that man should be alone; I will make him a helper comparable to him."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/19/" data-ref="Genesis 2:19 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/19/"><span class="v-num">19</span><span class="v-txt">Out of the ground the LORD God formed every beast of the field and every bird of the air, and brought [them] to Adam to see what he would call them. And whatever Adam called each living creature, that [was] its name.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/20/" data-ref="Genesis 2:20 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/20/"><span class="v-num">20</span><span class="v-txt">So Adam gave names to all cattle, to the birds of the air, and to every beast of the field. But for Adam there was not found a helper comparable to him.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/21/" data-ref="Genesis 2:21 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/21/"><span class="v-num">21</span><span class="v-txt">And the LORD God caused a deep sleep to fall on Adam, and he slept; and He took one of his ribs, and closed up the flesh in its place.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/22/" data-ref="Genesis 2:22 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/22/"><span class="v-num">22</span><span class="v-txt">Then the rib which the LORD God had taken from man He made into a woman, and He brought her to the man.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/23/" data-ref="Genesis 2:23 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/23/"><span class="v-num">23</span><span class="v-txt">And Adam said: "This [is] now bone of my bones And flesh of my flesh; She shall be called Woman, Because she was taken out of Man."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/24/" data-ref="Genesis 2:24 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/24/"><span class="v-num">24</span><span class="v-txt">Therefore a man shall leave his father and mother and be joined to his wife, and they shall become one flesh.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/2/25/" data-ref="Genesis 2:25 (New King James Version)" data-verse-url="/bible/nkjv/genesis/2/25/"><span class="v-num">25</span><span class="v-txt">And they were both naked, the man and his wife, and were not ashamed.</span></a>
 
     
 <div class="app-cta">

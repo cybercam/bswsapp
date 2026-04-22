@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,38 +204,38 @@ a:hover{text-decoration:underline}
       <h2>Chapter 11</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 11:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the whole earth had one language and one speech.</span></div>
-<div class="v-row" data-ref="Genesis 11:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it came to pass, as they journeyed from the east, that they found a plain in the land of Shinar, and they dwelt there.</span></div>
-<div class="v-row" data-ref="Genesis 11:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then they said to one another, "Come, let us make bricks and bake [them] thoroughly." They had brick for stone, and they had asphalt for mortar.</span></div>
-<div class="v-row" data-ref="Genesis 11:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they said, "Come, let us build ourselves a city, and a tower whose top [is] in the heavens; let us make a name for ourselves, lest we be scattered abroad over the face of the whole earth."</span></div>
-<div class="v-row" data-ref="Genesis 11:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But the LORD came down to see the city and the tower which the sons of men had built.</span></div>
-<div class="v-row" data-ref="Genesis 11:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the LORD said, "Indeed the people [are] one and they all have one language, and this is what they begin to do; now nothing that they propose to do will be withheld from them.</span></div>
-<div class="v-row" data-ref="Genesis 11:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Come, let Us go down and there confuse their language, that they may not understand one another's speech."</span></div>
-<div class="v-row" data-ref="Genesis 11:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">So the LORD scattered them abroad from there over the face of all the earth, and they ceased building the city.</span></div>
-<div class="v-row" data-ref="Genesis 11:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore its name is called Babel, because there the LORD confused the language of all the earth; and from there the LORD scattered them abroad over the face of all the earth.</span></div>
-<div class="v-row" data-ref="Genesis 11:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">This [is] the genealogy of Shem: Shem [was] one hundred years old, and begot Arphaxad two years after the flood.</span></div>
-<div class="v-row" data-ref="Genesis 11:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">After he begot Arphaxad, Shem lived five hundred years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Arphaxad lived thirty-five years, and begot Salah.</span></div>
-<div class="v-row" data-ref="Genesis 11:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">After he begot Salah, Arphaxad lived four hundred and three years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Salah lived thirty years, and begot Eber.</span></div>
-<div class="v-row" data-ref="Genesis 11:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">After he begot Eber, Salah lived four hundred and three years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Eber lived thirty-four years, and begot Peleg.</span></div>
-<div class="v-row" data-ref="Genesis 11:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">After he begot Peleg, Eber lived four hundred and thirty years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Peleg lived thirty years, and begot Reu.</span></div>
-<div class="v-row" data-ref="Genesis 11:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">After he begot Reu, Peleg lived two hundred and nine years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Reu lived thirty-two years, and begot Serug.</span></div>
-<div class="v-row" data-ref="Genesis 11:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">After he begot Serug, Reu lived two hundred and seven years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Serug lived thirty years, and begot Nahor.</span></div>
-<div class="v-row" data-ref="Genesis 11:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">After he begot Nahor, Serug lived two hundred years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Nahor lived twenty-nine years, and begot Terah.</span></div>
-<div class="v-row" data-ref="Genesis 11:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">After he begot Terah, Nahor lived one hundred and nineteen years, and begot sons and daughters.</span></div>
-<div class="v-row" data-ref="Genesis 11:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Now Terah lived seventy years, and begot Abram, Nahor, and Haran.</span></div>
-<div class="v-row" data-ref="Genesis 11:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">This [is] the genealogy of Terah: Terah begot Abram, Nahor, and Haran. Haran begot Lot.</span></div>
-<div class="v-row" data-ref="Genesis 11:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And Haran died before his father Terah in his native land, in Ur of the Chaldeans.</span></div>
-<div class="v-row" data-ref="Genesis 11:29 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Then Abram and Nahor took wives: the name of Abram's wife [was] Sarai, and the name of Nahor's wife, Milcah, the daughter of Haran the father of Milcah and the father of Iscah.</span></div>
-<div class="v-row" data-ref="Genesis 11:30 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">But Sarai was barren; she had no child.</span></div>
-<div class="v-row" data-ref="Genesis 11:31 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">And Terah took his son Abram and his grandson Lot, the son of Haran, and his daughter-in-law Sarai, his son Abram's wife, and they went out with them from Ur of the Chaldeans to go to the land of Canaan; and they came to Haran and dwelt there.</span></div>
-<div class="v-row" data-ref="Genesis 11:32 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">So the days of Terah were two hundred and five years, and Terah died in Haran.</span></div>
+    <a class="v-row" href="/bible/nkjv/genesis/11/1/" data-ref="Genesis 11:1 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/1/"><span class="v-num">1</span><span class="v-txt">Now the whole earth had one language and one speech.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/2/" data-ref="Genesis 11:2 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/2/"><span class="v-num">2</span><span class="v-txt">And it came to pass, as they journeyed from the east, that they found a plain in the land of Shinar, and they dwelt there.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/3/" data-ref="Genesis 11:3 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/3/"><span class="v-num">3</span><span class="v-txt">Then they said to one another, "Come, let us make bricks and bake [them] thoroughly." They had brick for stone, and they had asphalt for mortar.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/4/" data-ref="Genesis 11:4 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/4/"><span class="v-num">4</span><span class="v-txt">And they said, "Come, let us build ourselves a city, and a tower whose top [is] in the heavens; let us make a name for ourselves, lest we be scattered abroad over the face of the whole earth."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/5/" data-ref="Genesis 11:5 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/5/"><span class="v-num">5</span><span class="v-txt">But the LORD came down to see the city and the tower which the sons of men had built.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/6/" data-ref="Genesis 11:6 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/6/"><span class="v-num">6</span><span class="v-txt">And the LORD said, "Indeed the people [are] one and they all have one language, and this is what they begin to do; now nothing that they propose to do will be withheld from them.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/7/" data-ref="Genesis 11:7 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/7/"><span class="v-num">7</span><span class="v-txt">"Come, let Us go down and there confuse their language, that they may not understand one another's speech."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/8/" data-ref="Genesis 11:8 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/8/"><span class="v-num">8</span><span class="v-txt">So the LORD scattered them abroad from there over the face of all the earth, and they ceased building the city.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/9/" data-ref="Genesis 11:9 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/9/"><span class="v-num">9</span><span class="v-txt">Therefore its name is called Babel, because there the LORD confused the language of all the earth; and from there the LORD scattered them abroad over the face of all the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/10/" data-ref="Genesis 11:10 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/10/"><span class="v-num">10</span><span class="v-txt">This [is] the genealogy of Shem: Shem [was] one hundred years old, and begot Arphaxad two years after the flood.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/11/" data-ref="Genesis 11:11 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/11/"><span class="v-num">11</span><span class="v-txt">After he begot Arphaxad, Shem lived five hundred years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/12/" data-ref="Genesis 11:12 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/12/"><span class="v-num">12</span><span class="v-txt">Arphaxad lived thirty-five years, and begot Salah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/13/" data-ref="Genesis 11:13 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/13/"><span class="v-num">13</span><span class="v-txt">After he begot Salah, Arphaxad lived four hundred and three years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/14/" data-ref="Genesis 11:14 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/14/"><span class="v-num">14</span><span class="v-txt">Salah lived thirty years, and begot Eber.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/15/" data-ref="Genesis 11:15 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/15/"><span class="v-num">15</span><span class="v-txt">After he begot Eber, Salah lived four hundred and three years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/16/" data-ref="Genesis 11:16 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/16/"><span class="v-num">16</span><span class="v-txt">Eber lived thirty-four years, and begot Peleg.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/17/" data-ref="Genesis 11:17 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/17/"><span class="v-num">17</span><span class="v-txt">After he begot Peleg, Eber lived four hundred and thirty years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/18/" data-ref="Genesis 11:18 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/18/"><span class="v-num">18</span><span class="v-txt">Peleg lived thirty years, and begot Reu.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/19/" data-ref="Genesis 11:19 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/19/"><span class="v-num">19</span><span class="v-txt">After he begot Reu, Peleg lived two hundred and nine years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/20/" data-ref="Genesis 11:20 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/20/"><span class="v-num">20</span><span class="v-txt">Reu lived thirty-two years, and begot Serug.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/21/" data-ref="Genesis 11:21 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/21/"><span class="v-num">21</span><span class="v-txt">After he begot Serug, Reu lived two hundred and seven years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/22/" data-ref="Genesis 11:22 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/22/"><span class="v-num">22</span><span class="v-txt">Serug lived thirty years, and begot Nahor.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/23/" data-ref="Genesis 11:23 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/23/"><span class="v-num">23</span><span class="v-txt">After he begot Nahor, Serug lived two hundred years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/24/" data-ref="Genesis 11:24 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/24/"><span class="v-num">24</span><span class="v-txt">Nahor lived twenty-nine years, and begot Terah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/25/" data-ref="Genesis 11:25 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/25/"><span class="v-num">25</span><span class="v-txt">After he begot Terah, Nahor lived one hundred and nineteen years, and begot sons and daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/26/" data-ref="Genesis 11:26 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/26/"><span class="v-num">26</span><span class="v-txt">Now Terah lived seventy years, and begot Abram, Nahor, and Haran.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/27/" data-ref="Genesis 11:27 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/27/"><span class="v-num">27</span><span class="v-txt">This [is] the genealogy of Terah: Terah begot Abram, Nahor, and Haran. Haran begot Lot.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/28/" data-ref="Genesis 11:28 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/28/"><span class="v-num">28</span><span class="v-txt">And Haran died before his father Terah in his native land, in Ur of the Chaldeans.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/29/" data-ref="Genesis 11:29 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/29/"><span class="v-num">29</span><span class="v-txt">Then Abram and Nahor took wives: the name of Abram's wife [was] Sarai, and the name of Nahor's wife, Milcah, the daughter of Haran the father of Milcah and the father of Iscah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/30/" data-ref="Genesis 11:30 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/30/"><span class="v-num">30</span><span class="v-txt">But Sarai was barren; she had no child.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/31/" data-ref="Genesis 11:31 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/31/"><span class="v-num">31</span><span class="v-txt">And Terah took his son Abram and his grandson Lot, the son of Haran, and his daughter-in-law Sarai, his son Abram's wife, and they went out with them from Ur of the Chaldeans to go to the land of Canaan; and they came to Haran and dwelt there.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/11/32/" data-ref="Genesis 11:32 (New King James Version)" data-verse-url="/bible/nkjv/genesis/11/32/"><span class="v-num">32</span><span class="v-txt">So the days of Terah were two hundred and five years, and Terah died in Haran.</span></a>
 
     
 <div class="app-cta">

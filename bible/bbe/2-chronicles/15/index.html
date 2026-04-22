@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 15:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the spirit of God came on Azariah, the son of Oded;</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he came face to face with Asa and said to him, Give ear to me, Asa and all Judah and Benjamin: the Lord is with you while you are with him; if your heart's desire is for him, he will be near you, but if you give him up, he will give you up.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Now for a long time Israel has been without the true God, and without a teaching priest and without the law;</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But when in their trouble they were turned to the Lord, the God of Israel, searching after him, he let their search be rewarded.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">In those times there was no peace for him who went out or for him who came in, but great trouble was on all the people of the lands.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And they were broken by divisions, nation against nation and town against town, because God sent all sorts of trouble on them.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But be you strong and let not your hands be feeble, for your work will be rewarded.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Asa, hearing these words of Azariah, the son of Oded the prophet, took heart and put away all the disgusting things out of all the land of Judah and Benjamin, and out of the towns which he had taken from the hill-country of Ephraim; and he made new again the altar of the Lord in front of the covered way of the Lord's house.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he got together all Judah and Benjamin and those of Ephraim and Manasseh and Simeon who were living with them; for numbers of them came to him out of Israel when they saw that the Lord his God was with him.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So they came together at Jerusalem in the third month, in the fifteenth year of the rule of Asa.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And that day they made offerings to the Lord of the things they had taken in war, seven hundred oxen and seven thousand sheep.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And they made an agreement to be true to the Lord, the God of their fathers, with all their heart and all their soul;</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And that anyone, small or great, man or woman, who was not true to the Lord, the God of Israel, would be put to death.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And they made an oath to the Lord, with a loud voice, sounding wind-instruments and horns.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And all Judah was glad because of the oath, for they had taken it with all their heart, turning to the Lord with all their desire; and he was with them and gave them rest on every side.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Asa would not let Maacah, his mother, be queen, because she had made a disgusting image for Asherah; and Asa had her image cut down and broken up and burned by the stream Kidron.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the high places were not taken away out of Israel; but still the heart of Asa was true to the Lord all his life.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He took into the house of God all the things which his father had made holy and those which he himself had made holy, silver and gold and vessels.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And there was no more war till the thirty-fifth year of the rule of Asa.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/15/1/" data-ref="2 Chronicles 15:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/1/"><span class="v-num">1</span><span class="v-txt">And the spirit of God came on Azariah, the son of Oded;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/2/" data-ref="2 Chronicles 15:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/2/"><span class="v-num">2</span><span class="v-txt">And he came face to face with Asa and said to him, Give ear to me, Asa and all Judah and Benjamin: the Lord is with you while you are with him; if your heart's desire is for him, he will be near you, but if you give him up, he will give you up.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/3/" data-ref="2 Chronicles 15:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/3/"><span class="v-num">3</span><span class="v-txt">Now for a long time Israel has been without the true God, and without a teaching priest and without the law;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/4/" data-ref="2 Chronicles 15:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/4/"><span class="v-num">4</span><span class="v-txt">But when in their trouble they were turned to the Lord, the God of Israel, searching after him, he let their search be rewarded.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/5/" data-ref="2 Chronicles 15:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/5/"><span class="v-num">5</span><span class="v-txt">In those times there was no peace for him who went out or for him who came in, but great trouble was on all the people of the lands.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/6/" data-ref="2 Chronicles 15:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/6/"><span class="v-num">6</span><span class="v-txt">And they were broken by divisions, nation against nation and town against town, because God sent all sorts of trouble on them.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/7/" data-ref="2 Chronicles 15:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/7/"><span class="v-num">7</span><span class="v-txt">But be you strong and let not your hands be feeble, for your work will be rewarded.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/8/" data-ref="2 Chronicles 15:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/8/"><span class="v-num">8</span><span class="v-txt">And Asa, hearing these words of Azariah, the son of Oded the prophet, took heart and put away all the disgusting things out of all the land of Judah and Benjamin, and out of the towns which he had taken from the hill-country of Ephraim; and he made new again the altar of the Lord in front of the covered way of the Lord's house.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/9/" data-ref="2 Chronicles 15:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/9/"><span class="v-num">9</span><span class="v-txt">And he got together all Judah and Benjamin and those of Ephraim and Manasseh and Simeon who were living with them; for numbers of them came to him out of Israel when they saw that the Lord his God was with him.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/10/" data-ref="2 Chronicles 15:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/10/"><span class="v-num">10</span><span class="v-txt">So they came together at Jerusalem in the third month, in the fifteenth year of the rule of Asa.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/11/" data-ref="2 Chronicles 15:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/11/"><span class="v-num">11</span><span class="v-txt">And that day they made offerings to the Lord of the things they had taken in war, seven hundred oxen and seven thousand sheep.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/12/" data-ref="2 Chronicles 15:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/12/"><span class="v-num">12</span><span class="v-txt">And they made an agreement to be true to the Lord, the God of their fathers, with all their heart and all their soul;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/13/" data-ref="2 Chronicles 15:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/13/"><span class="v-num">13</span><span class="v-txt">And that anyone, small or great, man or woman, who was not true to the Lord, the God of Israel, would be put to death.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/14/" data-ref="2 Chronicles 15:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/14/"><span class="v-num">14</span><span class="v-txt">And they made an oath to the Lord, with a loud voice, sounding wind-instruments and horns.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/15/" data-ref="2 Chronicles 15:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/15/"><span class="v-num">15</span><span class="v-txt">And all Judah was glad because of the oath, for they had taken it with all their heart, turning to the Lord with all their desire; and he was with them and gave them rest on every side.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/16/" data-ref="2 Chronicles 15:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/16/"><span class="v-num">16</span><span class="v-txt">And Asa would not let Maacah, his mother, be queen, because she had made a disgusting image for Asherah; and Asa had her image cut down and broken up and burned by the stream Kidron.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/17/" data-ref="2 Chronicles 15:17 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/17/"><span class="v-num">17</span><span class="v-txt">But the high places were not taken away out of Israel; but still the heart of Asa was true to the Lord all his life.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/18/" data-ref="2 Chronicles 15:18 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/18/"><span class="v-num">18</span><span class="v-txt">He took into the house of God all the things which his father had made holy and those which he himself had made holy, silver and gold and vessels.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/15/19/" data-ref="2 Chronicles 15:19 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/15/19/"><span class="v-num">19</span><span class="v-txt">And there was no more war till the thirty-fifth year of the rule of Asa.</span></a>
 
     
 <div class="app-cta">

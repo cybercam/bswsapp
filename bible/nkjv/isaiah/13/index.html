@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 13:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden against Babylon which Isaiah the son of Amoz saw.</span></div>
-<div class="v-row" data-ref="Isaiah 13:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Lift up a banner on the high mountain, Raise your voice to them; Wave your hand, that they may enter the gates of the nobles.</span></div>
-<div class="v-row" data-ref="Isaiah 13:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have commanded My sanctified ones; I have also called My mighty ones for My anger -- Those who rejoice in My exaltation."</span></div>
-<div class="v-row" data-ref="Isaiah 13:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The noise of a multitude in the mountains, Like that of many people! A tumultuous noise of the kingdoms of nations gathered together! The LORD of hosts musters The army for battle.</span></div>
-<div class="v-row" data-ref="Isaiah 13:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They come from a far country, From the end of heaven -- The LORD and His weapons of indignation, To destroy the whole land.</span></div>
-<div class="v-row" data-ref="Isaiah 13:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Wail, for the day of the LORD [is] at hand! It will come as destruction from the Almighty.</span></div>
-<div class="v-row" data-ref="Isaiah 13:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore all hands will be limp, Every man's heart will melt,</span></div>
-<div class="v-row" data-ref="Isaiah 13:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And they will be afraid. Pangs and sorrows will take hold of [them;] They will be in pain as a woman in childbirth; They will be amazed at one another; Their faces [will be like] flames.</span></div>
-<div class="v-row" data-ref="Isaiah 13:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Behold, the day of the LORD comes, Cruel, with both wrath and fierce anger, To lay the land desolate; And He will destroy its sinners from it.</span></div>
-<div class="v-row" data-ref="Isaiah 13:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For the stars of heaven and their constellations Will not give their light; The sun will be darkened in its going forth, And the moon will not cause its light to shine.</span></div>
-<div class="v-row" data-ref="Isaiah 13:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"I will punish the world for [its] evil, And the wicked for their iniquity; I will halt the arrogance of the proud, And will lay low the haughtiness of the terrible.</span></div>
-<div class="v-row" data-ref="Isaiah 13:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I will make a mortal more rare than fine gold, A man more than the golden wedge of Ophir.</span></div>
-<div class="v-row" data-ref="Isaiah 13:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore I will shake the heavens, And the earth will move out of her place, In the wrath of the LORD of hosts And in the day of His fierce anger.</span></div>
-<div class="v-row" data-ref="Isaiah 13:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">It shall be as the hunted gazelle, And as a sheep that no man takes up; Every man will turn to his own people, And everyone will flee to his own land.</span></div>
-<div class="v-row" data-ref="Isaiah 13:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Everyone who is found will be thrust through, And everyone who is captured will fall by the sword.</span></div>
-<div class="v-row" data-ref="Isaiah 13:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Their children also will be dashed to pieces before their eyes; Their houses will be plundered And their wives ravished.</span></div>
-<div class="v-row" data-ref="Isaiah 13:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">" Behold, I will stir up the Medes against them, Who will not regard silver; And [as for] gold, they will not delight in it.</span></div>
-<div class="v-row" data-ref="Isaiah 13:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Also [their] bows will dash the young men to pieces, And they will have no pity on the fruit of the womb; Their eye will not spare children.</span></div>
-<div class="v-row" data-ref="Isaiah 13:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And Babylon, the glory of kingdoms, The beauty of the Chaldeans' pride, Will be as when God overthrew Sodom and Gomorrah.</span></div>
-<div class="v-row" data-ref="Isaiah 13:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">It will never be inhabited, Nor will it be settled from generation to generation; Nor will the Arabian pitch tents there, Nor will the shepherds make their sheepfolds there.</span></div>
-<div class="v-row" data-ref="Isaiah 13:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But wild beasts of the desert will lie there, And their houses will be full of owls; Ostriches will dwell there, And wild goats will caper there.</span></div>
-<div class="v-row" data-ref="Isaiah 13:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The hyenas will howl in their citadels, And jackals in their pleasant palaces. Her time [is] near to come, And her days will not be prolonged."</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/13/1/" data-ref="Isaiah 13:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/1/"><span class="v-num">1</span><span class="v-txt">The burden against Babylon which Isaiah the son of Amoz saw.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/2/" data-ref="Isaiah 13:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/2/"><span class="v-num">2</span><span class="v-txt">"Lift up a banner on the high mountain, Raise your voice to them; Wave your hand, that they may enter the gates of the nobles.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/3/" data-ref="Isaiah 13:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/3/"><span class="v-num">3</span><span class="v-txt">I have commanded My sanctified ones; I have also called My mighty ones for My anger -- Those who rejoice in My exaltation."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/4/" data-ref="Isaiah 13:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/4/"><span class="v-num">4</span><span class="v-txt">The noise of a multitude in the mountains, Like that of many people! A tumultuous noise of the kingdoms of nations gathered together! The LORD of hosts musters The army for battle.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/5/" data-ref="Isaiah 13:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/5/"><span class="v-num">5</span><span class="v-txt">They come from a far country, From the end of heaven -- The LORD and His weapons of indignation, To destroy the whole land.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/6/" data-ref="Isaiah 13:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/6/"><span class="v-num">6</span><span class="v-txt">Wail, for the day of the LORD [is] at hand! It will come as destruction from the Almighty.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/7/" data-ref="Isaiah 13:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/7/"><span class="v-num">7</span><span class="v-txt">Therefore all hands will be limp, Every man's heart will melt,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/8/" data-ref="Isaiah 13:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/8/"><span class="v-num">8</span><span class="v-txt">And they will be afraid. Pangs and sorrows will take hold of [them;] They will be in pain as a woman in childbirth; They will be amazed at one another; Their faces [will be like] flames.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/9/" data-ref="Isaiah 13:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/9/"><span class="v-num">9</span><span class="v-txt">Behold, the day of the LORD comes, Cruel, with both wrath and fierce anger, To lay the land desolate; And He will destroy its sinners from it.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/10/" data-ref="Isaiah 13:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/10/"><span class="v-num">10</span><span class="v-txt">For the stars of heaven and their constellations Will not give their light; The sun will be darkened in its going forth, And the moon will not cause its light to shine.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/11/" data-ref="Isaiah 13:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/11/"><span class="v-num">11</span><span class="v-txt">"I will punish the world for [its] evil, And the wicked for their iniquity; I will halt the arrogance of the proud, And will lay low the haughtiness of the terrible.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/12/" data-ref="Isaiah 13:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/12/"><span class="v-num">12</span><span class="v-txt">I will make a mortal more rare than fine gold, A man more than the golden wedge of Ophir.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/13/" data-ref="Isaiah 13:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/13/"><span class="v-num">13</span><span class="v-txt">Therefore I will shake the heavens, And the earth will move out of her place, In the wrath of the LORD of hosts And in the day of His fierce anger.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/14/" data-ref="Isaiah 13:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/14/"><span class="v-num">14</span><span class="v-txt">It shall be as the hunted gazelle, And as a sheep that no man takes up; Every man will turn to his own people, And everyone will flee to his own land.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/15/" data-ref="Isaiah 13:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/15/"><span class="v-num">15</span><span class="v-txt">Everyone who is found will be thrust through, And everyone who is captured will fall by the sword.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/16/" data-ref="Isaiah 13:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/16/"><span class="v-num">16</span><span class="v-txt">Their children also will be dashed to pieces before their eyes; Their houses will be plundered And their wives ravished.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/17/" data-ref="Isaiah 13:17 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/17/"><span class="v-num">17</span><span class="v-txt">" Behold, I will stir up the Medes against them, Who will not regard silver; And [as for] gold, they will not delight in it.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/18/" data-ref="Isaiah 13:18 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/18/"><span class="v-num">18</span><span class="v-txt">Also [their] bows will dash the young men to pieces, And they will have no pity on the fruit of the womb; Their eye will not spare children.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/19/" data-ref="Isaiah 13:19 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/19/"><span class="v-num">19</span><span class="v-txt">And Babylon, the glory of kingdoms, The beauty of the Chaldeans' pride, Will be as when God overthrew Sodom and Gomorrah.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/20/" data-ref="Isaiah 13:20 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/20/"><span class="v-num">20</span><span class="v-txt">It will never be inhabited, Nor will it be settled from generation to generation; Nor will the Arabian pitch tents there, Nor will the shepherds make their sheepfolds there.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/21/" data-ref="Isaiah 13:21 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/21/"><span class="v-num">21</span><span class="v-txt">But wild beasts of the desert will lie there, And their houses will be full of owls; Ostriches will dwell there, And wild goats will caper there.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/13/22/" data-ref="Isaiah 13:22 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/13/22/"><span class="v-num">22</span><span class="v-txt">The hyenas will howl in their citadels, And jackals in their pleasant palaces. Her time [is] near to come, And her days will not be prolonged."</span></a>
 
     
 <div class="app-cta">

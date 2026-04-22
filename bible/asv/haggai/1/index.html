@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Haggai 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In the second year of Darius the king, in the sixth month, in the first day of the month, came the word of Jehovah by Haggai the prophet unto Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Jehozadak, the high priest, saying,</span></div>
-<div class="v-row" data-ref="Haggai 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Thus speaketh Jehovah of hosts, saying, This people say, It is not the time [for us] to come, the time for Jehovah's house to be built.</span></div>
-<div class="v-row" data-ref="Haggai 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then came the word of Jehovah by Haggai the prophet, saying,</span></div>
-<div class="v-row" data-ref="Haggai 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Is it a time for you yourselves to dwell in your ceiled houses, while this house lieth waste?</span></div>
-<div class="v-row" data-ref="Haggai 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now therefore thus saith Jehovah of hosts: Consider your ways.</span></div>
-<div class="v-row" data-ref="Haggai 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Ye have sown much, and bring in little; ye eat, but ye have not enough; ye drink, but ye are not filled with drink; ye clothe you, but there is none warm; and he that earneth wages earneth wages [to put it] into a bag with holes.</span></div>
-<div class="v-row" data-ref="Haggai 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Thus saith Jehovah of hosts: Consider your ways.</span></div>
-<div class="v-row" data-ref="Haggai 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Go up to the mountain, and bring wood, and build the house; and I will take pleasure in it, and I will be glorified, saith Jehovah.</span></div>
-<div class="v-row" data-ref="Haggai 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Ye looked for much, and, lo, it came to little; and when ye brought it home, I did blow upon it. Why? saith Jehovah of hosts. Because of my house that lieth waste, while ye run every man to his own house.</span></div>
-<div class="v-row" data-ref="Haggai 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Therefore for your sake the heavens withhold the dew, and the earth withholdeth its fruit.</span></div>
-<div class="v-row" data-ref="Haggai 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And I called for a drought upon the land, and upon the mountains, and upon the grain, and upon the new wine, and upon the oil, and upon that which the ground bringeth forth, and upon men, and upon cattle, and upon all the labor of the hands.</span></div>
-<div class="v-row" data-ref="Haggai 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then Zerubbabel the son of Shealtiel, and Joshua the son of Jehozadak, the high priest, with all the remnant of the people, obeyed the voice of Jehovah their God, and the words of Haggai the prophet, as Jehovah their God had sent him; and the people did fear before Jehovah.</span></div>
-<div class="v-row" data-ref="Haggai 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then spake Haggai Jehovah's messenger in Jehovah's message unto the people, saying, I am with you, saith Jehovah.</span></div>
-<div class="v-row" data-ref="Haggai 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Jehovah stirred up the spirit of Zerubbabel the son of Shealtiel, governor of Judah, and the spirit of Joshua the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and did work on the house of Jehovah of hosts, their God,</span></div>
-<div class="v-row" data-ref="Haggai 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">in the four and twentieth day of the month, in the sixth [month], in the second year of Darius the king.</span></div>
+    <a class="v-row" href="/bible/asv/haggai/1/1/" data-ref="Haggai 1:1 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/1/"><span class="v-num">1</span><span class="v-txt">In the second year of Darius the king, in the sixth month, in the first day of the month, came the word of Jehovah by Haggai the prophet unto Zerubbabel the son of Shealtiel, governor of Judah, and to Joshua the son of Jehozadak, the high priest, saying,</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/2/" data-ref="Haggai 1:2 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/2/"><span class="v-num">2</span><span class="v-txt">Thus speaketh Jehovah of hosts, saying, This people say, It is not the time [for us] to come, the time for Jehovah's house to be built.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/3/" data-ref="Haggai 1:3 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/3/"><span class="v-num">3</span><span class="v-txt">Then came the word of Jehovah by Haggai the prophet, saying,</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/4/" data-ref="Haggai 1:4 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/4/"><span class="v-num">4</span><span class="v-txt">Is it a time for you yourselves to dwell in your ceiled houses, while this house lieth waste?</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/5/" data-ref="Haggai 1:5 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/5/"><span class="v-num">5</span><span class="v-txt">Now therefore thus saith Jehovah of hosts: Consider your ways.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/6/" data-ref="Haggai 1:6 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/6/"><span class="v-num">6</span><span class="v-txt">Ye have sown much, and bring in little; ye eat, but ye have not enough; ye drink, but ye are not filled with drink; ye clothe you, but there is none warm; and he that earneth wages earneth wages [to put it] into a bag with holes.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/7/" data-ref="Haggai 1:7 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/7/"><span class="v-num">7</span><span class="v-txt">Thus saith Jehovah of hosts: Consider your ways.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/8/" data-ref="Haggai 1:8 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/8/"><span class="v-num">8</span><span class="v-txt">Go up to the mountain, and bring wood, and build the house; and I will take pleasure in it, and I will be glorified, saith Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/9/" data-ref="Haggai 1:9 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/9/"><span class="v-num">9</span><span class="v-txt">Ye looked for much, and, lo, it came to little; and when ye brought it home, I did blow upon it. Why? saith Jehovah of hosts. Because of my house that lieth waste, while ye run every man to his own house.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/10/" data-ref="Haggai 1:10 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/10/"><span class="v-num">10</span><span class="v-txt">Therefore for your sake the heavens withhold the dew, and the earth withholdeth its fruit.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/11/" data-ref="Haggai 1:11 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/11/"><span class="v-num">11</span><span class="v-txt">And I called for a drought upon the land, and upon the mountains, and upon the grain, and upon the new wine, and upon the oil, and upon that which the ground bringeth forth, and upon men, and upon cattle, and upon all the labor of the hands.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/12/" data-ref="Haggai 1:12 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/12/"><span class="v-num">12</span><span class="v-txt">Then Zerubbabel the son of Shealtiel, and Joshua the son of Jehozadak, the high priest, with all the remnant of the people, obeyed the voice of Jehovah their God, and the words of Haggai the prophet, as Jehovah their God had sent him; and the people did fear before Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/13/" data-ref="Haggai 1:13 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/13/"><span class="v-num">13</span><span class="v-txt">Then spake Haggai Jehovah's messenger in Jehovah's message unto the people, saying, I am with you, saith Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/14/" data-ref="Haggai 1:14 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/14/"><span class="v-num">14</span><span class="v-txt">And Jehovah stirred up the spirit of Zerubbabel the son of Shealtiel, governor of Judah, and the spirit of Joshua the son of Jehozadak, the high priest, and the spirit of all the remnant of the people; and they came and did work on the house of Jehovah of hosts, their God,</span></a>
+<a class="v-row" href="/bible/asv/haggai/1/15/" data-ref="Haggai 1:15 (American Standard Version)" data-verse-url="/bible/asv/haggai/1/15/"><span class="v-num">15</span><span class="v-txt">in the four and twentieth day of the month, in the sixth [month], in the second year of Darius the king.</span></a>
 
     
 <div class="app-cta">

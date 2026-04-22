@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Ephesians 6:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Children, obey your parents in the Lord: for this is right.</span></div>
-<div class="v-row" data-ref="Ephesians 6:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Honor thy father and mother (which is the first commandment with promise),</span></div>
-<div class="v-row" data-ref="Ephesians 6:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">that it may be well with thee, and thou mayest live long on the earth.</span></div>
-<div class="v-row" data-ref="Ephesians 6:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And, ye fathers, provoke not your children to wrath: but nurture them in the chastening and admonition of the Lord.</span></div>
-<div class="v-row" data-ref="Ephesians 6:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Servants, be obedient unto them that according to the flesh are your masters, with fear and trembling, in singleness of your heart, as unto Christ;</span></div>
-<div class="v-row" data-ref="Ephesians 6:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">not in the way of eyeservice, as men-pleasers; but as servants of Christ, doing the will of God from the heart;</span></div>
-<div class="v-row" data-ref="Ephesians 6:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">with good will doing service, as unto the Lord, and not unto men:</span></div>
-<div class="v-row" data-ref="Ephesians 6:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">knowing that whatsoever good thing each one doeth, the same shall he receive again from the Lord, whether [he be] bond or free.</span></div>
-<div class="v-row" data-ref="Ephesians 6:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And, ye masters, do the same things unto them, and forbear threatening: knowing that he who is both their Master and yours is in heaven, and there is no respect of persons with him.</span></div>
-<div class="v-row" data-ref="Ephesians 6:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Finally, be strong in the Lord, and in the strength of his might.</span></div>
-<div class="v-row" data-ref="Ephesians 6:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Put on the whole armor of God, that ye may be able to stand against the wiles of the devil.</span></div>
-<div class="v-row" data-ref="Ephesians 6:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world-rulers of this darkness, against the spiritual [hosts] of wickedness in the heavenly [places].</span></div>
-<div class="v-row" data-ref="Ephesians 6:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Wherefore take up the whole armor of God, that ye may be able to withstand in the evil day, and, having done all, to stand.</span></div>
-<div class="v-row" data-ref="Ephesians 6:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Stand therefore, having girded your loins with truth, and having put on the breastplate of righteousness,</span></div>
-<div class="v-row" data-ref="Ephesians 6:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and having shod your feet with the preparation of the gospel of peace;</span></div>
-<div class="v-row" data-ref="Ephesians 6:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">withal taking up the shield of faith, wherewith ye shall be able to quench all the fiery darts of the evil [one].</span></div>
-<div class="v-row" data-ref="Ephesians 6:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And take the helmet of salvation, and the sword of the Spirit, which is the word of God:</span></div>
-<div class="v-row" data-ref="Ephesians 6:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">with all prayer and supplication praying at all seasons in the Spirit, and watching thereunto in all perseverance and supplication for all the saints,</span></div>
-<div class="v-row" data-ref="Ephesians 6:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And on my behalf, that utterance may be given unto me in opening my mouth, to make known with boldness the mystery of the gospel,</span></div>
-<div class="v-row" data-ref="Ephesians 6:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">for which I am an ambassador in chains; that in it I may speak boldly, as I ought to speak.</span></div>
-<div class="v-row" data-ref="Ephesians 6:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But that ye also may know my affairs, how I do, Tychicus, the beloved brother and faithful minister in the Lord, shall make known to you all things:</span></div>
-<div class="v-row" data-ref="Ephesians 6:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">whom I have sent unto you for this very purpose, that ye may know our state, and that he may comfort your hearts.</span></div>
-<div class="v-row" data-ref="Ephesians 6:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Peace be to the brethren, and love with faith, from God the Father and the Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="Ephesians 6:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Grace be with all them that love our Lord Jesus Christ with [a love] incorruptible.</span></div>
+    <a class="v-row" href="/bible/asv/ephesians/6/1/" data-ref="Ephesians 6:1 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/1/"><span class="v-num">1</span><span class="v-txt">Children, obey your parents in the Lord: for this is right.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/2/" data-ref="Ephesians 6:2 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/2/"><span class="v-num">2</span><span class="v-txt">Honor thy father and mother (which is the first commandment with promise),</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/3/" data-ref="Ephesians 6:3 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/3/"><span class="v-num">3</span><span class="v-txt">that it may be well with thee, and thou mayest live long on the earth.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/4/" data-ref="Ephesians 6:4 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/4/"><span class="v-num">4</span><span class="v-txt">And, ye fathers, provoke not your children to wrath: but nurture them in the chastening and admonition of the Lord.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/5/" data-ref="Ephesians 6:5 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/5/"><span class="v-num">5</span><span class="v-txt">Servants, be obedient unto them that according to the flesh are your masters, with fear and trembling, in singleness of your heart, as unto Christ;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/6/" data-ref="Ephesians 6:6 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/6/"><span class="v-num">6</span><span class="v-txt">not in the way of eyeservice, as men-pleasers; but as servants of Christ, doing the will of God from the heart;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/7/" data-ref="Ephesians 6:7 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/7/"><span class="v-num">7</span><span class="v-txt">with good will doing service, as unto the Lord, and not unto men:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/8/" data-ref="Ephesians 6:8 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/8/"><span class="v-num">8</span><span class="v-txt">knowing that whatsoever good thing each one doeth, the same shall he receive again from the Lord, whether [he be] bond or free.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/9/" data-ref="Ephesians 6:9 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/9/"><span class="v-num">9</span><span class="v-txt">And, ye masters, do the same things unto them, and forbear threatening: knowing that he who is both their Master and yours is in heaven, and there is no respect of persons with him.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/10/" data-ref="Ephesians 6:10 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/10/"><span class="v-num">10</span><span class="v-txt">Finally, be strong in the Lord, and in the strength of his might.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/11/" data-ref="Ephesians 6:11 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/11/"><span class="v-num">11</span><span class="v-txt">Put on the whole armor of God, that ye may be able to stand against the wiles of the devil.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/12/" data-ref="Ephesians 6:12 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/12/"><span class="v-num">12</span><span class="v-txt">For our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world-rulers of this darkness, against the spiritual [hosts] of wickedness in the heavenly [places].</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/13/" data-ref="Ephesians 6:13 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/13/"><span class="v-num">13</span><span class="v-txt">Wherefore take up the whole armor of God, that ye may be able to withstand in the evil day, and, having done all, to stand.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/14/" data-ref="Ephesians 6:14 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/14/"><span class="v-num">14</span><span class="v-txt">Stand therefore, having girded your loins with truth, and having put on the breastplate of righteousness,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/15/" data-ref="Ephesians 6:15 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/15/"><span class="v-num">15</span><span class="v-txt">and having shod your feet with the preparation of the gospel of peace;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/16/" data-ref="Ephesians 6:16 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/16/"><span class="v-num">16</span><span class="v-txt">withal taking up the shield of faith, wherewith ye shall be able to quench all the fiery darts of the evil [one].</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/17/" data-ref="Ephesians 6:17 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/17/"><span class="v-num">17</span><span class="v-txt">And take the helmet of salvation, and the sword of the Spirit, which is the word of God:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/18/" data-ref="Ephesians 6:18 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/18/"><span class="v-num">18</span><span class="v-txt">with all prayer and supplication praying at all seasons in the Spirit, and watching thereunto in all perseverance and supplication for all the saints,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/19/" data-ref="Ephesians 6:19 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/19/"><span class="v-num">19</span><span class="v-txt">And on my behalf, that utterance may be given unto me in opening my mouth, to make known with boldness the mystery of the gospel,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/20/" data-ref="Ephesians 6:20 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/20/"><span class="v-num">20</span><span class="v-txt">for which I am an ambassador in chains; that in it I may speak boldly, as I ought to speak.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/21/" data-ref="Ephesians 6:21 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/21/"><span class="v-num">21</span><span class="v-txt">But that ye also may know my affairs, how I do, Tychicus, the beloved brother and faithful minister in the Lord, shall make known to you all things:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/22/" data-ref="Ephesians 6:22 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/22/"><span class="v-num">22</span><span class="v-txt">whom I have sent unto you for this very purpose, that ye may know our state, and that he may comfort your hearts.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/23/" data-ref="Ephesians 6:23 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/23/"><span class="v-num">23</span><span class="v-txt">Peace be to the brethren, and love with faith, from God the Father and the Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/6/24/" data-ref="Ephesians 6:24 (American Standard Version)" data-verse-url="/bible/asv/ephesians/6/24/"><span class="v-num">24</span><span class="v-txt">Grace be with all them that love our Lord Jesus Christ with [a love] incorruptible.</span></a>
 
     
 <div class="app-cta">

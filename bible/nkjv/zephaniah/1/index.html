@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Zephaniah 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word of the LORD which came to Zephaniah the son of Cushi, the son of Gedaliah, the son of Amariah, the son of Hezekiah, in the days of Josiah the son of Amon, king of Judah.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">" I will utterly consume everything From the face of the land," Says the LORD;</span></div>
-<div class="v-row" data-ref="Zephaniah 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"I will consume man and beast; I will consume the birds of the heavens, The fish of the sea, And the stumbling blocks along with the wicked. I will cut off man from the face of the land," Says the LORD.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"I will stretch out My hand against Judah, And against all the inhabitants of Jerusalem. I will cut off every trace of Baal from this place, The names of the idolatrous priests with the [pagan] priests --</span></div>
-<div class="v-row" data-ref="Zephaniah 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Those who worship the host of heaven on the housetops; Those who worship and swear [oaths] by the LORD, But who [also] swear by Milcom;</span></div>
-<div class="v-row" data-ref="Zephaniah 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Those who have turned back from [following] the LORD, And have not sought the LORD, nor inquired of Him."</span></div>
-<div class="v-row" data-ref="Zephaniah 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Be silent in the presence of the Lord GOD; For the day of the LORD [is] at hand, For the LORD has prepared a sacrifice; He has invited His guests.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"And it shall be, In the day of the LORD's sacrifice, That I will punish the princes and the king's children, And all such as are clothed with foreign apparel.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">In the same day I will punish All those who leap over the threshold, Who fill their masters' houses with violence and deceit.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"And there shall be on that day," says the LORD, "The sound of a mournful cry from the Fish Gate, A wailing from the Second Quarter, And a loud crashing from the hills.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Wail, you inhabitants of Maktesh! For all the merchant people are cut down; All those who handle money are cut off.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"And it shall come to pass at that time [That] I will search Jerusalem with lamps, And punish the men Who are settled in complacency, Who say in their heart, 'The LORD will not do good, Nor will He do evil.'</span></div>
-<div class="v-row" data-ref="Zephaniah 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore their goods shall become booty, And their houses a desolation; They shall build houses, but not inhabit [them;] They shall plant vineyards, but not drink their wine."</span></div>
-<div class="v-row" data-ref="Zephaniah 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The great day of the LORD [is] near; [It is] near and hastens quickly. The noise of the day of the LORD is bitter; There the mighty men shall cry out.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">That day [is] a day of wrath, A day of trouble and distress, A day of devastation and desolation, A day of darkness and gloominess, A day of clouds and thick darkness,</span></div>
-<div class="v-row" data-ref="Zephaniah 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">A day of trumpet and alarm Against the fortified cities And against the high towers.</span></div>
-<div class="v-row" data-ref="Zephaniah 1:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"I will bring distress upon men, And they shall walk like blind men, Because they have sinned against the LORD; Their blood shall be poured out like dust, And their flesh like refuse."</span></div>
-<div class="v-row" data-ref="Zephaniah 1:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Neither their silver nor their gold Shall be able to deliver them In the day of the LORD's wrath; But the whole land shall be devoured By the fire of His jealousy, For He will make speedy riddance Of all those who dwell in the land.</span></div>
+    <a class="v-row" href="/bible/nkjv/zephaniah/1/1/" data-ref="Zephaniah 1:1 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/1/"><span class="v-num">1</span><span class="v-txt">The word of the LORD which came to Zephaniah the son of Cushi, the son of Gedaliah, the son of Amariah, the son of Hezekiah, in the days of Josiah the son of Amon, king of Judah.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/2/" data-ref="Zephaniah 1:2 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/2/"><span class="v-num">2</span><span class="v-txt">" I will utterly consume everything From the face of the land," Says the LORD;</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/3/" data-ref="Zephaniah 1:3 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/3/"><span class="v-num">3</span><span class="v-txt">"I will consume man and beast; I will consume the birds of the heavens, The fish of the sea, And the stumbling blocks along with the wicked. I will cut off man from the face of the land," Says the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/4/" data-ref="Zephaniah 1:4 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/4/"><span class="v-num">4</span><span class="v-txt">"I will stretch out My hand against Judah, And against all the inhabitants of Jerusalem. I will cut off every trace of Baal from this place, The names of the idolatrous priests with the [pagan] priests --</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/5/" data-ref="Zephaniah 1:5 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/5/"><span class="v-num">5</span><span class="v-txt">Those who worship the host of heaven on the housetops; Those who worship and swear [oaths] by the LORD, But who [also] swear by Milcom;</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/6/" data-ref="Zephaniah 1:6 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/6/"><span class="v-num">6</span><span class="v-txt">Those who have turned back from [following] the LORD, And have not sought the LORD, nor inquired of Him."</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/7/" data-ref="Zephaniah 1:7 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/7/"><span class="v-num">7</span><span class="v-txt">Be silent in the presence of the Lord GOD; For the day of the LORD [is] at hand, For the LORD has prepared a sacrifice; He has invited His guests.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/8/" data-ref="Zephaniah 1:8 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/8/"><span class="v-num">8</span><span class="v-txt">"And it shall be, In the day of the LORD's sacrifice, That I will punish the princes and the king's children, And all such as are clothed with foreign apparel.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/9/" data-ref="Zephaniah 1:9 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/9/"><span class="v-num">9</span><span class="v-txt">In the same day I will punish All those who leap over the threshold, Who fill their masters' houses with violence and deceit.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/10/" data-ref="Zephaniah 1:10 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/10/"><span class="v-num">10</span><span class="v-txt">"And there shall be on that day," says the LORD, "The sound of a mournful cry from the Fish Gate, A wailing from the Second Quarter, And a loud crashing from the hills.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/11/" data-ref="Zephaniah 1:11 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/11/"><span class="v-num">11</span><span class="v-txt">Wail, you inhabitants of Maktesh! For all the merchant people are cut down; All those who handle money are cut off.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/12/" data-ref="Zephaniah 1:12 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/12/"><span class="v-num">12</span><span class="v-txt">"And it shall come to pass at that time [That] I will search Jerusalem with lamps, And punish the men Who are settled in complacency, Who say in their heart, 'The LORD will not do good, Nor will He do evil.'</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/13/" data-ref="Zephaniah 1:13 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/13/"><span class="v-num">13</span><span class="v-txt">Therefore their goods shall become booty, And their houses a desolation; They shall build houses, but not inhabit [them;] They shall plant vineyards, but not drink their wine."</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/14/" data-ref="Zephaniah 1:14 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/14/"><span class="v-num">14</span><span class="v-txt">The great day of the LORD [is] near; [It is] near and hastens quickly. The noise of the day of the LORD is bitter; There the mighty men shall cry out.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/15/" data-ref="Zephaniah 1:15 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/15/"><span class="v-num">15</span><span class="v-txt">That day [is] a day of wrath, A day of trouble and distress, A day of devastation and desolation, A day of darkness and gloominess, A day of clouds and thick darkness,</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/16/" data-ref="Zephaniah 1:16 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/16/"><span class="v-num">16</span><span class="v-txt">A day of trumpet and alarm Against the fortified cities And against the high towers.</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/17/" data-ref="Zephaniah 1:17 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/17/"><span class="v-num">17</span><span class="v-txt">"I will bring distress upon men, And they shall walk like blind men, Because they have sinned against the LORD; Their blood shall be poured out like dust, And their flesh like refuse."</span></a>
+<a class="v-row" href="/bible/nkjv/zephaniah/1/18/" data-ref="Zephaniah 1:18 (New King James Version)" data-verse-url="/bible/nkjv/zephaniah/1/18/"><span class="v-num">18</span><span class="v-txt">Neither their silver nor their gold Shall be able to deliver them In the day of the LORD's wrath; But the whole land shall be devoured By the fire of His jealousy, For He will make speedy riddance Of all those who dwell in the land.</span></a>
 
     
 <div class="app-cta">

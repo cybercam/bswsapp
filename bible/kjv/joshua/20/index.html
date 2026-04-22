@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,15 +204,15 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 20:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The LORD also spake unto Joshua, saying,</span></div>
-<div class="v-row" data-ref="Joshua 20:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Speak to the children of Israel, saying, Appoint out for you cities of refuge, whereof I spake unto you by the hand of Moses:</span></div>
-<div class="v-row" data-ref="Joshua 20:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">That the slayer that killeth any person unawares and unwittingly may flee thither: and they shall be your refuge from the avenger of blood.</span></div>
-<div class="v-row" data-ref="Joshua 20:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And when he that doth flee unto one of those cities shall stand at the entering of the gate of the city, and shall declare his cause in the ears of the elders of that city, they shall take him into the city unto them, and give him a place, that he may dwell among them.</span></div>
-<div class="v-row" data-ref="Joshua 20:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And if the avenger of blood pursue after him, then they shall not deliver the slayer up into his hand; because he smote his neighbour unwittingly, and hated him not beforetime.</span></div>
-<div class="v-row" data-ref="Joshua 20:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he shall dwell in that city, until he stand before the congregation for judgment, and until the death of the high priest that shall be in those days: then shall the slayer return, and come unto his own city, and unto his own house, unto the city from whence he fled.</span></div>
-<div class="v-row" data-ref="Joshua 20:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And they appointed Kedesh in Galilee in mount Naphtali, and Shechem in mount Ephraim, and Kirjatharba, which is Hebron, in the mountain of Judah.</span></div>
-<div class="v-row" data-ref="Joshua 20:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And on the other side Jordan by Jericho eastward, they assigned Bezer in the wilderness upon the plain out of the tribe of Reuben, and Ramoth in Gilead out of the tribe of Gad, and Golan in Bashan out of the tribe of Manasseh.</span></div>
-<div class="v-row" data-ref="Joshua 20:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">These were the cities appointed for all the children of Israel, and for the stranger that sojourneth among them, that whosoever killeth any person at unawares might flee thither, and not die by the hand of the avenger of blood, until he stood before the congregation.</span></div>
+    <a class="v-row" href="/bible/kjv/joshua/20/1/" data-ref="Joshua 20:1 (King James Version)" data-verse-url="/bible/kjv/joshua/20/1/"><span class="v-num">1</span><span class="v-txt">The LORD also spake unto Joshua, saying,</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/2/" data-ref="Joshua 20:2 (King James Version)" data-verse-url="/bible/kjv/joshua/20/2/"><span class="v-num">2</span><span class="v-txt">Speak to the children of Israel, saying, Appoint out for you cities of refuge, whereof I spake unto you by the hand of Moses:</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/3/" data-ref="Joshua 20:3 (King James Version)" data-verse-url="/bible/kjv/joshua/20/3/"><span class="v-num">3</span><span class="v-txt">That the slayer that killeth any person unawares and unwittingly may flee thither: and they shall be your refuge from the avenger of blood.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/4/" data-ref="Joshua 20:4 (King James Version)" data-verse-url="/bible/kjv/joshua/20/4/"><span class="v-num">4</span><span class="v-txt">And when he that doth flee unto one of those cities shall stand at the entering of the gate of the city, and shall declare his cause in the ears of the elders of that city, they shall take him into the city unto them, and give him a place, that he may dwell among them.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/5/" data-ref="Joshua 20:5 (King James Version)" data-verse-url="/bible/kjv/joshua/20/5/"><span class="v-num">5</span><span class="v-txt">And if the avenger of blood pursue after him, then they shall not deliver the slayer up into his hand; because he smote his neighbour unwittingly, and hated him not beforetime.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/6/" data-ref="Joshua 20:6 (King James Version)" data-verse-url="/bible/kjv/joshua/20/6/"><span class="v-num">6</span><span class="v-txt">And he shall dwell in that city, until he stand before the congregation for judgment, and until the death of the high priest that shall be in those days: then shall the slayer return, and come unto his own city, and unto his own house, unto the city from whence he fled.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/7/" data-ref="Joshua 20:7 (King James Version)" data-verse-url="/bible/kjv/joshua/20/7/"><span class="v-num">7</span><span class="v-txt">And they appointed Kedesh in Galilee in mount Naphtali, and Shechem in mount Ephraim, and Kirjatharba, which is Hebron, in the mountain of Judah.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/8/" data-ref="Joshua 20:8 (King James Version)" data-verse-url="/bible/kjv/joshua/20/8/"><span class="v-num">8</span><span class="v-txt">And on the other side Jordan by Jericho eastward, they assigned Bezer in the wilderness upon the plain out of the tribe of Reuben, and Ramoth in Gilead out of the tribe of Gad, and Golan in Bashan out of the tribe of Manasseh.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/20/9/" data-ref="Joshua 20:9 (King James Version)" data-verse-url="/bible/kjv/joshua/20/9/"><span class="v-num">9</span><span class="v-txt">These were the cities appointed for all the children of Israel, and for the stranger that sojourneth among them, that whosoever killeth any person at unawares might flee thither, and not die by the hand of the avenger of blood, until he stood before the congregation.</span></a>
 
     
 <div class="app-cta">

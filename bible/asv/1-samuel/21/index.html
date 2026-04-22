@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 21</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 21:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then came David to Nob to Ahimelech the priest: and Ahimelech came to meet David trembling, and said unto him, Why art thou alone, and no man with thee?</span></div>
-<div class="v-row" data-ref="1 Samuel 21:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And David said unto Ahimelech the priest, The king hath commanded me a business, and hath said unto me, Let no man know anything of the business whereabout I send thee, and what I have commanded thee: and I have appointed the young men to such and such a place.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Now therefore what is under thy hand? give me five loaves of bread in my hand, or whatsoever there is present.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the priest answered David, and said, There is no common bread under my hand, but there is holy bread; if only the young men have kept themselves from women.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And David answered the priest, and said unto him, Of a truth women have been kept from us about these three days; when I came out, the vessels of the young men were holy, though it was but a common journey; how much more then to-day shall their vessels be holy?</span></div>
-<div class="v-row" data-ref="1 Samuel 21:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So the priest gave him holy [bread]; for there was no bread there but the showbread, that was taken from before Jehovah, to put hot bread in the day when it was taken away.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now a certain man of the servants of Saul was there that day, detained before Jehovah; and his name was Doeg the Edomite, the chiefest of the herdsmen that belonged to Saul.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And David said unto Ahimelech, And is there not here under thy hand spear or sword? for I have neither brought my sword nor my weapons with me, because the king's business required haste.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the priest said, The sword of Goliath the Philistine, whom thou slewest in the vale of Elah, behold, it is here wrapped in a cloth behind the ephod: if thou wilt take that, take it; for there is no other save that here. And David said, There is none like that; give it me.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And David arose, and fled that day for fear of Saul, and went to Achish the king of Gath.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the servants of Achish said unto him, Is not this David the king of the land? did they not sing one to another of him in dances, saying, Saul hath slain his thousands, And David his ten thousands?</span></div>
-<div class="v-row" data-ref="1 Samuel 21:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And David laid up these words in his heart, and was sore afraid of Achish the king of Gath.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And he changed his behavior before them, and feigned himself mad in their hands, and scrabbled on the doors of the gate, and let his spittle fall down upon his beard.</span></div>
-<div class="v-row" data-ref="1 Samuel 21:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then said Achish unto his servants, Lo, ye see the man is mad; wherefore then have ye brought him to me?</span></div>
-<div class="v-row" data-ref="1 Samuel 21:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Do I lack madmen, that ye have brought this fellow to play the madman in my presence? shall this fellow come into my house?</span></div>
+    <a class="v-row" href="/bible/asv/1-samuel/21/1/" data-ref="1 Samuel 21:1 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/1/"><span class="v-num">1</span><span class="v-txt">Then came David to Nob to Ahimelech the priest: and Ahimelech came to meet David trembling, and said unto him, Why art thou alone, and no man with thee?</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/2/" data-ref="1 Samuel 21:2 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/2/"><span class="v-num">2</span><span class="v-txt">And David said unto Ahimelech the priest, The king hath commanded me a business, and hath said unto me, Let no man know anything of the business whereabout I send thee, and what I have commanded thee: and I have appointed the young men to such and such a place.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/3/" data-ref="1 Samuel 21:3 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/3/"><span class="v-num">3</span><span class="v-txt">Now therefore what is under thy hand? give me five loaves of bread in my hand, or whatsoever there is present.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/4/" data-ref="1 Samuel 21:4 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/4/"><span class="v-num">4</span><span class="v-txt">And the priest answered David, and said, There is no common bread under my hand, but there is holy bread; if only the young men have kept themselves from women.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/5/" data-ref="1 Samuel 21:5 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/5/"><span class="v-num">5</span><span class="v-txt">And David answered the priest, and said unto him, Of a truth women have been kept from us about these three days; when I came out, the vessels of the young men were holy, though it was but a common journey; how much more then to-day shall their vessels be holy?</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/6/" data-ref="1 Samuel 21:6 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/6/"><span class="v-num">6</span><span class="v-txt">So the priest gave him holy [bread]; for there was no bread there but the showbread, that was taken from before Jehovah, to put hot bread in the day when it was taken away.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/7/" data-ref="1 Samuel 21:7 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/7/"><span class="v-num">7</span><span class="v-txt">Now a certain man of the servants of Saul was there that day, detained before Jehovah; and his name was Doeg the Edomite, the chiefest of the herdsmen that belonged to Saul.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/8/" data-ref="1 Samuel 21:8 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/8/"><span class="v-num">8</span><span class="v-txt">And David said unto Ahimelech, And is there not here under thy hand spear or sword? for I have neither brought my sword nor my weapons with me, because the king's business required haste.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/9/" data-ref="1 Samuel 21:9 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/9/"><span class="v-num">9</span><span class="v-txt">And the priest said, The sword of Goliath the Philistine, whom thou slewest in the vale of Elah, behold, it is here wrapped in a cloth behind the ephod: if thou wilt take that, take it; for there is no other save that here. And David said, There is none like that; give it me.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/10/" data-ref="1 Samuel 21:10 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/10/"><span class="v-num">10</span><span class="v-txt">And David arose, and fled that day for fear of Saul, and went to Achish the king of Gath.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/11/" data-ref="1 Samuel 21:11 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/11/"><span class="v-num">11</span><span class="v-txt">And the servants of Achish said unto him, Is not this David the king of the land? did they not sing one to another of him in dances, saying, Saul hath slain his thousands, And David his ten thousands?</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/12/" data-ref="1 Samuel 21:12 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/12/"><span class="v-num">12</span><span class="v-txt">And David laid up these words in his heart, and was sore afraid of Achish the king of Gath.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/13/" data-ref="1 Samuel 21:13 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/13/"><span class="v-num">13</span><span class="v-txt">And he changed his behavior before them, and feigned himself mad in their hands, and scrabbled on the doors of the gate, and let his spittle fall down upon his beard.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/14/" data-ref="1 Samuel 21:14 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/14/"><span class="v-num">14</span><span class="v-txt">Then said Achish unto his servants, Lo, ye see the man is mad; wherefore then have ye brought him to me?</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/21/15/" data-ref="1 Samuel 21:15 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/21/15/"><span class="v-num">15</span><span class="v-txt">Do I lack madmen, that ye have brought this fellow to play the madman in my presence? shall this fellow come into my house?</span></a>
 
     
 <div class="app-cta">

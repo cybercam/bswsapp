@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 24</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 24:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the LORD spake unto Moses, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 24:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Command the children of Israel, that they bring unto thee pure oil olive beaten for the light, to cause the lamps to burn continually.</span></div>
-<div class="v-row" data-ref="Leviticus 24:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Without the vail of the testimony, in the tabernacle of the congregation, shall Aaron order it from the evening unto the morning before the LORD continually: it shall be a statute for ever in your generations.</span></div>
-<div class="v-row" data-ref="Leviticus 24:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He shall order the lamps upon the pure candlestick before the LORD continually.</span></div>
-<div class="v-row" data-ref="Leviticus 24:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And thou shalt take fine flour, and bake twelve cakes thereof: two tenth deals shall be in one cake.</span></div>
-<div class="v-row" data-ref="Leviticus 24:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And thou shalt set them in two rows, six on a row, upon the pure table before the LORD.</span></div>
-<div class="v-row" data-ref="Leviticus 24:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And thou shalt put pure frankincense upon each row, that it may be on the bread for a memorial, even an offering made by fire unto the LORD.</span></div>
-<div class="v-row" data-ref="Leviticus 24:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Every sabbath he shall set it in order before the LORD continually, being taken from the children of Israel by an everlasting covenant.</span></div>
-<div class="v-row" data-ref="Leviticus 24:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And it shall be Aaron's and his sons'; and they shall eat it in the holy place: for it is most holy unto him of the offerings of the LORD made by fire by a perpetual statute.</span></div>
-<div class="v-row" data-ref="Leviticus 24:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the son of an Israelitish woman, whose father was an Egyptian, went out among the children of Israel: and this son of the Israelitish woman and a man of Israel strove together in the camp;</span></div>
-<div class="v-row" data-ref="Leviticus 24:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the Israelitish woman's son blasphemed the name of the LORD, and cursed. And they brought him unto Moses: (and his mother's name was Shelomith, the daughter of Dibri, of the tribe of Dan:)</span></div>
-<div class="v-row" data-ref="Leviticus 24:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And they put him in ward, that the mind of the LORD might be shewed them.</span></div>
-<div class="v-row" data-ref="Leviticus 24:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the LORD spake unto Moses, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 24:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Bring forth him that hath cursed without the camp; and let all that heard him lay their hands upon his head, and let all the congregation stone him.</span></div>
-<div class="v-row" data-ref="Leviticus 24:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And thou shalt speak unto the children of Israel, saying, Whosoever curseth his God shall bear his sin.</span></div>
-<div class="v-row" data-ref="Leviticus 24:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he that blasphemeth the name of the LORD, he shall surely be put to death, and all the congregation shall certainly stone him: as well the stranger, as he that is born in the land, when he blasphemeth the name of the LORD, shall be put to death.</span></div>
-<div class="v-row" data-ref="Leviticus 24:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And he that killeth any man shall surely be put to death.</span></div>
-<div class="v-row" data-ref="Leviticus 24:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And he that killeth a beast shall make it good; beast for beast.</span></div>
-<div class="v-row" data-ref="Leviticus 24:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And if a man cause a blemish in his neighbour; as he hath done, so shall it be done to him;</span></div>
-<div class="v-row" data-ref="Leviticus 24:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Breach for breach, eye for eye, tooth for tooth: as he hath caused a blemish in a man, so shall it be done to him again.</span></div>
-<div class="v-row" data-ref="Leviticus 24:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And he that killeth a beast, he shall restore it: and he that killeth a man, he shall be put to death.</span></div>
-<div class="v-row" data-ref="Leviticus 24:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Ye shall have one manner of law, as well for the stranger, as for one of your own country: for I am the LORD your God.</span></div>
-<div class="v-row" data-ref="Leviticus 24:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And Moses spake to the children of Israel, that they should bring forth him that had cursed out of the camp, and stone him with stones. And the children of Israel did as the LORD commanded Moses.</span></div>
+    <a class="v-row" href="/bible/kjv/leviticus/24/1/" data-ref="Leviticus 24:1 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/1/"><span class="v-num">1</span><span class="v-txt">And the LORD spake unto Moses, saying,</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/2/" data-ref="Leviticus 24:2 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/2/"><span class="v-num">2</span><span class="v-txt">Command the children of Israel, that they bring unto thee pure oil olive beaten for the light, to cause the lamps to burn continually.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/3/" data-ref="Leviticus 24:3 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/3/"><span class="v-num">3</span><span class="v-txt">Without the vail of the testimony, in the tabernacle of the congregation, shall Aaron order it from the evening unto the morning before the LORD continually: it shall be a statute for ever in your generations.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/4/" data-ref="Leviticus 24:4 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/4/"><span class="v-num">4</span><span class="v-txt">He shall order the lamps upon the pure candlestick before the LORD continually.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/5/" data-ref="Leviticus 24:5 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/5/"><span class="v-num">5</span><span class="v-txt">And thou shalt take fine flour, and bake twelve cakes thereof: two tenth deals shall be in one cake.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/6/" data-ref="Leviticus 24:6 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/6/"><span class="v-num">6</span><span class="v-txt">And thou shalt set them in two rows, six on a row, upon the pure table before the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/7/" data-ref="Leviticus 24:7 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/7/"><span class="v-num">7</span><span class="v-txt">And thou shalt put pure frankincense upon each row, that it may be on the bread for a memorial, even an offering made by fire unto the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/8/" data-ref="Leviticus 24:8 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/8/"><span class="v-num">8</span><span class="v-txt">Every sabbath he shall set it in order before the LORD continually, being taken from the children of Israel by an everlasting covenant.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/9/" data-ref="Leviticus 24:9 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/9/"><span class="v-num">9</span><span class="v-txt">And it shall be Aaron's and his sons'; and they shall eat it in the holy place: for it is most holy unto him of the offerings of the LORD made by fire by a perpetual statute.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/10/" data-ref="Leviticus 24:10 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/10/"><span class="v-num">10</span><span class="v-txt">And the son of an Israelitish woman, whose father was an Egyptian, went out among the children of Israel: and this son of the Israelitish woman and a man of Israel strove together in the camp;</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/11/" data-ref="Leviticus 24:11 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/11/"><span class="v-num">11</span><span class="v-txt">And the Israelitish woman's son blasphemed the name of the LORD, and cursed. And they brought him unto Moses: (and his mother's name was Shelomith, the daughter of Dibri, of the tribe of Dan:)</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/12/" data-ref="Leviticus 24:12 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/12/"><span class="v-num">12</span><span class="v-txt">And they put him in ward, that the mind of the LORD might be shewed them.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/13/" data-ref="Leviticus 24:13 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/13/"><span class="v-num">13</span><span class="v-txt">And the LORD spake unto Moses, saying,</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/14/" data-ref="Leviticus 24:14 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/14/"><span class="v-num">14</span><span class="v-txt">Bring forth him that hath cursed without the camp; and let all that heard him lay their hands upon his head, and let all the congregation stone him.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/15/" data-ref="Leviticus 24:15 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/15/"><span class="v-num">15</span><span class="v-txt">And thou shalt speak unto the children of Israel, saying, Whosoever curseth his God shall bear his sin.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/16/" data-ref="Leviticus 24:16 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/16/"><span class="v-num">16</span><span class="v-txt">And he that blasphemeth the name of the LORD, he shall surely be put to death, and all the congregation shall certainly stone him: as well the stranger, as he that is born in the land, when he blasphemeth the name of the LORD, shall be put to death.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/17/" data-ref="Leviticus 24:17 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/17/"><span class="v-num">17</span><span class="v-txt">And he that killeth any man shall surely be put to death.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/18/" data-ref="Leviticus 24:18 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/18/"><span class="v-num">18</span><span class="v-txt">And he that killeth a beast shall make it good; beast for beast.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/19/" data-ref="Leviticus 24:19 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/19/"><span class="v-num">19</span><span class="v-txt">And if a man cause a blemish in his neighbour; as he hath done, so shall it be done to him;</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/20/" data-ref="Leviticus 24:20 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/20/"><span class="v-num">20</span><span class="v-txt">Breach for breach, eye for eye, tooth for tooth: as he hath caused a blemish in a man, so shall it be done to him again.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/21/" data-ref="Leviticus 24:21 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/21/"><span class="v-num">21</span><span class="v-txt">And he that killeth a beast, he shall restore it: and he that killeth a man, he shall be put to death.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/22/" data-ref="Leviticus 24:22 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/22/"><span class="v-num">22</span><span class="v-txt">Ye shall have one manner of law, as well for the stranger, as for one of your own country: for I am the LORD your God.</span></a>
+<a class="v-row" href="/bible/kjv/leviticus/24/23/" data-ref="Leviticus 24:23 (King James Version)" data-verse-url="/bible/kjv/leviticus/24/23/"><span class="v-num">23</span><span class="v-txt">And Moses spake to the children of Israel, that they should bring forth him that had cursed out of the camp, and stone him with stones. And the children of Israel did as the LORD commanded Moses.</span></a>
 
     
 <div class="app-cta">

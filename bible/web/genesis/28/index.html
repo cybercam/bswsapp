@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 28:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Isaac called Jacob, blessed him, and commanded him, "You shall not take a wife of the daughters of Canaan.</span></div>
-<div class="v-row" data-ref="Genesis 28:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Arise, go to Paddan Aram, to the house of Bethuel your mother's father. Take a wife from there from the daughters of Laban, your mother's brother.</span></div>
-<div class="v-row" data-ref="Genesis 28:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">May God Almighty bless you, and make you fruitful, and multiply you, that you may be a company of peoples,</span></div>
-<div class="v-row" data-ref="Genesis 28:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">and give you the blessing of Abraham, to you, and to your seed with you, that you may inherit the land where you travel, which God gave to Abraham."</span></div>
-<div class="v-row" data-ref="Genesis 28:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Isaac sent Jacob away. He went to Paddan Aram to Laban, son of Bethuel the Syrian, Rebekah's brother, Jacob's and Esau's mother.</span></div>
-<div class="v-row" data-ref="Genesis 28:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now Esau saw that Isaac had blessed Jacob and sent him away to Paddan Aram, to take him a wife from there, and that as he blessed him he gave him a charge, saying, "You shall not take a wife of the daughters of Canaan,"</span></div>
-<div class="v-row" data-ref="Genesis 28:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">and that Jacob obeyed his father and his mother, and was gone to Paddan Aram.</span></div>
-<div class="v-row" data-ref="Genesis 28:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Esau saw that the daughters of Canaan didn't please Isaac, his father.</span></div>
-<div class="v-row" data-ref="Genesis 28:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Esau went to Ishmael, and took, besides the wives that he had, Mahalath the daughter of Ishmael, Abraham's son, the sister of Nebaioth, to be his wife.</span></div>
-<div class="v-row" data-ref="Genesis 28:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Jacob went out from Beersheba, and went toward Haran.</span></div>
-<div class="v-row" data-ref="Genesis 28:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He came to a certain place, and stayed there all night, because the sun had set. He took one of the stones of the place, and put it under his head, and lay down in that place to sleep.</span></div>
-<div class="v-row" data-ref="Genesis 28:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He dreamed. Behold, a stairway set up on the earth, and the top of it reached to heaven. Behold, the angels of God ascending and descending on it.</span></div>
-<div class="v-row" data-ref="Genesis 28:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Behold, Yahweh stood above it, and said, "I am Yahweh, the God of Abraham your father, and the God of Isaac. The land whereon you lie, to you will I give it, and to your seed.</span></div>
-<div class="v-row" data-ref="Genesis 28:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Your seed will be as the dust of the earth, and you will spread abroad to the west, and to the east, and to the north, and to the south. In you and in your seed will all the families of the earth be blessed.</span></div>
-<div class="v-row" data-ref="Genesis 28:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Behold, I am with you, and will keep you, wherever you go, and will bring you again into this land. For I will not leave you, until I have done that which I have spoken of to you."</span></div>
-<div class="v-row" data-ref="Genesis 28:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Jacob awakened out of his sleep, and he said, "Surely Yahweh is in this place, and I didn't know it."</span></div>
-<div class="v-row" data-ref="Genesis 28:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He was afraid, and said, "How dreadful is this place! This is none other than God's house, and this is the gate of heaven."</span></div>
-<div class="v-row" data-ref="Genesis 28:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Jacob rose up early in the morning, and took the stone that he had put under his head, and set it up for a pillar, and poured oil on the top of it.</span></div>
-<div class="v-row" data-ref="Genesis 28:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He called the name of that place Bethel, but the name of the city was Luz at the first.</span></div>
-<div class="v-row" data-ref="Genesis 28:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Jacob vowed a vow, saying, "If God will be with me, and will keep me in this way that I go, and will give me bread to eat, and clothing to put on,</span></div>
-<div class="v-row" data-ref="Genesis 28:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">so that I come again to my father's house in peace, and Yahweh will be my God,</span></div>
-<div class="v-row" data-ref="Genesis 28:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">then this stone, which I have set up for a pillar, will be God's house. Of all that you will give me I will surely give the tenth to you."</span></div>
+    <a class="v-row" href="/bible/web/genesis/28/1/" data-ref="Genesis 28:1 (World English Bible)" data-verse-url="/bible/web/genesis/28/1/"><span class="v-num">1</span><span class="v-txt">Isaac called Jacob, blessed him, and commanded him, "You shall not take a wife of the daughters of Canaan.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/2/" data-ref="Genesis 28:2 (World English Bible)" data-verse-url="/bible/web/genesis/28/2/"><span class="v-num">2</span><span class="v-txt">Arise, go to Paddan Aram, to the house of Bethuel your mother's father. Take a wife from there from the daughters of Laban, your mother's brother.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/3/" data-ref="Genesis 28:3 (World English Bible)" data-verse-url="/bible/web/genesis/28/3/"><span class="v-num">3</span><span class="v-txt">May God Almighty bless you, and make you fruitful, and multiply you, that you may be a company of peoples,</span></a>
+<a class="v-row" href="/bible/web/genesis/28/4/" data-ref="Genesis 28:4 (World English Bible)" data-verse-url="/bible/web/genesis/28/4/"><span class="v-num">4</span><span class="v-txt">and give you the blessing of Abraham, to you, and to your seed with you, that you may inherit the land where you travel, which God gave to Abraham."</span></a>
+<a class="v-row" href="/bible/web/genesis/28/5/" data-ref="Genesis 28:5 (World English Bible)" data-verse-url="/bible/web/genesis/28/5/"><span class="v-num">5</span><span class="v-txt">Isaac sent Jacob away. He went to Paddan Aram to Laban, son of Bethuel the Syrian, Rebekah's brother, Jacob's and Esau's mother.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/6/" data-ref="Genesis 28:6 (World English Bible)" data-verse-url="/bible/web/genesis/28/6/"><span class="v-num">6</span><span class="v-txt">Now Esau saw that Isaac had blessed Jacob and sent him away to Paddan Aram, to take him a wife from there, and that as he blessed him he gave him a charge, saying, "You shall not take a wife of the daughters of Canaan,"</span></a>
+<a class="v-row" href="/bible/web/genesis/28/7/" data-ref="Genesis 28:7 (World English Bible)" data-verse-url="/bible/web/genesis/28/7/"><span class="v-num">7</span><span class="v-txt">and that Jacob obeyed his father and his mother, and was gone to Paddan Aram.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/8/" data-ref="Genesis 28:8 (World English Bible)" data-verse-url="/bible/web/genesis/28/8/"><span class="v-num">8</span><span class="v-txt">Esau saw that the daughters of Canaan didn't please Isaac, his father.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/9/" data-ref="Genesis 28:9 (World English Bible)" data-verse-url="/bible/web/genesis/28/9/"><span class="v-num">9</span><span class="v-txt">Esau went to Ishmael, and took, besides the wives that he had, Mahalath the daughter of Ishmael, Abraham's son, the sister of Nebaioth, to be his wife.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/10/" data-ref="Genesis 28:10 (World English Bible)" data-verse-url="/bible/web/genesis/28/10/"><span class="v-num">10</span><span class="v-txt">Jacob went out from Beersheba, and went toward Haran.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/11/" data-ref="Genesis 28:11 (World English Bible)" data-verse-url="/bible/web/genesis/28/11/"><span class="v-num">11</span><span class="v-txt">He came to a certain place, and stayed there all night, because the sun had set. He took one of the stones of the place, and put it under his head, and lay down in that place to sleep.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/12/" data-ref="Genesis 28:12 (World English Bible)" data-verse-url="/bible/web/genesis/28/12/"><span class="v-num">12</span><span class="v-txt">He dreamed. Behold, a stairway set up on the earth, and the top of it reached to heaven. Behold, the angels of God ascending and descending on it.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/13/" data-ref="Genesis 28:13 (World English Bible)" data-verse-url="/bible/web/genesis/28/13/"><span class="v-num">13</span><span class="v-txt">Behold, Yahweh stood above it, and said, "I am Yahweh, the God of Abraham your father, and the God of Isaac. The land whereon you lie, to you will I give it, and to your seed.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/14/" data-ref="Genesis 28:14 (World English Bible)" data-verse-url="/bible/web/genesis/28/14/"><span class="v-num">14</span><span class="v-txt">Your seed will be as the dust of the earth, and you will spread abroad to the west, and to the east, and to the north, and to the south. In you and in your seed will all the families of the earth be blessed.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/15/" data-ref="Genesis 28:15 (World English Bible)" data-verse-url="/bible/web/genesis/28/15/"><span class="v-num">15</span><span class="v-txt">Behold, I am with you, and will keep you, wherever you go, and will bring you again into this land. For I will not leave you, until I have done that which I have spoken of to you."</span></a>
+<a class="v-row" href="/bible/web/genesis/28/16/" data-ref="Genesis 28:16 (World English Bible)" data-verse-url="/bible/web/genesis/28/16/"><span class="v-num">16</span><span class="v-txt">Jacob awakened out of his sleep, and he said, "Surely Yahweh is in this place, and I didn't know it."</span></a>
+<a class="v-row" href="/bible/web/genesis/28/17/" data-ref="Genesis 28:17 (World English Bible)" data-verse-url="/bible/web/genesis/28/17/"><span class="v-num">17</span><span class="v-txt">He was afraid, and said, "How dreadful is this place! This is none other than God's house, and this is the gate of heaven."</span></a>
+<a class="v-row" href="/bible/web/genesis/28/18/" data-ref="Genesis 28:18 (World English Bible)" data-verse-url="/bible/web/genesis/28/18/"><span class="v-num">18</span><span class="v-txt">Jacob rose up early in the morning, and took the stone that he had put under his head, and set it up for a pillar, and poured oil on the top of it.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/19/" data-ref="Genesis 28:19 (World English Bible)" data-verse-url="/bible/web/genesis/28/19/"><span class="v-num">19</span><span class="v-txt">He called the name of that place Bethel, but the name of the city was Luz at the first.</span></a>
+<a class="v-row" href="/bible/web/genesis/28/20/" data-ref="Genesis 28:20 (World English Bible)" data-verse-url="/bible/web/genesis/28/20/"><span class="v-num">20</span><span class="v-txt">Jacob vowed a vow, saying, "If God will be with me, and will keep me in this way that I go, and will give me bread to eat, and clothing to put on,</span></a>
+<a class="v-row" href="/bible/web/genesis/28/21/" data-ref="Genesis 28:21 (World English Bible)" data-verse-url="/bible/web/genesis/28/21/"><span class="v-num">21</span><span class="v-txt">so that I come again to my father's house in peace, and Yahweh will be my God,</span></a>
+<a class="v-row" href="/bible/web/genesis/28/22/" data-ref="Genesis 28:22 (World English Bible)" data-verse-url="/bible/web/genesis/28/22/"><span class="v-num">22</span><span class="v-txt">then this stone, which I have set up for a pillar, will be God's house. Of all that you will give me I will surely give the tenth to you."</span></a>
 
     
 <div class="app-cta">

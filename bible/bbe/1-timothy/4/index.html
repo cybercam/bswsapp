@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">But the Spirit says clearly that in later times some will be turned away from the faith, giving their minds to spirits of deceit, and the teachings of evil spirits,</span></div>
-<div class="v-row" data-ref="1 Timothy 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Through the false ways of men whose words are untrue, whose hearts are burned as with a heated iron;</span></div>
-<div class="v-row" data-ref="1 Timothy 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Who keep men from being married and from taking food which God made to be taken with praise by those who have faith and true knowledge.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Because everything which God has made is good, and nothing is evil, if it is taken with praise:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For it is made holy by the word of God and by prayer.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If you keep these things before the minds of the brothers, you will be a good servant of Christ Jesus, trained in the words of the faith and of the right teaching which has been your guide:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But have nothing to do with unclean and foolish stories. Give yourself training in religion:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the training of the body is of profit for a little, but religion is of profit in every way, giving hope for the life which now is, and for that which is to come.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">This is a true saying, in which all may put their faith.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And this is the purpose of all our work and our fighting, because our hope is in the living God, who is the Saviour of all men, and specially of those who have faith.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let these be your orders and your teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let no one make little of you because you are young, but be an example to the church in word, in behaviour, in love, in faith, in holy living.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Till I come, give attention to the reading of the holy Writings, to comforting the saints, and to teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Make use of that grace in you, which was given to you by the word of the prophets, when the rulers of the church put their hands on you.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Have a care for these things; give yourself to them with all your heart, so that all may see how you go forward.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Give attention to yourself and your teaching. Go on in these things; for in doing so you will get salvation for yourself and for those who give hearing to you.</span></div>
+    <a class="v-row" href="/bible/bbe/1-timothy/4/1/" data-ref="1 Timothy 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/1/"><span class="v-num">1</span><span class="v-txt">But the Spirit says clearly that in later times some will be turned away from the faith, giving their minds to spirits of deceit, and the teachings of evil spirits,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/2/" data-ref="1 Timothy 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/2/"><span class="v-num">2</span><span class="v-txt">Through the false ways of men whose words are untrue, whose hearts are burned as with a heated iron;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/3/" data-ref="1 Timothy 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/3/"><span class="v-num">3</span><span class="v-txt">Who keep men from being married and from taking food which God made to be taken with praise by those who have faith and true knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/4/" data-ref="1 Timothy 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/4/"><span class="v-num">4</span><span class="v-txt">Because everything which God has made is good, and nothing is evil, if it is taken with praise:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/5/" data-ref="1 Timothy 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/5/"><span class="v-num">5</span><span class="v-txt">For it is made holy by the word of God and by prayer.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/6/" data-ref="1 Timothy 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/6/"><span class="v-num">6</span><span class="v-txt">If you keep these things before the minds of the brothers, you will be a good servant of Christ Jesus, trained in the words of the faith and of the right teaching which has been your guide:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/7/" data-ref="1 Timothy 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/7/"><span class="v-num">7</span><span class="v-txt">But have nothing to do with unclean and foolish stories. Give yourself training in religion:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/8/" data-ref="1 Timothy 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/8/"><span class="v-num">8</span><span class="v-txt">For the training of the body is of profit for a little, but religion is of profit in every way, giving hope for the life which now is, and for that which is to come.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/9/" data-ref="1 Timothy 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/9/"><span class="v-num">9</span><span class="v-txt">This is a true saying, in which all may put their faith.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/10/" data-ref="1 Timothy 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/10/"><span class="v-num">10</span><span class="v-txt">And this is the purpose of all our work and our fighting, because our hope is in the living God, who is the Saviour of all men, and specially of those who have faith.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/11/" data-ref="1 Timothy 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/11/"><span class="v-num">11</span><span class="v-txt">Let these be your orders and your teaching.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/12/" data-ref="1 Timothy 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/12/"><span class="v-num">12</span><span class="v-txt">Let no one make little of you because you are young, but be an example to the church in word, in behaviour, in love, in faith, in holy living.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/13/" data-ref="1 Timothy 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/13/"><span class="v-num">13</span><span class="v-txt">Till I come, give attention to the reading of the holy Writings, to comforting the saints, and to teaching.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/14/" data-ref="1 Timothy 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/14/"><span class="v-num">14</span><span class="v-txt">Make use of that grace in you, which was given to you by the word of the prophets, when the rulers of the church put their hands on you.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/15/" data-ref="1 Timothy 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/15/"><span class="v-num">15</span><span class="v-txt">Have a care for these things; give yourself to them with all your heart, so that all may see how you go forward.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/4/16/" data-ref="1 Timothy 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/4/16/"><span class="v-num">16</span><span class="v-txt">Give attention to yourself and your teaching. Go on in these things; for in doing so you will get salvation for yourself and for those who give hearing to you.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear this, O ye priests, and hearken, O house of Israel, and give ear, O house of the king; for unto you pertaineth the judgment; for ye have been a snare at Mizpah, and a net spread upon Tabor.</span></div>
-<div class="v-row" data-ref="Hosea 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the revolters are gone deep in making slaughter; but I am a rebuker of them all.</span></div>
-<div class="v-row" data-ref="Hosea 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I know Ephraim, and Israel is not hid from me; for now, O Ephraim, thou hast played the harlot, Israel is defiled.</span></div>
-<div class="v-row" data-ref="Hosea 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Their doings will not suffer them to turn unto their God; for the spirit of whoredom is within them, and they know not Jehovah.</span></div>
-<div class="v-row" data-ref="Hosea 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the pride of Israel doth testify to his face: therefore Israel and Ephraim shall stumble in their iniquity; Judah also shall stumble with them.</span></div>
-<div class="v-row" data-ref="Hosea 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They shall go with their flocks and with their herds to seek Jehovah; but they shall not find him: he hath withdrawn himself from them.</span></div>
-<div class="v-row" data-ref="Hosea 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They have dealt treacherously against Jehovah; for they have borne strange children: now shall the new moon devour them with their fields.</span></div>
-<div class="v-row" data-ref="Hosea 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Blow ye the cornet in Gibeah, and the trumpet in Ramah: sound an alarm at Beth-aven; behind thee, O Benjamin.</span></div>
-<div class="v-row" data-ref="Hosea 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Ephraim shall become a desolation in the day of rebuke: among the tribes of Israel have I made known that which shall surely be.</span></div>
-<div class="v-row" data-ref="Hosea 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The princes of Judah are like them that remove the landmark: I will pour out my wrath upon them like water.</span></div>
-<div class="v-row" data-ref="Hosea 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Ephraim is oppressed, he is crushed in judgment; because he was content to walk after [man's] command.</span></div>
-<div class="v-row" data-ref="Hosea 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore am I unto Ephraim as a moth, and to the house of Judah as rottenness.</span></div>
-<div class="v-row" data-ref="Hosea 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When Ephraim saw his sickness, and Judah [saw] his wound, then went Ephraim to Assyria, and sent to king Jareb: but he is not able to heal you, neither will he cure you of your wound.</span></div>
-<div class="v-row" data-ref="Hosea 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For I will be unto Ephraim as a lion, and as a young lion to the house of Judah: I, even I, will tear and go away; I will carry off, and there shall be none to deliver.</span></div>
-<div class="v-row" data-ref="Hosea 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I will go and return to my place, till they acknowledge their offence, and seek my face: in their affliction they will seek me earnestly.</span></div>
+    <a class="v-row" href="/bible/asv/hosea/5/1/" data-ref="Hosea 5:1 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/1/"><span class="v-num">1</span><span class="v-txt">Hear this, O ye priests, and hearken, O house of Israel, and give ear, O house of the king; for unto you pertaineth the judgment; for ye have been a snare at Mizpah, and a net spread upon Tabor.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/2/" data-ref="Hosea 5:2 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/2/"><span class="v-num">2</span><span class="v-txt">And the revolters are gone deep in making slaughter; but I am a rebuker of them all.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/3/" data-ref="Hosea 5:3 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/3/"><span class="v-num">3</span><span class="v-txt">I know Ephraim, and Israel is not hid from me; for now, O Ephraim, thou hast played the harlot, Israel is defiled.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/4/" data-ref="Hosea 5:4 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/4/"><span class="v-num">4</span><span class="v-txt">Their doings will not suffer them to turn unto their God; for the spirit of whoredom is within them, and they know not Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/5/" data-ref="Hosea 5:5 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/5/"><span class="v-num">5</span><span class="v-txt">And the pride of Israel doth testify to his face: therefore Israel and Ephraim shall stumble in their iniquity; Judah also shall stumble with them.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/6/" data-ref="Hosea 5:6 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/6/"><span class="v-num">6</span><span class="v-txt">They shall go with their flocks and with their herds to seek Jehovah; but they shall not find him: he hath withdrawn himself from them.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/7/" data-ref="Hosea 5:7 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/7/"><span class="v-num">7</span><span class="v-txt">They have dealt treacherously against Jehovah; for they have borne strange children: now shall the new moon devour them with their fields.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/8/" data-ref="Hosea 5:8 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/8/"><span class="v-num">8</span><span class="v-txt">Blow ye the cornet in Gibeah, and the trumpet in Ramah: sound an alarm at Beth-aven; behind thee, O Benjamin.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/9/" data-ref="Hosea 5:9 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/9/"><span class="v-num">9</span><span class="v-txt">Ephraim shall become a desolation in the day of rebuke: among the tribes of Israel have I made known that which shall surely be.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/10/" data-ref="Hosea 5:10 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/10/"><span class="v-num">10</span><span class="v-txt">The princes of Judah are like them that remove the landmark: I will pour out my wrath upon them like water.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/11/" data-ref="Hosea 5:11 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/11/"><span class="v-num">11</span><span class="v-txt">Ephraim is oppressed, he is crushed in judgment; because he was content to walk after [man's] command.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/12/" data-ref="Hosea 5:12 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/12/"><span class="v-num">12</span><span class="v-txt">Therefore am I unto Ephraim as a moth, and to the house of Judah as rottenness.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/13/" data-ref="Hosea 5:13 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/13/"><span class="v-num">13</span><span class="v-txt">When Ephraim saw his sickness, and Judah [saw] his wound, then went Ephraim to Assyria, and sent to king Jareb: but he is not able to heal you, neither will he cure you of your wound.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/14/" data-ref="Hosea 5:14 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/14/"><span class="v-num">14</span><span class="v-txt">For I will be unto Ephraim as a lion, and as a young lion to the house of Judah: I, even I, will tear and go away; I will carry off, and there shall be none to deliver.</span></a>
+<a class="v-row" href="/bible/asv/hosea/5/15/" data-ref="Hosea 5:15 (American Standard Version)" data-verse-url="/bible/asv/hosea/5/15/"><span class="v-num">15</span><span class="v-txt">I will go and return to my place, till they acknowledge their offence, and seek my face: in their affliction they will seek me earnestly.</span></a>
 
     
 <div class="app-cta">

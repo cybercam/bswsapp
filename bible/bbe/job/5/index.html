@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Give now a cry for help; is there anyone who will give you an answer? and to which of the holy ones will you make your prayer?</span></div>
-<div class="v-row" data-ref="Job 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For wrath is the cause of death to the foolish, and he who has no wisdom comes to his end through passion.</span></div>
-<div class="v-row" data-ref="Job 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root, but suddenly the curse came on his house.</span></div>
-<div class="v-row" data-ref="Job 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now his children have no safe place, and they are crushed before the judges, for no one takes up their cause.</span></div>
-<div class="v-row" data-ref="Job 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Their produce is taken by him who has no food, and their grain goes to the poor, and he who is in need of water gets it from their spring.</span></div>
-<div class="v-row" data-ref="Job 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For evil does not come out of the dust, or trouble out of the earth;</span></div>
-<div class="v-row" data-ref="Job 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But trouble is man's fate from birth, as the flames go up from the fire.</span></div>
-<div class="v-row" data-ref="Job 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But as for me, I would make my prayer to God, and I would put my cause before him:</span></div>
-<div class="v-row" data-ref="Job 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Who does great things outside our knowledge, wonders without number:</span></div>
-<div class="v-row" data-ref="Job 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who gives rain on the earth, and sends water on the fields:</span></div>
-<div class="v-row" data-ref="Job 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Lifting up those who are low, and putting the sad in a safe place;</span></div>
-<div class="v-row" data-ref="Job 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who makes the designs of the wise go wrong, so that they are unable to give effect to their purposes.</span></div>
-<div class="v-row" data-ref="Job 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He takes the wise in their secret designs, and the purposes of the twisted are cut off suddenly.</span></div>
-<div class="v-row" data-ref="Job 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">In the daytime it becomes dark for them, and in the sunlight they go feeling about as if it was night.</span></div>
-<div class="v-row" data-ref="Job 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But he keeps safe from their sword those who have no father, and the poor from the power of the strong.</span></div>
-<div class="v-row" data-ref="Job 5:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">So the poor man has hope, and the mouth of the evil-doer is stopped.</span></div>
-<div class="v-row" data-ref="Job 5:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Truly, that man is happy who has training from the hand of God: so do not let your heart be shut to the teaching of the Ruler of all.</span></div>
-<div class="v-row" data-ref="Job 5:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For after his punishment he gives comfort, and after wounding, his hands make you well.</span></div>
-<div class="v-row" data-ref="Job 5:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He will keep you safe from six troubles, and in seven no evil will come near you.</span></div>
-<div class="v-row" data-ref="Job 5:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">When there is need of food he will keep you from death, and in war from the power of the sword.</span></div>
-<div class="v-row" data-ref="Job 5:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He will keep you safe from the evil tongue; and you will have no fear of wasting when it comes.</span></div>
-<div class="v-row" data-ref="Job 5:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">You will make sport of destruction and need, and will have no fear of the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For you will be in agreement with the stones of the earth, and the beasts of the field will be at peace with you.</span></div>
-<div class="v-row" data-ref="Job 5:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And you will be certain that your tent is at peace, and after looking over your property you will see that nothing is gone.</span></div>
-<div class="v-row" data-ref="Job 5:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">You will be certain that your seed will be great, and your offspring like the plants of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">You will come to your last resting-place in full strength, as the grain is taken up to the crushing-floor in its time.</span></div>
-<div class="v-row" data-ref="Job 5:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">See, we have made search with care, and it is so; it has come to our ears; see that you take note of it for yourself.</span></div>
+    <a class="v-row" href="/bible/bbe/job/5/1/" data-ref="Job 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/1/"><span class="v-num">1</span><span class="v-txt">Give now a cry for help; is there anyone who will give you an answer? and to which of the holy ones will you make your prayer?</span></a>
+<a class="v-row" href="/bible/bbe/job/5/2/" data-ref="Job 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/2/"><span class="v-num">2</span><span class="v-txt">For wrath is the cause of death to the foolish, and he who has no wisdom comes to his end through passion.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/3/" data-ref="Job 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/3/"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root, but suddenly the curse came on his house.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/4/" data-ref="Job 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/4/"><span class="v-num">4</span><span class="v-txt">Now his children have no safe place, and they are crushed before the judges, for no one takes up their cause.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/5/" data-ref="Job 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/5/"><span class="v-num">5</span><span class="v-txt">Their produce is taken by him who has no food, and their grain goes to the poor, and he who is in need of water gets it from their spring.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/6/" data-ref="Job 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/6/"><span class="v-num">6</span><span class="v-txt">For evil does not come out of the dust, or trouble out of the earth;</span></a>
+<a class="v-row" href="/bible/bbe/job/5/7/" data-ref="Job 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/7/"><span class="v-num">7</span><span class="v-txt">But trouble is man's fate from birth, as the flames go up from the fire.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/8/" data-ref="Job 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/8/"><span class="v-num">8</span><span class="v-txt">But as for me, I would make my prayer to God, and I would put my cause before him:</span></a>
+<a class="v-row" href="/bible/bbe/job/5/9/" data-ref="Job 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/9/"><span class="v-num">9</span><span class="v-txt">Who does great things outside our knowledge, wonders without number:</span></a>
+<a class="v-row" href="/bible/bbe/job/5/10/" data-ref="Job 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/10/"><span class="v-num">10</span><span class="v-txt">Who gives rain on the earth, and sends water on the fields:</span></a>
+<a class="v-row" href="/bible/bbe/job/5/11/" data-ref="Job 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/11/"><span class="v-num">11</span><span class="v-txt">Lifting up those who are low, and putting the sad in a safe place;</span></a>
+<a class="v-row" href="/bible/bbe/job/5/12/" data-ref="Job 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/12/"><span class="v-num">12</span><span class="v-txt">Who makes the designs of the wise go wrong, so that they are unable to give effect to their purposes.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/13/" data-ref="Job 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/13/"><span class="v-num">13</span><span class="v-txt">He takes the wise in their secret designs, and the purposes of the twisted are cut off suddenly.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/14/" data-ref="Job 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/14/"><span class="v-num">14</span><span class="v-txt">In the daytime it becomes dark for them, and in the sunlight they go feeling about as if it was night.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/15/" data-ref="Job 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/15/"><span class="v-num">15</span><span class="v-txt">But he keeps safe from their sword those who have no father, and the poor from the power of the strong.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/16/" data-ref="Job 5:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/16/"><span class="v-num">16</span><span class="v-txt">So the poor man has hope, and the mouth of the evil-doer is stopped.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/17/" data-ref="Job 5:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/17/"><span class="v-num">17</span><span class="v-txt">Truly, that man is happy who has training from the hand of God: so do not let your heart be shut to the teaching of the Ruler of all.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/18/" data-ref="Job 5:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/18/"><span class="v-num">18</span><span class="v-txt">For after his punishment he gives comfort, and after wounding, his hands make you well.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/19/" data-ref="Job 5:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/19/"><span class="v-num">19</span><span class="v-txt">He will keep you safe from six troubles, and in seven no evil will come near you.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/20/" data-ref="Job 5:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/20/"><span class="v-num">20</span><span class="v-txt">When there is need of food he will keep you from death, and in war from the power of the sword.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/21/" data-ref="Job 5:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/21/"><span class="v-num">21</span><span class="v-txt">He will keep you safe from the evil tongue; and you will have no fear of wasting when it comes.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/22/" data-ref="Job 5:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/22/"><span class="v-num">22</span><span class="v-txt">You will make sport of destruction and need, and will have no fear of the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/23/" data-ref="Job 5:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/23/"><span class="v-num">23</span><span class="v-txt">For you will be in agreement with the stones of the earth, and the beasts of the field will be at peace with you.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/24/" data-ref="Job 5:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/24/"><span class="v-num">24</span><span class="v-txt">And you will be certain that your tent is at peace, and after looking over your property you will see that nothing is gone.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/25/" data-ref="Job 5:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/25/"><span class="v-num">25</span><span class="v-txt">You will be certain that your seed will be great, and your offspring like the plants of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/26/" data-ref="Job 5:26 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/26/"><span class="v-num">26</span><span class="v-txt">You will come to your last resting-place in full strength, as the grain is taken up to the crushing-floor in its time.</span></a>
+<a class="v-row" href="/bible/bbe/job/5/27/" data-ref="Job 5:27 (Bible in Basic English)" data-verse-url="/bible/bbe/job/5/27/"><span class="v-num">27</span><span class="v-txt">See, we have made search with care, and it is so; it has come to our ears; see that you take note of it for yourself.</span></a>
 
     
 <div class="app-cta">

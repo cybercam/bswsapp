@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 13:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Abram went up out of Egypt: he, his wife, all that he had, and Lot with him, into the South.</span></div>
-<div class="v-row" data-ref="Genesis 13:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Abram was very rich in cattle, in silver, and in gold.</span></div>
-<div class="v-row" data-ref="Genesis 13:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He went on his journeys from the South even to Bethel, to the place where his tent had been at the beginning, between Bethel and Ai,</span></div>
-<div class="v-row" data-ref="Genesis 13:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">to the place of the altar, which he had made there at the first. There Abram called on the name of Yahweh.</span></div>
-<div class="v-row" data-ref="Genesis 13:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Lot also, who went with Abram, had flocks, and herds, and tents.</span></div>
-<div class="v-row" data-ref="Genesis 13:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The land was not able to bear them, that they might live together: for their substance was great, so that they could not live together.</span></div>
-<div class="v-row" data-ref="Genesis 13:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">There was a strife between the herdsmen of Abram's cattle and the herdsmen of Lot's cattle: and the Canaanite and the Perizzite lived then in the land.</span></div>
-<div class="v-row" data-ref="Genesis 13:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Abram said to Lot, "Please, let there be no strife between me and you, and between my herdsmen and your herdsmen; for we are relatives.</span></div>
-<div class="v-row" data-ref="Genesis 13:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Isn't the whole land before you? Please separate yourself from me. If you go to the left hand, then I will go to the right. Or if you go to the right hand, then I will go to the left."</span></div>
-<div class="v-row" data-ref="Genesis 13:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Lot lifted up his eyes, and saw all the plain of the Jordan, that it was well watered every where, before Yahweh destroyed Sodom and Gomorrah, like the garden of Yahweh, like the land of Egypt, as you go to Zoar.</span></div>
-<div class="v-row" data-ref="Genesis 13:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So Lot chose the Plain of the Jordan for himself. Lot traveled east, and they separated themselves the one from the other.</span></div>
-<div class="v-row" data-ref="Genesis 13:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Abram lived in the land of Canaan, and Lot lived in the cities of the plain, and moved his tent as far as Sodom.</span></div>
-<div class="v-row" data-ref="Genesis 13:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Now the men of Sodom were exceedingly wicked and sinners against Yahweh.</span></div>
-<div class="v-row" data-ref="Genesis 13:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yahweh said to Abram, after Lot was separated from him, "Now, lift up your eyes, and look from the place where you are, northward and southward and eastward and westward,</span></div>
-<div class="v-row" data-ref="Genesis 13:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">for all the land which you see, I will give to you, and to your offspring forever.</span></div>
-<div class="v-row" data-ref="Genesis 13:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I will make your offspring as the dust of the earth, so that if a man can number the dust of the earth, then your seed may also be numbered.</span></div>
-<div class="v-row" data-ref="Genesis 13:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Arise, walk through the land in the length of it and in the breadth of it; for I will give it to you."</span></div>
-<div class="v-row" data-ref="Genesis 13:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Abram moved his tent, and came and lived by the oaks of Mamre, which are in Hebron, and built an altar there to Yahweh.</span></div>
+    <a class="v-row" href="/bible/web/genesis/13/1/" data-ref="Genesis 13:1 (World English Bible)" data-verse-url="/bible/web/genesis/13/1/"><span class="v-num">1</span><span class="v-txt">Abram went up out of Egypt: he, his wife, all that he had, and Lot with him, into the South.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/2/" data-ref="Genesis 13:2 (World English Bible)" data-verse-url="/bible/web/genesis/13/2/"><span class="v-num">2</span><span class="v-txt">Abram was very rich in cattle, in silver, and in gold.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/3/" data-ref="Genesis 13:3 (World English Bible)" data-verse-url="/bible/web/genesis/13/3/"><span class="v-num">3</span><span class="v-txt">He went on his journeys from the South even to Bethel, to the place where his tent had been at the beginning, between Bethel and Ai,</span></a>
+<a class="v-row" href="/bible/web/genesis/13/4/" data-ref="Genesis 13:4 (World English Bible)" data-verse-url="/bible/web/genesis/13/4/"><span class="v-num">4</span><span class="v-txt">to the place of the altar, which he had made there at the first. There Abram called on the name of Yahweh.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/5/" data-ref="Genesis 13:5 (World English Bible)" data-verse-url="/bible/web/genesis/13/5/"><span class="v-num">5</span><span class="v-txt">Lot also, who went with Abram, had flocks, and herds, and tents.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/6/" data-ref="Genesis 13:6 (World English Bible)" data-verse-url="/bible/web/genesis/13/6/"><span class="v-num">6</span><span class="v-txt">The land was not able to bear them, that they might live together: for their substance was great, so that they could not live together.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/7/" data-ref="Genesis 13:7 (World English Bible)" data-verse-url="/bible/web/genesis/13/7/"><span class="v-num">7</span><span class="v-txt">There was a strife between the herdsmen of Abram's cattle and the herdsmen of Lot's cattle: and the Canaanite and the Perizzite lived then in the land.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/8/" data-ref="Genesis 13:8 (World English Bible)" data-verse-url="/bible/web/genesis/13/8/"><span class="v-num">8</span><span class="v-txt">Abram said to Lot, "Please, let there be no strife between me and you, and between my herdsmen and your herdsmen; for we are relatives.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/9/" data-ref="Genesis 13:9 (World English Bible)" data-verse-url="/bible/web/genesis/13/9/"><span class="v-num">9</span><span class="v-txt">Isn't the whole land before you? Please separate yourself from me. If you go to the left hand, then I will go to the right. Or if you go to the right hand, then I will go to the left."</span></a>
+<a class="v-row" href="/bible/web/genesis/13/10/" data-ref="Genesis 13:10 (World English Bible)" data-verse-url="/bible/web/genesis/13/10/"><span class="v-num">10</span><span class="v-txt">Lot lifted up his eyes, and saw all the plain of the Jordan, that it was well watered every where, before Yahweh destroyed Sodom and Gomorrah, like the garden of Yahweh, like the land of Egypt, as you go to Zoar.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/11/" data-ref="Genesis 13:11 (World English Bible)" data-verse-url="/bible/web/genesis/13/11/"><span class="v-num">11</span><span class="v-txt">So Lot chose the Plain of the Jordan for himself. Lot traveled east, and they separated themselves the one from the other.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/12/" data-ref="Genesis 13:12 (World English Bible)" data-verse-url="/bible/web/genesis/13/12/"><span class="v-num">12</span><span class="v-txt">Abram lived in the land of Canaan, and Lot lived in the cities of the plain, and moved his tent as far as Sodom.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/13/" data-ref="Genesis 13:13 (World English Bible)" data-verse-url="/bible/web/genesis/13/13/"><span class="v-num">13</span><span class="v-txt">Now the men of Sodom were exceedingly wicked and sinners against Yahweh.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/14/" data-ref="Genesis 13:14 (World English Bible)" data-verse-url="/bible/web/genesis/13/14/"><span class="v-num">14</span><span class="v-txt">Yahweh said to Abram, after Lot was separated from him, "Now, lift up your eyes, and look from the place where you are, northward and southward and eastward and westward,</span></a>
+<a class="v-row" href="/bible/web/genesis/13/15/" data-ref="Genesis 13:15 (World English Bible)" data-verse-url="/bible/web/genesis/13/15/"><span class="v-num">15</span><span class="v-txt">for all the land which you see, I will give to you, and to your offspring forever.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/16/" data-ref="Genesis 13:16 (World English Bible)" data-verse-url="/bible/web/genesis/13/16/"><span class="v-num">16</span><span class="v-txt">I will make your offspring as the dust of the earth, so that if a man can number the dust of the earth, then your seed may also be numbered.</span></a>
+<a class="v-row" href="/bible/web/genesis/13/17/" data-ref="Genesis 13:17 (World English Bible)" data-verse-url="/bible/web/genesis/13/17/"><span class="v-num">17</span><span class="v-txt">Arise, walk through the land in the length of it and in the breadth of it; for I will give it to you."</span></a>
+<a class="v-row" href="/bible/web/genesis/13/18/" data-ref="Genesis 13:18 (World English Bible)" data-verse-url="/bible/web/genesis/13/18/"><span class="v-num">18</span><span class="v-txt">Abram moved his tent, and came and lived by the oaks of Mamre, which are in Hebron, and built an altar there to Yahweh.</span></a>
 
     
 <div class="app-cta">

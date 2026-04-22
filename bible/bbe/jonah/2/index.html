@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Jonah 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Jonah made prayer to the Lord his God from the inside of the fish, and said,</span></div>
-<div class="v-row" data-ref="Jonah 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In my trouble I was crying to the Lord, and he gave me an answer; out of the deepest underworld I sent up a cry, and you gave ear to my voice.</span></div>
-<div class="v-row" data-ref="Jonah 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For you have put me down into the deep, into the heart of the sea; and the river was round about me; all your waves and your rolling waters went over me.</span></div>
-<div class="v-row" data-ref="Jonah 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I said, I have been sent away from before your eyes; how may I ever again see your holy Temple?</span></div>
-<div class="v-row" data-ref="Jonah 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The waters were circling round me, even to the neck; the deep was about me; the sea-grass was twisted round my head.</span></div>
-<div class="v-row" data-ref="Jonah 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I went down to the bases of the mountains; as for the earth, her walls were about me for ever: but you have taken up my life from the underworld, O Lord my God.</span></div>
-<div class="v-row" data-ref="Jonah 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">When my soul in me was overcome, I kept the memory of the Lord: and my prayer came in to you, into your holy Temple.</span></div>
-<div class="v-row" data-ref="Jonah 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The worshippers of false gods have given up their only hope.</span></div>
-<div class="v-row" data-ref="Jonah 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But I will make an offering to you with the voice of praise; I will give effect to my oaths. Salvation is the Lord's.</span></div>
-<div class="v-row" data-ref="Jonah 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And at the Lord's order, the fish sent Jonah out of its mouth on to the dry land.</span></div>
+    <a class="v-row" href="/bible/bbe/jonah/2/1/" data-ref="Jonah 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/1/"><span class="v-num">1</span><span class="v-txt">Then Jonah made prayer to the Lord his God from the inside of the fish, and said,</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/2/" data-ref="Jonah 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/2/"><span class="v-num">2</span><span class="v-txt">In my trouble I was crying to the Lord, and he gave me an answer; out of the deepest underworld I sent up a cry, and you gave ear to my voice.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/3/" data-ref="Jonah 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/3/"><span class="v-num">3</span><span class="v-txt">For you have put me down into the deep, into the heart of the sea; and the river was round about me; all your waves and your rolling waters went over me.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/4/" data-ref="Jonah 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/4/"><span class="v-num">4</span><span class="v-txt">And I said, I have been sent away from before your eyes; how may I ever again see your holy Temple?</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/5/" data-ref="Jonah 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/5/"><span class="v-num">5</span><span class="v-txt">The waters were circling round me, even to the neck; the deep was about me; the sea-grass was twisted round my head.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/6/" data-ref="Jonah 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/6/"><span class="v-num">6</span><span class="v-txt">I went down to the bases of the mountains; as for the earth, her walls were about me for ever: but you have taken up my life from the underworld, O Lord my God.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/7/" data-ref="Jonah 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/7/"><span class="v-num">7</span><span class="v-txt">When my soul in me was overcome, I kept the memory of the Lord: and my prayer came in to you, into your holy Temple.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/8/" data-ref="Jonah 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/8/"><span class="v-num">8</span><span class="v-txt">The worshippers of false gods have given up their only hope.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/9/" data-ref="Jonah 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/9/"><span class="v-num">9</span><span class="v-txt">But I will make an offering to you with the voice of praise; I will give effect to my oaths. Salvation is the Lord's.</span></a>
+<a class="v-row" href="/bible/bbe/jonah/2/10/" data-ref="Jonah 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/jonah/2/10/"><span class="v-num">10</span><span class="v-txt">And at the Lord's order, the fish sent Jonah out of its mouth on to the dry land.</span></a>
 
     
 <div class="app-cta">

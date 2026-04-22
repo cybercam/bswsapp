@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Samuel 9:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And David said, Is there still anyone of Saul's family living, so that I may be a friend to him, because of Jonathan?</span></div>
-<div class="v-row" data-ref="2 Samuel 9:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Now there was of Saul's people a servant named Ziba, and they sent him to David; and the king said to him, Are you Ziba? And he said, I am.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the king said, Is there anyone of Saul's family still living, to whom I may be a friend in God's name? And Ziba said, There is a son of Jonathan, whose feet are damaged.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the king said to him, Where is he? And Ziba said to the king, He is in the house of Machir, the son of Ammiel, in Lo-debar.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then King David sent, and had him taken from Lo-debar, from the house of Machir, the son of Ammiel.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Mephibosheth, the son of Jonathan, came to David, and falling down on his face, gave him honour. And David said, Mephibosheth. And answering he said, Your servant is here.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And David said to him, Have no fear: for truly I will be good to you, because of your father Jonathan, and I will give back to you all the land which was Saul's; and you will have a place at my table at all times.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he went down on his face before the king, and said, What is your servant, for you to take note of a dead dog such as I am?</span></div>
-<div class="v-row" data-ref="2 Samuel 9:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then the king sent for Ziba, Saul's servant, and said to him, All the property of Saul and of his family I have given to your master's son.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And you and your sons and your servants are to take care of the land for him, and get in the fruit of it, so that your master's son may have food: but Mephibosheth, your master's son, will have a place at my table at all times. Now Ziba had fifteen sons and twenty servants.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then Ziba said to the king, Every order which you have given to your servant will be done. As for Mephibosheth, he had a place at David's table, like one of the king's sons.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Mephibosheth had a young son named Mica. And all the people living in the house of Ziba were servants to Mephibosheth.</span></div>
-<div class="v-row" data-ref="2 Samuel 9:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So Mephibosheth went on living in Jerusalem; for he took all his meals at the king's table; and he had not the use of his feet.</span></div>
+    <a class="v-row" href="/bible/bbe/2-samuel/9/1/" data-ref="2 Samuel 9:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/1/"><span class="v-num">1</span><span class="v-txt">And David said, Is there still anyone of Saul's family living, so that I may be a friend to him, because of Jonathan?</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/2/" data-ref="2 Samuel 9:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/2/"><span class="v-num">2</span><span class="v-txt">Now there was of Saul's people a servant named Ziba, and they sent him to David; and the king said to him, Are you Ziba? And he said, I am.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/3/" data-ref="2 Samuel 9:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/3/"><span class="v-num">3</span><span class="v-txt">And the king said, Is there anyone of Saul's family still living, to whom I may be a friend in God's name? And Ziba said, There is a son of Jonathan, whose feet are damaged.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/4/" data-ref="2 Samuel 9:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/4/"><span class="v-num">4</span><span class="v-txt">And the king said to him, Where is he? And Ziba said to the king, He is in the house of Machir, the son of Ammiel, in Lo-debar.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/5/" data-ref="2 Samuel 9:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/5/"><span class="v-num">5</span><span class="v-txt">Then King David sent, and had him taken from Lo-debar, from the house of Machir, the son of Ammiel.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/6/" data-ref="2 Samuel 9:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/6/"><span class="v-num">6</span><span class="v-txt">And Mephibosheth, the son of Jonathan, came to David, and falling down on his face, gave him honour. And David said, Mephibosheth. And answering he said, Your servant is here.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/7/" data-ref="2 Samuel 9:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/7/"><span class="v-num">7</span><span class="v-txt">And David said to him, Have no fear: for truly I will be good to you, because of your father Jonathan, and I will give back to you all the land which was Saul's; and you will have a place at my table at all times.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/8/" data-ref="2 Samuel 9:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/8/"><span class="v-num">8</span><span class="v-txt">And he went down on his face before the king, and said, What is your servant, for you to take note of a dead dog such as I am?</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/9/" data-ref="2 Samuel 9:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/9/"><span class="v-num">9</span><span class="v-txt">Then the king sent for Ziba, Saul's servant, and said to him, All the property of Saul and of his family I have given to your master's son.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/10/" data-ref="2 Samuel 9:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/10/"><span class="v-num">10</span><span class="v-txt">And you and your sons and your servants are to take care of the land for him, and get in the fruit of it, so that your master's son may have food: but Mephibosheth, your master's son, will have a place at my table at all times. Now Ziba had fifteen sons and twenty servants.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/11/" data-ref="2 Samuel 9:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/11/"><span class="v-num">11</span><span class="v-txt">Then Ziba said to the king, Every order which you have given to your servant will be done. As for Mephibosheth, he had a place at David's table, like one of the king's sons.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/12/" data-ref="2 Samuel 9:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/12/"><span class="v-num">12</span><span class="v-txt">And Mephibosheth had a young son named Mica. And all the people living in the house of Ziba were servants to Mephibosheth.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/9/13/" data-ref="2 Samuel 9:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/9/13/"><span class="v-num">13</span><span class="v-txt">So Mephibosheth went on living in Jerusalem; for he took all his meals at the king's table; and he had not the use of his feet.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Esther 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now it came to pass on the third day, that Esther put on her royal apparel, and stood in the inner court of the king's house, over against the king's house: and the king sat upon his royal throne in the royal house, over against the entrance of the house.</span></div>
-<div class="v-row" data-ref="Esther 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it was so, when the king saw Esther the queen standing in the court, that she obtained favor in his sight; and the king held out to Esther the golden sceptre that was in his hand. So Esther drew near, and touched the top of the sceptre.</span></div>
-<div class="v-row" data-ref="Esther 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then said the king unto her, What wilt thou, queen Esther? and what is thy request? it shall be given thee even to the half of the kingdom.</span></div>
-<div class="v-row" data-ref="Esther 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Esther said, If it seem good unto the king, let the king and Haman come this day unto the banquet that I have prepared for him.</span></div>
-<div class="v-row" data-ref="Esther 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the king said, Cause Haman to make haste, that it may be done as Esther hath said. So the king and Haman came to the banquet that Esther had prepared.</span></div>
-<div class="v-row" data-ref="Esther 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the king said unto Esther at the banquet of wine, What is thy petition? and it shall be granted thee: and what is thy request? even to the half of the kingdom it shall be performed.</span></div>
-<div class="v-row" data-ref="Esther 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Then answered Esther, and said, My petition and my request is:</span></div>
-<div class="v-row" data-ref="Esther 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">if I have found favor in the sight of the king, and if it please the king to grant my petition, and to perform my request, let the king and Haman come to the banquet that I shall prepare for them, and I will do to-morrow as the king hath said.</span></div>
-<div class="v-row" data-ref="Esther 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then went Haman forth that day joyful and glad of heart: but when Haman saw Mordecai in the king's gate, that he stood not up nor moved for him, he was filled with wrath against Mordecai.</span></div>
-<div class="v-row" data-ref="Esther 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Nevertheless Haman refrained himself, and went home; and he sent and fetched his friends and Zeresh his wife.</span></div>
-<div class="v-row" data-ref="Esther 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Haman recounted unto them the glory of his riches, and the multitude of his children, and all the things wherein the king had promoted him, and how he had advanced him above the princes and servants of the king.</span></div>
-<div class="v-row" data-ref="Esther 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Haman said moreover, Yea, Esther the queen did let no man come in with the king unto the banquet that she had prepared but myself; and to-morrow also am I invited by her together with the king.</span></div>
-<div class="v-row" data-ref="Esther 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Yet all this availeth me nothing, so long as I see Mordecai the Jew sitting at the king's gate.</span></div>
-<div class="v-row" data-ref="Esther 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then said Zeresh his wife and all his friends unto him, Let a gallows be made fifty cubits high, and in the morning speak thou unto the king that Mordecai may be hanged thereon: then go thou in merrily with the king unto the banquet. And the thing pleased Haman; and he caused the gallows to be made.</span></div>
+    <a class="v-row" href="/bible/asv/esther/5/1/" data-ref="Esther 5:1 (American Standard Version)" data-verse-url="/bible/asv/esther/5/1/"><span class="v-num">1</span><span class="v-txt">Now it came to pass on the third day, that Esther put on her royal apparel, and stood in the inner court of the king's house, over against the king's house: and the king sat upon his royal throne in the royal house, over against the entrance of the house.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/2/" data-ref="Esther 5:2 (American Standard Version)" data-verse-url="/bible/asv/esther/5/2/"><span class="v-num">2</span><span class="v-txt">And it was so, when the king saw Esther the queen standing in the court, that she obtained favor in his sight; and the king held out to Esther the golden sceptre that was in his hand. So Esther drew near, and touched the top of the sceptre.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/3/" data-ref="Esther 5:3 (American Standard Version)" data-verse-url="/bible/asv/esther/5/3/"><span class="v-num">3</span><span class="v-txt">Then said the king unto her, What wilt thou, queen Esther? and what is thy request? it shall be given thee even to the half of the kingdom.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/4/" data-ref="Esther 5:4 (American Standard Version)" data-verse-url="/bible/asv/esther/5/4/"><span class="v-num">4</span><span class="v-txt">And Esther said, If it seem good unto the king, let the king and Haman come this day unto the banquet that I have prepared for him.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/5/" data-ref="Esther 5:5 (American Standard Version)" data-verse-url="/bible/asv/esther/5/5/"><span class="v-num">5</span><span class="v-txt">Then the king said, Cause Haman to make haste, that it may be done as Esther hath said. So the king and Haman came to the banquet that Esther had prepared.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/6/" data-ref="Esther 5:6 (American Standard Version)" data-verse-url="/bible/asv/esther/5/6/"><span class="v-num">6</span><span class="v-txt">And the king said unto Esther at the banquet of wine, What is thy petition? and it shall be granted thee: and what is thy request? even to the half of the kingdom it shall be performed.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/7/" data-ref="Esther 5:7 (American Standard Version)" data-verse-url="/bible/asv/esther/5/7/"><span class="v-num">7</span><span class="v-txt">Then answered Esther, and said, My petition and my request is:</span></a>
+<a class="v-row" href="/bible/asv/esther/5/8/" data-ref="Esther 5:8 (American Standard Version)" data-verse-url="/bible/asv/esther/5/8/"><span class="v-num">8</span><span class="v-txt">if I have found favor in the sight of the king, and if it please the king to grant my petition, and to perform my request, let the king and Haman come to the banquet that I shall prepare for them, and I will do to-morrow as the king hath said.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/9/" data-ref="Esther 5:9 (American Standard Version)" data-verse-url="/bible/asv/esther/5/9/"><span class="v-num">9</span><span class="v-txt">Then went Haman forth that day joyful and glad of heart: but when Haman saw Mordecai in the king's gate, that he stood not up nor moved for him, he was filled with wrath against Mordecai.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/10/" data-ref="Esther 5:10 (American Standard Version)" data-verse-url="/bible/asv/esther/5/10/"><span class="v-num">10</span><span class="v-txt">Nevertheless Haman refrained himself, and went home; and he sent and fetched his friends and Zeresh his wife.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/11/" data-ref="Esther 5:11 (American Standard Version)" data-verse-url="/bible/asv/esther/5/11/"><span class="v-num">11</span><span class="v-txt">And Haman recounted unto them the glory of his riches, and the multitude of his children, and all the things wherein the king had promoted him, and how he had advanced him above the princes and servants of the king.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/12/" data-ref="Esther 5:12 (American Standard Version)" data-verse-url="/bible/asv/esther/5/12/"><span class="v-num">12</span><span class="v-txt">Haman said moreover, Yea, Esther the queen did let no man come in with the king unto the banquet that she had prepared but myself; and to-morrow also am I invited by her together with the king.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/13/" data-ref="Esther 5:13 (American Standard Version)" data-verse-url="/bible/asv/esther/5/13/"><span class="v-num">13</span><span class="v-txt">Yet all this availeth me nothing, so long as I see Mordecai the Jew sitting at the king's gate.</span></a>
+<a class="v-row" href="/bible/asv/esther/5/14/" data-ref="Esther 5:14 (American Standard Version)" data-verse-url="/bible/asv/esther/5/14/"><span class="v-num">14</span><span class="v-txt">Then said Zeresh his wife and all his friends unto him, Let a gallows be made fifty cubits high, and in the morning speak thou unto the king that Mordecai may be hanged thereon: then go thou in merrily with the king unto the banquet. And the thing pleased Haman; and he caused the gallows to be made.</span></a>
 
     
 <div class="app-cta">

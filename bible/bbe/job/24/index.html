@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 24</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 24:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Why are times not stored up by the Ruler of all, and why do those who have knowledge of him not see his days?</span></div>
-<div class="v-row" data-ref="Job 24:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The landmarks are changed by evil men, they violently take away flocks, together with their keepers.</span></div>
-<div class="v-row" data-ref="Job 24:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They send away the ass of him who has no father, they take the widow's ox for debt.</span></div>
-<div class="v-row" data-ref="Job 24:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The crushed are turned out of the way; all the poor of the earth go into a secret place together.</span></div>
-<div class="v-row" data-ref="Job 24:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Like asses in the waste land they go out to their work, looking for food with care; from the waste land they get bread for their children.</span></div>
-<div class="v-row" data-ref="Job 24:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They get mixed grain from the field, and they take away the late fruit from the vines of those who have wealth.</span></div>
-<div class="v-row" data-ref="Job 24:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They take their rest at night without clothing, and have no cover in the cold.</span></div>
-<div class="v-row" data-ref="Job 24:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They are wet with the rain of the mountains, and get into the cracks of the rock for cover.</span></div>
-<div class="v-row" data-ref="Job 24:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The child without a father is forced from its mother's breast, and they take the young children of the poor for debt.</span></div>
-<div class="v-row" data-ref="Job 24:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Others go about without clothing, and though they have no food, they get in the grain from the fields.</span></div>
-<div class="v-row" data-ref="Job 24:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Between the lines of olive-trees they make oil; though they have no drink, they are crushing out the grapes.</span></div>
-<div class="v-row" data-ref="Job 24:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">From the town come sounds of pain from those who are near death, and the soul of the wounded is crying out for help; but God does not take note of their prayer.</span></div>
-<div class="v-row" data-ref="Job 24:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then there are those who are haters of the light, who have no knowledge of its ways, and do not go in them.</span></div>
-<div class="v-row" data-ref="Job 24:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He who is purposing death gets up before day, so that he may put to death the poor and those in need.</span></div>
-<div class="v-row" data-ref="Job 24:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the man whose desire is for the wife of another is waiting for the evening, saying, No eye will see me; and he puts a cover on his face. And in the night the thief goes about;</span></div>
-<div class="v-row" data-ref="Job 24:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">In the dark he makes holes in the walls of houses: in the daytime they are shutting themselves up, they have no knowledge of the light.</span></div>
-<div class="v-row" data-ref="Job 24:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the middle of the night is as morning to them, they are not troubled by the fear of the dark.</span></div>
-<div class="v-row" data-ref="Job 24:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">They go quickly on the face of the waters; their heritage is cursed in the earth; the steps of the crusher of grapes are not turned to their vine-garden.</span></div>
-<div class="v-row" data-ref="Job 24:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Snow waters become dry with the heat: so do sinners go down into the underworld.</span></div>
-<div class="v-row" data-ref="Job 24:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The public place of his town has no more knowledge of him, and his name has gone from the memory of men: he is rooted up like a dead tree.</span></div>
-<div class="v-row" data-ref="Job 24:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He is not kind to the widow, and he has no pity for her child.</span></div>
-<div class="v-row" data-ref="Job 24:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But God by his power gives long life to the strong; he gets up again, though he has no hope of life.</span></div>
-<div class="v-row" data-ref="Job 24:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He takes away his fear of danger and gives him support; and his eyes are on his ways.</span></div>
-<div class="v-row" data-ref="Job 24:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For a short time they are lifted up; then they are gone; they are made low, they are pulled off like fruit, and like the heads of grain they are cut off.</span></div>
-<div class="v-row" data-ref="Job 24:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And if it is not so, now, who will make it clear that my words are false, and that what I say is of no value?</span></div>
+    <a class="v-row" href="/bible/bbe/job/24/1/" data-ref="Job 24:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/1/"><span class="v-num">1</span><span class="v-txt">Why are times not stored up by the Ruler of all, and why do those who have knowledge of him not see his days?</span></a>
+<a class="v-row" href="/bible/bbe/job/24/2/" data-ref="Job 24:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/2/"><span class="v-num">2</span><span class="v-txt">The landmarks are changed by evil men, they violently take away flocks, together with their keepers.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/3/" data-ref="Job 24:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/3/"><span class="v-num">3</span><span class="v-txt">They send away the ass of him who has no father, they take the widow's ox for debt.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/4/" data-ref="Job 24:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/4/"><span class="v-num">4</span><span class="v-txt">The crushed are turned out of the way; all the poor of the earth go into a secret place together.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/5/" data-ref="Job 24:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/5/"><span class="v-num">5</span><span class="v-txt">Like asses in the waste land they go out to their work, looking for food with care; from the waste land they get bread for their children.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/6/" data-ref="Job 24:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/6/"><span class="v-num">6</span><span class="v-txt">They get mixed grain from the field, and they take away the late fruit from the vines of those who have wealth.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/7/" data-ref="Job 24:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/7/"><span class="v-num">7</span><span class="v-txt">They take their rest at night without clothing, and have no cover in the cold.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/8/" data-ref="Job 24:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/8/"><span class="v-num">8</span><span class="v-txt">They are wet with the rain of the mountains, and get into the cracks of the rock for cover.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/9/" data-ref="Job 24:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/9/"><span class="v-num">9</span><span class="v-txt">The child without a father is forced from its mother's breast, and they take the young children of the poor for debt.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/10/" data-ref="Job 24:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/10/"><span class="v-num">10</span><span class="v-txt">Others go about without clothing, and though they have no food, they get in the grain from the fields.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/11/" data-ref="Job 24:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/11/"><span class="v-num">11</span><span class="v-txt">Between the lines of olive-trees they make oil; though they have no drink, they are crushing out the grapes.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/12/" data-ref="Job 24:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/12/"><span class="v-num">12</span><span class="v-txt">From the town come sounds of pain from those who are near death, and the soul of the wounded is crying out for help; but God does not take note of their prayer.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/13/" data-ref="Job 24:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/13/"><span class="v-num">13</span><span class="v-txt">Then there are those who are haters of the light, who have no knowledge of its ways, and do not go in them.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/14/" data-ref="Job 24:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/14/"><span class="v-num">14</span><span class="v-txt">He who is purposing death gets up before day, so that he may put to death the poor and those in need.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/15/" data-ref="Job 24:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/15/"><span class="v-num">15</span><span class="v-txt">And the man whose desire is for the wife of another is waiting for the evening, saying, No eye will see me; and he puts a cover on his face. And in the night the thief goes about;</span></a>
+<a class="v-row" href="/bible/bbe/job/24/16/" data-ref="Job 24:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/16/"><span class="v-num">16</span><span class="v-txt">In the dark he makes holes in the walls of houses: in the daytime they are shutting themselves up, they have no knowledge of the light.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/17/" data-ref="Job 24:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/17/"><span class="v-num">17</span><span class="v-txt">For the middle of the night is as morning to them, they are not troubled by the fear of the dark.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/18/" data-ref="Job 24:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/18/"><span class="v-num">18</span><span class="v-txt">They go quickly on the face of the waters; their heritage is cursed in the earth; the steps of the crusher of grapes are not turned to their vine-garden.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/19/" data-ref="Job 24:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/19/"><span class="v-num">19</span><span class="v-txt">Snow waters become dry with the heat: so do sinners go down into the underworld.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/20/" data-ref="Job 24:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/20/"><span class="v-num">20</span><span class="v-txt">The public place of his town has no more knowledge of him, and his name has gone from the memory of men: he is rooted up like a dead tree.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/21/" data-ref="Job 24:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/21/"><span class="v-num">21</span><span class="v-txt">He is not kind to the widow, and he has no pity for her child.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/22/" data-ref="Job 24:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/22/"><span class="v-num">22</span><span class="v-txt">But God by his power gives long life to the strong; he gets up again, though he has no hope of life.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/23/" data-ref="Job 24:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/23/"><span class="v-num">23</span><span class="v-txt">He takes away his fear of danger and gives him support; and his eyes are on his ways.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/24/" data-ref="Job 24:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/24/"><span class="v-num">24</span><span class="v-txt">For a short time they are lifted up; then they are gone; they are made low, they are pulled off like fruit, and like the heads of grain they are cut off.</span></a>
+<a class="v-row" href="/bible/bbe/job/24/25/" data-ref="Job 24:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/24/25/"><span class="v-num">25</span><span class="v-txt">And if it is not so, now, who will make it clear that my words are false, and that what I say is of no value?</span></a>
 
     
 <div class="app-cta">

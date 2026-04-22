@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 16:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In the six and thirtieth year of the reign of Asa Baasha king of Israel came up against Judah, and built Ramah, to the intent that he might let none go out or come in to Asa king of Judah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then Asa brought out silver and gold out of the treasures of the house of the LORD and of the king's house, and sent to Benhadad king of Syria, that dwelt at Damascus, saying,</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">There is a league between me and thee, as there was between my father and thy father: behold, I have sent thee silver and gold; go, break thy league with Baasha king of Israel, that he may depart from me.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Benhadad hearkened unto king Asa, and sent the captains of his armies against the cities of Israel; and they smote Ijon, and Dan, and Abelmaim, and all the store cities of Naphtali.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And it came to pass, when Baasha heard it, that he left off building of Ramah, and let his work cease.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then Asa the king took all Judah; and they carried away the stones of Ramah, and the timber thereof, wherewith Baasha was building; and he built therewith Geba and Mizpah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And at that time Hanani the seer came to Asa king of Judah, and said unto him, Because thou hast relied on the king of Syria, and not relied on the LORD thy God, therefore is the host of the king of Syria escaped out of thine hand.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Were not the Ethiopians and the Lubims a huge host, with very many chariots and horsemen? yet, because thou didst rely on the LORD, he delivered them into thine hand.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For the eyes of the LORD run to and fro throughout the whole earth, to shew himself strong in the behalf of them whose heart is perfect toward him. Herein thou hast done foolishly: therefore from henceforth thou shalt have wars.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Asa was wroth with the seer, and put him in a prison house; for he was in a rage with him because of this thing. And Asa oppressed some of the people the same time.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And, behold, the acts of Asa, first and last, lo, they are written in the book of the kings of Judah and Israel.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Asa in the thirty and ninth year of his reign was diseased in his feet, until his disease was exceeding great: yet in his disease he sought not to the LORD, but to the physicians.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Asa slept with his fathers, and died in the one and fortieth year of his reign.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And they buried him in his own sepulchres, which he had made for himself in the city of David, and laid him in the bed which was filled with sweet odours and divers kinds of spices prepared by the apothecaries' art: and they made a very great burning for him.</span></div>
+    <a class="v-row" href="/bible/kjv/2-chronicles/16/1/" data-ref="2 Chronicles 16:1 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/1/"><span class="v-num">1</span><span class="v-txt">In the six and thirtieth year of the reign of Asa Baasha king of Israel came up against Judah, and built Ramah, to the intent that he might let none go out or come in to Asa king of Judah.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/2/" data-ref="2 Chronicles 16:2 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/2/"><span class="v-num">2</span><span class="v-txt">Then Asa brought out silver and gold out of the treasures of the house of the LORD and of the king's house, and sent to Benhadad king of Syria, that dwelt at Damascus, saying,</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/3/" data-ref="2 Chronicles 16:3 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/3/"><span class="v-num">3</span><span class="v-txt">There is a league between me and thee, as there was between my father and thy father: behold, I have sent thee silver and gold; go, break thy league with Baasha king of Israel, that he may depart from me.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/4/" data-ref="2 Chronicles 16:4 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/4/"><span class="v-num">4</span><span class="v-txt">And Benhadad hearkened unto king Asa, and sent the captains of his armies against the cities of Israel; and they smote Ijon, and Dan, and Abelmaim, and all the store cities of Naphtali.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/5/" data-ref="2 Chronicles 16:5 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/5/"><span class="v-num">5</span><span class="v-txt">And it came to pass, when Baasha heard it, that he left off building of Ramah, and let his work cease.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/6/" data-ref="2 Chronicles 16:6 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/6/"><span class="v-num">6</span><span class="v-txt">Then Asa the king took all Judah; and they carried away the stones of Ramah, and the timber thereof, wherewith Baasha was building; and he built therewith Geba and Mizpah.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/7/" data-ref="2 Chronicles 16:7 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/7/"><span class="v-num">7</span><span class="v-txt">And at that time Hanani the seer came to Asa king of Judah, and said unto him, Because thou hast relied on the king of Syria, and not relied on the LORD thy God, therefore is the host of the king of Syria escaped out of thine hand.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/8/" data-ref="2 Chronicles 16:8 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/8/"><span class="v-num">8</span><span class="v-txt">Were not the Ethiopians and the Lubims a huge host, with very many chariots and horsemen? yet, because thou didst rely on the LORD, he delivered them into thine hand.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/9/" data-ref="2 Chronicles 16:9 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/9/"><span class="v-num">9</span><span class="v-txt">For the eyes of the LORD run to and fro throughout the whole earth, to shew himself strong in the behalf of them whose heart is perfect toward him. Herein thou hast done foolishly: therefore from henceforth thou shalt have wars.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/10/" data-ref="2 Chronicles 16:10 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/10/"><span class="v-num">10</span><span class="v-txt">Then Asa was wroth with the seer, and put him in a prison house; for he was in a rage with him because of this thing. And Asa oppressed some of the people the same time.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/11/" data-ref="2 Chronicles 16:11 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/11/"><span class="v-num">11</span><span class="v-txt">And, behold, the acts of Asa, first and last, lo, they are written in the book of the kings of Judah and Israel.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/12/" data-ref="2 Chronicles 16:12 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/12/"><span class="v-num">12</span><span class="v-txt">And Asa in the thirty and ninth year of his reign was diseased in his feet, until his disease was exceeding great: yet in his disease he sought not to the LORD, but to the physicians.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/13/" data-ref="2 Chronicles 16:13 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/13/"><span class="v-num">13</span><span class="v-txt">And Asa slept with his fathers, and died in the one and fortieth year of his reign.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/16/14/" data-ref="2 Chronicles 16:14 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/16/14/"><span class="v-num">14</span><span class="v-txt">And they buried him in his own sepulchres, which he had made for himself in the city of David, and laid him in the bed which was filled with sweet odours and divers kinds of spices prepared by the apothecaries' art: and they made a very great burning for him.</span></a>
 
     
 <div class="app-cta">

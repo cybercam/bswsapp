@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To everything [there is] a season, A time for every purpose under heaven:</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A time to be born, And a time to die; A time to plant, And a time to pluck [what is] planted;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A time to kill, And a time to heal; A time to break down, And a time to build up;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">A time to weep, And a time to laugh; A time to mourn, And a time to dance;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">A time to cast away stones, And a time to gather stones; A time to embrace, And a time to refrain from embracing;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">A time to gain, And a time to lose; A time to keep, And a time to throw away;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">A time to tear, And a time to sew; A time to keep silence, And a time to speak;</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A time to love, And a time to hate; A time of war, And a time of peace.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What profit has the worker from that in which he labors?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I have seen the God-given task with which the sons of men are to be occupied.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He has made everything beautiful in its time. Also He has put eternity in their hearts, except that no one can find out the work that God does from beginning to end.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I know that nothing [is] better for them than to rejoice, and to do good in their lives,</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and also that every man should eat and drink and enjoy the good of all his labor -- it [is] the gift of God.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I know that whatever God does, It shall be forever. Nothing can be added to it, And nothing taken from it. God does [it,] that men should fear before Him.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">That which is has already been, And what is to be has already been; And God requires an account of what is past.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Moreover I saw under the sun: [In] the place of judgment, Wickedness [was] there; And [in] the place of righteousness, Iniquity [was] there.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I said in my heart, "God shall judge the righteous and the wicked, For [there is] a time there for every purpose and for every work."</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I said in my heart, "Concerning the condition of the sons of men, God tests them, that they may see that they themselves are [like] animals."</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For what happens to the sons of men also happens to animals; one thing befalls them: as one dies, so dies the other. Surely, they all have one breath; man has no advantage over animals, for all [is] vanity.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">All go to one place: all are from the dust, and all return to dust.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Who knows the spirit of the sons of men, which goes upward, and the spirit of the animal, which goes down to the earth?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 3:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">So I perceived that nothing [is] better than that a man should rejoice in his own works, for that [is] his heritage. For who can bring him to see what will happen after him?</span></div>
+    <a class="v-row" href="/bible/nkjv/ecclesiastes/3/1/" data-ref="Ecclesiastes 3:1 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/1/"><span class="v-num">1</span><span class="v-txt">To everything [there is] a season, A time for every purpose under heaven:</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/2/" data-ref="Ecclesiastes 3:2 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/2/"><span class="v-num">2</span><span class="v-txt">A time to be born, And a time to die; A time to plant, And a time to pluck [what is] planted;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/3/" data-ref="Ecclesiastes 3:3 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/3/"><span class="v-num">3</span><span class="v-txt">A time to kill, And a time to heal; A time to break down, And a time to build up;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/4/" data-ref="Ecclesiastes 3:4 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/4/"><span class="v-num">4</span><span class="v-txt">A time to weep, And a time to laugh; A time to mourn, And a time to dance;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/5/" data-ref="Ecclesiastes 3:5 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/5/"><span class="v-num">5</span><span class="v-txt">A time to cast away stones, And a time to gather stones; A time to embrace, And a time to refrain from embracing;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/6/" data-ref="Ecclesiastes 3:6 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/6/"><span class="v-num">6</span><span class="v-txt">A time to gain, And a time to lose; A time to keep, And a time to throw away;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/7/" data-ref="Ecclesiastes 3:7 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/7/"><span class="v-num">7</span><span class="v-txt">A time to tear, And a time to sew; A time to keep silence, And a time to speak;</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/8/" data-ref="Ecclesiastes 3:8 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/8/"><span class="v-num">8</span><span class="v-txt">A time to love, And a time to hate; A time of war, And a time of peace.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/9/" data-ref="Ecclesiastes 3:9 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/9/"><span class="v-num">9</span><span class="v-txt">What profit has the worker from that in which he labors?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/10/" data-ref="Ecclesiastes 3:10 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/10/"><span class="v-num">10</span><span class="v-txt">I have seen the God-given task with which the sons of men are to be occupied.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/11/" data-ref="Ecclesiastes 3:11 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/11/"><span class="v-num">11</span><span class="v-txt">He has made everything beautiful in its time. Also He has put eternity in their hearts, except that no one can find out the work that God does from beginning to end.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/12/" data-ref="Ecclesiastes 3:12 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/12/"><span class="v-num">12</span><span class="v-txt">I know that nothing [is] better for them than to rejoice, and to do good in their lives,</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/13/" data-ref="Ecclesiastes 3:13 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/13/"><span class="v-num">13</span><span class="v-txt">and also that every man should eat and drink and enjoy the good of all his labor -- it [is] the gift of God.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/14/" data-ref="Ecclesiastes 3:14 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/14/"><span class="v-num">14</span><span class="v-txt">I know that whatever God does, It shall be forever. Nothing can be added to it, And nothing taken from it. God does [it,] that men should fear before Him.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/15/" data-ref="Ecclesiastes 3:15 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/15/"><span class="v-num">15</span><span class="v-txt">That which is has already been, And what is to be has already been; And God requires an account of what is past.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/16/" data-ref="Ecclesiastes 3:16 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/16/"><span class="v-num">16</span><span class="v-txt">Moreover I saw under the sun: [In] the place of judgment, Wickedness [was] there; And [in] the place of righteousness, Iniquity [was] there.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/17/" data-ref="Ecclesiastes 3:17 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/17/"><span class="v-num">17</span><span class="v-txt">I said in my heart, "God shall judge the righteous and the wicked, For [there is] a time there for every purpose and for every work."</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/18/" data-ref="Ecclesiastes 3:18 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/18/"><span class="v-num">18</span><span class="v-txt">I said in my heart, "Concerning the condition of the sons of men, God tests them, that they may see that they themselves are [like] animals."</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/19/" data-ref="Ecclesiastes 3:19 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/19/"><span class="v-num">19</span><span class="v-txt">For what happens to the sons of men also happens to animals; one thing befalls them: as one dies, so dies the other. Surely, they all have one breath; man has no advantage over animals, for all [is] vanity.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/20/" data-ref="Ecclesiastes 3:20 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/20/"><span class="v-num">20</span><span class="v-txt">All go to one place: all are from the dust, and all return to dust.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/21/" data-ref="Ecclesiastes 3:21 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/21/"><span class="v-num">21</span><span class="v-txt">Who knows the spirit of the sons of men, which goes upward, and the spirit of the animal, which goes down to the earth?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/3/22/" data-ref="Ecclesiastes 3:22 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/3/22/"><span class="v-num">22</span><span class="v-txt">So I perceived that nothing [is] better than that a man should rejoice in his own works, for that [is] his heritage. For who can bring him to see what will happen after him?</span></a>
 
     
 <div class="app-cta">

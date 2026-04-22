@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 10:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now I Paul myself entreat you by the meekness and gentleness of Christ, I who in your presence am lowly among you, but being absent am of good courage toward you:</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">yea, I beseech you, that I may not when present show courage with the confidence wherewith I count to be bold against some, who count of us as if we walked according to the flesh.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For though we walk in the flesh, we do not war according to the flesh</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">(for the weapons of our warfare are not of the flesh, but mighty before God to the casting down of strongholds),</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">casting down imaginations, and every high thing that is exalted against the knowledge of God, and bringing every thought into captivity to the obedience of Christ;</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and being in readiness to avenge all disobedience, when your obedience shall be made full.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Ye look at the things that are before your face. If any man trusteth in himself that he is Christ's, let him consider this again with himself, that, even as he is Christ's, so also are we.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For though I should glory somewhat abundantly concerning our authority (which the Lord gave for building you up, and not for casting you down), I shall not be put to shame:</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">that I may not seem as if I would terrify you by my letters.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For, His letters, they say, are weighty and strong; but his bodily presence is weak, and his speech of no account.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let such a one reckon this, that, what we are in word by letters when we are absent, such [are we] also in deed when we are present.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For we are not bold to number or compare ourselves with certain of them that commend themselves: but they themselves, measuring themselves by themselves, and comparing themselves with themselves, are without understanding.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But we will not glory beyond [our] measure, but according to the measure of the province which God apportioned to us as a measure, to reach even unto you.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For we stretch not ourselves overmuch, as though we reached not unto you: for we came even as far as unto you in the gospel of Christ:</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">not glorying beyond [our] measure, [that is,] in other men's labors; but having hope that, as your faith groweth, we shall be magnified in you according to our province unto [further] abundance,</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">so as to preach the gospel even unto the parts beyond you, [and] not to glory in another's province in regard of things ready to our hand.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But he that glorieth, let him glory in the Lord.</span></div>
-<div class="v-row" data-ref="2 Corinthians 10:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For not he that commendeth himself is approved, but whom the Lord commendeth.</span></div>
+    <a class="v-row" href="/bible/asv/2-corinthians/10/1/" data-ref="2 Corinthians 10:1 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/1/"><span class="v-num">1</span><span class="v-txt">Now I Paul myself entreat you by the meekness and gentleness of Christ, I who in your presence am lowly among you, but being absent am of good courage toward you:</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/2/" data-ref="2 Corinthians 10:2 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/2/"><span class="v-num">2</span><span class="v-txt">yea, I beseech you, that I may not when present show courage with the confidence wherewith I count to be bold against some, who count of us as if we walked according to the flesh.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/3/" data-ref="2 Corinthians 10:3 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/3/"><span class="v-num">3</span><span class="v-txt">For though we walk in the flesh, we do not war according to the flesh</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/4/" data-ref="2 Corinthians 10:4 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/4/"><span class="v-num">4</span><span class="v-txt">(for the weapons of our warfare are not of the flesh, but mighty before God to the casting down of strongholds),</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/5/" data-ref="2 Corinthians 10:5 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/5/"><span class="v-num">5</span><span class="v-txt">casting down imaginations, and every high thing that is exalted against the knowledge of God, and bringing every thought into captivity to the obedience of Christ;</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/6/" data-ref="2 Corinthians 10:6 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/6/"><span class="v-num">6</span><span class="v-txt">and being in readiness to avenge all disobedience, when your obedience shall be made full.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/7/" data-ref="2 Corinthians 10:7 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/7/"><span class="v-num">7</span><span class="v-txt">Ye look at the things that are before your face. If any man trusteth in himself that he is Christ's, let him consider this again with himself, that, even as he is Christ's, so also are we.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/8/" data-ref="2 Corinthians 10:8 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/8/"><span class="v-num">8</span><span class="v-txt">For though I should glory somewhat abundantly concerning our authority (which the Lord gave for building you up, and not for casting you down), I shall not be put to shame:</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/9/" data-ref="2 Corinthians 10:9 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/9/"><span class="v-num">9</span><span class="v-txt">that I may not seem as if I would terrify you by my letters.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/10/" data-ref="2 Corinthians 10:10 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/10/"><span class="v-num">10</span><span class="v-txt">For, His letters, they say, are weighty and strong; but his bodily presence is weak, and his speech of no account.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/11/" data-ref="2 Corinthians 10:11 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/11/"><span class="v-num">11</span><span class="v-txt">Let such a one reckon this, that, what we are in word by letters when we are absent, such [are we] also in deed when we are present.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/12/" data-ref="2 Corinthians 10:12 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/12/"><span class="v-num">12</span><span class="v-txt">For we are not bold to number or compare ourselves with certain of them that commend themselves: but they themselves, measuring themselves by themselves, and comparing themselves with themselves, are without understanding.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/13/" data-ref="2 Corinthians 10:13 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/13/"><span class="v-num">13</span><span class="v-txt">But we will not glory beyond [our] measure, but according to the measure of the province which God apportioned to us as a measure, to reach even unto you.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/14/" data-ref="2 Corinthians 10:14 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/14/"><span class="v-num">14</span><span class="v-txt">For we stretch not ourselves overmuch, as though we reached not unto you: for we came even as far as unto you in the gospel of Christ:</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/15/" data-ref="2 Corinthians 10:15 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/15/"><span class="v-num">15</span><span class="v-txt">not glorying beyond [our] measure, [that is,] in other men's labors; but having hope that, as your faith groweth, we shall be magnified in you according to our province unto [further] abundance,</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/16/" data-ref="2 Corinthians 10:16 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/16/"><span class="v-num">16</span><span class="v-txt">so as to preach the gospel even unto the parts beyond you, [and] not to glory in another's province in regard of things ready to our hand.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/17/" data-ref="2 Corinthians 10:17 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/17/"><span class="v-num">17</span><span class="v-txt">But he that glorieth, let him glory in the Lord.</span></a>
+<a class="v-row" href="/bible/asv/2-corinthians/10/18/" data-ref="2 Corinthians 10:18 (American Standard Version)" data-verse-url="/bible/asv/2-corinthians/10/18/"><span class="v-num">18</span><span class="v-txt">For not he that commendeth himself is approved, but whom the Lord commendeth.</span></a>
 
     
 <div class="app-cta">

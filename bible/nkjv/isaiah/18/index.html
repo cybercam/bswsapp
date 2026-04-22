@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,13 +204,13 @@ a:hover{text-decoration:underline}
       <h2>Chapter 18</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 18:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Woe to the land shadowed with buzzing wings, Which [is] beyond the rivers of Ethiopia,</span></div>
-<div class="v-row" data-ref="Isaiah 18:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Which sends ambassadors by sea, Even in vessels of reed on the waters, [saying,] "Go, swift messengers, to a nation tall and smooth [of skin,] To a people terrible from their beginning onward, A nation powerful and treading down, Whose land the rivers divide."</span></div>
-<div class="v-row" data-ref="Isaiah 18:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">All inhabitants of the world and dwellers on the earth: When he lifts up a banner on the mountains, you see [it;] And when he blows a trumpet, you hear [it.]</span></div>
-<div class="v-row" data-ref="Isaiah 18:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For so the LORD said to me, "I will take My rest, And I will look from My dwelling place Like clear heat in sunshine, Like a cloud of dew in the heat of harvest."</span></div>
-<div class="v-row" data-ref="Isaiah 18:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For before the harvest, when the bud is perfect And the sour grape is ripening in the flower, He will both cut off the sprigs with pruning hooks And take away [and] cut down the branches.</span></div>
-<div class="v-row" data-ref="Isaiah 18:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They will be left together for the mountain birds of prey And for the beasts of the earth; The birds of prey will summer on them, And all the beasts of the earth will winter on them.</span></div>
-<div class="v-row" data-ref="Isaiah 18:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">In that time a present will be brought to the LORD of hosts From a people tall and smooth [of skin,] And from a people terrible from their beginning onward, A nation powerful and treading down, Whose land the rivers divide -- To the place of the name of the LORD of hosts, To Mount Zion.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/18/1/" data-ref="Isaiah 18:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/1/"><span class="v-num">1</span><span class="v-txt">Woe to the land shadowed with buzzing wings, Which [is] beyond the rivers of Ethiopia,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/2/" data-ref="Isaiah 18:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/2/"><span class="v-num">2</span><span class="v-txt">Which sends ambassadors by sea, Even in vessels of reed on the waters, [saying,] "Go, swift messengers, to a nation tall and smooth [of skin,] To a people terrible from their beginning onward, A nation powerful and treading down, Whose land the rivers divide."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/3/" data-ref="Isaiah 18:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/3/"><span class="v-num">3</span><span class="v-txt">All inhabitants of the world and dwellers on the earth: When he lifts up a banner on the mountains, you see [it;] And when he blows a trumpet, you hear [it.]</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/4/" data-ref="Isaiah 18:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/4/"><span class="v-num">4</span><span class="v-txt">For so the LORD said to me, "I will take My rest, And I will look from My dwelling place Like clear heat in sunshine, Like a cloud of dew in the heat of harvest."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/5/" data-ref="Isaiah 18:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/5/"><span class="v-num">5</span><span class="v-txt">For before the harvest, when the bud is perfect And the sour grape is ripening in the flower, He will both cut off the sprigs with pruning hooks And take away [and] cut down the branches.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/6/" data-ref="Isaiah 18:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/6/"><span class="v-num">6</span><span class="v-txt">They will be left together for the mountain birds of prey And for the beasts of the earth; The birds of prey will summer on them, And all the beasts of the earth will winter on them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/18/7/" data-ref="Isaiah 18:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/18/7/"><span class="v-num">7</span><span class="v-txt">In that time a present will be brought to the LORD of hosts From a people tall and smooth [of skin,] And from a people terrible from their beginning onward, A nation powerful and treading down, Whose land the rivers divide -- To the place of the name of the LORD of hosts, To Mount Zion.</span></a>
 
     
 <div class="app-cta">

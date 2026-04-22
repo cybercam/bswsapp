@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 10:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Israel is a luxuriant vine, that putteth forth his fruit: according to the abundance of his fruit he hath multiplied his altars; according to the goodness of their land they have made goodly pillars.</span></div>
-<div class="v-row" data-ref="Hosea 10:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Their heart is divided; now shall they be found guilty: he will smite their altars, he will destroy their pillars.</span></div>
-<div class="v-row" data-ref="Hosea 10:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Surely now shall they say, We have no king; for we fear not Jehovah; and the king, what can he do for us?</span></div>
-<div class="v-row" data-ref="Hosea 10:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They speak [vain] words, swearing falsely in making covenants: therefore judgment springeth up as hemlock in the furrows of the field.</span></div>
-<div class="v-row" data-ref="Hosea 10:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The inhabitants of Samaria shall be in terror for the calves of Beth-aven; for the people thereof shall mourn over it, and the priests thereof that rejoiced over it, for the glory thereof, because it is departed from it.</span></div>
-<div class="v-row" data-ref="Hosea 10:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">It also shall be carried unto Assyria for a present to king Jareb: Ephraim shall receive shame, and Israel shall be ashamed of his own counsel.</span></div>
-<div class="v-row" data-ref="Hosea 10:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">[As for] Samaria, her king is cut off, as foam upon the water.</span></div>
-<div class="v-row" data-ref="Hosea 10:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The high places also of Aven, the sin of Israel, shall be destroyed: the thorn and the thistle shall come up on their altars; and they shall say to the mountains, Cover us; and to the hills, Fall on us.</span></div>
-<div class="v-row" data-ref="Hosea 10:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">O Israel, thou hast sinned from the days of Gibeah: there they stood; the battle against the children of iniquity doth not overtake them in Gibeah.</span></div>
-<div class="v-row" data-ref="Hosea 10:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">When it is my desire, I will chastise them; and the peoples shall be gathered against them, when they are bound to their two transgressions.</span></div>
-<div class="v-row" data-ref="Hosea 10:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Ephraim is a heifer that is taught, that loveth to tread out [the grain]; but I have passed over upon her fair neck: I will set a rider on Ephraim; Judah shall plow, Jacob shall break his clods.</span></div>
-<div class="v-row" data-ref="Hosea 10:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Sow to yourselves in righteousness, reap according to kindness; break up your fallow ground; for it is time to seek Jehovah, till he come and rain righteousness upon you.</span></div>
-<div class="v-row" data-ref="Hosea 10:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Ye have plowed wickedness, ye have reaped iniquity; ye have eaten the fruit of lies; for thou didst trust in thy way, in the multitude of thy mighty men.</span></div>
-<div class="v-row" data-ref="Hosea 10:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Therefore shall a tumult arise among thy people, and all thy fortresses shall be destroyed, as Shalman destroyed Beth-arbel in the day of battle: the mother was dashed in pieces with her children.</span></div>
-<div class="v-row" data-ref="Hosea 10:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So shall Beth-el do unto you because of your great wickedness: at daybreak shall the king of Israel be utterly cut off.</span></div>
+    <a class="v-row" href="/bible/asv/hosea/10/1/" data-ref="Hosea 10:1 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/1/"><span class="v-num">1</span><span class="v-txt">Israel is a luxuriant vine, that putteth forth his fruit: according to the abundance of his fruit he hath multiplied his altars; according to the goodness of their land they have made goodly pillars.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/2/" data-ref="Hosea 10:2 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/2/"><span class="v-num">2</span><span class="v-txt">Their heart is divided; now shall they be found guilty: he will smite their altars, he will destroy their pillars.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/3/" data-ref="Hosea 10:3 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/3/"><span class="v-num">3</span><span class="v-txt">Surely now shall they say, We have no king; for we fear not Jehovah; and the king, what can he do for us?</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/4/" data-ref="Hosea 10:4 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/4/"><span class="v-num">4</span><span class="v-txt">They speak [vain] words, swearing falsely in making covenants: therefore judgment springeth up as hemlock in the furrows of the field.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/5/" data-ref="Hosea 10:5 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/5/"><span class="v-num">5</span><span class="v-txt">The inhabitants of Samaria shall be in terror for the calves of Beth-aven; for the people thereof shall mourn over it, and the priests thereof that rejoiced over it, for the glory thereof, because it is departed from it.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/6/" data-ref="Hosea 10:6 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/6/"><span class="v-num">6</span><span class="v-txt">It also shall be carried unto Assyria for a present to king Jareb: Ephraim shall receive shame, and Israel shall be ashamed of his own counsel.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/7/" data-ref="Hosea 10:7 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/7/"><span class="v-num">7</span><span class="v-txt">[As for] Samaria, her king is cut off, as foam upon the water.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/8/" data-ref="Hosea 10:8 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/8/"><span class="v-num">8</span><span class="v-txt">The high places also of Aven, the sin of Israel, shall be destroyed: the thorn and the thistle shall come up on their altars; and they shall say to the mountains, Cover us; and to the hills, Fall on us.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/9/" data-ref="Hosea 10:9 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/9/"><span class="v-num">9</span><span class="v-txt">O Israel, thou hast sinned from the days of Gibeah: there they stood; the battle against the children of iniquity doth not overtake them in Gibeah.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/10/" data-ref="Hosea 10:10 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/10/"><span class="v-num">10</span><span class="v-txt">When it is my desire, I will chastise them; and the peoples shall be gathered against them, when they are bound to their two transgressions.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/11/" data-ref="Hosea 10:11 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/11/"><span class="v-num">11</span><span class="v-txt">And Ephraim is a heifer that is taught, that loveth to tread out [the grain]; but I have passed over upon her fair neck: I will set a rider on Ephraim; Judah shall plow, Jacob shall break his clods.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/12/" data-ref="Hosea 10:12 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/12/"><span class="v-num">12</span><span class="v-txt">Sow to yourselves in righteousness, reap according to kindness; break up your fallow ground; for it is time to seek Jehovah, till he come and rain righteousness upon you.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/13/" data-ref="Hosea 10:13 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/13/"><span class="v-num">13</span><span class="v-txt">Ye have plowed wickedness, ye have reaped iniquity; ye have eaten the fruit of lies; for thou didst trust in thy way, in the multitude of thy mighty men.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/14/" data-ref="Hosea 10:14 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/14/"><span class="v-num">14</span><span class="v-txt">Therefore shall a tumult arise among thy people, and all thy fortresses shall be destroyed, as Shalman destroyed Beth-arbel in the day of battle: the mother was dashed in pieces with her children.</span></a>
+<a class="v-row" href="/bible/asv/hosea/10/15/" data-ref="Hosea 10:15 (American Standard Version)" data-verse-url="/bible/asv/hosea/10/15/"><span class="v-num">15</span><span class="v-txt">So shall Beth-el do unto you because of your great wickedness: at daybreak shall the king of Israel be utterly cut off.</span></a>
 
     
 <div class="app-cta">

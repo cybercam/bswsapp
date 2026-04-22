@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 1:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul, and Silvanus, and Timotheus, unto the church of the Thessalonians which is in God the Father and in the Lord Jesus Christ: Grace be unto you, and peace, from God our Father, and the Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">We give thanks to God always for you all, making mention of you in our prayers;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Remembering without ceasing your work of faith, and labour of love, and patience of hope in our Lord Jesus Christ, in the sight of God and our Father;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Knowing, brethren beloved, your election of God.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For our gospel came not unto you in word only, but also in power, and in the Holy Ghost, and in much assurance; as ye know what manner of men we were among you for your sake.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And ye became followers of us, and of the Lord, having received the word in much affliction, with joy of the Holy Ghost:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So that ye were ensamples to all that believe in Macedonia and Achaia.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For from you sounded out the word of the Lord not only in Macedonia and Achaia, but also in every place your faith to God-ward is spread abroad; so that we need not to speak any thing.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For they themselves shew of us what manner of entering in we had unto you, and how ye turned to God from idols to serve the living and true God;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 1:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And to wait for his Son from heaven, whom he raised from the dead, even Jesus, which delivered us from the wrath to come.</span></div>
+    <a class="v-row" href="/bible/kjv/1-thessalonians/1/1/" data-ref="1 Thessalonians 1:1 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/1/"><span class="v-num">1</span><span class="v-txt">Paul, and Silvanus, and Timotheus, unto the church of the Thessalonians which is in God the Father and in the Lord Jesus Christ: Grace be unto you, and peace, from God our Father, and the Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/2/" data-ref="1 Thessalonians 1:2 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/2/"><span class="v-num">2</span><span class="v-txt">We give thanks to God always for you all, making mention of you in our prayers;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/3/" data-ref="1 Thessalonians 1:3 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/3/"><span class="v-num">3</span><span class="v-txt">Remembering without ceasing your work of faith, and labour of love, and patience of hope in our Lord Jesus Christ, in the sight of God and our Father;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/4/" data-ref="1 Thessalonians 1:4 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/4/"><span class="v-num">4</span><span class="v-txt">Knowing, brethren beloved, your election of God.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/5/" data-ref="1 Thessalonians 1:5 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/5/"><span class="v-num">5</span><span class="v-txt">For our gospel came not unto you in word only, but also in power, and in the Holy Ghost, and in much assurance; as ye know what manner of men we were among you for your sake.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/6/" data-ref="1 Thessalonians 1:6 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/6/"><span class="v-num">6</span><span class="v-txt">And ye became followers of us, and of the Lord, having received the word in much affliction, with joy of the Holy Ghost:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/7/" data-ref="1 Thessalonians 1:7 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/7/"><span class="v-num">7</span><span class="v-txt">So that ye were ensamples to all that believe in Macedonia and Achaia.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/8/" data-ref="1 Thessalonians 1:8 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/8/"><span class="v-num">8</span><span class="v-txt">For from you sounded out the word of the Lord not only in Macedonia and Achaia, but also in every place your faith to God-ward is spread abroad; so that we need not to speak any thing.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/9/" data-ref="1 Thessalonians 1:9 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/9/"><span class="v-num">9</span><span class="v-txt">For they themselves shew of us what manner of entering in we had unto you, and how ye turned to God from idols to serve the living and true God;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/1/10/" data-ref="1 Thessalonians 1:10 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/1/10/"><span class="v-num">10</span><span class="v-txt">And to wait for his Son from heaven, whom he raised from the dead, even Jesus, which delivered us from the wrath to come.</span></a>
 
     
 <div class="app-cta">

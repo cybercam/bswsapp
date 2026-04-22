@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 12:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now a great sign appeared in heaven: a woman clothed with the sun, with the moon under her feet, and on her head a garland of twelve stars.</span></div>
-<div class="v-row" data-ref="Revelation 12:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then being with child, she cried out in labor and in pain to give birth.</span></div>
-<div class="v-row" data-ref="Revelation 12:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And another sign appeared in heaven: behold, a great, fiery red dragon having seven heads and ten horns, and seven diadems on his heads.</span></div>
-<div class="v-row" data-ref="Revelation 12:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">His tail drew a third of the stars of heaven and threw them to the earth. And the dragon stood before the woman who was ready to give birth, to devour her Child as soon as it was born.</span></div>
-<div class="v-row" data-ref="Revelation 12:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">She bore a male Child who was to rule all nations with a rod of iron. And her Child was caught up to God and His throne.</span></div>
-<div class="v-row" data-ref="Revelation 12:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the woman fled into the wilderness, where she has a place prepared by God, that they should feed her there one thousand two hundred and sixty days.</span></div>
-<div class="v-row" data-ref="Revelation 12:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And war broke out in heaven: Michael and his angels fought with the dragon; and the dragon and his angels fought,</span></div>
-<div class="v-row" data-ref="Revelation 12:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">but they did not prevail, nor was a place found for them in heaven any longer.</span></div>
-<div class="v-row" data-ref="Revelation 12:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">So the great dragon was cast out, that serpent of old, called the Devil and Satan, who deceives the whole world; he was cast to the earth, and his angels were cast out with him.</span></div>
-<div class="v-row" data-ref="Revelation 12:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then I heard a loud voice saying in heaven, "Now salvation, and strength, and the kingdom of our God, and the power of His Christ have come, for the accuser of our brethren, who accused them before our God day and night, has been cast down.</span></div>
-<div class="v-row" data-ref="Revelation 12:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"And they overcame him by the blood of the Lamb and by the word of their testimony, and they did not love their lives to the death.</span></div>
-<div class="v-row" data-ref="Revelation 12:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Therefore rejoice, O heavens, and you who dwell in them! Woe to the inhabitants of the earth and the sea! For the devil has come down to you, having great wrath, because he knows that he has a short time."</span></div>
-<div class="v-row" data-ref="Revelation 12:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Now when the dragon saw that he had been cast to the earth, he persecuted the woman who gave birth to the male [Child.]</span></div>
-<div class="v-row" data-ref="Revelation 12:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But the woman was given two wings of a great eagle, that she might fly into the wilderness to her place, where she is nourished for a time and times and half a time, from the presence of the serpent.</span></div>
-<div class="v-row" data-ref="Revelation 12:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So the serpent spewed water out of his mouth like a flood after the woman, that he might cause her to be carried away by the flood.</span></div>
-<div class="v-row" data-ref="Revelation 12:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But the earth helped the woman, and the earth opened its mouth and swallowed up the flood which the dragon had spewed out of his mouth.</span></div>
-<div class="v-row" data-ref="Revelation 12:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the dragon was enraged with the woman, and he went to make war with the rest of her offspring, who keep the commandments of God and have the testimony of Jesus Christ.</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/12/1/" data-ref="Revelation 12:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/1/"><span class="v-num">1</span><span class="v-txt">Now a great sign appeared in heaven: a woman clothed with the sun, with the moon under her feet, and on her head a garland of twelve stars.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/2/" data-ref="Revelation 12:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/2/"><span class="v-num">2</span><span class="v-txt">Then being with child, she cried out in labor and in pain to give birth.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/3/" data-ref="Revelation 12:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/3/"><span class="v-num">3</span><span class="v-txt">And another sign appeared in heaven: behold, a great, fiery red dragon having seven heads and ten horns, and seven diadems on his heads.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/4/" data-ref="Revelation 12:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/4/"><span class="v-num">4</span><span class="v-txt">His tail drew a third of the stars of heaven and threw them to the earth. And the dragon stood before the woman who was ready to give birth, to devour her Child as soon as it was born.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/5/" data-ref="Revelation 12:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/5/"><span class="v-num">5</span><span class="v-txt">She bore a male Child who was to rule all nations with a rod of iron. And her Child was caught up to God and His throne.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/6/" data-ref="Revelation 12:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/6/"><span class="v-num">6</span><span class="v-txt">Then the woman fled into the wilderness, where she has a place prepared by God, that they should feed her there one thousand two hundred and sixty days.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/7/" data-ref="Revelation 12:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/7/"><span class="v-num">7</span><span class="v-txt">And war broke out in heaven: Michael and his angels fought with the dragon; and the dragon and his angels fought,</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/8/" data-ref="Revelation 12:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/8/"><span class="v-num">8</span><span class="v-txt">but they did not prevail, nor was a place found for them in heaven any longer.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/9/" data-ref="Revelation 12:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/9/"><span class="v-num">9</span><span class="v-txt">So the great dragon was cast out, that serpent of old, called the Devil and Satan, who deceives the whole world; he was cast to the earth, and his angels were cast out with him.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/10/" data-ref="Revelation 12:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/10/"><span class="v-num">10</span><span class="v-txt">Then I heard a loud voice saying in heaven, "Now salvation, and strength, and the kingdom of our God, and the power of His Christ have come, for the accuser of our brethren, who accused them before our God day and night, has been cast down.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/11/" data-ref="Revelation 12:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/11/"><span class="v-num">11</span><span class="v-txt">"And they overcame him by the blood of the Lamb and by the word of their testimony, and they did not love their lives to the death.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/12/" data-ref="Revelation 12:12 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/12/"><span class="v-num">12</span><span class="v-txt">"Therefore rejoice, O heavens, and you who dwell in them! Woe to the inhabitants of the earth and the sea! For the devil has come down to you, having great wrath, because he knows that he has a short time."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/13/" data-ref="Revelation 12:13 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/13/"><span class="v-num">13</span><span class="v-txt">Now when the dragon saw that he had been cast to the earth, he persecuted the woman who gave birth to the male [Child.]</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/14/" data-ref="Revelation 12:14 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/14/"><span class="v-num">14</span><span class="v-txt">But the woman was given two wings of a great eagle, that she might fly into the wilderness to her place, where she is nourished for a time and times and half a time, from the presence of the serpent.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/15/" data-ref="Revelation 12:15 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/15/"><span class="v-num">15</span><span class="v-txt">So the serpent spewed water out of his mouth like a flood after the woman, that he might cause her to be carried away by the flood.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/16/" data-ref="Revelation 12:16 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/16/"><span class="v-num">16</span><span class="v-txt">But the earth helped the woman, and the earth opened its mouth and swallowed up the flood which the dragon had spewed out of his mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/12/17/" data-ref="Revelation 12:17 (New King James Version)" data-verse-url="/bible/nkjv/revelation/12/17/"><span class="v-num">17</span><span class="v-txt">And the dragon was enraged with the woman, and he went to make war with the rest of her offspring, who keep the commandments of God and have the testimony of Jesus Christ.</span></a>
 
     
 <div class="app-cta">

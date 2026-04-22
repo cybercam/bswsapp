@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="John 17:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Jesus spoke these words, lifted up His eyes to heaven, and said: "Father, the hour has come. Glorify Your Son, that Your Son also may glorify You,</span></div>
-<div class="v-row" data-ref="John 17:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"as You have given Him authority over all flesh, that He should give eternal life to as many as You have given Him.</span></div>
-<div class="v-row" data-ref="John 17:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"And this is eternal life, that they may know You, the only true God, and Jesus Christ whom You have sent.</span></div>
-<div class="v-row" data-ref="John 17:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"I have glorified You on the earth. I have finished the work which You have given Me to do.</span></div>
-<div class="v-row" data-ref="John 17:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"And now, O Father, glorify Me together with Yourself, with the glory which I had with You before the world was.</span></div>
-<div class="v-row" data-ref="John 17:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" I have manifested Your name to the men whom You have given Me out of the world. They were Yours, You gave them to Me, and they have kept Your word.</span></div>
-<div class="v-row" data-ref="John 17:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Now they have known that all things which You have given Me are from You.</span></div>
-<div class="v-row" data-ref="John 17:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"For I have given to them the words which You have given Me; and they have received [them,] and have known surely that I came forth from You; and they have believed that You sent Me.</span></div>
-<div class="v-row" data-ref="John 17:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"I pray for them. I do not pray for the world but for those whom You have given Me, for they are Yours.</span></div>
-<div class="v-row" data-ref="John 17:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"And all Mine are Yours, and Yours are Mine, and I am glorified in them.</span></div>
-<div class="v-row" data-ref="John 17:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"Now I am no longer in the world, but these are in the world, and I come to You. Holy Father, keep through Your name those whom You have given Me, that they may be one as We [are.]</span></div>
-<div class="v-row" data-ref="John 17:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"While I was with them in the world, I kept them in Your name. Those whom You gave Me I have kept; and none of them is lost except the son of perdition, that the Scripture might be fulfilled.</span></div>
-<div class="v-row" data-ref="John 17:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"But now I come to You, and these things I speak in the world, that they may have My joy fulfilled in themselves.</span></div>
-<div class="v-row" data-ref="John 17:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"I have given them Your word; and the world has hated them because they are not of the world, just as I am not of the world.</span></div>
-<div class="v-row" data-ref="John 17:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"I do not pray that You should take them out of the world, but that You should keep them from the evil one.</span></div>
-<div class="v-row" data-ref="John 17:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"They are not of the world, just as I am not of the world.</span></div>
-<div class="v-row" data-ref="John 17:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Sanctify them by Your truth. Your word is truth.</span></div>
-<div class="v-row" data-ref="John 17:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">"As You sent Me into the world, I also have sent them into the world.</span></div>
-<div class="v-row" data-ref="John 17:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"And for their sakes I sanctify Myself, that they also may be sanctified by the truth.</span></div>
-<div class="v-row" data-ref="John 17:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">" I do not pray for these alone, but also for those who will believe in Me through their word;</span></div>
-<div class="v-row" data-ref="John 17:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">"that they all may be one, as You, Father, [are] in Me, and I in You; that they also may be one in Us, that the world may believe that You sent Me.</span></div>
-<div class="v-row" data-ref="John 17:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">"And the glory which You gave Me I have given them, that they may be one just as We are one:</span></div>
-<div class="v-row" data-ref="John 17:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">"I in them, and You in Me; that they may be made perfect in one, and that the world may know that You have sent Me, and have loved them as You have loved Me.</span></div>
-<div class="v-row" data-ref="John 17:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">"Father, I desire that they also whom You gave Me may be with Me where I am, that they may behold My glory which You have given Me; for You loved Me before the foundation of the world.</span></div>
-<div class="v-row" data-ref="John 17:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">"O righteous Father! The world has not known You, but I have known You; and these have known that You sent Me.</span></div>
-<div class="v-row" data-ref="John 17:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">"And I have declared to them Your name, and will declare [it,] that the love with which You loved Me may be in them, and I in them."</span></div>
+    <a class="v-row" href="/bible/nkjv/john/17/1/" data-ref="John 17:1 (New King James Version)" data-verse-url="/bible/nkjv/john/17/1/"><span class="v-num">1</span><span class="v-txt">Jesus spoke these words, lifted up His eyes to heaven, and said: "Father, the hour has come. Glorify Your Son, that Your Son also may glorify You,</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/2/" data-ref="John 17:2 (New King James Version)" data-verse-url="/bible/nkjv/john/17/2/"><span class="v-num">2</span><span class="v-txt">"as You have given Him authority over all flesh, that He should give eternal life to as many as You have given Him.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/3/" data-ref="John 17:3 (New King James Version)" data-verse-url="/bible/nkjv/john/17/3/"><span class="v-num">3</span><span class="v-txt">"And this is eternal life, that they may know You, the only true God, and Jesus Christ whom You have sent.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/4/" data-ref="John 17:4 (New King James Version)" data-verse-url="/bible/nkjv/john/17/4/"><span class="v-num">4</span><span class="v-txt">"I have glorified You on the earth. I have finished the work which You have given Me to do.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/5/" data-ref="John 17:5 (New King James Version)" data-verse-url="/bible/nkjv/john/17/5/"><span class="v-num">5</span><span class="v-txt">"And now, O Father, glorify Me together with Yourself, with the glory which I had with You before the world was.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/6/" data-ref="John 17:6 (New King James Version)" data-verse-url="/bible/nkjv/john/17/6/"><span class="v-num">6</span><span class="v-txt">" I have manifested Your name to the men whom You have given Me out of the world. They were Yours, You gave them to Me, and they have kept Your word.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/7/" data-ref="John 17:7 (New King James Version)" data-verse-url="/bible/nkjv/john/17/7/"><span class="v-num">7</span><span class="v-txt">"Now they have known that all things which You have given Me are from You.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/8/" data-ref="John 17:8 (New King James Version)" data-verse-url="/bible/nkjv/john/17/8/"><span class="v-num">8</span><span class="v-txt">"For I have given to them the words which You have given Me; and they have received [them,] and have known surely that I came forth from You; and they have believed that You sent Me.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/9/" data-ref="John 17:9 (New King James Version)" data-verse-url="/bible/nkjv/john/17/9/"><span class="v-num">9</span><span class="v-txt">"I pray for them. I do not pray for the world but for those whom You have given Me, for they are Yours.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/10/" data-ref="John 17:10 (New King James Version)" data-verse-url="/bible/nkjv/john/17/10/"><span class="v-num">10</span><span class="v-txt">"And all Mine are Yours, and Yours are Mine, and I am glorified in them.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/11/" data-ref="John 17:11 (New King James Version)" data-verse-url="/bible/nkjv/john/17/11/"><span class="v-num">11</span><span class="v-txt">"Now I am no longer in the world, but these are in the world, and I come to You. Holy Father, keep through Your name those whom You have given Me, that they may be one as We [are.]</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/12/" data-ref="John 17:12 (New King James Version)" data-verse-url="/bible/nkjv/john/17/12/"><span class="v-num">12</span><span class="v-txt">"While I was with them in the world, I kept them in Your name. Those whom You gave Me I have kept; and none of them is lost except the son of perdition, that the Scripture might be fulfilled.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/13/" data-ref="John 17:13 (New King James Version)" data-verse-url="/bible/nkjv/john/17/13/"><span class="v-num">13</span><span class="v-txt">"But now I come to You, and these things I speak in the world, that they may have My joy fulfilled in themselves.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/14/" data-ref="John 17:14 (New King James Version)" data-verse-url="/bible/nkjv/john/17/14/"><span class="v-num">14</span><span class="v-txt">"I have given them Your word; and the world has hated them because they are not of the world, just as I am not of the world.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/15/" data-ref="John 17:15 (New King James Version)" data-verse-url="/bible/nkjv/john/17/15/"><span class="v-num">15</span><span class="v-txt">"I do not pray that You should take them out of the world, but that You should keep them from the evil one.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/16/" data-ref="John 17:16 (New King James Version)" data-verse-url="/bible/nkjv/john/17/16/"><span class="v-num">16</span><span class="v-txt">"They are not of the world, just as I am not of the world.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/17/" data-ref="John 17:17 (New King James Version)" data-verse-url="/bible/nkjv/john/17/17/"><span class="v-num">17</span><span class="v-txt">"Sanctify them by Your truth. Your word is truth.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/18/" data-ref="John 17:18 (New King James Version)" data-verse-url="/bible/nkjv/john/17/18/"><span class="v-num">18</span><span class="v-txt">"As You sent Me into the world, I also have sent them into the world.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/19/" data-ref="John 17:19 (New King James Version)" data-verse-url="/bible/nkjv/john/17/19/"><span class="v-num">19</span><span class="v-txt">"And for their sakes I sanctify Myself, that they also may be sanctified by the truth.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/20/" data-ref="John 17:20 (New King James Version)" data-verse-url="/bible/nkjv/john/17/20/"><span class="v-num">20</span><span class="v-txt">" I do not pray for these alone, but also for those who will believe in Me through their word;</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/21/" data-ref="John 17:21 (New King James Version)" data-verse-url="/bible/nkjv/john/17/21/"><span class="v-num">21</span><span class="v-txt">"that they all may be one, as You, Father, [are] in Me, and I in You; that they also may be one in Us, that the world may believe that You sent Me.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/22/" data-ref="John 17:22 (New King James Version)" data-verse-url="/bible/nkjv/john/17/22/"><span class="v-num">22</span><span class="v-txt">"And the glory which You gave Me I have given them, that they may be one just as We are one:</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/23/" data-ref="John 17:23 (New King James Version)" data-verse-url="/bible/nkjv/john/17/23/"><span class="v-num">23</span><span class="v-txt">"I in them, and You in Me; that they may be made perfect in one, and that the world may know that You have sent Me, and have loved them as You have loved Me.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/24/" data-ref="John 17:24 (New King James Version)" data-verse-url="/bible/nkjv/john/17/24/"><span class="v-num">24</span><span class="v-txt">"Father, I desire that they also whom You gave Me may be with Me where I am, that they may behold My glory which You have given Me; for You loved Me before the foundation of the world.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/25/" data-ref="John 17:25 (New King James Version)" data-verse-url="/bible/nkjv/john/17/25/"><span class="v-num">25</span><span class="v-txt">"O righteous Father! The world has not known You, but I have known You; and these have known that You sent Me.</span></a>
+<a class="v-row" href="/bible/nkjv/john/17/26/" data-ref="John 17:26 (New King James Version)" data-verse-url="/bible/nkjv/john/17/26/"><span class="v-num">26</span><span class="v-txt">"And I have declared to them Your name, and will declare [it,] that the love with which You loved Me may be in them, and I in them."</span></a>
 
     
 <div class="app-cta">

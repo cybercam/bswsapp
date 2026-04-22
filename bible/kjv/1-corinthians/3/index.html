@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 3:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I, brethren, could not speak unto you as unto spiritual, but as unto carnal, even as unto babes in Christ.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I have fed you with milk, and not with meat: for hitherto ye were not able to bear it, neither yet now are ye able.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For ye are yet carnal: for whereas there is among you envying, and strife, and divisions, are ye not carnal, and walk as men?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For while one saith, I am of Paul; and another, I am of Apollos; are ye not carnal?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Who then is Paul, and who is Apollos, but ministers by whom ye believed, even as the Lord gave to every man?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I have planted, Apollos watered; but God gave the increase.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So then neither is he that planteth any thing, neither he that watereth; but God that giveth the increase.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now he that planteth and he that watereth are one: and every man shall receive his own reward according to his own labour.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For we are labourers together with God: ye are God's husbandry, ye are God's building.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">According to the grace of God which is given unto me, as a wise masterbuilder, I have laid the foundation, and another buildeth thereon. But let every man take heed how he buildeth thereupon.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For other foundation can no man lay than that is laid, which is Jesus Christ.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Now if any man build upon this foundation gold, silver, precious stones, wood, hay, stubble;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Every man's work shall be made manifest: for the day shall declare it, because it shall be revealed by fire; and the fire shall try every man's work of what sort it is.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If any man's work abide which he hath built thereupon, he shall receive a reward.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If any man's work shall be burned, he shall suffer loss: but he himself shall be saved; yet so as by fire.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Know ye not that ye are the temple of God, and that the Spirit of God dwelleth in you?</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let no man deceive himself. If any man among you seemeth to be wise in this world, let him become a fool, that he may be wise.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For the wisdom of this world is foolishness with God. For it is written, He taketh the wise in their own craftiness.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And again, The Lord knoweth the thoughts of the wise, that they are vain.</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Therefore let no man glory in men. For all things are yours;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Whether Paul, or Apollos, or Cephas, or the world, or life, or death, or things present, or things to come; all are yours;</span></div>
-<div class="v-row" data-ref="1 Corinthians 3:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And ye are Christ's; and Christ is God's.</span></div>
+    <a class="v-row" href="/bible/kjv/1-corinthians/3/1/" data-ref="1 Corinthians 3:1 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/1/"><span class="v-num">1</span><span class="v-txt">And I, brethren, could not speak unto you as unto spiritual, but as unto carnal, even as unto babes in Christ.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/2/" data-ref="1 Corinthians 3:2 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/2/"><span class="v-num">2</span><span class="v-txt">I have fed you with milk, and not with meat: for hitherto ye were not able to bear it, neither yet now are ye able.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/3/" data-ref="1 Corinthians 3:3 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/3/"><span class="v-num">3</span><span class="v-txt">For ye are yet carnal: for whereas there is among you envying, and strife, and divisions, are ye not carnal, and walk as men?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/4/" data-ref="1 Corinthians 3:4 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/4/"><span class="v-num">4</span><span class="v-txt">For while one saith, I am of Paul; and another, I am of Apollos; are ye not carnal?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/5/" data-ref="1 Corinthians 3:5 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/5/"><span class="v-num">5</span><span class="v-txt">Who then is Paul, and who is Apollos, but ministers by whom ye believed, even as the Lord gave to every man?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/6/" data-ref="1 Corinthians 3:6 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/6/"><span class="v-num">6</span><span class="v-txt">I have planted, Apollos watered; but God gave the increase.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/7/" data-ref="1 Corinthians 3:7 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/7/"><span class="v-num">7</span><span class="v-txt">So then neither is he that planteth any thing, neither he that watereth; but God that giveth the increase.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/8/" data-ref="1 Corinthians 3:8 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/8/"><span class="v-num">8</span><span class="v-txt">Now he that planteth and he that watereth are one: and every man shall receive his own reward according to his own labour.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/9/" data-ref="1 Corinthians 3:9 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/9/"><span class="v-num">9</span><span class="v-txt">For we are labourers together with God: ye are God's husbandry, ye are God's building.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/10/" data-ref="1 Corinthians 3:10 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/10/"><span class="v-num">10</span><span class="v-txt">According to the grace of God which is given unto me, as a wise masterbuilder, I have laid the foundation, and another buildeth thereon. But let every man take heed how he buildeth thereupon.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/11/" data-ref="1 Corinthians 3:11 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/11/"><span class="v-num">11</span><span class="v-txt">For other foundation can no man lay than that is laid, which is Jesus Christ.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/12/" data-ref="1 Corinthians 3:12 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/12/"><span class="v-num">12</span><span class="v-txt">Now if any man build upon this foundation gold, silver, precious stones, wood, hay, stubble;</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/13/" data-ref="1 Corinthians 3:13 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/13/"><span class="v-num">13</span><span class="v-txt">Every man's work shall be made manifest: for the day shall declare it, because it shall be revealed by fire; and the fire shall try every man's work of what sort it is.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/14/" data-ref="1 Corinthians 3:14 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/14/"><span class="v-num">14</span><span class="v-txt">If any man's work abide which he hath built thereupon, he shall receive a reward.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/15/" data-ref="1 Corinthians 3:15 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/15/"><span class="v-num">15</span><span class="v-txt">If any man's work shall be burned, he shall suffer loss: but he himself shall be saved; yet so as by fire.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/16/" data-ref="1 Corinthians 3:16 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/16/"><span class="v-num">16</span><span class="v-txt">Know ye not that ye are the temple of God, and that the Spirit of God dwelleth in you?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/17/" data-ref="1 Corinthians 3:17 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/17/"><span class="v-num">17</span><span class="v-txt">If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/18/" data-ref="1 Corinthians 3:18 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/18/"><span class="v-num">18</span><span class="v-txt">Let no man deceive himself. If any man among you seemeth to be wise in this world, let him become a fool, that he may be wise.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/19/" data-ref="1 Corinthians 3:19 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/19/"><span class="v-num">19</span><span class="v-txt">For the wisdom of this world is foolishness with God. For it is written, He taketh the wise in their own craftiness.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/20/" data-ref="1 Corinthians 3:20 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/20/"><span class="v-num">20</span><span class="v-txt">And again, The Lord knoweth the thoughts of the wise, that they are vain.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/21/" data-ref="1 Corinthians 3:21 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/21/"><span class="v-num">21</span><span class="v-txt">Therefore let no man glory in men. For all things are yours;</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/22/" data-ref="1 Corinthians 3:22 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/22/"><span class="v-num">22</span><span class="v-txt">Whether Paul, or Apollos, or Cephas, or the world, or life, or death, or things present, or things to come; all are yours;</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/3/23/" data-ref="1 Corinthians 3:23 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/3/23/"><span class="v-num">23</span><span class="v-txt">And ye are Christ's; and Christ is God's.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Colossians 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">If then you were raised with Christ, seek those things which are above, where Christ is, sitting at the right hand of God.</span></div>
-<div class="v-row" data-ref="Colossians 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Set your mind on things above, not on things on the earth.</span></div>
-<div class="v-row" data-ref="Colossians 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For you died, and your life is hidden with Christ in God.</span></div>
-<div class="v-row" data-ref="Colossians 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">When Christ [who is] our life appears, then you also will appear with Him in glory.</span></div>
-<div class="v-row" data-ref="Colossians 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Therefore put to death your members which are on the earth: fornication, uncleanness, passion, evil desire, and covetousness, which is idolatry.</span></div>
-<div class="v-row" data-ref="Colossians 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Because of these things the wrath of God is coming upon the sons of disobedience,</span></div>
-<div class="v-row" data-ref="Colossians 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">in which you yourselves once walked when you lived in them.</span></div>
-<div class="v-row" data-ref="Colossians 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But now you yourselves are to put off all these: anger, wrath, malice, blasphemy, filthy language out of your mouth.</span></div>
-<div class="v-row" data-ref="Colossians 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Do not lie to one another, since you have put off the old man with his deeds,</span></div>
-<div class="v-row" data-ref="Colossians 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">and have put on the new [man] who is renewed in knowledge according to the image of Him who created him,</span></div>
-<div class="v-row" data-ref="Colossians 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">where there is neither Greek nor Jew, circumcised nor uncircumcised, barbarian, Scythian, slave [nor] free, but Christ [is] all and in all.</span></div>
-<div class="v-row" data-ref="Colossians 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore, as [the] elect of God, holy and beloved, put on tender mercies, kindness, humility, meekness, longsuffering;</span></div>
-<div class="v-row" data-ref="Colossians 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">bearing with one another, and forgiving one another, if anyone has a complaint against another; even as Christ forgave you, so you also [must do.]</span></div>
-<div class="v-row" data-ref="Colossians 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But above all these things put on love, which is the bond of perfection.</span></div>
-<div class="v-row" data-ref="Colossians 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And let the peace of God rule in your hearts, to which also you were called in one body; and be thankful.</span></div>
-<div class="v-row" data-ref="Colossians 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.</span></div>
-<div class="v-row" data-ref="Colossians 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And [whatever] you do in word or deed, [do] all in the name of the Lord Jesus, giving thanks to God the Father through Him.</span></div>
-<div class="v-row" data-ref="Colossians 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Wives, submit to your own husbands, as is fitting in the Lord.</span></div>
-<div class="v-row" data-ref="Colossians 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Husbands, love your wives and do not be bitter toward them.</span></div>
-<div class="v-row" data-ref="Colossians 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Children, obey your parents in all things, for this is well pleasing to the Lord.</span></div>
-<div class="v-row" data-ref="Colossians 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Fathers, do not provoke your children, lest they become discouraged.</span></div>
-<div class="v-row" data-ref="Colossians 3:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Bondservants, obey in all things your masters according to the flesh, not with eyeservice, as men-pleasers, but in sincerity of heart, fearing God.</span></div>
-<div class="v-row" data-ref="Colossians 3:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And whatever you do, do it heartily, as to the Lord and not to men,</span></div>
-<div class="v-row" data-ref="Colossians 3:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">knowing that from the Lord you will receive the reward of the inheritance; for you serve the Lord Christ.</span></div>
-<div class="v-row" data-ref="Colossians 3:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">But he who does wrong will be repaid for what he has done, and there is no partiality.</span></div>
+    <a class="v-row" href="/bible/nkjv/colossians/3/1/" data-ref="Colossians 3:1 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/1/"><span class="v-num">1</span><span class="v-txt">If then you were raised with Christ, seek those things which are above, where Christ is, sitting at the right hand of God.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/2/" data-ref="Colossians 3:2 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/2/"><span class="v-num">2</span><span class="v-txt">Set your mind on things above, not on things on the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/3/" data-ref="Colossians 3:3 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/3/"><span class="v-num">3</span><span class="v-txt">For you died, and your life is hidden with Christ in God.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/4/" data-ref="Colossians 3:4 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/4/"><span class="v-num">4</span><span class="v-txt">When Christ [who is] our life appears, then you also will appear with Him in glory.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/5/" data-ref="Colossians 3:5 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/5/"><span class="v-num">5</span><span class="v-txt">Therefore put to death your members which are on the earth: fornication, uncleanness, passion, evil desire, and covetousness, which is idolatry.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/6/" data-ref="Colossians 3:6 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/6/"><span class="v-num">6</span><span class="v-txt">Because of these things the wrath of God is coming upon the sons of disobedience,</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/7/" data-ref="Colossians 3:7 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/7/"><span class="v-num">7</span><span class="v-txt">in which you yourselves once walked when you lived in them.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/8/" data-ref="Colossians 3:8 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/8/"><span class="v-num">8</span><span class="v-txt">But now you yourselves are to put off all these: anger, wrath, malice, blasphemy, filthy language out of your mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/9/" data-ref="Colossians 3:9 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/9/"><span class="v-num">9</span><span class="v-txt">Do not lie to one another, since you have put off the old man with his deeds,</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/10/" data-ref="Colossians 3:10 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/10/"><span class="v-num">10</span><span class="v-txt">and have put on the new [man] who is renewed in knowledge according to the image of Him who created him,</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/11/" data-ref="Colossians 3:11 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/11/"><span class="v-num">11</span><span class="v-txt">where there is neither Greek nor Jew, circumcised nor uncircumcised, barbarian, Scythian, slave [nor] free, but Christ [is] all and in all.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/12/" data-ref="Colossians 3:12 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/12/"><span class="v-num">12</span><span class="v-txt">Therefore, as [the] elect of God, holy and beloved, put on tender mercies, kindness, humility, meekness, longsuffering;</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/13/" data-ref="Colossians 3:13 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/13/"><span class="v-num">13</span><span class="v-txt">bearing with one another, and forgiving one another, if anyone has a complaint against another; even as Christ forgave you, so you also [must do.]</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/14/" data-ref="Colossians 3:14 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/14/"><span class="v-num">14</span><span class="v-txt">But above all these things put on love, which is the bond of perfection.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/15/" data-ref="Colossians 3:15 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/15/"><span class="v-num">15</span><span class="v-txt">And let the peace of God rule in your hearts, to which also you were called in one body; and be thankful.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/16/" data-ref="Colossians 3:16 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/16/"><span class="v-num">16</span><span class="v-txt">Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/17/" data-ref="Colossians 3:17 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/17/"><span class="v-num">17</span><span class="v-txt">And [whatever] you do in word or deed, [do] all in the name of the Lord Jesus, giving thanks to God the Father through Him.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/18/" data-ref="Colossians 3:18 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/18/"><span class="v-num">18</span><span class="v-txt">Wives, submit to your own husbands, as is fitting in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/19/" data-ref="Colossians 3:19 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/19/"><span class="v-num">19</span><span class="v-txt">Husbands, love your wives and do not be bitter toward them.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/20/" data-ref="Colossians 3:20 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/20/"><span class="v-num">20</span><span class="v-txt">Children, obey your parents in all things, for this is well pleasing to the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/21/" data-ref="Colossians 3:21 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/21/"><span class="v-num">21</span><span class="v-txt">Fathers, do not provoke your children, lest they become discouraged.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/22/" data-ref="Colossians 3:22 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/22/"><span class="v-num">22</span><span class="v-txt">Bondservants, obey in all things your masters according to the flesh, not with eyeservice, as men-pleasers, but in sincerity of heart, fearing God.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/23/" data-ref="Colossians 3:23 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/23/"><span class="v-num">23</span><span class="v-txt">And whatever you do, do it heartily, as to the Lord and not to men,</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/24/" data-ref="Colossians 3:24 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/24/"><span class="v-num">24</span><span class="v-txt">knowing that from the Lord you will receive the reward of the inheritance; for you serve the Lord Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/colossians/3/25/" data-ref="Colossians 3:25 (New King James Version)" data-verse-url="/bible/nkjv/colossians/3/25/"><span class="v-num">25</span><span class="v-txt">But he who does wrong will be repaid for what he has done, and there is no partiality.</span></a>
 
     
 <div class="app-cta">

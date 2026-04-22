@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Malachi 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden of the word of the LORD to Israel by Malachi.</span></div>
-<div class="v-row" data-ref="Malachi 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">" I have loved you," says the LORD. "Yet you say, 'In what way have You loved us?' [Was] not Esau Jacob's brother?" Says the LORD. "Yet Jacob I have loved;</span></div>
-<div class="v-row" data-ref="Malachi 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But Esau I have hated, And laid waste his mountains and his heritage For the jackals of the wilderness."</span></div>
-<div class="v-row" data-ref="Malachi 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Even though Edom has said, "We have been impoverished, But we will return and build the desolate places," Thus says the LORD of hosts: "They may build, but I will throw down; They shall be called the Territory of Wickedness, And the people against whom the LORD will have indignation forever.</span></div>
-<div class="v-row" data-ref="Malachi 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Your eyes shall see, And you shall say, 'The LORD is magnified beyond the border of Israel.'</span></div>
-<div class="v-row" data-ref="Malachi 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" A son honors [his] father, And a servant [his] master. If then I am the Father, Where [is] My honor? And if I [am] a Master, Where [is] My reverence? Says the LORD of hosts To you priests who despise My name. Yet you say, 'In what way have we despised Your name?'</span></div>
-<div class="v-row" data-ref="Malachi 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"[You] offer defiled food on My altar. But say, 'In what way have we defiled You?' By saying, 'The table of the LORD is contemptible.'</span></div>
-<div class="v-row" data-ref="Malachi 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when you offer the blind as a sacrifice, [Is it] not evil? And when you offer the lame and sick, [Is it] not evil? Offer it then to your governor! Would he be pleased with you? Would he accept you favorably?" Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"But now entreat God's favor, That He may be gracious to us. [While] this is being [done] by your hands, Will He accept you favorably?" Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Who [is there] even among you who would shut the doors, So that you would not kindle fire [on] My altar in vain? I have no pleasure in you," Says the LORD of hosts, "Nor will I accept an offering from your hands.</span></div>
-<div class="v-row" data-ref="Malachi 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For from the rising of the sun, even to its going down, My name [shall be] great among the Gentiles; In every place incense [shall be] offered to My name, And a pure offering; For My name shall be great among the nations," Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"But you profane it, In that you say, 'The table of the LORD is defiled; And its fruit, its food, [is] contemptible.'</span></div>
-<div class="v-row" data-ref="Malachi 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">You also say, 'Oh, what a weariness!' And you sneer at it," Says the LORD of hosts. "And you bring the stolen, the lame, and the sick; Thus you bring an offering! Should I accept this from your hand?" Says the LORD.</span></div>
-<div class="v-row" data-ref="Malachi 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"But cursed [be] the deceiver Who has in his flock a male, And takes a vow, But sacrifices to the Lord what is blemished -- For I [am] a great King," Says the LORD of hosts, "And My name [is to be] feared among the nations.</span></div>
+    <a class="v-row" href="/bible/nkjv/malachi/1/1/" data-ref="Malachi 1:1 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/1/"><span class="v-num">1</span><span class="v-txt">The burden of the word of the LORD to Israel by Malachi.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/2/" data-ref="Malachi 1:2 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/2/"><span class="v-num">2</span><span class="v-txt">" I have loved you," says the LORD. "Yet you say, 'In what way have You loved us?' [Was] not Esau Jacob's brother?" Says the LORD. "Yet Jacob I have loved;</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/3/" data-ref="Malachi 1:3 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/3/"><span class="v-num">3</span><span class="v-txt">But Esau I have hated, And laid waste his mountains and his heritage For the jackals of the wilderness."</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/4/" data-ref="Malachi 1:4 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/4/"><span class="v-num">4</span><span class="v-txt">Even though Edom has said, "We have been impoverished, But we will return and build the desolate places," Thus says the LORD of hosts: "They may build, but I will throw down; They shall be called the Territory of Wickedness, And the people against whom the LORD will have indignation forever.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/5/" data-ref="Malachi 1:5 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/5/"><span class="v-num">5</span><span class="v-txt">Your eyes shall see, And you shall say, 'The LORD is magnified beyond the border of Israel.'</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/6/" data-ref="Malachi 1:6 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/6/"><span class="v-num">6</span><span class="v-txt">" A son honors [his] father, And a servant [his] master. If then I am the Father, Where [is] My honor? And if I [am] a Master, Where [is] My reverence? Says the LORD of hosts To you priests who despise My name. Yet you say, 'In what way have we despised Your name?'</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/7/" data-ref="Malachi 1:7 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/7/"><span class="v-num">7</span><span class="v-txt">"[You] offer defiled food on My altar. But say, 'In what way have we defiled You?' By saying, 'The table of the LORD is contemptible.'</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/8/" data-ref="Malachi 1:8 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/8/"><span class="v-num">8</span><span class="v-txt">And when you offer the blind as a sacrifice, [Is it] not evil? And when you offer the lame and sick, [Is it] not evil? Offer it then to your governor! Would he be pleased with you? Would he accept you favorably?" Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/9/" data-ref="Malachi 1:9 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/9/"><span class="v-num">9</span><span class="v-txt">"But now entreat God's favor, That He may be gracious to us. [While] this is being [done] by your hands, Will He accept you favorably?" Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/10/" data-ref="Malachi 1:10 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/10/"><span class="v-num">10</span><span class="v-txt">"Who [is there] even among you who would shut the doors, So that you would not kindle fire [on] My altar in vain? I have no pleasure in you," Says the LORD of hosts, "Nor will I accept an offering from your hands.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/11/" data-ref="Malachi 1:11 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/11/"><span class="v-num">11</span><span class="v-txt">For from the rising of the sun, even to its going down, My name [shall be] great among the Gentiles; In every place incense [shall be] offered to My name, And a pure offering; For My name shall be great among the nations," Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/12/" data-ref="Malachi 1:12 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/12/"><span class="v-num">12</span><span class="v-txt">"But you profane it, In that you say, 'The table of the LORD is defiled; And its fruit, its food, [is] contemptible.'</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/13/" data-ref="Malachi 1:13 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/13/"><span class="v-num">13</span><span class="v-txt">You also say, 'Oh, what a weariness!' And you sneer at it," Says the LORD of hosts. "And you bring the stolen, the lame, and the sick; Thus you bring an offering! Should I accept this from your hand?" Says the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/malachi/1/14/" data-ref="Malachi 1:14 (New King James Version)" data-verse-url="/bible/nkjv/malachi/1/14/"><span class="v-num">14</span><span class="v-txt">"But cursed [be] the deceiver Who has in his flock a male, And takes a vow, But sacrifices to the Lord what is blemished -- For I [am] a great King," Says the LORD of hosts, "And My name [is to be] feared among the nations.</span></a>
 
     
 <div class="app-cta">

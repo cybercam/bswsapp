@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So all the work which Solomon did for the house of the Lord was complete. And Solomon took the holy things which David his father had given, the silver and the gold and all the vessels, and put them in the store-houses of the house of God.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then Solomon sent for all the responsible men of Israel, all the chiefs of the tribes and the heads of families of the children of Israel, to come to Jerusalem and take the ark of the Lord's agreement up out of the town of David, which is Zion.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And all the men of Israel came together to the king at the feast in the seventh month.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">All the responsible men of Israel came, and the Levites took up the ark.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They took up the ark and the Tent of meeting and all the holy vessels which were in the Tent; all these the priests, the Levites, took up.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And King Solomon and all the men of Israel who had come together there with him, were before the ark, making offerings of sheep and oxen more than might be numbered.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the priests took the ark of the Lord's agreement and put it in its place, in the inner room of the house, in the most holy place, under the wings of the winged ones.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For their wings were outstretched over the place where the ark was, covering the ark and its rods.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The rods were so long that their ends were seen from the holy place before the inmost room; but they were not seen from outside; and there they are to this day.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Nothing was in the ark but the two flat stones which Moses put there at Horeb, where the Lord made an agreement with the children of Israel when they came out of Egypt.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now when the priests had come out of the holy place, (for all the priests who were present had made themselves holy, not keeping to their divisions;</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the Levites who made the music, all of them, Asaph, Heman, Jeduthun, and their sons and brothers, robed in fair linen, were in their places with their brass and corded instruments at the east side of the altar, and with them a hundred and twenty priests blowing horns;)</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And when the players on horns, and those who made melody in song, with one voice were sounding the praise and glory of the Lord; with loud voices and with wind instruments, and brass and corded instruments of music, praising the Lord and saying, He is good; his mercy is unchanging for ever: then the house was full of the cloud of the glory of the Lord,</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">So that the priests were not able to keep their places to do their work because of the cloud; for the house of God was full of the glory of the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/5/1/" data-ref="2 Chronicles 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/1/"><span class="v-num">1</span><span class="v-txt">So all the work which Solomon did for the house of the Lord was complete. And Solomon took the holy things which David his father had given, the silver and the gold and all the vessels, and put them in the store-houses of the house of God.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/2/" data-ref="2 Chronicles 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/2/"><span class="v-num">2</span><span class="v-txt">Then Solomon sent for all the responsible men of Israel, all the chiefs of the tribes and the heads of families of the children of Israel, to come to Jerusalem and take the ark of the Lord's agreement up out of the town of David, which is Zion.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/3/" data-ref="2 Chronicles 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/3/"><span class="v-num">3</span><span class="v-txt">And all the men of Israel came together to the king at the feast in the seventh month.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/4/" data-ref="2 Chronicles 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/4/"><span class="v-num">4</span><span class="v-txt">All the responsible men of Israel came, and the Levites took up the ark.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/5/" data-ref="2 Chronicles 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/5/"><span class="v-num">5</span><span class="v-txt">They took up the ark and the Tent of meeting and all the holy vessels which were in the Tent; all these the priests, the Levites, took up.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/6/" data-ref="2 Chronicles 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/6/"><span class="v-num">6</span><span class="v-txt">And King Solomon and all the men of Israel who had come together there with him, were before the ark, making offerings of sheep and oxen more than might be numbered.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/7/" data-ref="2 Chronicles 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/7/"><span class="v-num">7</span><span class="v-txt">And the priests took the ark of the Lord's agreement and put it in its place, in the inner room of the house, in the most holy place, under the wings of the winged ones.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/8/" data-ref="2 Chronicles 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/8/"><span class="v-num">8</span><span class="v-txt">For their wings were outstretched over the place where the ark was, covering the ark and its rods.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/9/" data-ref="2 Chronicles 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/9/"><span class="v-num">9</span><span class="v-txt">The rods were so long that their ends were seen from the holy place before the inmost room; but they were not seen from outside; and there they are to this day.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/10/" data-ref="2 Chronicles 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/10/"><span class="v-num">10</span><span class="v-txt">Nothing was in the ark but the two flat stones which Moses put there at Horeb, where the Lord made an agreement with the children of Israel when they came out of Egypt.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/11/" data-ref="2 Chronicles 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/11/"><span class="v-num">11</span><span class="v-txt">Now when the priests had come out of the holy place, (for all the priests who were present had made themselves holy, not keeping to their divisions;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/12/" data-ref="2 Chronicles 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/12/"><span class="v-num">12</span><span class="v-txt">And the Levites who made the music, all of them, Asaph, Heman, Jeduthun, and their sons and brothers, robed in fair linen, were in their places with their brass and corded instruments at the east side of the altar, and with them a hundred and twenty priests blowing horns;)</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/13/" data-ref="2 Chronicles 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/13/"><span class="v-num">13</span><span class="v-txt">And when the players on horns, and those who made melody in song, with one voice were sounding the praise and glory of the Lord; with loud voices and with wind instruments, and brass and corded instruments of music, praising the Lord and saying, He is good; his mercy is unchanging for ever: then the house was full of the cloud of the glory of the Lord,</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/5/14/" data-ref="2 Chronicles 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/5/14/"><span class="v-num">14</span><span class="v-txt">So that the priests were not able to keep their places to do their work because of the cloud; for the house of God was full of the glory of the Lord.</span></a>
 
     
 <div class="app-cta">

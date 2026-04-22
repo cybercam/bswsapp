@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,39 +204,39 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The wise sayings of Solomon, the son of David, king of Israel.</span></div>
-<div class="v-row" data-ref="Proverbs 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">To have knowledge of wise teaching; to be clear about the words of reason:</span></div>
-<div class="v-row" data-ref="Proverbs 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">To be trained in the ways of wisdom, in righteousness and judging truly and straight behaviour:</span></div>
-<div class="v-row" data-ref="Proverbs 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">To make the simple-minded sharp, and to give the young man knowledge, and serious purpose:</span></div>
-<div class="v-row" data-ref="Proverbs 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">(The wise man, hearing, will get greater learning, and the acts of the man of good sense will be wisely guided:)</span></div>
-<div class="v-row" data-ref="Proverbs 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">To get the sense of wise sayings and secrets, and of the words of the wise and their dark sayings.</span></div>
-<div class="v-row" data-ref="Proverbs 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The fear of the Lord is the start of knowledge: but the foolish have no use for wisdom and teaching.</span></div>
-<div class="v-row" data-ref="Proverbs 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">My son, give ear to the training of your father, and do not give up the teaching of your mother:</span></div>
-<div class="v-row" data-ref="Proverbs 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For they will be a crown of grace for your head, and chain-ornaments about your neck.</span></div>
-<div class="v-row" data-ref="Proverbs 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">My son, if sinners would take you out of the right way, do not go with them.</span></div>
-<div class="v-row" data-ref="Proverbs 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If they say, Come with us; let us make designs against the good, waiting secretly for the upright, without cause;</span></div>
-<div class="v-row" data-ref="Proverbs 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let us overcome them living, like the underworld, and in their strength, as those who go down to death;</span></div>
-<div class="v-row" data-ref="Proverbs 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Goods of great price will be ours, our houses will be full of wealth;</span></div>
-<div class="v-row" data-ref="Proverbs 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Take your chance with us, and we will all have one money-bag:</span></div>
-<div class="v-row" data-ref="Proverbs 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My son, do not go with them; keep your feet from their ways:</span></div>
-<div class="v-row" data-ref="Proverbs 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For their feet are running after evil, and they are quick to take a man's life.</span></div>
-<div class="v-row" data-ref="Proverbs 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Truly, to no purpose is the net stretched out before the eyes of the bird:</span></div>
-<div class="v-row" data-ref="Proverbs 1:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And they are secretly waiting for their blood and making ready destruction for themselves.</span></div>
-<div class="v-row" data-ref="Proverbs 1:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Such is the fate of everyone who goes in search of profit; it takes away the life of its owners.</span></div>
-<div class="v-row" data-ref="Proverbs 1:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Wisdom is crying out in the street; her voice is loud in the open places;</span></div>
-<div class="v-row" data-ref="Proverbs 1:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Her words are sounding in the meeting-places, and in the doorways of the town:</span></div>
-<div class="v-row" data-ref="Proverbs 1:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">How long, you simple ones, will foolish things be dear to you? and pride a delight to the haters of authority? how long will the foolish go on hating knowledge?</span></div>
-<div class="v-row" data-ref="Proverbs 1:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Be turned again by my sharp words: see, I will send the flow of my spirit on you, and make my words clear to you.</span></div>
-<div class="v-row" data-ref="Proverbs 1:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Because your ears were shut to my voice; no one gave attention to my out-stretched hand;</span></div>
-<div class="v-row" data-ref="Proverbs 1:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">You were not controlled by my guiding, and would have nothing to do with my sharp words:</span></div>
-<div class="v-row" data-ref="Proverbs 1:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">So in the day of your trouble I will be laughing; I will make sport of your fear;</span></div>
-<div class="v-row" data-ref="Proverbs 1:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">When your fear comes on you like a storm, and your trouble like a rushing wind; when pain and sorrow come on you.</span></div>
-<div class="v-row" data-ref="Proverbs 1:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Then I will give no answer to their cries; searching for me early, they will not see me:</span></div>
-<div class="v-row" data-ref="Proverbs 1:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">For they were haters of knowledge, and did not give their hearts to the fear of the Lord:</span></div>
-<div class="v-row" data-ref="Proverbs 1:30 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">They had no desire for my teaching, and my words of protest were as nothing to them.</span></div>
-<div class="v-row" data-ref="Proverbs 1:31 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">So the fruit of their way will be their food, and with the designs of their hearts they will be made full.</span></div>
-<div class="v-row" data-ref="Proverbs 1:32 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">For the turning back of the simple from teaching will be the cause of their death, and the peace of the foolish will be their destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 1:33 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">But whoever gives ear to me will take his rest safely, living in peace without fear of evil.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/1/1/" data-ref="Proverbs 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/1/"><span class="v-num">1</span><span class="v-txt">The wise sayings of Solomon, the son of David, king of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/2/" data-ref="Proverbs 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/2/"><span class="v-num">2</span><span class="v-txt">To have knowledge of wise teaching; to be clear about the words of reason:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/3/" data-ref="Proverbs 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/3/"><span class="v-num">3</span><span class="v-txt">To be trained in the ways of wisdom, in righteousness and judging truly and straight behaviour:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/4/" data-ref="Proverbs 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/4/"><span class="v-num">4</span><span class="v-txt">To make the simple-minded sharp, and to give the young man knowledge, and serious purpose:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/5/" data-ref="Proverbs 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/5/"><span class="v-num">5</span><span class="v-txt">(The wise man, hearing, will get greater learning, and the acts of the man of good sense will be wisely guided:)</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/6/" data-ref="Proverbs 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/6/"><span class="v-num">6</span><span class="v-txt">To get the sense of wise sayings and secrets, and of the words of the wise and their dark sayings.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/7/" data-ref="Proverbs 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/7/"><span class="v-num">7</span><span class="v-txt">The fear of the Lord is the start of knowledge: but the foolish have no use for wisdom and teaching.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/8/" data-ref="Proverbs 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/8/"><span class="v-num">8</span><span class="v-txt">My son, give ear to the training of your father, and do not give up the teaching of your mother:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/9/" data-ref="Proverbs 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/9/"><span class="v-num">9</span><span class="v-txt">For they will be a crown of grace for your head, and chain-ornaments about your neck.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/10/" data-ref="Proverbs 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/10/"><span class="v-num">10</span><span class="v-txt">My son, if sinners would take you out of the right way, do not go with them.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/11/" data-ref="Proverbs 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/11/"><span class="v-num">11</span><span class="v-txt">If they say, Come with us; let us make designs against the good, waiting secretly for the upright, without cause;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/12/" data-ref="Proverbs 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/12/"><span class="v-num">12</span><span class="v-txt">Let us overcome them living, like the underworld, and in their strength, as those who go down to death;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/13/" data-ref="Proverbs 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/13/"><span class="v-num">13</span><span class="v-txt">Goods of great price will be ours, our houses will be full of wealth;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/14/" data-ref="Proverbs 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/14/"><span class="v-num">14</span><span class="v-txt">Take your chance with us, and we will all have one money-bag:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/15/" data-ref="Proverbs 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/15/"><span class="v-num">15</span><span class="v-txt">My son, do not go with them; keep your feet from their ways:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/16/" data-ref="Proverbs 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/16/"><span class="v-num">16</span><span class="v-txt">For their feet are running after evil, and they are quick to take a man's life.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/17/" data-ref="Proverbs 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/17/"><span class="v-num">17</span><span class="v-txt">Truly, to no purpose is the net stretched out before the eyes of the bird:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/18/" data-ref="Proverbs 1:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/18/"><span class="v-num">18</span><span class="v-txt">And they are secretly waiting for their blood and making ready destruction for themselves.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/19/" data-ref="Proverbs 1:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/19/"><span class="v-num">19</span><span class="v-txt">Such is the fate of everyone who goes in search of profit; it takes away the life of its owners.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/20/" data-ref="Proverbs 1:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/20/"><span class="v-num">20</span><span class="v-txt">Wisdom is crying out in the street; her voice is loud in the open places;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/21/" data-ref="Proverbs 1:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/21/"><span class="v-num">21</span><span class="v-txt">Her words are sounding in the meeting-places, and in the doorways of the town:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/22/" data-ref="Proverbs 1:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/22/"><span class="v-num">22</span><span class="v-txt">How long, you simple ones, will foolish things be dear to you? and pride a delight to the haters of authority? how long will the foolish go on hating knowledge?</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/23/" data-ref="Proverbs 1:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/23/"><span class="v-num">23</span><span class="v-txt">Be turned again by my sharp words: see, I will send the flow of my spirit on you, and make my words clear to you.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/24/" data-ref="Proverbs 1:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/24/"><span class="v-num">24</span><span class="v-txt">Because your ears were shut to my voice; no one gave attention to my out-stretched hand;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/25/" data-ref="Proverbs 1:25 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/25/"><span class="v-num">25</span><span class="v-txt">You were not controlled by my guiding, and would have nothing to do with my sharp words:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/26/" data-ref="Proverbs 1:26 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/26/"><span class="v-num">26</span><span class="v-txt">So in the day of your trouble I will be laughing; I will make sport of your fear;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/27/" data-ref="Proverbs 1:27 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/27/"><span class="v-num">27</span><span class="v-txt">When your fear comes on you like a storm, and your trouble like a rushing wind; when pain and sorrow come on you.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/28/" data-ref="Proverbs 1:28 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/28/"><span class="v-num">28</span><span class="v-txt">Then I will give no answer to their cries; searching for me early, they will not see me:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/29/" data-ref="Proverbs 1:29 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/29/"><span class="v-num">29</span><span class="v-txt">For they were haters of knowledge, and did not give their hearts to the fear of the Lord:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/30/" data-ref="Proverbs 1:30 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/30/"><span class="v-num">30</span><span class="v-txt">They had no desire for my teaching, and my words of protest were as nothing to them.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/31/" data-ref="Proverbs 1:31 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/31/"><span class="v-num">31</span><span class="v-txt">So the fruit of their way will be their food, and with the designs of their hearts they will be made full.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/32/" data-ref="Proverbs 1:32 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/32/"><span class="v-num">32</span><span class="v-txt">For the turning back of the simple from teaching will be the cause of their death, and the peace of the foolish will be their destruction.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/1/33/" data-ref="Proverbs 1:33 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/1/33/"><span class="v-num">33</span><span class="v-txt">But whoever gives ear to me will take his rest safely, living in peace without fear of evil.</span></a>
 
     
 <div class="app-cta">

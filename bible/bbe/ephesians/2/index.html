@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ephesians 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And to you did he give life, when you were dead through your wrongdoing and sins,</span></div>
-<div class="v-row" data-ref="Ephesians 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In which you were living in the past, after the ways of this present world, doing the pleasure of the lord of the power of the air, the spirit who is now working in those who go against the purpose of God;</span></div>
-<div class="v-row" data-ref="Ephesians 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Among whom we all at one time were living in the pleasures of our flesh, giving way to the desires of the flesh and of the mind, and the punishment of God was waiting for us even as for the rest.</span></div>
-<div class="v-row" data-ref="Ephesians 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But God, being full of mercy, through the great love which he had for us,</span></div>
-<div class="v-row" data-ref="Ephesians 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Even when we were dead through our sins, gave us life together with Christ (by grace you have salvation),</span></div>
-<div class="v-row" data-ref="Ephesians 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So that we came back from death with him, and are seated with him in the heavens, in Christ Jesus;</span></div>
-<div class="v-row" data-ref="Ephesians 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">That in the time to come he might make clear the full wealth of his grace in his mercy to us in Christ Jesus:</span></div>
-<div class="v-row" data-ref="Ephesians 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Because by grace you have salvation through faith; and that not of yourselves: it is given by God:</span></div>
-<div class="v-row" data-ref="Ephesians 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Not by works, so that no man may take glory to himself.</span></div>
-<div class="v-row" data-ref="Ephesians 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For by his act we were given existence in Christ Jesus to do those good works which God before made ready for us so that we might do them.</span></div>
-<div class="v-row" data-ref="Ephesians 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For this reason keep it in mind that in the past you, the Gentiles in the flesh, who are looked on as being outside the circumcision by those who have circumcision, in the flesh, made by hands;</span></div>
-<div class="v-row" data-ref="Ephesians 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">That you were at that time without Christ, being cut off from any part in Israel's rights as a nation, having no part in God's agreement, having no hope, and without God in the world.</span></div>
-<div class="v-row" data-ref="Ephesians 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But now in Christ Jesus you who at one time were far off are made near in the blood of Christ.</span></div>
-<div class="v-row" data-ref="Ephesians 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For he is our peace, who has made the two into one, and by whom the middle wall of division has been broken down,</span></div>
-<div class="v-row" data-ref="Ephesians 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Having in his flesh put an end to that which made the division between us, even the law with its rules and orders, so that he might make in himself, of the two, one new man, so making peace;</span></div>
-<div class="v-row" data-ref="Ephesians 2:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And that the two might come into agreement with God in one body through the cross, so putting an end to that division.</span></div>
-<div class="v-row" data-ref="Ephesians 2:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And he came preaching peace to you who were far off, and to those who were near;</span></div>
-<div class="v-row" data-ref="Ephesians 2:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Because through him the two of us are able to come near in one Spirit to the Father.</span></div>
-<div class="v-row" data-ref="Ephesians 2:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So then you are no longer as those who have no part or place in the kingdom of God, but you are numbered among the saints, and of the family of God,</span></div>
-<div class="v-row" data-ref="Ephesians 2:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Resting on the base of the Apostles and prophets, Christ Jesus himself being the chief keystone,</span></div>
-<div class="v-row" data-ref="Ephesians 2:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">In whom all the building, rightly joined together, comes to be a holy house of God in the Lord;</span></div>
-<div class="v-row" data-ref="Ephesians 2:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">In whom you, with the rest, are united together as a living-place of God in the Spirit.</span></div>
+    <a class="v-row" href="/bible/bbe/ephesians/2/1/" data-ref="Ephesians 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/1/"><span class="v-num">1</span><span class="v-txt">And to you did he give life, when you were dead through your wrongdoing and sins,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/2/" data-ref="Ephesians 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/2/"><span class="v-num">2</span><span class="v-txt">In which you were living in the past, after the ways of this present world, doing the pleasure of the lord of the power of the air, the spirit who is now working in those who go against the purpose of God;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/3/" data-ref="Ephesians 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/3/"><span class="v-num">3</span><span class="v-txt">Among whom we all at one time were living in the pleasures of our flesh, giving way to the desires of the flesh and of the mind, and the punishment of God was waiting for us even as for the rest.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/4/" data-ref="Ephesians 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/4/"><span class="v-num">4</span><span class="v-txt">But God, being full of mercy, through the great love which he had for us,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/5/" data-ref="Ephesians 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/5/"><span class="v-num">5</span><span class="v-txt">Even when we were dead through our sins, gave us life together with Christ (by grace you have salvation),</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/6/" data-ref="Ephesians 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/6/"><span class="v-num">6</span><span class="v-txt">So that we came back from death with him, and are seated with him in the heavens, in Christ Jesus;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/7/" data-ref="Ephesians 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/7/"><span class="v-num">7</span><span class="v-txt">That in the time to come he might make clear the full wealth of his grace in his mercy to us in Christ Jesus:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/8/" data-ref="Ephesians 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/8/"><span class="v-num">8</span><span class="v-txt">Because by grace you have salvation through faith; and that not of yourselves: it is given by God:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/9/" data-ref="Ephesians 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/9/"><span class="v-num">9</span><span class="v-txt">Not by works, so that no man may take glory to himself.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/10/" data-ref="Ephesians 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/10/"><span class="v-num">10</span><span class="v-txt">For by his act we were given existence in Christ Jesus to do those good works which God before made ready for us so that we might do them.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/11/" data-ref="Ephesians 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/11/"><span class="v-num">11</span><span class="v-txt">For this reason keep it in mind that in the past you, the Gentiles in the flesh, who are looked on as being outside the circumcision by those who have circumcision, in the flesh, made by hands;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/12/" data-ref="Ephesians 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/12/"><span class="v-num">12</span><span class="v-txt">That you were at that time without Christ, being cut off from any part in Israel's rights as a nation, having no part in God's agreement, having no hope, and without God in the world.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/13/" data-ref="Ephesians 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/13/"><span class="v-num">13</span><span class="v-txt">But now in Christ Jesus you who at one time were far off are made near in the blood of Christ.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/14/" data-ref="Ephesians 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/14/"><span class="v-num">14</span><span class="v-txt">For he is our peace, who has made the two into one, and by whom the middle wall of division has been broken down,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/15/" data-ref="Ephesians 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/15/"><span class="v-num">15</span><span class="v-txt">Having in his flesh put an end to that which made the division between us, even the law with its rules and orders, so that he might make in himself, of the two, one new man, so making peace;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/16/" data-ref="Ephesians 2:16 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/16/"><span class="v-num">16</span><span class="v-txt">And that the two might come into agreement with God in one body through the cross, so putting an end to that division.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/17/" data-ref="Ephesians 2:17 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/17/"><span class="v-num">17</span><span class="v-txt">And he came preaching peace to you who were far off, and to those who were near;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/18/" data-ref="Ephesians 2:18 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/18/"><span class="v-num">18</span><span class="v-txt">Because through him the two of us are able to come near in one Spirit to the Father.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/19/" data-ref="Ephesians 2:19 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/19/"><span class="v-num">19</span><span class="v-txt">So then you are no longer as those who have no part or place in the kingdom of God, but you are numbered among the saints, and of the family of God,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/20/" data-ref="Ephesians 2:20 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/20/"><span class="v-num">20</span><span class="v-txt">Resting on the base of the Apostles and prophets, Christ Jesus himself being the chief keystone,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/21/" data-ref="Ephesians 2:21 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/21/"><span class="v-num">21</span><span class="v-txt">In whom all the building, rightly joined together, comes to be a holy house of God in the Lord;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/2/22/" data-ref="Ephesians 2:22 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/2/22/"><span class="v-num">22</span><span class="v-txt">In whom you, with the rest, are united together as a living-place of God in the Spirit.</span></a>
 
     
 <div class="app-cta">

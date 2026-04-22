@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 22</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 22:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the people of Jerusalem made Ahaziah, his youngest son, king in his place, for the band of men who came with the Arabians to the army had put all the older sons to death. So Ahaziah, the son of Jehoram, became king.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Ahaziah was twenty-two years old when he became king, and he was ruling in Jerusalem for one year. His mother's name was Athaliah, the daughter of Omri.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He went in the ways of the family of Ahab, for his mother was his teacher in evil-doing.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he did evil in the eyes of the Lord, as the family of Ahab did; for after the death of his father they were his guides to his destruction.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Acting on their suggestion, he went with Jehoram, son of Ahab, king of Israel, to make war on Hazael, king of Aram, at Ramoth-gilead: and Joram was wounded by the bowmen.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he went back to Jezreel to get well from the wounds which they had given him at Ramah when he was fighting against Hazael, king of Aram. And Ahaziah, the son of Jehoram, king of Judah, went down to Jezreel to see Jehoram, the son of Ahab, because he was ill.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now by the purpose of God, Ahaziah's journey to see Jehoram was the cause of his downfall: for when he came there, he went out with Jehoram against Jehu, the son of Nimshi, who had been marked out by the Lord for the destruction of the family of Ahab.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now when Jehu was effecting the punishment of the family of Ahab, he came to the princes of Judah and the sons of Ahaziah's brothers, the servants of Ahaziah, and put them to death.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he went in search of Ahaziah; and when they came where he was, (for he was in a secret place in Samaria,) they took him to Jehu and put him to death; then they put his body to rest in the earth, for they said, He is the son of Jehoshaphat, whose heart was true to the Lord. So the family of Ahaziah had no power to keep the kingdom.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now when Athaliah, the mother of Ahaziah, saw that her son was dead, she had all the rest of the seed of the kingdom of Judah put to death.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But Jehoshabeath, the daughter of the king, secretly took Joash, the son of Ahaziah, away from among the king's sons who were put to death, and put him and the woman who took care of him in a bedroom. So Jehoshabeath, the daughter of King Jehoram, the wife of Jehoiada the priest and sister of Ahaziah, kept him safe from Athaliah, so that she did not put him to death.</span></div>
-<div class="v-row" data-ref="2 Chronicles 22:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And she kept him safe with her in the house of God for six years, while Athaliah was ruling the land.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/22/1/" data-ref="2 Chronicles 22:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/1/"><span class="v-num">1</span><span class="v-txt">And the people of Jerusalem made Ahaziah, his youngest son, king in his place, for the band of men who came with the Arabians to the army had put all the older sons to death. So Ahaziah, the son of Jehoram, became king.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/2/" data-ref="2 Chronicles 22:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/2/"><span class="v-num">2</span><span class="v-txt">Ahaziah was twenty-two years old when he became king, and he was ruling in Jerusalem for one year. His mother's name was Athaliah, the daughter of Omri.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/3/" data-ref="2 Chronicles 22:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/3/"><span class="v-num">3</span><span class="v-txt">He went in the ways of the family of Ahab, for his mother was his teacher in evil-doing.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/4/" data-ref="2 Chronicles 22:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/4/"><span class="v-num">4</span><span class="v-txt">And he did evil in the eyes of the Lord, as the family of Ahab did; for after the death of his father they were his guides to his destruction.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/5/" data-ref="2 Chronicles 22:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/5/"><span class="v-num">5</span><span class="v-txt">Acting on their suggestion, he went with Jehoram, son of Ahab, king of Israel, to make war on Hazael, king of Aram, at Ramoth-gilead: and Joram was wounded by the bowmen.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/6/" data-ref="2 Chronicles 22:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/6/"><span class="v-num">6</span><span class="v-txt">And he went back to Jezreel to get well from the wounds which they had given him at Ramah when he was fighting against Hazael, king of Aram. And Ahaziah, the son of Jehoram, king of Judah, went down to Jezreel to see Jehoram, the son of Ahab, because he was ill.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/7/" data-ref="2 Chronicles 22:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/7/"><span class="v-num">7</span><span class="v-txt">Now by the purpose of God, Ahaziah's journey to see Jehoram was the cause of his downfall: for when he came there, he went out with Jehoram against Jehu, the son of Nimshi, who had been marked out by the Lord for the destruction of the family of Ahab.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/8/" data-ref="2 Chronicles 22:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/8/"><span class="v-num">8</span><span class="v-txt">Now when Jehu was effecting the punishment of the family of Ahab, he came to the princes of Judah and the sons of Ahaziah's brothers, the servants of Ahaziah, and put them to death.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/9/" data-ref="2 Chronicles 22:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/9/"><span class="v-num">9</span><span class="v-txt">And he went in search of Ahaziah; and when they came where he was, (for he was in a secret place in Samaria,) they took him to Jehu and put him to death; then they put his body to rest in the earth, for they said, He is the son of Jehoshaphat, whose heart was true to the Lord. So the family of Ahaziah had no power to keep the kingdom.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/10/" data-ref="2 Chronicles 22:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/10/"><span class="v-num">10</span><span class="v-txt">Now when Athaliah, the mother of Ahaziah, saw that her son was dead, she had all the rest of the seed of the kingdom of Judah put to death.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/11/" data-ref="2 Chronicles 22:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/11/"><span class="v-num">11</span><span class="v-txt">But Jehoshabeath, the daughter of the king, secretly took Joash, the son of Ahaziah, away from among the king's sons who were put to death, and put him and the woman who took care of him in a bedroom. So Jehoshabeath, the daughter of King Jehoram, the wife of Jehoiada the priest and sister of Ahaziah, kept him safe from Athaliah, so that she did not put him to death.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/22/12/" data-ref="2 Chronicles 22:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/22/12/"><span class="v-num">12</span><span class="v-txt">And she kept him safe with her in the house of God for six years, while Athaliah was ruling the land.</span></a>
 
     
 <div class="app-cta">

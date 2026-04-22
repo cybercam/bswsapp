@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,36 +204,36 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></div>
-<div class="v-row" data-ref="Job 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If only my passion might be measured, and put into the scales against my trouble!</span></div>
-<div class="v-row" data-ref="Job 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For then its weight would be more than the sand of the seas: because of this my words have been uncontrolled.</span></div>
-<div class="v-row" data-ref="Job 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For the arrows of the Ruler of all are present with me, and their poison goes deep into my spirit: his army of fears is put in order against me.</span></div>
-<div class="v-row" data-ref="Job 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Does the ass of the fields give out his voice when he has grass? or does the ox make sounds over his food?</span></div>
-<div class="v-row" data-ref="Job 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Will a man take food which has no taste without salt? or is there any taste in the soft substance of purslain?</span></div>
-<div class="v-row" data-ref="Job 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">My soul has no desire for such things, they are as disease in my food.</span></div>
-<div class="v-row" data-ref="Job 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">If only I might have an answer to my prayer, and God would give me my desire!</span></div>
-<div class="v-row" data-ref="Job 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">If only he would be pleased to put an end to me; and would let loose his hand, so that I might be cut off!</span></div>
-<div class="v-row" data-ref="Job 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So I would still have comfort, and I would have joy in the pains of death, for I have not been false to the words of the Holy One.</span></div>
-<div class="v-row" data-ref="Job 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Have I strength to go on waiting, or have I any end to be looking forward to?</span></div>
-<div class="v-row" data-ref="Job 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Is my strength the strength of stones, or is my flesh brass?</span></div>
-<div class="v-row" data-ref="Job 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I have no help in myself, and wisdom is completely gone from me.</span></div>
-<div class="v-row" data-ref="Job 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He whose heart is shut against his friend has given up the fear of the Ruler of all.</span></div>
-<div class="v-row" data-ref="Job 6:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My friends have been false like a stream, like streams in the valleys which come to an end:</span></div>
-<div class="v-row" data-ref="Job 6:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Which are dark because of the ice, and the snow falling into them;</span></div>
-<div class="v-row" data-ref="Job 6:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Under the burning sun they are cut off, and come to nothing because of the heat.</span></div>
-<div class="v-row" data-ref="Job 6:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The camel-trains go out of their way; they go up into the waste and come to destruction.</span></div>
-<div class="v-row" data-ref="Job 6:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The camel-trains of Tema were searching with care, the bands of Sheba were waiting for them:</span></div>
-<div class="v-row" data-ref="Job 6:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">They were put to shame because of their hope; they came and their hope was gone.</span></div>
-<div class="v-row" data-ref="Job 6:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">So have you now become to me; you see my sad condition and are in fear.</span></div>
-<div class="v-row" data-ref="Job 6:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Did I say, Give me something? or, Make a payment for me out of your wealth?</span></div>
-<div class="v-row" data-ref="Job 6:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Or, Get me out of the power of my hater? or, Give money so that I may be free from the power of the cruel ones?</span></div>
-<div class="v-row" data-ref="Job 6:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Give me teaching and I will be quiet; and make me see my error.</span></div>
-<div class="v-row" data-ref="Job 6:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">How pleasing are upright words! but what force is there in your arguments?</span></div>
-<div class="v-row" data-ref="Job 6:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">My words may seem wrong to you, but the words of him who has no hope are for the wind.</span></div>
-<div class="v-row" data-ref="Job 6:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Truly, you are such as would give up the child of a dead man to his creditors, and would make a profit out of your friend.</span></div>
-<div class="v-row" data-ref="Job 6:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Now then, let your eyes be turned to me, for truly I will not say what is false to your face.</span></div>
-<div class="v-row" data-ref="Job 6:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Let your minds be changed, and do not have an evil opinion of me; yes, be changed, for my righteousness is still in me.</span></div>
-<div class="v-row" data-ref="Job 6:30 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">Is there evil in my tongue? is not the cause of my trouble clear to me?</span></div>
+    <a class="v-row" href="/bible/bbe/job/6/1/" data-ref="Job 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/1/"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/6/2/" data-ref="Job 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/2/"><span class="v-num">2</span><span class="v-txt">If only my passion might be measured, and put into the scales against my trouble!</span></a>
+<a class="v-row" href="/bible/bbe/job/6/3/" data-ref="Job 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/3/"><span class="v-num">3</span><span class="v-txt">For then its weight would be more than the sand of the seas: because of this my words have been uncontrolled.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/4/" data-ref="Job 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/4/"><span class="v-num">4</span><span class="v-txt">For the arrows of the Ruler of all are present with me, and their poison goes deep into my spirit: his army of fears is put in order against me.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/5/" data-ref="Job 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/5/"><span class="v-num">5</span><span class="v-txt">Does the ass of the fields give out his voice when he has grass? or does the ox make sounds over his food?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/6/" data-ref="Job 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/6/"><span class="v-num">6</span><span class="v-txt">Will a man take food which has no taste without salt? or is there any taste in the soft substance of purslain?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/7/" data-ref="Job 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/7/"><span class="v-num">7</span><span class="v-txt">My soul has no desire for such things, they are as disease in my food.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/8/" data-ref="Job 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/8/"><span class="v-num">8</span><span class="v-txt">If only I might have an answer to my prayer, and God would give me my desire!</span></a>
+<a class="v-row" href="/bible/bbe/job/6/9/" data-ref="Job 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/9/"><span class="v-num">9</span><span class="v-txt">If only he would be pleased to put an end to me; and would let loose his hand, so that I might be cut off!</span></a>
+<a class="v-row" href="/bible/bbe/job/6/10/" data-ref="Job 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/10/"><span class="v-num">10</span><span class="v-txt">So I would still have comfort, and I would have joy in the pains of death, for I have not been false to the words of the Holy One.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/11/" data-ref="Job 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/11/"><span class="v-num">11</span><span class="v-txt">Have I strength to go on waiting, or have I any end to be looking forward to?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/12/" data-ref="Job 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/12/"><span class="v-num">12</span><span class="v-txt">Is my strength the strength of stones, or is my flesh brass?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/13/" data-ref="Job 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/13/"><span class="v-num">13</span><span class="v-txt">I have no help in myself, and wisdom is completely gone from me.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/14/" data-ref="Job 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/14/"><span class="v-num">14</span><span class="v-txt">He whose heart is shut against his friend has given up the fear of the Ruler of all.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/15/" data-ref="Job 6:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/15/"><span class="v-num">15</span><span class="v-txt">My friends have been false like a stream, like streams in the valleys which come to an end:</span></a>
+<a class="v-row" href="/bible/bbe/job/6/16/" data-ref="Job 6:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/16/"><span class="v-num">16</span><span class="v-txt">Which are dark because of the ice, and the snow falling into them;</span></a>
+<a class="v-row" href="/bible/bbe/job/6/17/" data-ref="Job 6:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/17/"><span class="v-num">17</span><span class="v-txt">Under the burning sun they are cut off, and come to nothing because of the heat.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/18/" data-ref="Job 6:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/18/"><span class="v-num">18</span><span class="v-txt">The camel-trains go out of their way; they go up into the waste and come to destruction.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/19/" data-ref="Job 6:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/19/"><span class="v-num">19</span><span class="v-txt">The camel-trains of Tema were searching with care, the bands of Sheba were waiting for them:</span></a>
+<a class="v-row" href="/bible/bbe/job/6/20/" data-ref="Job 6:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/20/"><span class="v-num">20</span><span class="v-txt">They were put to shame because of their hope; they came and their hope was gone.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/21/" data-ref="Job 6:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/21/"><span class="v-num">21</span><span class="v-txt">So have you now become to me; you see my sad condition and are in fear.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/22/" data-ref="Job 6:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/22/"><span class="v-num">22</span><span class="v-txt">Did I say, Give me something? or, Make a payment for me out of your wealth?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/23/" data-ref="Job 6:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/23/"><span class="v-num">23</span><span class="v-txt">Or, Get me out of the power of my hater? or, Give money so that I may be free from the power of the cruel ones?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/24/" data-ref="Job 6:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/24/"><span class="v-num">24</span><span class="v-txt">Give me teaching and I will be quiet; and make me see my error.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/25/" data-ref="Job 6:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/25/"><span class="v-num">25</span><span class="v-txt">How pleasing are upright words! but what force is there in your arguments?</span></a>
+<a class="v-row" href="/bible/bbe/job/6/26/" data-ref="Job 6:26 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/26/"><span class="v-num">26</span><span class="v-txt">My words may seem wrong to you, but the words of him who has no hope are for the wind.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/27/" data-ref="Job 6:27 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/27/"><span class="v-num">27</span><span class="v-txt">Truly, you are such as would give up the child of a dead man to his creditors, and would make a profit out of your friend.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/28/" data-ref="Job 6:28 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/28/"><span class="v-num">28</span><span class="v-txt">Now then, let your eyes be turned to me, for truly I will not say what is false to your face.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/29/" data-ref="Job 6:29 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/29/"><span class="v-num">29</span><span class="v-txt">Let your minds be changed, and do not have an evil opinion of me; yes, be changed, for my righteousness is still in me.</span></a>
+<a class="v-row" href="/bible/bbe/job/6/30/" data-ref="Job 6:30 (Bible in Basic English)" data-verse-url="/bible/bbe/job/6/30/"><span class="v-num">30</span><span class="v-txt">Is there evil in my tongue? is not the cause of my trouble clear to me?</span></a>
 
     
 <div class="app-cta">

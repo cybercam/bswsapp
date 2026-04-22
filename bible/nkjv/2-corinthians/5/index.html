@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For we know that if our earthly house, [this] tent, is destroyed, we have a building from God, a house not made with hands, eternal in the heavens.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For in this we groan, earnestly desiring to be clothed with our habitation which is from heaven,</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">if indeed, having been clothed, we shall not be found naked.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For we who are in [this] tent groan, being burdened, not because we want to be unclothed, but further clothed, that mortality may be swallowed up by life.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now He who has prepared us for this very thing [is] God, who also has given us the Spirit as a guarantee.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So [we are] always confident, knowing that while we are at home in the body we are absent from the Lord.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For we walk by faith, not by sight.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">We are confident, yes, well pleased rather to be absent from the body and to be present with the Lord.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore we make it our aim, whether present or absent, to be well pleasing to Him.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For we must all appear before the judgment seat of Christ, that each one may receive the things [done] in the body, according to what he has done, whether good or bad.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Knowing, therefore, the terror of the Lord, we persuade men; but we are well known to God, and I also trust are well known in your consciences.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For we do not commend ourselves again to you, but give you opportunity to boast on our behalf, that you may have [an answer] for those who boast in appearance and not in heart.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For if we are beside ourselves, [it is] for God; or if we are of sound mind, [it is] for you.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For the love of Christ compels us, because we judge thus: that if One died for all, then all died;</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and He died for all, that those who live should live no longer for themselves, but for Him who died for them and rose again.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Therefore, from now on, we regard no one according to the flesh. Even though we have known Christ according to the flesh, yet now we know [Him thus] no longer.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Therefore, if anyone [is] in Christ, [he is] a new creation; old things have passed away; behold, all things have become new.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now all things [are] of God, who has reconciled us to Himself through Jesus Christ, and has given us the ministry of reconciliation,</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">that is, that God was in Christ reconciling the world to Himself, not imputing their trespasses to them, and has committed to us the word of reconciliation.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Now then, we are ambassadors for Christ, as though God were pleading through us: we implore [you] on Christ's behalf, be reconciled to God.</span></div>
-<div class="v-row" data-ref="2 Corinthians 5:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For He made Him who knew no sin [to be] sin for us, that we might become the righteousness of God in Him.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-corinthians/5/1/" data-ref="2 Corinthians 5:1 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/1/"><span class="v-num">1</span><span class="v-txt">For we know that if our earthly house, [this] tent, is destroyed, we have a building from God, a house not made with hands, eternal in the heavens.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/2/" data-ref="2 Corinthians 5:2 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/2/"><span class="v-num">2</span><span class="v-txt">For in this we groan, earnestly desiring to be clothed with our habitation which is from heaven,</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/3/" data-ref="2 Corinthians 5:3 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/3/"><span class="v-num">3</span><span class="v-txt">if indeed, having been clothed, we shall not be found naked.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/4/" data-ref="2 Corinthians 5:4 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/4/"><span class="v-num">4</span><span class="v-txt">For we who are in [this] tent groan, being burdened, not because we want to be unclothed, but further clothed, that mortality may be swallowed up by life.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/5/" data-ref="2 Corinthians 5:5 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/5/"><span class="v-num">5</span><span class="v-txt">Now He who has prepared us for this very thing [is] God, who also has given us the Spirit as a guarantee.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/6/" data-ref="2 Corinthians 5:6 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/6/"><span class="v-num">6</span><span class="v-txt">So [we are] always confident, knowing that while we are at home in the body we are absent from the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/7/" data-ref="2 Corinthians 5:7 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/7/"><span class="v-num">7</span><span class="v-txt">For we walk by faith, not by sight.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/8/" data-ref="2 Corinthians 5:8 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/8/"><span class="v-num">8</span><span class="v-txt">We are confident, yes, well pleased rather to be absent from the body and to be present with the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/9/" data-ref="2 Corinthians 5:9 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/9/"><span class="v-num">9</span><span class="v-txt">Therefore we make it our aim, whether present or absent, to be well pleasing to Him.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/10/" data-ref="2 Corinthians 5:10 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/10/"><span class="v-num">10</span><span class="v-txt">For we must all appear before the judgment seat of Christ, that each one may receive the things [done] in the body, according to what he has done, whether good or bad.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/11/" data-ref="2 Corinthians 5:11 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/11/"><span class="v-num">11</span><span class="v-txt">Knowing, therefore, the terror of the Lord, we persuade men; but we are well known to God, and I also trust are well known in your consciences.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/12/" data-ref="2 Corinthians 5:12 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/12/"><span class="v-num">12</span><span class="v-txt">For we do not commend ourselves again to you, but give you opportunity to boast on our behalf, that you may have [an answer] for those who boast in appearance and not in heart.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/13/" data-ref="2 Corinthians 5:13 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/13/"><span class="v-num">13</span><span class="v-txt">For if we are beside ourselves, [it is] for God; or if we are of sound mind, [it is] for you.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/14/" data-ref="2 Corinthians 5:14 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/14/"><span class="v-num">14</span><span class="v-txt">For the love of Christ compels us, because we judge thus: that if One died for all, then all died;</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/15/" data-ref="2 Corinthians 5:15 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/15/"><span class="v-num">15</span><span class="v-txt">and He died for all, that those who live should live no longer for themselves, but for Him who died for them and rose again.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/16/" data-ref="2 Corinthians 5:16 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/16/"><span class="v-num">16</span><span class="v-txt">Therefore, from now on, we regard no one according to the flesh. Even though we have known Christ according to the flesh, yet now we know [Him thus] no longer.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/17/" data-ref="2 Corinthians 5:17 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/17/"><span class="v-num">17</span><span class="v-txt">Therefore, if anyone [is] in Christ, [he is] a new creation; old things have passed away; behold, all things have become new.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/18/" data-ref="2 Corinthians 5:18 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/18/"><span class="v-num">18</span><span class="v-txt">Now all things [are] of God, who has reconciled us to Himself through Jesus Christ, and has given us the ministry of reconciliation,</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/19/" data-ref="2 Corinthians 5:19 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/19/"><span class="v-num">19</span><span class="v-txt">that is, that God was in Christ reconciling the world to Himself, not imputing their trespasses to them, and has committed to us the word of reconciliation.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/20/" data-ref="2 Corinthians 5:20 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/20/"><span class="v-num">20</span><span class="v-txt">Now then, we are ambassadors for Christ, as though God were pleading through us: we implore [you] on Christ's behalf, be reconciled to God.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/5/21/" data-ref="2 Corinthians 5:21 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/5/21/"><span class="v-num">21</span><span class="v-txt">For He made Him who knew no sin [to be] sin for us, that we might become the righteousness of God in Him.</span></a>
 
     
 <div class="app-cta">

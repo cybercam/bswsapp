@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 John 4:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Beloved, believe not every spirit, but prove the spirits, whether they are of God; because many false prophets are gone out into the world.</span></div>
-<div class="v-row" data-ref="1 John 4:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hereby know ye the Spirit of God: every spirit that confesseth that Jesus Christ is come in the flesh is of God:</span></div>
-<div class="v-row" data-ref="1 John 4:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and every spirit that confesseth not Jesus is not of God: and this is the [spirit] of the antichrist, whereof ye have heard that it cometh; and now it is in the world already.</span></div>
-<div class="v-row" data-ref="1 John 4:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Ye are of God, [my] little children, and have overcome them: because greater is he that is in you than he that is in the world.</span></div>
-<div class="v-row" data-ref="1 John 4:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They are of the world: therefore speak they [as] of the world, and the world heareth them.</span></div>
-<div class="v-row" data-ref="1 John 4:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">We are of God: he that knoweth God heareth us; he who is not of God heareth us not. By this we know the spirit of truth, and the spirit of error.</span></div>
-<div class="v-row" data-ref="1 John 4:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Beloved, let us love one another: for love is of God; and every one that loveth is begotten of God, and knoweth God.</span></div>
-<div class="v-row" data-ref="1 John 4:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He that loveth not knoweth not God; for God is love.</span></div>
-<div class="v-row" data-ref="1 John 4:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Herein was the love of God manifested in us, that God hath sent his only begotten Son into the world that we might live through him.</span></div>
-<div class="v-row" data-ref="1 John 4:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Herein is love, not that we loved God, but that he loved us, and sent his Son [to be] the propitiation for our sins.</span></div>
-<div class="v-row" data-ref="1 John 4:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Beloved, if God so loved us, we also ought to love one another.</span></div>
-<div class="v-row" data-ref="1 John 4:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">No man hath beheld God at any time: if we love one another, God abideth in us, and his love is perfected in us:</span></div>
-<div class="v-row" data-ref="1 John 4:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">hereby we know that we abide in him and he in us, because he hath given us of his Spirit.</span></div>
-<div class="v-row" data-ref="1 John 4:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And we have beheld and bear witness that the Father hath sent the Son [to be] the Saviour of the world.</span></div>
-<div class="v-row" data-ref="1 John 4:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Whosoever shall confess that Jesus is the Son of God, God abideth in him, and he in God.</span></div>
-<div class="v-row" data-ref="1 John 4:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And we know and have believed the love which God hath in us. God is love; and he that abideth in love abideth in God, and God abideth in him.</span></div>
-<div class="v-row" data-ref="1 John 4:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Herein is love made perfect with us, that we may have boldness in the day of judgment; because as he is, even so are we in this world.</span></div>
-<div class="v-row" data-ref="1 John 4:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">There is no fear in love: but perfect love casteth out fear, because fear hath punishment; and he that feareth is not made perfect in love.</span></div>
-<div class="v-row" data-ref="1 John 4:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">We love, because he first loved us.</span></div>
-<div class="v-row" data-ref="1 John 4:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If a man say, I love God, and hateth his brother, he is a liar: for he that loveth not his brother whom he hath seen, cannot love God whom he hath not seen.</span></div>
-<div class="v-row" data-ref="1 John 4:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And this commandment have we from him, that he who loveth God love his brother also.</span></div>
+    <a class="v-row" href="/bible/asv/1-john/4/1/" data-ref="1 John 4:1 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/1/"><span class="v-num">1</span><span class="v-txt">Beloved, believe not every spirit, but prove the spirits, whether they are of God; because many false prophets are gone out into the world.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/2/" data-ref="1 John 4:2 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/2/"><span class="v-num">2</span><span class="v-txt">Hereby know ye the Spirit of God: every spirit that confesseth that Jesus Christ is come in the flesh is of God:</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/3/" data-ref="1 John 4:3 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/3/"><span class="v-num">3</span><span class="v-txt">and every spirit that confesseth not Jesus is not of God: and this is the [spirit] of the antichrist, whereof ye have heard that it cometh; and now it is in the world already.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/4/" data-ref="1 John 4:4 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/4/"><span class="v-num">4</span><span class="v-txt">Ye are of God, [my] little children, and have overcome them: because greater is he that is in you than he that is in the world.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/5/" data-ref="1 John 4:5 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/5/"><span class="v-num">5</span><span class="v-txt">They are of the world: therefore speak they [as] of the world, and the world heareth them.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/6/" data-ref="1 John 4:6 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/6/"><span class="v-num">6</span><span class="v-txt">We are of God: he that knoweth God heareth us; he who is not of God heareth us not. By this we know the spirit of truth, and the spirit of error.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/7/" data-ref="1 John 4:7 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/7/"><span class="v-num">7</span><span class="v-txt">Beloved, let us love one another: for love is of God; and every one that loveth is begotten of God, and knoweth God.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/8/" data-ref="1 John 4:8 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/8/"><span class="v-num">8</span><span class="v-txt">He that loveth not knoweth not God; for God is love.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/9/" data-ref="1 John 4:9 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/9/"><span class="v-num">9</span><span class="v-txt">Herein was the love of God manifested in us, that God hath sent his only begotten Son into the world that we might live through him.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/10/" data-ref="1 John 4:10 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/10/"><span class="v-num">10</span><span class="v-txt">Herein is love, not that we loved God, but that he loved us, and sent his Son [to be] the propitiation for our sins.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/11/" data-ref="1 John 4:11 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/11/"><span class="v-num">11</span><span class="v-txt">Beloved, if God so loved us, we also ought to love one another.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/12/" data-ref="1 John 4:12 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/12/"><span class="v-num">12</span><span class="v-txt">No man hath beheld God at any time: if we love one another, God abideth in us, and his love is perfected in us:</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/13/" data-ref="1 John 4:13 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/13/"><span class="v-num">13</span><span class="v-txt">hereby we know that we abide in him and he in us, because he hath given us of his Spirit.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/14/" data-ref="1 John 4:14 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/14/"><span class="v-num">14</span><span class="v-txt">And we have beheld and bear witness that the Father hath sent the Son [to be] the Saviour of the world.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/15/" data-ref="1 John 4:15 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/15/"><span class="v-num">15</span><span class="v-txt">Whosoever shall confess that Jesus is the Son of God, God abideth in him, and he in God.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/16/" data-ref="1 John 4:16 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/16/"><span class="v-num">16</span><span class="v-txt">And we know and have believed the love which God hath in us. God is love; and he that abideth in love abideth in God, and God abideth in him.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/17/" data-ref="1 John 4:17 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/17/"><span class="v-num">17</span><span class="v-txt">Herein is love made perfect with us, that we may have boldness in the day of judgment; because as he is, even so are we in this world.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/18/" data-ref="1 John 4:18 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/18/"><span class="v-num">18</span><span class="v-txt">There is no fear in love: but perfect love casteth out fear, because fear hath punishment; and he that feareth is not made perfect in love.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/19/" data-ref="1 John 4:19 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/19/"><span class="v-num">19</span><span class="v-txt">We love, because he first loved us.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/20/" data-ref="1 John 4:20 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/20/"><span class="v-num">20</span><span class="v-txt">If a man say, I love God, and hateth his brother, he is a liar: for he that loveth not his brother whom he hath seen, cannot love God whom he hath not seen.</span></a>
+<a class="v-row" href="/bible/asv/1-john/4/21/" data-ref="1 John 4:21 (American Standard Version)" data-verse-url="/bible/asv/1-john/4/21/"><span class="v-num">21</span><span class="v-txt">And this commandment have we from him, that he who loveth God love his brother also.</span></a>
 
     
 <div class="app-cta">

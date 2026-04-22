@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Hosea 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Put the horn to your mouth. He comes like an eagle against the house of the Lord; because they have gone against my agreement, they have not kept my law.</span></div>
-<div class="v-row" data-ref="Hosea 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They will send up to me a cry for help: We, Israel, have knowledge of you, O God of Israel.</span></div>
-<div class="v-row" data-ref="Hosea 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Israel has given up what is good; his haters will go after him.</span></div>
-<div class="v-row" data-ref="Hosea 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They have put up kings, but not by me; they have made princes, but I had no knowledge of it; they have made images of silver and gold, so that they may be cut off.</span></div>
-<div class="v-row" data-ref="Hosea 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I will have nothing to do with your young ox, O Samaria; my wrath is burning against them; how long will it be before the children of Israel make themselves clean?</span></div>
-<div class="v-row" data-ref="Hosea 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The workman made it, it is no god; the ox of Samaria will be broken into bits.</span></div>
-<div class="v-row" data-ref="Hosea 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For they have been planting the wind, and their fruit will be the storm; his grain has no stem, it will give no meal, and if it does, a strange nation will take it.</span></div>
-<div class="v-row" data-ref="Hosea 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Israel has come to destruction; now they are among the nations like a cup in which there is no pleasure.</span></div>
-<div class="v-row" data-ref="Hosea 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For they have gone up to Assyria like an ass going by himself; Ephraim has given money to get lovers.</span></div>
-<div class="v-row" data-ref="Hosea 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But though they give money to the nations for help, still I will send them in all directions; and in a short time they will be without a king and rulers.</span></div>
-<div class="v-row" data-ref="Hosea 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Because Ephraim has been increasing altars for sin, altars have become a cause of sin to him.</span></div>
-<div class="v-row" data-ref="Hosea 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Though I put my law in writing for him in ten thousand rules, they are to him as a strange thing.</span></div>
-<div class="v-row" data-ref="Hosea 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He gives the offerings of his lovers, and takes the flesh for food; but the Lord has no pleasure in them; now he will keep in mind their evil-doing and give them the punishment of their sins; they will go back to Egypt.</span></div>
-<div class="v-row" data-ref="Hosea 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For Israel has no memory of his Maker, and has put up the houses of kings; and Judah has made great the number of his walled towns. But I will send a fire on his towns and put an end to his great houses.</span></div>
+    <a class="v-row" href="/bible/bbe/hosea/8/1/" data-ref="Hosea 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/1/"><span class="v-num">1</span><span class="v-txt">Put the horn to your mouth. He comes like an eagle against the house of the Lord; because they have gone against my agreement, they have not kept my law.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/2/" data-ref="Hosea 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/2/"><span class="v-num">2</span><span class="v-txt">They will send up to me a cry for help: We, Israel, have knowledge of you, O God of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/3/" data-ref="Hosea 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/3/"><span class="v-num">3</span><span class="v-txt">Israel has given up what is good; his haters will go after him.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/4/" data-ref="Hosea 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/4/"><span class="v-num">4</span><span class="v-txt">They have put up kings, but not by me; they have made princes, but I had no knowledge of it; they have made images of silver and gold, so that they may be cut off.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/5/" data-ref="Hosea 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/5/"><span class="v-num">5</span><span class="v-txt">I will have nothing to do with your young ox, O Samaria; my wrath is burning against them; how long will it be before the children of Israel make themselves clean?</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/6/" data-ref="Hosea 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/6/"><span class="v-num">6</span><span class="v-txt">The workman made it, it is no god; the ox of Samaria will be broken into bits.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/7/" data-ref="Hosea 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/7/"><span class="v-num">7</span><span class="v-txt">For they have been planting the wind, and their fruit will be the storm; his grain has no stem, it will give no meal, and if it does, a strange nation will take it.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/8/" data-ref="Hosea 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/8/"><span class="v-num">8</span><span class="v-txt">Israel has come to destruction; now they are among the nations like a cup in which there is no pleasure.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/9/" data-ref="Hosea 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/9/"><span class="v-num">9</span><span class="v-txt">For they have gone up to Assyria like an ass going by himself; Ephraim has given money to get lovers.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/10/" data-ref="Hosea 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/10/"><span class="v-num">10</span><span class="v-txt">But though they give money to the nations for help, still I will send them in all directions; and in a short time they will be without a king and rulers.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/11/" data-ref="Hosea 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/11/"><span class="v-num">11</span><span class="v-txt">Because Ephraim has been increasing altars for sin, altars have become a cause of sin to him.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/12/" data-ref="Hosea 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/12/"><span class="v-num">12</span><span class="v-txt">Though I put my law in writing for him in ten thousand rules, they are to him as a strange thing.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/13/" data-ref="Hosea 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/13/"><span class="v-num">13</span><span class="v-txt">He gives the offerings of his lovers, and takes the flesh for food; but the Lord has no pleasure in them; now he will keep in mind their evil-doing and give them the punishment of their sins; they will go back to Egypt.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/8/14/" data-ref="Hosea 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/8/14/"><span class="v-num">14</span><span class="v-txt">For Israel has no memory of his Maker, and has put up the houses of kings; and Judah has made great the number of his walled towns. But I will send a fire on his towns and put an end to his great houses.</span></a>
 
     
 <div class="app-cta">

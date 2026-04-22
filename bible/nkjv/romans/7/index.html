@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Romans 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Or do you not know, brethren (for I speak to those who know the law), that the law has dominion over a man as long as he lives?</span></div>
-<div class="v-row" data-ref="Romans 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For the woman who has a husband is bound by the law to [her] husband as long as he lives. But if the husband dies, she is released from the law of [her] husband.</span></div>
-<div class="v-row" data-ref="Romans 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">So then if, while [her] husband lives, she marries another man, she will be called an adulteress; but if her husband dies, she is free from that law, so that she is no adulteress, though she has married another man.</span></div>
-<div class="v-row" data-ref="Romans 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Therefore, my brethren, you also have become dead to the law through the body of Christ, that you may be married to another -- to Him who was raised from the dead, that we should bear fruit to God.</span></div>
-<div class="v-row" data-ref="Romans 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For when we were in the flesh, the sinful passions which were aroused by the law were at work in our members to bear fruit to death.</span></div>
-<div class="v-row" data-ref="Romans 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But now we have been delivered from the law, having died to what we were held by, so that we should serve in the newness of the Spirit and not [in] the oldness of the letter.</span></div>
-<div class="v-row" data-ref="Romans 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">What shall we say then? [Is] the law sin? Certainly not! On the contrary, I would not have known sin except through the law. For I would not have known covetousness unless the law had said, "You shall not covet."</span></div>
-<div class="v-row" data-ref="Romans 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But sin, taking opportunity by the commandment, produced in me all [manner of evil] desire. For apart from the law sin [was] dead.</span></div>
-<div class="v-row" data-ref="Romans 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I was alive once without the law, but when the commandment came, sin revived and I died.</span></div>
-<div class="v-row" data-ref="Romans 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the commandment, which [was] to [bring] life, I found to [bring] death.</span></div>
-<div class="v-row" data-ref="Romans 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For sin, taking occasion by the commandment, deceived me, and by it killed [me.]</span></div>
-<div class="v-row" data-ref="Romans 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore the law [is] holy, and the commandment holy and just and good.</span></div>
-<div class="v-row" data-ref="Romans 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Has then what is good become death to me? Certainly not! But sin, that it might appear sin, was producing death in me through what is good, so that sin through the commandment might become exceedingly sinful.</span></div>
-<div class="v-row" data-ref="Romans 7:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For we know that the law is spiritual, but I am carnal, sold under sin.</span></div>
-<div class="v-row" data-ref="Romans 7:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For what I am doing, I do not understand. For what I will to do, that I do not practice; but what I hate, that I do.</span></div>
-<div class="v-row" data-ref="Romans 7:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If, then, I do what I will not to do, I agree with the law that [it is] good.</span></div>
-<div class="v-row" data-ref="Romans 7:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But now, [it is] no longer I who do it, but sin that dwells in me.</span></div>
-<div class="v-row" data-ref="Romans 7:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For I know that in me (that is, in my flesh) nothing good dwells; for to will is present with me, but [how] to perform what is good I do not find.</span></div>
-<div class="v-row" data-ref="Romans 7:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For the good that I will [to do,] I do not do; but the evil I will not [to do,] that I practice.</span></div>
-<div class="v-row" data-ref="Romans 7:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Now if I do what I will not [to do,] it is no longer I who do it, but sin that dwells in me.</span></div>
-<div class="v-row" data-ref="Romans 7:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I find then a law, that evil is present with me, the one who wills to do good.</span></div>
-<div class="v-row" data-ref="Romans 7:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For I delight in the law of God according to the inward man.</span></div>
-<div class="v-row" data-ref="Romans 7:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">But I see another law in my members, warring against the law of my mind, and bringing me into captivity to the law of sin which is in my members.</span></div>
-<div class="v-row" data-ref="Romans 7:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">O wretched man that I am! Who will deliver me from this body of death?</span></div>
-<div class="v-row" data-ref="Romans 7:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">I thank God -- through Jesus Christ our Lord! So then, with the mind I myself serve the law of God, but with the flesh the law of sin.</span></div>
+    <a class="v-row" href="/bible/nkjv/romans/7/1/" data-ref="Romans 7:1 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/1/"><span class="v-num">1</span><span class="v-txt">Or do you not know, brethren (for I speak to those who know the law), that the law has dominion over a man as long as he lives?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/2/" data-ref="Romans 7:2 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/2/"><span class="v-num">2</span><span class="v-txt">For the woman who has a husband is bound by the law to [her] husband as long as he lives. But if the husband dies, she is released from the law of [her] husband.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/3/" data-ref="Romans 7:3 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/3/"><span class="v-num">3</span><span class="v-txt">So then if, while [her] husband lives, she marries another man, she will be called an adulteress; but if her husband dies, she is free from that law, so that she is no adulteress, though she has married another man.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/4/" data-ref="Romans 7:4 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/4/"><span class="v-num">4</span><span class="v-txt">Therefore, my brethren, you also have become dead to the law through the body of Christ, that you may be married to another -- to Him who was raised from the dead, that we should bear fruit to God.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/5/" data-ref="Romans 7:5 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/5/"><span class="v-num">5</span><span class="v-txt">For when we were in the flesh, the sinful passions which were aroused by the law were at work in our members to bear fruit to death.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/6/" data-ref="Romans 7:6 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/6/"><span class="v-num">6</span><span class="v-txt">But now we have been delivered from the law, having died to what we were held by, so that we should serve in the newness of the Spirit and not [in] the oldness of the letter.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/7/" data-ref="Romans 7:7 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/7/"><span class="v-num">7</span><span class="v-txt">What shall we say then? [Is] the law sin? Certainly not! On the contrary, I would not have known sin except through the law. For I would not have known covetousness unless the law had said, "You shall not covet."</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/8/" data-ref="Romans 7:8 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/8/"><span class="v-num">8</span><span class="v-txt">But sin, taking opportunity by the commandment, produced in me all [manner of evil] desire. For apart from the law sin [was] dead.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/9/" data-ref="Romans 7:9 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/9/"><span class="v-num">9</span><span class="v-txt">I was alive once without the law, but when the commandment came, sin revived and I died.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/10/" data-ref="Romans 7:10 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/10/"><span class="v-num">10</span><span class="v-txt">And the commandment, which [was] to [bring] life, I found to [bring] death.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/11/" data-ref="Romans 7:11 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/11/"><span class="v-num">11</span><span class="v-txt">For sin, taking occasion by the commandment, deceived me, and by it killed [me.]</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/12/" data-ref="Romans 7:12 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/12/"><span class="v-num">12</span><span class="v-txt">Therefore the law [is] holy, and the commandment holy and just and good.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/13/" data-ref="Romans 7:13 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/13/"><span class="v-num">13</span><span class="v-txt">Has then what is good become death to me? Certainly not! But sin, that it might appear sin, was producing death in me through what is good, so that sin through the commandment might become exceedingly sinful.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/14/" data-ref="Romans 7:14 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/14/"><span class="v-num">14</span><span class="v-txt">For we know that the law is spiritual, but I am carnal, sold under sin.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/15/" data-ref="Romans 7:15 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/15/"><span class="v-num">15</span><span class="v-txt">For what I am doing, I do not understand. For what I will to do, that I do not practice; but what I hate, that I do.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/16/" data-ref="Romans 7:16 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/16/"><span class="v-num">16</span><span class="v-txt">If, then, I do what I will not to do, I agree with the law that [it is] good.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/17/" data-ref="Romans 7:17 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/17/"><span class="v-num">17</span><span class="v-txt">But now, [it is] no longer I who do it, but sin that dwells in me.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/18/" data-ref="Romans 7:18 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/18/"><span class="v-num">18</span><span class="v-txt">For I know that in me (that is, in my flesh) nothing good dwells; for to will is present with me, but [how] to perform what is good I do not find.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/19/" data-ref="Romans 7:19 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/19/"><span class="v-num">19</span><span class="v-txt">For the good that I will [to do,] I do not do; but the evil I will not [to do,] that I practice.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/20/" data-ref="Romans 7:20 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/20/"><span class="v-num">20</span><span class="v-txt">Now if I do what I will not [to do,] it is no longer I who do it, but sin that dwells in me.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/21/" data-ref="Romans 7:21 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/21/"><span class="v-num">21</span><span class="v-txt">I find then a law, that evil is present with me, the one who wills to do good.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/22/" data-ref="Romans 7:22 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/22/"><span class="v-num">22</span><span class="v-txt">For I delight in the law of God according to the inward man.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/23/" data-ref="Romans 7:23 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/23/"><span class="v-num">23</span><span class="v-txt">But I see another law in my members, warring against the law of my mind, and bringing me into captivity to the law of sin which is in my members.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/24/" data-ref="Romans 7:24 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/24/"><span class="v-num">24</span><span class="v-txt">O wretched man that I am! Who will deliver me from this body of death?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/7/25/" data-ref="Romans 7:25 (New King James Version)" data-verse-url="/bible/nkjv/romans/7/25/"><span class="v-num">25</span><span class="v-txt">I thank God -- through Jesus Christ our Lord! So then, with the mind I myself serve the law of God, but with the flesh the law of sin.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Matthew 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Judge not, that you be not judged.</span></div>
-<div class="v-row" data-ref="Matthew 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"For with what judgment you judge, you will be judged; and with the measure you use, it will be measured back to you.</span></div>
-<div class="v-row" data-ref="Matthew 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"And why do you look at the speck in your brother's eye, but do not consider the plank in your own eye?</span></div>
-<div class="v-row" data-ref="Matthew 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"Or how can you say to your brother, 'Let me remove the speck from your eye'; and look, a plank [is] in your own eye?</span></div>
-<div class="v-row" data-ref="Matthew 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"Hypocrite! First remove the plank from your own eye, and then you will see clearly to remove the speck from your brother's eye.</span></div>
-<div class="v-row" data-ref="Matthew 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Do not give what is holy to the dogs; nor cast your pearls before swine, lest they trample them under their feet, and turn and tear you in pieces.</span></div>
-<div class="v-row" data-ref="Matthew 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">" Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.</span></div>
-<div class="v-row" data-ref="Matthew 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"For everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.</span></div>
-<div class="v-row" data-ref="Matthew 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"Or what man is there among you who, if his son asks for bread, will give him a stone?</span></div>
-<div class="v-row" data-ref="Matthew 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"Or if he asks for a fish, will he give him a serpent?</span></div>
-<div class="v-row" data-ref="Matthew 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"If you then, being evil, know how to give good gifts to your children, how much more will your Father who is in heaven give good things to those who ask Him!</span></div>
-<div class="v-row" data-ref="Matthew 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Therefore, whatever you want men to do to you, do also to them, for this is the Law and the Prophets.</span></div>
-<div class="v-row" data-ref="Matthew 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">" Enter by the narrow gate; for wide [is] the gate and broad [is] the way that leads to destruction, and there are many who go in by it.</span></div>
-<div class="v-row" data-ref="Matthew 7:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"Because narrow [is] the gate and difficult [is] the way which leads to life, and there are few who find it.</span></div>
-<div class="v-row" data-ref="Matthew 7:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">" Beware of false prophets, who come to you in sheep's clothing, but inwardly they are ravenous wolves.</span></div>
-<div class="v-row" data-ref="Matthew 7:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"You will know them by their fruits. Do men gather grapes from thornbushes or figs from thistles?</span></div>
-<div class="v-row" data-ref="Matthew 7:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Even so, every good tree bears good fruit, but a bad tree bears bad fruit.</span></div>
-<div class="v-row" data-ref="Matthew 7:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">"A good tree cannot bear bad fruit, nor [can] a bad tree bear good fruit.</span></div>
-<div class="v-row" data-ref="Matthew 7:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"Every tree that does not bear good fruit is cut down and thrown into the fire.</span></div>
-<div class="v-row" data-ref="Matthew 7:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">"Therefore by their fruits you will know them.</span></div>
-<div class="v-row" data-ref="Matthew 7:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">" Not everyone who says to Me, 'Lord, Lord,' shall enter the kingdom of heaven, but he who does the will of My Father in heaven.</span></div>
-<div class="v-row" data-ref="Matthew 7:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">"Many will say to Me in that day, 'Lord, Lord, have we not prophesied in Your name, cast out demons in Your name, and done many wonders in Your name?'</span></div>
-<div class="v-row" data-ref="Matthew 7:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">"And then I will declare to them, 'I never knew you; depart from Me, you who practice lawlessness!'</span></div>
-<div class="v-row" data-ref="Matthew 7:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">" Therefore whoever hears these sayings of Mine, and does them, I will liken him to a wise man who built his house on the rock:</span></div>
-<div class="v-row" data-ref="Matthew 7:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">"and the rain descended, the floods came, and the winds blew and beat on that house; and it did not fall, for it was founded on the rock.</span></div>
-<div class="v-row" data-ref="Matthew 7:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">"But everyone who hears these sayings of Mine, and does not do them, will be like a foolish man who built his house on the sand:</span></div>
-<div class="v-row" data-ref="Matthew 7:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">"and the rain descended, the floods came, and the winds blew and beat on that house; and it fell. And great was its fall."</span></div>
-<div class="v-row" data-ref="Matthew 7:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And so it was, when Jesus had ended these sayings, that the people were astonished at His teaching,</span></div>
-<div class="v-row" data-ref="Matthew 7:29 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">for He taught them as one having authority, and not as the scribes.</span></div>
+    <a class="v-row" href="/bible/nkjv/matthew/7/1/" data-ref="Matthew 7:1 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/1/"><span class="v-num">1</span><span class="v-txt">"Judge not, that you be not judged.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/2/" data-ref="Matthew 7:2 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/2/"><span class="v-num">2</span><span class="v-txt">"For with what judgment you judge, you will be judged; and with the measure you use, it will be measured back to you.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/3/" data-ref="Matthew 7:3 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/3/"><span class="v-num">3</span><span class="v-txt">"And why do you look at the speck in your brother's eye, but do not consider the plank in your own eye?</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/4/" data-ref="Matthew 7:4 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/4/"><span class="v-num">4</span><span class="v-txt">"Or how can you say to your brother, 'Let me remove the speck from your eye'; and look, a plank [is] in your own eye?</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/5/" data-ref="Matthew 7:5 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/5/"><span class="v-num">5</span><span class="v-txt">"Hypocrite! First remove the plank from your own eye, and then you will see clearly to remove the speck from your brother's eye.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/6/" data-ref="Matthew 7:6 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/6/"><span class="v-num">6</span><span class="v-txt">"Do not give what is holy to the dogs; nor cast your pearls before swine, lest they trample them under their feet, and turn and tear you in pieces.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/7/" data-ref="Matthew 7:7 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/7/"><span class="v-num">7</span><span class="v-txt">" Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/8/" data-ref="Matthew 7:8 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/8/"><span class="v-num">8</span><span class="v-txt">"For everyone who asks receives, and he who seeks finds, and to him who knocks it will be opened.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/9/" data-ref="Matthew 7:9 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/9/"><span class="v-num">9</span><span class="v-txt">"Or what man is there among you who, if his son asks for bread, will give him a stone?</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/10/" data-ref="Matthew 7:10 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/10/"><span class="v-num">10</span><span class="v-txt">"Or if he asks for a fish, will he give him a serpent?</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/11/" data-ref="Matthew 7:11 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/11/"><span class="v-num">11</span><span class="v-txt">"If you then, being evil, know how to give good gifts to your children, how much more will your Father who is in heaven give good things to those who ask Him!</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/12/" data-ref="Matthew 7:12 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/12/"><span class="v-num">12</span><span class="v-txt">"Therefore, whatever you want men to do to you, do also to them, for this is the Law and the Prophets.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/13/" data-ref="Matthew 7:13 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/13/"><span class="v-num">13</span><span class="v-txt">" Enter by the narrow gate; for wide [is] the gate and broad [is] the way that leads to destruction, and there are many who go in by it.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/14/" data-ref="Matthew 7:14 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/14/"><span class="v-num">14</span><span class="v-txt">"Because narrow [is] the gate and difficult [is] the way which leads to life, and there are few who find it.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/15/" data-ref="Matthew 7:15 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/15/"><span class="v-num">15</span><span class="v-txt">" Beware of false prophets, who come to you in sheep's clothing, but inwardly they are ravenous wolves.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/16/" data-ref="Matthew 7:16 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/16/"><span class="v-num">16</span><span class="v-txt">"You will know them by their fruits. Do men gather grapes from thornbushes or figs from thistles?</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/17/" data-ref="Matthew 7:17 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/17/"><span class="v-num">17</span><span class="v-txt">"Even so, every good tree bears good fruit, but a bad tree bears bad fruit.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/18/" data-ref="Matthew 7:18 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/18/"><span class="v-num">18</span><span class="v-txt">"A good tree cannot bear bad fruit, nor [can] a bad tree bear good fruit.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/19/" data-ref="Matthew 7:19 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/19/"><span class="v-num">19</span><span class="v-txt">"Every tree that does not bear good fruit is cut down and thrown into the fire.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/20/" data-ref="Matthew 7:20 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/20/"><span class="v-num">20</span><span class="v-txt">"Therefore by their fruits you will know them.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/21/" data-ref="Matthew 7:21 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/21/"><span class="v-num">21</span><span class="v-txt">" Not everyone who says to Me, 'Lord, Lord,' shall enter the kingdom of heaven, but he who does the will of My Father in heaven.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/22/" data-ref="Matthew 7:22 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/22/"><span class="v-num">22</span><span class="v-txt">"Many will say to Me in that day, 'Lord, Lord, have we not prophesied in Your name, cast out demons in Your name, and done many wonders in Your name?'</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/23/" data-ref="Matthew 7:23 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/23/"><span class="v-num">23</span><span class="v-txt">"And then I will declare to them, 'I never knew you; depart from Me, you who practice lawlessness!'</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/24/" data-ref="Matthew 7:24 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/24/"><span class="v-num">24</span><span class="v-txt">" Therefore whoever hears these sayings of Mine, and does them, I will liken him to a wise man who built his house on the rock:</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/25/" data-ref="Matthew 7:25 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/25/"><span class="v-num">25</span><span class="v-txt">"and the rain descended, the floods came, and the winds blew and beat on that house; and it did not fall, for it was founded on the rock.</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/26/" data-ref="Matthew 7:26 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/26/"><span class="v-num">26</span><span class="v-txt">"But everyone who hears these sayings of Mine, and does not do them, will be like a foolish man who built his house on the sand:</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/27/" data-ref="Matthew 7:27 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/27/"><span class="v-num">27</span><span class="v-txt">"and the rain descended, the floods came, and the winds blew and beat on that house; and it fell. And great was its fall."</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/28/" data-ref="Matthew 7:28 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/28/"><span class="v-num">28</span><span class="v-txt">And so it was, when Jesus had ended these sayings, that the people were astonished at His teaching,</span></a>
+<a class="v-row" href="/bible/nkjv/matthew/7/29/" data-ref="Matthew 7:29 (New King James Version)" data-verse-url="/bible/nkjv/matthew/7/29/"><span class="v-num">29</span><span class="v-txt">for He taught them as one having authority, and not as the scribes.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 12:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">These [are] the kings of the land whom the children of Israel defeated, and whose land they possessed on the other side of the Jordan toward the rising of the sun, from the River Arnon to Mount Hermon, and all the eastern Jordan plain:</span></div>
-<div class="v-row" data-ref="Joshua 12:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">[One king was] Sihon king of the Amorites, who dwelt in Heshbon [and] ruled half of Gilead, from Aroer, which is on the bank of the River Arnon, from the middle of that river, even as far as the River Jabbok, [which is] the border of the Ammonites,</span></div>
-<div class="v-row" data-ref="Joshua 12:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and the eastern Jordan plain from the Sea of Chinneroth as far as the Sea of the Arabah (the Salt Sea), the road to Beth Jeshimoth, and southward below the slopes of Pisgah.</span></div>
-<div class="v-row" data-ref="Joshua 12:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">[The other king was] Og king of Bashan and his territory, [who was] of the remnant of the giants, who dwelt at Ashtaroth and at Edrei,</span></div>
-<div class="v-row" data-ref="Joshua 12:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and reigned over Mount Hermon, over Salcah, over all Bashan, as far as the border of the Geshurites and the Maachathites, and over half of Gilead [to] the border of Sihon king of Heshbon.</span></div>
-<div class="v-row" data-ref="Joshua 12:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">These Moses the servant of the LORD and the children of Israel had conquered; and Moses the servant of the LORD had given it [as] a possession to the Reubenites, the Gadites, and half the tribe of Manasseh.</span></div>
-<div class="v-row" data-ref="Joshua 12:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And these [are] the kings of the country which Joshua and the children of Israel conquered on this side of the Jordan, on the west, from Baal Gad in the Valley of Lebanon as far as Mount Halak and the ascent to Seir, which Joshua gave to the tribes of Israel [as] a possession according to their divisions,</span></div>
-<div class="v-row" data-ref="Joshua 12:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">in the mountain country, in the lowlands, in the [Jordan] plain, in the slopes, in the wilderness, and in the South -- the Hittites, the Amorites, the Canaanites, the Perizzites, the Hivites, and the Jebusites:</span></div>
-<div class="v-row" data-ref="Joshua 12:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">the king of Jericho, one; the king of Ai, which [is] beside Bethel, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">the king of Jerusalem, one; the king of Hebron, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">the king of Jarmuth, one; the king of Lachish, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">the king of Eglon, one; the king of Gezer, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">the king of Debir, one; the king of Geder, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">the king of Hormah, one; the king of Arad, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">the king of Libnah, one; the king of Adullam, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">the king of Makkedah, one; the king of Bethel, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">the king of Tappuah, one; the king of Hepher, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">the king of Aphek, one; the king of Lasharon, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">the king of Madon, one; the king of Hazor, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">the king of Shimron Meron, one; the king of Achshaph, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">the king of Taanach, one; the king of Megiddo, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">the king of Kedesh, one; the king of Jokneam in Carmel, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">the king of Dor in the heights of Dor, one; the king of the people of Gilgal, one;</span></div>
-<div class="v-row" data-ref="Joshua 12:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">the king of Tirzah, one -- all the kings, thirty-one.</span></div>
+    <a class="v-row" href="/bible/nkjv/joshua/12/1/" data-ref="Joshua 12:1 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/1/"><span class="v-num">1</span><span class="v-txt">These [are] the kings of the land whom the children of Israel defeated, and whose land they possessed on the other side of the Jordan toward the rising of the sun, from the River Arnon to Mount Hermon, and all the eastern Jordan plain:</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/2/" data-ref="Joshua 12:2 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/2/"><span class="v-num">2</span><span class="v-txt">[One king was] Sihon king of the Amorites, who dwelt in Heshbon [and] ruled half of Gilead, from Aroer, which is on the bank of the River Arnon, from the middle of that river, even as far as the River Jabbok, [which is] the border of the Ammonites,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/3/" data-ref="Joshua 12:3 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/3/"><span class="v-num">3</span><span class="v-txt">and the eastern Jordan plain from the Sea of Chinneroth as far as the Sea of the Arabah (the Salt Sea), the road to Beth Jeshimoth, and southward below the slopes of Pisgah.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/4/" data-ref="Joshua 12:4 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/4/"><span class="v-num">4</span><span class="v-txt">[The other king was] Og king of Bashan and his territory, [who was] of the remnant of the giants, who dwelt at Ashtaroth and at Edrei,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/5/" data-ref="Joshua 12:5 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/5/"><span class="v-num">5</span><span class="v-txt">and reigned over Mount Hermon, over Salcah, over all Bashan, as far as the border of the Geshurites and the Maachathites, and over half of Gilead [to] the border of Sihon king of Heshbon.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/6/" data-ref="Joshua 12:6 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/6/"><span class="v-num">6</span><span class="v-txt">These Moses the servant of the LORD and the children of Israel had conquered; and Moses the servant of the LORD had given it [as] a possession to the Reubenites, the Gadites, and half the tribe of Manasseh.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/7/" data-ref="Joshua 12:7 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/7/"><span class="v-num">7</span><span class="v-txt">And these [are] the kings of the country which Joshua and the children of Israel conquered on this side of the Jordan, on the west, from Baal Gad in the Valley of Lebanon as far as Mount Halak and the ascent to Seir, which Joshua gave to the tribes of Israel [as] a possession according to their divisions,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/8/" data-ref="Joshua 12:8 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/8/"><span class="v-num">8</span><span class="v-txt">in the mountain country, in the lowlands, in the [Jordan] plain, in the slopes, in the wilderness, and in the South -- the Hittites, the Amorites, the Canaanites, the Perizzites, the Hivites, and the Jebusites:</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/9/" data-ref="Joshua 12:9 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/9/"><span class="v-num">9</span><span class="v-txt">the king of Jericho, one; the king of Ai, which [is] beside Bethel, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/10/" data-ref="Joshua 12:10 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/10/"><span class="v-num">10</span><span class="v-txt">the king of Jerusalem, one; the king of Hebron, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/11/" data-ref="Joshua 12:11 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/11/"><span class="v-num">11</span><span class="v-txt">the king of Jarmuth, one; the king of Lachish, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/12/" data-ref="Joshua 12:12 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/12/"><span class="v-num">12</span><span class="v-txt">the king of Eglon, one; the king of Gezer, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/13/" data-ref="Joshua 12:13 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/13/"><span class="v-num">13</span><span class="v-txt">the king of Debir, one; the king of Geder, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/14/" data-ref="Joshua 12:14 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/14/"><span class="v-num">14</span><span class="v-txt">the king of Hormah, one; the king of Arad, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/15/" data-ref="Joshua 12:15 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/15/"><span class="v-num">15</span><span class="v-txt">the king of Libnah, one; the king of Adullam, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/16/" data-ref="Joshua 12:16 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/16/"><span class="v-num">16</span><span class="v-txt">the king of Makkedah, one; the king of Bethel, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/17/" data-ref="Joshua 12:17 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/17/"><span class="v-num">17</span><span class="v-txt">the king of Tappuah, one; the king of Hepher, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/18/" data-ref="Joshua 12:18 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/18/"><span class="v-num">18</span><span class="v-txt">the king of Aphek, one; the king of Lasharon, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/19/" data-ref="Joshua 12:19 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/19/"><span class="v-num">19</span><span class="v-txt">the king of Madon, one; the king of Hazor, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/20/" data-ref="Joshua 12:20 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/20/"><span class="v-num">20</span><span class="v-txt">the king of Shimron Meron, one; the king of Achshaph, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/21/" data-ref="Joshua 12:21 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/21/"><span class="v-num">21</span><span class="v-txt">the king of Taanach, one; the king of Megiddo, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/22/" data-ref="Joshua 12:22 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/22/"><span class="v-num">22</span><span class="v-txt">the king of Kedesh, one; the king of Jokneam in Carmel, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/23/" data-ref="Joshua 12:23 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/23/"><span class="v-num">23</span><span class="v-txt">the king of Dor in the heights of Dor, one; the king of the people of Gilgal, one;</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/12/24/" data-ref="Joshua 12:24 (New King James Version)" data-verse-url="/bible/nkjv/joshua/12/24/"><span class="v-num">24</span><span class="v-txt">the king of Tirzah, one -- all the kings, thirty-one.</span></a>
 
     
 <div class="app-cta">

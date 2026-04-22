@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 12:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now when Rehoboam's position as king had been made certain, and he was strong, he gave up the law of the Lord, and all Israel with him.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Now in the fifth year of King Rehoboam, Shishak, king of Egypt, came up against Jerusalem, because of their sin against the Lord,</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">With twelve hundred war-carriages and sixty thousand horsemen: and the people who came with him out of Egypt were more than might be numbered: Lubim and Sukkiim and Ethiopians.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he took the walled towns of Judah, and came as far as Jerusalem.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now Shemaiah the prophet came to Rehoboam and the chiefs of Judah, who had come together in Jerusalem because of Shishak, and said to them, The Lord has said, Because you have given me up, I have given you up into the hands of Shishak.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the chiefs of Israel and the king made themselves low and said, The Lord is upright.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the Lord, seeing that they had made themselves low, said to Shemaiah, They have made themselves low: I will not send destruction on them, but in a short time I will give them salvation, and will not let loose my wrath on Jerusalem by the hand of Shishak.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But still they will become his servants, so that they may see how different my yoke is from the yoke of the kingdoms of the lands.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">So Shishak, king of Egypt, came up against Jerusalem and took away all the stored wealth of the house of the Lord and the king's house: he took everything away, and with the rest the gold body-covers which Solomon had made.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And in their place King Rehoboam had other body-covers made of brass and gave them into the care of the captains of the armed men who were stationed at the door of the king's house.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And whenever the king went into the house of the Lord, the armed men went with him takinge seat of his kingdom to be kingthem back to their room.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And when he made himself low, the wrath of the Lord was turned back from him, and complete destruction did not come on him, for there was still some good in Judah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So King Rehoboam made himself strong in Jerusalem and was ruling there. Rehoboam was forty-one years old when he became king, and he was ruling for seventeen years in Jerusalem, the town which the Lord had made his out of all the tribes of Israel, to put his name there; and his mother's name was Naamah, an Ammonite woman.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he did evil because his heart was not true to the Lord.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Now the acts of Rehoboam, first and last, are they not recorded in the words of Shemaiah the prophet and Iddo the seer? And there were wars between Rehoboam and Jeroboam all their days.</span></div>
-<div class="v-row" data-ref="2 Chronicles 12:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Rehoboam went to rest with his fathers, and was put into the earth in the town of David; and Abijah his son became king in his place.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/12/1/" data-ref="2 Chronicles 12:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/1/"><span class="v-num">1</span><span class="v-txt">Now when Rehoboam's position as king had been made certain, and he was strong, he gave up the law of the Lord, and all Israel with him.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/2/" data-ref="2 Chronicles 12:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/2/"><span class="v-num">2</span><span class="v-txt">Now in the fifth year of King Rehoboam, Shishak, king of Egypt, came up against Jerusalem, because of their sin against the Lord,</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/3/" data-ref="2 Chronicles 12:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/3/"><span class="v-num">3</span><span class="v-txt">With twelve hundred war-carriages and sixty thousand horsemen: and the people who came with him out of Egypt were more than might be numbered: Lubim and Sukkiim and Ethiopians.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/4/" data-ref="2 Chronicles 12:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/4/"><span class="v-num">4</span><span class="v-txt">And he took the walled towns of Judah, and came as far as Jerusalem.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/5/" data-ref="2 Chronicles 12:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/5/"><span class="v-num">5</span><span class="v-txt">Now Shemaiah the prophet came to Rehoboam and the chiefs of Judah, who had come together in Jerusalem because of Shishak, and said to them, The Lord has said, Because you have given me up, I have given you up into the hands of Shishak.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/6/" data-ref="2 Chronicles 12:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/6/"><span class="v-num">6</span><span class="v-txt">Then the chiefs of Israel and the king made themselves low and said, The Lord is upright.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/7/" data-ref="2 Chronicles 12:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/7/"><span class="v-num">7</span><span class="v-txt">And the Lord, seeing that they had made themselves low, said to Shemaiah, They have made themselves low: I will not send destruction on them, but in a short time I will give them salvation, and will not let loose my wrath on Jerusalem by the hand of Shishak.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/8/" data-ref="2 Chronicles 12:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/8/"><span class="v-num">8</span><span class="v-txt">But still they will become his servants, so that they may see how different my yoke is from the yoke of the kingdoms of the lands.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/9/" data-ref="2 Chronicles 12:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/9/"><span class="v-num">9</span><span class="v-txt">So Shishak, king of Egypt, came up against Jerusalem and took away all the stored wealth of the house of the Lord and the king's house: he took everything away, and with the rest the gold body-covers which Solomon had made.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/10/" data-ref="2 Chronicles 12:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/10/"><span class="v-num">10</span><span class="v-txt">And in their place King Rehoboam had other body-covers made of brass and gave them into the care of the captains of the armed men who were stationed at the door of the king's house.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/11/" data-ref="2 Chronicles 12:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/11/"><span class="v-num">11</span><span class="v-txt">And whenever the king went into the house of the Lord, the armed men went with him takinge seat of his kingdom to be kingthem back to their room.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/12/" data-ref="2 Chronicles 12:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/12/"><span class="v-num">12</span><span class="v-txt">And when he made himself low, the wrath of the Lord was turned back from him, and complete destruction did not come on him, for there was still some good in Judah.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/13/" data-ref="2 Chronicles 12:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/13/"><span class="v-num">13</span><span class="v-txt">So King Rehoboam made himself strong in Jerusalem and was ruling there. Rehoboam was forty-one years old when he became king, and he was ruling for seventeen years in Jerusalem, the town which the Lord had made his out of all the tribes of Israel, to put his name there; and his mother's name was Naamah, an Ammonite woman.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/14/" data-ref="2 Chronicles 12:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/14/"><span class="v-num">14</span><span class="v-txt">And he did evil because his heart was not true to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/15/" data-ref="2 Chronicles 12:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/15/"><span class="v-num">15</span><span class="v-txt">Now the acts of Rehoboam, first and last, are they not recorded in the words of Shemaiah the prophet and Iddo the seer? And there were wars between Rehoboam and Jeroboam all their days.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/12/16/" data-ref="2 Chronicles 12:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/12/16/"><span class="v-num">16</span><span class="v-txt">And Rehoboam went to rest with his fathers, and was put into the earth in the town of David; and Abijah his son became king in his place.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="John 2:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">On the third day there was a wedding in Cana of Galilee, and the mother of Jesus was there.</span></div>
-<div class="v-row" data-ref="John 2:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Now both Jesus and His disciples were invited to the wedding.</span></div>
-<div class="v-row" data-ref="John 2:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when they ran out of wine, the mother of Jesus said to Him, "They have no wine."</span></div>
-<div class="v-row" data-ref="John 2:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Jesus said to her, "Woman, what does your concern have to do with Me? My hour has not yet come."</span></div>
-<div class="v-row" data-ref="John 2:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">His mother said to the servants, "Whatever He says to you, do [it."]</span></div>
-<div class="v-row" data-ref="John 2:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now there were set there six waterpots of stone, according to the manner of purification of the Jews, containing twenty or thirty gallons apiece.</span></div>
-<div class="v-row" data-ref="John 2:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Jesus said to them, "Fill the waterpots with water." And they filled them up to the brim.</span></div>
-<div class="v-row" data-ref="John 2:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And He said to them, "Draw [some] out now, and take [it] to the master of the feast." And they took [it.]</span></div>
-<div class="v-row" data-ref="John 2:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">When the master of the feast had tasted the water that was made wine, and did not know where it came from (but the servants who had drawn the water knew), the master of the feast called the bridegroom.</span></div>
-<div class="v-row" data-ref="John 2:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he said to him, "Every man at the beginning sets out the good wine, and when the [guests] have well drunk, then the inferior. You have kept the good wine until now!"</span></div>
-<div class="v-row" data-ref="John 2:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">This beginning of signs Jesus did in Cana of Galilee, and manifested His glory; and His disciples believed in Him.</span></div>
-<div class="v-row" data-ref="John 2:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">After this He went down to Capernaum, He, His mother, His brothers, and His disciples; and they did not stay there many days.</span></div>
-<div class="v-row" data-ref="John 2:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Now the Passover of the Jews was at hand, and Jesus went up to Jerusalem.</span></div>
-<div class="v-row" data-ref="John 2:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And He found in the temple those who sold oxen and sheep and doves, and the moneychangers doing business.</span></div>
-<div class="v-row" data-ref="John 2:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">When He had made a whip of cords, He drove them all out of the temple, with the sheep and the oxen, and poured out the changers' money and overturned the tables.</span></div>
-<div class="v-row" data-ref="John 2:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And He said to those who sold doves, "Take these things away! Do not make My Father's house a house of merchandise!"</span></div>
-<div class="v-row" data-ref="John 2:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Then His disciples remembered that it was written, "Zeal for Your house has eaten Me up."</span></div>
-<div class="v-row" data-ref="John 2:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">So the Jews answered and said to Him, "What sign do You show to us, since You do these things?"</span></div>
-<div class="v-row" data-ref="John 2:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Jesus answered and said to them, "Destroy this temple, and in three days I will raise it up."</span></div>
-<div class="v-row" data-ref="John 2:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Then the Jews said, "It has taken forty-six years to build this temple, and will You raise it up in three days?"</span></div>
-<div class="v-row" data-ref="John 2:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But He was speaking of the temple of His body.</span></div>
-<div class="v-row" data-ref="John 2:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Therefore, when He had risen from the dead, His disciples remembered that He had said this to them; and they believed the Scripture and the word which Jesus had said.</span></div>
-<div class="v-row" data-ref="John 2:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Now when He was in Jerusalem at the Passover, during the feast, many believed in His name when they saw the signs which He did.</span></div>
-<div class="v-row" data-ref="John 2:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">But Jesus did not commit Himself to them, because He knew all [men,]</span></div>
-<div class="v-row" data-ref="John 2:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">and had no need that anyone should testify of man, for He knew what was in man.</span></div>
+    <a class="v-row" href="/bible/nkjv/john/2/1/" data-ref="John 2:1 (New King James Version)" data-verse-url="/bible/nkjv/john/2/1/"><span class="v-num">1</span><span class="v-txt">On the third day there was a wedding in Cana of Galilee, and the mother of Jesus was there.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/2/" data-ref="John 2:2 (New King James Version)" data-verse-url="/bible/nkjv/john/2/2/"><span class="v-num">2</span><span class="v-txt">Now both Jesus and His disciples were invited to the wedding.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/3/" data-ref="John 2:3 (New King James Version)" data-verse-url="/bible/nkjv/john/2/3/"><span class="v-num">3</span><span class="v-txt">And when they ran out of wine, the mother of Jesus said to Him, "They have no wine."</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/4/" data-ref="John 2:4 (New King James Version)" data-verse-url="/bible/nkjv/john/2/4/"><span class="v-num">4</span><span class="v-txt">Jesus said to her, "Woman, what does your concern have to do with Me? My hour has not yet come."</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/5/" data-ref="John 2:5 (New King James Version)" data-verse-url="/bible/nkjv/john/2/5/"><span class="v-num">5</span><span class="v-txt">His mother said to the servants, "Whatever He says to you, do [it."]</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/6/" data-ref="John 2:6 (New King James Version)" data-verse-url="/bible/nkjv/john/2/6/"><span class="v-num">6</span><span class="v-txt">Now there were set there six waterpots of stone, according to the manner of purification of the Jews, containing twenty or thirty gallons apiece.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/7/" data-ref="John 2:7 (New King James Version)" data-verse-url="/bible/nkjv/john/2/7/"><span class="v-num">7</span><span class="v-txt">Jesus said to them, "Fill the waterpots with water." And they filled them up to the brim.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/8/" data-ref="John 2:8 (New King James Version)" data-verse-url="/bible/nkjv/john/2/8/"><span class="v-num">8</span><span class="v-txt">And He said to them, "Draw [some] out now, and take [it] to the master of the feast." And they took [it.]</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/9/" data-ref="John 2:9 (New King James Version)" data-verse-url="/bible/nkjv/john/2/9/"><span class="v-num">9</span><span class="v-txt">When the master of the feast had tasted the water that was made wine, and did not know where it came from (but the servants who had drawn the water knew), the master of the feast called the bridegroom.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/10/" data-ref="John 2:10 (New King James Version)" data-verse-url="/bible/nkjv/john/2/10/"><span class="v-num">10</span><span class="v-txt">And he said to him, "Every man at the beginning sets out the good wine, and when the [guests] have well drunk, then the inferior. You have kept the good wine until now!"</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/11/" data-ref="John 2:11 (New King James Version)" data-verse-url="/bible/nkjv/john/2/11/"><span class="v-num">11</span><span class="v-txt">This beginning of signs Jesus did in Cana of Galilee, and manifested His glory; and His disciples believed in Him.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/12/" data-ref="John 2:12 (New King James Version)" data-verse-url="/bible/nkjv/john/2/12/"><span class="v-num">12</span><span class="v-txt">After this He went down to Capernaum, He, His mother, His brothers, and His disciples; and they did not stay there many days.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/13/" data-ref="John 2:13 (New King James Version)" data-verse-url="/bible/nkjv/john/2/13/"><span class="v-num">13</span><span class="v-txt">Now the Passover of the Jews was at hand, and Jesus went up to Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/14/" data-ref="John 2:14 (New King James Version)" data-verse-url="/bible/nkjv/john/2/14/"><span class="v-num">14</span><span class="v-txt">And He found in the temple those who sold oxen and sheep and doves, and the moneychangers doing business.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/15/" data-ref="John 2:15 (New King James Version)" data-verse-url="/bible/nkjv/john/2/15/"><span class="v-num">15</span><span class="v-txt">When He had made a whip of cords, He drove them all out of the temple, with the sheep and the oxen, and poured out the changers' money and overturned the tables.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/16/" data-ref="John 2:16 (New King James Version)" data-verse-url="/bible/nkjv/john/2/16/"><span class="v-num">16</span><span class="v-txt">And He said to those who sold doves, "Take these things away! Do not make My Father's house a house of merchandise!"</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/17/" data-ref="John 2:17 (New King James Version)" data-verse-url="/bible/nkjv/john/2/17/"><span class="v-num">17</span><span class="v-txt">Then His disciples remembered that it was written, "Zeal for Your house has eaten Me up."</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/18/" data-ref="John 2:18 (New King James Version)" data-verse-url="/bible/nkjv/john/2/18/"><span class="v-num">18</span><span class="v-txt">So the Jews answered and said to Him, "What sign do You show to us, since You do these things?"</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/19/" data-ref="John 2:19 (New King James Version)" data-verse-url="/bible/nkjv/john/2/19/"><span class="v-num">19</span><span class="v-txt">Jesus answered and said to them, "Destroy this temple, and in three days I will raise it up."</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/20/" data-ref="John 2:20 (New King James Version)" data-verse-url="/bible/nkjv/john/2/20/"><span class="v-num">20</span><span class="v-txt">Then the Jews said, "It has taken forty-six years to build this temple, and will You raise it up in three days?"</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/21/" data-ref="John 2:21 (New King James Version)" data-verse-url="/bible/nkjv/john/2/21/"><span class="v-num">21</span><span class="v-txt">But He was speaking of the temple of His body.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/22/" data-ref="John 2:22 (New King James Version)" data-verse-url="/bible/nkjv/john/2/22/"><span class="v-num">22</span><span class="v-txt">Therefore, when He had risen from the dead, His disciples remembered that He had said this to them; and they believed the Scripture and the word which Jesus had said.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/23/" data-ref="John 2:23 (New King James Version)" data-verse-url="/bible/nkjv/john/2/23/"><span class="v-num">23</span><span class="v-txt">Now when He was in Jerusalem at the Passover, during the feast, many believed in His name when they saw the signs which He did.</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/24/" data-ref="John 2:24 (New King James Version)" data-verse-url="/bible/nkjv/john/2/24/"><span class="v-num">24</span><span class="v-txt">But Jesus did not commit Himself to them, because He knew all [men,]</span></a>
+<a class="v-row" href="/bible/nkjv/john/2/25/" data-ref="John 2:25 (New King James Version)" data-verse-url="/bible/nkjv/john/2/25/"><span class="v-num">25</span><span class="v-txt">and had no need that anyone should testify of man, for He knew what was in man.</span></a>
 
     
 <div class="app-cta">

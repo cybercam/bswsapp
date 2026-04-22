@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Nehemiah 6:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now it happened, when it was reported to Sanballat and Tobiah, and to Geshem the Arabian, and to the rest of our enemies, that I had built the wall, and that there was no breach left therein; (though even to that time I had not set up the doors in the gates;)</span></div>
-<div class="v-row" data-ref="Nehemiah 6:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">that Sanballat and Geshem sent to me, saying, Come, let us meet together in one of the villages in the plain of Ono. But they thought to do me mischief.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I sent messengers to them, saying, I am doing a great work, so that I can't come down: why should the work cease, while I leave it, and come down to you?</span></div>
-<div class="v-row" data-ref="Nehemiah 6:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They sent to me four times after this sort; and I answered them after the same manner.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then sent Sanballat his servant to me in like manner the fifth time with an open letter in his hand,</span></div>
-<div class="v-row" data-ref="Nehemiah 6:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">in which was written, It is reported among the nations, and Gashmu says it, that you and the Jews think to rebel; for which cause you are building the wall: and you would be their king, according to these words.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You have also appointed prophets to preach of you at Jerusalem, saying, There is a king in Judah: and now shall it be reported to the king according to these words. Come now therefore, and let us take counsel together.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then I sent to him, saying, There are no such things done as you say, but you feign them out of your own heart.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For they all would have made us afraid, saying, Their hands shall be weakened from the work, that it not be done. But now, God, strengthen you my hands.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I went to the house of Shemaiah the son of Delaiah the son of Mehetabel, who was shut up; and he said, Let us meet together in the house of God, within the temple, and let us shut the doors of the temple: for they will come to kill you; yes, in the night will they come to kill you.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I said, Should such a man as I flee? and who is there that, being such as I, would go into the temple to save his life? I will not go in.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I discerned, and, behold, God had not sent him; but he pronounced this prophecy against me: and Tobiah and Sanballat had hired him.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For this cause was he hired, that I should be afraid, and do so, and sin, and that they might have matter for an evil report, that they might reproach me.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Remember, my God, Tobiah and Sanballat according to these their works, and also the prophetess Noadiah, and the rest of the prophets, that would have put me in fear.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So the wall was finished in the twenty-fifth day of the month Elul, in fifty-two days.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">It happened, when all our enemies heard of it, that all the nations that were about us feared, and were much cast down in their own eyes; for they perceived that this work was worked of our God.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Moreover in those days the nobles of Judah sent many letters to Tobiah, and the letters of Tobiah came to them.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For there were many in Judah sworn to him, because he was the son-in-law of Shecaniah the son of Arah; and his son Jehohanan had taken the daughter of Meshullam the son of Berechiah as wife.</span></div>
-<div class="v-row" data-ref="Nehemiah 6:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Also they spoke of his good deeds before me, and reported my words to him. Tobiah sent letters to put me in fear.</span></div>
+    <a class="v-row" href="/bible/web/nehemiah/6/1/" data-ref="Nehemiah 6:1 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/1/"><span class="v-num">1</span><span class="v-txt">Now it happened, when it was reported to Sanballat and Tobiah, and to Geshem the Arabian, and to the rest of our enemies, that I had built the wall, and that there was no breach left therein; (though even to that time I had not set up the doors in the gates;)</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/2/" data-ref="Nehemiah 6:2 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/2/"><span class="v-num">2</span><span class="v-txt">that Sanballat and Geshem sent to me, saying, Come, let us meet together in one of the villages in the plain of Ono. But they thought to do me mischief.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/3/" data-ref="Nehemiah 6:3 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/3/"><span class="v-num">3</span><span class="v-txt">I sent messengers to them, saying, I am doing a great work, so that I can't come down: why should the work cease, while I leave it, and come down to you?</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/4/" data-ref="Nehemiah 6:4 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/4/"><span class="v-num">4</span><span class="v-txt">They sent to me four times after this sort; and I answered them after the same manner.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/5/" data-ref="Nehemiah 6:5 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/5/"><span class="v-num">5</span><span class="v-txt">Then sent Sanballat his servant to me in like manner the fifth time with an open letter in his hand,</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/6/" data-ref="Nehemiah 6:6 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/6/"><span class="v-num">6</span><span class="v-txt">in which was written, It is reported among the nations, and Gashmu says it, that you and the Jews think to rebel; for which cause you are building the wall: and you would be their king, according to these words.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/7/" data-ref="Nehemiah 6:7 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/7/"><span class="v-num">7</span><span class="v-txt">You have also appointed prophets to preach of you at Jerusalem, saying, There is a king in Judah: and now shall it be reported to the king according to these words. Come now therefore, and let us take counsel together.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/8/" data-ref="Nehemiah 6:8 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/8/"><span class="v-num">8</span><span class="v-txt">Then I sent to him, saying, There are no such things done as you say, but you feign them out of your own heart.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/9/" data-ref="Nehemiah 6:9 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/9/"><span class="v-num">9</span><span class="v-txt">For they all would have made us afraid, saying, Their hands shall be weakened from the work, that it not be done. But now, God, strengthen you my hands.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/10/" data-ref="Nehemiah 6:10 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/10/"><span class="v-num">10</span><span class="v-txt">I went to the house of Shemaiah the son of Delaiah the son of Mehetabel, who was shut up; and he said, Let us meet together in the house of God, within the temple, and let us shut the doors of the temple: for they will come to kill you; yes, in the night will they come to kill you.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/11/" data-ref="Nehemiah 6:11 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/11/"><span class="v-num">11</span><span class="v-txt">I said, Should such a man as I flee? and who is there that, being such as I, would go into the temple to save his life? I will not go in.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/12/" data-ref="Nehemiah 6:12 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/12/"><span class="v-num">12</span><span class="v-txt">I discerned, and, behold, God had not sent him; but he pronounced this prophecy against me: and Tobiah and Sanballat had hired him.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/13/" data-ref="Nehemiah 6:13 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/13/"><span class="v-num">13</span><span class="v-txt">For this cause was he hired, that I should be afraid, and do so, and sin, and that they might have matter for an evil report, that they might reproach me.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/14/" data-ref="Nehemiah 6:14 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/14/"><span class="v-num">14</span><span class="v-txt">Remember, my God, Tobiah and Sanballat according to these their works, and also the prophetess Noadiah, and the rest of the prophets, that would have put me in fear.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/15/" data-ref="Nehemiah 6:15 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/15/"><span class="v-num">15</span><span class="v-txt">So the wall was finished in the twenty-fifth day of the month Elul, in fifty-two days.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/16/" data-ref="Nehemiah 6:16 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/16/"><span class="v-num">16</span><span class="v-txt">It happened, when all our enemies heard of it, that all the nations that were about us feared, and were much cast down in their own eyes; for they perceived that this work was worked of our God.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/17/" data-ref="Nehemiah 6:17 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/17/"><span class="v-num">17</span><span class="v-txt">Moreover in those days the nobles of Judah sent many letters to Tobiah, and the letters of Tobiah came to them.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/18/" data-ref="Nehemiah 6:18 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/18/"><span class="v-num">18</span><span class="v-txt">For there were many in Judah sworn to him, because he was the son-in-law of Shecaniah the son of Arah; and his son Jehohanan had taken the daughter of Meshullam the son of Berechiah as wife.</span></a>
+<a class="v-row" href="/bible/web/nehemiah/6/19/" data-ref="Nehemiah 6:19 (World English Bible)" data-verse-url="/bible/web/nehemiah/6/19/"><span class="v-num">19</span><span class="v-txt">Also they spoke of his good deeds before me, and reported my words to him. Tobiah sent letters to put me in fear.</span></a>
 
     
 <div class="app-cta">

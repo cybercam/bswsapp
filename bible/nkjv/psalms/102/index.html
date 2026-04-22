@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 102</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 102:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Prayer of the afflicted when he is overwhelmed and pours out his complaint before the LORD. Hear my prayer, O LORD, And let my cry come to You.</span></div>
-<div class="v-row" data-ref="Psalm 102:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Do not hide Your face from me in the day of my trouble; Incline Your ear to me; In the day that I call, answer me speedily.</span></div>
-<div class="v-row" data-ref="Psalm 102:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For my days are consumed like smoke, And my bones are burned like a hearth.</span></div>
-<div class="v-row" data-ref="Psalm 102:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">My heart is stricken and withered like grass, So that I forget to eat my bread.</span></div>
-<div class="v-row" data-ref="Psalm 102:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Because of the sound of my groaning My bones cling to my skin.</span></div>
-<div class="v-row" data-ref="Psalm 102:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I am like a pelican of the wilderness; I am like an owl of the desert.</span></div>
-<div class="v-row" data-ref="Psalm 102:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I lie awake, And am like a sparrow alone on the housetop.</span></div>
-<div class="v-row" data-ref="Psalm 102:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">My enemies reproach me all day long, Those who deride me swear an oath against me.</span></div>
-<div class="v-row" data-ref="Psalm 102:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For I have eaten ashes like bread, And mingled my drink with weeping,</span></div>
-<div class="v-row" data-ref="Psalm 102:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because of Your indignation and Your wrath; For You have lifted me up and cast me away.</span></div>
-<div class="v-row" data-ref="Psalm 102:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My days [are] like a shadow that lengthens, And I wither away like grass.</span></div>
-<div class="v-row" data-ref="Psalm 102:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But You, O LORD, shall endure forever, And the remembrance of Your name to all generations.</span></div>
-<div class="v-row" data-ref="Psalm 102:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">You will arise [and] have mercy on Zion; For the time to favor her, Yes, the set time, has come.</span></div>
-<div class="v-row" data-ref="Psalm 102:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For Your servants take pleasure in her stones, And show favor to her dust.</span></div>
-<div class="v-row" data-ref="Psalm 102:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So the nations shall fear the name of the LORD, And all the kings of the earth Your glory.</span></div>
-<div class="v-row" data-ref="Psalm 102:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the LORD shall build up Zion; He shall appear in His glory.</span></div>
-<div class="v-row" data-ref="Psalm 102:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He shall regard the prayer of the destitute, And shall not despise their prayer.</span></div>
-<div class="v-row" data-ref="Psalm 102:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">This will be written for the generation to come, That a people yet to be created may praise the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 102:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For He looked down from the height of His sanctuary; From heaven the LORD viewed the earth,</span></div>
-<div class="v-row" data-ref="Psalm 102:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">To hear the groaning of the prisoner, To release those appointed to death,</span></div>
-<div class="v-row" data-ref="Psalm 102:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">To declare the name of the LORD in Zion, And His praise in Jerusalem,</span></div>
-<div class="v-row" data-ref="Psalm 102:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">When the peoples are gathered together, And the kingdoms, to serve the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 102:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He weakened my strength in the way; He shortened my days.</span></div>
-<div class="v-row" data-ref="Psalm 102:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">I said, "O my God, Do not take me away in the midst of my days; Your years [are] throughout all generations.</span></div>
-<div class="v-row" data-ref="Psalm 102:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Of old You laid the foundation of the earth, And the heavens [are] the work of Your hands.</span></div>
-<div class="v-row" data-ref="Psalm 102:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">They will perish, but You will endure; Yes, they will all grow old like a garment; Like a cloak You will change them, And they will be changed.</span></div>
-<div class="v-row" data-ref="Psalm 102:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">But You [are] the same, And Your years will have no end.</span></div>
-<div class="v-row" data-ref="Psalm 102:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">The children of Your servants will continue, And their descendants will be established before You."</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/102/1/" data-ref="Psalm 102:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/1/"><span class="v-num">1</span><span class="v-txt">A Prayer of the afflicted when he is overwhelmed and pours out his complaint before the LORD. Hear my prayer, O LORD, And let my cry come to You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/2/" data-ref="Psalm 102:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/2/"><span class="v-num">2</span><span class="v-txt">Do not hide Your face from me in the day of my trouble; Incline Your ear to me; In the day that I call, answer me speedily.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/3/" data-ref="Psalm 102:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/3/"><span class="v-num">3</span><span class="v-txt">For my days are consumed like smoke, And my bones are burned like a hearth.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/4/" data-ref="Psalm 102:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/4/"><span class="v-num">4</span><span class="v-txt">My heart is stricken and withered like grass, So that I forget to eat my bread.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/5/" data-ref="Psalm 102:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/5/"><span class="v-num">5</span><span class="v-txt">Because of the sound of my groaning My bones cling to my skin.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/6/" data-ref="Psalm 102:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/6/"><span class="v-num">6</span><span class="v-txt">I am like a pelican of the wilderness; I am like an owl of the desert.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/7/" data-ref="Psalm 102:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/7/"><span class="v-num">7</span><span class="v-txt">I lie awake, And am like a sparrow alone on the housetop.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/8/" data-ref="Psalm 102:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/8/"><span class="v-num">8</span><span class="v-txt">My enemies reproach me all day long, Those who deride me swear an oath against me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/9/" data-ref="Psalm 102:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/9/"><span class="v-num">9</span><span class="v-txt">For I have eaten ashes like bread, And mingled my drink with weeping,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/10/" data-ref="Psalm 102:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/10/"><span class="v-num">10</span><span class="v-txt">Because of Your indignation and Your wrath; For You have lifted me up and cast me away.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/11/" data-ref="Psalm 102:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/11/"><span class="v-num">11</span><span class="v-txt">My days [are] like a shadow that lengthens, And I wither away like grass.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/12/" data-ref="Psalm 102:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/12/"><span class="v-num">12</span><span class="v-txt">But You, O LORD, shall endure forever, And the remembrance of Your name to all generations.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/13/" data-ref="Psalm 102:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/13/"><span class="v-num">13</span><span class="v-txt">You will arise [and] have mercy on Zion; For the time to favor her, Yes, the set time, has come.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/14/" data-ref="Psalm 102:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/14/"><span class="v-num">14</span><span class="v-txt">For Your servants take pleasure in her stones, And show favor to her dust.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/15/" data-ref="Psalm 102:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/15/"><span class="v-num">15</span><span class="v-txt">So the nations shall fear the name of the LORD, And all the kings of the earth Your glory.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/16/" data-ref="Psalm 102:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/16/"><span class="v-num">16</span><span class="v-txt">For the LORD shall build up Zion; He shall appear in His glory.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/17/" data-ref="Psalm 102:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/17/"><span class="v-num">17</span><span class="v-txt">He shall regard the prayer of the destitute, And shall not despise their prayer.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/18/" data-ref="Psalm 102:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/18/"><span class="v-num">18</span><span class="v-txt">This will be written for the generation to come, That a people yet to be created may praise the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/19/" data-ref="Psalm 102:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/19/"><span class="v-num">19</span><span class="v-txt">For He looked down from the height of His sanctuary; From heaven the LORD viewed the earth,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/20/" data-ref="Psalm 102:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/20/"><span class="v-num">20</span><span class="v-txt">To hear the groaning of the prisoner, To release those appointed to death,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/21/" data-ref="Psalm 102:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/21/"><span class="v-num">21</span><span class="v-txt">To declare the name of the LORD in Zion, And His praise in Jerusalem,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/22/" data-ref="Psalm 102:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/22/"><span class="v-num">22</span><span class="v-txt">When the peoples are gathered together, And the kingdoms, to serve the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/23/" data-ref="Psalm 102:23 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/23/"><span class="v-num">23</span><span class="v-txt">He weakened my strength in the way; He shortened my days.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/24/" data-ref="Psalm 102:24 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/24/"><span class="v-num">24</span><span class="v-txt">I said, "O my God, Do not take me away in the midst of my days; Your years [are] throughout all generations.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/25/" data-ref="Psalm 102:25 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/25/"><span class="v-num">25</span><span class="v-txt">Of old You laid the foundation of the earth, And the heavens [are] the work of Your hands.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/26/" data-ref="Psalm 102:26 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/26/"><span class="v-num">26</span><span class="v-txt">They will perish, but You will endure; Yes, they will all grow old like a garment; Like a cloak You will change them, And they will be changed.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/27/" data-ref="Psalm 102:27 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/27/"><span class="v-num">27</span><span class="v-txt">But You [are] the same, And Your years will have no end.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/102/28/" data-ref="Psalm 102:28 (New King James Version)" data-verse-url="/bible/nkjv/psalms/102/28/"><span class="v-num">28</span><span class="v-txt">The children of Your servants will continue, And their descendants will be established before You."</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ephesians 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul, an Apostle of Christ Jesus by the purpose of God, to the saints who are at Ephesus, and those who have faith in Christ Jesus:</span></div>
-<div class="v-row" data-ref="Ephesians 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God our Father and the Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="Ephesians 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Praise be to the God and Father of our Lord Jesus Christ, who has given us every blessing of the Spirit in the heavens in Christ:</span></div>
-<div class="v-row" data-ref="Ephesians 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Even as he made selection of us in him from the first, so that we might be holy and free from all evil before him in love:</span></div>
-<div class="v-row" data-ref="Ephesians 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">As we were designed before by him for the position of sons to himself, through Jesus Christ, in the good pleasure of his purpose,</span></div>
-<div class="v-row" data-ref="Ephesians 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">To the praise of the glory of his grace, which he freely gave to us in the Loved One:</span></div>
-<div class="v-row" data-ref="Ephesians 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">In whom we have salvation through his blood, the forgiveness of our sins, through the wealth of his grace,</span></div>
-<div class="v-row" data-ref="Ephesians 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Which he gave us in full measure in all wisdom and care;</span></div>
-<div class="v-row" data-ref="Ephesians 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Having made clear to us the secret of his purpose, in agreement with the design which he had in mind, to put into his hands</span></div>
-<div class="v-row" data-ref="Ephesians 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The ordering of the times when they are complete, so that all things might come to a head in Christ, the things in heaven and the things on the earth; in him, I say,</span></div>
-<div class="v-row" data-ref="Ephesians 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In whom we have a heritage, being marked out from the first in his purpose who does all things in agreement with his designs;</span></div>
-<div class="v-row" data-ref="Ephesians 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So that his glory might have praise through us who first had hope in Christ:</span></div>
-<div class="v-row" data-ref="Ephesians 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In whom you, having been given the true word, the good news of your salvation, and through your faith in him, were given the sign of the Holy Spirit of hope,</span></div>
-<div class="v-row" data-ref="Ephesians 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Which is the first-fruit of our heritage, till God gets back that which is his, to the praise of his glory.</span></div>
-<div class="v-row" data-ref="Ephesians 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For this cause I, having had news of the faith in the Lord Jesus which is among you, and which you make clear to all the saints,</span></div>
-<div class="v-row" data-ref="Ephesians 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Give praise without end for you, keeping you in mind in my prayers;</span></div>
-<div class="v-row" data-ref="Ephesians 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">That the God of our Lord Jesus Christ, the Father of glory, may give to you a spirit of wisdom and revelation in the knowledge of him;</span></div>
-<div class="v-row" data-ref="Ephesians 1:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And that having the eyes of your heart full of light, you may have knowledge of what is the hope of his purpose, what is the wealth of the glory of his heritage in the saints,</span></div>
-<div class="v-row" data-ref="Ephesians 1:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And how unlimited is his power to us who have faith, as is seen in the working of the strength of his power,</span></div>
-<div class="v-row" data-ref="Ephesians 1:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">By which he made Christ come back from the dead, and gave him a place at his right hand in heaven,</span></div>
-<div class="v-row" data-ref="Ephesians 1:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Far over all rule and authority and power and every name which is named, not only in the present order, but in that which is to come:</span></div>
-<div class="v-row" data-ref="Ephesians 1:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And he has put all things under his feet, and has made him to be head over all things to the church,</span></div>
-<div class="v-row" data-ref="Ephesians 1:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Which is his body, the full measure of him in whom all things are made complete.</span></div>
+    <a class="v-row" href="/bible/bbe/ephesians/1/1/" data-ref="Ephesians 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/1/"><span class="v-num">1</span><span class="v-txt">Paul, an Apostle of Christ Jesus by the purpose of God, to the saints who are at Ephesus, and those who have faith in Christ Jesus:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/2/" data-ref="Ephesians 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/2/"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God our Father and the Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/3/" data-ref="Ephesians 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/3/"><span class="v-num">3</span><span class="v-txt">Praise be to the God and Father of our Lord Jesus Christ, who has given us every blessing of the Spirit in the heavens in Christ:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/4/" data-ref="Ephesians 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/4/"><span class="v-num">4</span><span class="v-txt">Even as he made selection of us in him from the first, so that we might be holy and free from all evil before him in love:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/5/" data-ref="Ephesians 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/5/"><span class="v-num">5</span><span class="v-txt">As we were designed before by him for the position of sons to himself, through Jesus Christ, in the good pleasure of his purpose,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/6/" data-ref="Ephesians 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/6/"><span class="v-num">6</span><span class="v-txt">To the praise of the glory of his grace, which he freely gave to us in the Loved One:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/7/" data-ref="Ephesians 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/7/"><span class="v-num">7</span><span class="v-txt">In whom we have salvation through his blood, the forgiveness of our sins, through the wealth of his grace,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/8/" data-ref="Ephesians 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/8/"><span class="v-num">8</span><span class="v-txt">Which he gave us in full measure in all wisdom and care;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/9/" data-ref="Ephesians 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/9/"><span class="v-num">9</span><span class="v-txt">Having made clear to us the secret of his purpose, in agreement with the design which he had in mind, to put into his hands</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/10/" data-ref="Ephesians 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/10/"><span class="v-num">10</span><span class="v-txt">The ordering of the times when they are complete, so that all things might come to a head in Christ, the things in heaven and the things on the earth; in him, I say,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/11/" data-ref="Ephesians 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/11/"><span class="v-num">11</span><span class="v-txt">In whom we have a heritage, being marked out from the first in his purpose who does all things in agreement with his designs;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/12/" data-ref="Ephesians 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/12/"><span class="v-num">12</span><span class="v-txt">So that his glory might have praise through us who first had hope in Christ:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/13/" data-ref="Ephesians 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/13/"><span class="v-num">13</span><span class="v-txt">In whom you, having been given the true word, the good news of your salvation, and through your faith in him, were given the sign of the Holy Spirit of hope,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/14/" data-ref="Ephesians 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/14/"><span class="v-num">14</span><span class="v-txt">Which is the first-fruit of our heritage, till God gets back that which is his, to the praise of his glory.</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/15/" data-ref="Ephesians 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/15/"><span class="v-num">15</span><span class="v-txt">For this cause I, having had news of the faith in the Lord Jesus which is among you, and which you make clear to all the saints,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/16/" data-ref="Ephesians 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/16/"><span class="v-num">16</span><span class="v-txt">Give praise without end for you, keeping you in mind in my prayers;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/17/" data-ref="Ephesians 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/17/"><span class="v-num">17</span><span class="v-txt">That the God of our Lord Jesus Christ, the Father of glory, may give to you a spirit of wisdom and revelation in the knowledge of him;</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/18/" data-ref="Ephesians 1:18 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/18/"><span class="v-num">18</span><span class="v-txt">And that having the eyes of your heart full of light, you may have knowledge of what is the hope of his purpose, what is the wealth of the glory of his heritage in the saints,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/19/" data-ref="Ephesians 1:19 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/19/"><span class="v-num">19</span><span class="v-txt">And how unlimited is his power to us who have faith, as is seen in the working of the strength of his power,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/20/" data-ref="Ephesians 1:20 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/20/"><span class="v-num">20</span><span class="v-txt">By which he made Christ come back from the dead, and gave him a place at his right hand in heaven,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/21/" data-ref="Ephesians 1:21 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/21/"><span class="v-num">21</span><span class="v-txt">Far over all rule and authority and power and every name which is named, not only in the present order, but in that which is to come:</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/22/" data-ref="Ephesians 1:22 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/22/"><span class="v-num">22</span><span class="v-txt">And he has put all things under his feet, and has made him to be head over all things to the church,</span></a>
+<a class="v-row" href="/bible/bbe/ephesians/1/23/" data-ref="Ephesians 1:23 (Bible in Basic English)" data-verse-url="/bible/bbe/ephesians/1/23/"><span class="v-num">23</span><span class="v-txt">Which is his body, the full measure of him in whom all things are made complete.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Amos 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The words of Amos, who was among the sheepbreeders of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash, king of Israel, two years before the earthquake.</span></div>
-<div class="v-row" data-ref="Amos 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said: "The LORD roars from Zion, And utters His voice from Jerusalem; The pastures of the shepherds mourn, And the top of Carmel withers."</span></div>
-<div class="v-row" data-ref="Amos 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Thus says the LORD: "For three transgressions of Damascus, and for four, I will not turn away its [punishment,] Because they have threshed Gilead with implements of iron.</span></div>
-<div class="v-row" data-ref="Amos 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But I will send a fire into the house of Hazael, Which shall devour the palaces of Ben-Hadad.</span></div>
-<div class="v-row" data-ref="Amos 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I will also break the [gate] bar of Damascus, And cut off the inhabitant from the Valley of Aven, And the one who holds the scepter from Beth Eden. The people of Syria shall go captive to Kir," Says the LORD.</span></div>
-<div class="v-row" data-ref="Amos 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Thus says the LORD: "For three transgressions of Gaza, and for four, I will not turn away its [punishment,] Because they took captive the whole captivity To deliver [them] up to Edom.</span></div>
-<div class="v-row" data-ref="Amos 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But I will send a fire upon the wall of Gaza, Which shall devour its palaces.</span></div>
-<div class="v-row" data-ref="Amos 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I will cut off the inhabitant from Ashdod, And the one who holds the scepter from Ashkelon; I will turn My hand against Ekron, And the remnant of the Philistines shall perish," Says the Lord GOD.</span></div>
-<div class="v-row" data-ref="Amos 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Thus says the LORD: "For three transgressions of Tyre, and for four, I will not turn away its [punishment,] Because they delivered up the whole captivity to Edom, And did not remember the covenant of brotherhood.</span></div>
-<div class="v-row" data-ref="Amos 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But I will send a fire upon the wall of Tyre, Which shall devour its palaces."</span></div>
-<div class="v-row" data-ref="Amos 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Thus says the LORD: "For three transgressions of Edom, and for four, I will not turn away its [punishment,] Because he pursued his brother with the sword, And cast off all pity; His anger tore perpetually, And he kept his wrath forever.</span></div>
-<div class="v-row" data-ref="Amos 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But I will send a fire upon Teman, Which shall devour the palaces of Bozrah."</span></div>
-<div class="v-row" data-ref="Amos 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thus says the LORD: "For three transgressions of the people of Ammon, and for four, I will not turn away its [punishment,] Because they ripped open the women with child in Gilead, That they might enlarge their territory.</span></div>
-<div class="v-row" data-ref="Amos 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I will kindle a fire in the wall of Rabbah, And it shall devour its palaces, Amid shouting in the day of battle, And a tempest in the day of the whirlwind.</span></div>
-<div class="v-row" data-ref="Amos 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Their king shall go into captivity, He and his princes together," Says the LORD.</span></div>
+    <a class="v-row" href="/bible/nkjv/amos/1/1/" data-ref="Amos 1:1 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/1/"><span class="v-num">1</span><span class="v-txt">The words of Amos, who was among the sheepbreeders of Tekoa, which he saw concerning Israel in the days of Uzziah king of Judah, and in the days of Jeroboam the son of Joash, king of Israel, two years before the earthquake.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/2/" data-ref="Amos 1:2 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/2/"><span class="v-num">2</span><span class="v-txt">And he said: "The LORD roars from Zion, And utters His voice from Jerusalem; The pastures of the shepherds mourn, And the top of Carmel withers."</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/3/" data-ref="Amos 1:3 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/3/"><span class="v-num">3</span><span class="v-txt">Thus says the LORD: "For three transgressions of Damascus, and for four, I will not turn away its [punishment,] Because they have threshed Gilead with implements of iron.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/4/" data-ref="Amos 1:4 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/4/"><span class="v-num">4</span><span class="v-txt">But I will send a fire into the house of Hazael, Which shall devour the palaces of Ben-Hadad.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/5/" data-ref="Amos 1:5 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/5/"><span class="v-num">5</span><span class="v-txt">I will also break the [gate] bar of Damascus, And cut off the inhabitant from the Valley of Aven, And the one who holds the scepter from Beth Eden. The people of Syria shall go captive to Kir," Says the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/6/" data-ref="Amos 1:6 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/6/"><span class="v-num">6</span><span class="v-txt">Thus says the LORD: "For three transgressions of Gaza, and for four, I will not turn away its [punishment,] Because they took captive the whole captivity To deliver [them] up to Edom.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/7/" data-ref="Amos 1:7 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/7/"><span class="v-num">7</span><span class="v-txt">But I will send a fire upon the wall of Gaza, Which shall devour its palaces.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/8/" data-ref="Amos 1:8 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/8/"><span class="v-num">8</span><span class="v-txt">I will cut off the inhabitant from Ashdod, And the one who holds the scepter from Ashkelon; I will turn My hand against Ekron, And the remnant of the Philistines shall perish," Says the Lord GOD.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/9/" data-ref="Amos 1:9 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/9/"><span class="v-num">9</span><span class="v-txt">Thus says the LORD: "For three transgressions of Tyre, and for four, I will not turn away its [punishment,] Because they delivered up the whole captivity to Edom, And did not remember the covenant of brotherhood.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/10/" data-ref="Amos 1:10 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/10/"><span class="v-num">10</span><span class="v-txt">But I will send a fire upon the wall of Tyre, Which shall devour its palaces."</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/11/" data-ref="Amos 1:11 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/11/"><span class="v-num">11</span><span class="v-txt">Thus says the LORD: "For three transgressions of Edom, and for four, I will not turn away its [punishment,] Because he pursued his brother with the sword, And cast off all pity; His anger tore perpetually, And he kept his wrath forever.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/12/" data-ref="Amos 1:12 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/12/"><span class="v-num">12</span><span class="v-txt">But I will send a fire upon Teman, Which shall devour the palaces of Bozrah."</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/13/" data-ref="Amos 1:13 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/13/"><span class="v-num">13</span><span class="v-txt">Thus says the LORD: "For three transgressions of the people of Ammon, and for four, I will not turn away its [punishment,] Because they ripped open the women with child in Gilead, That they might enlarge their territory.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/14/" data-ref="Amos 1:14 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/14/"><span class="v-num">14</span><span class="v-txt">But I will kindle a fire in the wall of Rabbah, And it shall devour its palaces, Amid shouting in the day of battle, And a tempest in the day of the whirlwind.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/1/15/" data-ref="Amos 1:15 (New King James Version)" data-verse-url="/bible/nkjv/amos/1/15/"><span class="v-num">15</span><span class="v-txt">Their king shall go into captivity, He and his princes together," Says the LORD.</span></a>
 
     
 <div class="app-cta">

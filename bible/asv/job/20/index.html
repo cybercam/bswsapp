@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Job 20:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then answered Zophar the Naamathite, and said,</span></div>
-<div class="v-row" data-ref="Job 20:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Therefore do my thoughts give answer to me, Even by reason of my haste that is in me.</span></div>
-<div class="v-row" data-ref="Job 20:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have heard the reproof which putteth me to shame; And the spirit of my understanding answereth me.</span></div>
-<div class="v-row" data-ref="Job 20:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Knowest thou [not] this of old time, Since man was placed upon earth,</span></div>
-<div class="v-row" data-ref="Job 20:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">That the triumphing of the wicked is short, And the joy of the godless but for a moment?</span></div>
-<div class="v-row" data-ref="Job 20:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Though his height mount up to the heavens, And his head reach unto the clouds;</span></div>
-<div class="v-row" data-ref="Job 20:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Yet he shall perish for ever like his own dung: They that have seen him shall say, Where is he?</span></div>
-<div class="v-row" data-ref="Job 20:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He shall fly away as a dream, and shall not be found: Yea, he shall be chased away as a vision of the night.</span></div>
-<div class="v-row" data-ref="Job 20:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The eye which saw him shall see him no more; Neither shall his place any more behold him.</span></div>
-<div class="v-row" data-ref="Job 20:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">His children shall seek the favor of the poor, And his hands shall give back his wealth.</span></div>
-<div class="v-row" data-ref="Job 20:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">His bones are full of his youth, But it shall lie down with him in the dust.</span></div>
-<div class="v-row" data-ref="Job 20:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Though wickedness be sweet in his mouth, Though he hide it under his tongue,</span></div>
-<div class="v-row" data-ref="Job 20:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Though he spare it, and will not let it go, But keep it still within his mouth;</span></div>
-<div class="v-row" data-ref="Job 20:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yet his food in his bowels is turned, It is the gall of asps within him.</span></div>
-<div class="v-row" data-ref="Job 20:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He hath swallowed down riches, and he shall vomit them up again; God will cast them out of his belly.</span></div>
-<div class="v-row" data-ref="Job 20:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He shall suck the poison of asps: The viper's tongue shall slay him.</span></div>
-<div class="v-row" data-ref="Job 20:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He shall not look upon the rivers, The flowing streams of honey and butter.</span></div>
-<div class="v-row" data-ref="Job 20:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">That which he labored for shall he restore, and shall not swallow it down; According to the substance that he hath gotten, he shall not rejoice.</span></div>
-<div class="v-row" data-ref="Job 20:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For he hath oppressed and forsaken the poor; He hath violently taken away a house, and he shall not build it up.</span></div>
-<div class="v-row" data-ref="Job 20:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Because he knew no quietness within him, He shall not save aught of that wherein he delighteth.</span></div>
-<div class="v-row" data-ref="Job 20:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">There was nothing left that he devoured not; Therefore his prosperity shall not endure.</span></div>
-<div class="v-row" data-ref="Job 20:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">In the fulness of his sufficiency he shall be in straits: The hand of every one that is in misery shall come upon him.</span></div>
-<div class="v-row" data-ref="Job 20:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">When he is about to fill his belly, [God] will cast the fierceness of his wrath upon him, And will rain it upon him while he is eating.</span></div>
-<div class="v-row" data-ref="Job 20:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He shall flee from the iron weapon, And the bow of brass shall strike him through.</span></div>
-<div class="v-row" data-ref="Job 20:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">He draweth it forth, and it cometh out of his body; Yea, the glittering point cometh out of his gall: Terrors are upon him.</span></div>
-<div class="v-row" data-ref="Job 20:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">All darkness is laid up for his treasures: A fire not blown [by man] shall devour him; It shall consume that which is left in his tent.</span></div>
-<div class="v-row" data-ref="Job 20:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">The heavens shall reveal his iniquity, And the earth shall rise up against him.</span></div>
-<div class="v-row" data-ref="Job 20:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">The increase of his house shall depart; [His goods] shall flow away in the day of his wrath.</span></div>
-<div class="v-row" data-ref="Job 20:29 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">This is the portion of a wicked man from God, And the heritage appointed unto him by God.</span></div>
+    <a class="v-row" href="/bible/asv/job/20/1/" data-ref="Job 20:1 (American Standard Version)" data-verse-url="/bible/asv/job/20/1/"><span class="v-num">1</span><span class="v-txt">Then answered Zophar the Naamathite, and said,</span></a>
+<a class="v-row" href="/bible/asv/job/20/2/" data-ref="Job 20:2 (American Standard Version)" data-verse-url="/bible/asv/job/20/2/"><span class="v-num">2</span><span class="v-txt">Therefore do my thoughts give answer to me, Even by reason of my haste that is in me.</span></a>
+<a class="v-row" href="/bible/asv/job/20/3/" data-ref="Job 20:3 (American Standard Version)" data-verse-url="/bible/asv/job/20/3/"><span class="v-num">3</span><span class="v-txt">I have heard the reproof which putteth me to shame; And the spirit of my understanding answereth me.</span></a>
+<a class="v-row" href="/bible/asv/job/20/4/" data-ref="Job 20:4 (American Standard Version)" data-verse-url="/bible/asv/job/20/4/"><span class="v-num">4</span><span class="v-txt">Knowest thou [not] this of old time, Since man was placed upon earth,</span></a>
+<a class="v-row" href="/bible/asv/job/20/5/" data-ref="Job 20:5 (American Standard Version)" data-verse-url="/bible/asv/job/20/5/"><span class="v-num">5</span><span class="v-txt">That the triumphing of the wicked is short, And the joy of the godless but for a moment?</span></a>
+<a class="v-row" href="/bible/asv/job/20/6/" data-ref="Job 20:6 (American Standard Version)" data-verse-url="/bible/asv/job/20/6/"><span class="v-num">6</span><span class="v-txt">Though his height mount up to the heavens, And his head reach unto the clouds;</span></a>
+<a class="v-row" href="/bible/asv/job/20/7/" data-ref="Job 20:7 (American Standard Version)" data-verse-url="/bible/asv/job/20/7/"><span class="v-num">7</span><span class="v-txt">Yet he shall perish for ever like his own dung: They that have seen him shall say, Where is he?</span></a>
+<a class="v-row" href="/bible/asv/job/20/8/" data-ref="Job 20:8 (American Standard Version)" data-verse-url="/bible/asv/job/20/8/"><span class="v-num">8</span><span class="v-txt">He shall fly away as a dream, and shall not be found: Yea, he shall be chased away as a vision of the night.</span></a>
+<a class="v-row" href="/bible/asv/job/20/9/" data-ref="Job 20:9 (American Standard Version)" data-verse-url="/bible/asv/job/20/9/"><span class="v-num">9</span><span class="v-txt">The eye which saw him shall see him no more; Neither shall his place any more behold him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/10/" data-ref="Job 20:10 (American Standard Version)" data-verse-url="/bible/asv/job/20/10/"><span class="v-num">10</span><span class="v-txt">His children shall seek the favor of the poor, And his hands shall give back his wealth.</span></a>
+<a class="v-row" href="/bible/asv/job/20/11/" data-ref="Job 20:11 (American Standard Version)" data-verse-url="/bible/asv/job/20/11/"><span class="v-num">11</span><span class="v-txt">His bones are full of his youth, But it shall lie down with him in the dust.</span></a>
+<a class="v-row" href="/bible/asv/job/20/12/" data-ref="Job 20:12 (American Standard Version)" data-verse-url="/bible/asv/job/20/12/"><span class="v-num">12</span><span class="v-txt">Though wickedness be sweet in his mouth, Though he hide it under his tongue,</span></a>
+<a class="v-row" href="/bible/asv/job/20/13/" data-ref="Job 20:13 (American Standard Version)" data-verse-url="/bible/asv/job/20/13/"><span class="v-num">13</span><span class="v-txt">Though he spare it, and will not let it go, But keep it still within his mouth;</span></a>
+<a class="v-row" href="/bible/asv/job/20/14/" data-ref="Job 20:14 (American Standard Version)" data-verse-url="/bible/asv/job/20/14/"><span class="v-num">14</span><span class="v-txt">Yet his food in his bowels is turned, It is the gall of asps within him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/15/" data-ref="Job 20:15 (American Standard Version)" data-verse-url="/bible/asv/job/20/15/"><span class="v-num">15</span><span class="v-txt">He hath swallowed down riches, and he shall vomit them up again; God will cast them out of his belly.</span></a>
+<a class="v-row" href="/bible/asv/job/20/16/" data-ref="Job 20:16 (American Standard Version)" data-verse-url="/bible/asv/job/20/16/"><span class="v-num">16</span><span class="v-txt">He shall suck the poison of asps: The viper's tongue shall slay him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/17/" data-ref="Job 20:17 (American Standard Version)" data-verse-url="/bible/asv/job/20/17/"><span class="v-num">17</span><span class="v-txt">He shall not look upon the rivers, The flowing streams of honey and butter.</span></a>
+<a class="v-row" href="/bible/asv/job/20/18/" data-ref="Job 20:18 (American Standard Version)" data-verse-url="/bible/asv/job/20/18/"><span class="v-num">18</span><span class="v-txt">That which he labored for shall he restore, and shall not swallow it down; According to the substance that he hath gotten, he shall not rejoice.</span></a>
+<a class="v-row" href="/bible/asv/job/20/19/" data-ref="Job 20:19 (American Standard Version)" data-verse-url="/bible/asv/job/20/19/"><span class="v-num">19</span><span class="v-txt">For he hath oppressed and forsaken the poor; He hath violently taken away a house, and he shall not build it up.</span></a>
+<a class="v-row" href="/bible/asv/job/20/20/" data-ref="Job 20:20 (American Standard Version)" data-verse-url="/bible/asv/job/20/20/"><span class="v-num">20</span><span class="v-txt">Because he knew no quietness within him, He shall not save aught of that wherein he delighteth.</span></a>
+<a class="v-row" href="/bible/asv/job/20/21/" data-ref="Job 20:21 (American Standard Version)" data-verse-url="/bible/asv/job/20/21/"><span class="v-num">21</span><span class="v-txt">There was nothing left that he devoured not; Therefore his prosperity shall not endure.</span></a>
+<a class="v-row" href="/bible/asv/job/20/22/" data-ref="Job 20:22 (American Standard Version)" data-verse-url="/bible/asv/job/20/22/"><span class="v-num">22</span><span class="v-txt">In the fulness of his sufficiency he shall be in straits: The hand of every one that is in misery shall come upon him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/23/" data-ref="Job 20:23 (American Standard Version)" data-verse-url="/bible/asv/job/20/23/"><span class="v-num">23</span><span class="v-txt">When he is about to fill his belly, [God] will cast the fierceness of his wrath upon him, And will rain it upon him while he is eating.</span></a>
+<a class="v-row" href="/bible/asv/job/20/24/" data-ref="Job 20:24 (American Standard Version)" data-verse-url="/bible/asv/job/20/24/"><span class="v-num">24</span><span class="v-txt">He shall flee from the iron weapon, And the bow of brass shall strike him through.</span></a>
+<a class="v-row" href="/bible/asv/job/20/25/" data-ref="Job 20:25 (American Standard Version)" data-verse-url="/bible/asv/job/20/25/"><span class="v-num">25</span><span class="v-txt">He draweth it forth, and it cometh out of his body; Yea, the glittering point cometh out of his gall: Terrors are upon him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/26/" data-ref="Job 20:26 (American Standard Version)" data-verse-url="/bible/asv/job/20/26/"><span class="v-num">26</span><span class="v-txt">All darkness is laid up for his treasures: A fire not blown [by man] shall devour him; It shall consume that which is left in his tent.</span></a>
+<a class="v-row" href="/bible/asv/job/20/27/" data-ref="Job 20:27 (American Standard Version)" data-verse-url="/bible/asv/job/20/27/"><span class="v-num">27</span><span class="v-txt">The heavens shall reveal his iniquity, And the earth shall rise up against him.</span></a>
+<a class="v-row" href="/bible/asv/job/20/28/" data-ref="Job 20:28 (American Standard Version)" data-verse-url="/bible/asv/job/20/28/"><span class="v-num">28</span><span class="v-txt">The increase of his house shall depart; [His goods] shall flow away in the day of his wrath.</span></a>
+<a class="v-row" href="/bible/asv/job/20/29/" data-ref="Job 20:29 (American Standard Version)" data-verse-url="/bible/asv/job/20/29/"><span class="v-num">29</span><span class="v-txt">This is the portion of a wicked man from God, And the heritage appointed unto him by God.</span></a>
 
     
 <div class="app-cta">

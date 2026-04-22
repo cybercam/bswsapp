@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="1 Kings 5:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hiram king of Tyre sent his servants to Solomon; for he had heard that they had anointed him king in the room of his father: for Hiram was ever a lover of David.</span></div>
-<div class="v-row" data-ref="1 Kings 5:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Solomon sent to Hiram, saying,</span></div>
-<div class="v-row" data-ref="1 Kings 5:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You know how that David my father could not build a house for the name of Yahweh his God for the wars which were about him on every side, until Yahweh put them under the soles of his feet.</span></div>
-<div class="v-row" data-ref="1 Kings 5:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But now Yahweh my God has given me rest on every side; there is neither adversary, nor evil occurrence.</span></div>
-<div class="v-row" data-ref="1 Kings 5:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Behold, I purpose to build a house for the name of Yahweh my God, as Yahweh spoke to David my father, saying, Your son, whom I will set on your throne in your room, he shall build the house for my name.</span></div>
-<div class="v-row" data-ref="1 Kings 5:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now therefore command you that they cut me cedar trees out of Lebanon; and my servants shall be with your servants; and I will give you hire for your servants according to all that you shall say: for you know that there is not among us any who knows how to cut timber like the Sidonians.</span></div>
-<div class="v-row" data-ref="1 Kings 5:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">It happened, when Hiram heard the words of Solomon, that he rejoiced greatly, and said, Blessed be Yahweh this day, who has given to David a wise son over this great people.</span></div>
-<div class="v-row" data-ref="1 Kings 5:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Hiram sent to Solomon, saying, I have heard the message which you have sent to me: I will do all your desire concerning timber of cedar, and concerning timber of fir.</span></div>
-<div class="v-row" data-ref="1 Kings 5:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My servants shall bring them down from Lebanon to the sea; and I will make them into rafts to go by sea to the place that you shall appoint me, and will cause them to be broken up there, and you shall receive them; and you shall accomplish my desire, in giving food for my household.</span></div>
-<div class="v-row" data-ref="1 Kings 5:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So Hiram gave Solomon timber of cedar and timber of fir according to all his desire.</span></div>
-<div class="v-row" data-ref="1 Kings 5:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Solomon gave Hiram twenty thousand measures of wheat for food to his household, and twenty measures of pure oil: thus gave Solomon to Hiram year by year.</span></div>
-<div class="v-row" data-ref="1 Kings 5:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Yahweh gave Solomon wisdom, as he promised him; and there was peace between Hiram and Solomon; and they two made a league together.</span></div>
-<div class="v-row" data-ref="1 Kings 5:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">King Solomon raised a levy out of all Israel; and the levy was thirty thousand men.</span></div>
-<div class="v-row" data-ref="1 Kings 5:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He sent them to Lebanon, ten thousand a month by courses; a month they were in Lebanon, and two months at home; and Adoniram was over the men subject to forced labor.</span></div>
-<div class="v-row" data-ref="1 Kings 5:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Solomon had seventy thousand who bore burdens, and eighty thousand who were stone cutters in the mountains;</span></div>
-<div class="v-row" data-ref="1 Kings 5:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">besides Solomon's chief officers who were over the work, three thousand and three hundred, who bore rule over the people who labored in the work.</span></div>
-<div class="v-row" data-ref="1 Kings 5:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The king commanded, and they hewed out great stones, costly stones, to lay the foundation of the house with worked stone.</span></div>
-<div class="v-row" data-ref="1 Kings 5:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Solomon's builders and Hiram's builders and the Gebalites did fashion them, and prepared the timber and the stones to build the house.</span></div>
+    <a class="v-row" href="/bible/web/1-kings/5/1/" data-ref="1 Kings 5:1 (World English Bible)" data-verse-url="/bible/web/1-kings/5/1/"><span class="v-num">1</span><span class="v-txt">Hiram king of Tyre sent his servants to Solomon; for he had heard that they had anointed him king in the room of his father: for Hiram was ever a lover of David.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/2/" data-ref="1 Kings 5:2 (World English Bible)" data-verse-url="/bible/web/1-kings/5/2/"><span class="v-num">2</span><span class="v-txt">Solomon sent to Hiram, saying,</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/3/" data-ref="1 Kings 5:3 (World English Bible)" data-verse-url="/bible/web/1-kings/5/3/"><span class="v-num">3</span><span class="v-txt">You know how that David my father could not build a house for the name of Yahweh his God for the wars which were about him on every side, until Yahweh put them under the soles of his feet.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/4/" data-ref="1 Kings 5:4 (World English Bible)" data-verse-url="/bible/web/1-kings/5/4/"><span class="v-num">4</span><span class="v-txt">But now Yahweh my God has given me rest on every side; there is neither adversary, nor evil occurrence.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/5/" data-ref="1 Kings 5:5 (World English Bible)" data-verse-url="/bible/web/1-kings/5/5/"><span class="v-num">5</span><span class="v-txt">Behold, I purpose to build a house for the name of Yahweh my God, as Yahweh spoke to David my father, saying, Your son, whom I will set on your throne in your room, he shall build the house for my name.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/6/" data-ref="1 Kings 5:6 (World English Bible)" data-verse-url="/bible/web/1-kings/5/6/"><span class="v-num">6</span><span class="v-txt">Now therefore command you that they cut me cedar trees out of Lebanon; and my servants shall be with your servants; and I will give you hire for your servants according to all that you shall say: for you know that there is not among us any who knows how to cut timber like the Sidonians.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/7/" data-ref="1 Kings 5:7 (World English Bible)" data-verse-url="/bible/web/1-kings/5/7/"><span class="v-num">7</span><span class="v-txt">It happened, when Hiram heard the words of Solomon, that he rejoiced greatly, and said, Blessed be Yahweh this day, who has given to David a wise son over this great people.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/8/" data-ref="1 Kings 5:8 (World English Bible)" data-verse-url="/bible/web/1-kings/5/8/"><span class="v-num">8</span><span class="v-txt">Hiram sent to Solomon, saying, I have heard the message which you have sent to me: I will do all your desire concerning timber of cedar, and concerning timber of fir.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/9/" data-ref="1 Kings 5:9 (World English Bible)" data-verse-url="/bible/web/1-kings/5/9/"><span class="v-num">9</span><span class="v-txt">My servants shall bring them down from Lebanon to the sea; and I will make them into rafts to go by sea to the place that you shall appoint me, and will cause them to be broken up there, and you shall receive them; and you shall accomplish my desire, in giving food for my household.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/10/" data-ref="1 Kings 5:10 (World English Bible)" data-verse-url="/bible/web/1-kings/5/10/"><span class="v-num">10</span><span class="v-txt">So Hiram gave Solomon timber of cedar and timber of fir according to all his desire.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/11/" data-ref="1 Kings 5:11 (World English Bible)" data-verse-url="/bible/web/1-kings/5/11/"><span class="v-num">11</span><span class="v-txt">Solomon gave Hiram twenty thousand measures of wheat for food to his household, and twenty measures of pure oil: thus gave Solomon to Hiram year by year.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/12/" data-ref="1 Kings 5:12 (World English Bible)" data-verse-url="/bible/web/1-kings/5/12/"><span class="v-num">12</span><span class="v-txt">Yahweh gave Solomon wisdom, as he promised him; and there was peace between Hiram and Solomon; and they two made a league together.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/13/" data-ref="1 Kings 5:13 (World English Bible)" data-verse-url="/bible/web/1-kings/5/13/"><span class="v-num">13</span><span class="v-txt">King Solomon raised a levy out of all Israel; and the levy was thirty thousand men.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/14/" data-ref="1 Kings 5:14 (World English Bible)" data-verse-url="/bible/web/1-kings/5/14/"><span class="v-num">14</span><span class="v-txt">He sent them to Lebanon, ten thousand a month by courses; a month they were in Lebanon, and two months at home; and Adoniram was over the men subject to forced labor.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/15/" data-ref="1 Kings 5:15 (World English Bible)" data-verse-url="/bible/web/1-kings/5/15/"><span class="v-num">15</span><span class="v-txt">Solomon had seventy thousand who bore burdens, and eighty thousand who were stone cutters in the mountains;</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/16/" data-ref="1 Kings 5:16 (World English Bible)" data-verse-url="/bible/web/1-kings/5/16/"><span class="v-num">16</span><span class="v-txt">besides Solomon's chief officers who were over the work, three thousand and three hundred, who bore rule over the people who labored in the work.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/17/" data-ref="1 Kings 5:17 (World English Bible)" data-verse-url="/bible/web/1-kings/5/17/"><span class="v-num">17</span><span class="v-txt">The king commanded, and they hewed out great stones, costly stones, to lay the foundation of the house with worked stone.</span></a>
+<a class="v-row" href="/bible/web/1-kings/5/18/" data-ref="1 Kings 5:18 (World English Bible)" data-verse-url="/bible/web/1-kings/5/18/"><span class="v-num">18</span><span class="v-txt">Solomon's builders and Hiram's builders and the Gebalites did fashion them, and prepared the timber and the stones to build the house.</span></a>
 
     
 <div class="app-cta">

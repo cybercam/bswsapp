@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="James 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Do not all be teachers, my brothers, because we teachers will be judged more hardly than others.</span></div>
-<div class="v-row" data-ref="James 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For we all go wrong in a number of things. If a man never makes a slip in his talk, then he is a complete man and able to keep all his body in control.</span></div>
-<div class="v-row" data-ref="James 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Now if we put bits of iron into horses' mouths so that they may be guided by us, we have complete control of their bodies.</span></div>
-<div class="v-row" data-ref="James 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And again ships, though they are so great and are moved by violent winds, are turned by a very small guiding-blade, at the impulse of the man who is using it.</span></div>
-<div class="v-row" data-ref="James 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Even so the tongue is a small part of the body, but it takes credit for great things. How much wood may be lighted by a very little fire!</span></div>
-<div class="v-row" data-ref="James 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the tongue is a fire; it is the power of evil placed in our bodies, making all the body unclean, putting the wheel of life on fire, and getting its fire from hell.</span></div>
-<div class="v-row" data-ref="James 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For every sort of beast and bird and every living thing on earth and in the sea has been controlled by man and is under his authority;</span></div>
-<div class="v-row" data-ref="James 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But the tongue may not be controlled by man; it is an unresting evil, it is full of the poison of death.</span></div>
-<div class="v-row" data-ref="James 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">With it we give praise to our Lord and Father; and with it we put a curse on men who are made in God's image.</span></div>
-<div class="v-row" data-ref="James 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Out of the same mouth comes blessing and cursing. My brothers, it is not right for these things to be so.</span></div>
-<div class="v-row" data-ref="James 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Does the fountain send from the same outlet sweet and bitter water?</span></div>
-<div class="v-row" data-ref="James 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Is a fig-tree able to give us olives, my brothers, or do we get figs from a vine, or sweet water from the salt sea?</span></div>
-<div class="v-row" data-ref="James 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Who has wisdom and good sense among you? let him make his works clear by a life of gentle wisdom.</span></div>
-<div class="v-row" data-ref="James 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But if you have bitter envy in your heart and the desire to get the better of others, have no pride in this, talking falsely against what is true.</span></div>
-<div class="v-row" data-ref="James 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">This wisdom is not from heaven, but is of the earth and the flesh and the Evil One.</span></div>
-<div class="v-row" data-ref="James 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For where envy is, and the desire to get the better of others, there is no order, but every sort of evil-doing.</span></div>
-<div class="v-row" data-ref="James 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the wisdom which is from heaven is first holy, then gentle, readily giving way in argument, full of peace and mercy and good works, not doubting, not seeming other than it is.</span></div>
-<div class="v-row" data-ref="James 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And the fruit of righteousness is planted in peace for those who make peace.</span></div>
+    <a class="v-row" href="/bible/bbe/james/3/1/" data-ref="James 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/1/"><span class="v-num">1</span><span class="v-txt">Do not all be teachers, my brothers, because we teachers will be judged more hardly than others.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/2/" data-ref="James 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/2/"><span class="v-num">2</span><span class="v-txt">For we all go wrong in a number of things. If a man never makes a slip in his talk, then he is a complete man and able to keep all his body in control.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/3/" data-ref="James 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/3/"><span class="v-num">3</span><span class="v-txt">Now if we put bits of iron into horses' mouths so that they may be guided by us, we have complete control of their bodies.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/4/" data-ref="James 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/4/"><span class="v-num">4</span><span class="v-txt">And again ships, though they are so great and are moved by violent winds, are turned by a very small guiding-blade, at the impulse of the man who is using it.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/5/" data-ref="James 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/5/"><span class="v-num">5</span><span class="v-txt">Even so the tongue is a small part of the body, but it takes credit for great things. How much wood may be lighted by a very little fire!</span></a>
+<a class="v-row" href="/bible/bbe/james/3/6/" data-ref="James 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/6/"><span class="v-num">6</span><span class="v-txt">And the tongue is a fire; it is the power of evil placed in our bodies, making all the body unclean, putting the wheel of life on fire, and getting its fire from hell.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/7/" data-ref="James 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/7/"><span class="v-num">7</span><span class="v-txt">For every sort of beast and bird and every living thing on earth and in the sea has been controlled by man and is under his authority;</span></a>
+<a class="v-row" href="/bible/bbe/james/3/8/" data-ref="James 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/8/"><span class="v-num">8</span><span class="v-txt">But the tongue may not be controlled by man; it is an unresting evil, it is full of the poison of death.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/9/" data-ref="James 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/9/"><span class="v-num">9</span><span class="v-txt">With it we give praise to our Lord and Father; and with it we put a curse on men who are made in God's image.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/10/" data-ref="James 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/10/"><span class="v-num">10</span><span class="v-txt">Out of the same mouth comes blessing and cursing. My brothers, it is not right for these things to be so.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/11/" data-ref="James 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/11/"><span class="v-num">11</span><span class="v-txt">Does the fountain send from the same outlet sweet and bitter water?</span></a>
+<a class="v-row" href="/bible/bbe/james/3/12/" data-ref="James 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/12/"><span class="v-num">12</span><span class="v-txt">Is a fig-tree able to give us olives, my brothers, or do we get figs from a vine, or sweet water from the salt sea?</span></a>
+<a class="v-row" href="/bible/bbe/james/3/13/" data-ref="James 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/13/"><span class="v-num">13</span><span class="v-txt">Who has wisdom and good sense among you? let him make his works clear by a life of gentle wisdom.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/14/" data-ref="James 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/14/"><span class="v-num">14</span><span class="v-txt">But if you have bitter envy in your heart and the desire to get the better of others, have no pride in this, talking falsely against what is true.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/15/" data-ref="James 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/15/"><span class="v-num">15</span><span class="v-txt">This wisdom is not from heaven, but is of the earth and the flesh and the Evil One.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/16/" data-ref="James 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/16/"><span class="v-num">16</span><span class="v-txt">For where envy is, and the desire to get the better of others, there is no order, but every sort of evil-doing.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/17/" data-ref="James 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/17/"><span class="v-num">17</span><span class="v-txt">But the wisdom which is from heaven is first holy, then gentle, readily giving way in argument, full of peace and mercy and good works, not doubting, not seeming other than it is.</span></a>
+<a class="v-row" href="/bible/bbe/james/3/18/" data-ref="James 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/james/3/18/"><span class="v-num">18</span><span class="v-txt">And the fruit of righteousness is planted in peace for those who make peace.</span></a>
 
     
 <div class="app-cta">

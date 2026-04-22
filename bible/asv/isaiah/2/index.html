@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word that Isaiah the son of Amoz saw concerning Judah and Jerusalem.</span></div>
-<div class="v-row" data-ref="Isaiah 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it shall come to pass in the latter days, that the mountain of Jehovah's house shall be established on the top of the mountains, and shall be exalted above the hills; and all nations shall flow unto it.</span></div>
-<div class="v-row" data-ref="Isaiah 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And many peoples shall go and say, Come ye, and let us go up to the mountain of Jehovah, to the house of the God of Jacob; and he will teach us of his ways, and we will walk in his paths: for out of Zion shall go forth the law, and the word of Jehovah from Jerusalem.</span></div>
-<div class="v-row" data-ref="Isaiah 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he will judge between the nations, and will decide concerning many peoples; and they shall beat their swords into plowshares, and their spears into pruning-hooks; nation shall not lift up sword against nation, neither shall they learn war any more.</span></div>
-<div class="v-row" data-ref="Isaiah 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">O house of Jacob, come ye, and let us walk in the light of Jehovah.</span></div>
-<div class="v-row" data-ref="Isaiah 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For thou hast forsaken thy people the house of Jacob, because they are filled [with customs] from the east, and [are] soothsayers like the Philistines, and they strike hands with the children of foreigners.</span></div>
-<div class="v-row" data-ref="Isaiah 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And their land is full of silver and gold, neither is there any end of their treasures; their land also is full of horses, neither is there any end of their chariots.</span></div>
-<div class="v-row" data-ref="Isaiah 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Their land also is full of idols; they worship the work of their own hands, that which their own fingers have made.</span></div>
-<div class="v-row" data-ref="Isaiah 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the mean man is bowed down, and the great man is brought low: therefore forgive them not.</span></div>
-<div class="v-row" data-ref="Isaiah 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Enter into the rock, and hide thee in the dust, from before the terror of Jehovah, and from the glory of his majesty.</span></div>
-<div class="v-row" data-ref="Isaiah 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The lofty looks of man shall be brought low, and the haughtiness of men shall be bowed down, and Jehovah alone shall be exalted in that day.</span></div>
-<div class="v-row" data-ref="Isaiah 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For there shall be a day of Jehovah of hosts upon all that is proud and haughty, and upon all that is lifted up; and it shall be brought low;</span></div>
-<div class="v-row" data-ref="Isaiah 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and upon all the cedars of Lebanon, that are high and lifted up, and upon all the oaks of Bashan,</span></div>
-<div class="v-row" data-ref="Isaiah 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">and upon all the high mountains, and upon all the hills that are lifted up,</span></div>
-<div class="v-row" data-ref="Isaiah 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and upon every lofty tower, and upon every fortified wall,</span></div>
-<div class="v-row" data-ref="Isaiah 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">and upon all the ships of Tarshish, and upon all pleasant imagery.</span></div>
-<div class="v-row" data-ref="Isaiah 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the loftiness of man shall be bowed down, and the haughtiness of men shall be brought low; and Jehovah alone shall be exalted in that day.</span></div>
-<div class="v-row" data-ref="Isaiah 2:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And the idols shall utterly pass away.</span></div>
-<div class="v-row" data-ref="Isaiah 2:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And men shall go into the caves of the rocks, and into the holes of the earth, from before the terror of Jehovah, and from the glory of his majesty, when he ariseth to shake mightily the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 2:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">In that day men shall cast away their idols of silver, and their idols of gold, which have been made for them to worship, to the moles and to the bats;</span></div>
-<div class="v-row" data-ref="Isaiah 2:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">to go into the caverns of the rocks, and into the clefts of the ragged rocks, from before the terror of Jehovah, and from the glory of his majesty, when he ariseth to shake mightily the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 2:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Cease ye from man, whose breath is in his nostrils; for wherein is he to be accounted of?</span></div>
+    <a class="v-row" href="/bible/asv/isaiah/2/1/" data-ref="Isaiah 2:1 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/1/"><span class="v-num">1</span><span class="v-txt">The word that Isaiah the son of Amoz saw concerning Judah and Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/2/" data-ref="Isaiah 2:2 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/2/"><span class="v-num">2</span><span class="v-txt">And it shall come to pass in the latter days, that the mountain of Jehovah's house shall be established on the top of the mountains, and shall be exalted above the hills; and all nations shall flow unto it.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/3/" data-ref="Isaiah 2:3 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/3/"><span class="v-num">3</span><span class="v-txt">And many peoples shall go and say, Come ye, and let us go up to the mountain of Jehovah, to the house of the God of Jacob; and he will teach us of his ways, and we will walk in his paths: for out of Zion shall go forth the law, and the word of Jehovah from Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/4/" data-ref="Isaiah 2:4 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/4/"><span class="v-num">4</span><span class="v-txt">And he will judge between the nations, and will decide concerning many peoples; and they shall beat their swords into plowshares, and their spears into pruning-hooks; nation shall not lift up sword against nation, neither shall they learn war any more.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/5/" data-ref="Isaiah 2:5 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/5/"><span class="v-num">5</span><span class="v-txt">O house of Jacob, come ye, and let us walk in the light of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/6/" data-ref="Isaiah 2:6 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/6/"><span class="v-num">6</span><span class="v-txt">For thou hast forsaken thy people the house of Jacob, because they are filled [with customs] from the east, and [are] soothsayers like the Philistines, and they strike hands with the children of foreigners.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/7/" data-ref="Isaiah 2:7 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/7/"><span class="v-num">7</span><span class="v-txt">And their land is full of silver and gold, neither is there any end of their treasures; their land also is full of horses, neither is there any end of their chariots.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/8/" data-ref="Isaiah 2:8 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/8/"><span class="v-num">8</span><span class="v-txt">Their land also is full of idols; they worship the work of their own hands, that which their own fingers have made.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/9/" data-ref="Isaiah 2:9 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/9/"><span class="v-num">9</span><span class="v-txt">And the mean man is bowed down, and the great man is brought low: therefore forgive them not.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/10/" data-ref="Isaiah 2:10 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/10/"><span class="v-num">10</span><span class="v-txt">Enter into the rock, and hide thee in the dust, from before the terror of Jehovah, and from the glory of his majesty.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/11/" data-ref="Isaiah 2:11 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/11/"><span class="v-num">11</span><span class="v-txt">The lofty looks of man shall be brought low, and the haughtiness of men shall be bowed down, and Jehovah alone shall be exalted in that day.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/12/" data-ref="Isaiah 2:12 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/12/"><span class="v-num">12</span><span class="v-txt">For there shall be a day of Jehovah of hosts upon all that is proud and haughty, and upon all that is lifted up; and it shall be brought low;</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/13/" data-ref="Isaiah 2:13 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/13/"><span class="v-num">13</span><span class="v-txt">and upon all the cedars of Lebanon, that are high and lifted up, and upon all the oaks of Bashan,</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/14/" data-ref="Isaiah 2:14 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/14/"><span class="v-num">14</span><span class="v-txt">and upon all the high mountains, and upon all the hills that are lifted up,</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/15/" data-ref="Isaiah 2:15 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/15/"><span class="v-num">15</span><span class="v-txt">and upon every lofty tower, and upon every fortified wall,</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/16/" data-ref="Isaiah 2:16 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/16/"><span class="v-num">16</span><span class="v-txt">and upon all the ships of Tarshish, and upon all pleasant imagery.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/17/" data-ref="Isaiah 2:17 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/17/"><span class="v-num">17</span><span class="v-txt">And the loftiness of man shall be bowed down, and the haughtiness of men shall be brought low; and Jehovah alone shall be exalted in that day.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/18/" data-ref="Isaiah 2:18 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/18/"><span class="v-num">18</span><span class="v-txt">And the idols shall utterly pass away.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/19/" data-ref="Isaiah 2:19 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/19/"><span class="v-num">19</span><span class="v-txt">And men shall go into the caves of the rocks, and into the holes of the earth, from before the terror of Jehovah, and from the glory of his majesty, when he ariseth to shake mightily the earth.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/20/" data-ref="Isaiah 2:20 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/20/"><span class="v-num">20</span><span class="v-txt">In that day men shall cast away their idols of silver, and their idols of gold, which have been made for them to worship, to the moles and to the bats;</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/21/" data-ref="Isaiah 2:21 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/21/"><span class="v-num">21</span><span class="v-txt">to go into the caverns of the rocks, and into the clefts of the ragged rocks, from before the terror of Jehovah, and from the glory of his majesty, when he ariseth to shake mightily the earth.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/2/22/" data-ref="Isaiah 2:22 (American Standard Version)" data-verse-url="/bible/asv/isaiah/2/22/"><span class="v-num">22</span><span class="v-txt">Cease ye from man, whose breath is in his nostrils; for wherein is he to be accounted of?</span></a>
 
     
 <div class="app-cta">

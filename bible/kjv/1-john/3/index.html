@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 John 3:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Behold, what manner of love the Father hath bestowed upon us, that we should be called the sons of God: therefore the world knoweth us not, because it knew him not.</span></div>
-<div class="v-row" data-ref="1 John 3:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Beloved, now are we the sons of God, and it doth not yet appear what we shall be: but we know that, when he shall appear, we shall be like him; for we shall see him as he is.</span></div>
-<div class="v-row" data-ref="1 John 3:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And every man that hath this hope in him purifieth himself, even as he is pure.</span></div>
-<div class="v-row" data-ref="1 John 3:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Whosoever committeth sin transgresseth also the law: for sin is the transgression of the law.</span></div>
-<div class="v-row" data-ref="1 John 3:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And ye know that he was manifested to take away our sins; and in him is no sin.</span></div>
-<div class="v-row" data-ref="1 John 3:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Whosoever abideth in him sinneth not: whosoever sinneth hath not seen him, neither known him.</span></div>
-<div class="v-row" data-ref="1 John 3:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Little children, let no man deceive you: he that doeth righteousness is righteous, even as he is righteous.</span></div>
-<div class="v-row" data-ref="1 John 3:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He that committeth sin is of the devil; for the devil sinneth from the beginning. For this purpose the Son of God was manifested, that he might destroy the works of the devil.</span></div>
-<div class="v-row" data-ref="1 John 3:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Whosoever is born of God doth not commit sin; for his seed remaineth in him: and he cannot sin, because he is born of God.</span></div>
-<div class="v-row" data-ref="1 John 3:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In this the children of God are manifest, and the children of the devil: whosoever doeth not righteousness is not of God, neither he that loveth not his brother.</span></div>
-<div class="v-row" data-ref="1 John 3:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For this is the message that ye heard from the beginning, that we should love one another.</span></div>
-<div class="v-row" data-ref="1 John 3:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Not as Cain, who was of that wicked one, and slew his brother. And wherefore slew he him? Because his own works were evil, and his brother's righteous.</span></div>
-<div class="v-row" data-ref="1 John 3:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Marvel not, my brethren, if the world hate you.</span></div>
-<div class="v-row" data-ref="1 John 3:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">We know that we have passed from death unto life, because we love the brethren. He that loveth not his brother abideth in death.</span></div>
-<div class="v-row" data-ref="1 John 3:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Whosoever hateth his brother is a murderer: and ye know that no murderer hath eternal life abiding in him.</span></div>
-<div class="v-row" data-ref="1 John 3:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Hereby perceive we the love of God, because he laid down his life for us: and we ought to lay down our lives for the brethren.</span></div>
-<div class="v-row" data-ref="1 John 3:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But whoso hath this world's good, and seeth his brother have need, and shutteth up his bowels of compassion from him, how dwelleth the love of God in him?</span></div>
-<div class="v-row" data-ref="1 John 3:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">My little children, let us not love in word, neither in tongue; but in deed and in truth.</span></div>
-<div class="v-row" data-ref="1 John 3:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And hereby we know that we are of the truth, and shall assure our hearts before him.</span></div>
-<div class="v-row" data-ref="1 John 3:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For if our heart condemn us, God is greater than our heart, and knoweth all things.</span></div>
-<div class="v-row" data-ref="1 John 3:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Beloved, if our heart condemn us not, then have we confidence toward God.</span></div>
-<div class="v-row" data-ref="1 John 3:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And whatsoever we ask, we receive of him, because we keep his commandments, and do those things that are pleasing in his sight.</span></div>
-<div class="v-row" data-ref="1 John 3:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And this is his commandment, That we should believe on the name of his Son Jesus Christ, and love one another, as he gave us commandment.</span></div>
-<div class="v-row" data-ref="1 John 3:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And he that keepeth his commandments dwelleth in him, and he in him. And hereby we know that he abideth in us, by the Spirit which he hath given us.</span></div>
+    <a class="v-row" href="/bible/kjv/1-john/3/1/" data-ref="1 John 3:1 (King James Version)" data-verse-url="/bible/kjv/1-john/3/1/"><span class="v-num">1</span><span class="v-txt">Behold, what manner of love the Father hath bestowed upon us, that we should be called the sons of God: therefore the world knoweth us not, because it knew him not.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/2/" data-ref="1 John 3:2 (King James Version)" data-verse-url="/bible/kjv/1-john/3/2/"><span class="v-num">2</span><span class="v-txt">Beloved, now are we the sons of God, and it doth not yet appear what we shall be: but we know that, when he shall appear, we shall be like him; for we shall see him as he is.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/3/" data-ref="1 John 3:3 (King James Version)" data-verse-url="/bible/kjv/1-john/3/3/"><span class="v-num">3</span><span class="v-txt">And every man that hath this hope in him purifieth himself, even as he is pure.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/4/" data-ref="1 John 3:4 (King James Version)" data-verse-url="/bible/kjv/1-john/3/4/"><span class="v-num">4</span><span class="v-txt">Whosoever committeth sin transgresseth also the law: for sin is the transgression of the law.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/5/" data-ref="1 John 3:5 (King James Version)" data-verse-url="/bible/kjv/1-john/3/5/"><span class="v-num">5</span><span class="v-txt">And ye know that he was manifested to take away our sins; and in him is no sin.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/6/" data-ref="1 John 3:6 (King James Version)" data-verse-url="/bible/kjv/1-john/3/6/"><span class="v-num">6</span><span class="v-txt">Whosoever abideth in him sinneth not: whosoever sinneth hath not seen him, neither known him.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/7/" data-ref="1 John 3:7 (King James Version)" data-verse-url="/bible/kjv/1-john/3/7/"><span class="v-num">7</span><span class="v-txt">Little children, let no man deceive you: he that doeth righteousness is righteous, even as he is righteous.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/8/" data-ref="1 John 3:8 (King James Version)" data-verse-url="/bible/kjv/1-john/3/8/"><span class="v-num">8</span><span class="v-txt">He that committeth sin is of the devil; for the devil sinneth from the beginning. For this purpose the Son of God was manifested, that he might destroy the works of the devil.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/9/" data-ref="1 John 3:9 (King James Version)" data-verse-url="/bible/kjv/1-john/3/9/"><span class="v-num">9</span><span class="v-txt">Whosoever is born of God doth not commit sin; for his seed remaineth in him: and he cannot sin, because he is born of God.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/10/" data-ref="1 John 3:10 (King James Version)" data-verse-url="/bible/kjv/1-john/3/10/"><span class="v-num">10</span><span class="v-txt">In this the children of God are manifest, and the children of the devil: whosoever doeth not righteousness is not of God, neither he that loveth not his brother.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/11/" data-ref="1 John 3:11 (King James Version)" data-verse-url="/bible/kjv/1-john/3/11/"><span class="v-num">11</span><span class="v-txt">For this is the message that ye heard from the beginning, that we should love one another.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/12/" data-ref="1 John 3:12 (King James Version)" data-verse-url="/bible/kjv/1-john/3/12/"><span class="v-num">12</span><span class="v-txt">Not as Cain, who was of that wicked one, and slew his brother. And wherefore slew he him? Because his own works were evil, and his brother's righteous.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/13/" data-ref="1 John 3:13 (King James Version)" data-verse-url="/bible/kjv/1-john/3/13/"><span class="v-num">13</span><span class="v-txt">Marvel not, my brethren, if the world hate you.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/14/" data-ref="1 John 3:14 (King James Version)" data-verse-url="/bible/kjv/1-john/3/14/"><span class="v-num">14</span><span class="v-txt">We know that we have passed from death unto life, because we love the brethren. He that loveth not his brother abideth in death.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/15/" data-ref="1 John 3:15 (King James Version)" data-verse-url="/bible/kjv/1-john/3/15/"><span class="v-num">15</span><span class="v-txt">Whosoever hateth his brother is a murderer: and ye know that no murderer hath eternal life abiding in him.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/16/" data-ref="1 John 3:16 (King James Version)" data-verse-url="/bible/kjv/1-john/3/16/"><span class="v-num">16</span><span class="v-txt">Hereby perceive we the love of God, because he laid down his life for us: and we ought to lay down our lives for the brethren.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/17/" data-ref="1 John 3:17 (King James Version)" data-verse-url="/bible/kjv/1-john/3/17/"><span class="v-num">17</span><span class="v-txt">But whoso hath this world's good, and seeth his brother have need, and shutteth up his bowels of compassion from him, how dwelleth the love of God in him?</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/18/" data-ref="1 John 3:18 (King James Version)" data-verse-url="/bible/kjv/1-john/3/18/"><span class="v-num">18</span><span class="v-txt">My little children, let us not love in word, neither in tongue; but in deed and in truth.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/19/" data-ref="1 John 3:19 (King James Version)" data-verse-url="/bible/kjv/1-john/3/19/"><span class="v-num">19</span><span class="v-txt">And hereby we know that we are of the truth, and shall assure our hearts before him.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/20/" data-ref="1 John 3:20 (King James Version)" data-verse-url="/bible/kjv/1-john/3/20/"><span class="v-num">20</span><span class="v-txt">For if our heart condemn us, God is greater than our heart, and knoweth all things.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/21/" data-ref="1 John 3:21 (King James Version)" data-verse-url="/bible/kjv/1-john/3/21/"><span class="v-num">21</span><span class="v-txt">Beloved, if our heart condemn us not, then have we confidence toward God.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/22/" data-ref="1 John 3:22 (King James Version)" data-verse-url="/bible/kjv/1-john/3/22/"><span class="v-num">22</span><span class="v-txt">And whatsoever we ask, we receive of him, because we keep his commandments, and do those things that are pleasing in his sight.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/23/" data-ref="1 John 3:23 (King James Version)" data-verse-url="/bible/kjv/1-john/3/23/"><span class="v-num">23</span><span class="v-txt">And this is his commandment, That we should believe on the name of his Son Jesus Christ, and love one another, as he gave us commandment.</span></a>
+<a class="v-row" href="/bible/kjv/1-john/3/24/" data-ref="1 John 3:24 (King James Version)" data-verse-url="/bible/kjv/1-john/3/24/"><span class="v-num">24</span><span class="v-txt">And he that keepeth his commandments dwelleth in him, and he in him. And hereby we know that he abideth in us, by the Spirit which he hath given us.</span></a>
 
     
 <div class="app-cta">

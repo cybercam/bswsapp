@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">At last our desire to have news of you was so strong that, while we ourselves were waiting at Athens,</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">We sent Timothy, our brother and God's servant in the good news of Christ, to give you strength and comfort in your faith;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">So that no man might be moved by these troubles; because you see that these things are part of God's purpose for us.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And when we were with you, we said to you that trouble was before us; and so it came about, as you see.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For this reason, when I was no longer able to keep quiet, I sent to get news of your faith, fearing that you might be tested by the Evil One and that our work might come to nothing.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But now that Timothy has come to us from you, and has given us good news of your faith and love, and that you have happy memories of us, desiring greatly to see us, even as we do to see you;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For this cause, brothers, in all our trouble and grief we were comforted about you because of your faith;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For it is life to us if you keep your faith in the Lord unchanged.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For how great is the praise which we give to God for you, and how great the joy with which we are glad because of you before our God;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Night and day requesting God again and again that we may see your face and make your faith complete.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now may our God and Father himself and our Lord Jesus make a way for us to come to you;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the Lord give you increase of love in fullest measure to one another and to all men, even as our love to you;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So that your hearts may be strong and free from all sin before our God and Father, at the coming of our Lord Jesus with all his saints.</span></div>
+    <a class="v-row" href="/bible/bbe/1-thessalonians/3/1/" data-ref="1 Thessalonians 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/1/"><span class="v-num">1</span><span class="v-txt">At last our desire to have news of you was so strong that, while we ourselves were waiting at Athens,</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/2/" data-ref="1 Thessalonians 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/2/"><span class="v-num">2</span><span class="v-txt">We sent Timothy, our brother and God's servant in the good news of Christ, to give you strength and comfort in your faith;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/3/" data-ref="1 Thessalonians 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/3/"><span class="v-num">3</span><span class="v-txt">So that no man might be moved by these troubles; because you see that these things are part of God's purpose for us.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/4/" data-ref="1 Thessalonians 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/4/"><span class="v-num">4</span><span class="v-txt">And when we were with you, we said to you that trouble was before us; and so it came about, as you see.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/5/" data-ref="1 Thessalonians 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/5/"><span class="v-num">5</span><span class="v-txt">For this reason, when I was no longer able to keep quiet, I sent to get news of your faith, fearing that you might be tested by the Evil One and that our work might come to nothing.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/6/" data-ref="1 Thessalonians 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/6/"><span class="v-num">6</span><span class="v-txt">But now that Timothy has come to us from you, and has given us good news of your faith and love, and that you have happy memories of us, desiring greatly to see us, even as we do to see you;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/7/" data-ref="1 Thessalonians 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/7/"><span class="v-num">7</span><span class="v-txt">For this cause, brothers, in all our trouble and grief we were comforted about you because of your faith;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/8/" data-ref="1 Thessalonians 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/8/"><span class="v-num">8</span><span class="v-txt">For it is life to us if you keep your faith in the Lord unchanged.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/9/" data-ref="1 Thessalonians 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/9/"><span class="v-num">9</span><span class="v-txt">For how great is the praise which we give to God for you, and how great the joy with which we are glad because of you before our God;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/10/" data-ref="1 Thessalonians 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/10/"><span class="v-num">10</span><span class="v-txt">Night and day requesting God again and again that we may see your face and make your faith complete.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/11/" data-ref="1 Thessalonians 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/11/"><span class="v-num">11</span><span class="v-txt">Now may our God and Father himself and our Lord Jesus make a way for us to come to you;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/12/" data-ref="1 Thessalonians 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/12/"><span class="v-num">12</span><span class="v-txt">And the Lord give you increase of love in fullest measure to one another and to all men, even as our love to you;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/3/13/" data-ref="1 Thessalonians 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/3/13/"><span class="v-num">13</span><span class="v-txt">So that your hearts may be strong and free from all sin before our God and Father, at the coming of our Lord Jesus with all his saints.</span></a>
 
     
 <div class="app-cta">

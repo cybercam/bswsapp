@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 47</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 47:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Come down, and sit in the dust, O virgin daughter of Babylon, sit on the ground: there is no throne, O daughter of the Chaldeans: for thou shalt no more be called tender and delicate.</span></div>
-<div class="v-row" data-ref="Isaiah 47:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Take the millstones, and grind meal: uncover thy locks, make bare the leg, uncover the thigh, pass over the rivers.</span></div>
-<div class="v-row" data-ref="Isaiah 47:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Thy nakedness shall be uncovered, yea, thy shame shall be seen: I will take vengeance, and I will not meet thee as a man.</span></div>
-<div class="v-row" data-ref="Isaiah 47:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">As for our redeemer, the LORD of hosts is his name, the Holy One of Israel.</span></div>
-<div class="v-row" data-ref="Isaiah 47:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Sit thou silent, and get thee into darkness, O daughter of the Chaldeans: for thou shalt no more be called, The lady of kingdoms.</span></div>
-<div class="v-row" data-ref="Isaiah 47:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I was wroth with my people, I have polluted mine inheritance, and given them into thine hand: thou didst shew them no mercy; upon the ancient hast thou very heavily laid thy yoke.</span></div>
-<div class="v-row" data-ref="Isaiah 47:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And thou saidst, I shall be a lady for ever: so that thou didst not lay these things to thy heart, neither didst remember the latter end of it.</span></div>
-<div class="v-row" data-ref="Isaiah 47:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Therefore hear now this, thou that art given to pleasures, that dwellest carelessly, that sayest in thine heart, I am, and none else beside me; I shall not sit as a widow, neither shall I know the loss of children:</span></div>
-<div class="v-row" data-ref="Isaiah 47:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But these two things shall come to thee in a moment in one day, the loss of children, and widowhood: they shall come upon thee in their perfection for the multitude of thy sorceries, and for the great abundance of thine enchantments.</span></div>
-<div class="v-row" data-ref="Isaiah 47:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For thou hast trusted in thy wickedness: thou hast said, None seeth me. Thy wisdom and thy knowledge, it hath perverted thee; and thou hast said in thine heart, I am, and none else beside me.</span></div>
-<div class="v-row" data-ref="Isaiah 47:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Therefore shall evil come upon thee; thou shalt not know from whence it riseth: and mischief shall fall upon thee; thou shalt not be able to put it off: and desolation shall come upon thee suddenly, which thou shalt not know.</span></div>
-<div class="v-row" data-ref="Isaiah 47:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Stand now with thine enchantments, and with the multitude of thy sorceries, wherein thou hast laboured from thy youth; if so be thou shalt be able to profit, if so be thou mayest prevail.</span></div>
-<div class="v-row" data-ref="Isaiah 47:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thou art wearied in the multitude of thy counsels. Let now the astrologers, the stargazers, the monthly prognosticators, stand up, and save thee from these things that shall come upon thee.</span></div>
-<div class="v-row" data-ref="Isaiah 47:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Behold, they shall be as stubble; the fire shall burn them; they shall not deliver themselves from the power of the flame: there shall not be a coal to warm at, nor fire to sit before it.</span></div>
-<div class="v-row" data-ref="Isaiah 47:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Thus shall they be unto thee with whom thou hast laboured, even thy merchants, from thy youth: they shall wander every one to his quarter; none shall save thee.</span></div>
+    <a class="v-row" href="/bible/kjv/isaiah/47/1/" data-ref="Isaiah 47:1 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/1/"><span class="v-num">1</span><span class="v-txt">Come down, and sit in the dust, O virgin daughter of Babylon, sit on the ground: there is no throne, O daughter of the Chaldeans: for thou shalt no more be called tender and delicate.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/2/" data-ref="Isaiah 47:2 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/2/"><span class="v-num">2</span><span class="v-txt">Take the millstones, and grind meal: uncover thy locks, make bare the leg, uncover the thigh, pass over the rivers.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/3/" data-ref="Isaiah 47:3 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/3/"><span class="v-num">3</span><span class="v-txt">Thy nakedness shall be uncovered, yea, thy shame shall be seen: I will take vengeance, and I will not meet thee as a man.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/4/" data-ref="Isaiah 47:4 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/4/"><span class="v-num">4</span><span class="v-txt">As for our redeemer, the LORD of hosts is his name, the Holy One of Israel.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/5/" data-ref="Isaiah 47:5 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/5/"><span class="v-num">5</span><span class="v-txt">Sit thou silent, and get thee into darkness, O daughter of the Chaldeans: for thou shalt no more be called, The lady of kingdoms.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/6/" data-ref="Isaiah 47:6 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/6/"><span class="v-num">6</span><span class="v-txt">I was wroth with my people, I have polluted mine inheritance, and given them into thine hand: thou didst shew them no mercy; upon the ancient hast thou very heavily laid thy yoke.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/7/" data-ref="Isaiah 47:7 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/7/"><span class="v-num">7</span><span class="v-txt">And thou saidst, I shall be a lady for ever: so that thou didst not lay these things to thy heart, neither didst remember the latter end of it.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/8/" data-ref="Isaiah 47:8 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/8/"><span class="v-num">8</span><span class="v-txt">Therefore hear now this, thou that art given to pleasures, that dwellest carelessly, that sayest in thine heart, I am, and none else beside me; I shall not sit as a widow, neither shall I know the loss of children:</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/9/" data-ref="Isaiah 47:9 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/9/"><span class="v-num">9</span><span class="v-txt">But these two things shall come to thee in a moment in one day, the loss of children, and widowhood: they shall come upon thee in their perfection for the multitude of thy sorceries, and for the great abundance of thine enchantments.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/10/" data-ref="Isaiah 47:10 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/10/"><span class="v-num">10</span><span class="v-txt">For thou hast trusted in thy wickedness: thou hast said, None seeth me. Thy wisdom and thy knowledge, it hath perverted thee; and thou hast said in thine heart, I am, and none else beside me.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/11/" data-ref="Isaiah 47:11 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/11/"><span class="v-num">11</span><span class="v-txt">Therefore shall evil come upon thee; thou shalt not know from whence it riseth: and mischief shall fall upon thee; thou shalt not be able to put it off: and desolation shall come upon thee suddenly, which thou shalt not know.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/12/" data-ref="Isaiah 47:12 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/12/"><span class="v-num">12</span><span class="v-txt">Stand now with thine enchantments, and with the multitude of thy sorceries, wherein thou hast laboured from thy youth; if so be thou shalt be able to profit, if so be thou mayest prevail.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/13/" data-ref="Isaiah 47:13 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/13/"><span class="v-num">13</span><span class="v-txt">Thou art wearied in the multitude of thy counsels. Let now the astrologers, the stargazers, the monthly prognosticators, stand up, and save thee from these things that shall come upon thee.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/14/" data-ref="Isaiah 47:14 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/14/"><span class="v-num">14</span><span class="v-txt">Behold, they shall be as stubble; the fire shall burn them; they shall not deliver themselves from the power of the flame: there shall not be a coal to warm at, nor fire to sit before it.</span></a>
+<a class="v-row" href="/bible/kjv/isaiah/47/15/" data-ref="Isaiah 47:15 (King James Version)" data-verse-url="/bible/kjv/isaiah/47/15/"><span class="v-num">15</span><span class="v-txt">Thus shall they be unto thee with whom thou hast laboured, even thy merchants, from thy youth: they shall wander every one to his quarter; none shall save thee.</span></a>
 
     
 <div class="app-cta">

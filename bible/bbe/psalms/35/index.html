@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 35</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 35:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Of David. O Lord, be on my side against those who are judging me; be at war with those who make war against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Be a breastplate to me, and give me your help.</span></div>
-<div class="v-row" data-ref="Psalm 35:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Take up your spear and keep back my attackers; say to my soul, I am your salvation.</span></div>
-<div class="v-row" data-ref="Psalm 35:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Let them be overcome and put to shame who make attempts to take my soul; let those who would do me damage be turned back and made foolish.</span></div>
-<div class="v-row" data-ref="Psalm 35:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let them be like dust from the grain before the wind; let the angel of the Lord send them in flight.</span></div>
-<div class="v-row" data-ref="Psalm 35:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let their way be dark and full of danger; let them be troubled by the angel of the Lord.</span></div>
-<div class="v-row" data-ref="Psalm 35:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For without cause they have put a net ready for me secretly, in which to take my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let destruction come on them without their knowledge; let them be taken themselves in their secret nets, falling into the same destruction.</span></div>
-<div class="v-row" data-ref="Psalm 35:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And my soul will have joy in the Lord; it will be glad in his salvation.</span></div>
-<div class="v-row" data-ref="Psalm 35:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All my bones will say, Lord, who is like you? The saviour of the poor man from the hands of the strong, of him who is poor and in need from him who takes his goods.</span></div>
-<div class="v-row" data-ref="Psalm 35:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">False witnesses got up: they put questions to me about crimes of which I had no knowledge.</span></div>
-<div class="v-row" data-ref="Psalm 35:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">They gave me back evil for good, troubling my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But as for me, when they were ill I put on the clothing of sorrow: I went without food and was sad, and my prayer came back again to my heart.</span></div>
-<div class="v-row" data-ref="Psalm 35:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">My behaviour was as if it had been my friend or my brother: I was bent low in grief like one whose mother is dead.</span></div>
-<div class="v-row" data-ref="Psalm 35:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But they took pleasure in my trouble, and came together, yes, low persons came together against me without my knowledge; they never came to an end of wounding me.</span></div>
-<div class="v-row" data-ref="Psalm 35:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Like men of deceit they put me to shame; the voice of their wrath was loud against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Lord, how long will you be looking on? take my soul from their destruction, my life from the lions.</span></div>
-<div class="v-row" data-ref="Psalm 35:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I will give you praise in the great meeting; I will give you honour among a strong people.</span></div>
-<div class="v-row" data-ref="Psalm 35:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Do not let my haters be glad over me falsely; let not those who are against me without cause make sport of me.</span></div>
-<div class="v-row" data-ref="Psalm 35:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For they do not say words of peace; in their deceit they are designing evil things against the quiet ones in the land.</span></div>
-<div class="v-row" data-ref="Psalm 35:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Their mouths were open wide against me, and they said, Aha, aha, our eyes have seen it.</span></div>
-<div class="v-row" data-ref="Psalm 35:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">You have seen this, O Lord; be not unmoved: O Lord, be not far from me.</span></div>
-<div class="v-row" data-ref="Psalm 35:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Be awake, O Lord, be moved to take up my cause, my God and my Lord.</span></div>
-<div class="v-row" data-ref="Psalm 35:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Be my judge, O Lord my God, in your righteousness; do not let them be glad over me.</span></div>
-<div class="v-row" data-ref="Psalm 35:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Let them not say in their hearts, So we will have it: let them not say, We have put an end to him.</span></div>
-<div class="v-row" data-ref="Psalm 35:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Let all those who take pleasure in my troubles be shamed and come to nothing: let those who are lifted up against me be covered with shame and have no honour.</span></div>
-<div class="v-row" data-ref="Psalm 35:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Let those who are on my side give cries of joy; let them ever say, The Lord be praised, for he has pleasure in the peace of his servant.</span></div>
-<div class="v-row" data-ref="Psalm 35:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And my tongue will be talking of your righteousness and of your praise all the day.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/35/1/" data-ref="Psalm 35:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/1/"><span class="v-num">1</span><span class="v-txt">Of David. O Lord, be on my side against those who are judging me; be at war with those who make war against me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/2/" data-ref="Psalm 35:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/2/"><span class="v-num">2</span><span class="v-txt">Be a breastplate to me, and give me your help.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/3/" data-ref="Psalm 35:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/3/"><span class="v-num">3</span><span class="v-txt">Take up your spear and keep back my attackers; say to my soul, I am your salvation.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/4/" data-ref="Psalm 35:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/4/"><span class="v-num">4</span><span class="v-txt">Let them be overcome and put to shame who make attempts to take my soul; let those who would do me damage be turned back and made foolish.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/5/" data-ref="Psalm 35:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/5/"><span class="v-num">5</span><span class="v-txt">Let them be like dust from the grain before the wind; let the angel of the Lord send them in flight.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/6/" data-ref="Psalm 35:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/6/"><span class="v-num">6</span><span class="v-txt">Let their way be dark and full of danger; let them be troubled by the angel of the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/7/" data-ref="Psalm 35:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/7/"><span class="v-num">7</span><span class="v-txt">For without cause they have put a net ready for me secretly, in which to take my soul.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/8/" data-ref="Psalm 35:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/8/"><span class="v-num">8</span><span class="v-txt">Let destruction come on them without their knowledge; let them be taken themselves in their secret nets, falling into the same destruction.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/9/" data-ref="Psalm 35:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/9/"><span class="v-num">9</span><span class="v-txt">And my soul will have joy in the Lord; it will be glad in his salvation.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/10/" data-ref="Psalm 35:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/10/"><span class="v-num">10</span><span class="v-txt">All my bones will say, Lord, who is like you? The saviour of the poor man from the hands of the strong, of him who is poor and in need from him who takes his goods.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/11/" data-ref="Psalm 35:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/11/"><span class="v-num">11</span><span class="v-txt">False witnesses got up: they put questions to me about crimes of which I had no knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/12/" data-ref="Psalm 35:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/12/"><span class="v-num">12</span><span class="v-txt">They gave me back evil for good, troubling my soul.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/13/" data-ref="Psalm 35:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/13/"><span class="v-num">13</span><span class="v-txt">But as for me, when they were ill I put on the clothing of sorrow: I went without food and was sad, and my prayer came back again to my heart.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/14/" data-ref="Psalm 35:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/14/"><span class="v-num">14</span><span class="v-txt">My behaviour was as if it had been my friend or my brother: I was bent low in grief like one whose mother is dead.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/15/" data-ref="Psalm 35:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/15/"><span class="v-num">15</span><span class="v-txt">But they took pleasure in my trouble, and came together, yes, low persons came together against me without my knowledge; they never came to an end of wounding me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/16/" data-ref="Psalm 35:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/16/"><span class="v-num">16</span><span class="v-txt">Like men of deceit they put me to shame; the voice of their wrath was loud against me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/17/" data-ref="Psalm 35:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/17/"><span class="v-num">17</span><span class="v-txt">Lord, how long will you be looking on? take my soul from their destruction, my life from the lions.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/18/" data-ref="Psalm 35:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/18/"><span class="v-num">18</span><span class="v-txt">I will give you praise in the great meeting; I will give you honour among a strong people.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/19/" data-ref="Psalm 35:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/19/"><span class="v-num">19</span><span class="v-txt">Do not let my haters be glad over me falsely; let not those who are against me without cause make sport of me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/20/" data-ref="Psalm 35:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/20/"><span class="v-num">20</span><span class="v-txt">For they do not say words of peace; in their deceit they are designing evil things against the quiet ones in the land.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/21/" data-ref="Psalm 35:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/21/"><span class="v-num">21</span><span class="v-txt">Their mouths were open wide against me, and they said, Aha, aha, our eyes have seen it.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/22/" data-ref="Psalm 35:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/22/"><span class="v-num">22</span><span class="v-txt">You have seen this, O Lord; be not unmoved: O Lord, be not far from me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/23/" data-ref="Psalm 35:23 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/23/"><span class="v-num">23</span><span class="v-txt">Be awake, O Lord, be moved to take up my cause, my God and my Lord.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/24/" data-ref="Psalm 35:24 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/24/"><span class="v-num">24</span><span class="v-txt">Be my judge, O Lord my God, in your righteousness; do not let them be glad over me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/25/" data-ref="Psalm 35:25 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/25/"><span class="v-num">25</span><span class="v-txt">Let them not say in their hearts, So we will have it: let them not say, We have put an end to him.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/26/" data-ref="Psalm 35:26 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/26/"><span class="v-num">26</span><span class="v-txt">Let all those who take pleasure in my troubles be shamed and come to nothing: let those who are lifted up against me be covered with shame and have no honour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/27/" data-ref="Psalm 35:27 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/27/"><span class="v-num">27</span><span class="v-txt">Let those who are on my side give cries of joy; let them ever say, The Lord be praised, for he has pleasure in the peace of his servant.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/35/28/" data-ref="Psalm 35:28 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/35/28/"><span class="v-num">28</span><span class="v-txt">And my tongue will be talking of your righteousness and of your praise all the day.</span></a>
 
     
 <div class="app-cta">

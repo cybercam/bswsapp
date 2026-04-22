@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Job 28:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Surely there is a mine for silver, And a place for gold which they refine.</span></div>
-<div class="v-row" data-ref="Job 28:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Iron is taken out of the earth, And copper is smelted out of the ore.</span></div>
-<div class="v-row" data-ref="Job 28:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Man sets an end to darkness, And searches out, to the furthest bound, The stones of obscurity and of thick darkness.</span></div>
-<div class="v-row" data-ref="Job 28:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He breaks open a shaft away from where people live. They are forgotten by the foot. They hang far from men, they swing back and forth.</span></div>
-<div class="v-row" data-ref="Job 28:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">As for the earth, out of it comes bread; Underneath it is turned up as it were by fire.</span></div>
-<div class="v-row" data-ref="Job 28:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Sapphires come from its rocks. It has dust of gold.</span></div>
-<div class="v-row" data-ref="Job 28:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">That path no bird of prey knows, Neither has the falcon's eye seen it.</span></div>
-<div class="v-row" data-ref="Job 28:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The proud animals have not trodden it, Nor has the fierce lion passed by there.</span></div>
-<div class="v-row" data-ref="Job 28:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He puts forth his hand on the flinty rock, And he overturns the mountains by the roots.</span></div>
-<div class="v-row" data-ref="Job 28:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He cuts out channels among the rocks. His eye sees every precious thing.</span></div>
-<div class="v-row" data-ref="Job 28:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He binds the streams that they don't trickle; The thing that is hidden he brings forth to light.</span></div>
-<div class="v-row" data-ref="Job 28:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"But where shall wisdom be found? Where is the place of understanding?</span></div>
-<div class="v-row" data-ref="Job 28:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Man doesn't know its price; Neither is it found in the land of the living.</span></div>
-<div class="v-row" data-ref="Job 28:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The deep says, 'It isn't in me.' The sea says, 'It isn't with me.'</span></div>
-<div class="v-row" data-ref="Job 28:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">It can't be gotten for gold, Neither shall silver be weighed for its price.</span></div>
-<div class="v-row" data-ref="Job 28:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">It can't be valued with the gold of Ophir, With the precious onyx, or the sapphire.</span></div>
-<div class="v-row" data-ref="Job 28:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Gold and glass can't equal it, Neither shall it be exchanged for jewels of fine gold.</span></div>
-<div class="v-row" data-ref="Job 28:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">No mention shall be made of coral or of crystal: Yes, the price of wisdom is above rubies.</span></div>
-<div class="v-row" data-ref="Job 28:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The topaz of Ethiopia shall not equal it, Neither shall it be valued with pure gold.</span></div>
-<div class="v-row" data-ref="Job 28:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Whence then comes wisdom? Where is the place of understanding?</span></div>
-<div class="v-row" data-ref="Job 28:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Seeing it is hidden from the eyes of all living, And kept close from the birds of the sky.</span></div>
-<div class="v-row" data-ref="Job 28:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Destruction and Death say, 'We have heard a rumor of it with our ears.'</span></div>
-<div class="v-row" data-ref="Job 28:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">"God understands its way, And he knows its place.</span></div>
-<div class="v-row" data-ref="Job 28:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For he looks to the ends of the earth, And sees under the whole sky.</span></div>
-<div class="v-row" data-ref="Job 28:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">He establishes the force of the wind; Yes, he measures out the waters by measure.</span></div>
-<div class="v-row" data-ref="Job 28:26 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">When he made a decree for the rain, And a way for the lightning of the thunder;</span></div>
-<div class="v-row" data-ref="Job 28:27 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Then did he see it, and declare it. He established it, yes, and searched it out.</span></div>
-<div class="v-row" data-ref="Job 28:28 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">To man he said, 'Behold, the fear of the Lord, that is wisdom. To depart from evil is understanding.'"</span></div>
+    <a class="v-row" href="/bible/web/job/28/1/" data-ref="Job 28:1 (World English Bible)" data-verse-url="/bible/web/job/28/1/"><span class="v-num">1</span><span class="v-txt">"Surely there is a mine for silver, And a place for gold which they refine.</span></a>
+<a class="v-row" href="/bible/web/job/28/2/" data-ref="Job 28:2 (World English Bible)" data-verse-url="/bible/web/job/28/2/"><span class="v-num">2</span><span class="v-txt">Iron is taken out of the earth, And copper is smelted out of the ore.</span></a>
+<a class="v-row" href="/bible/web/job/28/3/" data-ref="Job 28:3 (World English Bible)" data-verse-url="/bible/web/job/28/3/"><span class="v-num">3</span><span class="v-txt">Man sets an end to darkness, And searches out, to the furthest bound, The stones of obscurity and of thick darkness.</span></a>
+<a class="v-row" href="/bible/web/job/28/4/" data-ref="Job 28:4 (World English Bible)" data-verse-url="/bible/web/job/28/4/"><span class="v-num">4</span><span class="v-txt">He breaks open a shaft away from where people live. They are forgotten by the foot. They hang far from men, they swing back and forth.</span></a>
+<a class="v-row" href="/bible/web/job/28/5/" data-ref="Job 28:5 (World English Bible)" data-verse-url="/bible/web/job/28/5/"><span class="v-num">5</span><span class="v-txt">As for the earth, out of it comes bread; Underneath it is turned up as it were by fire.</span></a>
+<a class="v-row" href="/bible/web/job/28/6/" data-ref="Job 28:6 (World English Bible)" data-verse-url="/bible/web/job/28/6/"><span class="v-num">6</span><span class="v-txt">Sapphires come from its rocks. It has dust of gold.</span></a>
+<a class="v-row" href="/bible/web/job/28/7/" data-ref="Job 28:7 (World English Bible)" data-verse-url="/bible/web/job/28/7/"><span class="v-num">7</span><span class="v-txt">That path no bird of prey knows, Neither has the falcon's eye seen it.</span></a>
+<a class="v-row" href="/bible/web/job/28/8/" data-ref="Job 28:8 (World English Bible)" data-verse-url="/bible/web/job/28/8/"><span class="v-num">8</span><span class="v-txt">The proud animals have not trodden it, Nor has the fierce lion passed by there.</span></a>
+<a class="v-row" href="/bible/web/job/28/9/" data-ref="Job 28:9 (World English Bible)" data-verse-url="/bible/web/job/28/9/"><span class="v-num">9</span><span class="v-txt">He puts forth his hand on the flinty rock, And he overturns the mountains by the roots.</span></a>
+<a class="v-row" href="/bible/web/job/28/10/" data-ref="Job 28:10 (World English Bible)" data-verse-url="/bible/web/job/28/10/"><span class="v-num">10</span><span class="v-txt">He cuts out channels among the rocks. His eye sees every precious thing.</span></a>
+<a class="v-row" href="/bible/web/job/28/11/" data-ref="Job 28:11 (World English Bible)" data-verse-url="/bible/web/job/28/11/"><span class="v-num">11</span><span class="v-txt">He binds the streams that they don't trickle; The thing that is hidden he brings forth to light.</span></a>
+<a class="v-row" href="/bible/web/job/28/12/" data-ref="Job 28:12 (World English Bible)" data-verse-url="/bible/web/job/28/12/"><span class="v-num">12</span><span class="v-txt">"But where shall wisdom be found? Where is the place of understanding?</span></a>
+<a class="v-row" href="/bible/web/job/28/13/" data-ref="Job 28:13 (World English Bible)" data-verse-url="/bible/web/job/28/13/"><span class="v-num">13</span><span class="v-txt">Man doesn't know its price; Neither is it found in the land of the living.</span></a>
+<a class="v-row" href="/bible/web/job/28/14/" data-ref="Job 28:14 (World English Bible)" data-verse-url="/bible/web/job/28/14/"><span class="v-num">14</span><span class="v-txt">The deep says, 'It isn't in me.' The sea says, 'It isn't with me.'</span></a>
+<a class="v-row" href="/bible/web/job/28/15/" data-ref="Job 28:15 (World English Bible)" data-verse-url="/bible/web/job/28/15/"><span class="v-num">15</span><span class="v-txt">It can't be gotten for gold, Neither shall silver be weighed for its price.</span></a>
+<a class="v-row" href="/bible/web/job/28/16/" data-ref="Job 28:16 (World English Bible)" data-verse-url="/bible/web/job/28/16/"><span class="v-num">16</span><span class="v-txt">It can't be valued with the gold of Ophir, With the precious onyx, or the sapphire.</span></a>
+<a class="v-row" href="/bible/web/job/28/17/" data-ref="Job 28:17 (World English Bible)" data-verse-url="/bible/web/job/28/17/"><span class="v-num">17</span><span class="v-txt">Gold and glass can't equal it, Neither shall it be exchanged for jewels of fine gold.</span></a>
+<a class="v-row" href="/bible/web/job/28/18/" data-ref="Job 28:18 (World English Bible)" data-verse-url="/bible/web/job/28/18/"><span class="v-num">18</span><span class="v-txt">No mention shall be made of coral or of crystal: Yes, the price of wisdom is above rubies.</span></a>
+<a class="v-row" href="/bible/web/job/28/19/" data-ref="Job 28:19 (World English Bible)" data-verse-url="/bible/web/job/28/19/"><span class="v-num">19</span><span class="v-txt">The topaz of Ethiopia shall not equal it, Neither shall it be valued with pure gold.</span></a>
+<a class="v-row" href="/bible/web/job/28/20/" data-ref="Job 28:20 (World English Bible)" data-verse-url="/bible/web/job/28/20/"><span class="v-num">20</span><span class="v-txt">Whence then comes wisdom? Where is the place of understanding?</span></a>
+<a class="v-row" href="/bible/web/job/28/21/" data-ref="Job 28:21 (World English Bible)" data-verse-url="/bible/web/job/28/21/"><span class="v-num">21</span><span class="v-txt">Seeing it is hidden from the eyes of all living, And kept close from the birds of the sky.</span></a>
+<a class="v-row" href="/bible/web/job/28/22/" data-ref="Job 28:22 (World English Bible)" data-verse-url="/bible/web/job/28/22/"><span class="v-num">22</span><span class="v-txt">Destruction and Death say, 'We have heard a rumor of it with our ears.'</span></a>
+<a class="v-row" href="/bible/web/job/28/23/" data-ref="Job 28:23 (World English Bible)" data-verse-url="/bible/web/job/28/23/"><span class="v-num">23</span><span class="v-txt">"God understands its way, And he knows its place.</span></a>
+<a class="v-row" href="/bible/web/job/28/24/" data-ref="Job 28:24 (World English Bible)" data-verse-url="/bible/web/job/28/24/"><span class="v-num">24</span><span class="v-txt">For he looks to the ends of the earth, And sees under the whole sky.</span></a>
+<a class="v-row" href="/bible/web/job/28/25/" data-ref="Job 28:25 (World English Bible)" data-verse-url="/bible/web/job/28/25/"><span class="v-num">25</span><span class="v-txt">He establishes the force of the wind; Yes, he measures out the waters by measure.</span></a>
+<a class="v-row" href="/bible/web/job/28/26/" data-ref="Job 28:26 (World English Bible)" data-verse-url="/bible/web/job/28/26/"><span class="v-num">26</span><span class="v-txt">When he made a decree for the rain, And a way for the lightning of the thunder;</span></a>
+<a class="v-row" href="/bible/web/job/28/27/" data-ref="Job 28:27 (World English Bible)" data-verse-url="/bible/web/job/28/27/"><span class="v-num">27</span><span class="v-txt">Then did he see it, and declare it. He established it, yes, and searched it out.</span></a>
+<a class="v-row" href="/bible/web/job/28/28/" data-ref="Job 28:28 (World English Bible)" data-verse-url="/bible/web/job/28/28/"><span class="v-num">28</span><span class="v-txt">To man he said, 'Behold, the fear of the Lord, that is wisdom. To depart from evil is understanding.'"</span></a>
 
     
 <div class="app-cta">

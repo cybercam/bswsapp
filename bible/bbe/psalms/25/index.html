@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 25</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 25:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Of David. To you, O Lord, my soul is lifted up.</span></div>
-<div class="v-row" data-ref="Psalm 25:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">O my God, I have put my faith in you, let me not be shamed; let not my haters be glorying over me.</span></div>
-<div class="v-row" data-ref="Psalm 25:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let no servant of yours be put to shame; may those be shamed who are false without cause.</span></div>
-<div class="v-row" data-ref="Psalm 25:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Make your steps clear to me, O Lord; give me knowledge of your ways.</span></div>
-<div class="v-row" data-ref="Psalm 25:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Be my guide and teacher in the true way; for you are the God of my salvation; I am waiting for your word all the day.</span></div>
-<div class="v-row" data-ref="Psalm 25:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">O Lord, keep in mind your pity and your mercies; for they have been from the earliest times.</span></div>
-<div class="v-row" data-ref="Psalm 25:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Do not keep in mind my sins when I was young, or my wrongdoing: let your memory of me be full of mercy, O Lord, because of your righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 25:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Good and upright is the Lord: so he will be the teacher of sinners in the way.</span></div>
-<div class="v-row" data-ref="Psalm 25:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He will be an upright guide to the poor in spirit: he will make his way clear to them.</span></div>
-<div class="v-row" data-ref="Psalm 25:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All the ways of the Lord are mercy and good faith for those who keep his agreement and his witness.</span></div>
-<div class="v-row" data-ref="Psalm 25:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Because of your name, O Lord, let me have forgiveness for my sin, which is very great.</span></div>
-<div class="v-row" data-ref="Psalm 25:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">If a man has the fear of the Lord, the Lord will be his teacher in the way of his pleasure.</span></div>
-<div class="v-row" data-ref="Psalm 25:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">His soul will be full of good things, and his seed will have the earth for its heritage.</span></div>
-<div class="v-row" data-ref="Psalm 25:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The secret of the Lord is with those in whose hearts is the fear of him; he will make his agreement clear to them.</span></div>
-<div class="v-row" data-ref="Psalm 25:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My eyes are turned to the Lord at all times; for he will take my feet out of the net.</span></div>
-<div class="v-row" data-ref="Psalm 25:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Be turned to me, and have mercy on me; for I am troubled and have no helper.</span></div>
-<div class="v-row" data-ref="Psalm 25:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The troubles of my heart are increased: O take me out of my sorrows.</span></div>
-<div class="v-row" data-ref="Psalm 25:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Give thought to my grief and my pain; and take away all my sins.</span></div>
-<div class="v-row" data-ref="Psalm 25:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">See how those who are against me are increased, for bitter is their hate of me.</span></div>
-<div class="v-row" data-ref="Psalm 25:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">O keep my soul, and take me out of danger: let me not be shamed, for I have put my faith in you.</span></div>
-<div class="v-row" data-ref="Psalm 25:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For my clean and upright ways keep me safe, because my hope is in you.</span></div>
-<div class="v-row" data-ref="Psalm 25:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Give Israel salvation, O God, out of all his troubles.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/25/1/" data-ref="Psalm 25:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/1/"><span class="v-num">1</span><span class="v-txt">Of David. To you, O Lord, my soul is lifted up.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/2/" data-ref="Psalm 25:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/2/"><span class="v-num">2</span><span class="v-txt">O my God, I have put my faith in you, let me not be shamed; let not my haters be glorying over me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/3/" data-ref="Psalm 25:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/3/"><span class="v-num">3</span><span class="v-txt">Let no servant of yours be put to shame; may those be shamed who are false without cause.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/4/" data-ref="Psalm 25:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/4/"><span class="v-num">4</span><span class="v-txt">Make your steps clear to me, O Lord; give me knowledge of your ways.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/5/" data-ref="Psalm 25:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/5/"><span class="v-num">5</span><span class="v-txt">Be my guide and teacher in the true way; for you are the God of my salvation; I am waiting for your word all the day.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/6/" data-ref="Psalm 25:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/6/"><span class="v-num">6</span><span class="v-txt">O Lord, keep in mind your pity and your mercies; for they have been from the earliest times.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/7/" data-ref="Psalm 25:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/7/"><span class="v-num">7</span><span class="v-txt">Do not keep in mind my sins when I was young, or my wrongdoing: let your memory of me be full of mercy, O Lord, because of your righteousness.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/8/" data-ref="Psalm 25:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/8/"><span class="v-num">8</span><span class="v-txt">Good and upright is the Lord: so he will be the teacher of sinners in the way.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/9/" data-ref="Psalm 25:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/9/"><span class="v-num">9</span><span class="v-txt">He will be an upright guide to the poor in spirit: he will make his way clear to them.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/10/" data-ref="Psalm 25:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/10/"><span class="v-num">10</span><span class="v-txt">All the ways of the Lord are mercy and good faith for those who keep his agreement and his witness.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/11/" data-ref="Psalm 25:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/11/"><span class="v-num">11</span><span class="v-txt">Because of your name, O Lord, let me have forgiveness for my sin, which is very great.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/12/" data-ref="Psalm 25:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/12/"><span class="v-num">12</span><span class="v-txt">If a man has the fear of the Lord, the Lord will be his teacher in the way of his pleasure.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/13/" data-ref="Psalm 25:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/13/"><span class="v-num">13</span><span class="v-txt">His soul will be full of good things, and his seed will have the earth for its heritage.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/14/" data-ref="Psalm 25:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/14/"><span class="v-num">14</span><span class="v-txt">The secret of the Lord is with those in whose hearts is the fear of him; he will make his agreement clear to them.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/15/" data-ref="Psalm 25:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/15/"><span class="v-num">15</span><span class="v-txt">My eyes are turned to the Lord at all times; for he will take my feet out of the net.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/16/" data-ref="Psalm 25:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/16/"><span class="v-num">16</span><span class="v-txt">Be turned to me, and have mercy on me; for I am troubled and have no helper.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/17/" data-ref="Psalm 25:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/17/"><span class="v-num">17</span><span class="v-txt">The troubles of my heart are increased: O take me out of my sorrows.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/18/" data-ref="Psalm 25:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/18/"><span class="v-num">18</span><span class="v-txt">Give thought to my grief and my pain; and take away all my sins.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/19/" data-ref="Psalm 25:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/19/"><span class="v-num">19</span><span class="v-txt">See how those who are against me are increased, for bitter is their hate of me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/20/" data-ref="Psalm 25:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/20/"><span class="v-num">20</span><span class="v-txt">O keep my soul, and take me out of danger: let me not be shamed, for I have put my faith in you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/21/" data-ref="Psalm 25:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/21/"><span class="v-num">21</span><span class="v-txt">For my clean and upright ways keep me safe, because my hope is in you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/25/22/" data-ref="Psalm 25:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/25/22/"><span class="v-num">22</span><span class="v-txt">Give Israel salvation, O God, out of all his troubles.</span></a>
 
     
 <div class="app-cta">

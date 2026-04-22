@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 19:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Take up now a song of grief for the ruler of Israel, and say,</span></div>
-<div class="v-row" data-ref="Ezekiel 19:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">What was your mother? Like a she-lion among lions, stretched out among the young lions she gave food to her little ones.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And one of her little ones came to growth under her care, and became a young lion, learning to go after beasts for his food; and he took men for his meat.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the nations had news of him; he was taken in the hole they had made: and, pulling him with hooks, they took him into the land of Egypt.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now when she saw that her hope was made foolish and gone, she took another of her little ones and made him into a young lion.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he went up and down among the lions and became a young lion, learning to go after beasts for his food; and he took men for his meat.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he sent destruction on their widows and made waste their towns; and the land and everything in it became waste because of the loud sound of his voice.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the nations came against him from the kingdoms round about: their net was stretched over him and he was taken in the hole they had made.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They made him a prisoner with hooks, and took him to the king of Babylon; they put him in the strong place so that his voice might be sounding no longer on the mountains of Israel.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Your mother was in comparison like a vine, planted by the waters: she was fertile and full of branches because of the great waters.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And she had a strong rod for a rod of authority for the rulers, and it became tall among the clouds and it was seen lifted up among the number of its branches.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But she was uprooted in burning wrath, and made low on the earth; the east wind came, drying her up, and her branches were broken off; her strong rod became dry, the fire made a meal of it.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And now she is planted in the waste land, in a dry and unwatered country.</span></div>
-<div class="v-row" data-ref="Ezekiel 19:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And fire has gone out from her rod, causing the destruction of her branches, so that there is no strong rod in her to be the ruler's rod of authority. This is a song of grief, and it was for a song of grief.</span></div>
+    <a class="v-row" href="/bible/bbe/ezekiel/19/1/" data-ref="Ezekiel 19:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/1/"><span class="v-num">1</span><span class="v-txt">Take up now a song of grief for the ruler of Israel, and say,</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/2/" data-ref="Ezekiel 19:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/2/"><span class="v-num">2</span><span class="v-txt">What was your mother? Like a she-lion among lions, stretched out among the young lions she gave food to her little ones.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/3/" data-ref="Ezekiel 19:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/3/"><span class="v-num">3</span><span class="v-txt">And one of her little ones came to growth under her care, and became a young lion, learning to go after beasts for his food; and he took men for his meat.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/4/" data-ref="Ezekiel 19:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/4/"><span class="v-num">4</span><span class="v-txt">And the nations had news of him; he was taken in the hole they had made: and, pulling him with hooks, they took him into the land of Egypt.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/5/" data-ref="Ezekiel 19:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/5/"><span class="v-num">5</span><span class="v-txt">Now when she saw that her hope was made foolish and gone, she took another of her little ones and made him into a young lion.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/6/" data-ref="Ezekiel 19:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/6/"><span class="v-num">6</span><span class="v-txt">And he went up and down among the lions and became a young lion, learning to go after beasts for his food; and he took men for his meat.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/7/" data-ref="Ezekiel 19:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/7/"><span class="v-num">7</span><span class="v-txt">And he sent destruction on their widows and made waste their towns; and the land and everything in it became waste because of the loud sound of his voice.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/8/" data-ref="Ezekiel 19:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/8/"><span class="v-num">8</span><span class="v-txt">Then the nations came against him from the kingdoms round about: their net was stretched over him and he was taken in the hole they had made.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/9/" data-ref="Ezekiel 19:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/9/"><span class="v-num">9</span><span class="v-txt">They made him a prisoner with hooks, and took him to the king of Babylon; they put him in the strong place so that his voice might be sounding no longer on the mountains of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/10/" data-ref="Ezekiel 19:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/10/"><span class="v-num">10</span><span class="v-txt">Your mother was in comparison like a vine, planted by the waters: she was fertile and full of branches because of the great waters.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/11/" data-ref="Ezekiel 19:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/11/"><span class="v-num">11</span><span class="v-txt">And she had a strong rod for a rod of authority for the rulers, and it became tall among the clouds and it was seen lifted up among the number of its branches.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/12/" data-ref="Ezekiel 19:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/12/"><span class="v-num">12</span><span class="v-txt">But she was uprooted in burning wrath, and made low on the earth; the east wind came, drying her up, and her branches were broken off; her strong rod became dry, the fire made a meal of it.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/13/" data-ref="Ezekiel 19:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/13/"><span class="v-num">13</span><span class="v-txt">And now she is planted in the waste land, in a dry and unwatered country.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/19/14/" data-ref="Ezekiel 19:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/19/14/"><span class="v-num">14</span><span class="v-txt">And fire has gone out from her rod, causing the destruction of her branches, so that there is no strong rod in her to be the ruler's rod of authority. This is a song of grief, and it was for a song of grief.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="James 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Come now, ye rich, weep and howl for your miseries that are coming upon you.</span></div>
-<div class="v-row" data-ref="James 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Your riches are corrupted, and your garments are moth-eaten.</span></div>
-<div class="v-row" data-ref="James 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Your gold and your silver are rusted; and their rust shall be for a testimony against you, and shall eat your flesh as fire. Ye have laid up your treasure in the last days.</span></div>
-<div class="v-row" data-ref="James 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Behold, the hire of the laborers who mowed your fields, which is of you kept back by fraud, crieth out: and the cries of them that reaped have entered into the ears of the Lord of Sabaoth.</span></div>
-<div class="v-row" data-ref="James 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Ye have lived delicately on the earth, and taken your pleasure; ye have nourished your hearts in a day of slaughter.</span></div>
-<div class="v-row" data-ref="James 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Ye have condemned, ye have killed the righteous [one]; he doth not resist you.</span></div>
-<div class="v-row" data-ref="James 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Be patient therefore, brethren, until the coming of the Lord. Behold, the husbandman waiteth for the precious fruit of the earth, being patient over it, until it receive the early and latter rain.</span></div>
-<div class="v-row" data-ref="James 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Be ye also patient; establish your hearts: for the coming of the Lord is at hand.</span></div>
-<div class="v-row" data-ref="James 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Murmur not, brethren, one against another, that ye be not judged: behold, the judge standeth before the doors.</span></div>
-<div class="v-row" data-ref="James 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Take, brethren, for an example of suffering and of patience, the prophets who spake in the name of the Lord.</span></div>
-<div class="v-row" data-ref="James 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Behold, we call them blessed that endured: ye have heard of the patience of Job, and have seen the end of the Lord, how that the Lord is full of pity, and merciful.</span></div>
-<div class="v-row" data-ref="James 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But above all things, my brethren, swear not, neither by the heaven, nor by the earth, nor by any other oath: but let your yea be yea, and your nay, nay; that ye fall not under judgment.</span></div>
-<div class="v-row" data-ref="James 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Is any among you suffering? Let him pray. Is any cheerful? Let him sing praise.</span></div>
-<div class="v-row" data-ref="James 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Is any among you sick? Let him call for the elders of the church; and let them pray over him, anointing him with oil in the name of the Lord:</span></div>
-<div class="v-row" data-ref="James 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and the prayer of faith shall save him that is sick, and the Lord shall raise him up; and if he have committed sins, it shall be forgiven him.</span></div>
-<div class="v-row" data-ref="James 5:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Confess therefore your sins one to another, and pray one for another, that ye may be healed. The supplication of a righteous man availeth much in its working.</span></div>
-<div class="v-row" data-ref="James 5:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Elijah was a man of like passions with us, and he prayed fervently that it might not rain; and it rained not on the earth for three years and six months.</span></div>
-<div class="v-row" data-ref="James 5:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And he prayed again; and the heaven gave rain, and the earth brought forth her fruit.</span></div>
-<div class="v-row" data-ref="James 5:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">My brethren, if any among you err from the truth, and one convert him;</span></div>
-<div class="v-row" data-ref="James 5:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">let him know, that he who converteth a sinner from the error of his way shall save a soul from death, and shall cover a multitude of sins.</span></div>
+    <a class="v-row" href="/bible/asv/james/5/1/" data-ref="James 5:1 (American Standard Version)" data-verse-url="/bible/asv/james/5/1/"><span class="v-num">1</span><span class="v-txt">Come now, ye rich, weep and howl for your miseries that are coming upon you.</span></a>
+<a class="v-row" href="/bible/asv/james/5/2/" data-ref="James 5:2 (American Standard Version)" data-verse-url="/bible/asv/james/5/2/"><span class="v-num">2</span><span class="v-txt">Your riches are corrupted, and your garments are moth-eaten.</span></a>
+<a class="v-row" href="/bible/asv/james/5/3/" data-ref="James 5:3 (American Standard Version)" data-verse-url="/bible/asv/james/5/3/"><span class="v-num">3</span><span class="v-txt">Your gold and your silver are rusted; and their rust shall be for a testimony against you, and shall eat your flesh as fire. Ye have laid up your treasure in the last days.</span></a>
+<a class="v-row" href="/bible/asv/james/5/4/" data-ref="James 5:4 (American Standard Version)" data-verse-url="/bible/asv/james/5/4/"><span class="v-num">4</span><span class="v-txt">Behold, the hire of the laborers who mowed your fields, which is of you kept back by fraud, crieth out: and the cries of them that reaped have entered into the ears of the Lord of Sabaoth.</span></a>
+<a class="v-row" href="/bible/asv/james/5/5/" data-ref="James 5:5 (American Standard Version)" data-verse-url="/bible/asv/james/5/5/"><span class="v-num">5</span><span class="v-txt">Ye have lived delicately on the earth, and taken your pleasure; ye have nourished your hearts in a day of slaughter.</span></a>
+<a class="v-row" href="/bible/asv/james/5/6/" data-ref="James 5:6 (American Standard Version)" data-verse-url="/bible/asv/james/5/6/"><span class="v-num">6</span><span class="v-txt">Ye have condemned, ye have killed the righteous [one]; he doth not resist you.</span></a>
+<a class="v-row" href="/bible/asv/james/5/7/" data-ref="James 5:7 (American Standard Version)" data-verse-url="/bible/asv/james/5/7/"><span class="v-num">7</span><span class="v-txt">Be patient therefore, brethren, until the coming of the Lord. Behold, the husbandman waiteth for the precious fruit of the earth, being patient over it, until it receive the early and latter rain.</span></a>
+<a class="v-row" href="/bible/asv/james/5/8/" data-ref="James 5:8 (American Standard Version)" data-verse-url="/bible/asv/james/5/8/"><span class="v-num">8</span><span class="v-txt">Be ye also patient; establish your hearts: for the coming of the Lord is at hand.</span></a>
+<a class="v-row" href="/bible/asv/james/5/9/" data-ref="James 5:9 (American Standard Version)" data-verse-url="/bible/asv/james/5/9/"><span class="v-num">9</span><span class="v-txt">Murmur not, brethren, one against another, that ye be not judged: behold, the judge standeth before the doors.</span></a>
+<a class="v-row" href="/bible/asv/james/5/10/" data-ref="James 5:10 (American Standard Version)" data-verse-url="/bible/asv/james/5/10/"><span class="v-num">10</span><span class="v-txt">Take, brethren, for an example of suffering and of patience, the prophets who spake in the name of the Lord.</span></a>
+<a class="v-row" href="/bible/asv/james/5/11/" data-ref="James 5:11 (American Standard Version)" data-verse-url="/bible/asv/james/5/11/"><span class="v-num">11</span><span class="v-txt">Behold, we call them blessed that endured: ye have heard of the patience of Job, and have seen the end of the Lord, how that the Lord is full of pity, and merciful.</span></a>
+<a class="v-row" href="/bible/asv/james/5/12/" data-ref="James 5:12 (American Standard Version)" data-verse-url="/bible/asv/james/5/12/"><span class="v-num">12</span><span class="v-txt">But above all things, my brethren, swear not, neither by the heaven, nor by the earth, nor by any other oath: but let your yea be yea, and your nay, nay; that ye fall not under judgment.</span></a>
+<a class="v-row" href="/bible/asv/james/5/13/" data-ref="James 5:13 (American Standard Version)" data-verse-url="/bible/asv/james/5/13/"><span class="v-num">13</span><span class="v-txt">Is any among you suffering? Let him pray. Is any cheerful? Let him sing praise.</span></a>
+<a class="v-row" href="/bible/asv/james/5/14/" data-ref="James 5:14 (American Standard Version)" data-verse-url="/bible/asv/james/5/14/"><span class="v-num">14</span><span class="v-txt">Is any among you sick? Let him call for the elders of the church; and let them pray over him, anointing him with oil in the name of the Lord:</span></a>
+<a class="v-row" href="/bible/asv/james/5/15/" data-ref="James 5:15 (American Standard Version)" data-verse-url="/bible/asv/james/5/15/"><span class="v-num">15</span><span class="v-txt">and the prayer of faith shall save him that is sick, and the Lord shall raise him up; and if he have committed sins, it shall be forgiven him.</span></a>
+<a class="v-row" href="/bible/asv/james/5/16/" data-ref="James 5:16 (American Standard Version)" data-verse-url="/bible/asv/james/5/16/"><span class="v-num">16</span><span class="v-txt">Confess therefore your sins one to another, and pray one for another, that ye may be healed. The supplication of a righteous man availeth much in its working.</span></a>
+<a class="v-row" href="/bible/asv/james/5/17/" data-ref="James 5:17 (American Standard Version)" data-verse-url="/bible/asv/james/5/17/"><span class="v-num">17</span><span class="v-txt">Elijah was a man of like passions with us, and he prayed fervently that it might not rain; and it rained not on the earth for three years and six months.</span></a>
+<a class="v-row" href="/bible/asv/james/5/18/" data-ref="James 5:18 (American Standard Version)" data-verse-url="/bible/asv/james/5/18/"><span class="v-num">18</span><span class="v-txt">And he prayed again; and the heaven gave rain, and the earth brought forth her fruit.</span></a>
+<a class="v-row" href="/bible/asv/james/5/19/" data-ref="James 5:19 (American Standard Version)" data-verse-url="/bible/asv/james/5/19/"><span class="v-num">19</span><span class="v-txt">My brethren, if any among you err from the truth, and one convert him;</span></a>
+<a class="v-row" href="/bible/asv/james/5/20/" data-ref="James 5:20 (American Standard Version)" data-verse-url="/bible/asv/james/5/20/"><span class="v-num">20</span><span class="v-txt">let him know, that he who converteth a sinner from the error of his way shall save a soul from death, and shall cover a multitude of sins.</span></a>
 
     
 <div class="app-cta">

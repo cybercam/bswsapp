@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 10:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"My soul loathes my life; I will give free course to my complaint, I will speak in the bitterness of my soul.</span></div>
-<div class="v-row" data-ref="Job 10:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will say to God, 'Do not condemn me; Show me why You contend with me.</span></div>
-<div class="v-row" data-ref="Job 10:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">[Does it] seem good to You that You should oppress, That You should despise the work of Your hands, And smile on the counsel of the wicked?</span></div>
-<div class="v-row" data-ref="Job 10:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Do You have eyes of flesh? Or do You see as man sees?</span></div>
-<div class="v-row" data-ref="Job 10:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">[Are] Your days like the days of a mortal man? [Are] Your years like the days of a mighty man,</span></div>
-<div class="v-row" data-ref="Job 10:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">That You should seek for my iniquity And search out my sin,</span></div>
-<div class="v-row" data-ref="Job 10:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Although You know that I am not wicked, And [there is] no one who can deliver from Your hand?</span></div>
-<div class="v-row" data-ref="Job 10:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">'Your hands have made me and fashioned me, An intricate unity; Yet You would destroy me.</span></div>
-<div class="v-row" data-ref="Job 10:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Remember, I pray, that You have made me like clay. And will You turn me into dust again?</span></div>
-<div class="v-row" data-ref="Job 10:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Did you not pour me out like milk, And curdle me like cheese,</span></div>
-<div class="v-row" data-ref="Job 10:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Clothe me with skin and flesh, And knit me together with bones and sinews?</span></div>
-<div class="v-row" data-ref="Job 10:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">You have granted me life and favor, And Your care has preserved my spirit.</span></div>
-<div class="v-row" data-ref="Job 10:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">'And these [things] You have hidden in Your heart; I know that this [was] with You:</span></div>
-<div class="v-row" data-ref="Job 10:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If I sin, then You mark me, And will not acquit me of my iniquity.</span></div>
-<div class="v-row" data-ref="Job 10:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If I am wicked, woe to me; Even [if] I am righteous, I cannot lift up my head. [I am] full of disgrace; See my misery!</span></div>
-<div class="v-row" data-ref="Job 10:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If [my head] is exalted, You hunt me like a fierce lion, And again You show Yourself awesome against me.</span></div>
-<div class="v-row" data-ref="Job 10:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">You renew Your witnesses against me, And increase Your indignation toward me; Changes and war are [ever] with me.</span></div>
-<div class="v-row" data-ref="Job 10:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">'Why then have You brought me out of the womb? Oh, that I had perished and no eye had seen me!</span></div>
-<div class="v-row" data-ref="Job 10:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">I would have been as though I had not been. I would have been carried from the womb to the grave.</span></div>
-<div class="v-row" data-ref="Job 10:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Are not my days few? Cease! Leave me alone, that I may take a little comfort,</span></div>
-<div class="v-row" data-ref="Job 10:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Before I go [to the place from which] I shall not return, To the land of darkness and the shadow of death,</span></div>
-<div class="v-row" data-ref="Job 10:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A land as dark as darkness [itself,] As the shadow of death, without any order, [Where] even the light [is] like darkness.' "</span></div>
+    <a class="v-row" href="/bible/nkjv/job/10/1/" data-ref="Job 10:1 (New King James Version)" data-verse-url="/bible/nkjv/job/10/1/"><span class="v-num">1</span><span class="v-txt">"My soul loathes my life; I will give free course to my complaint, I will speak in the bitterness of my soul.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/2/" data-ref="Job 10:2 (New King James Version)" data-verse-url="/bible/nkjv/job/10/2/"><span class="v-num">2</span><span class="v-txt">I will say to God, 'Do not condemn me; Show me why You contend with me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/3/" data-ref="Job 10:3 (New King James Version)" data-verse-url="/bible/nkjv/job/10/3/"><span class="v-num">3</span><span class="v-txt">[Does it] seem good to You that You should oppress, That You should despise the work of Your hands, And smile on the counsel of the wicked?</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/4/" data-ref="Job 10:4 (New King James Version)" data-verse-url="/bible/nkjv/job/10/4/"><span class="v-num">4</span><span class="v-txt">Do You have eyes of flesh? Or do You see as man sees?</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/5/" data-ref="Job 10:5 (New King James Version)" data-verse-url="/bible/nkjv/job/10/5/"><span class="v-num">5</span><span class="v-txt">[Are] Your days like the days of a mortal man? [Are] Your years like the days of a mighty man,</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/6/" data-ref="Job 10:6 (New King James Version)" data-verse-url="/bible/nkjv/job/10/6/"><span class="v-num">6</span><span class="v-txt">That You should seek for my iniquity And search out my sin,</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/7/" data-ref="Job 10:7 (New King James Version)" data-verse-url="/bible/nkjv/job/10/7/"><span class="v-num">7</span><span class="v-txt">Although You know that I am not wicked, And [there is] no one who can deliver from Your hand?</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/8/" data-ref="Job 10:8 (New King James Version)" data-verse-url="/bible/nkjv/job/10/8/"><span class="v-num">8</span><span class="v-txt">'Your hands have made me and fashioned me, An intricate unity; Yet You would destroy me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/9/" data-ref="Job 10:9 (New King James Version)" data-verse-url="/bible/nkjv/job/10/9/"><span class="v-num">9</span><span class="v-txt">Remember, I pray, that You have made me like clay. And will You turn me into dust again?</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/10/" data-ref="Job 10:10 (New King James Version)" data-verse-url="/bible/nkjv/job/10/10/"><span class="v-num">10</span><span class="v-txt">Did you not pour me out like milk, And curdle me like cheese,</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/11/" data-ref="Job 10:11 (New King James Version)" data-verse-url="/bible/nkjv/job/10/11/"><span class="v-num">11</span><span class="v-txt">Clothe me with skin and flesh, And knit me together with bones and sinews?</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/12/" data-ref="Job 10:12 (New King James Version)" data-verse-url="/bible/nkjv/job/10/12/"><span class="v-num">12</span><span class="v-txt">You have granted me life and favor, And Your care has preserved my spirit.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/13/" data-ref="Job 10:13 (New King James Version)" data-verse-url="/bible/nkjv/job/10/13/"><span class="v-num">13</span><span class="v-txt">'And these [things] You have hidden in Your heart; I know that this [was] with You:</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/14/" data-ref="Job 10:14 (New King James Version)" data-verse-url="/bible/nkjv/job/10/14/"><span class="v-num">14</span><span class="v-txt">If I sin, then You mark me, And will not acquit me of my iniquity.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/15/" data-ref="Job 10:15 (New King James Version)" data-verse-url="/bible/nkjv/job/10/15/"><span class="v-num">15</span><span class="v-txt">If I am wicked, woe to me; Even [if] I am righteous, I cannot lift up my head. [I am] full of disgrace; See my misery!</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/16/" data-ref="Job 10:16 (New King James Version)" data-verse-url="/bible/nkjv/job/10/16/"><span class="v-num">16</span><span class="v-txt">If [my head] is exalted, You hunt me like a fierce lion, And again You show Yourself awesome against me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/17/" data-ref="Job 10:17 (New King James Version)" data-verse-url="/bible/nkjv/job/10/17/"><span class="v-num">17</span><span class="v-txt">You renew Your witnesses against me, And increase Your indignation toward me; Changes and war are [ever] with me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/18/" data-ref="Job 10:18 (New King James Version)" data-verse-url="/bible/nkjv/job/10/18/"><span class="v-num">18</span><span class="v-txt">'Why then have You brought me out of the womb? Oh, that I had perished and no eye had seen me!</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/19/" data-ref="Job 10:19 (New King James Version)" data-verse-url="/bible/nkjv/job/10/19/"><span class="v-num">19</span><span class="v-txt">I would have been as though I had not been. I would have been carried from the womb to the grave.</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/20/" data-ref="Job 10:20 (New King James Version)" data-verse-url="/bible/nkjv/job/10/20/"><span class="v-num">20</span><span class="v-txt">Are not my days few? Cease! Leave me alone, that I may take a little comfort,</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/21/" data-ref="Job 10:21 (New King James Version)" data-verse-url="/bible/nkjv/job/10/21/"><span class="v-num">21</span><span class="v-txt">Before I go [to the place from which] I shall not return, To the land of darkness and the shadow of death,</span></a>
+<a class="v-row" href="/bible/nkjv/job/10/22/" data-ref="Job 10:22 (New King James Version)" data-verse-url="/bible/nkjv/job/10/22/"><span class="v-num">22</span><span class="v-txt">A land as dark as darkness [itself,] As the shadow of death, without any order, [Where] even the light [is] like darkness.' "</span></a>
 
     
 <div class="app-cta">

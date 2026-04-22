@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,15 +204,15 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 31:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Woe to those who go down to Egypt for help, [And] rely on horses, Who trust in chariots because [they are] many, And in horsemen because they are very strong, But who do not look to the Holy One of Israel, Nor seek the LORD!</span></div>
-<div class="v-row" data-ref="Isaiah 31:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Yet He also [is] wise and will bring disaster, And will not call back His words, But will arise against the house of evildoers, And against the help of those who work iniquity.</span></div>
-<div class="v-row" data-ref="Isaiah 31:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Now the Egyptians [are] men, and not God; And their horses are flesh, and not spirit. When the LORD stretches out His hand, Both he who helps will fall, And he who is helped will fall down; They all will perish together.</span></div>
-<div class="v-row" data-ref="Isaiah 31:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For thus the LORD has spoken to me: "As a lion roars, And a young lion over his prey (When a multitude of shepherds is summoned against him, [He] will not be afraid of their voice Nor be disturbed by their noise), So the LORD of hosts will come down To fight for Mount Zion and for its hill.</span></div>
-<div class="v-row" data-ref="Isaiah 31:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Like birds flying about, So will the LORD of hosts defend Jerusalem. Defending, He will also deliver [it;] Passing over, He will preserve [it."]</span></div>
-<div class="v-row" data-ref="Isaiah 31:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Return [to Him] against whom the children of Israel have deeply revolted.</span></div>
-<div class="v-row" data-ref="Isaiah 31:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For in that day every man shall throw away his idols of silver and his idols of gold -- sin, which your own hands have made for yourselves.</span></div>
-<div class="v-row" data-ref="Isaiah 31:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"Then Assyria shall fall by a sword not of man, And a sword not of mankind shall devour him. But he shall flee from the sword, And his young men shall become forced labor.</span></div>
-<div class="v-row" data-ref="Isaiah 31:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He shall cross over to his stronghold for fear, And his princes shall be afraid of the banner," Says the LORD, Whose fire [is] in Zion And whose furnace [is] in Jerusalem.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/31/1/" data-ref="Isaiah 31:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/1/"><span class="v-num">1</span><span class="v-txt">Woe to those who go down to Egypt for help, [And] rely on horses, Who trust in chariots because [they are] many, And in horsemen because they are very strong, But who do not look to the Holy One of Israel, Nor seek the LORD!</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/2/" data-ref="Isaiah 31:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/2/"><span class="v-num">2</span><span class="v-txt">Yet He also [is] wise and will bring disaster, And will not call back His words, But will arise against the house of evildoers, And against the help of those who work iniquity.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/3/" data-ref="Isaiah 31:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/3/"><span class="v-num">3</span><span class="v-txt">Now the Egyptians [are] men, and not God; And their horses are flesh, and not spirit. When the LORD stretches out His hand, Both he who helps will fall, And he who is helped will fall down; They all will perish together.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/4/" data-ref="Isaiah 31:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/4/"><span class="v-num">4</span><span class="v-txt">For thus the LORD has spoken to me: "As a lion roars, And a young lion over his prey (When a multitude of shepherds is summoned against him, [He] will not be afraid of their voice Nor be disturbed by their noise), So the LORD of hosts will come down To fight for Mount Zion and for its hill.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/5/" data-ref="Isaiah 31:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/5/"><span class="v-num">5</span><span class="v-txt">Like birds flying about, So will the LORD of hosts defend Jerusalem. Defending, He will also deliver [it;] Passing over, He will preserve [it."]</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/6/" data-ref="Isaiah 31:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/6/"><span class="v-num">6</span><span class="v-txt">Return [to Him] against whom the children of Israel have deeply revolted.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/7/" data-ref="Isaiah 31:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/7/"><span class="v-num">7</span><span class="v-txt">For in that day every man shall throw away his idols of silver and his idols of gold -- sin, which your own hands have made for yourselves.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/8/" data-ref="Isaiah 31:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/8/"><span class="v-num">8</span><span class="v-txt">"Then Assyria shall fall by a sword not of man, And a sword not of mankind shall devour him. But he shall flee from the sword, And his young men shall become forced labor.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/31/9/" data-ref="Isaiah 31:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/31/9/"><span class="v-num">9</span><span class="v-txt">He shall cross over to his stronghold for fear, And his princes shall be afraid of the banner," Says the LORD, Whose fire [is] in Zion And whose furnace [is] in Jerusalem.</span></a>
 
     
 <div class="app-cta">

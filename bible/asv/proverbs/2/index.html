@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My son, if thou wilt receive my words, And lay up my commandments with thee;</span></div>
-<div class="v-row" data-ref="Proverbs 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So as to incline thine ear unto wisdom, And apply thy heart to understanding;</span></div>
-<div class="v-row" data-ref="Proverbs 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Yea, if thou cry after discernment, And lift up thy voice for understanding;</span></div>
-<div class="v-row" data-ref="Proverbs 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If thou seek her as silver, And search for her as for hid treasures:</span></div>
-<div class="v-row" data-ref="Proverbs 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then shalt thou understand the fear of Jehovah, And find the knowledge of God.</span></div>
-<div class="v-row" data-ref="Proverbs 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For Jehovah giveth wisdom; Out of his mouth [cometh] knowledge and understanding:</span></div>
-<div class="v-row" data-ref="Proverbs 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He layeth up sound wisdom for the upright; [He is] a shield to them that walk in integrity;</span></div>
-<div class="v-row" data-ref="Proverbs 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">That he may guard the paths of justice, And preserve the way of his saints.</span></div>
-<div class="v-row" data-ref="Proverbs 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then shalt thou understand righteousness and justice, And equity, [yea], every good path.</span></div>
-<div class="v-row" data-ref="Proverbs 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For wisdom shall enter into thy heart, And knowledge shall be pleasant unto thy soul;</span></div>
-<div class="v-row" data-ref="Proverbs 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Discretion shall watch over thee; Understanding shall keep thee:</span></div>
-<div class="v-row" data-ref="Proverbs 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">To deliver thee from the way of evil, From the men that speak perverse things;</span></div>
-<div class="v-row" data-ref="Proverbs 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Who forsake the paths of uprightness, To walk in the ways of darkness;</span></div>
-<div class="v-row" data-ref="Proverbs 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Who rejoice to do evil, And delight in the perverseness of evil;</span></div>
-<div class="v-row" data-ref="Proverbs 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Who are crooked in their ways, And wayward in their paths:</span></div>
-<div class="v-row" data-ref="Proverbs 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">To deliver thee from the strange woman, Even from the foreigner that flattereth with her words;</span></div>
-<div class="v-row" data-ref="Proverbs 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">That forsaketh the friend of her youth, And forgetteth the covenant of her God:</span></div>
-<div class="v-row" data-ref="Proverbs 2:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For her house inclineth unto death, And her paths unto the dead;</span></div>
-<div class="v-row" data-ref="Proverbs 2:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">None that go unto her return again, Neither do they attain unto the paths of life:</span></div>
-<div class="v-row" data-ref="Proverbs 2:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">That thou mayest walk in the way of good men, And keep the paths of the righteous.</span></div>
-<div class="v-row" data-ref="Proverbs 2:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For the upright shall dwell in the land, And the perfect shall remain in it.</span></div>
-<div class="v-row" data-ref="Proverbs 2:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But the wicked shall be cut off from the land, And the treacherous shall be rooted out of it.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/2/1/" data-ref="Proverbs 2:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/1/"><span class="v-num">1</span><span class="v-txt">My son, if thou wilt receive my words, And lay up my commandments with thee;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/2/" data-ref="Proverbs 2:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/2/"><span class="v-num">2</span><span class="v-txt">So as to incline thine ear unto wisdom, And apply thy heart to understanding;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/3/" data-ref="Proverbs 2:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/3/"><span class="v-num">3</span><span class="v-txt">Yea, if thou cry after discernment, And lift up thy voice for understanding;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/4/" data-ref="Proverbs 2:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/4/"><span class="v-num">4</span><span class="v-txt">If thou seek her as silver, And search for her as for hid treasures:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/5/" data-ref="Proverbs 2:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/5/"><span class="v-num">5</span><span class="v-txt">Then shalt thou understand the fear of Jehovah, And find the knowledge of God.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/6/" data-ref="Proverbs 2:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/6/"><span class="v-num">6</span><span class="v-txt">For Jehovah giveth wisdom; Out of his mouth [cometh] knowledge and understanding:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/7/" data-ref="Proverbs 2:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/7/"><span class="v-num">7</span><span class="v-txt">He layeth up sound wisdom for the upright; [He is] a shield to them that walk in integrity;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/8/" data-ref="Proverbs 2:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/8/"><span class="v-num">8</span><span class="v-txt">That he may guard the paths of justice, And preserve the way of his saints.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/9/" data-ref="Proverbs 2:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/9/"><span class="v-num">9</span><span class="v-txt">Then shalt thou understand righteousness and justice, And equity, [yea], every good path.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/10/" data-ref="Proverbs 2:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/10/"><span class="v-num">10</span><span class="v-txt">For wisdom shall enter into thy heart, And knowledge shall be pleasant unto thy soul;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/11/" data-ref="Proverbs 2:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/11/"><span class="v-num">11</span><span class="v-txt">Discretion shall watch over thee; Understanding shall keep thee:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/12/" data-ref="Proverbs 2:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/12/"><span class="v-num">12</span><span class="v-txt">To deliver thee from the way of evil, From the men that speak perverse things;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/13/" data-ref="Proverbs 2:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/13/"><span class="v-num">13</span><span class="v-txt">Who forsake the paths of uprightness, To walk in the ways of darkness;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/14/" data-ref="Proverbs 2:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/14/"><span class="v-num">14</span><span class="v-txt">Who rejoice to do evil, And delight in the perverseness of evil;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/15/" data-ref="Proverbs 2:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/15/"><span class="v-num">15</span><span class="v-txt">Who are crooked in their ways, And wayward in their paths:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/16/" data-ref="Proverbs 2:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/16/"><span class="v-num">16</span><span class="v-txt">To deliver thee from the strange woman, Even from the foreigner that flattereth with her words;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/17/" data-ref="Proverbs 2:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/17/"><span class="v-num">17</span><span class="v-txt">That forsaketh the friend of her youth, And forgetteth the covenant of her God:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/18/" data-ref="Proverbs 2:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/18/"><span class="v-num">18</span><span class="v-txt">For her house inclineth unto death, And her paths unto the dead;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/19/" data-ref="Proverbs 2:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/19/"><span class="v-num">19</span><span class="v-txt">None that go unto her return again, Neither do they attain unto the paths of life:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/20/" data-ref="Proverbs 2:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/20/"><span class="v-num">20</span><span class="v-txt">That thou mayest walk in the way of good men, And keep the paths of the righteous.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/21/" data-ref="Proverbs 2:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/21/"><span class="v-num">21</span><span class="v-txt">For the upright shall dwell in the land, And the perfect shall remain in it.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/2/22/" data-ref="Proverbs 2:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/2/22/"><span class="v-num">22</span><span class="v-txt">But the wicked shall be cut off from the land, And the treacherous shall be rooted out of it.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Revelation 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I saw when the Lamb undid one of the stamps, and the voice of one of the four beasts came to my ears, saying as with a voice of thunder, Come and see.</span></div>
-<div class="v-row" data-ref="Revelation 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And I saw a white horse, and he who was seated on it had a bow; and there was given to him a crown: and he went out with power to overcome.</span></div>
-<div class="v-row" data-ref="Revelation 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when the second stamp was undone, the voice of the second beast came to my ears, saying, Come and see.</span></div>
-<div class="v-row" data-ref="Revelation 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And another horse came out, a red horse; and it was given to him who was seated on it to take peace from the earth, so that people might put one another to death: and there was given to him a great sword.</span></div>
-<div class="v-row" data-ref="Revelation 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when the third stamp was undone, the voice of the third beast came to my ears, saying, Come and see. And I saw a black horse; and he who was seated on it had scales in his hand.</span></div>
-<div class="v-row" data-ref="Revelation 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And a voice came to my ears, from the middle of the four beasts, saying, A measure of grain for a penny, and three measures of barley for a penny: and see that you do no damage to the oil and the wine.</span></div>
-<div class="v-row" data-ref="Revelation 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And when the fourth stamp was undone, the voice of the fourth beast came to my ears, saying, Come and see.</span></div>
-<div class="v-row" data-ref="Revelation 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I saw a grey horse, and the name of him who was seated on it was Death; and Hell came after him. And there was given to them authority over the fourth part of the earth, to put to destruction by the sword, and by taking away their food, and by death, and by the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Revelation 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And when the fifth stamp was undone, I saw under the altar the souls of those who had been put to death for the word of God, and for the witness which they kept.</span></div>
-<div class="v-row" data-ref="Revelation 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And they gave a great cry, saying, How long will it be, O Ruler, holy and true, before you take your place as judge and give punishment for our blood to those on the earth?</span></div>
-<div class="v-row" data-ref="Revelation 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And there was given to every one a white robe, and they were ordered to take their rest for a little time, till the number was complete of the other servants, their brothers, who would be put to death, even as they had been.</span></div>
-<div class="v-row" data-ref="Revelation 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I saw when the sixth stamp was undone, and there was a great earth-shock; and the sun became black as haircloth, and all the moon became as blood;</span></div>
-<div class="v-row" data-ref="Revelation 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the stars of heaven were falling to the earth, like green fruit from a tree before the force of a great wind.</span></div>
-<div class="v-row" data-ref="Revelation 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the heaven was taken away like the roll of a book when it is rolled up; and all the mountains and islands were moved out of their places.</span></div>
-<div class="v-row" data-ref="Revelation 6:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the kings of the earth, and the rulers, and the chief captains, and the men of wealth, and the strong, and every servant and free man, took cover in the holes and the rocks of the mountains;</span></div>
-<div class="v-row" data-ref="Revelation 6:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And they say to the mountains and to the rocks, Come down on us, covering us from the face of him who is seated on the high seat, and from the wrath of the Lamb:</span></div>
-<div class="v-row" data-ref="Revelation 6:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the great day of their wrath is come, and who may keep his place?</span></div>
+    <a class="v-row" href="/bible/bbe/revelation/6/1/" data-ref="Revelation 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/1/"><span class="v-num">1</span><span class="v-txt">And I saw when the Lamb undid one of the stamps, and the voice of one of the four beasts came to my ears, saying as with a voice of thunder, Come and see.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/2/" data-ref="Revelation 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/2/"><span class="v-num">2</span><span class="v-txt">And I saw a white horse, and he who was seated on it had a bow; and there was given to him a crown: and he went out with power to overcome.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/3/" data-ref="Revelation 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/3/"><span class="v-num">3</span><span class="v-txt">And when the second stamp was undone, the voice of the second beast came to my ears, saying, Come and see.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/4/" data-ref="Revelation 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/4/"><span class="v-num">4</span><span class="v-txt">And another horse came out, a red horse; and it was given to him who was seated on it to take peace from the earth, so that people might put one another to death: and there was given to him a great sword.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/5/" data-ref="Revelation 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/5/"><span class="v-num">5</span><span class="v-txt">And when the third stamp was undone, the voice of the third beast came to my ears, saying, Come and see. And I saw a black horse; and he who was seated on it had scales in his hand.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/6/" data-ref="Revelation 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/6/"><span class="v-num">6</span><span class="v-txt">And a voice came to my ears, from the middle of the four beasts, saying, A measure of grain for a penny, and three measures of barley for a penny: and see that you do no damage to the oil and the wine.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/7/" data-ref="Revelation 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/7/"><span class="v-num">7</span><span class="v-txt">And when the fourth stamp was undone, the voice of the fourth beast came to my ears, saying, Come and see.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/8/" data-ref="Revelation 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/8/"><span class="v-num">8</span><span class="v-txt">And I saw a grey horse, and the name of him who was seated on it was Death; and Hell came after him. And there was given to them authority over the fourth part of the earth, to put to destruction by the sword, and by taking away their food, and by death, and by the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/9/" data-ref="Revelation 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/9/"><span class="v-num">9</span><span class="v-txt">And when the fifth stamp was undone, I saw under the altar the souls of those who had been put to death for the word of God, and for the witness which they kept.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/10/" data-ref="Revelation 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/10/"><span class="v-num">10</span><span class="v-txt">And they gave a great cry, saying, How long will it be, O Ruler, holy and true, before you take your place as judge and give punishment for our blood to those on the earth?</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/11/" data-ref="Revelation 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/11/"><span class="v-num">11</span><span class="v-txt">And there was given to every one a white robe, and they were ordered to take their rest for a little time, till the number was complete of the other servants, their brothers, who would be put to death, even as they had been.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/12/" data-ref="Revelation 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/12/"><span class="v-num">12</span><span class="v-txt">And I saw when the sixth stamp was undone, and there was a great earth-shock; and the sun became black as haircloth, and all the moon became as blood;</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/13/" data-ref="Revelation 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/13/"><span class="v-num">13</span><span class="v-txt">And the stars of heaven were falling to the earth, like green fruit from a tree before the force of a great wind.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/14/" data-ref="Revelation 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/14/"><span class="v-num">14</span><span class="v-txt">And the heaven was taken away like the roll of a book when it is rolled up; and all the mountains and islands were moved out of their places.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/15/" data-ref="Revelation 6:15 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/15/"><span class="v-num">15</span><span class="v-txt">And the kings of the earth, and the rulers, and the chief captains, and the men of wealth, and the strong, and every servant and free man, took cover in the holes and the rocks of the mountains;</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/16/" data-ref="Revelation 6:16 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/16/"><span class="v-num">16</span><span class="v-txt">And they say to the mountains and to the rocks, Come down on us, covering us from the face of him who is seated on the high seat, and from the wrath of the Lamb:</span></a>
+<a class="v-row" href="/bible/bbe/revelation/6/17/" data-ref="Revelation 6:17 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/6/17/"><span class="v-num">17</span><span class="v-txt">For the great day of their wrath is come, and who may keep his place?</span></a>
 
     
 <div class="app-cta">

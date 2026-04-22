@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 17:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"My spirit is broken, My days are extinguished, The grave [is ready] for me.</span></div>
-<div class="v-row" data-ref="Job 17:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">[Are] not mockers with me? And does not my eye dwell on their provocation?</span></div>
-<div class="v-row" data-ref="Job 17:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Now put down a pledge for me with Yourself. Who [is] he [who] will shake hands with me?</span></div>
-<div class="v-row" data-ref="Job 17:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For You have hidden their heart from understanding; Therefore You will not exalt [them.]</span></div>
-<div class="v-row" data-ref="Job 17:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He who speaks flattery to [his] friends, Even the eyes of his children will fail.</span></div>
-<div class="v-row" data-ref="Job 17:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" But He has made me a byword of the people, And I have become one in whose face men spit.</span></div>
-<div class="v-row" data-ref="Job 17:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">My eye has also grown dim because of sorrow, And all my members [are] like shadows.</span></div>
-<div class="v-row" data-ref="Job 17:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Upright [men] are astonished at this, And the innocent stirs himself up against the hypocrite.</span></div>
-<div class="v-row" data-ref="Job 17:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Yet the righteous will hold to his way, And he who has clean hands will be stronger and stronger.</span></div>
-<div class="v-row" data-ref="Job 17:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">" But please, come back again, all of you, For I shall not find [one] wise [man] among you.</span></div>
-<div class="v-row" data-ref="Job 17:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My days are past, My purposes are broken off, [Even] the thoughts of my heart.</span></div>
-<div class="v-row" data-ref="Job 17:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">They change the night into day; 'The light [is] near,' [they say,] in the face of darkness.</span></div>
-<div class="v-row" data-ref="Job 17:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">If I wait [for] the grave [as] my house, If I make my bed in the darkness,</span></div>
-<div class="v-row" data-ref="Job 17:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If I say to corruption, 'You [are] my father,' And to the worm, 'You [are] my mother and my sister,'</span></div>
-<div class="v-row" data-ref="Job 17:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Where then [is] my hope? As for my hope, who can see it?</span></div>
-<div class="v-row" data-ref="Job 17:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">[Will] they go down to the gates of Sheol? Shall [we have] rest together in the dust?"</span></div>
+    <a class="v-row" href="/bible/nkjv/job/17/1/" data-ref="Job 17:1 (New King James Version)" data-verse-url="/bible/nkjv/job/17/1/"><span class="v-num">1</span><span class="v-txt">"My spirit is broken, My days are extinguished, The grave [is ready] for me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/2/" data-ref="Job 17:2 (New King James Version)" data-verse-url="/bible/nkjv/job/17/2/"><span class="v-num">2</span><span class="v-txt">[Are] not mockers with me? And does not my eye dwell on their provocation?</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/3/" data-ref="Job 17:3 (New King James Version)" data-verse-url="/bible/nkjv/job/17/3/"><span class="v-num">3</span><span class="v-txt">"Now put down a pledge for me with Yourself. Who [is] he [who] will shake hands with me?</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/4/" data-ref="Job 17:4 (New King James Version)" data-verse-url="/bible/nkjv/job/17/4/"><span class="v-num">4</span><span class="v-txt">For You have hidden their heart from understanding; Therefore You will not exalt [them.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/5/" data-ref="Job 17:5 (New King James Version)" data-verse-url="/bible/nkjv/job/17/5/"><span class="v-num">5</span><span class="v-txt">He who speaks flattery to [his] friends, Even the eyes of his children will fail.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/6/" data-ref="Job 17:6 (New King James Version)" data-verse-url="/bible/nkjv/job/17/6/"><span class="v-num">6</span><span class="v-txt">" But He has made me a byword of the people, And I have become one in whose face men spit.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/7/" data-ref="Job 17:7 (New King James Version)" data-verse-url="/bible/nkjv/job/17/7/"><span class="v-num">7</span><span class="v-txt">My eye has also grown dim because of sorrow, And all my members [are] like shadows.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/8/" data-ref="Job 17:8 (New King James Version)" data-verse-url="/bible/nkjv/job/17/8/"><span class="v-num">8</span><span class="v-txt">Upright [men] are astonished at this, And the innocent stirs himself up against the hypocrite.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/9/" data-ref="Job 17:9 (New King James Version)" data-verse-url="/bible/nkjv/job/17/9/"><span class="v-num">9</span><span class="v-txt">Yet the righteous will hold to his way, And he who has clean hands will be stronger and stronger.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/10/" data-ref="Job 17:10 (New King James Version)" data-verse-url="/bible/nkjv/job/17/10/"><span class="v-num">10</span><span class="v-txt">" But please, come back again, all of you, For I shall not find [one] wise [man] among you.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/11/" data-ref="Job 17:11 (New King James Version)" data-verse-url="/bible/nkjv/job/17/11/"><span class="v-num">11</span><span class="v-txt">My days are past, My purposes are broken off, [Even] the thoughts of my heart.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/12/" data-ref="Job 17:12 (New King James Version)" data-verse-url="/bible/nkjv/job/17/12/"><span class="v-num">12</span><span class="v-txt">They change the night into day; 'The light [is] near,' [they say,] in the face of darkness.</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/13/" data-ref="Job 17:13 (New King James Version)" data-verse-url="/bible/nkjv/job/17/13/"><span class="v-num">13</span><span class="v-txt">If I wait [for] the grave [as] my house, If I make my bed in the darkness,</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/14/" data-ref="Job 17:14 (New King James Version)" data-verse-url="/bible/nkjv/job/17/14/"><span class="v-num">14</span><span class="v-txt">If I say to corruption, 'You [are] my father,' And to the worm, 'You [are] my mother and my sister,'</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/15/" data-ref="Job 17:15 (New King James Version)" data-verse-url="/bible/nkjv/job/17/15/"><span class="v-num">15</span><span class="v-txt">Where then [is] my hope? As for my hope, who can see it?</span></a>
+<a class="v-row" href="/bible/nkjv/job/17/16/" data-ref="Job 17:16 (New King James Version)" data-verse-url="/bible/nkjv/job/17/16/"><span class="v-num">16</span><span class="v-txt">[Will] they go down to the gates of Sheol? Shall [we have] rest together in the dust?"</span></a>
 
     
 <div class="app-cta">

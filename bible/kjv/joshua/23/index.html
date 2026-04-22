@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 23</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 23:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came to pass a long time after that the LORD had given rest unto Israel from all their enemies round about, that Joshua waxed old and stricken in age.</span></div>
-<div class="v-row" data-ref="Joshua 23:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Joshua called for all Israel, and for their elders, and for their heads, and for their judges, and for their officers, and said unto them, I am old and stricken in age:</span></div>
-<div class="v-row" data-ref="Joshua 23:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And ye have seen all that the LORD your God hath done unto all these nations because of you; for the LORD your God is he that hath fought for you.</span></div>
-<div class="v-row" data-ref="Joshua 23:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Behold, I have divided unto you by lot these nations that remain, to be an inheritance for your tribes, from Jordan, with all the nations that I have cut off, even unto the great sea westward.</span></div>
-<div class="v-row" data-ref="Joshua 23:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the LORD your God, he shall expel them from before you, and drive them from out of your sight; and ye shall possess their land, as the LORD your God hath promised unto you.</span></div>
-<div class="v-row" data-ref="Joshua 23:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Be ye therefore very courageous to keep and to do all that is written in the book of the law of Moses, that ye turn not aside therefrom to the right hand or to the left;</span></div>
-<div class="v-row" data-ref="Joshua 23:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">That ye come not among these nations, these that remain among you; neither make mention of the name of their gods, nor cause to swear by them, neither serve them, nor bow yourselves unto them:</span></div>
-<div class="v-row" data-ref="Joshua 23:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But cleave unto the LORD your God, as ye have done unto this day.</span></div>
-<div class="v-row" data-ref="Joshua 23:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For the LORD hath driven out from before you great nations and strong: but as for you, no man hath been able to stand before you unto this day.</span></div>
-<div class="v-row" data-ref="Joshua 23:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">One man of you shall chase a thousand: for the LORD your God, he it is that fighteth for you, as he hath promised you.</span></div>
-<div class="v-row" data-ref="Joshua 23:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Take good heed therefore unto yourselves, that ye love the LORD your God.</span></div>
-<div class="v-row" data-ref="Joshua 23:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Else if ye do in any wise go back, and cleave unto the remnant of these nations, even these that remain among you, and shall make marriages with them, and go in unto them, and they to you:</span></div>
-<div class="v-row" data-ref="Joshua 23:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Know for a certainty that the LORD your God will no more drive out any of these nations from before you; but they shall be snares and traps unto you, and scourges in your sides, and thorns in your eyes, until ye perish from off this good land which the LORD your God hath given you.</span></div>
-<div class="v-row" data-ref="Joshua 23:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And, behold, this day I am going the way of all the earth: and ye know in all your hearts and in all your souls, that not one thing hath failed of all the good things which the LORD your God spake concerning you; all are come to pass unto you, and not one thing hath failed thereof.</span></div>
-<div class="v-row" data-ref="Joshua 23:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore it shall come to pass, that as all good things are come upon you, which the LORD your God promised you; so shall the LORD bring upon you all evil things, until he have destroyed you from off this good land which the LORD your God hath given you.</span></div>
-<div class="v-row" data-ref="Joshua 23:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">When ye have transgressed the covenant of the LORD your God, which he commanded you, and have gone and served other gods, and bowed yourselves to them; then shall the anger of the LORD be kindled against you, and ye shall perish quickly from off the good land which he hath given unto you.</span></div>
+    <a class="v-row" href="/bible/kjv/joshua/23/1/" data-ref="Joshua 23:1 (King James Version)" data-verse-url="/bible/kjv/joshua/23/1/"><span class="v-num">1</span><span class="v-txt">And it came to pass a long time after that the LORD had given rest unto Israel from all their enemies round about, that Joshua waxed old and stricken in age.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/2/" data-ref="Joshua 23:2 (King James Version)" data-verse-url="/bible/kjv/joshua/23/2/"><span class="v-num">2</span><span class="v-txt">And Joshua called for all Israel, and for their elders, and for their heads, and for their judges, and for their officers, and said unto them, I am old and stricken in age:</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/3/" data-ref="Joshua 23:3 (King James Version)" data-verse-url="/bible/kjv/joshua/23/3/"><span class="v-num">3</span><span class="v-txt">And ye have seen all that the LORD your God hath done unto all these nations because of you; for the LORD your God is he that hath fought for you.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/4/" data-ref="Joshua 23:4 (King James Version)" data-verse-url="/bible/kjv/joshua/23/4/"><span class="v-num">4</span><span class="v-txt">Behold, I have divided unto you by lot these nations that remain, to be an inheritance for your tribes, from Jordan, with all the nations that I have cut off, even unto the great sea westward.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/5/" data-ref="Joshua 23:5 (King James Version)" data-verse-url="/bible/kjv/joshua/23/5/"><span class="v-num">5</span><span class="v-txt">And the LORD your God, he shall expel them from before you, and drive them from out of your sight; and ye shall possess their land, as the LORD your God hath promised unto you.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/6/" data-ref="Joshua 23:6 (King James Version)" data-verse-url="/bible/kjv/joshua/23/6/"><span class="v-num">6</span><span class="v-txt">Be ye therefore very courageous to keep and to do all that is written in the book of the law of Moses, that ye turn not aside therefrom to the right hand or to the left;</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/7/" data-ref="Joshua 23:7 (King James Version)" data-verse-url="/bible/kjv/joshua/23/7/"><span class="v-num">7</span><span class="v-txt">That ye come not among these nations, these that remain among you; neither make mention of the name of their gods, nor cause to swear by them, neither serve them, nor bow yourselves unto them:</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/8/" data-ref="Joshua 23:8 (King James Version)" data-verse-url="/bible/kjv/joshua/23/8/"><span class="v-num">8</span><span class="v-txt">But cleave unto the LORD your God, as ye have done unto this day.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/9/" data-ref="Joshua 23:9 (King James Version)" data-verse-url="/bible/kjv/joshua/23/9/"><span class="v-num">9</span><span class="v-txt">For the LORD hath driven out from before you great nations and strong: but as for you, no man hath been able to stand before you unto this day.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/10/" data-ref="Joshua 23:10 (King James Version)" data-verse-url="/bible/kjv/joshua/23/10/"><span class="v-num">10</span><span class="v-txt">One man of you shall chase a thousand: for the LORD your God, he it is that fighteth for you, as he hath promised you.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/11/" data-ref="Joshua 23:11 (King James Version)" data-verse-url="/bible/kjv/joshua/23/11/"><span class="v-num">11</span><span class="v-txt">Take good heed therefore unto yourselves, that ye love the LORD your God.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/12/" data-ref="Joshua 23:12 (King James Version)" data-verse-url="/bible/kjv/joshua/23/12/"><span class="v-num">12</span><span class="v-txt">Else if ye do in any wise go back, and cleave unto the remnant of these nations, even these that remain among you, and shall make marriages with them, and go in unto them, and they to you:</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/13/" data-ref="Joshua 23:13 (King James Version)" data-verse-url="/bible/kjv/joshua/23/13/"><span class="v-num">13</span><span class="v-txt">Know for a certainty that the LORD your God will no more drive out any of these nations from before you; but they shall be snares and traps unto you, and scourges in your sides, and thorns in your eyes, until ye perish from off this good land which the LORD your God hath given you.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/14/" data-ref="Joshua 23:14 (King James Version)" data-verse-url="/bible/kjv/joshua/23/14/"><span class="v-num">14</span><span class="v-txt">And, behold, this day I am going the way of all the earth: and ye know in all your hearts and in all your souls, that not one thing hath failed of all the good things which the LORD your God spake concerning you; all are come to pass unto you, and not one thing hath failed thereof.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/15/" data-ref="Joshua 23:15 (King James Version)" data-verse-url="/bible/kjv/joshua/23/15/"><span class="v-num">15</span><span class="v-txt">Therefore it shall come to pass, that as all good things are come upon you, which the LORD your God promised you; so shall the LORD bring upon you all evil things, until he have destroyed you from off this good land which the LORD your God hath given you.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/23/16/" data-ref="Joshua 23:16 (King James Version)" data-verse-url="/bible/kjv/joshua/23/16/"><span class="v-num">16</span><span class="v-txt">When ye have transgressed the covenant of the LORD your God, which he commanded you, and have gone and served other gods, and bowed yourselves to them; then shall the anger of the LORD be kindled against you, and ye shall perish quickly from off the good land which he hath given unto you.</span></a>
 
     
 <div class="app-cta">

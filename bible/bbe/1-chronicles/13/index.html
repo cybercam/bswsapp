@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Chronicles 13:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then David had discussions with the captains of thousands and the captains of hundreds and with every chief.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And David said to all the men of Israel who had come together there, If it seems good to you and if it is the purpose of the Lord our God, let us send to all the rest of our brothers, everywhere in the land of Israel, and to the priests and the Levites in their towns and the country round them, and get them to come together here to us;</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And let us get back for ourselves the ark of our God: for in the days of Saul we did not go to it for directions.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And all the people said they would do so, for it seemed right to them.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So David sent for all Israel to come together, from Shihor, the river of Egypt, as far as the way into Hamath, to get the ark of God from Kiriath-jearim.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And David went up, with all Israel, to Baalah, that is, to Kiriath-jearim in Judah, to get up from there the ark of God, over which the holy Name is named, the name of the Lord whose place is between the winged ones.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And they put the ark of God on a new cart, and took it out of the house of Abinadab; and Uzza and Ahio were the drivers of the cart.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then David and all Israel made melody before God with all their strength, with songs and corded instruments of music, and with brass instruments and horns.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And when they came to the grain-floor of Chidon, Uzza put out his hand to keep the ark in its place, for the oxen were slipping.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the wrath of the Lord, burning against Uzza, sent destruction on him because he had put his hand on the ark, and death came to him there before God.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And David was angry because of the Lord's outburst of wrath against Uzza, and he gave that place the name Perez-uzza, to this day.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And so great was David's fear of God that day, that he said, How may I let the ark of God come to me?</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So David did not let the ark come back to him to the town of David, but had it turned away and put into the house of Obed-edom the Gittite.</span></div>
-<div class="v-row" data-ref="1 Chronicles 13:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the ark of God was in the house of Obed-edom for three months; and the Lord sent a blessing on the house of Obed-edom and on all he had.</span></div>
+    <a class="v-row" href="/bible/bbe/1-chronicles/13/1/" data-ref="1 Chronicles 13:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/1/"><span class="v-num">1</span><span class="v-txt">Then David had discussions with the captains of thousands and the captains of hundreds and with every chief.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/2/" data-ref="1 Chronicles 13:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/2/"><span class="v-num">2</span><span class="v-txt">And David said to all the men of Israel who had come together there, If it seems good to you and if it is the purpose of the Lord our God, let us send to all the rest of our brothers, everywhere in the land of Israel, and to the priests and the Levites in their towns and the country round them, and get them to come together here to us;</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/3/" data-ref="1 Chronicles 13:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/3/"><span class="v-num">3</span><span class="v-txt">And let us get back for ourselves the ark of our God: for in the days of Saul we did not go to it for directions.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/4/" data-ref="1 Chronicles 13:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/4/"><span class="v-num">4</span><span class="v-txt">And all the people said they would do so, for it seemed right to them.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/5/" data-ref="1 Chronicles 13:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/5/"><span class="v-num">5</span><span class="v-txt">So David sent for all Israel to come together, from Shihor, the river of Egypt, as far as the way into Hamath, to get the ark of God from Kiriath-jearim.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/6/" data-ref="1 Chronicles 13:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/6/"><span class="v-num">6</span><span class="v-txt">And David went up, with all Israel, to Baalah, that is, to Kiriath-jearim in Judah, to get up from there the ark of God, over which the holy Name is named, the name of the Lord whose place is between the winged ones.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/7/" data-ref="1 Chronicles 13:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/7/"><span class="v-num">7</span><span class="v-txt">And they put the ark of God on a new cart, and took it out of the house of Abinadab; and Uzza and Ahio were the drivers of the cart.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/8/" data-ref="1 Chronicles 13:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/8/"><span class="v-num">8</span><span class="v-txt">Then David and all Israel made melody before God with all their strength, with songs and corded instruments of music, and with brass instruments and horns.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/9/" data-ref="1 Chronicles 13:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/9/"><span class="v-num">9</span><span class="v-txt">And when they came to the grain-floor of Chidon, Uzza put out his hand to keep the ark in its place, for the oxen were slipping.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/10/" data-ref="1 Chronicles 13:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/10/"><span class="v-num">10</span><span class="v-txt">And the wrath of the Lord, burning against Uzza, sent destruction on him because he had put his hand on the ark, and death came to him there before God.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/11/" data-ref="1 Chronicles 13:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/11/"><span class="v-num">11</span><span class="v-txt">And David was angry because of the Lord's outburst of wrath against Uzza, and he gave that place the name Perez-uzza, to this day.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/12/" data-ref="1 Chronicles 13:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/12/"><span class="v-num">12</span><span class="v-txt">And so great was David's fear of God that day, that he said, How may I let the ark of God come to me?</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/13/" data-ref="1 Chronicles 13:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/13/"><span class="v-num">13</span><span class="v-txt">So David did not let the ark come back to him to the town of David, but had it turned away and put into the house of Obed-edom the Gittite.</span></a>
+<a class="v-row" href="/bible/bbe/1-chronicles/13/14/" data-ref="1 Chronicles 13:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-chronicles/13/14/"><span class="v-num">14</span><span class="v-txt">And the ark of God was in the house of Obed-edom for three months; and the Lord sent a blessing on the house of Obed-edom and on all he had.</span></a>
 
     
 <div class="app-cta">

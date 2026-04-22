@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the Lord said to me, Take a great writing-board, and on it put down in common letters, Maher-shalal-hash-baz;</span></div>
-<div class="v-row" data-ref="Isaiah 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And take true witnesses to the writing, Uriah the priest, and Zechariah, the son of Jeberechiah.</span></div>
-<div class="v-row" data-ref="Isaiah 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And I went in to my wife, and she became with child, and gave birth to a son. Then the Lord said to me, Give him the name Maher-shalal-hash-baz,</span></div>
-<div class="v-row" data-ref="Isaiah 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For before the child is able to say, Father, or, Mother, the wealth of Damascus and the goods of Samaria will be taken away by the king of Assyria.</span></div>
-<div class="v-row" data-ref="Isaiah 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the Lord said again to me,</span></div>
-<div class="v-row" data-ref="Isaiah 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Because this people will have nothing to do with the softly-flowing waters of Shiloah, and have fear of Rezin and Remaliah's son;</span></div>
-<div class="v-row" data-ref="Isaiah 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For this cause the Lord is sending on them the waters of the River, deep and strong, even the king of Assyria and all his glory: and it will come up through all its streams, overflowing all its edges:</span></div>
-<div class="v-row" data-ref="Isaiah 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And it will come on into Judah; rushing on and overflowing, till the waters are up to the neck; ***and his outstretched wings will be covering the land from side to side: for God is with us.</span></div>
-<div class="v-row" data-ref="Isaiah 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Have knowledge, O peoples, and be in fear; give ear, all you far-off parts of the earth:</span></div>
-<div class="v-row" data-ref="Isaiah 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Let your designs be formed, and they will come to nothing; give your orders, and they will not be effected: for God is with us.</span></div>
-<div class="v-row" data-ref="Isaiah 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the Lord, controlling me with a strong hand, gave me orders not to go in the way of this people, saying,</span></div>
-<div class="v-row" data-ref="Isaiah 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Do not say, It is holy, about everything of which this people says, It is holy; and do not be in fear of what they go in fear of.</span></div>
-<div class="v-row" data-ref="Isaiah 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But let the Lord of armies be holy to you, and go in fear of him, giving honour to him.</span></div>
-<div class="v-row" data-ref="Isaiah 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he will be for a holy place: but for a stone of falling and a rock of trouble to the two houses of Israel, and to the men of Jerusalem, for a net in which they may be taken.</span></div>
-<div class="v-row" data-ref="Isaiah 8:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And numbers of them, falling on the stone, will be broken, and will be taken in the net.</span></div>
-<div class="v-row" data-ref="Isaiah 8:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let my teaching be kept secret: and my words be given to my disciples only.</span></div>
-<div class="v-row" data-ref="Isaiah 8:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And I will be waiting for the Lord, whose face is veiled from the house of Jacob, and I will be looking for him.</span></div>
-<div class="v-row" data-ref="Isaiah 8:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">See, I and the children whom the Lord has given me, are for signs and for wonders in Israel from the Lord of armies, whose resting-place is in Mount Zion.</span></div>
-<div class="v-row" data-ref="Isaiah 8:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And when they say to you, Make request for us to those who have control of spirits, and to those wise in secret arts, who make hollow bird-like sounds; is it not right for a people to make request to their gods, to make request for the living to the dead?</span></div>
-<div class="v-row" data-ref="Isaiah 8:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Then say to them, Put your faith in the teaching and the witness. ... If they do not say such things. ... For him there is no dawn. ...</span></div>
-<div class="v-row" data-ref="Isaiah 8:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And he will go through the land in bitter trouble and in need of food; and when he is unable to get food, he will become angry, cursing his king and his God, and his eyes will be turned to heaven on high;</span></div>
-<div class="v-row" data-ref="Isaiah 8:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And he will be looking down on the earth, and there will be trouble and dark clouds, black night where there is no seeing.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/8/1/" data-ref="Isaiah 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/1/"><span class="v-num">1</span><span class="v-txt">And the Lord said to me, Take a great writing-board, and on it put down in common letters, Maher-shalal-hash-baz;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/2/" data-ref="Isaiah 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/2/"><span class="v-num">2</span><span class="v-txt">And take true witnesses to the writing, Uriah the priest, and Zechariah, the son of Jeberechiah.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/3/" data-ref="Isaiah 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/3/"><span class="v-num">3</span><span class="v-txt">And I went in to my wife, and she became with child, and gave birth to a son. Then the Lord said to me, Give him the name Maher-shalal-hash-baz,</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/4/" data-ref="Isaiah 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/4/"><span class="v-num">4</span><span class="v-txt">For before the child is able to say, Father, or, Mother, the wealth of Damascus and the goods of Samaria will be taken away by the king of Assyria.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/5/" data-ref="Isaiah 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/5/"><span class="v-num">5</span><span class="v-txt">And the Lord said again to me,</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/6/" data-ref="Isaiah 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/6/"><span class="v-num">6</span><span class="v-txt">Because this people will have nothing to do with the softly-flowing waters of Shiloah, and have fear of Rezin and Remaliah's son;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/7/" data-ref="Isaiah 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/7/"><span class="v-num">7</span><span class="v-txt">For this cause the Lord is sending on them the waters of the River, deep and strong, even the king of Assyria and all his glory: and it will come up through all its streams, overflowing all its edges:</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/8/" data-ref="Isaiah 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/8/"><span class="v-num">8</span><span class="v-txt">And it will come on into Judah; rushing on and overflowing, till the waters are up to the neck; ***and his outstretched wings will be covering the land from side to side: for God is with us.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/9/" data-ref="Isaiah 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/9/"><span class="v-num">9</span><span class="v-txt">Have knowledge, O peoples, and be in fear; give ear, all you far-off parts of the earth:</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/10/" data-ref="Isaiah 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/10/"><span class="v-num">10</span><span class="v-txt">Let your designs be formed, and they will come to nothing; give your orders, and they will not be effected: for God is with us.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/11/" data-ref="Isaiah 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/11/"><span class="v-num">11</span><span class="v-txt">For the Lord, controlling me with a strong hand, gave me orders not to go in the way of this people, saying,</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/12/" data-ref="Isaiah 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/12/"><span class="v-num">12</span><span class="v-txt">Do not say, It is holy, about everything of which this people says, It is holy; and do not be in fear of what they go in fear of.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/13/" data-ref="Isaiah 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/13/"><span class="v-num">13</span><span class="v-txt">But let the Lord of armies be holy to you, and go in fear of him, giving honour to him.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/14/" data-ref="Isaiah 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/14/"><span class="v-num">14</span><span class="v-txt">And he will be for a holy place: but for a stone of falling and a rock of trouble to the two houses of Israel, and to the men of Jerusalem, for a net in which they may be taken.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/15/" data-ref="Isaiah 8:15 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/15/"><span class="v-num">15</span><span class="v-txt">And numbers of them, falling on the stone, will be broken, and will be taken in the net.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/16/" data-ref="Isaiah 8:16 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/16/"><span class="v-num">16</span><span class="v-txt">Let my teaching be kept secret: and my words be given to my disciples only.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/17/" data-ref="Isaiah 8:17 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/17/"><span class="v-num">17</span><span class="v-txt">And I will be waiting for the Lord, whose face is veiled from the house of Jacob, and I will be looking for him.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/18/" data-ref="Isaiah 8:18 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/18/"><span class="v-num">18</span><span class="v-txt">See, I and the children whom the Lord has given me, are for signs and for wonders in Israel from the Lord of armies, whose resting-place is in Mount Zion.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/19/" data-ref="Isaiah 8:19 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/19/"><span class="v-num">19</span><span class="v-txt">And when they say to you, Make request for us to those who have control of spirits, and to those wise in secret arts, who make hollow bird-like sounds; is it not right for a people to make request to their gods, to make request for the living to the dead?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/20/" data-ref="Isaiah 8:20 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/20/"><span class="v-num">20</span><span class="v-txt">Then say to them, Put your faith in the teaching and the witness. ... If they do not say such things. ... For him there is no dawn. ...</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/21/" data-ref="Isaiah 8:21 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/21/"><span class="v-num">21</span><span class="v-txt">And he will go through the land in bitter trouble and in need of food; and when he is unable to get food, he will become angry, cursing his king and his God, and his eyes will be turned to heaven on high;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/8/22/" data-ref="Isaiah 8:22 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/8/22/"><span class="v-num">22</span><span class="v-txt">And he will be looking down on the earth, and there will be trouble and dark clouds, black night where there is no seeing.</span></a>
 
     
 <div class="app-cta">

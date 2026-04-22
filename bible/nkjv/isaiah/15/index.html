@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,15 +204,15 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 15:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden against Moab. Because in the night Ar of Moab is laid waste [And] destroyed, Because in the night Kir of Moab is laid waste [And] destroyed,</span></div>
-<div class="v-row" data-ref="Isaiah 15:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He has gone up to the temple and Dibon, To the high places to weep. Moab will wail over Nebo and over Medeba; On all their heads [will be] baldness, [And] every beard cut off.</span></div>
-<div class="v-row" data-ref="Isaiah 15:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">In their streets they will clothe themselves with sackcloth; On the tops of their houses And in their streets Everyone will wail, weeping bitterly.</span></div>
-<div class="v-row" data-ref="Isaiah 15:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Heshbon and Elealeh will cry out, Their voice shall be heard as far as Jahaz; Therefore the armed soldiers of Moab will cry out; His life will be burdensome to him.</span></div>
-<div class="v-row" data-ref="Isaiah 15:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"My heart will cry out for Moab; His fugitives [shall flee] to Zoar, [Like] a three-year-old heifer. For by the Ascent of Luhith They will go up with weeping; For in the way of Horonaim They will raise up a cry of destruction,</span></div>
-<div class="v-row" data-ref="Isaiah 15:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For the waters of Nimrim will be desolate, For the green grass has withered away; The grass fails, there is nothing green.</span></div>
-<div class="v-row" data-ref="Isaiah 15:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore the abundance they have gained, And what they have laid up, They will carry away to the Brook of the Willows.</span></div>
-<div class="v-row" data-ref="Isaiah 15:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the cry has gone all around the borders of Moab, Its wailing to Eglaim And its wailing to Beer Elim.</span></div>
-<div class="v-row" data-ref="Isaiah 15:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For the waters of Dimon will be full of blood; Because I will bring more upon Dimon, Lions upon him who escapes from Moab, And on the remnant of the land."</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/15/1/" data-ref="Isaiah 15:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/1/"><span class="v-num">1</span><span class="v-txt">The burden against Moab. Because in the night Ar of Moab is laid waste [And] destroyed, Because in the night Kir of Moab is laid waste [And] destroyed,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/2/" data-ref="Isaiah 15:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/2/"><span class="v-num">2</span><span class="v-txt">He has gone up to the temple and Dibon, To the high places to weep. Moab will wail over Nebo and over Medeba; On all their heads [will be] baldness, [And] every beard cut off.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/3/" data-ref="Isaiah 15:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/3/"><span class="v-num">3</span><span class="v-txt">In their streets they will clothe themselves with sackcloth; On the tops of their houses And in their streets Everyone will wail, weeping bitterly.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/4/" data-ref="Isaiah 15:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/4/"><span class="v-num">4</span><span class="v-txt">Heshbon and Elealeh will cry out, Their voice shall be heard as far as Jahaz; Therefore the armed soldiers of Moab will cry out; His life will be burdensome to him.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/5/" data-ref="Isaiah 15:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/5/"><span class="v-num">5</span><span class="v-txt">"My heart will cry out for Moab; His fugitives [shall flee] to Zoar, [Like] a three-year-old heifer. For by the Ascent of Luhith They will go up with weeping; For in the way of Horonaim They will raise up a cry of destruction,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/6/" data-ref="Isaiah 15:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/6/"><span class="v-num">6</span><span class="v-txt">For the waters of Nimrim will be desolate, For the green grass has withered away; The grass fails, there is nothing green.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/7/" data-ref="Isaiah 15:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/7/"><span class="v-num">7</span><span class="v-txt">Therefore the abundance they have gained, And what they have laid up, They will carry away to the Brook of the Willows.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/8/" data-ref="Isaiah 15:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/8/"><span class="v-num">8</span><span class="v-txt">For the cry has gone all around the borders of Moab, Its wailing to Eglaim And its wailing to Beer Elim.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/15/9/" data-ref="Isaiah 15:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/15/9/"><span class="v-num">9</span><span class="v-txt">For the waters of Dimon will be full of blood; Because I will bring more upon Dimon, Lions upon him who escapes from Moab, And on the remnant of the land."</span></a>
 
     
 <div class="app-cta">

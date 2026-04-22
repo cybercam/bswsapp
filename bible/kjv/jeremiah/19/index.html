@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 19:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thus saith the LORD, Go and get a potter's earthen bottle, and take of the ancients of the people, and of the ancients of the priests;</span></div>
-<div class="v-row" data-ref="Jeremiah 19:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And go forth unto the valley of the son of Hinnom, which is by the entry of the east gate, and proclaim there the words that I shall tell thee,</span></div>
-<div class="v-row" data-ref="Jeremiah 19:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And say, Hear ye the word of the LORD, O kings of Judah, and inhabitants of Jerusalem; Thus saith the LORD of hosts, the God of Israel; Behold, I will bring evil upon this place, the which whosoever heareth, his ears shall tingle.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Because they have forsaken me, and have estranged this place, and have burned incense in it unto other gods, whom neither they nor their fathers have known, nor the kings of Judah, and have filled this place with the blood of innocents;</span></div>
-<div class="v-row" data-ref="Jeremiah 19:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They have built also the high places of Baal, to burn their sons with fire for burnt offerings unto Baal, which I commanded not, nor spake it, neither came it into my mind:</span></div>
-<div class="v-row" data-ref="Jeremiah 19:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Therefore, behold, the days come, saith the LORD, that this place shall no more be called Tophet, nor The valley of the son of Hinnom, but The valley of slaughter.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I will make void the counsel of Judah and Jerusalem in this place; and I will cause them to fall by the sword before their enemies, and by the hands of them that seek their lives: and their carcases will I give to be meat for the fowls of the heaven, and for the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I will make this city desolate, and an hissing; every one that passeth thereby shall be astonished and hiss because of all the plagues thereof.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And I will cause them to eat the flesh of their sons and the flesh of their daughters, and they shall eat every one the flesh of his friend in the siege and straitness, wherewith their enemies, and they that seek their lives, shall straiten them.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then shalt thou break the bottle in the sight of the men that go with thee,</span></div>
-<div class="v-row" data-ref="Jeremiah 19:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And shalt say unto them, Thus saith the LORD of hosts; Even so will I break this people and this city, as one breaketh a potter's vessel, that cannot be made whole again: and they shall bury them in Tophet, till there be no place to bury.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Thus will I do unto this place, saith the LORD, and to the inhabitants thereof, and even make this city as Tophet:</span></div>
-<div class="v-row" data-ref="Jeremiah 19:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the houses of Jerusalem, and the houses of the kings of Judah, shall be defiled as the place of Tophet, because of all the houses upon whose roofs they have burned incense unto all the host of heaven, and have poured out drink offerings unto other gods.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then came Jeremiah from Tophet, whither the LORD had sent him to prophesy; and he stood in the court of the LORD'S house; and said to all the people,</span></div>
-<div class="v-row" data-ref="Jeremiah 19:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Thus saith the LORD of hosts, the God of Israel; Behold, I will bring upon this city and upon all her towns all the evil that I have pronounced against it, because they have hardened their necks, that they might not hear my words.</span></div>
+    <a class="v-row" href="/bible/kjv/jeremiah/19/1/" data-ref="Jeremiah 19:1 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/1/"><span class="v-num">1</span><span class="v-txt">Thus saith the LORD, Go and get a potter's earthen bottle, and take of the ancients of the people, and of the ancients of the priests;</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/2/" data-ref="Jeremiah 19:2 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/2/"><span class="v-num">2</span><span class="v-txt">And go forth unto the valley of the son of Hinnom, which is by the entry of the east gate, and proclaim there the words that I shall tell thee,</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/3/" data-ref="Jeremiah 19:3 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/3/"><span class="v-num">3</span><span class="v-txt">And say, Hear ye the word of the LORD, O kings of Judah, and inhabitants of Jerusalem; Thus saith the LORD of hosts, the God of Israel; Behold, I will bring evil upon this place, the which whosoever heareth, his ears shall tingle.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/4/" data-ref="Jeremiah 19:4 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/4/"><span class="v-num">4</span><span class="v-txt">Because they have forsaken me, and have estranged this place, and have burned incense in it unto other gods, whom neither they nor their fathers have known, nor the kings of Judah, and have filled this place with the blood of innocents;</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/5/" data-ref="Jeremiah 19:5 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/5/"><span class="v-num">5</span><span class="v-txt">They have built also the high places of Baal, to burn their sons with fire for burnt offerings unto Baal, which I commanded not, nor spake it, neither came it into my mind:</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/6/" data-ref="Jeremiah 19:6 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/6/"><span class="v-num">6</span><span class="v-txt">Therefore, behold, the days come, saith the LORD, that this place shall no more be called Tophet, nor The valley of the son of Hinnom, but The valley of slaughter.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/7/" data-ref="Jeremiah 19:7 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/7/"><span class="v-num">7</span><span class="v-txt">And I will make void the counsel of Judah and Jerusalem in this place; and I will cause them to fall by the sword before their enemies, and by the hands of them that seek their lives: and their carcases will I give to be meat for the fowls of the heaven, and for the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/8/" data-ref="Jeremiah 19:8 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/8/"><span class="v-num">8</span><span class="v-txt">And I will make this city desolate, and an hissing; every one that passeth thereby shall be astonished and hiss because of all the plagues thereof.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/9/" data-ref="Jeremiah 19:9 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/9/"><span class="v-num">9</span><span class="v-txt">And I will cause them to eat the flesh of their sons and the flesh of their daughters, and they shall eat every one the flesh of his friend in the siege and straitness, wherewith their enemies, and they that seek their lives, shall straiten them.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/10/" data-ref="Jeremiah 19:10 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/10/"><span class="v-num">10</span><span class="v-txt">Then shalt thou break the bottle in the sight of the men that go with thee,</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/11/" data-ref="Jeremiah 19:11 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/11/"><span class="v-num">11</span><span class="v-txt">And shalt say unto them, Thus saith the LORD of hosts; Even so will I break this people and this city, as one breaketh a potter's vessel, that cannot be made whole again: and they shall bury them in Tophet, till there be no place to bury.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/12/" data-ref="Jeremiah 19:12 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/12/"><span class="v-num">12</span><span class="v-txt">Thus will I do unto this place, saith the LORD, and to the inhabitants thereof, and even make this city as Tophet:</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/13/" data-ref="Jeremiah 19:13 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/13/"><span class="v-num">13</span><span class="v-txt">And the houses of Jerusalem, and the houses of the kings of Judah, shall be defiled as the place of Tophet, because of all the houses upon whose roofs they have burned incense unto all the host of heaven, and have poured out drink offerings unto other gods.</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/14/" data-ref="Jeremiah 19:14 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/14/"><span class="v-num">14</span><span class="v-txt">Then came Jeremiah from Tophet, whither the LORD had sent him to prophesy; and he stood in the court of the LORD'S house; and said to all the people,</span></a>
+<a class="v-row" href="/bible/kjv/jeremiah/19/15/" data-ref="Jeremiah 19:15 (King James Version)" data-verse-url="/bible/kjv/jeremiah/19/15/"><span class="v-num">15</span><span class="v-txt">Thus saith the LORD of hosts, the God of Israel; Behold, I will bring upon this city and upon all her towns all the evil that I have pronounced against it, because they have hardened their necks, that they might not hear my words.</span></a>
 
     
 <div class="app-cta">

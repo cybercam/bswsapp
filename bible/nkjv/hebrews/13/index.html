@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 13:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let brotherly love continue.</span></div>
-<div class="v-row" data-ref="Hebrews 13:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Do not forget to entertain strangers, for by so [doing] some have unwittingly entertained angels.</span></div>
-<div class="v-row" data-ref="Hebrews 13:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Remember the prisoners as if chained with them -- those who are mistreated -- since you yourselves are in the body also.</span></div>
-<div class="v-row" data-ref="Hebrews 13:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Marriage [is] honorable among all, and the bed undefiled; but fornicators and adulterers God will judge.</span></div>
-<div class="v-row" data-ref="Hebrews 13:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">[Let your] conduct [be] without covetousness; [be] content with such things as you have. For He Himself has said, "I will never leave you nor forsake you."</span></div>
-<div class="v-row" data-ref="Hebrews 13:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So we may boldly say: "The LORD [is] my helper; I will not fear. What can man do to me?"</span></div>
-<div class="v-row" data-ref="Hebrews 13:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Remember those who rule over you, who have spoken the word of God to you, whose faith follow, considering the outcome of [their] conduct.</span></div>
-<div class="v-row" data-ref="Hebrews 13:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Jesus Christ [is] the same yesterday, today, and forever.</span></div>
-<div class="v-row" data-ref="Hebrews 13:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Do not be carried about with various and strange doctrines. For [it is] good that the heart be established by grace, not with foods which have not profited those who have been occupied with them.</span></div>
-<div class="v-row" data-ref="Hebrews 13:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">We have an altar from which those who serve the tabernacle have no right to eat.</span></div>
-<div class="v-row" data-ref="Hebrews 13:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the bodies of those animals, whose blood is brought into the sanctuary by the high priest for sin, are burned outside the camp.</span></div>
-<div class="v-row" data-ref="Hebrews 13:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore Jesus also, that He might sanctify the people with His own blood, suffered outside the gate.</span></div>
-<div class="v-row" data-ref="Hebrews 13:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore let us go forth to Him, outside the camp, bearing His reproach.</span></div>
-<div class="v-row" data-ref="Hebrews 13:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For here we have no continuing city, but we seek the one to come.</span></div>
-<div class="v-row" data-ref="Hebrews 13:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore by Him let us continually offer the sacrifice of praise to God, that is, the fruit of [our] lips, giving thanks to His name.</span></div>
-<div class="v-row" data-ref="Hebrews 13:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But do not forget to do good and to share, for with such sacrifices God is well pleased.</span></div>
-<div class="v-row" data-ref="Hebrews 13:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Obey those who rule over you, and be submissive, for they watch out for your souls, as those who must give account. Let them do so with joy and not with grief, for that would be unprofitable for you.</span></div>
-<div class="v-row" data-ref="Hebrews 13:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Pray for us; for we are confident that we have a good conscience, in all things desiring to live honorably.</span></div>
-<div class="v-row" data-ref="Hebrews 13:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">But I especially urge [you] to do this, that I may be restored to you the sooner.</span></div>
-<div class="v-row" data-ref="Hebrews 13:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Now may the God of peace who brought up our Lord Jesus from the dead, that great Shepherd of the sheep, through the blood of the everlasting covenant,</span></div>
-<div class="v-row" data-ref="Hebrews 13:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">make you complete in every good work to do His will, working in you what is well pleasing in His sight, through Jesus Christ, to whom [be] glory forever and ever. Amen.</span></div>
-<div class="v-row" data-ref="Hebrews 13:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And I appeal to you, brethren, bear with the word of exhortation, for I have written to you in few words.</span></div>
-<div class="v-row" data-ref="Hebrews 13:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Know that [our] brother Timothy has been set free, with whom I shall see you if he comes shortly.</span></div>
-<div class="v-row" data-ref="Hebrews 13:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Greet all those who rule over you, and all the saints. Those from Italy greet you.</span></div>
-<div class="v-row" data-ref="Hebrews 13:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Grace [be] with you all. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/hebrews/13/1/" data-ref="Hebrews 13:1 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/1/"><span class="v-num">1</span><span class="v-txt">Let brotherly love continue.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/2/" data-ref="Hebrews 13:2 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/2/"><span class="v-num">2</span><span class="v-txt">Do not forget to entertain strangers, for by so [doing] some have unwittingly entertained angels.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/3/" data-ref="Hebrews 13:3 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/3/"><span class="v-num">3</span><span class="v-txt">Remember the prisoners as if chained with them -- those who are mistreated -- since you yourselves are in the body also.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/4/" data-ref="Hebrews 13:4 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/4/"><span class="v-num">4</span><span class="v-txt">Marriage [is] honorable among all, and the bed undefiled; but fornicators and adulterers God will judge.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/5/" data-ref="Hebrews 13:5 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/5/"><span class="v-num">5</span><span class="v-txt">[Let your] conduct [be] without covetousness; [be] content with such things as you have. For He Himself has said, "I will never leave you nor forsake you."</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/6/" data-ref="Hebrews 13:6 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/6/"><span class="v-num">6</span><span class="v-txt">So we may boldly say: "The LORD [is] my helper; I will not fear. What can man do to me?"</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/7/" data-ref="Hebrews 13:7 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/7/"><span class="v-num">7</span><span class="v-txt">Remember those who rule over you, who have spoken the word of God to you, whose faith follow, considering the outcome of [their] conduct.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/8/" data-ref="Hebrews 13:8 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/8/"><span class="v-num">8</span><span class="v-txt">Jesus Christ [is] the same yesterday, today, and forever.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/9/" data-ref="Hebrews 13:9 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/9/"><span class="v-num">9</span><span class="v-txt">Do not be carried about with various and strange doctrines. For [it is] good that the heart be established by grace, not with foods which have not profited those who have been occupied with them.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/10/" data-ref="Hebrews 13:10 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/10/"><span class="v-num">10</span><span class="v-txt">We have an altar from which those who serve the tabernacle have no right to eat.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/11/" data-ref="Hebrews 13:11 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/11/"><span class="v-num">11</span><span class="v-txt">For the bodies of those animals, whose blood is brought into the sanctuary by the high priest for sin, are burned outside the camp.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/12/" data-ref="Hebrews 13:12 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/12/"><span class="v-num">12</span><span class="v-txt">Therefore Jesus also, that He might sanctify the people with His own blood, suffered outside the gate.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/13/" data-ref="Hebrews 13:13 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/13/"><span class="v-num">13</span><span class="v-txt">Therefore let us go forth to Him, outside the camp, bearing His reproach.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/14/" data-ref="Hebrews 13:14 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/14/"><span class="v-num">14</span><span class="v-txt">For here we have no continuing city, but we seek the one to come.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/15/" data-ref="Hebrews 13:15 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/15/"><span class="v-num">15</span><span class="v-txt">Therefore by Him let us continually offer the sacrifice of praise to God, that is, the fruit of [our] lips, giving thanks to His name.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/16/" data-ref="Hebrews 13:16 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/16/"><span class="v-num">16</span><span class="v-txt">But do not forget to do good and to share, for with such sacrifices God is well pleased.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/17/" data-ref="Hebrews 13:17 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/17/"><span class="v-num">17</span><span class="v-txt">Obey those who rule over you, and be submissive, for they watch out for your souls, as those who must give account. Let them do so with joy and not with grief, for that would be unprofitable for you.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/18/" data-ref="Hebrews 13:18 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/18/"><span class="v-num">18</span><span class="v-txt">Pray for us; for we are confident that we have a good conscience, in all things desiring to live honorably.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/19/" data-ref="Hebrews 13:19 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/19/"><span class="v-num">19</span><span class="v-txt">But I especially urge [you] to do this, that I may be restored to you the sooner.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/20/" data-ref="Hebrews 13:20 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/20/"><span class="v-num">20</span><span class="v-txt">Now may the God of peace who brought up our Lord Jesus from the dead, that great Shepherd of the sheep, through the blood of the everlasting covenant,</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/21/" data-ref="Hebrews 13:21 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/21/"><span class="v-num">21</span><span class="v-txt">make you complete in every good work to do His will, working in you what is well pleasing in His sight, through Jesus Christ, to whom [be] glory forever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/22/" data-ref="Hebrews 13:22 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/22/"><span class="v-num">22</span><span class="v-txt">And I appeal to you, brethren, bear with the word of exhortation, for I have written to you in few words.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/23/" data-ref="Hebrews 13:23 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/23/"><span class="v-num">23</span><span class="v-txt">Know that [our] brother Timothy has been set free, with whom I shall see you if he comes shortly.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/24/" data-ref="Hebrews 13:24 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/24/"><span class="v-num">24</span><span class="v-txt">Greet all those who rule over you, and all the saints. Those from Italy greet you.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/13/25/" data-ref="Hebrews 13:25 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/13/25/"><span class="v-num">25</span><span class="v-txt">Grace [be] with you all. Amen.</span></a>
 
     
 <div class="app-cta">

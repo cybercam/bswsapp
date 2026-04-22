@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My son, pay attention to my wisdom; Lend your ear to my understanding,</span></div>
-<div class="v-row" data-ref="Proverbs 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">That you may preserve discretion, And your lips may keep knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the lips of an immoral woman drip honey, And her mouth [is] smoother than oil;</span></div>
-<div class="v-row" data-ref="Proverbs 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But in the end she is bitter as wormwood, Sharp as a two-edged sword.</span></div>
-<div class="v-row" data-ref="Proverbs 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Her feet go down to death, Her steps lay hold of hell.</span></div>
-<div class="v-row" data-ref="Proverbs 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Lest you ponder [her] path of life -- Her ways are unstable; You do not know [them.]</span></div>
-<div class="v-row" data-ref="Proverbs 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore hear me now, [my] children, And do not depart from the words of my mouth.</span></div>
-<div class="v-row" data-ref="Proverbs 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Remove your way far from her, And do not go near the door of her house,</span></div>
-<div class="v-row" data-ref="Proverbs 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Lest you give your honor to others, And your years to the cruel [one;]</span></div>
-<div class="v-row" data-ref="Proverbs 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Lest aliens be filled with your wealth, And your labors [go] to the house of a foreigner;</span></div>
-<div class="v-row" data-ref="Proverbs 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And you mourn at last, When your flesh and your body are consumed,</span></div>
-<div class="v-row" data-ref="Proverbs 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And say: "How I have hated instruction, And my heart despised correction!</span></div>
-<div class="v-row" data-ref="Proverbs 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I have not obeyed the voice of my teachers, Nor inclined my ear to those who instructed me!</span></div>
-<div class="v-row" data-ref="Proverbs 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I was on the verge of total ruin, In the midst of the assembly and congregation."</span></div>
-<div class="v-row" data-ref="Proverbs 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Drink water from your own cistern, And running water from your own well.</span></div>
-<div class="v-row" data-ref="Proverbs 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Should your fountains be dispersed abroad, Streams of water in the streets?</span></div>
-<div class="v-row" data-ref="Proverbs 5:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let them be only your own, And not for strangers with you.</span></div>
-<div class="v-row" data-ref="Proverbs 5:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let your fountain be blessed, And rejoice with the wife of your youth.</span></div>
-<div class="v-row" data-ref="Proverbs 5:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">[As a] loving deer and a graceful doe, Let her breasts satisfy you at all times; And always be enraptured with her love.</span></div>
-<div class="v-row" data-ref="Proverbs 5:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For why should you, my son, be enraptured by an immoral woman, And be embraced in the arms of a seductress?</span></div>
-<div class="v-row" data-ref="Proverbs 5:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For the ways of man [are] before the eyes of the LORD, And He ponders all his paths.</span></div>
-<div class="v-row" data-ref="Proverbs 5:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">His own iniquities entrap the wicked [man,] And he is caught in the cords of his sin.</span></div>
-<div class="v-row" data-ref="Proverbs 5:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He shall die for lack of instruction, And in the greatness of his folly he shall go astray.</span></div>
+    <a class="v-row" href="/bible/nkjv/proverbs/5/1/" data-ref="Proverbs 5:1 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/1/"><span class="v-num">1</span><span class="v-txt">My son, pay attention to my wisdom; Lend your ear to my understanding,</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/2/" data-ref="Proverbs 5:2 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/2/"><span class="v-num">2</span><span class="v-txt">That you may preserve discretion, And your lips may keep knowledge.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/3/" data-ref="Proverbs 5:3 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/3/"><span class="v-num">3</span><span class="v-txt">For the lips of an immoral woman drip honey, And her mouth [is] smoother than oil;</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/4/" data-ref="Proverbs 5:4 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/4/"><span class="v-num">4</span><span class="v-txt">But in the end she is bitter as wormwood, Sharp as a two-edged sword.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/5/" data-ref="Proverbs 5:5 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/5/"><span class="v-num">5</span><span class="v-txt">Her feet go down to death, Her steps lay hold of hell.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/6/" data-ref="Proverbs 5:6 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/6/"><span class="v-num">6</span><span class="v-txt">Lest you ponder [her] path of life -- Her ways are unstable; You do not know [them.]</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/7/" data-ref="Proverbs 5:7 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/7/"><span class="v-num">7</span><span class="v-txt">Therefore hear me now, [my] children, And do not depart from the words of my mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/8/" data-ref="Proverbs 5:8 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/8/"><span class="v-num">8</span><span class="v-txt">Remove your way far from her, And do not go near the door of her house,</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/9/" data-ref="Proverbs 5:9 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/9/"><span class="v-num">9</span><span class="v-txt">Lest you give your honor to others, And your years to the cruel [one;]</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/10/" data-ref="Proverbs 5:10 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/10/"><span class="v-num">10</span><span class="v-txt">Lest aliens be filled with your wealth, And your labors [go] to the house of a foreigner;</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/11/" data-ref="Proverbs 5:11 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/11/"><span class="v-num">11</span><span class="v-txt">And you mourn at last, When your flesh and your body are consumed,</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/12/" data-ref="Proverbs 5:12 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/12/"><span class="v-num">12</span><span class="v-txt">And say: "How I have hated instruction, And my heart despised correction!</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/13/" data-ref="Proverbs 5:13 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/13/"><span class="v-num">13</span><span class="v-txt">I have not obeyed the voice of my teachers, Nor inclined my ear to those who instructed me!</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/14/" data-ref="Proverbs 5:14 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/14/"><span class="v-num">14</span><span class="v-txt">I was on the verge of total ruin, In the midst of the assembly and congregation."</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/15/" data-ref="Proverbs 5:15 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/15/"><span class="v-num">15</span><span class="v-txt">Drink water from your own cistern, And running water from your own well.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/16/" data-ref="Proverbs 5:16 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/16/"><span class="v-num">16</span><span class="v-txt">Should your fountains be dispersed abroad, Streams of water in the streets?</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/17/" data-ref="Proverbs 5:17 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/17/"><span class="v-num">17</span><span class="v-txt">Let them be only your own, And not for strangers with you.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/18/" data-ref="Proverbs 5:18 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/18/"><span class="v-num">18</span><span class="v-txt">Let your fountain be blessed, And rejoice with the wife of your youth.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/19/" data-ref="Proverbs 5:19 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/19/"><span class="v-num">19</span><span class="v-txt">[As a] loving deer and a graceful doe, Let her breasts satisfy you at all times; And always be enraptured with her love.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/20/" data-ref="Proverbs 5:20 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/20/"><span class="v-num">20</span><span class="v-txt">For why should you, my son, be enraptured by an immoral woman, And be embraced in the arms of a seductress?</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/21/" data-ref="Proverbs 5:21 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/21/"><span class="v-num">21</span><span class="v-txt">For the ways of man [are] before the eyes of the LORD, And He ponders all his paths.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/22/" data-ref="Proverbs 5:22 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/22/"><span class="v-num">22</span><span class="v-txt">His own iniquities entrap the wicked [man,] And he is caught in the cords of his sin.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/5/23/" data-ref="Proverbs 5:23 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/5/23/"><span class="v-num">23</span><span class="v-txt">He shall die for lack of instruction, And in the greatness of his folly he shall go astray.</span></a>
 
     
 <div class="app-cta">

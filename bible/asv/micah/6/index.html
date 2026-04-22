@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Micah 6:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear ye now what Jehovah saith: Arise, contend thou before the mountains, and let the hills hear thy voice.</span></div>
-<div class="v-row" data-ref="Micah 6:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hear, O ye mountains, Jehovah's controversy, and ye enduring foundations of the earth; for Jehovah hath a controversy with his people, and he will contend with Israel.</span></div>
-<div class="v-row" data-ref="Micah 6:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">O my people, what have I done unto thee? and wherein have I wearied thee? testify against me.</span></div>
-<div class="v-row" data-ref="Micah 6:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For I brought thee up out of the land of Egypt, and redeemed thee out of the house of bondage; and I sent before thee Moses, Aaron, and Miriam.</span></div>
-<div class="v-row" data-ref="Micah 6:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">O my people, remember now what Balak king of Moab devised, and what Balaam the son of Beor answered him; [remember] from Shittim unto Gilgal, that ye may know the righteous acts of Jehovah.</span></div>
-<div class="v-row" data-ref="Micah 6:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Wherewith shall I come before Jehovah, and bow myself before the high God? shall I come before him with burnt-offerings, with calves a year old?</span></div>
-<div class="v-row" data-ref="Micah 6:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">will Jehovah be pleased with thousands of rams, [or] with ten thousands of rivers of oil? shall I give my first-born for my transgression, the fruit of my body for the sin of my soul?</span></div>
-<div class="v-row" data-ref="Micah 6:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He hath showed thee, O man, what is good; and what doth Jehovah require of thee, but to do justly, and to love kindness, and to walk humbly with thy God?</span></div>
-<div class="v-row" data-ref="Micah 6:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The voice of Jehovah crieth unto the city, and [the man of] wisdom will see thy name: hear ye the rod, and who hath appointed it.</span></div>
-<div class="v-row" data-ref="Micah 6:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Are there yet treasures of wickedness in the house of the wicked, and a scant measure that is abominable?</span></div>
-<div class="v-row" data-ref="Micah 6:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Shall I be pure with wicked balances, and with a bag of deceitful weights?</span></div>
-<div class="v-row" data-ref="Micah 6:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For the rich men thereof are full of violence, and the inhabitants thereof have spoken lies, and their tongue is deceitful in their mouth.</span></div>
-<div class="v-row" data-ref="Micah 6:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore I also have smitten thee with a grievous wound; I have made thee desolate because of thy sins.</span></div>
-<div class="v-row" data-ref="Micah 6:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thou shalt eat, but not be satisfied; and thy humiliation shall be in the midst of thee: and thou shalt put away, but shalt not save; and that which thou savest will I give up to the sword.</span></div>
-<div class="v-row" data-ref="Micah 6:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Thou shalt sow, but shalt not reap; thou shalt tread the olives, but shalt not anoint thee with oil; and the vintage, but shalt not drink the wine.</span></div>
-<div class="v-row" data-ref="Micah 6:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the statutes of Omri are kept, and all the works of the house of Ahab, and ye walk in their counsels; that I may make thee a desolation, and the inhabitants thereof a hissing: and ye shall bear the reproach of my people.</span></div>
+    <a class="v-row" href="/bible/asv/micah/6/1/" data-ref="Micah 6:1 (American Standard Version)" data-verse-url="/bible/asv/micah/6/1/"><span class="v-num">1</span><span class="v-txt">Hear ye now what Jehovah saith: Arise, contend thou before the mountains, and let the hills hear thy voice.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/2/" data-ref="Micah 6:2 (American Standard Version)" data-verse-url="/bible/asv/micah/6/2/"><span class="v-num">2</span><span class="v-txt">Hear, O ye mountains, Jehovah's controversy, and ye enduring foundations of the earth; for Jehovah hath a controversy with his people, and he will contend with Israel.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/3/" data-ref="Micah 6:3 (American Standard Version)" data-verse-url="/bible/asv/micah/6/3/"><span class="v-num">3</span><span class="v-txt">O my people, what have I done unto thee? and wherein have I wearied thee? testify against me.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/4/" data-ref="Micah 6:4 (American Standard Version)" data-verse-url="/bible/asv/micah/6/4/"><span class="v-num">4</span><span class="v-txt">For I brought thee up out of the land of Egypt, and redeemed thee out of the house of bondage; and I sent before thee Moses, Aaron, and Miriam.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/5/" data-ref="Micah 6:5 (American Standard Version)" data-verse-url="/bible/asv/micah/6/5/"><span class="v-num">5</span><span class="v-txt">O my people, remember now what Balak king of Moab devised, and what Balaam the son of Beor answered him; [remember] from Shittim unto Gilgal, that ye may know the righteous acts of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/6/" data-ref="Micah 6:6 (American Standard Version)" data-verse-url="/bible/asv/micah/6/6/"><span class="v-num">6</span><span class="v-txt">Wherewith shall I come before Jehovah, and bow myself before the high God? shall I come before him with burnt-offerings, with calves a year old?</span></a>
+<a class="v-row" href="/bible/asv/micah/6/7/" data-ref="Micah 6:7 (American Standard Version)" data-verse-url="/bible/asv/micah/6/7/"><span class="v-num">7</span><span class="v-txt">will Jehovah be pleased with thousands of rams, [or] with ten thousands of rivers of oil? shall I give my first-born for my transgression, the fruit of my body for the sin of my soul?</span></a>
+<a class="v-row" href="/bible/asv/micah/6/8/" data-ref="Micah 6:8 (American Standard Version)" data-verse-url="/bible/asv/micah/6/8/"><span class="v-num">8</span><span class="v-txt">He hath showed thee, O man, what is good; and what doth Jehovah require of thee, but to do justly, and to love kindness, and to walk humbly with thy God?</span></a>
+<a class="v-row" href="/bible/asv/micah/6/9/" data-ref="Micah 6:9 (American Standard Version)" data-verse-url="/bible/asv/micah/6/9/"><span class="v-num">9</span><span class="v-txt">The voice of Jehovah crieth unto the city, and [the man of] wisdom will see thy name: hear ye the rod, and who hath appointed it.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/10/" data-ref="Micah 6:10 (American Standard Version)" data-verse-url="/bible/asv/micah/6/10/"><span class="v-num">10</span><span class="v-txt">Are there yet treasures of wickedness in the house of the wicked, and a scant measure that is abominable?</span></a>
+<a class="v-row" href="/bible/asv/micah/6/11/" data-ref="Micah 6:11 (American Standard Version)" data-verse-url="/bible/asv/micah/6/11/"><span class="v-num">11</span><span class="v-txt">Shall I be pure with wicked balances, and with a bag of deceitful weights?</span></a>
+<a class="v-row" href="/bible/asv/micah/6/12/" data-ref="Micah 6:12 (American Standard Version)" data-verse-url="/bible/asv/micah/6/12/"><span class="v-num">12</span><span class="v-txt">For the rich men thereof are full of violence, and the inhabitants thereof have spoken lies, and their tongue is deceitful in their mouth.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/13/" data-ref="Micah 6:13 (American Standard Version)" data-verse-url="/bible/asv/micah/6/13/"><span class="v-num">13</span><span class="v-txt">Therefore I also have smitten thee with a grievous wound; I have made thee desolate because of thy sins.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/14/" data-ref="Micah 6:14 (American Standard Version)" data-verse-url="/bible/asv/micah/6/14/"><span class="v-num">14</span><span class="v-txt">Thou shalt eat, but not be satisfied; and thy humiliation shall be in the midst of thee: and thou shalt put away, but shalt not save; and that which thou savest will I give up to the sword.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/15/" data-ref="Micah 6:15 (American Standard Version)" data-verse-url="/bible/asv/micah/6/15/"><span class="v-num">15</span><span class="v-txt">Thou shalt sow, but shalt not reap; thou shalt tread the olives, but shalt not anoint thee with oil; and the vintage, but shalt not drink the wine.</span></a>
+<a class="v-row" href="/bible/asv/micah/6/16/" data-ref="Micah 6:16 (American Standard Version)" data-verse-url="/bible/asv/micah/6/16/"><span class="v-num">16</span><span class="v-txt">For the statutes of Omri are kept, and all the works of the house of Ahab, and ye walk in their counsels; that I may make thee a desolation, and the inhabitants thereof a hissing: and ye shall bear the reproach of my people.</span></a>
 
     
 <div class="app-cta">

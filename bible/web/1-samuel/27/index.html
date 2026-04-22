@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 27</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 27:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">David said in his heart, I shall now perish one day by the hand of Saul: there is nothing better for me than that I should escape into the land of the Philistines; and Saul will despair of me, to seek me any more in all the borders of Israel: so shall I escape out of his hand.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">David arose, and passed over, he and the six hundred men who were with him, to Achish the son of Maoch, king of Gath.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">David lived with Achish at Gath, he and his men, every man with his household, even David with his two wives, Ahinoam the Jezreelitess, and Abigail the Carmelitess, Nabal's wife.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">It was told Saul that David was fled to Gath: and he sought no more again for him.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">David said to Achish, If now I have found favor in your eyes, let them give me a place in one of the cities in the country, that I may dwell there: for why should your servant dwell in the royal city with you?</span></div>
-<div class="v-row" data-ref="1 Samuel 27:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then Achish gave him Ziklag that day: why Ziklag pertains to the kings of Judah to this day.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The number of the days that David lived in the country of the Philistines was a full year and four months.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">David and his men went up, and made a raid on the Geshurites, and the Girzites, and the Amalekites; for those nations were the inhabitants of the land, who were of old, as you go to Shur, even to the land of Egypt.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">David struck the land, and saved neither man nor woman alive, and took away the sheep, and the oxen, and the donkeys, and the camels, and the clothing; and he returned, and came to Achish.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Achish said, Against whom have you made a raid today? David said, Against the South of Judah, and against the South of the Jerahmeelites, and against the South of the Kenites.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">David saved neither man nor woman alive, to bring them to Gath, saying, Lest they should tell of us, saying, So did David, and so has been his manner all the while he has lived in the country of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 27:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Achish believed David, saying, He has made his people Israel utterly to abhor him; therefore he shall be my servant forever.</span></div>
+    <a class="v-row" href="/bible/web/1-samuel/27/1/" data-ref="1 Samuel 27:1 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/1/"><span class="v-num">1</span><span class="v-txt">David said in his heart, I shall now perish one day by the hand of Saul: there is nothing better for me than that I should escape into the land of the Philistines; and Saul will despair of me, to seek me any more in all the borders of Israel: so shall I escape out of his hand.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/2/" data-ref="1 Samuel 27:2 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/2/"><span class="v-num">2</span><span class="v-txt">David arose, and passed over, he and the six hundred men who were with him, to Achish the son of Maoch, king of Gath.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/3/" data-ref="1 Samuel 27:3 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/3/"><span class="v-num">3</span><span class="v-txt">David lived with Achish at Gath, he and his men, every man with his household, even David with his two wives, Ahinoam the Jezreelitess, and Abigail the Carmelitess, Nabal's wife.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/4/" data-ref="1 Samuel 27:4 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/4/"><span class="v-num">4</span><span class="v-txt">It was told Saul that David was fled to Gath: and he sought no more again for him.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/5/" data-ref="1 Samuel 27:5 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/5/"><span class="v-num">5</span><span class="v-txt">David said to Achish, If now I have found favor in your eyes, let them give me a place in one of the cities in the country, that I may dwell there: for why should your servant dwell in the royal city with you?</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/6/" data-ref="1 Samuel 27:6 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/6/"><span class="v-num">6</span><span class="v-txt">Then Achish gave him Ziklag that day: why Ziklag pertains to the kings of Judah to this day.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/7/" data-ref="1 Samuel 27:7 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/7/"><span class="v-num">7</span><span class="v-txt">The number of the days that David lived in the country of the Philistines was a full year and four months.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/8/" data-ref="1 Samuel 27:8 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/8/"><span class="v-num">8</span><span class="v-txt">David and his men went up, and made a raid on the Geshurites, and the Girzites, and the Amalekites; for those nations were the inhabitants of the land, who were of old, as you go to Shur, even to the land of Egypt.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/9/" data-ref="1 Samuel 27:9 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/9/"><span class="v-num">9</span><span class="v-txt">David struck the land, and saved neither man nor woman alive, and took away the sheep, and the oxen, and the donkeys, and the camels, and the clothing; and he returned, and came to Achish.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/10/" data-ref="1 Samuel 27:10 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/10/"><span class="v-num">10</span><span class="v-txt">Achish said, Against whom have you made a raid today? David said, Against the South of Judah, and against the South of the Jerahmeelites, and against the South of the Kenites.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/11/" data-ref="1 Samuel 27:11 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/11/"><span class="v-num">11</span><span class="v-txt">David saved neither man nor woman alive, to bring them to Gath, saying, Lest they should tell of us, saying, So did David, and so has been his manner all the while he has lived in the country of the Philistines.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/27/12/" data-ref="1 Samuel 27:12 (World English Bible)" data-verse-url="/bible/web/1-samuel/27/12/"><span class="v-num">12</span><span class="v-txt">Achish believed David, saying, He has made his people Israel utterly to abhor him; therefore he shall be my servant forever.</span></a>
 
     
 <div class="app-cta">

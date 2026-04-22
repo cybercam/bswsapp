@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Song of Solomon 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">See, you are fair, my love, you are fair; you have the eyes of a dove; your hair is as a flock of goats, which take their rest on the side of Gilead.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Your teeth are like a flock of sheep whose wool is newly cut, which come up from the washing; every one has two lambs, and there is not one without young.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Your red lips are like a bright thread, and your mouth is fair of form; the sides of your head are like pomegranate fruit under your veil.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Your neck is like the tower of David made for a store-house of arms, in which a thousand breastplates are hanging, breastplates for fighting-men.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Your two breasts are like two young roes of the same birth, which take their food among the lilies.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Till the evening comes, and the sky slowly becomes dark, I will go to the mountain of myrrh, and to the hill of frankincense.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You are all fair, my love; there is no mark on you.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Come with me from Lebanon, my bride, with me from Lebanon; see from the top of Amana, from the top of Senir and Hermon, from the places of the lions, from the mountains of the leopards.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">You have taken away my heart, my sister, my bride; you have taken away my heart, with one look you have taken it, with one chain of your neck!</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">How fair is your love, my sister! How much better is your love than wine, and the smell of your oils than any perfume!</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Your lips are dropping honey; honey and milk are under your tongue; and the smell of your clothing is like the smell of Lebanon.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">A garden walled-in is my sister, my bride; a garden shut up, a spring of water stopped.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The produce of the garden is pomegranates; with all the best fruits, henna and spikenard,</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Spikenard and safron; calamus and cinnamon, with all trees of frankincense; myrrh and aloes, with all the chief spices.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">You are a fountain of gardens, a spring of living waters, and flowing waters from Lebanon.</span></div>
-<div class="v-row" data-ref="Song of Solomon 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Be awake, O north wind; and come, O south, blowing on my garden, so that its spices may come out. Let my loved one come into his garden, and take of his good fruits.</span></div>
+    <a class="v-row" href="/bible/bbe/song-of-solomon/4/1/" data-ref="Song of Solomon 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/1/"><span class="v-num">1</span><span class="v-txt">See, you are fair, my love, you are fair; you have the eyes of a dove; your hair is as a flock of goats, which take their rest on the side of Gilead.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/2/" data-ref="Song of Solomon 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/2/"><span class="v-num">2</span><span class="v-txt">Your teeth are like a flock of sheep whose wool is newly cut, which come up from the washing; every one has two lambs, and there is not one without young.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/3/" data-ref="Song of Solomon 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/3/"><span class="v-num">3</span><span class="v-txt">Your red lips are like a bright thread, and your mouth is fair of form; the sides of your head are like pomegranate fruit under your veil.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/4/" data-ref="Song of Solomon 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/4/"><span class="v-num">4</span><span class="v-txt">Your neck is like the tower of David made for a store-house of arms, in which a thousand breastplates are hanging, breastplates for fighting-men.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/5/" data-ref="Song of Solomon 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/5/"><span class="v-num">5</span><span class="v-txt">Your two breasts are like two young roes of the same birth, which take their food among the lilies.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/6/" data-ref="Song of Solomon 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/6/"><span class="v-num">6</span><span class="v-txt">Till the evening comes, and the sky slowly becomes dark, I will go to the mountain of myrrh, and to the hill of frankincense.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/7/" data-ref="Song of Solomon 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/7/"><span class="v-num">7</span><span class="v-txt">You are all fair, my love; there is no mark on you.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/8/" data-ref="Song of Solomon 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/8/"><span class="v-num">8</span><span class="v-txt">Come with me from Lebanon, my bride, with me from Lebanon; see from the top of Amana, from the top of Senir and Hermon, from the places of the lions, from the mountains of the leopards.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/9/" data-ref="Song of Solomon 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/9/"><span class="v-num">9</span><span class="v-txt">You have taken away my heart, my sister, my bride; you have taken away my heart, with one look you have taken it, with one chain of your neck!</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/10/" data-ref="Song of Solomon 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/10/"><span class="v-num">10</span><span class="v-txt">How fair is your love, my sister! How much better is your love than wine, and the smell of your oils than any perfume!</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/11/" data-ref="Song of Solomon 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/11/"><span class="v-num">11</span><span class="v-txt">Your lips are dropping honey; honey and milk are under your tongue; and the smell of your clothing is like the smell of Lebanon.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/12/" data-ref="Song of Solomon 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/12/"><span class="v-num">12</span><span class="v-txt">A garden walled-in is my sister, my bride; a garden shut up, a spring of water stopped.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/13/" data-ref="Song of Solomon 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/13/"><span class="v-num">13</span><span class="v-txt">The produce of the garden is pomegranates; with all the best fruits, henna and spikenard,</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/14/" data-ref="Song of Solomon 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/14/"><span class="v-num">14</span><span class="v-txt">Spikenard and safron; calamus and cinnamon, with all trees of frankincense; myrrh and aloes, with all the chief spices.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/15/" data-ref="Song of Solomon 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/15/"><span class="v-num">15</span><span class="v-txt">You are a fountain of gardens, a spring of living waters, and flowing waters from Lebanon.</span></a>
+<a class="v-row" href="/bible/bbe/song-of-solomon/4/16/" data-ref="Song of Solomon 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/song-of-solomon/4/16/"><span class="v-num">16</span><span class="v-txt">Be awake, O north wind; and come, O south, blowing on my garden, so that its spices may come out. Let my loved one come into his garden, and take of his good fruits.</span></a>
 
     
 <div class="app-cta">

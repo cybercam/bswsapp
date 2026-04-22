@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 23</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 23:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Sarah lived one hundred and twenty-seven years; [these were] the years of the life of Sarah.</span></div>
-<div class="v-row" data-ref="Genesis 23:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So Sarah died in Kirjath Arba (that [is,] Hebron) in the land of Canaan, and Abraham came to mourn for Sarah and to weep for her.</span></div>
-<div class="v-row" data-ref="Genesis 23:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then Abraham stood up from before his dead, and spoke to the sons of Heth, saying,</span></div>
-<div class="v-row" data-ref="Genesis 23:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"I [am] a foreigner and a visitor among you. Give me property for a burial place among you, that I may bury my dead out of my sight."</span></div>
-<div class="v-row" data-ref="Genesis 23:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the sons of Heth answered Abraham, saying to him,</span></div>
-<div class="v-row" data-ref="Genesis 23:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Hear us, my lord: You [are] a mighty prince among us; bury your dead in the choicest of our burial places. None of us will withhold from you his burial place, that you may bury your dead."</span></div>
-<div class="v-row" data-ref="Genesis 23:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Then Abraham stood up and bowed himself to the people of the land, the sons of Heth.</span></div>
-<div class="v-row" data-ref="Genesis 23:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he spoke with them, saying, "If it is your wish that I bury my dead out of my sight, hear me, and meet with Ephron the son of Zohar for me,</span></div>
-<div class="v-row" data-ref="Genesis 23:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"that he may give me the cave of Machpelah which he has, which [is] at the end of his field. Let him give it to me at the full price, as property for a burial place among you."</span></div>
-<div class="v-row" data-ref="Genesis 23:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now Ephron dwelt among the sons of Heth; and Ephron the Hittite answered Abraham in the presence of the sons of Heth, all who entered at the gate of his city, saying,</span></div>
-<div class="v-row" data-ref="Genesis 23:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"No, my lord, hear me: I give you the field and the cave that [is] in it; I give it to you in the presence of the sons of my people. I give it to you. Bury your dead!"</span></div>
-<div class="v-row" data-ref="Genesis 23:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then Abraham bowed himself down before the people of the land;</span></div>
-<div class="v-row" data-ref="Genesis 23:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and he spoke to Ephron in the hearing of the people of the land, saying, "If you [will give it,] please hear me. I will give you money for the field; take [it] from me and I will bury my dead there."</span></div>
-<div class="v-row" data-ref="Genesis 23:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Ephron answered Abraham, saying to him,</span></div>
-<div class="v-row" data-ref="Genesis 23:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"My lord, listen to me; the land [is worth] four hundred shekels of silver. What [is] that between you and me? So bury your dead."</span></div>
-<div class="v-row" data-ref="Genesis 23:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Abraham listened to Ephron; and Abraham weighed out the silver for Ephron which he had named in the hearing of the sons of Heth, four hundred shekels of silver, currency of the merchants.</span></div>
-<div class="v-row" data-ref="Genesis 23:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So the field of Ephron which [was] in Machpelah, which [was] before Mamre, the field and the cave which [was] in it, and all the trees that [were] in the field, which [were] within all the surrounding borders, were deeded</span></div>
-<div class="v-row" data-ref="Genesis 23:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">to Abraham as a possession in the presence of the sons of Heth, before all who went in at the gate of his city.</span></div>
-<div class="v-row" data-ref="Genesis 23:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah, before Mamre (that [is,] Hebron) in the land of Canaan.</span></div>
-<div class="v-row" data-ref="Genesis 23:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">So the field and the cave that [is] in it were deeded to Abraham by the sons of Heth as property for a burial place.</span></div>
+    <a class="v-row" href="/bible/nkjv/genesis/23/1/" data-ref="Genesis 23:1 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/1/"><span class="v-num">1</span><span class="v-txt">Sarah lived one hundred and twenty-seven years; [these were] the years of the life of Sarah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/2/" data-ref="Genesis 23:2 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/2/"><span class="v-num">2</span><span class="v-txt">So Sarah died in Kirjath Arba (that [is,] Hebron) in the land of Canaan, and Abraham came to mourn for Sarah and to weep for her.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/3/" data-ref="Genesis 23:3 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/3/"><span class="v-num">3</span><span class="v-txt">Then Abraham stood up from before his dead, and spoke to the sons of Heth, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/4/" data-ref="Genesis 23:4 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/4/"><span class="v-num">4</span><span class="v-txt">"I [am] a foreigner and a visitor among you. Give me property for a burial place among you, that I may bury my dead out of my sight."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/5/" data-ref="Genesis 23:5 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/5/"><span class="v-num">5</span><span class="v-txt">And the sons of Heth answered Abraham, saying to him,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/6/" data-ref="Genesis 23:6 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/6/"><span class="v-num">6</span><span class="v-txt">"Hear us, my lord: You [are] a mighty prince among us; bury your dead in the choicest of our burial places. None of us will withhold from you his burial place, that you may bury your dead."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/7/" data-ref="Genesis 23:7 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/7/"><span class="v-num">7</span><span class="v-txt">Then Abraham stood up and bowed himself to the people of the land, the sons of Heth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/8/" data-ref="Genesis 23:8 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/8/"><span class="v-num">8</span><span class="v-txt">And he spoke with them, saying, "If it is your wish that I bury my dead out of my sight, hear me, and meet with Ephron the son of Zohar for me,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/9/" data-ref="Genesis 23:9 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/9/"><span class="v-num">9</span><span class="v-txt">"that he may give me the cave of Machpelah which he has, which [is] at the end of his field. Let him give it to me at the full price, as property for a burial place among you."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/10/" data-ref="Genesis 23:10 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/10/"><span class="v-num">10</span><span class="v-txt">Now Ephron dwelt among the sons of Heth; and Ephron the Hittite answered Abraham in the presence of the sons of Heth, all who entered at the gate of his city, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/11/" data-ref="Genesis 23:11 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/11/"><span class="v-num">11</span><span class="v-txt">"No, my lord, hear me: I give you the field and the cave that [is] in it; I give it to you in the presence of the sons of my people. I give it to you. Bury your dead!"</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/12/" data-ref="Genesis 23:12 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/12/"><span class="v-num">12</span><span class="v-txt">Then Abraham bowed himself down before the people of the land;</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/13/" data-ref="Genesis 23:13 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/13/"><span class="v-num">13</span><span class="v-txt">and he spoke to Ephron in the hearing of the people of the land, saying, "If you [will give it,] please hear me. I will give you money for the field; take [it] from me and I will bury my dead there."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/14/" data-ref="Genesis 23:14 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/14/"><span class="v-num">14</span><span class="v-txt">And Ephron answered Abraham, saying to him,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/15/" data-ref="Genesis 23:15 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/15/"><span class="v-num">15</span><span class="v-txt">"My lord, listen to me; the land [is worth] four hundred shekels of silver. What [is] that between you and me? So bury your dead."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/16/" data-ref="Genesis 23:16 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/16/"><span class="v-num">16</span><span class="v-txt">And Abraham listened to Ephron; and Abraham weighed out the silver for Ephron which he had named in the hearing of the sons of Heth, four hundred shekels of silver, currency of the merchants.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/17/" data-ref="Genesis 23:17 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/17/"><span class="v-num">17</span><span class="v-txt">So the field of Ephron which [was] in Machpelah, which [was] before Mamre, the field and the cave which [was] in it, and all the trees that [were] in the field, which [were] within all the surrounding borders, were deeded</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/18/" data-ref="Genesis 23:18 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/18/"><span class="v-num">18</span><span class="v-txt">to Abraham as a possession in the presence of the sons of Heth, before all who went in at the gate of his city.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/19/" data-ref="Genesis 23:19 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/19/"><span class="v-num">19</span><span class="v-txt">And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah, before Mamre (that [is,] Hebron) in the land of Canaan.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/23/20/" data-ref="Genesis 23:20 (New King James Version)" data-verse-url="/bible/nkjv/genesis/23/20/"><span class="v-num">20</span><span class="v-txt">So the field and the cave that [is] in it were deeded to Abraham by the sons of Heth as property for a burial place.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 50</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 50:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm by Asaph. The Mighty One, God, Yahweh, speaks, And calls the earth from sunrise to sunset.</span></div>
-<div class="v-row" data-ref="Psalm 50:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Out of Zion, the perfection of beauty, God shines forth.</span></div>
-<div class="v-row" data-ref="Psalm 50:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Our God comes, and does not keep silent. A fire devours before him. It is very tempestuous around him.</span></div>
-<div class="v-row" data-ref="Psalm 50:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He calls to the heavens above, To the earth, that he may judge his people:</span></div>
-<div class="v-row" data-ref="Psalm 50:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"Gather my saints together to me, Those who have made a covenant with me by sacrifice."</span></div>
-<div class="v-row" data-ref="Psalm 50:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The heavens shall declare his righteousness, For God himself is judge. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 50:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Hear, my people, and I will speak; Israel, and I will testify against you. I am God, your God.</span></div>
-<div class="v-row" data-ref="Psalm 50:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I don't rebuke you for your sacrifices. Your burnt offerings are continually before me.</span></div>
-<div class="v-row" data-ref="Psalm 50:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I have no need for a bull from your stall, Nor male goats from your pens.</span></div>
-<div class="v-row" data-ref="Psalm 50:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For every animal of the forest is mine, And the cattle on a thousand hills.</span></div>
-<div class="v-row" data-ref="Psalm 50:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I know all the birds of the mountains. The wild animals of the field are mine.</span></div>
-<div class="v-row" data-ref="Psalm 50:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">If I were hungry, I would not tell you, For the world is mine, and all that is in it.</span></div>
-<div class="v-row" data-ref="Psalm 50:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Will I eat the flesh of bulls, Or drink the blood of goats?</span></div>
-<div class="v-row" data-ref="Psalm 50:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Offer to God the sacrifice of thanksgiving. Pay your vows to the Most High.</span></div>
-<div class="v-row" data-ref="Psalm 50:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Call on me in the day of trouble. I will deliver you, and you will honor me."</span></div>
-<div class="v-row" data-ref="Psalm 50:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But to the wicked God says, "What right do you have to declare my statutes, That you have taken my covenant on your lips,</span></div>
-<div class="v-row" data-ref="Psalm 50:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Seeing you hate instruction, And throw my words behind you?</span></div>
-<div class="v-row" data-ref="Psalm 50:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">When you saw a thief, you consented with him, And have participated with adulterers.</span></div>
-<div class="v-row" data-ref="Psalm 50:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"You give your mouth to evil. You harnesses your tongue for deceit.</span></div>
-<div class="v-row" data-ref="Psalm 50:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">You sit and speak against your brother. You slander your own mother's son.</span></div>
-<div class="v-row" data-ref="Psalm 50:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">You have done these things, and I kept silent. You thought that the "I AM" was just like you. I will rebuke you, and accuse you in front of your eyes.</span></div>
-<div class="v-row" data-ref="Psalm 50:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">"Now consider this, you who forget God, Lest I tear you into pieces, and there be none to deliver.</span></div>
-<div class="v-row" data-ref="Psalm 50:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Whoever offers the sacrifice of thanksgiving glorifies me, And prepares his way so that I will show God's salvation to him."</span></div>
+    <a class="v-row" href="/bible/web/psalms/50/1/" data-ref="Psalm 50:1 (World English Bible)" data-verse-url="/bible/web/psalms/50/1/"><span class="v-num">1</span><span class="v-txt">A Psalm by Asaph. The Mighty One, God, Yahweh, speaks, And calls the earth from sunrise to sunset.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/2/" data-ref="Psalm 50:2 (World English Bible)" data-verse-url="/bible/web/psalms/50/2/"><span class="v-num">2</span><span class="v-txt">Out of Zion, the perfection of beauty, God shines forth.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/3/" data-ref="Psalm 50:3 (World English Bible)" data-verse-url="/bible/web/psalms/50/3/"><span class="v-num">3</span><span class="v-txt">Our God comes, and does not keep silent. A fire devours before him. It is very tempestuous around him.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/4/" data-ref="Psalm 50:4 (World English Bible)" data-verse-url="/bible/web/psalms/50/4/"><span class="v-num">4</span><span class="v-txt">He calls to the heavens above, To the earth, that he may judge his people:</span></a>
+<a class="v-row" href="/bible/web/psalms/50/5/" data-ref="Psalm 50:5 (World English Bible)" data-verse-url="/bible/web/psalms/50/5/"><span class="v-num">5</span><span class="v-txt">"Gather my saints together to me, Those who have made a covenant with me by sacrifice."</span></a>
+<a class="v-row" href="/bible/web/psalms/50/6/" data-ref="Psalm 50:6 (World English Bible)" data-verse-url="/bible/web/psalms/50/6/"><span class="v-num">6</span><span class="v-txt">The heavens shall declare his righteousness, For God himself is judge. Selah.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/7/" data-ref="Psalm 50:7 (World English Bible)" data-verse-url="/bible/web/psalms/50/7/"><span class="v-num">7</span><span class="v-txt">"Hear, my people, and I will speak; Israel, and I will testify against you. I am God, your God.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/8/" data-ref="Psalm 50:8 (World English Bible)" data-verse-url="/bible/web/psalms/50/8/"><span class="v-num">8</span><span class="v-txt">I don't rebuke you for your sacrifices. Your burnt offerings are continually before me.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/9/" data-ref="Psalm 50:9 (World English Bible)" data-verse-url="/bible/web/psalms/50/9/"><span class="v-num">9</span><span class="v-txt">I have no need for a bull from your stall, Nor male goats from your pens.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/10/" data-ref="Psalm 50:10 (World English Bible)" data-verse-url="/bible/web/psalms/50/10/"><span class="v-num">10</span><span class="v-txt">For every animal of the forest is mine, And the cattle on a thousand hills.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/11/" data-ref="Psalm 50:11 (World English Bible)" data-verse-url="/bible/web/psalms/50/11/"><span class="v-num">11</span><span class="v-txt">I know all the birds of the mountains. The wild animals of the field are mine.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/12/" data-ref="Psalm 50:12 (World English Bible)" data-verse-url="/bible/web/psalms/50/12/"><span class="v-num">12</span><span class="v-txt">If I were hungry, I would not tell you, For the world is mine, and all that is in it.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/13/" data-ref="Psalm 50:13 (World English Bible)" data-verse-url="/bible/web/psalms/50/13/"><span class="v-num">13</span><span class="v-txt">Will I eat the flesh of bulls, Or drink the blood of goats?</span></a>
+<a class="v-row" href="/bible/web/psalms/50/14/" data-ref="Psalm 50:14 (World English Bible)" data-verse-url="/bible/web/psalms/50/14/"><span class="v-num">14</span><span class="v-txt">Offer to God the sacrifice of thanksgiving. Pay your vows to the Most High.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/15/" data-ref="Psalm 50:15 (World English Bible)" data-verse-url="/bible/web/psalms/50/15/"><span class="v-num">15</span><span class="v-txt">Call on me in the day of trouble. I will deliver you, and you will honor me."</span></a>
+<a class="v-row" href="/bible/web/psalms/50/16/" data-ref="Psalm 50:16 (World English Bible)" data-verse-url="/bible/web/psalms/50/16/"><span class="v-num">16</span><span class="v-txt">But to the wicked God says, "What right do you have to declare my statutes, That you have taken my covenant on your lips,</span></a>
+<a class="v-row" href="/bible/web/psalms/50/17/" data-ref="Psalm 50:17 (World English Bible)" data-verse-url="/bible/web/psalms/50/17/"><span class="v-num">17</span><span class="v-txt">Seeing you hate instruction, And throw my words behind you?</span></a>
+<a class="v-row" href="/bible/web/psalms/50/18/" data-ref="Psalm 50:18 (World English Bible)" data-verse-url="/bible/web/psalms/50/18/"><span class="v-num">18</span><span class="v-txt">When you saw a thief, you consented with him, And have participated with adulterers.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/19/" data-ref="Psalm 50:19 (World English Bible)" data-verse-url="/bible/web/psalms/50/19/"><span class="v-num">19</span><span class="v-txt">"You give your mouth to evil. You harnesses your tongue for deceit.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/20/" data-ref="Psalm 50:20 (World English Bible)" data-verse-url="/bible/web/psalms/50/20/"><span class="v-num">20</span><span class="v-txt">You sit and speak against your brother. You slander your own mother's son.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/21/" data-ref="Psalm 50:21 (World English Bible)" data-verse-url="/bible/web/psalms/50/21/"><span class="v-num">21</span><span class="v-txt">You have done these things, and I kept silent. You thought that the "I AM" was just like you. I will rebuke you, and accuse you in front of your eyes.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/22/" data-ref="Psalm 50:22 (World English Bible)" data-verse-url="/bible/web/psalms/50/22/"><span class="v-num">22</span><span class="v-txt">"Now consider this, you who forget God, Lest I tear you into pieces, and there be none to deliver.</span></a>
+<a class="v-row" href="/bible/web/psalms/50/23/" data-ref="Psalm 50:23 (World English Bible)" data-verse-url="/bible/web/psalms/50/23/"><span class="v-num">23</span><span class="v-txt">Whoever offers the sacrifice of thanksgiving glorifies me, And prepares his way so that I will show God's salvation to him."</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,14 +204,14 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Chronicles 20:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">It happened in the spring of the year, at the time kings go out [to battle,] that Joab led out the armed forces and ravaged the country of the people of Ammon, and came and besieged Rabbah. But David stayed at Jerusalem. And Joab defeated Rabbah and overthrew it.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then David took their king's crown from his head, and found it to weigh a talent of gold, and [there were] precious stones in it. And it was set on David's head. Also he brought out the spoil of the city in great abundance.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And he brought out the people who [were] in it, and put [them] to work with saws, with iron picks, and with axes. So David did to all the cities of the people of Ammon. Then David and all the people returned [to] Jerusalem.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now it happened afterward that war broke out at Gezer with the Philistines, at which time Sibbechai the Hushathite killed Sippai, [who was one] of the sons of the giant. And they were subdued.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Again there was war with the Philistines, and Elhanan the son of Jair killed Lahmi the brother of Goliath the Gittite, the shaft of whose spear [was] like a weaver's beam.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Yet again there was war at Gath, where there was a man of [great] stature, with twenty-four fingers and toes, six [on each hand] and six [on each foot;] and he also was born to the giant.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So when he defied Israel, Jonathan the son of Shimea, David's brother, killed him.</span></div>
-<div class="v-row" data-ref="1 Chronicles 20:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">These were born to the giant in Gath, and they fell by the hand of David and by the hand of his servants.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-chronicles/20/1/" data-ref="1 Chronicles 20:1 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/1/"><span class="v-num">1</span><span class="v-txt">It happened in the spring of the year, at the time kings go out [to battle,] that Joab led out the armed forces and ravaged the country of the people of Ammon, and came and besieged Rabbah. But David stayed at Jerusalem. And Joab defeated Rabbah and overthrew it.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/2/" data-ref="1 Chronicles 20:2 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/2/"><span class="v-num">2</span><span class="v-txt">Then David took their king's crown from his head, and found it to weigh a talent of gold, and [there were] precious stones in it. And it was set on David's head. Also he brought out the spoil of the city in great abundance.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/3/" data-ref="1 Chronicles 20:3 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/3/"><span class="v-num">3</span><span class="v-txt">And he brought out the people who [were] in it, and put [them] to work with saws, with iron picks, and with axes. So David did to all the cities of the people of Ammon. Then David and all the people returned [to] Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/4/" data-ref="1 Chronicles 20:4 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/4/"><span class="v-num">4</span><span class="v-txt">Now it happened afterward that war broke out at Gezer with the Philistines, at which time Sibbechai the Hushathite killed Sippai, [who was one] of the sons of the giant. And they were subdued.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/5/" data-ref="1 Chronicles 20:5 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/5/"><span class="v-num">5</span><span class="v-txt">Again there was war with the Philistines, and Elhanan the son of Jair killed Lahmi the brother of Goliath the Gittite, the shaft of whose spear [was] like a weaver's beam.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/6/" data-ref="1 Chronicles 20:6 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/6/"><span class="v-num">6</span><span class="v-txt">Yet again there was war at Gath, where there was a man of [great] stature, with twenty-four fingers and toes, six [on each hand] and six [on each foot;] and he also was born to the giant.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/7/" data-ref="1 Chronicles 20:7 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/7/"><span class="v-num">7</span><span class="v-txt">So when he defied Israel, Jonathan the son of Shimea, David's brother, killed him.</span></a>
+<a class="v-row" href="/bible/nkjv/1-chronicles/20/8/" data-ref="1 Chronicles 20:8 (New King James Version)" data-verse-url="/bible/nkjv/1-chronicles/20/8/"><span class="v-num">8</span><span class="v-txt">These were born to the giant in Gath, and they fell by the hand of David and by the hand of his servants.</span></a>
 
     
 <div class="app-cta">

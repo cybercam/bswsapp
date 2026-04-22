@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 9:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then the fifth angel sounded: And I saw a star fallen from heaven to the earth. To him was given the key to the bottomless pit.</span></div>
-<div class="v-row" data-ref="Revelation 9:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he opened the bottomless pit, and smoke arose out of the pit like the smoke of a great furnace. So the sun and the air were darkened because of the smoke of the pit.</span></div>
-<div class="v-row" data-ref="Revelation 9:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then out of the smoke locusts came upon the earth. And to them was given power, as the scorpions of the earth have power.</span></div>
-<div class="v-row" data-ref="Revelation 9:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They were commanded not to harm the grass of the earth, or any green thing, or any tree, but only those men who do not have the seal of God on their foreheads.</span></div>
-<div class="v-row" data-ref="Revelation 9:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And they were not given [authority] to kill them, but to torment them [for] five months. Their torment [was] like the torment of a scorpion when it strikes a man.</span></div>
-<div class="v-row" data-ref="Revelation 9:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In those days men will seek death and will not find it; they will desire to die, and death will flee from them.</span></div>
-<div class="v-row" data-ref="Revelation 9:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The shape of the locusts was like horses prepared for battle. On their heads were crowns of something like gold, and their faces [were] like the faces of men.</span></div>
-<div class="v-row" data-ref="Revelation 9:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They had hair like women's hair, and their teeth were like lions' [teeth.]</span></div>
-<div class="v-row" data-ref="Revelation 9:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And they had breastplates like breastplates of iron, and the sound of their wings [was] like the sound of chariots with many horses running into battle.</span></div>
-<div class="v-row" data-ref="Revelation 9:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">They had tails like scorpions, and there were stings in their tails. Their power [was] to hurt men five months.</span></div>
-<div class="v-row" data-ref="Revelation 9:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they had as king over them the angel of the bottomless pit, whose name in Hebrew [is] Abaddon, but in Greek he has the name Apollyon.</span></div>
-<div class="v-row" data-ref="Revelation 9:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">One woe is past. Behold, still two more woes are coming after these things.</span></div>
-<div class="v-row" data-ref="Revelation 9:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then the sixth angel sounded: And I heard a voice from the four horns of the golden altar which is before God,</span></div>
-<div class="v-row" data-ref="Revelation 9:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">saying to the sixth angel who had the trumpet, "Release the four angels who are bound at the great river Euphrates."</span></div>
-<div class="v-row" data-ref="Revelation 9:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So the four angels, who had been prepared for the hour and day and month and year, were released to kill a third of mankind.</span></div>
-<div class="v-row" data-ref="Revelation 9:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Now the number of the army of the horsemen [was] two hundred million; I heard the number of them.</span></div>
-<div class="v-row" data-ref="Revelation 9:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And thus I saw the horses in the vision: those who sat on them had breastplates of fiery red, hyacinth blue, and sulfur yellow; and the heads of the horses [were] like the heads of lions; and out of their mouths came fire, smoke, and brimstone.</span></div>
-<div class="v-row" data-ref="Revelation 9:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">By these three [plagues] a third of mankind was killed -- by the fire and the smoke and the brimstone which came out of their mouths.</span></div>
-<div class="v-row" data-ref="Revelation 9:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For their power is in their mouth and in their tails; for their tails [are] like serpents, having heads; and with them they do harm.</span></div>
-<div class="v-row" data-ref="Revelation 9:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But the rest of mankind, who were not killed by these plagues, did not repent of the works of their hands, that they should not worship demons, and idols of gold, silver, brass, stone, and wood, which can neither see nor hear nor walk.</span></div>
-<div class="v-row" data-ref="Revelation 9:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And they did not repent of their murders or their sorceries or their sexual immorality or their thefts.</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/9/1/" data-ref="Revelation 9:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/1/"><span class="v-num">1</span><span class="v-txt">Then the fifth angel sounded: And I saw a star fallen from heaven to the earth. To him was given the key to the bottomless pit.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/2/" data-ref="Revelation 9:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/2/"><span class="v-num">2</span><span class="v-txt">And he opened the bottomless pit, and smoke arose out of the pit like the smoke of a great furnace. So the sun and the air were darkened because of the smoke of the pit.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/3/" data-ref="Revelation 9:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/3/"><span class="v-num">3</span><span class="v-txt">Then out of the smoke locusts came upon the earth. And to them was given power, as the scorpions of the earth have power.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/4/" data-ref="Revelation 9:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/4/"><span class="v-num">4</span><span class="v-txt">They were commanded not to harm the grass of the earth, or any green thing, or any tree, but only those men who do not have the seal of God on their foreheads.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/5/" data-ref="Revelation 9:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/5/"><span class="v-num">5</span><span class="v-txt">And they were not given [authority] to kill them, but to torment them [for] five months. Their torment [was] like the torment of a scorpion when it strikes a man.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/6/" data-ref="Revelation 9:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/6/"><span class="v-num">6</span><span class="v-txt">In those days men will seek death and will not find it; they will desire to die, and death will flee from them.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/7/" data-ref="Revelation 9:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/7/"><span class="v-num">7</span><span class="v-txt">The shape of the locusts was like horses prepared for battle. On their heads were crowns of something like gold, and their faces [were] like the faces of men.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/8/" data-ref="Revelation 9:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/8/"><span class="v-num">8</span><span class="v-txt">They had hair like women's hair, and their teeth were like lions' [teeth.]</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/9/" data-ref="Revelation 9:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/9/"><span class="v-num">9</span><span class="v-txt">And they had breastplates like breastplates of iron, and the sound of their wings [was] like the sound of chariots with many horses running into battle.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/10/" data-ref="Revelation 9:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/10/"><span class="v-num">10</span><span class="v-txt">They had tails like scorpions, and there were stings in their tails. Their power [was] to hurt men five months.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/11/" data-ref="Revelation 9:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/11/"><span class="v-num">11</span><span class="v-txt">And they had as king over them the angel of the bottomless pit, whose name in Hebrew [is] Abaddon, but in Greek he has the name Apollyon.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/12/" data-ref="Revelation 9:12 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/12/"><span class="v-num">12</span><span class="v-txt">One woe is past. Behold, still two more woes are coming after these things.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/13/" data-ref="Revelation 9:13 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/13/"><span class="v-num">13</span><span class="v-txt">Then the sixth angel sounded: And I heard a voice from the four horns of the golden altar which is before God,</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/14/" data-ref="Revelation 9:14 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/14/"><span class="v-num">14</span><span class="v-txt">saying to the sixth angel who had the trumpet, "Release the four angels who are bound at the great river Euphrates."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/15/" data-ref="Revelation 9:15 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/15/"><span class="v-num">15</span><span class="v-txt">So the four angels, who had been prepared for the hour and day and month and year, were released to kill a third of mankind.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/16/" data-ref="Revelation 9:16 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/16/"><span class="v-num">16</span><span class="v-txt">Now the number of the army of the horsemen [was] two hundred million; I heard the number of them.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/17/" data-ref="Revelation 9:17 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/17/"><span class="v-num">17</span><span class="v-txt">And thus I saw the horses in the vision: those who sat on them had breastplates of fiery red, hyacinth blue, and sulfur yellow; and the heads of the horses [were] like the heads of lions; and out of their mouths came fire, smoke, and brimstone.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/18/" data-ref="Revelation 9:18 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/18/"><span class="v-num">18</span><span class="v-txt">By these three [plagues] a third of mankind was killed -- by the fire and the smoke and the brimstone which came out of their mouths.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/19/" data-ref="Revelation 9:19 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/19/"><span class="v-num">19</span><span class="v-txt">For their power is in their mouth and in their tails; for their tails [are] like serpents, having heads; and with them they do harm.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/20/" data-ref="Revelation 9:20 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/20/"><span class="v-num">20</span><span class="v-txt">But the rest of mankind, who were not killed by these plagues, did not repent of the works of their hands, that they should not worship demons, and idols of gold, silver, brass, stone, and wood, which can neither see nor hear nor walk.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/9/21/" data-ref="Revelation 9:21 (New King James Version)" data-verse-url="/bible/nkjv/revelation/9/21/"><span class="v-num">21</span><span class="v-txt">And they did not repent of their murders or their sorceries or their sexual immorality or their thefts.</span></a>
 
     
 <div class="app-cta">

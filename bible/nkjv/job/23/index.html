@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 23</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 23:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered and said:</span></div>
-<div class="v-row" data-ref="Job 23:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Even today my complaint is bitter; My hand is listless because of my groaning.</span></div>
-<div class="v-row" data-ref="Job 23:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Oh, that I knew where I might find Him, [That] I might come to His seat!</span></div>
-<div class="v-row" data-ref="Job 23:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I would present [my] case before Him, And fill my mouth with arguments.</span></div>
-<div class="v-row" data-ref="Job 23:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I would know the words [which] He would answer me, And understand what He would say to me.</span></div>
-<div class="v-row" data-ref="Job 23:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Would He contend with me in His great power? No! But He would take [note] of me.</span></div>
-<div class="v-row" data-ref="Job 23:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">There the upright could reason with Him, And I would be delivered forever from my Judge.</span></div>
-<div class="v-row" data-ref="Job 23:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"Look, I go forward, but He is not [there,] And backward, but I cannot perceive Him;</span></div>
-<div class="v-row" data-ref="Job 23:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">When He works on the left hand, I cannot behold [Him;] When He turns to the right hand, I cannot see [Him.]</span></div>
-<div class="v-row" data-ref="Job 23:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But He knows the way that I take; [When] He has tested me, I shall come forth as gold.</span></div>
-<div class="v-row" data-ref="Job 23:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My foot has held fast to His steps; I have kept His way and not turned aside.</span></div>
-<div class="v-row" data-ref="Job 23:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I have not departed from the commandment of His lips; I have treasured the words of His mouth More than my necessary [food.]</span></div>
-<div class="v-row" data-ref="Job 23:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"But He [is] unique, and who can make Him change? And [whatever] His soul desires, [that] He does.</span></div>
-<div class="v-row" data-ref="Job 23:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For He performs [what is] appointed for me, And many such [things are] with Him.</span></div>
-<div class="v-row" data-ref="Job 23:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore I am terrified at His presence; When I consider [this,] I am afraid of Him.</span></div>
-<div class="v-row" data-ref="Job 23:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For God made my heart weak, And the Almighty terrifies me;</span></div>
-<div class="v-row" data-ref="Job 23:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Because I was not cut off from the presence of darkness, And He did [not] hide deep darkness from my face.</span></div>
+    <a class="v-row" href="/bible/nkjv/job/23/1/" data-ref="Job 23:1 (New King James Version)" data-verse-url="/bible/nkjv/job/23/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/2/" data-ref="Job 23:2 (New King James Version)" data-verse-url="/bible/nkjv/job/23/2/"><span class="v-num">2</span><span class="v-txt">"Even today my complaint is bitter; My hand is listless because of my groaning.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/3/" data-ref="Job 23:3 (New King James Version)" data-verse-url="/bible/nkjv/job/23/3/"><span class="v-num">3</span><span class="v-txt">Oh, that I knew where I might find Him, [That] I might come to His seat!</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/4/" data-ref="Job 23:4 (New King James Version)" data-verse-url="/bible/nkjv/job/23/4/"><span class="v-num">4</span><span class="v-txt">I would present [my] case before Him, And fill my mouth with arguments.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/5/" data-ref="Job 23:5 (New King James Version)" data-verse-url="/bible/nkjv/job/23/5/"><span class="v-num">5</span><span class="v-txt">I would know the words [which] He would answer me, And understand what He would say to me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/6/" data-ref="Job 23:6 (New King James Version)" data-verse-url="/bible/nkjv/job/23/6/"><span class="v-num">6</span><span class="v-txt">Would He contend with me in His great power? No! But He would take [note] of me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/7/" data-ref="Job 23:7 (New King James Version)" data-verse-url="/bible/nkjv/job/23/7/"><span class="v-num">7</span><span class="v-txt">There the upright could reason with Him, And I would be delivered forever from my Judge.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/8/" data-ref="Job 23:8 (New King James Version)" data-verse-url="/bible/nkjv/job/23/8/"><span class="v-num">8</span><span class="v-txt">"Look, I go forward, but He is not [there,] And backward, but I cannot perceive Him;</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/9/" data-ref="Job 23:9 (New King James Version)" data-verse-url="/bible/nkjv/job/23/9/"><span class="v-num">9</span><span class="v-txt">When He works on the left hand, I cannot behold [Him;] When He turns to the right hand, I cannot see [Him.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/10/" data-ref="Job 23:10 (New King James Version)" data-verse-url="/bible/nkjv/job/23/10/"><span class="v-num">10</span><span class="v-txt">But He knows the way that I take; [When] He has tested me, I shall come forth as gold.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/11/" data-ref="Job 23:11 (New King James Version)" data-verse-url="/bible/nkjv/job/23/11/"><span class="v-num">11</span><span class="v-txt">My foot has held fast to His steps; I have kept His way and not turned aside.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/12/" data-ref="Job 23:12 (New King James Version)" data-verse-url="/bible/nkjv/job/23/12/"><span class="v-num">12</span><span class="v-txt">I have not departed from the commandment of His lips; I have treasured the words of His mouth More than my necessary [food.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/13/" data-ref="Job 23:13 (New King James Version)" data-verse-url="/bible/nkjv/job/23/13/"><span class="v-num">13</span><span class="v-txt">"But He [is] unique, and who can make Him change? And [whatever] His soul desires, [that] He does.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/14/" data-ref="Job 23:14 (New King James Version)" data-verse-url="/bible/nkjv/job/23/14/"><span class="v-num">14</span><span class="v-txt">For He performs [what is] appointed for me, And many such [things are] with Him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/15/" data-ref="Job 23:15 (New King James Version)" data-verse-url="/bible/nkjv/job/23/15/"><span class="v-num">15</span><span class="v-txt">Therefore I am terrified at His presence; When I consider [this,] I am afraid of Him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/16/" data-ref="Job 23:16 (New King James Version)" data-verse-url="/bible/nkjv/job/23/16/"><span class="v-num">16</span><span class="v-txt">For God made my heart weak, And the Almighty terrifies me;</span></a>
+<a class="v-row" href="/bible/nkjv/job/23/17/" data-ref="Job 23:17 (New King James Version)" data-verse-url="/bible/nkjv/job/23/17/"><span class="v-num">17</span><span class="v-txt">Because I was not cut off from the presence of darkness, And He did [not] hide deep darkness from my face.</span></a>
 
     
 <div class="app-cta">

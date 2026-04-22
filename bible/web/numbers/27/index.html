@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 27</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Numbers 27:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then drew near the daughters of Zelophehad, the son of Hepher, the son of Gilead, the son of Machir, the son of Manasseh, of the families of Manasseh the son of Joseph; and these are the names of his daughters: Mahlah, Noah, and Hoglah, and Milcah, and Tirzah.</span></div>
-<div class="v-row" data-ref="Numbers 27:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They stood before Moses, and before Eleazar the priest, and before the princes and all the congregation, at the door of the tent of meeting, saying,</span></div>
-<div class="v-row" data-ref="Numbers 27:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Our father died in the wilderness, and he was not among the company of those who gathered themselves together against Yahweh in the company of Korah: but he died in his own sin; and he had no sons.</span></div>
-<div class="v-row" data-ref="Numbers 27:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Why should the name of our father be taken away from among his family, because he had no son? Give to us a possession among the brothers of our father.</span></div>
-<div class="v-row" data-ref="Numbers 27:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Moses brought their cause before Yahweh.</span></div>
-<div class="v-row" data-ref="Numbers 27:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></div>
-<div class="v-row" data-ref="Numbers 27:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The daughters of Zelophehad speak right: you shall surely give them a possession of an inheritance among their father's brothers; and you shall cause the inheritance of their father to pass to them.</span></div>
-<div class="v-row" data-ref="Numbers 27:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You shall speak to the children of Israel, saying, If a man die, and have no son, then you shall cause his inheritance to pass to his daughter.</span></div>
-<div class="v-row" data-ref="Numbers 27:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">If he have no daughter, then you shall give his inheritance to his brothers.</span></div>
-<div class="v-row" data-ref="Numbers 27:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If he have no brothers, then you shall give his inheritance to his father's brothers.</span></div>
-<div class="v-row" data-ref="Numbers 27:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If his father have no brothers, then you shall give his inheritance to his kinsman who is next to him of his family, and he shall possess it: and it shall be to the children of Israel a statute and ordinance, as Yahweh commanded Moses.</span></div>
-<div class="v-row" data-ref="Numbers 27:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Yahweh said to Moses, Go up into this mountain of Abarim, and see the land which I have given to the children of Israel.</span></div>
-<div class="v-row" data-ref="Numbers 27:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When you have seen it, you also shall be gathered to your people, as Aaron your brother was gathered;</span></div>
-<div class="v-row" data-ref="Numbers 27:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">because you rebelled against my word in the wilderness of Zin, in the strife of the congregation, to sanctify me at the waters before their eyes. (These are the waters of Meribah of Kadesh in the wilderness of Zin.)</span></div>
-<div class="v-row" data-ref="Numbers 27:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Moses spoke to Yahweh, saying,</span></div>
-<div class="v-row" data-ref="Numbers 27:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let Yahweh, the God of the spirits of all flesh, appoint a man over the congregation,</span></div>
-<div class="v-row" data-ref="Numbers 27:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">who may go out before them, and who may come in before them, and who may lead them out, and who may bring them in; that the congregation of Yahweh not be as sheep which have no shepherd.</span></div>
-<div class="v-row" data-ref="Numbers 27:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Yahweh said to Moses, Take Joshua the son of Nun, a man in whom is the Spirit, and lay your hand on him;</span></div>
-<div class="v-row" data-ref="Numbers 27:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and set him before Eleazar the priest, and before all the congregation; and give him a charge in their sight.</span></div>
-<div class="v-row" data-ref="Numbers 27:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">You shall put of your honor on him, that all the congregation of the children of Israel may obey.</span></div>
-<div class="v-row" data-ref="Numbers 27:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He shall stand before Eleazar the priest, who shall inquire for him by the judgment of the Urim before Yahweh: at his word shall they go out, and at his word they shall come in, both he, and all the children of Israel with him, even all the congregation.</span></div>
-<div class="v-row" data-ref="Numbers 27:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Moses did as Yahweh commanded him; and he took Joshua, and set him before Eleazar the priest, and before all the congregation:</span></div>
-<div class="v-row" data-ref="Numbers 27:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">and he laid his hands on him, and gave him a charge, as Yahweh spoke by Moses.</span></div>
+    <a class="v-row" href="/bible/web/numbers/27/1/" data-ref="Numbers 27:1 (World English Bible)" data-verse-url="/bible/web/numbers/27/1/"><span class="v-num">1</span><span class="v-txt">Then drew near the daughters of Zelophehad, the son of Hepher, the son of Gilead, the son of Machir, the son of Manasseh, of the families of Manasseh the son of Joseph; and these are the names of his daughters: Mahlah, Noah, and Hoglah, and Milcah, and Tirzah.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/2/" data-ref="Numbers 27:2 (World English Bible)" data-verse-url="/bible/web/numbers/27/2/"><span class="v-num">2</span><span class="v-txt">They stood before Moses, and before Eleazar the priest, and before the princes and all the congregation, at the door of the tent of meeting, saying,</span></a>
+<a class="v-row" href="/bible/web/numbers/27/3/" data-ref="Numbers 27:3 (World English Bible)" data-verse-url="/bible/web/numbers/27/3/"><span class="v-num">3</span><span class="v-txt">Our father died in the wilderness, and he was not among the company of those who gathered themselves together against Yahweh in the company of Korah: but he died in his own sin; and he had no sons.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/4/" data-ref="Numbers 27:4 (World English Bible)" data-verse-url="/bible/web/numbers/27/4/"><span class="v-num">4</span><span class="v-txt">Why should the name of our father be taken away from among his family, because he had no son? Give to us a possession among the brothers of our father.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/5/" data-ref="Numbers 27:5 (World English Bible)" data-verse-url="/bible/web/numbers/27/5/"><span class="v-num">5</span><span class="v-txt">Moses brought their cause before Yahweh.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/6/" data-ref="Numbers 27:6 (World English Bible)" data-verse-url="/bible/web/numbers/27/6/"><span class="v-num">6</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></a>
+<a class="v-row" href="/bible/web/numbers/27/7/" data-ref="Numbers 27:7 (World English Bible)" data-verse-url="/bible/web/numbers/27/7/"><span class="v-num">7</span><span class="v-txt">The daughters of Zelophehad speak right: you shall surely give them a possession of an inheritance among their father's brothers; and you shall cause the inheritance of their father to pass to them.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/8/" data-ref="Numbers 27:8 (World English Bible)" data-verse-url="/bible/web/numbers/27/8/"><span class="v-num">8</span><span class="v-txt">You shall speak to the children of Israel, saying, If a man die, and have no son, then you shall cause his inheritance to pass to his daughter.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/9/" data-ref="Numbers 27:9 (World English Bible)" data-verse-url="/bible/web/numbers/27/9/"><span class="v-num">9</span><span class="v-txt">If he have no daughter, then you shall give his inheritance to his brothers.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/10/" data-ref="Numbers 27:10 (World English Bible)" data-verse-url="/bible/web/numbers/27/10/"><span class="v-num">10</span><span class="v-txt">If he have no brothers, then you shall give his inheritance to his father's brothers.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/11/" data-ref="Numbers 27:11 (World English Bible)" data-verse-url="/bible/web/numbers/27/11/"><span class="v-num">11</span><span class="v-txt">If his father have no brothers, then you shall give his inheritance to his kinsman who is next to him of his family, and he shall possess it: and it shall be to the children of Israel a statute and ordinance, as Yahweh commanded Moses.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/12/" data-ref="Numbers 27:12 (World English Bible)" data-verse-url="/bible/web/numbers/27/12/"><span class="v-num">12</span><span class="v-txt">Yahweh said to Moses, Go up into this mountain of Abarim, and see the land which I have given to the children of Israel.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/13/" data-ref="Numbers 27:13 (World English Bible)" data-verse-url="/bible/web/numbers/27/13/"><span class="v-num">13</span><span class="v-txt">When you have seen it, you also shall be gathered to your people, as Aaron your brother was gathered;</span></a>
+<a class="v-row" href="/bible/web/numbers/27/14/" data-ref="Numbers 27:14 (World English Bible)" data-verse-url="/bible/web/numbers/27/14/"><span class="v-num">14</span><span class="v-txt">because you rebelled against my word in the wilderness of Zin, in the strife of the congregation, to sanctify me at the waters before their eyes. (These are the waters of Meribah of Kadesh in the wilderness of Zin.)</span></a>
+<a class="v-row" href="/bible/web/numbers/27/15/" data-ref="Numbers 27:15 (World English Bible)" data-verse-url="/bible/web/numbers/27/15/"><span class="v-num">15</span><span class="v-txt">Moses spoke to Yahweh, saying,</span></a>
+<a class="v-row" href="/bible/web/numbers/27/16/" data-ref="Numbers 27:16 (World English Bible)" data-verse-url="/bible/web/numbers/27/16/"><span class="v-num">16</span><span class="v-txt">Let Yahweh, the God of the spirits of all flesh, appoint a man over the congregation,</span></a>
+<a class="v-row" href="/bible/web/numbers/27/17/" data-ref="Numbers 27:17 (World English Bible)" data-verse-url="/bible/web/numbers/27/17/"><span class="v-num">17</span><span class="v-txt">who may go out before them, and who may come in before them, and who may lead them out, and who may bring them in; that the congregation of Yahweh not be as sheep which have no shepherd.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/18/" data-ref="Numbers 27:18 (World English Bible)" data-verse-url="/bible/web/numbers/27/18/"><span class="v-num">18</span><span class="v-txt">Yahweh said to Moses, Take Joshua the son of Nun, a man in whom is the Spirit, and lay your hand on him;</span></a>
+<a class="v-row" href="/bible/web/numbers/27/19/" data-ref="Numbers 27:19 (World English Bible)" data-verse-url="/bible/web/numbers/27/19/"><span class="v-num">19</span><span class="v-txt">and set him before Eleazar the priest, and before all the congregation; and give him a charge in their sight.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/20/" data-ref="Numbers 27:20 (World English Bible)" data-verse-url="/bible/web/numbers/27/20/"><span class="v-num">20</span><span class="v-txt">You shall put of your honor on him, that all the congregation of the children of Israel may obey.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/21/" data-ref="Numbers 27:21 (World English Bible)" data-verse-url="/bible/web/numbers/27/21/"><span class="v-num">21</span><span class="v-txt">He shall stand before Eleazar the priest, who shall inquire for him by the judgment of the Urim before Yahweh: at his word shall they go out, and at his word they shall come in, both he, and all the children of Israel with him, even all the congregation.</span></a>
+<a class="v-row" href="/bible/web/numbers/27/22/" data-ref="Numbers 27:22 (World English Bible)" data-verse-url="/bible/web/numbers/27/22/"><span class="v-num">22</span><span class="v-txt">Moses did as Yahweh commanded him; and he took Joshua, and set him before Eleazar the priest, and before all the congregation:</span></a>
+<a class="v-row" href="/bible/web/numbers/27/23/" data-ref="Numbers 27:23 (World English Bible)" data-verse-url="/bible/web/numbers/27/23/"><span class="v-num">23</span><span class="v-txt">and he laid his hands on him, and gave him a charge, as Yahweh spoke by Moses.</span></a>
 
     
 <div class="app-cta">

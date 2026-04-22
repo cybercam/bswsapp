@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Esther 6:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">On that night the king couldn't sleep; and he commanded to bring the book of records of the chronicles, and they were read before the king.</span></div>
-<div class="v-row" data-ref="Esther 6:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">It was found written that Mordecai had told of Bigthana and Teresh, two of the king's chamberlains, of those who kept the threshold, who had sought to lay hands on the king Ahasuerus.</span></div>
-<div class="v-row" data-ref="Esther 6:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The king said, What honor and dignity has been bestowed on Mordecai for this? Then the king's servants who ministered to him said, "Nothing has been done for him."</span></div>
-<div class="v-row" data-ref="Esther 6:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The king said, "Who is in the court?" Now Haman was come into the outward court of the king's house, to speak to the king to hang Mordecai on the gallows that he had prepared for him.</span></div>
-<div class="v-row" data-ref="Esther 6:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The king's servants said to him, Behold, Haman stands in the court. The king said, Let him come in.</span></div>
-<div class="v-row" data-ref="Esther 6:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So Haman came in. The king said to him, What shall be done to the man whom the king delights to honor? Now Haman said in his heart, To whom would the king delight to do honor more than to myself?</span></div>
-<div class="v-row" data-ref="Esther 6:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Haman said to the king, For the man whom the king delights to honor,</span></div>
-<div class="v-row" data-ref="Esther 6:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">let royal clothing be brought which the king uses to wear, and the horse that the king rides on, and on the head of which a crown royal is set:</span></div>
-<div class="v-row" data-ref="Esther 6:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">and let the clothing and the horse be delivered to the hand of one of the king's most noble princes, that they may array the man therewith whom the king delights to honor, and cause him to ride on horseback through the street of the city, and proclaim before him, Thus shall it be done to the man whom the king delights to honor.</span></div>
-<div class="v-row" data-ref="Esther 6:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then the king said to Haman, Make haste, and take the clothing and the horse, as you have said, and do even so to Mordecai the Jew, who sits at the king's gate: let nothing fail of all that you have spoken.</span></div>
-<div class="v-row" data-ref="Esther 6:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then took Haman the clothing and the horse, and arrayed Mordecai, and caused him to ride through the street of the city, and proclaimed before him, Thus shall it be done to the man whom the king delights to honor.</span></div>
-<div class="v-row" data-ref="Esther 6:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Mordecai came again to the king's gate. But Haman hurried to his house, mourning and having his head covered.</span></div>
-<div class="v-row" data-ref="Esther 6:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Haman recounted to Zeresh his wife and all his friends everything that had happened to him. Then his wise men and Zeresh his wife said to him, If Mordecai, before whom you have begun to fall, be of the seed of the Jews, you shall not prevail against him, but shall surely fall before him.</span></div>
-<div class="v-row" data-ref="Esther 6:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">While they were yet talking with him, came the king's chamberlains, and hurried to bring Haman to the banquet that Esther had prepared.</span></div>
+    <a class="v-row" href="/bible/web/esther/6/1/" data-ref="Esther 6:1 (World English Bible)" data-verse-url="/bible/web/esther/6/1/"><span class="v-num">1</span><span class="v-txt">On that night the king couldn't sleep; and he commanded to bring the book of records of the chronicles, and they were read before the king.</span></a>
+<a class="v-row" href="/bible/web/esther/6/2/" data-ref="Esther 6:2 (World English Bible)" data-verse-url="/bible/web/esther/6/2/"><span class="v-num">2</span><span class="v-txt">It was found written that Mordecai had told of Bigthana and Teresh, two of the king's chamberlains, of those who kept the threshold, who had sought to lay hands on the king Ahasuerus.</span></a>
+<a class="v-row" href="/bible/web/esther/6/3/" data-ref="Esther 6:3 (World English Bible)" data-verse-url="/bible/web/esther/6/3/"><span class="v-num">3</span><span class="v-txt">The king said, What honor and dignity has been bestowed on Mordecai for this? Then the king's servants who ministered to him said, "Nothing has been done for him."</span></a>
+<a class="v-row" href="/bible/web/esther/6/4/" data-ref="Esther 6:4 (World English Bible)" data-verse-url="/bible/web/esther/6/4/"><span class="v-num">4</span><span class="v-txt">The king said, "Who is in the court?" Now Haman was come into the outward court of the king's house, to speak to the king to hang Mordecai on the gallows that he had prepared for him.</span></a>
+<a class="v-row" href="/bible/web/esther/6/5/" data-ref="Esther 6:5 (World English Bible)" data-verse-url="/bible/web/esther/6/5/"><span class="v-num">5</span><span class="v-txt">The king's servants said to him, Behold, Haman stands in the court. The king said, Let him come in.</span></a>
+<a class="v-row" href="/bible/web/esther/6/6/" data-ref="Esther 6:6 (World English Bible)" data-verse-url="/bible/web/esther/6/6/"><span class="v-num">6</span><span class="v-txt">So Haman came in. The king said to him, What shall be done to the man whom the king delights to honor? Now Haman said in his heart, To whom would the king delight to do honor more than to myself?</span></a>
+<a class="v-row" href="/bible/web/esther/6/7/" data-ref="Esther 6:7 (World English Bible)" data-verse-url="/bible/web/esther/6/7/"><span class="v-num">7</span><span class="v-txt">Haman said to the king, For the man whom the king delights to honor,</span></a>
+<a class="v-row" href="/bible/web/esther/6/8/" data-ref="Esther 6:8 (World English Bible)" data-verse-url="/bible/web/esther/6/8/"><span class="v-num">8</span><span class="v-txt">let royal clothing be brought which the king uses to wear, and the horse that the king rides on, and on the head of which a crown royal is set:</span></a>
+<a class="v-row" href="/bible/web/esther/6/9/" data-ref="Esther 6:9 (World English Bible)" data-verse-url="/bible/web/esther/6/9/"><span class="v-num">9</span><span class="v-txt">and let the clothing and the horse be delivered to the hand of one of the king's most noble princes, that they may array the man therewith whom the king delights to honor, and cause him to ride on horseback through the street of the city, and proclaim before him, Thus shall it be done to the man whom the king delights to honor.</span></a>
+<a class="v-row" href="/bible/web/esther/6/10/" data-ref="Esther 6:10 (World English Bible)" data-verse-url="/bible/web/esther/6/10/"><span class="v-num">10</span><span class="v-txt">Then the king said to Haman, Make haste, and take the clothing and the horse, as you have said, and do even so to Mordecai the Jew, who sits at the king's gate: let nothing fail of all that you have spoken.</span></a>
+<a class="v-row" href="/bible/web/esther/6/11/" data-ref="Esther 6:11 (World English Bible)" data-verse-url="/bible/web/esther/6/11/"><span class="v-num">11</span><span class="v-txt">Then took Haman the clothing and the horse, and arrayed Mordecai, and caused him to ride through the street of the city, and proclaimed before him, Thus shall it be done to the man whom the king delights to honor.</span></a>
+<a class="v-row" href="/bible/web/esther/6/12/" data-ref="Esther 6:12 (World English Bible)" data-verse-url="/bible/web/esther/6/12/"><span class="v-num">12</span><span class="v-txt">Mordecai came again to the king's gate. But Haman hurried to his house, mourning and having his head covered.</span></a>
+<a class="v-row" href="/bible/web/esther/6/13/" data-ref="Esther 6:13 (World English Bible)" data-verse-url="/bible/web/esther/6/13/"><span class="v-num">13</span><span class="v-txt">Haman recounted to Zeresh his wife and all his friends everything that had happened to him. Then his wise men and Zeresh his wife said to him, If Mordecai, before whom you have begun to fall, be of the seed of the Jews, you shall not prevail against him, but shall surely fall before him.</span></a>
+<a class="v-row" href="/bible/web/esther/6/14/" data-ref="Esther 6:14 (World English Bible)" data-verse-url="/bible/web/esther/6/14/"><span class="v-num">14</span><span class="v-txt">While they were yet talking with him, came the king's chamberlains, and hurried to bring Haman to the banquet that Esther had prepared.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 44</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 44:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. Of the sons of Korah Maschil. It has come to our ears, O God, our fathers have given us the story, of the works which you did in their days, in the old times,</span></div>
-<div class="v-row" data-ref="Psalm 44:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Uprooting the nations with your hand, and planting our fathers in their place; cutting down the nations, but increasing the growth of your people.</span></div>
-<div class="v-row" data-ref="Psalm 44:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For they did not make the land theirs by their swords, and it was not their arms which kept them safe; but your right hand, and your arm, and the light of your face, because you had pleasure in them.</span></div>
-<div class="v-row" data-ref="Psalm 44:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">You are my King and my God; ordering salvation for Jacob.</span></div>
-<div class="v-row" data-ref="Psalm 44:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Through you will we overcome our haters; by your name will they be crushed under our feet who are violent against us.</span></div>
-<div class="v-row" data-ref="Psalm 44:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I will not put faith in my bow, my sword will not be my salvation.</span></div>
-<div class="v-row" data-ref="Psalm 44:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But it is you who have been our saviour from those who were against us, and have put to shame those who had hate for us.</span></div>
-<div class="v-row" data-ref="Psalm 44:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Our pride is in God at all times, to his name we give praise for ever. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 44:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But now you have sent us away from you, and put us to shame; you do not go out with our armies.</span></div>
-<div class="v-row" data-ref="Psalm 44:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because of this we are turned back by the attacker: those who have hate for us take our goods for themselves.</span></div>
-<div class="v-row" data-ref="Psalm 44:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">You have made us like sheep which are taken for meat; we are put to flight among the nations.</span></div>
-<div class="v-row" data-ref="Psalm 44:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">You let your people go for nothing; your wealth is not increased by their price.</span></div>
-<div class="v-row" data-ref="Psalm 44:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">You have made us to be looked down on by our neighbours, we are laughed at and shamed by those who are round about us.</span></div>
-<div class="v-row" data-ref="Psalm 44:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Our name is a word of shame among the nations, a sign for the shaking of heads among the peoples.</span></div>
-<div class="v-row" data-ref="Psalm 44:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My downfall is ever before me, and I am covered with the shame of my face;</span></div>
-<div class="v-row" data-ref="Psalm 44:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Because of the voice of him who says sharp and bitter words; because of the hater and him who is the instrument of punishment.</span></div>
-<div class="v-row" data-ref="Psalm 44:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">All this has come on us, but still we have kept you in our memory; and we have not been false to your word.</span></div>
-<div class="v-row" data-ref="Psalm 44:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Our hearts have not gone back, and our steps have not been turned out of your way;</span></div>
-<div class="v-row" data-ref="Psalm 44:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Though you have let us be crushed in the place of jackals, though we are covered with darkest shade.</span></div>
-<div class="v-row" data-ref="Psalm 44:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If the name of our God has gone out of our minds, or if our hands have been stretched out to a strange god,</span></div>
-<div class="v-row" data-ref="Psalm 44:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Will not God make search for it? for he sees the secrets of the heart.</span></div>
-<div class="v-row" data-ref="Psalm 44:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Truly, because of you we are put to death every day; we are numbered like sheep for destruction.</span></div>
-<div class="v-row" data-ref="Psalm 44:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Why are you sleeping, O Lord? awake! and come to our help, do not give us up for ever.</span></div>
-<div class="v-row" data-ref="Psalm 44:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Why is your face covered, and why do you give no thought to our trouble and our cruel fate?</span></div>
-<div class="v-row" data-ref="Psalm 44:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For our souls are crushed down to the dust: our bodies are stretched out on the earth.</span></div>
-<div class="v-row" data-ref="Psalm 44:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Up! and come to our help, and give us salvation because of your mercy.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/44/1/" data-ref="Psalm 44:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. Of the sons of Korah Maschil. It has come to our ears, O God, our fathers have given us the story, of the works which you did in their days, in the old times,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/2/" data-ref="Psalm 44:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/2/"><span class="v-num">2</span><span class="v-txt">Uprooting the nations with your hand, and planting our fathers in their place; cutting down the nations, but increasing the growth of your people.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/3/" data-ref="Psalm 44:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/3/"><span class="v-num">3</span><span class="v-txt">For they did not make the land theirs by their swords, and it was not their arms which kept them safe; but your right hand, and your arm, and the light of your face, because you had pleasure in them.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/4/" data-ref="Psalm 44:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/4/"><span class="v-num">4</span><span class="v-txt">You are my King and my God; ordering salvation for Jacob.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/5/" data-ref="Psalm 44:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/5/"><span class="v-num">5</span><span class="v-txt">Through you will we overcome our haters; by your name will they be crushed under our feet who are violent against us.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/6/" data-ref="Psalm 44:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/6/"><span class="v-num">6</span><span class="v-txt">I will not put faith in my bow, my sword will not be my salvation.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/7/" data-ref="Psalm 44:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/7/"><span class="v-num">7</span><span class="v-txt">But it is you who have been our saviour from those who were against us, and have put to shame those who had hate for us.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/8/" data-ref="Psalm 44:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/8/"><span class="v-num">8</span><span class="v-txt">Our pride is in God at all times, to his name we give praise for ever. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/9/" data-ref="Psalm 44:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/9/"><span class="v-num">9</span><span class="v-txt">But now you have sent us away from you, and put us to shame; you do not go out with our armies.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/10/" data-ref="Psalm 44:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/10/"><span class="v-num">10</span><span class="v-txt">Because of this we are turned back by the attacker: those who have hate for us take our goods for themselves.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/11/" data-ref="Psalm 44:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/11/"><span class="v-num">11</span><span class="v-txt">You have made us like sheep which are taken for meat; we are put to flight among the nations.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/12/" data-ref="Psalm 44:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/12/"><span class="v-num">12</span><span class="v-txt">You let your people go for nothing; your wealth is not increased by their price.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/13/" data-ref="Psalm 44:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/13/"><span class="v-num">13</span><span class="v-txt">You have made us to be looked down on by our neighbours, we are laughed at and shamed by those who are round about us.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/14/" data-ref="Psalm 44:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/14/"><span class="v-num">14</span><span class="v-txt">Our name is a word of shame among the nations, a sign for the shaking of heads among the peoples.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/15/" data-ref="Psalm 44:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/15/"><span class="v-num">15</span><span class="v-txt">My downfall is ever before me, and I am covered with the shame of my face;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/16/" data-ref="Psalm 44:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/16/"><span class="v-num">16</span><span class="v-txt">Because of the voice of him who says sharp and bitter words; because of the hater and him who is the instrument of punishment.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/17/" data-ref="Psalm 44:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/17/"><span class="v-num">17</span><span class="v-txt">All this has come on us, but still we have kept you in our memory; and we have not been false to your word.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/18/" data-ref="Psalm 44:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/18/"><span class="v-num">18</span><span class="v-txt">Our hearts have not gone back, and our steps have not been turned out of your way;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/19/" data-ref="Psalm 44:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/19/"><span class="v-num">19</span><span class="v-txt">Though you have let us be crushed in the place of jackals, though we are covered with darkest shade.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/20/" data-ref="Psalm 44:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/20/"><span class="v-num">20</span><span class="v-txt">If the name of our God has gone out of our minds, or if our hands have been stretched out to a strange god,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/21/" data-ref="Psalm 44:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/21/"><span class="v-num">21</span><span class="v-txt">Will not God make search for it? for he sees the secrets of the heart.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/22/" data-ref="Psalm 44:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/22/"><span class="v-num">22</span><span class="v-txt">Truly, because of you we are put to death every day; we are numbered like sheep for destruction.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/23/" data-ref="Psalm 44:23 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/23/"><span class="v-num">23</span><span class="v-txt">Why are you sleeping, O Lord? awake! and come to our help, do not give us up for ever.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/24/" data-ref="Psalm 44:24 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/24/"><span class="v-num">24</span><span class="v-txt">Why is your face covered, and why do you give no thought to our trouble and our cruel fate?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/25/" data-ref="Psalm 44:25 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/25/"><span class="v-num">25</span><span class="v-txt">For our souls are crushed down to the dust: our bodies are stretched out on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/44/26/" data-ref="Psalm 44:26 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/44/26/"><span class="v-num">26</span><span class="v-txt">Up! and come to our help, and give us salvation because of your mercy.</span></a>
 
     
 <div class="app-cta">

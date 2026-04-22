@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Joshua 16:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The lot came out for the children of Joseph from the Jordan at Jericho, at the waters of Jericho on the east, even the wilderness, going up from Jericho through the hill-country to Bethel;</span></div>
-<div class="v-row" data-ref="Joshua 16:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">and it went out from Bethel to Luz, and passed along to the border of the Archites to Ataroth;</span></div>
-<div class="v-row" data-ref="Joshua 16:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and it went down westward to the border of the Japhletites, to the border of Beth Horon the lower, even to Gezer; and the goings out of it were at the sea.</span></div>
-<div class="v-row" data-ref="Joshua 16:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The children of Joseph, Manasseh and Ephraim, took their inheritance.</span></div>
-<div class="v-row" data-ref="Joshua 16:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The border of the children of Ephraim according to their families was thus: the border of their inheritance eastward was Ataroth Addar, to Beth Horon the upper;</span></div>
-<div class="v-row" data-ref="Joshua 16:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and the border went out westward at Michmethath on the north; and the border turned about eastward to Taanath Shiloh, and passed along it on the east of Janoah;</span></div>
-<div class="v-row" data-ref="Joshua 16:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">and it went down from Janoah to Ataroth, and to Naarah, and reached to Jericho, and went out at the Jordan.</span></div>
-<div class="v-row" data-ref="Joshua 16:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">From Tappuah the border went along westward to the brook of Kanah; and the goings out of it were at the sea. This is the inheritance of the tribe of the children of Ephraim according to their families;</span></div>
-<div class="v-row" data-ref="Joshua 16:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">together with the cities which were set apart for the children of Ephraim in the midst of the inheritance of the children of Manasseh, all the cities with their villages.</span></div>
-<div class="v-row" data-ref="Joshua 16:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">They didn't drive out the Canaanites who lived in Gezer: but the Canaanites dwell in the midst of Ephraim to this day, and are become servants to do forced labor.</span></div>
+    <a class="v-row" href="/bible/web/joshua/16/1/" data-ref="Joshua 16:1 (World English Bible)" data-verse-url="/bible/web/joshua/16/1/"><span class="v-num">1</span><span class="v-txt">The lot came out for the children of Joseph from the Jordan at Jericho, at the waters of Jericho on the east, even the wilderness, going up from Jericho through the hill-country to Bethel;</span></a>
+<a class="v-row" href="/bible/web/joshua/16/2/" data-ref="Joshua 16:2 (World English Bible)" data-verse-url="/bible/web/joshua/16/2/"><span class="v-num">2</span><span class="v-txt">and it went out from Bethel to Luz, and passed along to the border of the Archites to Ataroth;</span></a>
+<a class="v-row" href="/bible/web/joshua/16/3/" data-ref="Joshua 16:3 (World English Bible)" data-verse-url="/bible/web/joshua/16/3/"><span class="v-num">3</span><span class="v-txt">and it went down westward to the border of the Japhletites, to the border of Beth Horon the lower, even to Gezer; and the goings out of it were at the sea.</span></a>
+<a class="v-row" href="/bible/web/joshua/16/4/" data-ref="Joshua 16:4 (World English Bible)" data-verse-url="/bible/web/joshua/16/4/"><span class="v-num">4</span><span class="v-txt">The children of Joseph, Manasseh and Ephraim, took their inheritance.</span></a>
+<a class="v-row" href="/bible/web/joshua/16/5/" data-ref="Joshua 16:5 (World English Bible)" data-verse-url="/bible/web/joshua/16/5/"><span class="v-num">5</span><span class="v-txt">The border of the children of Ephraim according to their families was thus: the border of their inheritance eastward was Ataroth Addar, to Beth Horon the upper;</span></a>
+<a class="v-row" href="/bible/web/joshua/16/6/" data-ref="Joshua 16:6 (World English Bible)" data-verse-url="/bible/web/joshua/16/6/"><span class="v-num">6</span><span class="v-txt">and the border went out westward at Michmethath on the north; and the border turned about eastward to Taanath Shiloh, and passed along it on the east of Janoah;</span></a>
+<a class="v-row" href="/bible/web/joshua/16/7/" data-ref="Joshua 16:7 (World English Bible)" data-verse-url="/bible/web/joshua/16/7/"><span class="v-num">7</span><span class="v-txt">and it went down from Janoah to Ataroth, and to Naarah, and reached to Jericho, and went out at the Jordan.</span></a>
+<a class="v-row" href="/bible/web/joshua/16/8/" data-ref="Joshua 16:8 (World English Bible)" data-verse-url="/bible/web/joshua/16/8/"><span class="v-num">8</span><span class="v-txt">From Tappuah the border went along westward to the brook of Kanah; and the goings out of it were at the sea. This is the inheritance of the tribe of the children of Ephraim according to their families;</span></a>
+<a class="v-row" href="/bible/web/joshua/16/9/" data-ref="Joshua 16:9 (World English Bible)" data-verse-url="/bible/web/joshua/16/9/"><span class="v-num">9</span><span class="v-txt">together with the cities which were set apart for the children of Ephraim in the midst of the inheritance of the children of Manasseh, all the cities with their villages.</span></a>
+<a class="v-row" href="/bible/web/joshua/16/10/" data-ref="Joshua 16:10 (World English Bible)" data-verse-url="/bible/web/joshua/16/10/"><span class="v-num">10</span><span class="v-txt">They didn't drive out the Canaanites who lived in Gezer: but the Canaanites dwell in the midst of Ephraim to this day, and are become servants to do forced labor.</span></a>
 
     
 <div class="app-cta">

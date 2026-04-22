@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 16:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now concerning the collection for the saints, as I have given order to the churches of Galatia, even so do ye.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Upon the first day of the week let every one of you lay by him in store, as God hath prospered him, that there be no gatherings when I come.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when I come, whomsoever ye shall approve by your letters, them will I send to bring your liberality unto Jerusalem.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And if it be meet that I go also, they shall go with me.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now I will come unto you, when I shall pass through Macedonia: for I do pass through Macedonia.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And it may be that I will abide, yea, and winter with you, that ye may bring me on my journey whithersoever I go.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For I will not see you now by the way; but I trust to tarry a while with you, if the Lord permit.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But I will tarry at Ephesus until Pentecost.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For a great door and effectual is opened unto me, and there are many adversaries.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now if Timotheus come, see that he may be with you without fear: for he worketh the work of the Lord, as I also do.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let no man therefore despise him: but conduct him forth in peace, that he may come unto me: for I look for him with the brethren.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">As touching our brother Apollos, I greatly desired him to come unto you with the brethren: but his will was not at all to come at this time; but he will come when he shall have convenient time.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Watch ye, stand fast in the faith, quit you like men, be strong.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Let all your things be done with charity.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I beseech you, brethren, (ye know the house of Stephanas, that it is the firstfruits of Achaia, and that they have addicted themselves to the ministry of the saints,)</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">That ye submit yourselves unto such, and to every one that helpeth with us, and laboureth.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I am glad of the coming of Stephanas and Fortunatus and Achaicus: for that which was lacking on your part they have supplied.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For they have refreshed my spirit and yours: therefore acknowledge ye them that are such.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The churches of Asia salute you. Aquila and Priscilla salute you much in the Lord, with the church that is in their house.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">All the brethren greet you. Greet ye one another with an holy kiss.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The salutation of me Paul with mine own hand.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">If any man love not the Lord Jesus Christ, let him be Anathema Maranatha.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The grace of our Lord Jesus Christ be with you.</span></div>
-<div class="v-row" data-ref="1 Corinthians 16:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">My love be with you all in Christ Jesus. Amen.</span></div>
+    <a class="v-row" href="/bible/kjv/1-corinthians/16/1/" data-ref="1 Corinthians 16:1 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/1/"><span class="v-num">1</span><span class="v-txt">Now concerning the collection for the saints, as I have given order to the churches of Galatia, even so do ye.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/2/" data-ref="1 Corinthians 16:2 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/2/"><span class="v-num">2</span><span class="v-txt">Upon the first day of the week let every one of you lay by him in store, as God hath prospered him, that there be no gatherings when I come.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/3/" data-ref="1 Corinthians 16:3 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/3/"><span class="v-num">3</span><span class="v-txt">And when I come, whomsoever ye shall approve by your letters, them will I send to bring your liberality unto Jerusalem.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/4/" data-ref="1 Corinthians 16:4 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/4/"><span class="v-num">4</span><span class="v-txt">And if it be meet that I go also, they shall go with me.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/5/" data-ref="1 Corinthians 16:5 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/5/"><span class="v-num">5</span><span class="v-txt">Now I will come unto you, when I shall pass through Macedonia: for I do pass through Macedonia.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/6/" data-ref="1 Corinthians 16:6 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/6/"><span class="v-num">6</span><span class="v-txt">And it may be that I will abide, yea, and winter with you, that ye may bring me on my journey whithersoever I go.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/7/" data-ref="1 Corinthians 16:7 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/7/"><span class="v-num">7</span><span class="v-txt">For I will not see you now by the way; but I trust to tarry a while with you, if the Lord permit.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/8/" data-ref="1 Corinthians 16:8 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/8/"><span class="v-num">8</span><span class="v-txt">But I will tarry at Ephesus until Pentecost.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/9/" data-ref="1 Corinthians 16:9 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/9/"><span class="v-num">9</span><span class="v-txt">For a great door and effectual is opened unto me, and there are many adversaries.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/10/" data-ref="1 Corinthians 16:10 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/10/"><span class="v-num">10</span><span class="v-txt">Now if Timotheus come, see that he may be with you without fear: for he worketh the work of the Lord, as I also do.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/11/" data-ref="1 Corinthians 16:11 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/11/"><span class="v-num">11</span><span class="v-txt">Let no man therefore despise him: but conduct him forth in peace, that he may come unto me: for I look for him with the brethren.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/12/" data-ref="1 Corinthians 16:12 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/12/"><span class="v-num">12</span><span class="v-txt">As touching our brother Apollos, I greatly desired him to come unto you with the brethren: but his will was not at all to come at this time; but he will come when he shall have convenient time.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/13/" data-ref="1 Corinthians 16:13 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/13/"><span class="v-num">13</span><span class="v-txt">Watch ye, stand fast in the faith, quit you like men, be strong.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/14/" data-ref="1 Corinthians 16:14 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/14/"><span class="v-num">14</span><span class="v-txt">Let all your things be done with charity.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/15/" data-ref="1 Corinthians 16:15 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/15/"><span class="v-num">15</span><span class="v-txt">I beseech you, brethren, (ye know the house of Stephanas, that it is the firstfruits of Achaia, and that they have addicted themselves to the ministry of the saints,)</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/16/" data-ref="1 Corinthians 16:16 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/16/"><span class="v-num">16</span><span class="v-txt">That ye submit yourselves unto such, and to every one that helpeth with us, and laboureth.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/17/" data-ref="1 Corinthians 16:17 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/17/"><span class="v-num">17</span><span class="v-txt">I am glad of the coming of Stephanas and Fortunatus and Achaicus: for that which was lacking on your part they have supplied.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/18/" data-ref="1 Corinthians 16:18 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/18/"><span class="v-num">18</span><span class="v-txt">For they have refreshed my spirit and yours: therefore acknowledge ye them that are such.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/19/" data-ref="1 Corinthians 16:19 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/19/"><span class="v-num">19</span><span class="v-txt">The churches of Asia salute you. Aquila and Priscilla salute you much in the Lord, with the church that is in their house.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/20/" data-ref="1 Corinthians 16:20 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/20/"><span class="v-num">20</span><span class="v-txt">All the brethren greet you. Greet ye one another with an holy kiss.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/21/" data-ref="1 Corinthians 16:21 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/21/"><span class="v-num">21</span><span class="v-txt">The salutation of me Paul with mine own hand.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/22/" data-ref="1 Corinthians 16:22 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/22/"><span class="v-num">22</span><span class="v-txt">If any man love not the Lord Jesus Christ, let him be Anathema Maranatha.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/23/" data-ref="1 Corinthians 16:23 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/23/"><span class="v-num">23</span><span class="v-txt">The grace of our Lord Jesus Christ be with you.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/16/24/" data-ref="1 Corinthians 16:24 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/16/24/"><span class="v-num">24</span><span class="v-txt">My love be with you all in Christ Jesus. Amen.</span></a>
 
     
 <div class="app-cta">

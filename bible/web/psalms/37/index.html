@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,46 +204,46 @@ a:hover{text-decoration:underline}
       <h2>Chapter 37</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 37:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">By David. Don't fret because of evil-doers, Neither be envious against those who work unrighteousness.</span></div>
-<div class="v-row" data-ref="Psalm 37:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For they shall soon be cut down like the grass, And wither like the green herb.</span></div>
-<div class="v-row" data-ref="Psalm 37:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Trust in Yahweh, and do good. Dwell in the land, and enjoy safe pasture.</span></div>
-<div class="v-row" data-ref="Psalm 37:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Also delight yourself in Yahweh, And he will give you the desires of your heart.</span></div>
-<div class="v-row" data-ref="Psalm 37:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Commit your way to Yahweh. Trust also in him, and he will do this:</span></div>
-<div class="v-row" data-ref="Psalm 37:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He will make your righteousness go forth as the light, And your justice as the noon day sun.</span></div>
-<div class="v-row" data-ref="Psalm 37:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Rest in Yahweh, and wait patiently for him. Don't fret because of him who prospers in his way, Because of the man who makes wicked plots happen.</span></div>
-<div class="v-row" data-ref="Psalm 37:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Cease from anger, and forsake wrath. Don't fret, it leads only to evildoing.</span></div>
-<div class="v-row" data-ref="Psalm 37:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For evildoers shall be cut off, But those who wait for Yahweh shall inherit the land.</span></div>
-<div class="v-row" data-ref="Psalm 37:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For yet a little while, and the wicked will be no more. Yes, though you look for his place, he isn't there.</span></div>
-<div class="v-row" data-ref="Psalm 37:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But the humble shall inherit the land, And shall delight themselves in the abundance of peace.</span></div>
-<div class="v-row" data-ref="Psalm 37:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The wicked plots against the just, And gnashes at him with his teeth.</span></div>
-<div class="v-row" data-ref="Psalm 37:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The Lord will laugh at him, For he sees that his day is coming.</span></div>
-<div class="v-row" data-ref="Psalm 37:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The wicked have drawn out the sword, and have bent their bow, To cast down the poor and needy, To kill those who are upright in the way.</span></div>
-<div class="v-row" data-ref="Psalm 37:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Their sword shall enter into their own heart. Their bows shall be broken.</span></div>
-<div class="v-row" data-ref="Psalm 37:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Better is a little that the righteous has, Than the abundance of many wicked.</span></div>
-<div class="v-row" data-ref="Psalm 37:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the arms of the wicked shall be broken, But Yahweh upholds the righteous.</span></div>
-<div class="v-row" data-ref="Psalm 37:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Yahweh knows the days of the perfect. Their inheritance shall be forever.</span></div>
-<div class="v-row" data-ref="Psalm 37:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">They shall not be disappointed in the time of evil. In the days of famine they shall be satisfied.</span></div>
-<div class="v-row" data-ref="Psalm 37:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But the wicked shall perish. The enemies of Yahweh shall be like the beauty of the fields. They will vanish� Vanish like smoke.</span></div>
-<div class="v-row" data-ref="Psalm 37:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The wicked borrow, and don't pay back, But the righteous give generously.</span></div>
-<div class="v-row" data-ref="Psalm 37:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For such as are blessed by him shall inherit the land. Those who are cursed by him shall be cut off.</span></div>
-<div class="v-row" data-ref="Psalm 37:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A man's goings are established by Yahweh. He delights in his way.</span></div>
-<div class="v-row" data-ref="Psalm 37:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Though he stumble, he shall not fall, For Yahweh holds him up with his hand.</span></div>
-<div class="v-row" data-ref="Psalm 37:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">I have been young, and now am old, Yet I have not seen the righteous forsaken, Nor his children begging for bread.</span></div>
-<div class="v-row" data-ref="Psalm 37:26 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">All day long he deals graciously, and lends. His seed is blessed.</span></div>
-<div class="v-row" data-ref="Psalm 37:27 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Depart from evil, and do good; Live securely forever.</span></div>
-<div class="v-row" data-ref="Psalm 37:28 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">For Yahweh loves justice, And doesn't forsake his saints. They are preserved forever, But the children of the wicked shall be cut off.</span></div>
-<div class="v-row" data-ref="Psalm 37:29 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">The righteous shall inherit the land, And live in it forever.</span></div>
-<div class="v-row" data-ref="Psalm 37:30 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">The mouth of the righteous talks of wisdom. His tongue speaks justice.</span></div>
-<div class="v-row" data-ref="Psalm 37:31 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">The law of his God is in his heart. None of his steps shall slide.</span></div>
-<div class="v-row" data-ref="Psalm 37:32 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">The wicked watches the righteous, And seeks to kill him.</span></div>
-<div class="v-row" data-ref="Psalm 37:33 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">Yahweh will not leave him in his hand, Nor condemn him when he is judged.</span></div>
-<div class="v-row" data-ref="Psalm 37:34 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">Wait for Yahweh, and keep his way, And he will exalt you to inherit the land. When the wicked are cut off, you shall see it.</span></div>
-<div class="v-row" data-ref="Psalm 37:35 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">I have seen the wicked in great power, Spreading himself like a green tree in its native soil.</span></div>
-<div class="v-row" data-ref="Psalm 37:36 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">36</span><span class="v-txt">But he passed away, and, behold, he was not. Yes, I sought him, but he could not be found.</span></div>
-<div class="v-row" data-ref="Psalm 37:37 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">37</span><span class="v-txt">Mark the perfect man, and see the upright, For there is a future for the man of peace.</span></div>
-<div class="v-row" data-ref="Psalm 37:38 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">38</span><span class="v-txt">As for transgressors, they shall be destroyed together. The future of the wicked shall be cut off.</span></div>
-<div class="v-row" data-ref="Psalm 37:39 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">39</span><span class="v-txt">But the salvation of the righteous is from Yahweh. He is their stronghold in the time of trouble.</span></div>
-<div class="v-row" data-ref="Psalm 37:40 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">40</span><span class="v-txt">Yahweh helps them, and rescues them. He rescues them from the wicked, and saves them, Because they have taken refuge in him.</span></div>
+    <a class="v-row" href="/bible/web/psalms/37/1/" data-ref="Psalm 37:1 (World English Bible)" data-verse-url="/bible/web/psalms/37/1/"><span class="v-num">1</span><span class="v-txt">By David. Don't fret because of evil-doers, Neither be envious against those who work unrighteousness.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/2/" data-ref="Psalm 37:2 (World English Bible)" data-verse-url="/bible/web/psalms/37/2/"><span class="v-num">2</span><span class="v-txt">For they shall soon be cut down like the grass, And wither like the green herb.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/3/" data-ref="Psalm 37:3 (World English Bible)" data-verse-url="/bible/web/psalms/37/3/"><span class="v-num">3</span><span class="v-txt">Trust in Yahweh, and do good. Dwell in the land, and enjoy safe pasture.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/4/" data-ref="Psalm 37:4 (World English Bible)" data-verse-url="/bible/web/psalms/37/4/"><span class="v-num">4</span><span class="v-txt">Also delight yourself in Yahweh, And he will give you the desires of your heart.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/5/" data-ref="Psalm 37:5 (World English Bible)" data-verse-url="/bible/web/psalms/37/5/"><span class="v-num">5</span><span class="v-txt">Commit your way to Yahweh. Trust also in him, and he will do this:</span></a>
+<a class="v-row" href="/bible/web/psalms/37/6/" data-ref="Psalm 37:6 (World English Bible)" data-verse-url="/bible/web/psalms/37/6/"><span class="v-num">6</span><span class="v-txt">He will make your righteousness go forth as the light, And your justice as the noon day sun.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/7/" data-ref="Psalm 37:7 (World English Bible)" data-verse-url="/bible/web/psalms/37/7/"><span class="v-num">7</span><span class="v-txt">Rest in Yahweh, and wait patiently for him. Don't fret because of him who prospers in his way, Because of the man who makes wicked plots happen.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/8/" data-ref="Psalm 37:8 (World English Bible)" data-verse-url="/bible/web/psalms/37/8/"><span class="v-num">8</span><span class="v-txt">Cease from anger, and forsake wrath. Don't fret, it leads only to evildoing.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/9/" data-ref="Psalm 37:9 (World English Bible)" data-verse-url="/bible/web/psalms/37/9/"><span class="v-num">9</span><span class="v-txt">For evildoers shall be cut off, But those who wait for Yahweh shall inherit the land.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/10/" data-ref="Psalm 37:10 (World English Bible)" data-verse-url="/bible/web/psalms/37/10/"><span class="v-num">10</span><span class="v-txt">For yet a little while, and the wicked will be no more. Yes, though you look for his place, he isn't there.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/11/" data-ref="Psalm 37:11 (World English Bible)" data-verse-url="/bible/web/psalms/37/11/"><span class="v-num">11</span><span class="v-txt">But the humble shall inherit the land, And shall delight themselves in the abundance of peace.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/12/" data-ref="Psalm 37:12 (World English Bible)" data-verse-url="/bible/web/psalms/37/12/"><span class="v-num">12</span><span class="v-txt">The wicked plots against the just, And gnashes at him with his teeth.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/13/" data-ref="Psalm 37:13 (World English Bible)" data-verse-url="/bible/web/psalms/37/13/"><span class="v-num">13</span><span class="v-txt">The Lord will laugh at him, For he sees that his day is coming.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/14/" data-ref="Psalm 37:14 (World English Bible)" data-verse-url="/bible/web/psalms/37/14/"><span class="v-num">14</span><span class="v-txt">The wicked have drawn out the sword, and have bent their bow, To cast down the poor and needy, To kill those who are upright in the way.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/15/" data-ref="Psalm 37:15 (World English Bible)" data-verse-url="/bible/web/psalms/37/15/"><span class="v-num">15</span><span class="v-txt">Their sword shall enter into their own heart. Their bows shall be broken.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/16/" data-ref="Psalm 37:16 (World English Bible)" data-verse-url="/bible/web/psalms/37/16/"><span class="v-num">16</span><span class="v-txt">Better is a little that the righteous has, Than the abundance of many wicked.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/17/" data-ref="Psalm 37:17 (World English Bible)" data-verse-url="/bible/web/psalms/37/17/"><span class="v-num">17</span><span class="v-txt">For the arms of the wicked shall be broken, But Yahweh upholds the righteous.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/18/" data-ref="Psalm 37:18 (World English Bible)" data-verse-url="/bible/web/psalms/37/18/"><span class="v-num">18</span><span class="v-txt">Yahweh knows the days of the perfect. Their inheritance shall be forever.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/19/" data-ref="Psalm 37:19 (World English Bible)" data-verse-url="/bible/web/psalms/37/19/"><span class="v-num">19</span><span class="v-txt">They shall not be disappointed in the time of evil. In the days of famine they shall be satisfied.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/20/" data-ref="Psalm 37:20 (World English Bible)" data-verse-url="/bible/web/psalms/37/20/"><span class="v-num">20</span><span class="v-txt">But the wicked shall perish. The enemies of Yahweh shall be like the beauty of the fields. They will vanish� Vanish like smoke.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/21/" data-ref="Psalm 37:21 (World English Bible)" data-verse-url="/bible/web/psalms/37/21/"><span class="v-num">21</span><span class="v-txt">The wicked borrow, and don't pay back, But the righteous give generously.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/22/" data-ref="Psalm 37:22 (World English Bible)" data-verse-url="/bible/web/psalms/37/22/"><span class="v-num">22</span><span class="v-txt">For such as are blessed by him shall inherit the land. Those who are cursed by him shall be cut off.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/23/" data-ref="Psalm 37:23 (World English Bible)" data-verse-url="/bible/web/psalms/37/23/"><span class="v-num">23</span><span class="v-txt">A man's goings are established by Yahweh. He delights in his way.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/24/" data-ref="Psalm 37:24 (World English Bible)" data-verse-url="/bible/web/psalms/37/24/"><span class="v-num">24</span><span class="v-txt">Though he stumble, he shall not fall, For Yahweh holds him up with his hand.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/25/" data-ref="Psalm 37:25 (World English Bible)" data-verse-url="/bible/web/psalms/37/25/"><span class="v-num">25</span><span class="v-txt">I have been young, and now am old, Yet I have not seen the righteous forsaken, Nor his children begging for bread.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/26/" data-ref="Psalm 37:26 (World English Bible)" data-verse-url="/bible/web/psalms/37/26/"><span class="v-num">26</span><span class="v-txt">All day long he deals graciously, and lends. His seed is blessed.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/27/" data-ref="Psalm 37:27 (World English Bible)" data-verse-url="/bible/web/psalms/37/27/"><span class="v-num">27</span><span class="v-txt">Depart from evil, and do good; Live securely forever.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/28/" data-ref="Psalm 37:28 (World English Bible)" data-verse-url="/bible/web/psalms/37/28/"><span class="v-num">28</span><span class="v-txt">For Yahweh loves justice, And doesn't forsake his saints. They are preserved forever, But the children of the wicked shall be cut off.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/29/" data-ref="Psalm 37:29 (World English Bible)" data-verse-url="/bible/web/psalms/37/29/"><span class="v-num">29</span><span class="v-txt">The righteous shall inherit the land, And live in it forever.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/30/" data-ref="Psalm 37:30 (World English Bible)" data-verse-url="/bible/web/psalms/37/30/"><span class="v-num">30</span><span class="v-txt">The mouth of the righteous talks of wisdom. His tongue speaks justice.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/31/" data-ref="Psalm 37:31 (World English Bible)" data-verse-url="/bible/web/psalms/37/31/"><span class="v-num">31</span><span class="v-txt">The law of his God is in his heart. None of his steps shall slide.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/32/" data-ref="Psalm 37:32 (World English Bible)" data-verse-url="/bible/web/psalms/37/32/"><span class="v-num">32</span><span class="v-txt">The wicked watches the righteous, And seeks to kill him.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/33/" data-ref="Psalm 37:33 (World English Bible)" data-verse-url="/bible/web/psalms/37/33/"><span class="v-num">33</span><span class="v-txt">Yahweh will not leave him in his hand, Nor condemn him when he is judged.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/34/" data-ref="Psalm 37:34 (World English Bible)" data-verse-url="/bible/web/psalms/37/34/"><span class="v-num">34</span><span class="v-txt">Wait for Yahweh, and keep his way, And he will exalt you to inherit the land. When the wicked are cut off, you shall see it.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/35/" data-ref="Psalm 37:35 (World English Bible)" data-verse-url="/bible/web/psalms/37/35/"><span class="v-num">35</span><span class="v-txt">I have seen the wicked in great power, Spreading himself like a green tree in its native soil.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/36/" data-ref="Psalm 37:36 (World English Bible)" data-verse-url="/bible/web/psalms/37/36/"><span class="v-num">36</span><span class="v-txt">But he passed away, and, behold, he was not. Yes, I sought him, but he could not be found.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/37/" data-ref="Psalm 37:37 (World English Bible)" data-verse-url="/bible/web/psalms/37/37/"><span class="v-num">37</span><span class="v-txt">Mark the perfect man, and see the upright, For there is a future for the man of peace.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/38/" data-ref="Psalm 37:38 (World English Bible)" data-verse-url="/bible/web/psalms/37/38/"><span class="v-num">38</span><span class="v-txt">As for transgressors, they shall be destroyed together. The future of the wicked shall be cut off.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/39/" data-ref="Psalm 37:39 (World English Bible)" data-verse-url="/bible/web/psalms/37/39/"><span class="v-num">39</span><span class="v-txt">But the salvation of the righteous is from Yahweh. He is their stronghold in the time of trouble.</span></a>
+<a class="v-row" href="/bible/web/psalms/37/40/" data-ref="Psalm 37:40 (World English Bible)" data-verse-url="/bible/web/psalms/37/40/"><span class="v-num">40</span><span class="v-txt">Yahweh helps them, and rescues them. He rescues them from the wicked, and saves them, Because they have taken refuge in him.</span></a>
 
     
 <div class="app-cta">

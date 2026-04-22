@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 77</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 77:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. After Jeduthun. Of Asaph. A Psalm. I was crying to God with my voice; even to God with my voice, and he gave ear to me.</span></div>
-<div class="v-row" data-ref="Psalm 77:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In the day of my trouble, my heart was turned to the Lord: my hand was stretched out in the night without resting; my soul would not be comforted.</span></div>
-<div class="v-row" data-ref="Psalm 77:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I will keep God in memory, with sounds of grief; my thoughts are troubled, and my spirit is overcome. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 77:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">You keep my eyes from sleep; I am so troubled that no words come.</span></div>
-<div class="v-row" data-ref="Psalm 77:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My thoughts go back to the days of the past, to the years which are gone.</span></div>
-<div class="v-row" data-ref="Psalm 77:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The memory of my song comes back to me in the night; my thoughts are moving in my heart; my spirit is searching with care.</span></div>
-<div class="v-row" data-ref="Psalm 77:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Will the Lord put me away for ever? will he be kind no longer?</span></div>
-<div class="v-row" data-ref="Psalm 77:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Is his mercy quite gone for ever? has his word come to nothing?</span></div>
-<div class="v-row" data-ref="Psalm 77:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Has God put away the memory of his pity? are his mercies shut up by his wrath? (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 77:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And I said, It is a weight on my spirit; but I will keep in mind the years of the right hand of the Most High.</span></div>
-<div class="v-row" data-ref="Psalm 77:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I will keep in mind the works of Jah: I will keep the memory of your wonders in the past.</span></div>
-<div class="v-row" data-ref="Psalm 77:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I will give thought to all your work, while my mind goes over your acts of power.</span></div>
-<div class="v-row" data-ref="Psalm 77:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Your way, O God, is holy: what god is so great as our God?</span></div>
-<div class="v-row" data-ref="Psalm 77:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You are the God who does works of power: you have made your strength clear to the nations.</span></div>
-<div class="v-row" data-ref="Psalm 77:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">With your arm you have made your people free, the sons of Jacob and Joseph. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 77:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The waters saw you, O God; the waters saw you, they were in fear: even the deep was troubled.</span></div>
-<div class="v-row" data-ref="Psalm 77:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The clouds sent out water; the skies gave out a sound; truly, your arrows went far and wide.</span></div>
-<div class="v-row" data-ref="Psalm 77:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The voice of your thunder went rolling on; the world was flaming with the light of the storm; the earth was shaking.</span></div>
-<div class="v-row" data-ref="Psalm 77:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Your way was in the sea, and your road in the great waters; there was no knowledge of your footsteps.</span></div>
-<div class="v-row" data-ref="Psalm 77:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">You were guiding your people like a flock, by the hand of Moses and Aaron.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/77/1/" data-ref="Psalm 77:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. After Jeduthun. Of Asaph. A Psalm. I was crying to God with my voice; even to God with my voice, and he gave ear to me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/2/" data-ref="Psalm 77:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/2/"><span class="v-num">2</span><span class="v-txt">In the day of my trouble, my heart was turned to the Lord: my hand was stretched out in the night without resting; my soul would not be comforted.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/3/" data-ref="Psalm 77:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/3/"><span class="v-num">3</span><span class="v-txt">I will keep God in memory, with sounds of grief; my thoughts are troubled, and my spirit is overcome. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/4/" data-ref="Psalm 77:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/4/"><span class="v-num">4</span><span class="v-txt">You keep my eyes from sleep; I am so troubled that no words come.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/5/" data-ref="Psalm 77:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/5/"><span class="v-num">5</span><span class="v-txt">My thoughts go back to the days of the past, to the years which are gone.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/6/" data-ref="Psalm 77:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/6/"><span class="v-num">6</span><span class="v-txt">The memory of my song comes back to me in the night; my thoughts are moving in my heart; my spirit is searching with care.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/7/" data-ref="Psalm 77:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/7/"><span class="v-num">7</span><span class="v-txt">Will the Lord put me away for ever? will he be kind no longer?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/8/" data-ref="Psalm 77:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/8/"><span class="v-num">8</span><span class="v-txt">Is his mercy quite gone for ever? has his word come to nothing?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/9/" data-ref="Psalm 77:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/9/"><span class="v-num">9</span><span class="v-txt">Has God put away the memory of his pity? are his mercies shut up by his wrath? (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/10/" data-ref="Psalm 77:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/10/"><span class="v-num">10</span><span class="v-txt">And I said, It is a weight on my spirit; but I will keep in mind the years of the right hand of the Most High.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/11/" data-ref="Psalm 77:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/11/"><span class="v-num">11</span><span class="v-txt">I will keep in mind the works of Jah: I will keep the memory of your wonders in the past.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/12/" data-ref="Psalm 77:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/12/"><span class="v-num">12</span><span class="v-txt">I will give thought to all your work, while my mind goes over your acts of power.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/13/" data-ref="Psalm 77:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/13/"><span class="v-num">13</span><span class="v-txt">Your way, O God, is holy: what god is so great as our God?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/14/" data-ref="Psalm 77:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/14/"><span class="v-num">14</span><span class="v-txt">You are the God who does works of power: you have made your strength clear to the nations.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/15/" data-ref="Psalm 77:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/15/"><span class="v-num">15</span><span class="v-txt">With your arm you have made your people free, the sons of Jacob and Joseph. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/16/" data-ref="Psalm 77:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/16/"><span class="v-num">16</span><span class="v-txt">The waters saw you, O God; the waters saw you, they were in fear: even the deep was troubled.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/17/" data-ref="Psalm 77:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/17/"><span class="v-num">17</span><span class="v-txt">The clouds sent out water; the skies gave out a sound; truly, your arrows went far and wide.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/18/" data-ref="Psalm 77:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/18/"><span class="v-num">18</span><span class="v-txt">The voice of your thunder went rolling on; the world was flaming with the light of the storm; the earth was shaking.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/19/" data-ref="Psalm 77:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/19/"><span class="v-num">19</span><span class="v-txt">Your way was in the sea, and your road in the great waters; there was no knowledge of your footsteps.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/77/20/" data-ref="Psalm 77:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/77/20/"><span class="v-num">20</span><span class="v-txt">You were guiding your people like a flock, by the hand of Moses and Aaron.</span></a>
 
     
 <div class="app-cta">

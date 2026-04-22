@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Malachi 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And now, O ye priests, this commandment is for you.</span></div>
-<div class="v-row" data-ref="Malachi 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If ye will not hear, and if ye will not lay it to heart, to give glory unto my name, saith Jehovah of hosts, then will I send the curse upon you, and I will curse your blessings; yea, I have cursed them already, because ye do not lay it to heart.</span></div>
-<div class="v-row" data-ref="Malachi 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Behold, I will rebuke your seed, and will spread dung upon your faces, even the dung of your feasts; and ye shall be taken away with it.</span></div>
-<div class="v-row" data-ref="Malachi 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And ye shall know that I have sent this commandment unto you, that my covenant may be with Levi, saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My covenant was with him of life and peace; and I gave them to him that he might fear; and he feared me, and stood in awe of my name.</span></div>
-<div class="v-row" data-ref="Malachi 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The law of truth was in his mouth, and unrighteousness was not found in his lips: he walked with me in peace and uprightness, and turned many away from iniquity.</span></div>
-<div class="v-row" data-ref="Malachi 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For the priest's lips should keep knowledge, and they should seek the law at his mouth; for he is the messenger of Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But ye are turned aside out of the way; ye have caused many to stumble in the law; ye have corrupted the covenant of Levi, saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore have I also made you contemptible and base before all the people, according as ye have not kept my ways, but have had respect of persons in the law.</span></div>
-<div class="v-row" data-ref="Malachi 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Have we not all one father? hath not one God created us? why do we deal treacherously every man against his brother, profaning the covenant of our fathers?</span></div>
-<div class="v-row" data-ref="Malachi 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Judah hath dealt treacherously, and an abomination is committed in Israel and in Jerusalem; for Judah hath profaned the holiness of Jehovah which he loveth, and hath married the daughter of a foreign god.</span></div>
-<div class="v-row" data-ref="Malachi 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Jehovah will cut off, to the man that doeth this, him that waketh and him that answereth, out of the tents of Jacob, and him that offereth an offering unto Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And this again ye do: ye cover the altar of Jehovah with tears, with weeping, and with sighing, insomuch that he regardeth not the offering any more, neither receiveth it with good will at your hand.</span></div>
-<div class="v-row" data-ref="Malachi 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yet ye say, Wherefore? Because Jehovah hath been witness between thee and the wife of thy youth, against whom thou hast dealt treacherously, though she is thy companion, and the wife of thy covenant.</span></div>
-<div class="v-row" data-ref="Malachi 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And did he not make one, although he had the residue of the Spirit? And wherefore one? He sought a godly seed. Therefore take heed to your spirit, and let none deal treacherously against the wife of his youth.</span></div>
-<div class="v-row" data-ref="Malachi 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For I hate putting away, saith Jehovah, the God of Israel, and him that covereth his garment with violence, saith Jehovah of hosts: therefore take heed to your spirit, that ye deal not treacherously.</span></div>
-<div class="v-row" data-ref="Malachi 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Ye have wearied Jehovah with your words. Yet ye say, Wherein have we wearied him? In that ye say, Every one that doeth evil is good in the sight of Jehovah, and he delighteth in them; or where is the God of justice?</span></div>
+    <a class="v-row" href="/bible/asv/malachi/2/1/" data-ref="Malachi 2:1 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/1/"><span class="v-num">1</span><span class="v-txt">And now, O ye priests, this commandment is for you.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/2/" data-ref="Malachi 2:2 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/2/"><span class="v-num">2</span><span class="v-txt">If ye will not hear, and if ye will not lay it to heart, to give glory unto my name, saith Jehovah of hosts, then will I send the curse upon you, and I will curse your blessings; yea, I have cursed them already, because ye do not lay it to heart.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/3/" data-ref="Malachi 2:3 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/3/"><span class="v-num">3</span><span class="v-txt">Behold, I will rebuke your seed, and will spread dung upon your faces, even the dung of your feasts; and ye shall be taken away with it.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/4/" data-ref="Malachi 2:4 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/4/"><span class="v-num">4</span><span class="v-txt">And ye shall know that I have sent this commandment unto you, that my covenant may be with Levi, saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/5/" data-ref="Malachi 2:5 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/5/"><span class="v-num">5</span><span class="v-txt">My covenant was with him of life and peace; and I gave them to him that he might fear; and he feared me, and stood in awe of my name.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/6/" data-ref="Malachi 2:6 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/6/"><span class="v-num">6</span><span class="v-txt">The law of truth was in his mouth, and unrighteousness was not found in his lips: he walked with me in peace and uprightness, and turned many away from iniquity.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/7/" data-ref="Malachi 2:7 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/7/"><span class="v-num">7</span><span class="v-txt">For the priest's lips should keep knowledge, and they should seek the law at his mouth; for he is the messenger of Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/8/" data-ref="Malachi 2:8 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/8/"><span class="v-num">8</span><span class="v-txt">But ye are turned aside out of the way; ye have caused many to stumble in the law; ye have corrupted the covenant of Levi, saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/9/" data-ref="Malachi 2:9 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/9/"><span class="v-num">9</span><span class="v-txt">Therefore have I also made you contemptible and base before all the people, according as ye have not kept my ways, but have had respect of persons in the law.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/10/" data-ref="Malachi 2:10 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/10/"><span class="v-num">10</span><span class="v-txt">Have we not all one father? hath not one God created us? why do we deal treacherously every man against his brother, profaning the covenant of our fathers?</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/11/" data-ref="Malachi 2:11 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/11/"><span class="v-num">11</span><span class="v-txt">Judah hath dealt treacherously, and an abomination is committed in Israel and in Jerusalem; for Judah hath profaned the holiness of Jehovah which he loveth, and hath married the daughter of a foreign god.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/12/" data-ref="Malachi 2:12 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/12/"><span class="v-num">12</span><span class="v-txt">Jehovah will cut off, to the man that doeth this, him that waketh and him that answereth, out of the tents of Jacob, and him that offereth an offering unto Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/13/" data-ref="Malachi 2:13 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/13/"><span class="v-num">13</span><span class="v-txt">And this again ye do: ye cover the altar of Jehovah with tears, with weeping, and with sighing, insomuch that he regardeth not the offering any more, neither receiveth it with good will at your hand.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/14/" data-ref="Malachi 2:14 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/14/"><span class="v-num">14</span><span class="v-txt">Yet ye say, Wherefore? Because Jehovah hath been witness between thee and the wife of thy youth, against whom thou hast dealt treacherously, though she is thy companion, and the wife of thy covenant.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/15/" data-ref="Malachi 2:15 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/15/"><span class="v-num">15</span><span class="v-txt">And did he not make one, although he had the residue of the Spirit? And wherefore one? He sought a godly seed. Therefore take heed to your spirit, and let none deal treacherously against the wife of his youth.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/16/" data-ref="Malachi 2:16 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/16/"><span class="v-num">16</span><span class="v-txt">For I hate putting away, saith Jehovah, the God of Israel, and him that covereth his garment with violence, saith Jehovah of hosts: therefore take heed to your spirit, that ye deal not treacherously.</span></a>
+<a class="v-row" href="/bible/asv/malachi/2/17/" data-ref="Malachi 2:17 (American Standard Version)" data-verse-url="/bible/asv/malachi/2/17/"><span class="v-num">17</span><span class="v-txt">Ye have wearied Jehovah with your words. Yet ye say, Wherein have we wearied him? In that ye say, Every one that doeth evil is good in the sight of Jehovah, and he delighteth in them; or where is the God of justice?</span></a>
 
     
 <div class="app-cta">

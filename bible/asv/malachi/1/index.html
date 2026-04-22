@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Malachi 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden of the word of Jehovah to Israel by Malachi.</span></div>
-<div class="v-row" data-ref="Malachi 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I have loved you, saith Jehovah. Yet ye say, Wherein hast thou loved us? Was not Esau Jacob's brother, saith Jehovah: yet I loved Jacob;</span></div>
-<div class="v-row" data-ref="Malachi 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">but Esau I hated, and made his mountains a desolation, and [gave] his heritage to the jackals of the wilderness.</span></div>
-<div class="v-row" data-ref="Malachi 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Whereas Edom saith, We are beaten down, but we will return and build the waste places; thus saith Jehovah of hosts, They shall build, but I will throw down; and men shall call them The border of wickedness, and The people against whom Jehovah hath indignation for ever.</span></div>
-<div class="v-row" data-ref="Malachi 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And your eyes shall see, and ye shall say, Jehovah be magnified beyond the border of Israel.</span></div>
-<div class="v-row" data-ref="Malachi 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">A son honoreth his father, and a servant his master: if then I am a father, where is mine honor? and if I am a master, where is my fear? saith Jehovah of hosts unto you, O priests, that despise my name. And ye say, Wherein have we despised thy name?</span></div>
-<div class="v-row" data-ref="Malachi 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Ye offer polluted bread upon mine altar. And ye say, Wherein have we polluted thee? In that ye say, The table of Jehovah is contemptible.</span></div>
-<div class="v-row" data-ref="Malachi 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when ye offer the blind for sacrifice, it is no evil! and when ye offer the lame and sick, it is no evil! Present it now unto thy governor; will he be pleased with thee? or will he accept thy person? saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And now, I pray you, entreat the favor of God, that he may be gracious unto us: this hath been by your means: will he accept any of your persons? saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Oh that there were one among you that would shut the doors, that ye might not kindle [fire on] mine altar in vain! I have no pleasure in you, saith Jehovah of hosts, neither will I accept an offering at your hand.</span></div>
-<div class="v-row" data-ref="Malachi 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For from the rising of the sun even unto the going down of the same my name [shall be] great among the Gentiles; and in every place incense [shall be] offered unto my name, and a pure offering: for my name [shall be] great among the Gentiles, saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Malachi 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But ye profane it, in that ye say, The table of Jehovah is polluted, and the fruit thereof, even its food, is contemptible.</span></div>
-<div class="v-row" data-ref="Malachi 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Ye say also, Behold, what a weariness is it! and ye have snuffed at it, saith Jehovah of hosts; and ye have brought that which was taken by violence, and the lame, and the sick; thus ye bring the offering: should I accept this at your hand? saith Jehovah.</span></div>
-<div class="v-row" data-ref="Malachi 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But cursed be the deceiver, who hath in his flock a male, and voweth, and sacrificeth unto the Lord a blemished thing; for I am a great King, saith Jehovah of hosts, and my name is terrible among the Gentiles.</span></div>
+    <a class="v-row" href="/bible/asv/malachi/1/1/" data-ref="Malachi 1:1 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/1/"><span class="v-num">1</span><span class="v-txt">The burden of the word of Jehovah to Israel by Malachi.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/2/" data-ref="Malachi 1:2 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/2/"><span class="v-num">2</span><span class="v-txt">I have loved you, saith Jehovah. Yet ye say, Wherein hast thou loved us? Was not Esau Jacob's brother, saith Jehovah: yet I loved Jacob;</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/3/" data-ref="Malachi 1:3 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/3/"><span class="v-num">3</span><span class="v-txt">but Esau I hated, and made his mountains a desolation, and [gave] his heritage to the jackals of the wilderness.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/4/" data-ref="Malachi 1:4 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/4/"><span class="v-num">4</span><span class="v-txt">Whereas Edom saith, We are beaten down, but we will return and build the waste places; thus saith Jehovah of hosts, They shall build, but I will throw down; and men shall call them The border of wickedness, and The people against whom Jehovah hath indignation for ever.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/5/" data-ref="Malachi 1:5 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/5/"><span class="v-num">5</span><span class="v-txt">And your eyes shall see, and ye shall say, Jehovah be magnified beyond the border of Israel.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/6/" data-ref="Malachi 1:6 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/6/"><span class="v-num">6</span><span class="v-txt">A son honoreth his father, and a servant his master: if then I am a father, where is mine honor? and if I am a master, where is my fear? saith Jehovah of hosts unto you, O priests, that despise my name. And ye say, Wherein have we despised thy name?</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/7/" data-ref="Malachi 1:7 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/7/"><span class="v-num">7</span><span class="v-txt">Ye offer polluted bread upon mine altar. And ye say, Wherein have we polluted thee? In that ye say, The table of Jehovah is contemptible.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/8/" data-ref="Malachi 1:8 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/8/"><span class="v-num">8</span><span class="v-txt">And when ye offer the blind for sacrifice, it is no evil! and when ye offer the lame and sick, it is no evil! Present it now unto thy governor; will he be pleased with thee? or will he accept thy person? saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/9/" data-ref="Malachi 1:9 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/9/"><span class="v-num">9</span><span class="v-txt">And now, I pray you, entreat the favor of God, that he may be gracious unto us: this hath been by your means: will he accept any of your persons? saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/10/" data-ref="Malachi 1:10 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/10/"><span class="v-num">10</span><span class="v-txt">Oh that there were one among you that would shut the doors, that ye might not kindle [fire on] mine altar in vain! I have no pleasure in you, saith Jehovah of hosts, neither will I accept an offering at your hand.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/11/" data-ref="Malachi 1:11 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/11/"><span class="v-num">11</span><span class="v-txt">For from the rising of the sun even unto the going down of the same my name [shall be] great among the Gentiles; and in every place incense [shall be] offered unto my name, and a pure offering: for my name [shall be] great among the Gentiles, saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/12/" data-ref="Malachi 1:12 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/12/"><span class="v-num">12</span><span class="v-txt">But ye profane it, in that ye say, The table of Jehovah is polluted, and the fruit thereof, even its food, is contemptible.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/13/" data-ref="Malachi 1:13 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/13/"><span class="v-num">13</span><span class="v-txt">Ye say also, Behold, what a weariness is it! and ye have snuffed at it, saith Jehovah of hosts; and ye have brought that which was taken by violence, and the lame, and the sick; thus ye bring the offering: should I accept this at your hand? saith Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/malachi/1/14/" data-ref="Malachi 1:14 (American Standard Version)" data-verse-url="/bible/asv/malachi/1/14/"><span class="v-num">14</span><span class="v-txt">But cursed be the deceiver, who hath in his flock a male, and voweth, and sacrificeth unto the Lord a blemished thing; for I am a great King, saith Jehovah of hosts, and my name is terrible among the Gentiles.</span></a>
 
     
 <div class="app-cta">

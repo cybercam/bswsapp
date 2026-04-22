@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 17:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden against Damascus. "Behold, Damascus will cease from [being] a city, And it will be a ruinous heap.</span></div>
-<div class="v-row" data-ref="Isaiah 17:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The cities of Aroer [are] forsaken; They will be for flocks Which lie down, and no one will make [them] afraid.</span></div>
-<div class="v-row" data-ref="Isaiah 17:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The fortress also will cease from Ephraim, The kingdom from Damascus, And the remnant of Syria; They will be as the glory of the children of Israel," Says the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Isaiah 17:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">" In that day it shall come to pass [That] the glory of Jacob will wane, And the fatness of his flesh grow lean.</span></div>
-<div class="v-row" data-ref="Isaiah 17:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">It shall be as when the harvester gathers the grain, And reaps the heads with his arm; It shall be as he who gathers heads of grain In the Valley of Rephaim.</span></div>
-<div class="v-row" data-ref="Isaiah 17:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Yet gleaning grapes will be left in it, Like the shaking of an olive tree, Two [or] three olives at the top of the uppermost bough, Four [or] five in its most fruitful branches," Says the LORD God of Israel.</span></div>
-<div class="v-row" data-ref="Isaiah 17:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">In that day a man will look to his Maker, And his eyes will have respect for the Holy One of Israel.</span></div>
-<div class="v-row" data-ref="Isaiah 17:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He will not look to the altars, The work of his hands; He will not respect what his fingers have made, Nor the wooden images nor the incense altars.</span></div>
-<div class="v-row" data-ref="Isaiah 17:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">In that day his strong cities will be as a forsaken bough And an uppermost branch, Which they left because of the children of Israel; And there will be desolation.</span></div>
-<div class="v-row" data-ref="Isaiah 17:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because you have forgotten the God of your salvation, And have not been mindful of the Rock of your stronghold, Therefore you will plant pleasant plants And set out foreign seedlings;</span></div>
-<div class="v-row" data-ref="Isaiah 17:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In the day you will make your plant to grow, And in the morning you will make your seed to flourish; [But] the harvest [will be] a heap of ruins In the day of grief and desperate sorrow.</span></div>
-<div class="v-row" data-ref="Isaiah 17:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Woe to the multitude of many people [Who] make a noise like the roar of the seas, And to the rushing of nations [That] make a rushing like the rushing of mighty waters!</span></div>
-<div class="v-row" data-ref="Isaiah 17:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The nations will rush like the rushing of many waters; But [God] will rebuke them and they will flee far away, And be chased like the chaff of the mountains before the wind, Like a rolling thing before the whirlwind.</span></div>
-<div class="v-row" data-ref="Isaiah 17:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then behold, at eventide, trouble! [And] before the morning, he [is] no more. This [is] the portion of those who plunder us, And the lot of those who rob us.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/17/1/" data-ref="Isaiah 17:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/1/"><span class="v-num">1</span><span class="v-txt">The burden against Damascus. "Behold, Damascus will cease from [being] a city, And it will be a ruinous heap.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/2/" data-ref="Isaiah 17:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/2/"><span class="v-num">2</span><span class="v-txt">The cities of Aroer [are] forsaken; They will be for flocks Which lie down, and no one will make [them] afraid.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/3/" data-ref="Isaiah 17:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/3/"><span class="v-num">3</span><span class="v-txt">The fortress also will cease from Ephraim, The kingdom from Damascus, And the remnant of Syria; They will be as the glory of the children of Israel," Says the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/4/" data-ref="Isaiah 17:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/4/"><span class="v-num">4</span><span class="v-txt">" In that day it shall come to pass [That] the glory of Jacob will wane, And the fatness of his flesh grow lean.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/5/" data-ref="Isaiah 17:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/5/"><span class="v-num">5</span><span class="v-txt">It shall be as when the harvester gathers the grain, And reaps the heads with his arm; It shall be as he who gathers heads of grain In the Valley of Rephaim.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/6/" data-ref="Isaiah 17:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/6/"><span class="v-num">6</span><span class="v-txt">Yet gleaning grapes will be left in it, Like the shaking of an olive tree, Two [or] three olives at the top of the uppermost bough, Four [or] five in its most fruitful branches," Says the LORD God of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/7/" data-ref="Isaiah 17:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/7/"><span class="v-num">7</span><span class="v-txt">In that day a man will look to his Maker, And his eyes will have respect for the Holy One of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/8/" data-ref="Isaiah 17:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/8/"><span class="v-num">8</span><span class="v-txt">He will not look to the altars, The work of his hands; He will not respect what his fingers have made, Nor the wooden images nor the incense altars.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/9/" data-ref="Isaiah 17:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/9/"><span class="v-num">9</span><span class="v-txt">In that day his strong cities will be as a forsaken bough And an uppermost branch, Which they left because of the children of Israel; And there will be desolation.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/10/" data-ref="Isaiah 17:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/10/"><span class="v-num">10</span><span class="v-txt">Because you have forgotten the God of your salvation, And have not been mindful of the Rock of your stronghold, Therefore you will plant pleasant plants And set out foreign seedlings;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/11/" data-ref="Isaiah 17:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/11/"><span class="v-num">11</span><span class="v-txt">In the day you will make your plant to grow, And in the morning you will make your seed to flourish; [But] the harvest [will be] a heap of ruins In the day of grief and desperate sorrow.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/12/" data-ref="Isaiah 17:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/12/"><span class="v-num">12</span><span class="v-txt">Woe to the multitude of many people [Who] make a noise like the roar of the seas, And to the rushing of nations [That] make a rushing like the rushing of mighty waters!</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/13/" data-ref="Isaiah 17:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/13/"><span class="v-num">13</span><span class="v-txt">The nations will rush like the rushing of many waters; But [God] will rebuke them and they will flee far away, And be chased like the chaff of the mountains before the wind, Like a rolling thing before the whirlwind.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/17/14/" data-ref="Isaiah 17:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/17/14/"><span class="v-num">14</span><span class="v-txt">Then behold, at eventide, trouble! [And] before the morning, he [is] no more. This [is] the portion of those who plunder us, And the lot of those who rob us.</span></a>
 
     
 <div class="app-cta">

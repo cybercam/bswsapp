@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 94</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 94:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">O Jehovah, thou God to whom vengeance belongeth, Thou God to whom vengeance belongeth, shine forth.</span></div>
-<div class="v-row" data-ref="Psalm 94:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Lift up thyself, thou judge of the earth: Render to the proud [their] desert.</span></div>
-<div class="v-row" data-ref="Psalm 94:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Jehovah, how long shall the wicked, How long shall the wicked triumph?</span></div>
-<div class="v-row" data-ref="Psalm 94:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They prate, they speak arrogantly: All the workers of iniquity boast themselves.</span></div>
-<div class="v-row" data-ref="Psalm 94:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They break in pieces thy people, O Jehovah, And afflict thy heritage.</span></div>
-<div class="v-row" data-ref="Psalm 94:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They slay the widow and the sojourner, And murder the fatherless.</span></div>
-<div class="v-row" data-ref="Psalm 94:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And they say, Jehovah will not see, Neither will the God of Jacob consider.</span></div>
-<div class="v-row" data-ref="Psalm 94:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Consider, ye brutish among the people; And ye fools, when will ye be wise?</span></div>
-<div class="v-row" data-ref="Psalm 94:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He that planted the ear, shall he not hear? He that formed the eye, shall he not see?</span></div>
-<div class="v-row" data-ref="Psalm 94:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He that chastiseth the nations, shall not he correct, [Even] he that teacheth man knowledge?</span></div>
-<div class="v-row" data-ref="Psalm 94:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Jehovah knoweth the thoughts of man, That they are vanity.</span></div>
-<div class="v-row" data-ref="Psalm 94:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Blessed is the man whom thou chastenest, O Jehovah, And teachest out of thy law;</span></div>
-<div class="v-row" data-ref="Psalm 94:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">That thou mayest give him rest from the days of adversity, Until the pit be digged for the wicked.</span></div>
-<div class="v-row" data-ref="Psalm 94:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For Jehovah will not cast off his people, Neither will he forsake his inheritance.</span></div>
-<div class="v-row" data-ref="Psalm 94:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For judgment shall return unto righteousness; And all the upright in heart shall follow it.</span></div>
-<div class="v-row" data-ref="Psalm 94:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Who will rise up for me against the evil-doers? Who will stand up for me against the workers of iniquity?</span></div>
-<div class="v-row" data-ref="Psalm 94:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Unless Jehovah had been my help, My soul had soon dwelt in silence.</span></div>
-<div class="v-row" data-ref="Psalm 94:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">When I said, My foot slippeth; Thy lovingkindness, O Jehovah, held me up.</span></div>
-<div class="v-row" data-ref="Psalm 94:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">In the multitude of my thoughts within me Thy comforts delight my soul.</span></div>
-<div class="v-row" data-ref="Psalm 94:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Shall the throne of wickedness have fellowship with thee, Which frameth mischief by statute?</span></div>
-<div class="v-row" data-ref="Psalm 94:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">They gather themselves together against the soul of the righteous, And condemn the innocent blood.</span></div>
-<div class="v-row" data-ref="Psalm 94:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But Jehovah hath been my high tower, And my God the rock of my refuge.</span></div>
-<div class="v-row" data-ref="Psalm 94:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And he hath brought upon them their own iniquity, And will cut them off in their own wickedness; Jehovah our God will cut them off.</span></div>
+    <a class="v-row" href="/bible/asv/psalms/94/1/" data-ref="Psalm 94:1 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/1/"><span class="v-num">1</span><span class="v-txt">O Jehovah, thou God to whom vengeance belongeth, Thou God to whom vengeance belongeth, shine forth.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/2/" data-ref="Psalm 94:2 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/2/"><span class="v-num">2</span><span class="v-txt">Lift up thyself, thou judge of the earth: Render to the proud [their] desert.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/3/" data-ref="Psalm 94:3 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/3/"><span class="v-num">3</span><span class="v-txt">Jehovah, how long shall the wicked, How long shall the wicked triumph?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/4/" data-ref="Psalm 94:4 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/4/"><span class="v-num">4</span><span class="v-txt">They prate, they speak arrogantly: All the workers of iniquity boast themselves.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/5/" data-ref="Psalm 94:5 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/5/"><span class="v-num">5</span><span class="v-txt">They break in pieces thy people, O Jehovah, And afflict thy heritage.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/6/" data-ref="Psalm 94:6 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/6/"><span class="v-num">6</span><span class="v-txt">They slay the widow and the sojourner, And murder the fatherless.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/7/" data-ref="Psalm 94:7 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/7/"><span class="v-num">7</span><span class="v-txt">And they say, Jehovah will not see, Neither will the God of Jacob consider.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/8/" data-ref="Psalm 94:8 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/8/"><span class="v-num">8</span><span class="v-txt">Consider, ye brutish among the people; And ye fools, when will ye be wise?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/9/" data-ref="Psalm 94:9 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/9/"><span class="v-num">9</span><span class="v-txt">He that planted the ear, shall he not hear? He that formed the eye, shall he not see?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/10/" data-ref="Psalm 94:10 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/10/"><span class="v-num">10</span><span class="v-txt">He that chastiseth the nations, shall not he correct, [Even] he that teacheth man knowledge?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/11/" data-ref="Psalm 94:11 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/11/"><span class="v-num">11</span><span class="v-txt">Jehovah knoweth the thoughts of man, That they are vanity.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/12/" data-ref="Psalm 94:12 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/12/"><span class="v-num">12</span><span class="v-txt">Blessed is the man whom thou chastenest, O Jehovah, And teachest out of thy law;</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/13/" data-ref="Psalm 94:13 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/13/"><span class="v-num">13</span><span class="v-txt">That thou mayest give him rest from the days of adversity, Until the pit be digged for the wicked.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/14/" data-ref="Psalm 94:14 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/14/"><span class="v-num">14</span><span class="v-txt">For Jehovah will not cast off his people, Neither will he forsake his inheritance.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/15/" data-ref="Psalm 94:15 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/15/"><span class="v-num">15</span><span class="v-txt">For judgment shall return unto righteousness; And all the upright in heart shall follow it.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/16/" data-ref="Psalm 94:16 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/16/"><span class="v-num">16</span><span class="v-txt">Who will rise up for me against the evil-doers? Who will stand up for me against the workers of iniquity?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/17/" data-ref="Psalm 94:17 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/17/"><span class="v-num">17</span><span class="v-txt">Unless Jehovah had been my help, My soul had soon dwelt in silence.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/18/" data-ref="Psalm 94:18 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/18/"><span class="v-num">18</span><span class="v-txt">When I said, My foot slippeth; Thy lovingkindness, O Jehovah, held me up.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/19/" data-ref="Psalm 94:19 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/19/"><span class="v-num">19</span><span class="v-txt">In the multitude of my thoughts within me Thy comforts delight my soul.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/20/" data-ref="Psalm 94:20 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/20/"><span class="v-num">20</span><span class="v-txt">Shall the throne of wickedness have fellowship with thee, Which frameth mischief by statute?</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/21/" data-ref="Psalm 94:21 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/21/"><span class="v-num">21</span><span class="v-txt">They gather themselves together against the soul of the righteous, And condemn the innocent blood.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/22/" data-ref="Psalm 94:22 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/22/"><span class="v-num">22</span><span class="v-txt">But Jehovah hath been my high tower, And my God the rock of my refuge.</span></a>
+<a class="v-row" href="/bible/asv/psalms/94/23/" data-ref="Psalm 94:23 (American Standard Version)" data-verse-url="/bible/asv/psalms/94/23/"><span class="v-num">23</span><span class="v-txt">And he hath brought upon them their own iniquity, And will cut them off in their own wickedness; Jehovah our God will cut them off.</span></a>
 
     
 <div class="app-cta">

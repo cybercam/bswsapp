@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 59</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 59:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Deliver me from mine enemies, O my God: defend me from them that rise up against me.</span></div>
-<div class="v-row" data-ref="Psalm 59:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Deliver me from the workers of iniquity, and save me from bloody men.</span></div>
-<div class="v-row" data-ref="Psalm 59:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For, lo, they lie in wait for my soul: the mighty are gathered against me; not for my transgression, nor for my sin, O LORD.</span></div>
-<div class="v-row" data-ref="Psalm 59:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They run and prepare themselves without my fault: awake to help me, and behold.</span></div>
-<div class="v-row" data-ref="Psalm 59:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Thou therefore, O LORD God of hosts, the God of Israel, awake to visit all the heathen: be not merciful to any wicked transgressors. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 59:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They return at evening: they make a noise like a dog, and go round about the city.</span></div>
-<div class="v-row" data-ref="Psalm 59:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Behold, they belch out with their mouth: swords are in their lips: for who, say they, doth hear?</span></div>
-<div class="v-row" data-ref="Psalm 59:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But thou, O LORD, shalt laugh at them; thou shalt have all the heathen in derision.</span></div>
-<div class="v-row" data-ref="Psalm 59:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Because of his strength will I wait upon thee: for God is my defence.</span></div>
-<div class="v-row" data-ref="Psalm 59:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The God of my mercy shall prevent me: God shall let me see my desire upon mine enemies.</span></div>
-<div class="v-row" data-ref="Psalm 59:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Slay them not, lest my people forget: scatter them by thy power; and bring them down, O Lord our shield.</span></div>
-<div class="v-row" data-ref="Psalm 59:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For the sin of their mouth and the words of their lips let them even be taken in their pride: and for cursing and lying which they speak.</span></div>
-<div class="v-row" data-ref="Psalm 59:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Consume them in wrath, consume them, that they may not be: and let them know that God ruleth in Jacob unto the ends of the earth. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 59:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And at evening let them return; and let them make a noise like a dog, and go round about the city.</span></div>
-<div class="v-row" data-ref="Psalm 59:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let them wander up and down for meat, and grudge if they be not satisfied.</span></div>
-<div class="v-row" data-ref="Psalm 59:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But I will sing of thy power; yea, I will sing aloud of thy mercy in the morning: for thou hast been my defence and refuge in the day of my trouble.</span></div>
-<div class="v-row" data-ref="Psalm 59:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Unto thee, O my strength, will I sing: for God is my defence, and the God of my mercy.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/59/1/" data-ref="Psalm 59:1 (King James Version)" data-verse-url="/bible/kjv/psalms/59/1/"><span class="v-num">1</span><span class="v-txt">Deliver me from mine enemies, O my God: defend me from them that rise up against me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/2/" data-ref="Psalm 59:2 (King James Version)" data-verse-url="/bible/kjv/psalms/59/2/"><span class="v-num">2</span><span class="v-txt">Deliver me from the workers of iniquity, and save me from bloody men.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/3/" data-ref="Psalm 59:3 (King James Version)" data-verse-url="/bible/kjv/psalms/59/3/"><span class="v-num">3</span><span class="v-txt">For, lo, they lie in wait for my soul: the mighty are gathered against me; not for my transgression, nor for my sin, O LORD.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/4/" data-ref="Psalm 59:4 (King James Version)" data-verse-url="/bible/kjv/psalms/59/4/"><span class="v-num">4</span><span class="v-txt">They run and prepare themselves without my fault: awake to help me, and behold.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/5/" data-ref="Psalm 59:5 (King James Version)" data-verse-url="/bible/kjv/psalms/59/5/"><span class="v-num">5</span><span class="v-txt">Thou therefore, O LORD God of hosts, the God of Israel, awake to visit all the heathen: be not merciful to any wicked transgressors. Selah.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/6/" data-ref="Psalm 59:6 (King James Version)" data-verse-url="/bible/kjv/psalms/59/6/"><span class="v-num">6</span><span class="v-txt">They return at evening: they make a noise like a dog, and go round about the city.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/7/" data-ref="Psalm 59:7 (King James Version)" data-verse-url="/bible/kjv/psalms/59/7/"><span class="v-num">7</span><span class="v-txt">Behold, they belch out with their mouth: swords are in their lips: for who, say they, doth hear?</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/8/" data-ref="Psalm 59:8 (King James Version)" data-verse-url="/bible/kjv/psalms/59/8/"><span class="v-num">8</span><span class="v-txt">But thou, O LORD, shalt laugh at them; thou shalt have all the heathen in derision.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/9/" data-ref="Psalm 59:9 (King James Version)" data-verse-url="/bible/kjv/psalms/59/9/"><span class="v-num">9</span><span class="v-txt">Because of his strength will I wait upon thee: for God is my defence.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/10/" data-ref="Psalm 59:10 (King James Version)" data-verse-url="/bible/kjv/psalms/59/10/"><span class="v-num">10</span><span class="v-txt">The God of my mercy shall prevent me: God shall let me see my desire upon mine enemies.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/11/" data-ref="Psalm 59:11 (King James Version)" data-verse-url="/bible/kjv/psalms/59/11/"><span class="v-num">11</span><span class="v-txt">Slay them not, lest my people forget: scatter them by thy power; and bring them down, O Lord our shield.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/12/" data-ref="Psalm 59:12 (King James Version)" data-verse-url="/bible/kjv/psalms/59/12/"><span class="v-num">12</span><span class="v-txt">For the sin of their mouth and the words of their lips let them even be taken in their pride: and for cursing and lying which they speak.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/13/" data-ref="Psalm 59:13 (King James Version)" data-verse-url="/bible/kjv/psalms/59/13/"><span class="v-num">13</span><span class="v-txt">Consume them in wrath, consume them, that they may not be: and let them know that God ruleth in Jacob unto the ends of the earth. Selah.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/14/" data-ref="Psalm 59:14 (King James Version)" data-verse-url="/bible/kjv/psalms/59/14/"><span class="v-num">14</span><span class="v-txt">And at evening let them return; and let them make a noise like a dog, and go round about the city.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/15/" data-ref="Psalm 59:15 (King James Version)" data-verse-url="/bible/kjv/psalms/59/15/"><span class="v-num">15</span><span class="v-txt">Let them wander up and down for meat, and grudge if they be not satisfied.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/16/" data-ref="Psalm 59:16 (King James Version)" data-verse-url="/bible/kjv/psalms/59/16/"><span class="v-num">16</span><span class="v-txt">But I will sing of thy power; yea, I will sing aloud of thy mercy in the morning: for thou hast been my defence and refuge in the day of my trouble.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/59/17/" data-ref="Psalm 59:17 (King James Version)" data-verse-url="/bible/kjv/psalms/59/17/"><span class="v-num">17</span><span class="v-txt">Unto thee, O my strength, will I sing: for God is my defence, and the God of my mercy.</span></a>
 
     
 <div class="app-cta">

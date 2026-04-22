@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 22</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Revelation 22:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I saw a river of water of life, clear as glass, coming out of the high seat of God and of the Lamb,</span></div>
-<div class="v-row" data-ref="Revelation 22:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In the middle of its street. And on this side of the river and on that was the tree of life, having twelve sorts of fruits, giving its fruit every month; and the leaves of the tree give life to the nations.</span></div>
-<div class="v-row" data-ref="Revelation 22:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And there will be no more curse: and the high seat of God and of the Lamb will be there; and his servants will be worshipping him;</span></div>
-<div class="v-row" data-ref="Revelation 22:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they will see his face; and his name will be on their brows.</span></div>
-<div class="v-row" data-ref="Revelation 22:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And there will be no more night; and they have no need of a light or of the shining of the sun; for the Lord God will give them light: and they will be ruling for ever and ever.</span></div>
-<div class="v-row" data-ref="Revelation 22:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he said to me, These words are certain and true: and the Lord, the God of the spirits of the prophets, sent his angel to make clear to his servants the things which are now to come about.</span></div>
-<div class="v-row" data-ref="Revelation 22:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">See, I come quickly. A blessing on him who keeps the words of this book of the prophet.</span></div>
-<div class="v-row" data-ref="Revelation 22:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I, John, am he who saw these things and to whose ears they came. And when I had seen and given ear, I went down on my face to give worship at the feet of the angel who made these things clear to me.</span></div>
-<div class="v-row" data-ref="Revelation 22:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he said to me, See you do it not; I am a brother-servant with you and with your brothers the prophets, and with those who keep the words of this book: give worship to God.</span></div>
-<div class="v-row" data-ref="Revelation 22:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he said to me, Let not the words of this prophet's book be kept secret, because the time is near.</span></div>
-<div class="v-row" data-ref="Revelation 22:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let the evil man go on in his evil: and let the unclean be still unclean: and let the upright go on in his righteousness: and let the holy be holy still.</span></div>
-<div class="v-row" data-ref="Revelation 22:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">See, I come quickly; and my reward is with me, to give to every man the outcome of his works.</span></div>
-<div class="v-row" data-ref="Revelation 22:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I am the First and the Last, the start and the end.</span></div>
-<div class="v-row" data-ref="Revelation 22:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A blessing on those whose robes are washed, so that they may have a right to the tree of life, and may go in by the doors into the town.</span></div>
-<div class="v-row" data-ref="Revelation 22:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Outside are the dogs, and those who make use of evil powers, those who make themselves unclean, and the takers of life, and those who give worship to images, and everyone whose delight is in what is false.</span></div>
-<div class="v-row" data-ref="Revelation 22:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I, Jesus, have sent my angel to give witness to you of these things in the churches. I am the root and the offspring of David, the bright and morning star.</span></div>
-<div class="v-row" data-ref="Revelation 22:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the Spirit and the bride say, Come. And let him who gives ear, say, Come. And let him who is in need come; and let everyone desiring it take of the water of life freely.</span></div>
-<div class="v-row" data-ref="Revelation 22:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For I say to every man to whose ears have come the words of this prophet's book, If any man makes an addition to them, God will put on him the punishments which are in this book:</span></div>
-<div class="v-row" data-ref="Revelation 22:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And if any man takes away from the words of this book, God will take away from him his part in the tree of life and the holy town, even the things which are in this book.</span></div>
-<div class="v-row" data-ref="Revelation 22:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He who gives witness to these things says, Truly, I come quickly. Even so come, Lord Jesus.</span></div>
-<div class="v-row" data-ref="Revelation 22:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The grace of the Lord Jesus be with the saints. So be it.</span></div>
+    <a class="v-row" href="/bible/bbe/revelation/22/1/" data-ref="Revelation 22:1 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/1/"><span class="v-num">1</span><span class="v-txt">And I saw a river of water of life, clear as glass, coming out of the high seat of God and of the Lamb,</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/2/" data-ref="Revelation 22:2 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/2/"><span class="v-num">2</span><span class="v-txt">In the middle of its street. And on this side of the river and on that was the tree of life, having twelve sorts of fruits, giving its fruit every month; and the leaves of the tree give life to the nations.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/3/" data-ref="Revelation 22:3 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/3/"><span class="v-num">3</span><span class="v-txt">And there will be no more curse: and the high seat of God and of the Lamb will be there; and his servants will be worshipping him;</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/4/" data-ref="Revelation 22:4 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/4/"><span class="v-num">4</span><span class="v-txt">And they will see his face; and his name will be on their brows.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/5/" data-ref="Revelation 22:5 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/5/"><span class="v-num">5</span><span class="v-txt">And there will be no more night; and they have no need of a light or of the shining of the sun; for the Lord God will give them light: and they will be ruling for ever and ever.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/6/" data-ref="Revelation 22:6 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/6/"><span class="v-num">6</span><span class="v-txt">And he said to me, These words are certain and true: and the Lord, the God of the spirits of the prophets, sent his angel to make clear to his servants the things which are now to come about.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/7/" data-ref="Revelation 22:7 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/7/"><span class="v-num">7</span><span class="v-txt">See, I come quickly. A blessing on him who keeps the words of this book of the prophet.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/8/" data-ref="Revelation 22:8 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/8/"><span class="v-num">8</span><span class="v-txt">And I, John, am he who saw these things and to whose ears they came. And when I had seen and given ear, I went down on my face to give worship at the feet of the angel who made these things clear to me.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/9/" data-ref="Revelation 22:9 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/9/"><span class="v-num">9</span><span class="v-txt">And he said to me, See you do it not; I am a brother-servant with you and with your brothers the prophets, and with those who keep the words of this book: give worship to God.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/10/" data-ref="Revelation 22:10 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/10/"><span class="v-num">10</span><span class="v-txt">And he said to me, Let not the words of this prophet's book be kept secret, because the time is near.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/11/" data-ref="Revelation 22:11 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/11/"><span class="v-num">11</span><span class="v-txt">Let the evil man go on in his evil: and let the unclean be still unclean: and let the upright go on in his righteousness: and let the holy be holy still.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/12/" data-ref="Revelation 22:12 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/12/"><span class="v-num">12</span><span class="v-txt">See, I come quickly; and my reward is with me, to give to every man the outcome of his works.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/13/" data-ref="Revelation 22:13 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/13/"><span class="v-num">13</span><span class="v-txt">I am the First and the Last, the start and the end.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/14/" data-ref="Revelation 22:14 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/14/"><span class="v-num">14</span><span class="v-txt">A blessing on those whose robes are washed, so that they may have a right to the tree of life, and may go in by the doors into the town.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/15/" data-ref="Revelation 22:15 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/15/"><span class="v-num">15</span><span class="v-txt">Outside are the dogs, and those who make use of evil powers, those who make themselves unclean, and the takers of life, and those who give worship to images, and everyone whose delight is in what is false.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/16/" data-ref="Revelation 22:16 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/16/"><span class="v-num">16</span><span class="v-txt">I, Jesus, have sent my angel to give witness to you of these things in the churches. I am the root and the offspring of David, the bright and morning star.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/17/" data-ref="Revelation 22:17 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/17/"><span class="v-num">17</span><span class="v-txt">And the Spirit and the bride say, Come. And let him who gives ear, say, Come. And let him who is in need come; and let everyone desiring it take of the water of life freely.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/18/" data-ref="Revelation 22:18 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/18/"><span class="v-num">18</span><span class="v-txt">For I say to every man to whose ears have come the words of this prophet's book, If any man makes an addition to them, God will put on him the punishments which are in this book:</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/19/" data-ref="Revelation 22:19 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/19/"><span class="v-num">19</span><span class="v-txt">And if any man takes away from the words of this book, God will take away from him his part in the tree of life and the holy town, even the things which are in this book.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/20/" data-ref="Revelation 22:20 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/20/"><span class="v-num">20</span><span class="v-txt">He who gives witness to these things says, Truly, I come quickly. Even so come, Lord Jesus.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/22/21/" data-ref="Revelation 22:21 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/22/21/"><span class="v-num">21</span><span class="v-txt">The grace of the Lord Jesus be with the saints. So be it.</span></a>
 
     
 <div class="app-cta">

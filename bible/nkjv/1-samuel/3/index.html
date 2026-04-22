@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then the boy Samuel ministered to the LORD before Eli. And the word of the LORD was rare in those days; [there was] no widespread revelation.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it came to pass at that time, while Eli [was] lying down in his place, and when his eyes had begun to grow so dim that he could not see,</span></div>
-<div class="v-row" data-ref="1 Samuel 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and before the lamp of God went out in the tabernacle of the LORD where the ark of God [was,] and while Samuel was lying down,</span></div>
-<div class="v-row" data-ref="1 Samuel 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">that the LORD called Samuel. And he answered, "Here I am!"</span></div>
-<div class="v-row" data-ref="1 Samuel 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So he ran to Eli and said, "Here I am, for you called me." And he said, "I did not call; lie down again." And he went and lay down.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the LORD called yet again, "Samuel!" So Samuel arose and went to Eli, and said, "Here I am, for you called me." He answered, "I did not call, my son; lie down again."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">(Now Samuel did not yet know the LORD, nor was the word of the LORD yet revealed to him.)</span></div>
-<div class="v-row" data-ref="1 Samuel 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the LORD called Samuel again the third time. Then he arose and went to Eli, and said, "Here I am, for you did call me." Then Eli perceived that the LORD had called the boy.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore Eli said to Samuel, "Go, lie down; and it shall be, if He calls you, that you must say, 'Speak, LORD, for Your servant hears.' " So Samuel went and lay down in his place.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now the LORD came and stood and called as at other times, "Samuel! Samuel!" And Samuel answered, "Speak, for Your servant hears."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then the LORD said to Samuel: "Behold, I will do something in Israel at which both ears of everyone who hears it will tingle.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"In that day I will perform against Eli all that I have spoken concerning his house, from beginning to end.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"For I have told him that I will judge his house forever for the iniquity which he knows, because his sons made themselves vile, and he did not restrain them.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"And therefore I have sworn to the house of Eli that the iniquity of Eli's house shall not be atoned for by sacrifice or offering forever."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So Samuel lay down until morning, and opened the doors of the house of the LORD. And Samuel was afraid to tell Eli the vision.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Then Eli called Samuel and said, "Samuel, my son!" And he answered, "Here I am."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And he said, "What [is] the word that [the] [Lord] spoke to you? Please do not hide [it] from me. God do so to you, and more also, if you hide anything from me of all the things that He said to you."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Then Samuel told him everything, and hid nothing from him. And he said, "It [is] the LORD. Let Him do what seems good to Him."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So Samuel grew, and the LORD was with him and let none of his words fall to the ground.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And all Israel from Dan to Beersheba knew that Samuel [had been] established as a prophet of the LORD.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Then the LORD appeared again in Shiloh. For the LORD revealed Himself to Samuel in Shiloh by the word of the LORD.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-samuel/3/1/" data-ref="1 Samuel 3:1 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/1/"><span class="v-num">1</span><span class="v-txt">Then the boy Samuel ministered to the LORD before Eli. And the word of the LORD was rare in those days; [there was] no widespread revelation.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/2/" data-ref="1 Samuel 3:2 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/2/"><span class="v-num">2</span><span class="v-txt">And it came to pass at that time, while Eli [was] lying down in his place, and when his eyes had begun to grow so dim that he could not see,</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/3/" data-ref="1 Samuel 3:3 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/3/"><span class="v-num">3</span><span class="v-txt">and before the lamp of God went out in the tabernacle of the LORD where the ark of God [was,] and while Samuel was lying down,</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/4/" data-ref="1 Samuel 3:4 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/4/"><span class="v-num">4</span><span class="v-txt">that the LORD called Samuel. And he answered, "Here I am!"</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/5/" data-ref="1 Samuel 3:5 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/5/"><span class="v-num">5</span><span class="v-txt">So he ran to Eli and said, "Here I am, for you called me." And he said, "I did not call; lie down again." And he went and lay down.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/6/" data-ref="1 Samuel 3:6 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/6/"><span class="v-num">6</span><span class="v-txt">Then the LORD called yet again, "Samuel!" So Samuel arose and went to Eli, and said, "Here I am, for you called me." He answered, "I did not call, my son; lie down again."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/7/" data-ref="1 Samuel 3:7 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/7/"><span class="v-num">7</span><span class="v-txt">(Now Samuel did not yet know the LORD, nor was the word of the LORD yet revealed to him.)</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/8/" data-ref="1 Samuel 3:8 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/8/"><span class="v-num">8</span><span class="v-txt">And the LORD called Samuel again the third time. Then he arose and went to Eli, and said, "Here I am, for you did call me." Then Eli perceived that the LORD had called the boy.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/9/" data-ref="1 Samuel 3:9 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/9/"><span class="v-num">9</span><span class="v-txt">Therefore Eli said to Samuel, "Go, lie down; and it shall be, if He calls you, that you must say, 'Speak, LORD, for Your servant hears.' " So Samuel went and lay down in his place.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/10/" data-ref="1 Samuel 3:10 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/10/"><span class="v-num">10</span><span class="v-txt">Now the LORD came and stood and called as at other times, "Samuel! Samuel!" And Samuel answered, "Speak, for Your servant hears."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/11/" data-ref="1 Samuel 3:11 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/11/"><span class="v-num">11</span><span class="v-txt">Then the LORD said to Samuel: "Behold, I will do something in Israel at which both ears of everyone who hears it will tingle.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/12/" data-ref="1 Samuel 3:12 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/12/"><span class="v-num">12</span><span class="v-txt">"In that day I will perform against Eli all that I have spoken concerning his house, from beginning to end.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/13/" data-ref="1 Samuel 3:13 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/13/"><span class="v-num">13</span><span class="v-txt">"For I have told him that I will judge his house forever for the iniquity which he knows, because his sons made themselves vile, and he did not restrain them.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/14/" data-ref="1 Samuel 3:14 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/14/"><span class="v-num">14</span><span class="v-txt">"And therefore I have sworn to the house of Eli that the iniquity of Eli's house shall not be atoned for by sacrifice or offering forever."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/15/" data-ref="1 Samuel 3:15 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/15/"><span class="v-num">15</span><span class="v-txt">So Samuel lay down until morning, and opened the doors of the house of the LORD. And Samuel was afraid to tell Eli the vision.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/16/" data-ref="1 Samuel 3:16 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/16/"><span class="v-num">16</span><span class="v-txt">Then Eli called Samuel and said, "Samuel, my son!" And he answered, "Here I am."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/17/" data-ref="1 Samuel 3:17 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/17/"><span class="v-num">17</span><span class="v-txt">And he said, "What [is] the word that [the] [Lord] spoke to you? Please do not hide [it] from me. God do so to you, and more also, if you hide anything from me of all the things that He said to you."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/18/" data-ref="1 Samuel 3:18 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/18/"><span class="v-num">18</span><span class="v-txt">Then Samuel told him everything, and hid nothing from him. And he said, "It [is] the LORD. Let Him do what seems good to Him."</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/19/" data-ref="1 Samuel 3:19 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/19/"><span class="v-num">19</span><span class="v-txt">So Samuel grew, and the LORD was with him and let none of his words fall to the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/20/" data-ref="1 Samuel 3:20 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/20/"><span class="v-num">20</span><span class="v-txt">And all Israel from Dan to Beersheba knew that Samuel [had been] established as a prophet of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/1-samuel/3/21/" data-ref="1 Samuel 3:21 (New King James Version)" data-verse-url="/bible/nkjv/1-samuel/3/21/"><span class="v-num">21</span><span class="v-txt">Then the LORD appeared again in Shiloh. For the LORD revealed Himself to Samuel in Shiloh by the word of the LORD.</span></a>
 
     
 <div class="app-cta">

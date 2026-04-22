@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 34</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 34:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Come near, you nations, and give ear; take note, you peoples: let the earth and everything in it give ear; the world and all those living in it.</span></div>
-<div class="v-row" data-ref="Isaiah 34:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For the Lord is angry with all the nations, and his wrath is burning against all their armies: he has put them to the curse, he has given them to destruction.</span></div>
-<div class="v-row" data-ref="Isaiah 34:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Their dead bodies will be thick on the face of the earth, and their smell will come up, and the mountains will be flowing with their blood, and all the hills will come to nothing.</span></div>
-<div class="v-row" data-ref="Isaiah 34:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the heavens will be rolled together like the roll of a book: and all their army will be gone, like a dead leaf from the vine, or a dry fruit from the fig-tree.</span></div>
-<div class="v-row" data-ref="Isaiah 34:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For my sword in heaven is full of wrath: see, it is coming down on Edom, in punishment on the people of my curse.</span></div>
-<div class="v-row" data-ref="Isaiah 34:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The sword of the Lord is full of blood, it is fat with the best of the meat, with the blood of lambs and goats, with the best parts of the sheep: for the Lord has a feast in Bozrah, and much cattle will be put to death in the land of Edom.</span></div>
-<div class="v-row" data-ref="Isaiah 34:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the strong oxen will go down to death together with the smaller cattle.</span></div>
-<div class="v-row" data-ref="Isaiah 34:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For it is the day of the Lord's punishment, when he gives payment for the wrongs done to Zion.</span></div>
-<div class="v-row" data-ref="Isaiah 34:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And its streams will be turned into boiling oil, and its dust into burning stone, and all the land will be on fire.</span></div>
-<div class="v-row" data-ref="Isaiah 34:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">It will not be put out day or night; its smoke will go up for ever: it will be waste from generation to generation; no one will go through it for ever.</span></div>
-<div class="v-row" data-ref="Isaiah 34:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But the birds of the waste land will have their place there; it will be a heritage for the bittern and the raven: and it will be measured out with line and weight as a waste land.</span></div>
-<div class="v-row" data-ref="Isaiah 34:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The jackals will be there, and her great ones will be gone; they will say, There is no longer a kingdom there, and all her chiefs will have come to an end.</span></div>
-<div class="v-row" data-ref="Isaiah 34:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And thorns will come up in her fair houses, and waste plants in her strong towers: and foxes will make their holes there, and it will be a meeting-place for ostriches.</span></div>
-<div class="v-row" data-ref="Isaiah 34:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the beasts of the waste places will come together with the jackals, and the evil spirits will be crying to one another, even the night-spirit will come and make her resting-place there.</span></div>
-<div class="v-row" data-ref="Isaiah 34:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The arrowsnake will make her hole and put her eggs there, and get her young together under her shade: there the hawks will come together by twos.</span></div>
-<div class="v-row" data-ref="Isaiah 34:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">See what is recorded in the book of the Lord: all these will be there, not one without the other: the mouth of the Lord has given the order, and his spirit has made them come together.</span></div>
-<div class="v-row" data-ref="Isaiah 34:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And he has given them their heritage, and by his hand it has been measured out to them: it will be theirs for ever, their resting-place from generation to generation.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/34/1/" data-ref="Isaiah 34:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/1/"><span class="v-num">1</span><span class="v-txt">Come near, you nations, and give ear; take note, you peoples: let the earth and everything in it give ear; the world and all those living in it.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/2/" data-ref="Isaiah 34:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/2/"><span class="v-num">2</span><span class="v-txt">For the Lord is angry with all the nations, and his wrath is burning against all their armies: he has put them to the curse, he has given them to destruction.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/3/" data-ref="Isaiah 34:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/3/"><span class="v-num">3</span><span class="v-txt">Their dead bodies will be thick on the face of the earth, and their smell will come up, and the mountains will be flowing with their blood, and all the hills will come to nothing.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/4/" data-ref="Isaiah 34:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/4/"><span class="v-num">4</span><span class="v-txt">And the heavens will be rolled together like the roll of a book: and all their army will be gone, like a dead leaf from the vine, or a dry fruit from the fig-tree.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/5/" data-ref="Isaiah 34:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/5/"><span class="v-num">5</span><span class="v-txt">For my sword in heaven is full of wrath: see, it is coming down on Edom, in punishment on the people of my curse.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/6/" data-ref="Isaiah 34:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/6/"><span class="v-num">6</span><span class="v-txt">The sword of the Lord is full of blood, it is fat with the best of the meat, with the blood of lambs and goats, with the best parts of the sheep: for the Lord has a feast in Bozrah, and much cattle will be put to death in the land of Edom.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/7/" data-ref="Isaiah 34:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/7/"><span class="v-num">7</span><span class="v-txt">And the strong oxen will go down to death together with the smaller cattle.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/8/" data-ref="Isaiah 34:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/8/"><span class="v-num">8</span><span class="v-txt">For it is the day of the Lord's punishment, when he gives payment for the wrongs done to Zion.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/9/" data-ref="Isaiah 34:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/9/"><span class="v-num">9</span><span class="v-txt">And its streams will be turned into boiling oil, and its dust into burning stone, and all the land will be on fire.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/10/" data-ref="Isaiah 34:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/10/"><span class="v-num">10</span><span class="v-txt">It will not be put out day or night; its smoke will go up for ever: it will be waste from generation to generation; no one will go through it for ever.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/11/" data-ref="Isaiah 34:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/11/"><span class="v-num">11</span><span class="v-txt">But the birds of the waste land will have their place there; it will be a heritage for the bittern and the raven: and it will be measured out with line and weight as a waste land.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/12/" data-ref="Isaiah 34:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/12/"><span class="v-num">12</span><span class="v-txt">The jackals will be there, and her great ones will be gone; they will say, There is no longer a kingdom there, and all her chiefs will have come to an end.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/13/" data-ref="Isaiah 34:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/13/"><span class="v-num">13</span><span class="v-txt">And thorns will come up in her fair houses, and waste plants in her strong towers: and foxes will make their holes there, and it will be a meeting-place for ostriches.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/14/" data-ref="Isaiah 34:14 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/14/"><span class="v-num">14</span><span class="v-txt">And the beasts of the waste places will come together with the jackals, and the evil spirits will be crying to one another, even the night-spirit will come and make her resting-place there.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/15/" data-ref="Isaiah 34:15 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/15/"><span class="v-num">15</span><span class="v-txt">The arrowsnake will make her hole and put her eggs there, and get her young together under her shade: there the hawks will come together by twos.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/16/" data-ref="Isaiah 34:16 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/16/"><span class="v-num">16</span><span class="v-txt">See what is recorded in the book of the Lord: all these will be there, not one without the other: the mouth of the Lord has given the order, and his spirit has made them come together.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/34/17/" data-ref="Isaiah 34:17 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/34/17/"><span class="v-num">17</span><span class="v-txt">And he has given them their heritage, and by his hand it has been measured out to them: it will be theirs for ever, their resting-place from generation to generation.</span></a>
 
     
 <div class="app-cta">

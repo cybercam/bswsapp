@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 11</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 11:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now when Rehoboam came to Jerusalem, he assembled from the house of Judah and Benjamin one hundred and eighty thousand chosen [men] who were warriors, to fight against Israel, that he might restore the kingdom to Rehoboam.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">But the word of the LORD came to Shemaiah the man of God, saying,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Speak to Rehoboam the son of Solomon, king of Judah, and to all Israel in Judah and Benjamin, saying,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">'Thus says the LORD: "You shall not go up or fight against your brethren! Let every man return to his house, for this thing is from Me." ' " Therefore they obeyed the words of the LORD, and turned back from attacking Jeroboam.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So Rehoboam dwelt in Jerusalem, and built cities for defense in Judah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he built Bethlehem, Etam, Tekoa,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Beth Zur, Sochoh, Adullam,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Gath, Mareshah, Ziph,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Adoraim, Lachish, Azekah,</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Zorah, Aijalon, and Hebron, which are in Judah and Benjamin, fortified cities.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he fortified the strongholds, and put captains in them, and stores of food, oil, and wine.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Also in every city [he put] shields and spears, and made them very strong, having Judah and Benjamin on his side.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And from all their territories the priests and the Levites who [were] in all Israel took their stand with him.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For the Levites left their common-lands and their possessions and came to Judah and Jerusalem, for Jeroboam and his sons had rejected them from serving as priests to the LORD.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then he appointed for himself priests for the high places, for the demons, and the calf idols which he had made.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And after [the Levites left,] those from all the tribes of Israel, such as set their heart to seek the LORD God of Israel, came to Jerusalem to sacrifice to the LORD God of their fathers.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So they strengthened the kingdom of Judah, and made Rehoboam the son of Solomon strong for three years, because they walked in the way of David and Solomon for three years.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Then Rehoboam took for himself as wife Mahalath the daughter of Jerimoth the son of David, [and of] Abihail the daughter of Eliah the son of Jesse.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And she bore him children: Jeush, Shamariah, and Zaham.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">After her he took Maacah the granddaughter of Absalom; and she bore him Abijah, Attai, Ziza, and Shelomith.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Now Rehoboam loved Maachah the granddaughter of Absalom more than all his wives and his concubines; for he took eighteen wives and sixty concubines, and begot twenty-eight sons and sixty daughters.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And Rehoboam appointed Abijah the son of Maachah as chief, [to be] leader among his brothers; for he [intended] to make him king.</span></div>
-<div class="v-row" data-ref="2 Chronicles 11:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He dealt wisely, and dispersed some of his sons throughout all the territories of Judah and Benjamin, to every fortified city; and he gave them provisions in abundance. He also sought many wives [for them.]</span></div>
+    <a class="v-row" href="/bible/nkjv/2-chronicles/11/1/" data-ref="2 Chronicles 11:1 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/1/"><span class="v-num">1</span><span class="v-txt">Now when Rehoboam came to Jerusalem, he assembled from the house of Judah and Benjamin one hundred and eighty thousand chosen [men] who were warriors, to fight against Israel, that he might restore the kingdom to Rehoboam.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/2/" data-ref="2 Chronicles 11:2 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/2/"><span class="v-num">2</span><span class="v-txt">But the word of the LORD came to Shemaiah the man of God, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/3/" data-ref="2 Chronicles 11:3 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/3/"><span class="v-num">3</span><span class="v-txt">"Speak to Rehoboam the son of Solomon, king of Judah, and to all Israel in Judah and Benjamin, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/4/" data-ref="2 Chronicles 11:4 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/4/"><span class="v-num">4</span><span class="v-txt">'Thus says the LORD: "You shall not go up or fight against your brethren! Let every man return to his house, for this thing is from Me." ' " Therefore they obeyed the words of the LORD, and turned back from attacking Jeroboam.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/5/" data-ref="2 Chronicles 11:5 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/5/"><span class="v-num">5</span><span class="v-txt">So Rehoboam dwelt in Jerusalem, and built cities for defense in Judah.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/6/" data-ref="2 Chronicles 11:6 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/6/"><span class="v-num">6</span><span class="v-txt">And he built Bethlehem, Etam, Tekoa,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/7/" data-ref="2 Chronicles 11:7 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/7/"><span class="v-num">7</span><span class="v-txt">Beth Zur, Sochoh, Adullam,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/8/" data-ref="2 Chronicles 11:8 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/8/"><span class="v-num">8</span><span class="v-txt">Gath, Mareshah, Ziph,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/9/" data-ref="2 Chronicles 11:9 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/9/"><span class="v-num">9</span><span class="v-txt">Adoraim, Lachish, Azekah,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/10/" data-ref="2 Chronicles 11:10 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/10/"><span class="v-num">10</span><span class="v-txt">Zorah, Aijalon, and Hebron, which are in Judah and Benjamin, fortified cities.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/11/" data-ref="2 Chronicles 11:11 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/11/"><span class="v-num">11</span><span class="v-txt">And he fortified the strongholds, and put captains in them, and stores of food, oil, and wine.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/12/" data-ref="2 Chronicles 11:12 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/12/"><span class="v-num">12</span><span class="v-txt">Also in every city [he put] shields and spears, and made them very strong, having Judah and Benjamin on his side.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/13/" data-ref="2 Chronicles 11:13 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/13/"><span class="v-num">13</span><span class="v-txt">And from all their territories the priests and the Levites who [were] in all Israel took their stand with him.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/14/" data-ref="2 Chronicles 11:14 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/14/"><span class="v-num">14</span><span class="v-txt">For the Levites left their common-lands and their possessions and came to Judah and Jerusalem, for Jeroboam and his sons had rejected them from serving as priests to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/15/" data-ref="2 Chronicles 11:15 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/15/"><span class="v-num">15</span><span class="v-txt">Then he appointed for himself priests for the high places, for the demons, and the calf idols which he had made.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/16/" data-ref="2 Chronicles 11:16 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/16/"><span class="v-num">16</span><span class="v-txt">And after [the Levites left,] those from all the tribes of Israel, such as set their heart to seek the LORD God of Israel, came to Jerusalem to sacrifice to the LORD God of their fathers.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/17/" data-ref="2 Chronicles 11:17 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/17/"><span class="v-num">17</span><span class="v-txt">So they strengthened the kingdom of Judah, and made Rehoboam the son of Solomon strong for three years, because they walked in the way of David and Solomon for three years.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/18/" data-ref="2 Chronicles 11:18 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/18/"><span class="v-num">18</span><span class="v-txt">Then Rehoboam took for himself as wife Mahalath the daughter of Jerimoth the son of David, [and of] Abihail the daughter of Eliah the son of Jesse.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/19/" data-ref="2 Chronicles 11:19 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/19/"><span class="v-num">19</span><span class="v-txt">And she bore him children: Jeush, Shamariah, and Zaham.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/20/" data-ref="2 Chronicles 11:20 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/20/"><span class="v-num">20</span><span class="v-txt">After her he took Maacah the granddaughter of Absalom; and she bore him Abijah, Attai, Ziza, and Shelomith.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/21/" data-ref="2 Chronicles 11:21 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/21/"><span class="v-num">21</span><span class="v-txt">Now Rehoboam loved Maachah the granddaughter of Absalom more than all his wives and his concubines; for he took eighteen wives and sixty concubines, and begot twenty-eight sons and sixty daughters.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/22/" data-ref="2 Chronicles 11:22 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/22/"><span class="v-num">22</span><span class="v-txt">And Rehoboam appointed Abijah the son of Maachah as chief, [to be] leader among his brothers; for he [intended] to make him king.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/11/23/" data-ref="2 Chronicles 11:23 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/11/23/"><span class="v-num">23</span><span class="v-txt">He dealt wisely, and dispersed some of his sons throughout all the territories of Judah and Benjamin, to every fortified city; and he gave them provisions in abundance. He also sought many wives [for them.]</span></a>
 
     
 <div class="app-cta">

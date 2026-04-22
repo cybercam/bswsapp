@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 16:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the lot of the children of Joseph fell from Jordan by Jericho, unto the water of Jericho on the east, to the wilderness that goeth up from Jericho throughout mount Bethel,</span></div>
-<div class="v-row" data-ref="Joshua 16:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And goeth out from Bethel to Luz, and passeth along unto the borders of Archi to Ataroth,</span></div>
-<div class="v-row" data-ref="Joshua 16:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And goeth down westward to the coast of Japhleti, unto the coast of Bethhoron the nether, and to Gezer: and the goings out thereof are at the sea.</span></div>
-<div class="v-row" data-ref="Joshua 16:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So the children of Joseph, Manasseh and Ephraim, took their inheritance.</span></div>
-<div class="v-row" data-ref="Joshua 16:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the border of the children of Ephraim according to their families was thus: even the border of their inheritance on the east side was Atarothaddar, unto Bethhoron the upper;</span></div>
-<div class="v-row" data-ref="Joshua 16:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the border went out toward the sea to Michmethah on the north side; and the border went about eastward unto Taanathshiloh, and passed by it on the east to Janohah;</span></div>
-<div class="v-row" data-ref="Joshua 16:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And it went down from Janohah to Ataroth, and to Naarath, and came to Jericho, and went out at Jordan.</span></div>
-<div class="v-row" data-ref="Joshua 16:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The border went out from Tappuah westward unto the river Kanah; and the goings out thereof were at the sea. This is the inheritance of the tribe of the children of Ephraim by their families.</span></div>
-<div class="v-row" data-ref="Joshua 16:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the separate cities for the children of Ephraim were among the inheritance of the children of Manasseh, all the cities with their villages.</span></div>
-<div class="v-row" data-ref="Joshua 16:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And they drave not out the Canaanites that dwelt in Gezer: but the Canaanites dwell among the Ephraimites unto this day, and serve under tribute.</span></div>
+    <a class="v-row" href="/bible/kjv/joshua/16/1/" data-ref="Joshua 16:1 (King James Version)" data-verse-url="/bible/kjv/joshua/16/1/"><span class="v-num">1</span><span class="v-txt">And the lot of the children of Joseph fell from Jordan by Jericho, unto the water of Jericho on the east, to the wilderness that goeth up from Jericho throughout mount Bethel,</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/2/" data-ref="Joshua 16:2 (King James Version)" data-verse-url="/bible/kjv/joshua/16/2/"><span class="v-num">2</span><span class="v-txt">And goeth out from Bethel to Luz, and passeth along unto the borders of Archi to Ataroth,</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/3/" data-ref="Joshua 16:3 (King James Version)" data-verse-url="/bible/kjv/joshua/16/3/"><span class="v-num">3</span><span class="v-txt">And goeth down westward to the coast of Japhleti, unto the coast of Bethhoron the nether, and to Gezer: and the goings out thereof are at the sea.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/4/" data-ref="Joshua 16:4 (King James Version)" data-verse-url="/bible/kjv/joshua/16/4/"><span class="v-num">4</span><span class="v-txt">So the children of Joseph, Manasseh and Ephraim, took their inheritance.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/5/" data-ref="Joshua 16:5 (King James Version)" data-verse-url="/bible/kjv/joshua/16/5/"><span class="v-num">5</span><span class="v-txt">And the border of the children of Ephraim according to their families was thus: even the border of their inheritance on the east side was Atarothaddar, unto Bethhoron the upper;</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/6/" data-ref="Joshua 16:6 (King James Version)" data-verse-url="/bible/kjv/joshua/16/6/"><span class="v-num">6</span><span class="v-txt">And the border went out toward the sea to Michmethah on the north side; and the border went about eastward unto Taanathshiloh, and passed by it on the east to Janohah;</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/7/" data-ref="Joshua 16:7 (King James Version)" data-verse-url="/bible/kjv/joshua/16/7/"><span class="v-num">7</span><span class="v-txt">And it went down from Janohah to Ataroth, and to Naarath, and came to Jericho, and went out at Jordan.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/8/" data-ref="Joshua 16:8 (King James Version)" data-verse-url="/bible/kjv/joshua/16/8/"><span class="v-num">8</span><span class="v-txt">The border went out from Tappuah westward unto the river Kanah; and the goings out thereof were at the sea. This is the inheritance of the tribe of the children of Ephraim by their families.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/9/" data-ref="Joshua 16:9 (King James Version)" data-verse-url="/bible/kjv/joshua/16/9/"><span class="v-num">9</span><span class="v-txt">And the separate cities for the children of Ephraim were among the inheritance of the children of Manasseh, all the cities with their villages.</span></a>
+<a class="v-row" href="/bible/kjv/joshua/16/10/" data-ref="Joshua 16:10 (King James Version)" data-verse-url="/bible/kjv/joshua/16/10/"><span class="v-num">10</span><span class="v-txt">And they drave not out the Canaanites that dwelt in Gezer: but the Canaanites dwell among the Ephraimites unto this day, and serve under tribute.</span></a>
 
     
 <div class="app-cta">

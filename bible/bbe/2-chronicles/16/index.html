@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 16:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In the thirty-sixth year of the rule of Asa, Baasha, king of Israel, went up against Judah, building Ramah so that no one was able to go out or in to Asa, king of Judah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then Asa took silver and gold out of the stores of the Lord's house and of the king's store-house, and sent to Ben-hadad, king of Aram, at Damascus, saying,</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let there be an agreement between me and you as there was between my father and your father: see, I have sent you silver and gold; go and put an end to your agreement with Baasha, king of Israel, so that he may give up attacking me.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Ben-hadad did as King Asa said, and sent the captains of his armies against the towns of Israel, attacking Ijon and Dan and Abel-maim, and all the store-towns of Naphtali.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then Baasha, hearing of it, put a stop to the building of Ramah, and let his work come to an end.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then King Asa, with all Judah, took away the stones and wood with which Baasha was building Ramah, and he made use of them for building Geba and Mizpah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">At that time Hanani the seer came to Asa, king of Judah, and said to him, Because you have put your faith in the king of Aram and not in the Lord your God, the army of the king of Aram has got away out of your hands.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Were not the Ethiopians and the Lubim a very great army, with war-carriages and horsemen more than might be numbered? but because your faith was in the Lord, he gave them up into your hands.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For the eyes of the Lord go this way and that, through all the earth, letting it be seen that he is the strong support of those whose hearts are true to him. In this you have done foolishly, for from now you will have wars.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Asa was angry with the seer, and put him in prison, burning with wrath against him because of this thing. And at the same time Asa was cruel to some of the people.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now the acts of Asa, first and last, are recorded in the book of the kings of Judah and Israel.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">In the thirty-ninth year of his rule, Asa had a very bad disease of the feet; but he did not go to the Lord for help in his disease, but to medical men.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So Asa went to rest with his fathers, and death came to him in the forty-first year of his rule.</span></div>
-<div class="v-row" data-ref="2 Chronicles 16:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And they put him into the resting-place which he had made for himself in the town of David, in a bed full of sweet perfumes of all sorts of spices, made by the perfumer's art, and they made a great burning for him.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/16/1/" data-ref="2 Chronicles 16:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/1/"><span class="v-num">1</span><span class="v-txt">In the thirty-sixth year of the rule of Asa, Baasha, king of Israel, went up against Judah, building Ramah so that no one was able to go out or in to Asa, king of Judah.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/2/" data-ref="2 Chronicles 16:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/2/"><span class="v-num">2</span><span class="v-txt">Then Asa took silver and gold out of the stores of the Lord's house and of the king's store-house, and sent to Ben-hadad, king of Aram, at Damascus, saying,</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/3/" data-ref="2 Chronicles 16:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/3/"><span class="v-num">3</span><span class="v-txt">Let there be an agreement between me and you as there was between my father and your father: see, I have sent you silver and gold; go and put an end to your agreement with Baasha, king of Israel, so that he may give up attacking me.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/4/" data-ref="2 Chronicles 16:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/4/"><span class="v-num">4</span><span class="v-txt">And Ben-hadad did as King Asa said, and sent the captains of his armies against the towns of Israel, attacking Ijon and Dan and Abel-maim, and all the store-towns of Naphtali.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/5/" data-ref="2 Chronicles 16:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/5/"><span class="v-num">5</span><span class="v-txt">Then Baasha, hearing of it, put a stop to the building of Ramah, and let his work come to an end.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/6/" data-ref="2 Chronicles 16:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/6/"><span class="v-num">6</span><span class="v-txt">Then King Asa, with all Judah, took away the stones and wood with which Baasha was building Ramah, and he made use of them for building Geba and Mizpah.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/7/" data-ref="2 Chronicles 16:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/7/"><span class="v-num">7</span><span class="v-txt">At that time Hanani the seer came to Asa, king of Judah, and said to him, Because you have put your faith in the king of Aram and not in the Lord your God, the army of the king of Aram has got away out of your hands.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/8/" data-ref="2 Chronicles 16:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/8/"><span class="v-num">8</span><span class="v-txt">Were not the Ethiopians and the Lubim a very great army, with war-carriages and horsemen more than might be numbered? but because your faith was in the Lord, he gave them up into your hands.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/9/" data-ref="2 Chronicles 16:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/9/"><span class="v-num">9</span><span class="v-txt">For the eyes of the Lord go this way and that, through all the earth, letting it be seen that he is the strong support of those whose hearts are true to him. In this you have done foolishly, for from now you will have wars.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/10/" data-ref="2 Chronicles 16:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/10/"><span class="v-num">10</span><span class="v-txt">Then Asa was angry with the seer, and put him in prison, burning with wrath against him because of this thing. And at the same time Asa was cruel to some of the people.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/11/" data-ref="2 Chronicles 16:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/11/"><span class="v-num">11</span><span class="v-txt">Now the acts of Asa, first and last, are recorded in the book of the kings of Judah and Israel.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/12/" data-ref="2 Chronicles 16:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/12/"><span class="v-num">12</span><span class="v-txt">In the thirty-ninth year of his rule, Asa had a very bad disease of the feet; but he did not go to the Lord for help in his disease, but to medical men.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/13/" data-ref="2 Chronicles 16:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/13/"><span class="v-num">13</span><span class="v-txt">So Asa went to rest with his fathers, and death came to him in the forty-first year of his rule.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/16/14/" data-ref="2 Chronicles 16:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/16/14/"><span class="v-num">14</span><span class="v-txt">And they put him into the resting-place which he had made for himself in the town of David, in a bed full of sweet perfumes of all sorts of spices, made by the perfumer's art, and they made a great burning for him.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 21</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 21:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. A Psalm of David. The king shall have joy in Your strength, O LORD; And in Your salvation how greatly shall he rejoice!</span></div>
-<div class="v-row" data-ref="Psalm 21:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You have given him his heart's desire, And have not withheld the request of his lips. Selah</span></div>
-<div class="v-row" data-ref="Psalm 21:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For You meet him with the blessings of goodness; You set a crown of pure gold upon his head.</span></div>
-<div class="v-row" data-ref="Psalm 21:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He asked life from You, [and] You gave [it] to him -- Length of days forever and ever.</span></div>
-<div class="v-row" data-ref="Psalm 21:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">His glory [is] great in Your salvation; Honor and majesty You have placed upon him.</span></div>
-<div class="v-row" data-ref="Psalm 21:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For You have made him most blessed forever; You have made him exceedingly glad with Your presence.</span></div>
-<div class="v-row" data-ref="Psalm 21:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For the king trusts in the LORD, And through the mercy of the Most High he shall not be moved.</span></div>
-<div class="v-row" data-ref="Psalm 21:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Your hand will find all Your enemies; Your right hand will find those who hate You.</span></div>
-<div class="v-row" data-ref="Psalm 21:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">You shall make them as a fiery oven in the time of Your anger; The LORD shall swallow them up in His wrath, And the fire shall devour them.</span></div>
-<div class="v-row" data-ref="Psalm 21:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Their offspring You shall destroy from the earth, And their descendants from among the sons of men.</span></div>
-<div class="v-row" data-ref="Psalm 21:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For they intended evil against You; They devised a plot [which] they are not able [to perform.]</span></div>
-<div class="v-row" data-ref="Psalm 21:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore You will make them turn their back; You will make ready [Your arrows] on Your string toward their faces.</span></div>
-<div class="v-row" data-ref="Psalm 21:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Be exalted, O LORD, in Your own strength! We will sing and praise Your power.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/21/1/" data-ref="Psalm 21:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/1/"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. A Psalm of David. The king shall have joy in Your strength, O LORD; And in Your salvation how greatly shall he rejoice!</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/2/" data-ref="Psalm 21:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/2/"><span class="v-num">2</span><span class="v-txt">You have given him his heart's desire, And have not withheld the request of his lips. Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/3/" data-ref="Psalm 21:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/3/"><span class="v-num">3</span><span class="v-txt">For You meet him with the blessings of goodness; You set a crown of pure gold upon his head.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/4/" data-ref="Psalm 21:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/4/"><span class="v-num">4</span><span class="v-txt">He asked life from You, [and] You gave [it] to him -- Length of days forever and ever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/5/" data-ref="Psalm 21:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/5/"><span class="v-num">5</span><span class="v-txt">His glory [is] great in Your salvation; Honor and majesty You have placed upon him.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/6/" data-ref="Psalm 21:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/6/"><span class="v-num">6</span><span class="v-txt">For You have made him most blessed forever; You have made him exceedingly glad with Your presence.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/7/" data-ref="Psalm 21:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/7/"><span class="v-num">7</span><span class="v-txt">For the king trusts in the LORD, And through the mercy of the Most High he shall not be moved.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/8/" data-ref="Psalm 21:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/8/"><span class="v-num">8</span><span class="v-txt">Your hand will find all Your enemies; Your right hand will find those who hate You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/9/" data-ref="Psalm 21:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/9/"><span class="v-num">9</span><span class="v-txt">You shall make them as a fiery oven in the time of Your anger; The LORD shall swallow them up in His wrath, And the fire shall devour them.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/10/" data-ref="Psalm 21:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/10/"><span class="v-num">10</span><span class="v-txt">Their offspring You shall destroy from the earth, And their descendants from among the sons of men.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/11/" data-ref="Psalm 21:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/11/"><span class="v-num">11</span><span class="v-txt">For they intended evil against You; They devised a plot [which] they are not able [to perform.]</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/12/" data-ref="Psalm 21:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/12/"><span class="v-num">12</span><span class="v-txt">Therefore You will make them turn their back; You will make ready [Your arrows] on Your string toward their faces.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/21/13/" data-ref="Psalm 21:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/21/13/"><span class="v-num">13</span><span class="v-txt">Be exalted, O LORD, in Your own strength! We will sing and praise Your power.</span></a>
 
     
 <div class="app-cta">

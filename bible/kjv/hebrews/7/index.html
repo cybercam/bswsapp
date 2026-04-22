@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 7:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For this Melchisedec, king of Salem, priest of the most high God, who met Abraham returning from the slaughter of the kings, and blessed him;</span></div>
-<div class="v-row" data-ref="Hebrews 7:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">To whom also Abraham gave a tenth part of all; first being by interpretation King of righteousness, and after that also King of Salem, which is, King of peace;</span></div>
-<div class="v-row" data-ref="Hebrews 7:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Without father, without mother, without descent, having neither beginning of days, nor end of life; but made like unto the Son of God; abideth a priest continually.</span></div>
-<div class="v-row" data-ref="Hebrews 7:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now consider how great this man was, unto whom even the patriarch Abraham gave the tenth of the spoils.</span></div>
-<div class="v-row" data-ref="Hebrews 7:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And verily they that are of the sons of Levi, who receive the office of the priesthood, have a commandment to take tithes of the people according to the law, that is, of their brethren, though they come out of the loins of Abraham:</span></div>
-<div class="v-row" data-ref="Hebrews 7:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But he whose descent is not counted from them received tithes of Abraham, and blessed him that had the promises.</span></div>
-<div class="v-row" data-ref="Hebrews 7:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And without all contradiction the less is blessed of the better.</span></div>
-<div class="v-row" data-ref="Hebrews 7:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And here men that die receive tithes; but there he receiveth them, of whom it is witnessed that he liveth.</span></div>
-<div class="v-row" data-ref="Hebrews 7:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And as I may so say, Levi also, who receiveth tithes, payed tithes in Abraham.</span></div>
-<div class="v-row" data-ref="Hebrews 7:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For he was yet in the loins of his father, when Melchisedec met him.</span></div>
-<div class="v-row" data-ref="Hebrews 7:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If therefore perfection were by the Levitical priesthood, (for under it the people received the law,) what further need was there that another priest should rise after the order of Melchisedec, and not be called after the order of Aaron?</span></div>
-<div class="v-row" data-ref="Hebrews 7:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For the priesthood being changed, there is made of necessity a change also of the law.</span></div>
-<div class="v-row" data-ref="Hebrews 7:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For he of whom these things are spoken pertaineth to another tribe, of which no man gave attendance at the altar.</span></div>
-<div class="v-row" data-ref="Hebrews 7:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For it is evident that our Lord sprang out of Juda; of which tribe Moses spake nothing concerning priesthood.</span></div>
-<div class="v-row" data-ref="Hebrews 7:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And it is yet far more evident: for that after the similitude of Melchisedec there ariseth another priest,</span></div>
-<div class="v-row" data-ref="Hebrews 7:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Who is made, not after the law of a carnal commandment, but after the power of an endless life.</span></div>
-<div class="v-row" data-ref="Hebrews 7:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For he testifieth, Thou art a priest for ever after the order of Melchisedec.</span></div>
-<div class="v-row" data-ref="Hebrews 7:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For there is verily a disannulling of the commandment going before for the weakness and unprofitableness thereof.</span></div>
-<div class="v-row" data-ref="Hebrews 7:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For the law made nothing perfect, but the bringing in of a better hope did; by the which we draw nigh unto God.</span></div>
-<div class="v-row" data-ref="Hebrews 7:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And inasmuch as not without an oath he was made priest:</span></div>
-<div class="v-row" data-ref="Hebrews 7:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For those priests were made without an oath; but this with an oath by him that said unto him, The Lord sware and will not repent, Thou art a priest for ever after the order of Melchisedec:)</span></div>
-<div class="v-row" data-ref="Hebrews 7:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">By so much was Jesus made a surety of a better testament.</span></div>
-<div class="v-row" data-ref="Hebrews 7:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And they truly were many priests, because they were not suffered to continue by reason of death:</span></div>
-<div class="v-row" data-ref="Hebrews 7:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">But this man, because he continueth ever, hath an unchangeable priesthood.</span></div>
-<div class="v-row" data-ref="Hebrews 7:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Wherefore he is able also to save them to the uttermost that come unto God by him, seeing he ever liveth to make intercession for them.</span></div>
-<div class="v-row" data-ref="Hebrews 7:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For such an high priest became us, who is holy, harmless, undefiled, separate from sinners, and made higher than the heavens;</span></div>
-<div class="v-row" data-ref="Hebrews 7:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Who needeth not daily, as those high priests, to offer up sacrifice, first for his own sins, and then for the people's: for this he did once, when he offered up himself.</span></div>
-<div class="v-row" data-ref="Hebrews 7:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">For the law maketh men high priests which have infirmity; but the word of the oath, which was since the law, maketh the Son, who is consecrated for evermore.</span></div>
+    <a class="v-row" href="/bible/kjv/hebrews/7/1/" data-ref="Hebrews 7:1 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/1/"><span class="v-num">1</span><span class="v-txt">For this Melchisedec, king of Salem, priest of the most high God, who met Abraham returning from the slaughter of the kings, and blessed him;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/2/" data-ref="Hebrews 7:2 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/2/"><span class="v-num">2</span><span class="v-txt">To whom also Abraham gave a tenth part of all; first being by interpretation King of righteousness, and after that also King of Salem, which is, King of peace;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/3/" data-ref="Hebrews 7:3 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/3/"><span class="v-num">3</span><span class="v-txt">Without father, without mother, without descent, having neither beginning of days, nor end of life; but made like unto the Son of God; abideth a priest continually.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/4/" data-ref="Hebrews 7:4 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/4/"><span class="v-num">4</span><span class="v-txt">Now consider how great this man was, unto whom even the patriarch Abraham gave the tenth of the spoils.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/5/" data-ref="Hebrews 7:5 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/5/"><span class="v-num">5</span><span class="v-txt">And verily they that are of the sons of Levi, who receive the office of the priesthood, have a commandment to take tithes of the people according to the law, that is, of their brethren, though they come out of the loins of Abraham:</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/6/" data-ref="Hebrews 7:6 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/6/"><span class="v-num">6</span><span class="v-txt">But he whose descent is not counted from them received tithes of Abraham, and blessed him that had the promises.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/7/" data-ref="Hebrews 7:7 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/7/"><span class="v-num">7</span><span class="v-txt">And without all contradiction the less is blessed of the better.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/8/" data-ref="Hebrews 7:8 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/8/"><span class="v-num">8</span><span class="v-txt">And here men that die receive tithes; but there he receiveth them, of whom it is witnessed that he liveth.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/9/" data-ref="Hebrews 7:9 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/9/"><span class="v-num">9</span><span class="v-txt">And as I may so say, Levi also, who receiveth tithes, payed tithes in Abraham.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/10/" data-ref="Hebrews 7:10 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/10/"><span class="v-num">10</span><span class="v-txt">For he was yet in the loins of his father, when Melchisedec met him.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/11/" data-ref="Hebrews 7:11 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/11/"><span class="v-num">11</span><span class="v-txt">If therefore perfection were by the Levitical priesthood, (for under it the people received the law,) what further need was there that another priest should rise after the order of Melchisedec, and not be called after the order of Aaron?</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/12/" data-ref="Hebrews 7:12 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/12/"><span class="v-num">12</span><span class="v-txt">For the priesthood being changed, there is made of necessity a change also of the law.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/13/" data-ref="Hebrews 7:13 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/13/"><span class="v-num">13</span><span class="v-txt">For he of whom these things are spoken pertaineth to another tribe, of which no man gave attendance at the altar.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/14/" data-ref="Hebrews 7:14 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/14/"><span class="v-num">14</span><span class="v-txt">For it is evident that our Lord sprang out of Juda; of which tribe Moses spake nothing concerning priesthood.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/15/" data-ref="Hebrews 7:15 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/15/"><span class="v-num">15</span><span class="v-txt">And it is yet far more evident: for that after the similitude of Melchisedec there ariseth another priest,</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/16/" data-ref="Hebrews 7:16 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/16/"><span class="v-num">16</span><span class="v-txt">Who is made, not after the law of a carnal commandment, but after the power of an endless life.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/17/" data-ref="Hebrews 7:17 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/17/"><span class="v-num">17</span><span class="v-txt">For he testifieth, Thou art a priest for ever after the order of Melchisedec.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/18/" data-ref="Hebrews 7:18 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/18/"><span class="v-num">18</span><span class="v-txt">For there is verily a disannulling of the commandment going before for the weakness and unprofitableness thereof.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/19/" data-ref="Hebrews 7:19 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/19/"><span class="v-num">19</span><span class="v-txt">For the law made nothing perfect, but the bringing in of a better hope did; by the which we draw nigh unto God.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/20/" data-ref="Hebrews 7:20 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/20/"><span class="v-num">20</span><span class="v-txt">And inasmuch as not without an oath he was made priest:</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/21/" data-ref="Hebrews 7:21 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/21/"><span class="v-num">21</span><span class="v-txt">For those priests were made without an oath; but this with an oath by him that said unto him, The Lord sware and will not repent, Thou art a priest for ever after the order of Melchisedec:)</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/22/" data-ref="Hebrews 7:22 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/22/"><span class="v-num">22</span><span class="v-txt">By so much was Jesus made a surety of a better testament.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/23/" data-ref="Hebrews 7:23 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/23/"><span class="v-num">23</span><span class="v-txt">And they truly were many priests, because they were not suffered to continue by reason of death:</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/24/" data-ref="Hebrews 7:24 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/24/"><span class="v-num">24</span><span class="v-txt">But this man, because he continueth ever, hath an unchangeable priesthood.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/25/" data-ref="Hebrews 7:25 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/25/"><span class="v-num">25</span><span class="v-txt">Wherefore he is able also to save them to the uttermost that come unto God by him, seeing he ever liveth to make intercession for them.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/26/" data-ref="Hebrews 7:26 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/26/"><span class="v-num">26</span><span class="v-txt">For such an high priest became us, who is holy, harmless, undefiled, separate from sinners, and made higher than the heavens;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/27/" data-ref="Hebrews 7:27 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/27/"><span class="v-num">27</span><span class="v-txt">Who needeth not daily, as those high priests, to offer up sacrifice, first for his own sins, and then for the people's: for this he did once, when he offered up himself.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/7/28/" data-ref="Hebrews 7:28 (King James Version)" data-verse-url="/bible/kjv/hebrews/7/28/"><span class="v-num">28</span><span class="v-txt">For the law maketh men high priests which have infirmity; but the word of the oath, which was since the law, maketh the Son, who is consecrated for evermore.</span></a>
 
     
 <div class="app-cta">

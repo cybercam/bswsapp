@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 4:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the angel that talked with me came again, and waked me, as a man that is wakened out of his sleep.</span></div>
-<div class="v-row" data-ref="Zechariah 4:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said unto me, What seest thou? And I said, I have seen, and, behold, a candlestick all of gold, with its bowl upon the top of it, and its seven lamps thereon; there are seven pipes to each of the lamps, which are upon the top thereof;</span></div>
-<div class="v-row" data-ref="Zechariah 4:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and two olive-trees by it, one upon the right side of the bowl, and the other upon the left side thereof.</span></div>
-<div class="v-row" data-ref="Zechariah 4:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I answered and spake to the angel that talked with me, saying, What are these, my lord?</span></div>
-<div class="v-row" data-ref="Zechariah 4:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the angel that talked with me answered and said unto me, Knowest thou not what these are? And I said, No, my lord.</span></div>
-<div class="v-row" data-ref="Zechariah 4:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then he answered and spake unto me, saying, This is the word of Jehovah unto Zerubbabel, saying, Not by might, nor by power, but by my Spirit, saith Jehovah of hosts.</span></div>
-<div class="v-row" data-ref="Zechariah 4:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Who art thou, O great mountain? before Zerubbabel [thou shalt become] a plain; and he shall bring forth the top stone with shoutings of Grace, grace, unto it.</span></div>
-<div class="v-row" data-ref="Zechariah 4:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Moreover the word of Jehovah came unto me, saying,</span></div>
-<div class="v-row" data-ref="Zechariah 4:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The hands of Zerubbabel have laid the foundation of this house; his hands shall also finish it; and thou shalt know that Jehovah of hosts hath sent me unto you.</span></div>
-<div class="v-row" data-ref="Zechariah 4:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For who hath despised the day of small things? for these seven shall rejoice, and shall see the plummet in the hand of Zerubbabel; [these are] the eyes of Jehovah, which run to and fro through the whole earth.</span></div>
-<div class="v-row" data-ref="Zechariah 4:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then answered I, and said unto him, What are these two olive-trees upon the right side of the candlestick and upon the left side thereof?</span></div>
-<div class="v-row" data-ref="Zechariah 4:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I answered the second time, and said unto him, What are these two olive-branches, which are beside the two golden spouts, that empty the golden [oil] out of themselves?</span></div>
-<div class="v-row" data-ref="Zechariah 4:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And he answered me and said, Knowest thou not what these are? And I said, No, my lord.</span></div>
-<div class="v-row" data-ref="Zechariah 4:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then said he, These are the two anointed ones, that stand by the Lord of the whole earth.</span></div>
+    <a class="v-row" href="/bible/asv/zechariah/4/1/" data-ref="Zechariah 4:1 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/1/"><span class="v-num">1</span><span class="v-txt">And the angel that talked with me came again, and waked me, as a man that is wakened out of his sleep.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/2/" data-ref="Zechariah 4:2 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/2/"><span class="v-num">2</span><span class="v-txt">And he said unto me, What seest thou? And I said, I have seen, and, behold, a candlestick all of gold, with its bowl upon the top of it, and its seven lamps thereon; there are seven pipes to each of the lamps, which are upon the top thereof;</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/3/" data-ref="Zechariah 4:3 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/3/"><span class="v-num">3</span><span class="v-txt">and two olive-trees by it, one upon the right side of the bowl, and the other upon the left side thereof.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/4/" data-ref="Zechariah 4:4 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/4/"><span class="v-num">4</span><span class="v-txt">And I answered and spake to the angel that talked with me, saying, What are these, my lord?</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/5/" data-ref="Zechariah 4:5 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/5/"><span class="v-num">5</span><span class="v-txt">Then the angel that talked with me answered and said unto me, Knowest thou not what these are? And I said, No, my lord.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/6/" data-ref="Zechariah 4:6 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/6/"><span class="v-num">6</span><span class="v-txt">Then he answered and spake unto me, saying, This is the word of Jehovah unto Zerubbabel, saying, Not by might, nor by power, but by my Spirit, saith Jehovah of hosts.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/7/" data-ref="Zechariah 4:7 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/7/"><span class="v-num">7</span><span class="v-txt">Who art thou, O great mountain? before Zerubbabel [thou shalt become] a plain; and he shall bring forth the top stone with shoutings of Grace, grace, unto it.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/8/" data-ref="Zechariah 4:8 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/8/"><span class="v-num">8</span><span class="v-txt">Moreover the word of Jehovah came unto me, saying,</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/9/" data-ref="Zechariah 4:9 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/9/"><span class="v-num">9</span><span class="v-txt">The hands of Zerubbabel have laid the foundation of this house; his hands shall also finish it; and thou shalt know that Jehovah of hosts hath sent me unto you.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/10/" data-ref="Zechariah 4:10 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/10/"><span class="v-num">10</span><span class="v-txt">For who hath despised the day of small things? for these seven shall rejoice, and shall see the plummet in the hand of Zerubbabel; [these are] the eyes of Jehovah, which run to and fro through the whole earth.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/11/" data-ref="Zechariah 4:11 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/11/"><span class="v-num">11</span><span class="v-txt">Then answered I, and said unto him, What are these two olive-trees upon the right side of the candlestick and upon the left side thereof?</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/12/" data-ref="Zechariah 4:12 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/12/"><span class="v-num">12</span><span class="v-txt">And I answered the second time, and said unto him, What are these two olive-branches, which are beside the two golden spouts, that empty the golden [oil] out of themselves?</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/13/" data-ref="Zechariah 4:13 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/13/"><span class="v-num">13</span><span class="v-txt">And he answered me and said, Knowest thou not what these are? And I said, No, my lord.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/4/14/" data-ref="Zechariah 4:14 (American Standard Version)" data-verse-url="/bible/asv/zechariah/4/14/"><span class="v-num">14</span><span class="v-txt">Then said he, These are the two anointed ones, that stand by the Lord of the whole earth.</span></a>
 
     
 <div class="app-cta">

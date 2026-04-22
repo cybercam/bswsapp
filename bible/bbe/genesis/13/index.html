@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Genesis 13:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Abram went up out of Egypt with his wife and all he had, and Lot with him, and they came in to the South.</span></div>
-<div class="v-row" data-ref="Genesis 13:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Now Abram had great wealth of cattle and silver and gold.</span></div>
-<div class="v-row" data-ref="Genesis 13:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And travelling on from the South, he came to Beth-el, to the place where his tent had been before, between Beth-el and Ai;</span></div>
-<div class="v-row" data-ref="Genesis 13:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">To the place where he had made his first altar, and there Abram gave worship to the name of the Lord.</span></div>
-<div class="v-row" data-ref="Genesis 13:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Lot, who went with him, had flocks and herds and tents;</span></div>
-<div class="v-row" data-ref="Genesis 13:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So that the land was not wide enough for the two of them: their property was so great that there was not room for them together.</span></div>
-<div class="v-row" data-ref="Genesis 13:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And there was an argument between the keepers of Abram's cattle and the keepers of Lot's cattle: at that time the Canaanites and Perizzites were still living in the land.</span></div>
-<div class="v-row" data-ref="Genesis 13:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then Abram said to Lot, Let there be no argument between me and you, and between my herdmen and your herdmen, for we are brothers.</span></div>
-<div class="v-row" data-ref="Genesis 13:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Is not all the land before you? then let us go our separate ways: if you go to the left, I will go to the right; or if you take the right, I will go to the left.</span></div>
-<div class="v-row" data-ref="Genesis 13:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Lot, lifting up his eyes and looking an the valley of Jordan, saw that it was well watered everywhere, before the Lord had sent destruction on Sodom and Gomorrah; it was like the garden of the Lord, like the land of Egypt, on the way to Zoar.</span></div>
-<div class="v-row" data-ref="Genesis 13:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So Lot took for himself all the valley of Jordan, and went to the east, and they were parted from one another.</span></div>
-<div class="v-row" data-ref="Genesis 13:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Abram went on living in the land of Canaan, and Lot went to the lowland towns, moving his tent as far as Sodom.</span></div>
-<div class="v-row" data-ref="Genesis 13:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Now the men of Sodom were evil, and great sinners before the Lord.</span></div>
-<div class="v-row" data-ref="Genesis 13:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the Lord had said to Abram, after Lot was parted from him, From this place where you are take a look to the north and to the south, to the east and to the west:</span></div>
-<div class="v-row" data-ref="Genesis 13:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For all the land which you see I will give to you and to your seed for ever.</span></div>
-<div class="v-row" data-ref="Genesis 13:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And I will make your children like the dust of the earth, so that if the dust of the earth may be numbered, then will your children be numbered.</span></div>
-<div class="v-row" data-ref="Genesis 13:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Come, go through all the land from one end to the other for I will give it to you.</span></div>
-<div class="v-row" data-ref="Genesis 13:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Abram, moving his tent, came and made his living-place by the holy tree of Mamre, which is in Hebron, and made an altar there to the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/genesis/13/1/" data-ref="Genesis 13:1 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/1/"><span class="v-num">1</span><span class="v-txt">And Abram went up out of Egypt with his wife and all he had, and Lot with him, and they came in to the South.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/2/" data-ref="Genesis 13:2 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/2/"><span class="v-num">2</span><span class="v-txt">Now Abram had great wealth of cattle and silver and gold.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/3/" data-ref="Genesis 13:3 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/3/"><span class="v-num">3</span><span class="v-txt">And travelling on from the South, he came to Beth-el, to the place where his tent had been before, between Beth-el and Ai;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/4/" data-ref="Genesis 13:4 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/4/"><span class="v-num">4</span><span class="v-txt">To the place where he had made his first altar, and there Abram gave worship to the name of the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/5/" data-ref="Genesis 13:5 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/5/"><span class="v-num">5</span><span class="v-txt">And Lot, who went with him, had flocks and herds and tents;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/6/" data-ref="Genesis 13:6 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/6/"><span class="v-num">6</span><span class="v-txt">So that the land was not wide enough for the two of them: their property was so great that there was not room for them together.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/7/" data-ref="Genesis 13:7 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/7/"><span class="v-num">7</span><span class="v-txt">And there was an argument between the keepers of Abram's cattle and the keepers of Lot's cattle: at that time the Canaanites and Perizzites were still living in the land.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/8/" data-ref="Genesis 13:8 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/8/"><span class="v-num">8</span><span class="v-txt">Then Abram said to Lot, Let there be no argument between me and you, and between my herdmen and your herdmen, for we are brothers.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/9/" data-ref="Genesis 13:9 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/9/"><span class="v-num">9</span><span class="v-txt">Is not all the land before you? then let us go our separate ways: if you go to the left, I will go to the right; or if you take the right, I will go to the left.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/10/" data-ref="Genesis 13:10 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/10/"><span class="v-num">10</span><span class="v-txt">And Lot, lifting up his eyes and looking an the valley of Jordan, saw that it was well watered everywhere, before the Lord had sent destruction on Sodom and Gomorrah; it was like the garden of the Lord, like the land of Egypt, on the way to Zoar.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/11/" data-ref="Genesis 13:11 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/11/"><span class="v-num">11</span><span class="v-txt">So Lot took for himself all the valley of Jordan, and went to the east, and they were parted from one another.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/12/" data-ref="Genesis 13:12 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/12/"><span class="v-num">12</span><span class="v-txt">Abram went on living in the land of Canaan, and Lot went to the lowland towns, moving his tent as far as Sodom.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/13/" data-ref="Genesis 13:13 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/13/"><span class="v-num">13</span><span class="v-txt">Now the men of Sodom were evil, and great sinners before the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/14/" data-ref="Genesis 13:14 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/14/"><span class="v-num">14</span><span class="v-txt">And the Lord had said to Abram, after Lot was parted from him, From this place where you are take a look to the north and to the south, to the east and to the west:</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/15/" data-ref="Genesis 13:15 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/15/"><span class="v-num">15</span><span class="v-txt">For all the land which you see I will give to you and to your seed for ever.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/16/" data-ref="Genesis 13:16 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/16/"><span class="v-num">16</span><span class="v-txt">And I will make your children like the dust of the earth, so that if the dust of the earth may be numbered, then will your children be numbered.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/17/" data-ref="Genesis 13:17 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/17/"><span class="v-num">17</span><span class="v-txt">Come, go through all the land from one end to the other for I will give it to you.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/13/18/" data-ref="Genesis 13:18 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/13/18/"><span class="v-num">18</span><span class="v-txt">And Abram, moving his tent, came and made his living-place by the holy tree of Mamre, which is in Hebron, and made an altar there to the Lord.</span></a>
 
     
 <div class="app-cta">

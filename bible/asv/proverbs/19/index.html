@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 19:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Better is the poor that walketh in his integrity Than he that is perverse in his lips and is a fool.</span></div>
-<div class="v-row" data-ref="Proverbs 19:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Also, that the soul be without knowledge is not good; And he that hasteth with his feet sinneth.</span></div>
-<div class="v-row" data-ref="Proverbs 19:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The foolishness of man subverteth his way; And his heart fretteth against Jehovah.</span></div>
-<div class="v-row" data-ref="Proverbs 19:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Wealth addeth many friends; But the poor is separated from his friend.</span></div>
-<div class="v-row" data-ref="Proverbs 19:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">A false witness shall not be unpunished; And he that uttereth lies shall not escape.</span></div>
-<div class="v-row" data-ref="Proverbs 19:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Many will entreat the favor of the liberal man; And every man is a friend to him that giveth gifts.</span></div>
-<div class="v-row" data-ref="Proverbs 19:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">All the brethren of the poor do hate him: How much more do his friends go far from him! He pursueth [them with] words, [but] they are gone.</span></div>
-<div class="v-row" data-ref="Proverbs 19:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He that getteth wisdom loveth his own soul: He that keepeth understanding shall find good.</span></div>
-<div class="v-row" data-ref="Proverbs 19:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">A false witness shall not be unpunished; And he that uttereth lies shall perish.</span></div>
-<div class="v-row" data-ref="Proverbs 19:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Delicate living is not seemly for a fool; Much less for a servant to have rule over princes.</span></div>
-<div class="v-row" data-ref="Proverbs 19:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The discretion of a man maketh him slow to anger; And it is his glory to pass over a transgression.</span></div>
-<div class="v-row" data-ref="Proverbs 19:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The king's wrath is as the roaring of a lion; But his favor is as dew upon the grass.</span></div>
-<div class="v-row" data-ref="Proverbs 19:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">A foolish son is the calamity of his father; And the contentions of a wife are a continual dropping.</span></div>
-<div class="v-row" data-ref="Proverbs 19:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">House and riches are an inheritance from fathers; But a prudent wife is from Jehovah.</span></div>
-<div class="v-row" data-ref="Proverbs 19:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Slothfulness casteth into a deep sleep; And the idle soul shall suffer hunger.</span></div>
-<div class="v-row" data-ref="Proverbs 19:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He that keepeth the commandment keepeth his soul; [But] he that is careless of his ways shall die.</span></div>
-<div class="v-row" data-ref="Proverbs 19:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He that hath pity upon the poor lendeth unto Jehovah, And his good deed will he pay him again.</span></div>
-<div class="v-row" data-ref="Proverbs 19:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Chasten thy son, seeing there is hope; And set not thy heart on his destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 19:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">A man of great wrath shall bear the penalty; For if thou deliver [him], thou must do it yet again.</span></div>
-<div class="v-row" data-ref="Proverbs 19:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Hear counsel, and receive instruction, That thou mayest be wise in thy latter end.</span></div>
-<div class="v-row" data-ref="Proverbs 19:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">There are many devices in a man's heart; But the counsel of Jehovah, that shall stand.</span></div>
-<div class="v-row" data-ref="Proverbs 19:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">That which maketh a man to be desired is his kindness; And a poor man is better than a liar.</span></div>
-<div class="v-row" data-ref="Proverbs 19:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The fear of Jehovah [tendeth] to life; And he [that hath it] shall abide satisfied; He shall not be visited with evil.</span></div>
-<div class="v-row" data-ref="Proverbs 19:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The sluggard burieth his hand in the dish, And will not so much as bring it to his mouth again.</span></div>
-<div class="v-row" data-ref="Proverbs 19:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Smite a scoffer, and the simple will learn prudence; And reprove one that hath understanding, [and] he will understand knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 19:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">He that doeth violence to his father, and chaseth away his mother, Is a son that causeth shame and bringeth reproach.</span></div>
-<div class="v-row" data-ref="Proverbs 19:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Cease, my son, to hear instruction [Only] to err from the words of knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 19:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">A worthless witness mocketh at justice; And the mouth of the wicked swalloweth iniquity.</span></div>
-<div class="v-row" data-ref="Proverbs 19:29 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Judgments are prepared for scoffers, And stripes for the back of fools.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/19/1/" data-ref="Proverbs 19:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/1/"><span class="v-num">1</span><span class="v-txt">Better is the poor that walketh in his integrity Than he that is perverse in his lips and is a fool.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/2/" data-ref="Proverbs 19:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/2/"><span class="v-num">2</span><span class="v-txt">Also, that the soul be without knowledge is not good; And he that hasteth with his feet sinneth.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/3/" data-ref="Proverbs 19:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/3/"><span class="v-num">3</span><span class="v-txt">The foolishness of man subverteth his way; And his heart fretteth against Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/4/" data-ref="Proverbs 19:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/4/"><span class="v-num">4</span><span class="v-txt">Wealth addeth many friends; But the poor is separated from his friend.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/5/" data-ref="Proverbs 19:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/5/"><span class="v-num">5</span><span class="v-txt">A false witness shall not be unpunished; And he that uttereth lies shall not escape.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/6/" data-ref="Proverbs 19:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/6/"><span class="v-num">6</span><span class="v-txt">Many will entreat the favor of the liberal man; And every man is a friend to him that giveth gifts.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/7/" data-ref="Proverbs 19:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/7/"><span class="v-num">7</span><span class="v-txt">All the brethren of the poor do hate him: How much more do his friends go far from him! He pursueth [them with] words, [but] they are gone.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/8/" data-ref="Proverbs 19:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/8/"><span class="v-num">8</span><span class="v-txt">He that getteth wisdom loveth his own soul: He that keepeth understanding shall find good.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/9/" data-ref="Proverbs 19:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/9/"><span class="v-num">9</span><span class="v-txt">A false witness shall not be unpunished; And he that uttereth lies shall perish.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/10/" data-ref="Proverbs 19:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/10/"><span class="v-num">10</span><span class="v-txt">Delicate living is not seemly for a fool; Much less for a servant to have rule over princes.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/11/" data-ref="Proverbs 19:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/11/"><span class="v-num">11</span><span class="v-txt">The discretion of a man maketh him slow to anger; And it is his glory to pass over a transgression.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/12/" data-ref="Proverbs 19:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/12/"><span class="v-num">12</span><span class="v-txt">The king's wrath is as the roaring of a lion; But his favor is as dew upon the grass.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/13/" data-ref="Proverbs 19:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/13/"><span class="v-num">13</span><span class="v-txt">A foolish son is the calamity of his father; And the contentions of a wife are a continual dropping.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/14/" data-ref="Proverbs 19:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/14/"><span class="v-num">14</span><span class="v-txt">House and riches are an inheritance from fathers; But a prudent wife is from Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/15/" data-ref="Proverbs 19:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/15/"><span class="v-num">15</span><span class="v-txt">Slothfulness casteth into a deep sleep; And the idle soul shall suffer hunger.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/16/" data-ref="Proverbs 19:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/16/"><span class="v-num">16</span><span class="v-txt">He that keepeth the commandment keepeth his soul; [But] he that is careless of his ways shall die.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/17/" data-ref="Proverbs 19:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/17/"><span class="v-num">17</span><span class="v-txt">He that hath pity upon the poor lendeth unto Jehovah, And his good deed will he pay him again.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/18/" data-ref="Proverbs 19:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/18/"><span class="v-num">18</span><span class="v-txt">Chasten thy son, seeing there is hope; And set not thy heart on his destruction.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/19/" data-ref="Proverbs 19:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/19/"><span class="v-num">19</span><span class="v-txt">A man of great wrath shall bear the penalty; For if thou deliver [him], thou must do it yet again.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/20/" data-ref="Proverbs 19:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/20/"><span class="v-num">20</span><span class="v-txt">Hear counsel, and receive instruction, That thou mayest be wise in thy latter end.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/21/" data-ref="Proverbs 19:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/21/"><span class="v-num">21</span><span class="v-txt">There are many devices in a man's heart; But the counsel of Jehovah, that shall stand.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/22/" data-ref="Proverbs 19:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/22/"><span class="v-num">22</span><span class="v-txt">That which maketh a man to be desired is his kindness; And a poor man is better than a liar.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/23/" data-ref="Proverbs 19:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/23/"><span class="v-num">23</span><span class="v-txt">The fear of Jehovah [tendeth] to life; And he [that hath it] shall abide satisfied; He shall not be visited with evil.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/24/" data-ref="Proverbs 19:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/24/"><span class="v-num">24</span><span class="v-txt">The sluggard burieth his hand in the dish, And will not so much as bring it to his mouth again.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/25/" data-ref="Proverbs 19:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/25/"><span class="v-num">25</span><span class="v-txt">Smite a scoffer, and the simple will learn prudence; And reprove one that hath understanding, [and] he will understand knowledge.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/26/" data-ref="Proverbs 19:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/26/"><span class="v-num">26</span><span class="v-txt">He that doeth violence to his father, and chaseth away his mother, Is a son that causeth shame and bringeth reproach.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/27/" data-ref="Proverbs 19:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/27/"><span class="v-num">27</span><span class="v-txt">Cease, my son, to hear instruction [Only] to err from the words of knowledge.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/28/" data-ref="Proverbs 19:28 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/28/"><span class="v-num">28</span><span class="v-txt">A worthless witness mocketh at justice; And the mouth of the wicked swalloweth iniquity.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/19/29/" data-ref="Proverbs 19:29 (American Standard Version)" data-verse-url="/bible/asv/proverbs/19/29/"><span class="v-num">29</span><span class="v-txt">Judgments are prepared for scoffers, And stripes for the back of fools.</span></a>
 
     
 <div class="app-cta">

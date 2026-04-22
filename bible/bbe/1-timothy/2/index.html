@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My desire is, first of all, that you will make requests and prayers and give praise for all men;</span></div>
-<div class="v-row" data-ref="1 Timothy 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For kings and all those in authority; so that we may have a calm and quiet life in all fear of God and serious behaviour.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">This is good and pleasing in the eyes of God our Saviour;</span></div>
-<div class="v-row" data-ref="1 Timothy 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Whose desire is that all men may have salvation and come to the knowledge of what is true.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For there is one God and one peacemaker between God and men, the man Christ Jesus,</span></div>
-<div class="v-row" data-ref="1 Timothy 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Who gave himself as an offering for all; witness of which was to be given at the right time;</span></div>
-<div class="v-row" data-ref="1 Timothy 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And of this I became a preacher and an Apostle (what I say is true, not false,) and a teacher of the Gentiles in the true faith.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">It is my desire, then, that in every place men may give themselves to prayer, lifting up holy hands, without wrath or argument.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And that women may be dressed in simple clothing, with a quiet and serious air; not with twisted hair and gold or jewels or robes of great price;</span></div>
-<div class="v-row" data-ref="1 Timothy 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But clothed with good works, as is right for women who are living in the fear of God.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let a woman quietly take the place of a learner and be under authority.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">In my opinion it is right for a woman not to be a teacher, or to have rule over a man, but to be quiet.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For Adam was first formed, then Eve;</span></div>
-<div class="v-row" data-ref="1 Timothy 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Adam was not taken by deceit, but the woman, being tricked, became a wrongdoer.</span></div>
-<div class="v-row" data-ref="1 Timothy 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But if they go on in faith and love and holy self-control, she will be kept safe at the time of childbirth.</span></div>
+    <a class="v-row" href="/bible/bbe/1-timothy/2/1/" data-ref="1 Timothy 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/1/"><span class="v-num">1</span><span class="v-txt">My desire is, first of all, that you will make requests and prayers and give praise for all men;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/2/" data-ref="1 Timothy 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/2/"><span class="v-num">2</span><span class="v-txt">For kings and all those in authority; so that we may have a calm and quiet life in all fear of God and serious behaviour.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/3/" data-ref="1 Timothy 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/3/"><span class="v-num">3</span><span class="v-txt">This is good and pleasing in the eyes of God our Saviour;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/4/" data-ref="1 Timothy 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/4/"><span class="v-num">4</span><span class="v-txt">Whose desire is that all men may have salvation and come to the knowledge of what is true.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/5/" data-ref="1 Timothy 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/5/"><span class="v-num">5</span><span class="v-txt">For there is one God and one peacemaker between God and men, the man Christ Jesus,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/6/" data-ref="1 Timothy 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/6/"><span class="v-num">6</span><span class="v-txt">Who gave himself as an offering for all; witness of which was to be given at the right time;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/7/" data-ref="1 Timothy 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/7/"><span class="v-num">7</span><span class="v-txt">And of this I became a preacher and an Apostle (what I say is true, not false,) and a teacher of the Gentiles in the true faith.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/8/" data-ref="1 Timothy 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/8/"><span class="v-num">8</span><span class="v-txt">It is my desire, then, that in every place men may give themselves to prayer, lifting up holy hands, without wrath or argument.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/9/" data-ref="1 Timothy 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/9/"><span class="v-num">9</span><span class="v-txt">And that women may be dressed in simple clothing, with a quiet and serious air; not with twisted hair and gold or jewels or robes of great price;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/10/" data-ref="1 Timothy 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/10/"><span class="v-num">10</span><span class="v-txt">But clothed with good works, as is right for women who are living in the fear of God.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/11/" data-ref="1 Timothy 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/11/"><span class="v-num">11</span><span class="v-txt">Let a woman quietly take the place of a learner and be under authority.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/12/" data-ref="1 Timothy 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/12/"><span class="v-num">12</span><span class="v-txt">In my opinion it is right for a woman not to be a teacher, or to have rule over a man, but to be quiet.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/13/" data-ref="1 Timothy 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/13/"><span class="v-num">13</span><span class="v-txt">For Adam was first formed, then Eve;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/14/" data-ref="1 Timothy 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/14/"><span class="v-num">14</span><span class="v-txt">And Adam was not taken by deceit, but the woman, being tricked, became a wrongdoer.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/2/15/" data-ref="1 Timothy 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/2/15/"><span class="v-num">15</span><span class="v-txt">But if they go on in faith and love and holy self-control, she will be kept safe at the time of childbirth.</span></a>
 
     
 <div class="app-cta">

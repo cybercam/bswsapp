@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 28:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came about in that year, when Zedekiah first became king of Judah, in the fourth year, in the fifth month, that Hananiah, the son of Azzur the prophet, who came from Gibeon, said to Jeremiah in the house of the Lord, before the priests and all the people,</span></div>
-<div class="v-row" data-ref="Jeremiah 28:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">These are the words of the Lord of armies, the God of Israel: By me the yoke of the king of Babylon has been broken.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">In the space of two years I will send back into this place all the vessels of the Lord's house which Nebuchadnezzar, king of Babylon, took away from this place to Babylon:</span></div>
-<div class="v-row" data-ref="Jeremiah 28:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I will let Jeconiah, the son of Jehoiakim, king of Judah, come back to this place, with all the prisoners of Judah who went to Babylon, says the Lord: for I will have the yoke of the king of Babylon broken.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the prophet Jeremiah said to the prophet Hananiah, before the priests and all the people who had come into the house of the Lord,</span></div>
-<div class="v-row" data-ref="Jeremiah 28:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The prophet Jeremiah said, So be it: may the Lord do so: may the Lord give effect to the words which you have said, and let the vessels of the Lord's house, and all the people who have been taken away, come back from Babylon to this place.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But still, give ear to this word which I am saying to you and to all the people:</span></div>
-<div class="v-row" data-ref="Jeremiah 28:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The prophets, who were before me and before you, from early times gave word to a number of countries and great kingdoms about war and destruction and disease.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The prophet whose words are of peace, when his words come true, will be seen to be a prophet whom the Lord has sent.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Hananiah the prophet took the yoke from the neck of the prophet Jeremiah and it was broken by his hands.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And before all the people Hananiah said, The Lord has said, Even so will I let the yoke of the king of Babylon be broken off the necks of all the nations in the space of two years. Then the prophet Jeremiah went away.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then after the yoke had been broken off the neck of the prophet Jeremiah by Hananiah the prophet, the word of the Lord came to Jeremiah, saying,</span></div>
-<div class="v-row" data-ref="Jeremiah 28:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Go and say to Hananiah, This is what the Lord has said: Yokes of wood have been broken by you, but in their place I will make yokes of iron.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For the Lord of armies, the God of Israel, has said: I have put a yoke of iron on the necks of all these nations, making them servants to Nebuchadnezzar, king of Babylon; and they are to be his servants: and in addition I have given him the beasts of the field.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then the prophet Jeremiah said to Hananiah the prophet, Give ear, now, Hananiah; the Lord has not sent you; but you are making this people put their faith in what is false.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For this reason the Lord has said, See, I will send you away from off the face of the earth: this year death will overtake you, because you have said words against the Lord.</span></div>
-<div class="v-row" data-ref="Jeremiah 28:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So death came to Hananiah the prophet the same year, in the seventh month.</span></div>
+    <a class="v-row" href="/bible/bbe/jeremiah/28/1/" data-ref="Jeremiah 28:1 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/1/"><span class="v-num">1</span><span class="v-txt">And it came about in that year, when Zedekiah first became king of Judah, in the fourth year, in the fifth month, that Hananiah, the son of Azzur the prophet, who came from Gibeon, said to Jeremiah in the house of the Lord, before the priests and all the people,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/2/" data-ref="Jeremiah 28:2 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/2/"><span class="v-num">2</span><span class="v-txt">These are the words of the Lord of armies, the God of Israel: By me the yoke of the king of Babylon has been broken.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/3/" data-ref="Jeremiah 28:3 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/3/"><span class="v-num">3</span><span class="v-txt">In the space of two years I will send back into this place all the vessels of the Lord's house which Nebuchadnezzar, king of Babylon, took away from this place to Babylon:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/4/" data-ref="Jeremiah 28:4 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/4/"><span class="v-num">4</span><span class="v-txt">And I will let Jeconiah, the son of Jehoiakim, king of Judah, come back to this place, with all the prisoners of Judah who went to Babylon, says the Lord: for I will have the yoke of the king of Babylon broken.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/5/" data-ref="Jeremiah 28:5 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/5/"><span class="v-num">5</span><span class="v-txt">Then the prophet Jeremiah said to the prophet Hananiah, before the priests and all the people who had come into the house of the Lord,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/6/" data-ref="Jeremiah 28:6 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/6/"><span class="v-num">6</span><span class="v-txt">The prophet Jeremiah said, So be it: may the Lord do so: may the Lord give effect to the words which you have said, and let the vessels of the Lord's house, and all the people who have been taken away, come back from Babylon to this place.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/7/" data-ref="Jeremiah 28:7 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/7/"><span class="v-num">7</span><span class="v-txt">But still, give ear to this word which I am saying to you and to all the people:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/8/" data-ref="Jeremiah 28:8 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/8/"><span class="v-num">8</span><span class="v-txt">The prophets, who were before me and before you, from early times gave word to a number of countries and great kingdoms about war and destruction and disease.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/9/" data-ref="Jeremiah 28:9 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/9/"><span class="v-num">9</span><span class="v-txt">The prophet whose words are of peace, when his words come true, will be seen to be a prophet whom the Lord has sent.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/10/" data-ref="Jeremiah 28:10 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/10/"><span class="v-num">10</span><span class="v-txt">Then Hananiah the prophet took the yoke from the neck of the prophet Jeremiah and it was broken by his hands.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/11/" data-ref="Jeremiah 28:11 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/11/"><span class="v-num">11</span><span class="v-txt">And before all the people Hananiah said, The Lord has said, Even so will I let the yoke of the king of Babylon be broken off the necks of all the nations in the space of two years. Then the prophet Jeremiah went away.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/12/" data-ref="Jeremiah 28:12 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/12/"><span class="v-num">12</span><span class="v-txt">Then after the yoke had been broken off the neck of the prophet Jeremiah by Hananiah the prophet, the word of the Lord came to Jeremiah, saying,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/13/" data-ref="Jeremiah 28:13 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/13/"><span class="v-num">13</span><span class="v-txt">Go and say to Hananiah, This is what the Lord has said: Yokes of wood have been broken by you, but in their place I will make yokes of iron.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/14/" data-ref="Jeremiah 28:14 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/14/"><span class="v-num">14</span><span class="v-txt">For the Lord of armies, the God of Israel, has said: I have put a yoke of iron on the necks of all these nations, making them servants to Nebuchadnezzar, king of Babylon; and they are to be his servants: and in addition I have given him the beasts of the field.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/15/" data-ref="Jeremiah 28:15 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/15/"><span class="v-num">15</span><span class="v-txt">Then the prophet Jeremiah said to Hananiah the prophet, Give ear, now, Hananiah; the Lord has not sent you; but you are making this people put their faith in what is false.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/16/" data-ref="Jeremiah 28:16 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/16/"><span class="v-num">16</span><span class="v-txt">For this reason the Lord has said, See, I will send you away from off the face of the earth: this year death will overtake you, because you have said words against the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/28/17/" data-ref="Jeremiah 28:17 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/28/17/"><span class="v-num">17</span><span class="v-txt">So death came to Hananiah the prophet the same year, in the seventh month.</span></a>
 
     
 <div class="app-cta">

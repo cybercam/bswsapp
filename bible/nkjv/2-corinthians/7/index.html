@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Therefore, having these promises, beloved, let us cleanse ourselves from all filthiness of the flesh and spirit, perfecting holiness in the fear of God.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Open [your hearts] to us. We have wronged no one, we have corrupted no one, we have cheated no one.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I do not say [this] to condemn; for I have said before that you are in our hearts, to die together and to live together.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Great [is] my boldness of speech toward you, great [is] my boasting on your behalf. I am filled with comfort. I am exceedingly joyful in all our tribulation.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For indeed, when we came to Macedonia, our bodies had no rest, but we were troubled on every side. Outside [were] conflicts, inside [were] fears.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Nevertheless God, who comforts the downcast, comforted us by the coming of Titus,</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">and not only by his coming, but also by the consolation with which he was comforted in you, when he told us of your earnest desire, your mourning, your zeal for me, so that I rejoiced even more.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For even if I made you sorry with my letter, I do not regret it; though I did regret it. For I perceive that the same epistle made you sorry, though only for a while.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Now I rejoice, not that you were made sorry, but that your sorrow led to repentance. For you were made sorry in a godly manner, that you might suffer loss from us in nothing.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For godly sorrow produces repentance [leading] to salvation, not to be regretted; but the sorrow of the world produces death.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For observe this very thing, that you sorrowed in a godly manner: What diligence it produced in you, [what] clearing [of yourselves, what] indignation, [what] fear, [what] vehement desire, [what] zeal, [what] vindication! In all [things] you proved yourselves to be clear in this matter.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore, although I wrote to you, [I did] not [do it] for the sake of him who had done the wrong, nor for the sake of him who suffered wrong, but that our care for you in the sight of God might appear to you.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore we have been comforted in your comfort. And we rejoiced exceedingly more for the joy of Titus, because his spirit has been refreshed by you all.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For if in anything I have boasted to him about you, I am not ashamed. But as we spoke all things to you in truth, even so our boasting to Titus was found true.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And his affections are greater for you as he remembers the obedience of you all, how with fear and trembling you received him.</span></div>
-<div class="v-row" data-ref="2 Corinthians 7:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Therefore I rejoice that I have confidence in you in everything.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-corinthians/7/1/" data-ref="2 Corinthians 7:1 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/1/"><span class="v-num">1</span><span class="v-txt">Therefore, having these promises, beloved, let us cleanse ourselves from all filthiness of the flesh and spirit, perfecting holiness in the fear of God.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/2/" data-ref="2 Corinthians 7:2 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/2/"><span class="v-num">2</span><span class="v-txt">Open [your hearts] to us. We have wronged no one, we have corrupted no one, we have cheated no one.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/3/" data-ref="2 Corinthians 7:3 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/3/"><span class="v-num">3</span><span class="v-txt">I do not say [this] to condemn; for I have said before that you are in our hearts, to die together and to live together.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/4/" data-ref="2 Corinthians 7:4 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/4/"><span class="v-num">4</span><span class="v-txt">Great [is] my boldness of speech toward you, great [is] my boasting on your behalf. I am filled with comfort. I am exceedingly joyful in all our tribulation.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/5/" data-ref="2 Corinthians 7:5 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/5/"><span class="v-num">5</span><span class="v-txt">For indeed, when we came to Macedonia, our bodies had no rest, but we were troubled on every side. Outside [were] conflicts, inside [were] fears.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/6/" data-ref="2 Corinthians 7:6 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/6/"><span class="v-num">6</span><span class="v-txt">Nevertheless God, who comforts the downcast, comforted us by the coming of Titus,</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/7/" data-ref="2 Corinthians 7:7 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/7/"><span class="v-num">7</span><span class="v-txt">and not only by his coming, but also by the consolation with which he was comforted in you, when he told us of your earnest desire, your mourning, your zeal for me, so that I rejoiced even more.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/8/" data-ref="2 Corinthians 7:8 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/8/"><span class="v-num">8</span><span class="v-txt">For even if I made you sorry with my letter, I do not regret it; though I did regret it. For I perceive that the same epistle made you sorry, though only for a while.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/9/" data-ref="2 Corinthians 7:9 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/9/"><span class="v-num">9</span><span class="v-txt">Now I rejoice, not that you were made sorry, but that your sorrow led to repentance. For you were made sorry in a godly manner, that you might suffer loss from us in nothing.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/10/" data-ref="2 Corinthians 7:10 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/10/"><span class="v-num">10</span><span class="v-txt">For godly sorrow produces repentance [leading] to salvation, not to be regretted; but the sorrow of the world produces death.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/11/" data-ref="2 Corinthians 7:11 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/11/"><span class="v-num">11</span><span class="v-txt">For observe this very thing, that you sorrowed in a godly manner: What diligence it produced in you, [what] clearing [of yourselves, what] indignation, [what] fear, [what] vehement desire, [what] zeal, [what] vindication! In all [things] you proved yourselves to be clear in this matter.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/12/" data-ref="2 Corinthians 7:12 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/12/"><span class="v-num">12</span><span class="v-txt">Therefore, although I wrote to you, [I did] not [do it] for the sake of him who had done the wrong, nor for the sake of him who suffered wrong, but that our care for you in the sight of God might appear to you.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/13/" data-ref="2 Corinthians 7:13 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/13/"><span class="v-num">13</span><span class="v-txt">Therefore we have been comforted in your comfort. And we rejoiced exceedingly more for the joy of Titus, because his spirit has been refreshed by you all.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/14/" data-ref="2 Corinthians 7:14 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/14/"><span class="v-num">14</span><span class="v-txt">For if in anything I have boasted to him about you, I am not ashamed. But as we spoke all things to you in truth, even so our boasting to Titus was found true.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/15/" data-ref="2 Corinthians 7:15 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/15/"><span class="v-num">15</span><span class="v-txt">And his affections are greater for you as he remembers the obedience of you all, how with fear and trembling you received him.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/7/16/" data-ref="2 Corinthians 7:16 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/7/16/"><span class="v-num">16</span><span class="v-txt">Therefore I rejoice that I have confidence in you in everything.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Micah 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I said: "Hear now, O heads of Jacob, And you rulers of the house of Israel: [Is it] not for you to know justice?</span></div>
-<div class="v-row" data-ref="Micah 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You who hate good and love evil; Who strip the skin from My people, And the flesh from their bones;</span></div>
-<div class="v-row" data-ref="Micah 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Who also eat the flesh of My people, Flay their skin from them, Break their bones, And chop [them] in pieces Like [meat] for the pot, Like flesh in the caldron."</span></div>
-<div class="v-row" data-ref="Micah 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then they will cry to the LORD, But He will not hear them; He will even hide His face from them at that time, Because they have been evil in their deeds.</span></div>
-<div class="v-row" data-ref="Micah 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Thus says the LORD concerning the prophets Who make my people stray; Who chant "Peace" While they chew with their teeth, But who prepare war against him Who puts nothing into their mouths:</span></div>
-<div class="v-row" data-ref="Micah 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Therefore you shall have night without vision, And you shall have darkness without divination; The sun shall go down on the prophets, And the day shall be dark for them.</span></div>
-<div class="v-row" data-ref="Micah 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So the seers shall be ashamed, And the diviners abashed; Indeed they shall all cover their lips; For [there is] no answer from God."</span></div>
-<div class="v-row" data-ref="Micah 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But truly I am full of power by the Spirit of the LORD, And of justice and might, To declare to Jacob his transgression And to Israel his sin.</span></div>
-<div class="v-row" data-ref="Micah 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Now hear this, You heads of the house of Jacob And rulers of the house of Israel, Who abhor justice And pervert all equity,</span></div>
-<div class="v-row" data-ref="Micah 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who build up Zion with bloodshed And Jerusalem with iniquity:</span></div>
-<div class="v-row" data-ref="Micah 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Her heads judge for a bribe, Her priests teach for pay, And her prophets divine for money. Yet they lean on the LORD, and say, "Is not the LORD among us? No harm can come upon us."</span></div>
-<div class="v-row" data-ref="Micah 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore because of you Zion shall be plowed [like] a field, Jerusalem shall become heaps of ruins, And the mountain of the temple Like the bare hills of the forest.</span></div>
+    <a class="v-row" href="/bible/nkjv/micah/3/1/" data-ref="Micah 3:1 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/1/"><span class="v-num">1</span><span class="v-txt">And I said: "Hear now, O heads of Jacob, And you rulers of the house of Israel: [Is it] not for you to know justice?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/2/" data-ref="Micah 3:2 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/2/"><span class="v-num">2</span><span class="v-txt">You who hate good and love evil; Who strip the skin from My people, And the flesh from their bones;</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/3/" data-ref="Micah 3:3 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/3/"><span class="v-num">3</span><span class="v-txt">Who also eat the flesh of My people, Flay their skin from them, Break their bones, And chop [them] in pieces Like [meat] for the pot, Like flesh in the caldron."</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/4/" data-ref="Micah 3:4 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/4/"><span class="v-num">4</span><span class="v-txt">Then they will cry to the LORD, But He will not hear them; He will even hide His face from them at that time, Because they have been evil in their deeds.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/5/" data-ref="Micah 3:5 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/5/"><span class="v-num">5</span><span class="v-txt">Thus says the LORD concerning the prophets Who make my people stray; Who chant "Peace" While they chew with their teeth, But who prepare war against him Who puts nothing into their mouths:</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/6/" data-ref="Micah 3:6 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/6/"><span class="v-num">6</span><span class="v-txt">"Therefore you shall have night without vision, And you shall have darkness without divination; The sun shall go down on the prophets, And the day shall be dark for them.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/7/" data-ref="Micah 3:7 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/7/"><span class="v-num">7</span><span class="v-txt">So the seers shall be ashamed, And the diviners abashed; Indeed they shall all cover their lips; For [there is] no answer from God."</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/8/" data-ref="Micah 3:8 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/8/"><span class="v-num">8</span><span class="v-txt">But truly I am full of power by the Spirit of the LORD, And of justice and might, To declare to Jacob his transgression And to Israel his sin.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/9/" data-ref="Micah 3:9 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/9/"><span class="v-num">9</span><span class="v-txt">Now hear this, You heads of the house of Jacob And rulers of the house of Israel, Who abhor justice And pervert all equity,</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/10/" data-ref="Micah 3:10 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/10/"><span class="v-num">10</span><span class="v-txt">Who build up Zion with bloodshed And Jerusalem with iniquity:</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/11/" data-ref="Micah 3:11 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/11/"><span class="v-num">11</span><span class="v-txt">Her heads judge for a bribe, Her priests teach for pay, And her prophets divine for money. Yet they lean on the LORD, and say, "Is not the LORD among us? No harm can come upon us."</span></a>
+<a class="v-row" href="/bible/nkjv/micah/3/12/" data-ref="Micah 3:12 (New King James Version)" data-verse-url="/bible/nkjv/micah/3/12/"><span class="v-num">12</span><span class="v-txt">Therefore because of you Zion shall be plowed [like] a field, Jerusalem shall become heaps of ruins, And the mountain of the temple Like the bare hills of the forest.</span></a>
 
     
 <div class="app-cta">

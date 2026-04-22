@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="3 John 1:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The elder unto the wellbeloved Gaius, whom I love in the truth.</span></div>
-<div class="v-row" data-ref="3 John 1:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Beloved, I wish above all things that thou mayest prosper and be in health, even as thy soul prospereth.</span></div>
-<div class="v-row" data-ref="3 John 1:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For I rejoiced greatly, when the brethren came and testified of the truth that is in thee, even as thou walkest in the truth.</span></div>
-<div class="v-row" data-ref="3 John 1:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I have no greater joy than to hear that my children walk in truth.</span></div>
-<div class="v-row" data-ref="3 John 1:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Beloved, thou doest faithfully whatsoever thou doest to the brethren, and to strangers;</span></div>
-<div class="v-row" data-ref="3 John 1:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Which have borne witness of thy charity before the church: whom if thou bring forward on their journey after a godly sort, thou shalt do well:</span></div>
-<div class="v-row" data-ref="3 John 1:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Because that for his name's sake they went forth, taking nothing of the Gentiles.</span></div>
-<div class="v-row" data-ref="3 John 1:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">We therefore ought to receive such, that we might be fellowhelpers to the truth.</span></div>
-<div class="v-row" data-ref="3 John 1:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I wrote unto the church: but Diotrephes, who loveth to have the preeminence among them, receiveth us not.</span></div>
-<div class="v-row" data-ref="3 John 1:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Wherefore, if I come, I will remember his deeds which he doeth, prating against us with malicious words: and not content therewith, neither doth he himself receive the brethren, and forbiddeth them that would, and casteth them out of the church.</span></div>
-<div class="v-row" data-ref="3 John 1:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Beloved, follow not that which is evil, but that which is good. He that doeth good is of God: but he that doeth evil hath not seen God.</span></div>
-<div class="v-row" data-ref="3 John 1:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Demetrius hath good report of all men, and of the truth itself: yea, and we also bear record; and ye know that our record is true.</span></div>
-<div class="v-row" data-ref="3 John 1:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I had many things to write, but I will not with ink and pen write unto thee:</span></div>
-<div class="v-row" data-ref="3 John 1:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I trust I shall shortly see thee, and we shall speak face to face. Peace be to thee. Our friends salute thee. Greet the friends by name.</span></div>
+    <a class="v-row" href="/bible/kjv/3-john/1/1/" data-ref="3 John 1:1 (King James Version)" data-verse-url="/bible/kjv/3-john/1/1/"><span class="v-num">1</span><span class="v-txt">The elder unto the wellbeloved Gaius, whom I love in the truth.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/2/" data-ref="3 John 1:2 (King James Version)" data-verse-url="/bible/kjv/3-john/1/2/"><span class="v-num">2</span><span class="v-txt">Beloved, I wish above all things that thou mayest prosper and be in health, even as thy soul prospereth.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/3/" data-ref="3 John 1:3 (King James Version)" data-verse-url="/bible/kjv/3-john/1/3/"><span class="v-num">3</span><span class="v-txt">For I rejoiced greatly, when the brethren came and testified of the truth that is in thee, even as thou walkest in the truth.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/4/" data-ref="3 John 1:4 (King James Version)" data-verse-url="/bible/kjv/3-john/1/4/"><span class="v-num">4</span><span class="v-txt">I have no greater joy than to hear that my children walk in truth.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/5/" data-ref="3 John 1:5 (King James Version)" data-verse-url="/bible/kjv/3-john/1/5/"><span class="v-num">5</span><span class="v-txt">Beloved, thou doest faithfully whatsoever thou doest to the brethren, and to strangers;</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/6/" data-ref="3 John 1:6 (King James Version)" data-verse-url="/bible/kjv/3-john/1/6/"><span class="v-num">6</span><span class="v-txt">Which have borne witness of thy charity before the church: whom if thou bring forward on their journey after a godly sort, thou shalt do well:</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/7/" data-ref="3 John 1:7 (King James Version)" data-verse-url="/bible/kjv/3-john/1/7/"><span class="v-num">7</span><span class="v-txt">Because that for his name's sake they went forth, taking nothing of the Gentiles.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/8/" data-ref="3 John 1:8 (King James Version)" data-verse-url="/bible/kjv/3-john/1/8/"><span class="v-num">8</span><span class="v-txt">We therefore ought to receive such, that we might be fellowhelpers to the truth.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/9/" data-ref="3 John 1:9 (King James Version)" data-verse-url="/bible/kjv/3-john/1/9/"><span class="v-num">9</span><span class="v-txt">I wrote unto the church: but Diotrephes, who loveth to have the preeminence among them, receiveth us not.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/10/" data-ref="3 John 1:10 (King James Version)" data-verse-url="/bible/kjv/3-john/1/10/"><span class="v-num">10</span><span class="v-txt">Wherefore, if I come, I will remember his deeds which he doeth, prating against us with malicious words: and not content therewith, neither doth he himself receive the brethren, and forbiddeth them that would, and casteth them out of the church.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/11/" data-ref="3 John 1:11 (King James Version)" data-verse-url="/bible/kjv/3-john/1/11/"><span class="v-num">11</span><span class="v-txt">Beloved, follow not that which is evil, but that which is good. He that doeth good is of God: but he that doeth evil hath not seen God.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/12/" data-ref="3 John 1:12 (King James Version)" data-verse-url="/bible/kjv/3-john/1/12/"><span class="v-num">12</span><span class="v-txt">Demetrius hath good report of all men, and of the truth itself: yea, and we also bear record; and ye know that our record is true.</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/13/" data-ref="3 John 1:13 (King James Version)" data-verse-url="/bible/kjv/3-john/1/13/"><span class="v-num">13</span><span class="v-txt">I had many things to write, but I will not with ink and pen write unto thee:</span></a>
+<a class="v-row" href="/bible/kjv/3-john/1/14/" data-ref="3 John 1:14 (King James Version)" data-verse-url="/bible/kjv/3-john/1/14/"><span class="v-num">14</span><span class="v-txt">But I trust I shall shortly see thee, and we shall speak face to face. Peace be to thee. Our friends salute thee. Greet the friends by name.</span></a>
 
     
 <div class="app-cta">

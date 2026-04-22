@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Exodus 20:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And God spake all these words, saying,</span></div>
-<div class="v-row" data-ref="Exodus 20:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I am Jehovah thy God, who brought thee out of the land of Egypt, out of the house of bondage.</span></div>
-<div class="v-row" data-ref="Exodus 20:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Thou shalt have no other gods before me.</span></div>
-<div class="v-row" data-ref="Exodus 20:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Thou shalt not make unto thee a graven image, nor any likeness [of any thing] that is in heaven above, or that is in the earth beneath, or that is in the water under the earth.</span></div>
-<div class="v-row" data-ref="Exodus 20:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Thou shalt not bow down thyself unto them, nor serve them, for I Jehovah thy God am a jealous God, visiting the iniquity of the fathers upon the children, upon the third and upon the fourth generation of them that hate me,</span></div>
-<div class="v-row" data-ref="Exodus 20:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and showing lovingkindness unto thousands of them that love me and keep my commandments.</span></div>
-<div class="v-row" data-ref="Exodus 20:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Thou shalt not take the name of Jehovah thy God in vain; for Jehovah will not hold him guiltless that taketh his name in vain.</span></div>
-<div class="v-row" data-ref="Exodus 20:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Remember the sabbath day, to keep it holy.</span></div>
-<div class="v-row" data-ref="Exodus 20:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Six days shalt thou labor, and do all thy work;</span></div>
-<div class="v-row" data-ref="Exodus 20:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">but the seventh day is a sabbath unto Jehovah thy God: [in it] thou shalt not do any work, thou, nor thy son, nor thy daughter, thy man-servant, nor thy maid-servant, nor thy cattle, nor thy stranger that is within thy gates:</span></div>
-<div class="v-row" data-ref="Exodus 20:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">for in six days Jehovah made heaven and earth, the sea, and all that in them is, and rested the seventh day: wherefore Jehovah blessed the sabbath day, and hallowed it.</span></div>
-<div class="v-row" data-ref="Exodus 20:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Honor thy father and thy mother, that thy days may be long in the land which Jehovah thy God giveth thee.</span></div>
-<div class="v-row" data-ref="Exodus 20:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thou shalt not kill.</span></div>
-<div class="v-row" data-ref="Exodus 20:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thou shalt not commit adultery.</span></div>
-<div class="v-row" data-ref="Exodus 20:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Thou shalt not steal.</span></div>
-<div class="v-row" data-ref="Exodus 20:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Thou shalt not bear false witness against thy neighbor.</span></div>
-<div class="v-row" data-ref="Exodus 20:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Thou shalt not covet thy neighbor's house, thou shalt not covet thy neighbor's wife, nor his man-servant, nor his maid-servant, nor his ox, nor his ass, nor anything that is thy neighbor's.</span></div>
-<div class="v-row" data-ref="Exodus 20:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And all the people perceived the thunderings, and the lightnings, and the voice of the trumpet, and the mountain smoking: and when the people saw it, they trembled, and stood afar off.</span></div>
-<div class="v-row" data-ref="Exodus 20:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And they said unto Moses, Speak thou with us, and we will hear; but let not God speak with us, lest we die.</span></div>
-<div class="v-row" data-ref="Exodus 20:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And Moses said unto the people, Fear not: for God is come to prove you, and that his fear may be before you, that ye sin not.</span></div>
-<div class="v-row" data-ref="Exodus 20:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And the people stood afar off, and Moses drew near unto the thick darkness where God was.</span></div>
-<div class="v-row" data-ref="Exodus 20:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And Jehovah said unto Moses, Thus thou shalt say unto the children of Israel, Ye yourselves have seen that I have talked with you from heaven.</span></div>
-<div class="v-row" data-ref="Exodus 20:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Ye shall not make [other gods] with me; gods of silver, or gods of gold, ye shall not make unto you.</span></div>
-<div class="v-row" data-ref="Exodus 20:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">An altar of earth thou shalt make unto me, and shalt sacrifice thereon thy burnt-offerings, and thy peace-offerings, thy sheep, and thine oxen: in every place where I record my name I will come unto thee and I will bless thee.</span></div>
-<div class="v-row" data-ref="Exodus 20:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And if thou make me an altar of stone, thou shalt not build it of hewn stones; for if thou lift up thy tool upon it, thou hast polluted it.</span></div>
-<div class="v-row" data-ref="Exodus 20:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Neither shalt thou go up by steps unto mine altar, that thy nakedness be not uncovered thereon.</span></div>
+    <a class="v-row" href="/bible/asv/exodus/20/1/" data-ref="Exodus 20:1 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/1/"><span class="v-num">1</span><span class="v-txt">And God spake all these words, saying,</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/2/" data-ref="Exodus 20:2 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/2/"><span class="v-num">2</span><span class="v-txt">I am Jehovah thy God, who brought thee out of the land of Egypt, out of the house of bondage.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/3/" data-ref="Exodus 20:3 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/3/"><span class="v-num">3</span><span class="v-txt">Thou shalt have no other gods before me.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/4/" data-ref="Exodus 20:4 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/4/"><span class="v-num">4</span><span class="v-txt">Thou shalt not make unto thee a graven image, nor any likeness [of any thing] that is in heaven above, or that is in the earth beneath, or that is in the water under the earth.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/5/" data-ref="Exodus 20:5 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/5/"><span class="v-num">5</span><span class="v-txt">Thou shalt not bow down thyself unto them, nor serve them, for I Jehovah thy God am a jealous God, visiting the iniquity of the fathers upon the children, upon the third and upon the fourth generation of them that hate me,</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/6/" data-ref="Exodus 20:6 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/6/"><span class="v-num">6</span><span class="v-txt">and showing lovingkindness unto thousands of them that love me and keep my commandments.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/7/" data-ref="Exodus 20:7 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/7/"><span class="v-num">7</span><span class="v-txt">Thou shalt not take the name of Jehovah thy God in vain; for Jehovah will not hold him guiltless that taketh his name in vain.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/8/" data-ref="Exodus 20:8 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/8/"><span class="v-num">8</span><span class="v-txt">Remember the sabbath day, to keep it holy.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/9/" data-ref="Exodus 20:9 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/9/"><span class="v-num">9</span><span class="v-txt">Six days shalt thou labor, and do all thy work;</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/10/" data-ref="Exodus 20:10 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/10/"><span class="v-num">10</span><span class="v-txt">but the seventh day is a sabbath unto Jehovah thy God: [in it] thou shalt not do any work, thou, nor thy son, nor thy daughter, thy man-servant, nor thy maid-servant, nor thy cattle, nor thy stranger that is within thy gates:</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/11/" data-ref="Exodus 20:11 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/11/"><span class="v-num">11</span><span class="v-txt">for in six days Jehovah made heaven and earth, the sea, and all that in them is, and rested the seventh day: wherefore Jehovah blessed the sabbath day, and hallowed it.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/12/" data-ref="Exodus 20:12 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/12/"><span class="v-num">12</span><span class="v-txt">Honor thy father and thy mother, that thy days may be long in the land which Jehovah thy God giveth thee.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/13/" data-ref="Exodus 20:13 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/13/"><span class="v-num">13</span><span class="v-txt">Thou shalt not kill.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/14/" data-ref="Exodus 20:14 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/14/"><span class="v-num">14</span><span class="v-txt">Thou shalt not commit adultery.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/15/" data-ref="Exodus 20:15 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/15/"><span class="v-num">15</span><span class="v-txt">Thou shalt not steal.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/16/" data-ref="Exodus 20:16 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/16/"><span class="v-num">16</span><span class="v-txt">Thou shalt not bear false witness against thy neighbor.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/17/" data-ref="Exodus 20:17 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/17/"><span class="v-num">17</span><span class="v-txt">Thou shalt not covet thy neighbor's house, thou shalt not covet thy neighbor's wife, nor his man-servant, nor his maid-servant, nor his ox, nor his ass, nor anything that is thy neighbor's.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/18/" data-ref="Exodus 20:18 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/18/"><span class="v-num">18</span><span class="v-txt">And all the people perceived the thunderings, and the lightnings, and the voice of the trumpet, and the mountain smoking: and when the people saw it, they trembled, and stood afar off.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/19/" data-ref="Exodus 20:19 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/19/"><span class="v-num">19</span><span class="v-txt">And they said unto Moses, Speak thou with us, and we will hear; but let not God speak with us, lest we die.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/20/" data-ref="Exodus 20:20 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/20/"><span class="v-num">20</span><span class="v-txt">And Moses said unto the people, Fear not: for God is come to prove you, and that his fear may be before you, that ye sin not.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/21/" data-ref="Exodus 20:21 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/21/"><span class="v-num">21</span><span class="v-txt">And the people stood afar off, and Moses drew near unto the thick darkness where God was.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/22/" data-ref="Exodus 20:22 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/22/"><span class="v-num">22</span><span class="v-txt">And Jehovah said unto Moses, Thus thou shalt say unto the children of Israel, Ye yourselves have seen that I have talked with you from heaven.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/23/" data-ref="Exodus 20:23 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/23/"><span class="v-num">23</span><span class="v-txt">Ye shall not make [other gods] with me; gods of silver, or gods of gold, ye shall not make unto you.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/24/" data-ref="Exodus 20:24 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/24/"><span class="v-num">24</span><span class="v-txt">An altar of earth thou shalt make unto me, and shalt sacrifice thereon thy burnt-offerings, and thy peace-offerings, thy sheep, and thine oxen: in every place where I record my name I will come unto thee and I will bless thee.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/25/" data-ref="Exodus 20:25 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/25/"><span class="v-num">25</span><span class="v-txt">And if thou make me an altar of stone, thou shalt not build it of hewn stones; for if thou lift up thy tool upon it, thou hast polluted it.</span></a>
+<a class="v-row" href="/bible/asv/exodus/20/26/" data-ref="Exodus 20:26 (American Standard Version)" data-verse-url="/bible/asv/exodus/20/26/"><span class="v-num">26</span><span class="v-txt">Neither shalt thou go up by steps unto mine altar, that thy nakedness be not uncovered thereon.</span></a>
 
     
 <div class="app-cta">

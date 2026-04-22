@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Judges 17:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now there was a man of the hill-country of Ephraim named Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said to his mother, The eleven hundred shekels of silver which were taken from you, about which you took an oath and said in my hearing, I have given this silver to the Lord from my hand for myself, to make a pictured image and a metal image: see, I have the silver, for I took it: so now I will give it back to you. And his mother said, May the blessing of the Lord be on my son.</span></div>
-<div class="v-row" data-ref="Judges 17:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And he gave back the eleven hundred shekels of silver to his mother, and his mother said, I have made the silver holy to the Lord from me for my son, to make a pictured image and a metal image.</span></div>
-<div class="v-row" data-ref="Judges 17:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So he gave the silver back to his mother. Then his mother took two hundred shekels of silver and gave them to a metal-worker who made a pictured image and a metal image from them: and it was in the house of Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the man Micah had a house of gods; and he made an ephod and family gods and put one of his sons in the position of priest.</span></div>
-<div class="v-row" data-ref="Judges 17:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In those days there was no king in Israel: every man did as seemed right to him.</span></div>
-<div class="v-row" data-ref="Judges 17:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now there was a young man living in Beth-lehem-judah, of the family of Judah and a Levite, who was not a townsman of the place.</span></div>
-<div class="v-row" data-ref="Judges 17:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he went away from the town of Beth-lehem-judah, looking for somewhere to make his living-place; and on his journey he came to the hill-country of Ephraim, to the house of Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Micah said to him, Where do you come from? And he said to him, I am a Levite from Beth-lehem-judah, and I am looking for a living-place.</span></div>
-<div class="v-row" data-ref="Judges 17:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Micah said to him, Make your living-place with me, and be a father and a priest to me, and I will give you ten shekels of silver a year and your clothing and food.</span></div>
-<div class="v-row" data-ref="Judges 17:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the Levite said he would make his living-place with the man, and he became to him as one of his sons.</span></div>
-<div class="v-row" data-ref="Judges 17:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Micah gave the position to the Levite, and the young man became his priest, and was in the house of Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then Micah said, Now I am certain that the Lord will do me good, seeing that the Levite has become my priest.</span></div>
+    <a class="v-row" href="/bible/bbe/judges/17/1/" data-ref="Judges 17:1 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/1/"><span class="v-num">1</span><span class="v-txt">Now there was a man of the hill-country of Ephraim named Micah.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/2/" data-ref="Judges 17:2 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/2/"><span class="v-num">2</span><span class="v-txt">And he said to his mother, The eleven hundred shekels of silver which were taken from you, about which you took an oath and said in my hearing, I have given this silver to the Lord from my hand for myself, to make a pictured image and a metal image: see, I have the silver, for I took it: so now I will give it back to you. And his mother said, May the blessing of the Lord be on my son.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/3/" data-ref="Judges 17:3 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/3/"><span class="v-num">3</span><span class="v-txt">And he gave back the eleven hundred shekels of silver to his mother, and his mother said, I have made the silver holy to the Lord from me for my son, to make a pictured image and a metal image.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/4/" data-ref="Judges 17:4 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/4/"><span class="v-num">4</span><span class="v-txt">So he gave the silver back to his mother. Then his mother took two hundred shekels of silver and gave them to a metal-worker who made a pictured image and a metal image from them: and it was in the house of Micah.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/5/" data-ref="Judges 17:5 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/5/"><span class="v-num">5</span><span class="v-txt">And the man Micah had a house of gods; and he made an ephod and family gods and put one of his sons in the position of priest.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/6/" data-ref="Judges 17:6 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/6/"><span class="v-num">6</span><span class="v-txt">In those days there was no king in Israel: every man did as seemed right to him.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/7/" data-ref="Judges 17:7 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/7/"><span class="v-num">7</span><span class="v-txt">Now there was a young man living in Beth-lehem-judah, of the family of Judah and a Levite, who was not a townsman of the place.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/8/" data-ref="Judges 17:8 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/8/"><span class="v-num">8</span><span class="v-txt">And he went away from the town of Beth-lehem-judah, looking for somewhere to make his living-place; and on his journey he came to the hill-country of Ephraim, to the house of Micah.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/9/" data-ref="Judges 17:9 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/9/"><span class="v-num">9</span><span class="v-txt">And Micah said to him, Where do you come from? And he said to him, I am a Levite from Beth-lehem-judah, and I am looking for a living-place.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/10/" data-ref="Judges 17:10 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/10/"><span class="v-num">10</span><span class="v-txt">Then Micah said to him, Make your living-place with me, and be a father and a priest to me, and I will give you ten shekels of silver a year and your clothing and food.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/11/" data-ref="Judges 17:11 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/11/"><span class="v-num">11</span><span class="v-txt">And the Levite said he would make his living-place with the man, and he became to him as one of his sons.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/12/" data-ref="Judges 17:12 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/12/"><span class="v-num">12</span><span class="v-txt">And Micah gave the position to the Levite, and the young man became his priest, and was in the house of Micah.</span></a>
+<a class="v-row" href="/bible/bbe/judges/17/13/" data-ref="Judges 17:13 (Bible in Basic English)" data-verse-url="/bible/bbe/judges/17/13/"><span class="v-num">13</span><span class="v-txt">Then Micah said, Now I am certain that the Lord will do me good, seeing that the Levite has become my priest.</span></a>
 
     
 <div class="app-cta">

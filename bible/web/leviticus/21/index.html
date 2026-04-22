@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 21</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 21:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Yahweh said to Moses, "Speak to the priests, the sons of Aaron, and say to them, 'A priest shall not defile himself for the dead among his people;</span></div>
-<div class="v-row" data-ref="Leviticus 21:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">except for his relatives that are near to him: for his mother, for his father, for his son, for his daughter, for his brother,</span></div>
-<div class="v-row" data-ref="Leviticus 21:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and for his virgin sister who is near to him, who has had no husband; for her he may defile himself.</span></div>
-<div class="v-row" data-ref="Leviticus 21:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He shall not defile himself, being a chief man among his people, to profane himself.</span></div>
-<div class="v-row" data-ref="Leviticus 21:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"'They shall not shave their heads, neither shall they shave off the corners of their beards, nor make any cuttings in their flesh.</span></div>
-<div class="v-row" data-ref="Leviticus 21:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They shall be holy to their God, and not profane the name of their God; for they offer the offerings of Yahweh made by fire, the bread of their God; therefore they shall be holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"'They shall not marry a woman who is a prostitute, or profane; neither shall they marry a woman divorced from her husband: for he is holy to his God.</span></div>
-<div class="v-row" data-ref="Leviticus 21:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You shall sanctify him therefore; for he offers the bread of your God: he shall be holy to you: for I Yahweh, who sanctify you, am holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"'The daughter of any priest, if she profanes herself by playing the prostitute, she profanes her father: she shall be burned with fire.</span></div>
-<div class="v-row" data-ref="Leviticus 21:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"'He who is the high priest among his brothers, upon whose head the anointing oil is poured, and that is consecrated to put on the garments, shall not let the hair of his head hang loose, nor tear his clothes;</span></div>
-<div class="v-row" data-ref="Leviticus 21:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">neither shall he go in to any dead body, nor defile himself for his father, or for his mother;</span></div>
-<div class="v-row" data-ref="Leviticus 21:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">neither shall he go out of the sanctuary, nor profane the sanctuary of his God; for the crown of the anointing oil of his God is upon him. I am Yahweh.</span></div>
-<div class="v-row" data-ref="Leviticus 21:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"'He shall take a wife in her virginity.</span></div>
-<div class="v-row" data-ref="Leviticus 21:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A widow, or one divorced, or a woman who has been defiled, or a prostitute, these he shall not marry: but a virgin of his own people shall he take as a wife.</span></div>
-<div class="v-row" data-ref="Leviticus 21:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He shall not profane his seed among his people: for I am Yahweh who sanctifies him.'"</span></div>
-<div class="v-row" data-ref="Leviticus 21:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 21:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Say to Aaron, 'None of your seed throughout their generations who has a blemish, may approach to offer the bread of his God.</span></div>
-<div class="v-row" data-ref="Leviticus 21:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For whatever man he is that has a blemish, he shall not draw near: a blind man, or a lame, or he who has a flat nose, or any deformity,</span></div>
-<div class="v-row" data-ref="Leviticus 21:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">or a man who has an injured foot, or an injured hand,</span></div>
-<div class="v-row" data-ref="Leviticus 21:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">or hunchbacked, or a dwarf, or one who has a defect in his eye, or an itching disease, or scabs, or who has damaged testicles;</span></div>
-<div class="v-row" data-ref="Leviticus 21:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">no man of the seed of Aaron the priest, who has a blemish, shall come near to offer the offerings of Yahweh made by fire. Since has a blemish, he shall not come near to offer the bread of his God.</span></div>
-<div class="v-row" data-ref="Leviticus 21:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He shall eat the bread of his God, both of the most holy, and of the holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He shall not come near to the veil, nor come near to the altar, because he has a blemish; that he may not profane my sanctuaries, for I am Yahweh who sanctifies them.'"</span></div>
-<div class="v-row" data-ref="Leviticus 21:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">So Moses spoke to Aaron, and to his sons, and to all the children of Israel.</span></div>
+    <a class="v-row" href="/bible/web/leviticus/21/1/" data-ref="Leviticus 21:1 (World English Bible)" data-verse-url="/bible/web/leviticus/21/1/"><span class="v-num">1</span><span class="v-txt">Yahweh said to Moses, "Speak to the priests, the sons of Aaron, and say to them, 'A priest shall not defile himself for the dead among his people;</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/2/" data-ref="Leviticus 21:2 (World English Bible)" data-verse-url="/bible/web/leviticus/21/2/"><span class="v-num">2</span><span class="v-txt">except for his relatives that are near to him: for his mother, for his father, for his son, for his daughter, for his brother,</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/3/" data-ref="Leviticus 21:3 (World English Bible)" data-verse-url="/bible/web/leviticus/21/3/"><span class="v-num">3</span><span class="v-txt">and for his virgin sister who is near to him, who has had no husband; for her he may defile himself.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/4/" data-ref="Leviticus 21:4 (World English Bible)" data-verse-url="/bible/web/leviticus/21/4/"><span class="v-num">4</span><span class="v-txt">He shall not defile himself, being a chief man among his people, to profane himself.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/5/" data-ref="Leviticus 21:5 (World English Bible)" data-verse-url="/bible/web/leviticus/21/5/"><span class="v-num">5</span><span class="v-txt">"'They shall not shave their heads, neither shall they shave off the corners of their beards, nor make any cuttings in their flesh.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/6/" data-ref="Leviticus 21:6 (World English Bible)" data-verse-url="/bible/web/leviticus/21/6/"><span class="v-num">6</span><span class="v-txt">They shall be holy to their God, and not profane the name of their God; for they offer the offerings of Yahweh made by fire, the bread of their God; therefore they shall be holy.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/7/" data-ref="Leviticus 21:7 (World English Bible)" data-verse-url="/bible/web/leviticus/21/7/"><span class="v-num">7</span><span class="v-txt">"'They shall not marry a woman who is a prostitute, or profane; neither shall they marry a woman divorced from her husband: for he is holy to his God.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/8/" data-ref="Leviticus 21:8 (World English Bible)" data-verse-url="/bible/web/leviticus/21/8/"><span class="v-num">8</span><span class="v-txt">You shall sanctify him therefore; for he offers the bread of your God: he shall be holy to you: for I Yahweh, who sanctify you, am holy.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/9/" data-ref="Leviticus 21:9 (World English Bible)" data-verse-url="/bible/web/leviticus/21/9/"><span class="v-num">9</span><span class="v-txt">"'The daughter of any priest, if she profanes herself by playing the prostitute, she profanes her father: she shall be burned with fire.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/10/" data-ref="Leviticus 21:10 (World English Bible)" data-verse-url="/bible/web/leviticus/21/10/"><span class="v-num">10</span><span class="v-txt">"'He who is the high priest among his brothers, upon whose head the anointing oil is poured, and that is consecrated to put on the garments, shall not let the hair of his head hang loose, nor tear his clothes;</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/11/" data-ref="Leviticus 21:11 (World English Bible)" data-verse-url="/bible/web/leviticus/21/11/"><span class="v-num">11</span><span class="v-txt">neither shall he go in to any dead body, nor defile himself for his father, or for his mother;</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/12/" data-ref="Leviticus 21:12 (World English Bible)" data-verse-url="/bible/web/leviticus/21/12/"><span class="v-num">12</span><span class="v-txt">neither shall he go out of the sanctuary, nor profane the sanctuary of his God; for the crown of the anointing oil of his God is upon him. I am Yahweh.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/13/" data-ref="Leviticus 21:13 (World English Bible)" data-verse-url="/bible/web/leviticus/21/13/"><span class="v-num">13</span><span class="v-txt">"'He shall take a wife in her virginity.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/14/" data-ref="Leviticus 21:14 (World English Bible)" data-verse-url="/bible/web/leviticus/21/14/"><span class="v-num">14</span><span class="v-txt">A widow, or one divorced, or a woman who has been defiled, or a prostitute, these he shall not marry: but a virgin of his own people shall he take as a wife.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/15/" data-ref="Leviticus 21:15 (World English Bible)" data-verse-url="/bible/web/leviticus/21/15/"><span class="v-num">15</span><span class="v-txt">He shall not profane his seed among his people: for I am Yahweh who sanctifies him.'"</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/16/" data-ref="Leviticus 21:16 (World English Bible)" data-verse-url="/bible/web/leviticus/21/16/"><span class="v-num">16</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/17/" data-ref="Leviticus 21:17 (World English Bible)" data-verse-url="/bible/web/leviticus/21/17/"><span class="v-num">17</span><span class="v-txt">"Say to Aaron, 'None of your seed throughout their generations who has a blemish, may approach to offer the bread of his God.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/18/" data-ref="Leviticus 21:18 (World English Bible)" data-verse-url="/bible/web/leviticus/21/18/"><span class="v-num">18</span><span class="v-txt">For whatever man he is that has a blemish, he shall not draw near: a blind man, or a lame, or he who has a flat nose, or any deformity,</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/19/" data-ref="Leviticus 21:19 (World English Bible)" data-verse-url="/bible/web/leviticus/21/19/"><span class="v-num">19</span><span class="v-txt">or a man who has an injured foot, or an injured hand,</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/20/" data-ref="Leviticus 21:20 (World English Bible)" data-verse-url="/bible/web/leviticus/21/20/"><span class="v-num">20</span><span class="v-txt">or hunchbacked, or a dwarf, or one who has a defect in his eye, or an itching disease, or scabs, or who has damaged testicles;</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/21/" data-ref="Leviticus 21:21 (World English Bible)" data-verse-url="/bible/web/leviticus/21/21/"><span class="v-num">21</span><span class="v-txt">no man of the seed of Aaron the priest, who has a blemish, shall come near to offer the offerings of Yahweh made by fire. Since has a blemish, he shall not come near to offer the bread of his God.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/22/" data-ref="Leviticus 21:22 (World English Bible)" data-verse-url="/bible/web/leviticus/21/22/"><span class="v-num">22</span><span class="v-txt">He shall eat the bread of his God, both of the most holy, and of the holy.</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/23/" data-ref="Leviticus 21:23 (World English Bible)" data-verse-url="/bible/web/leviticus/21/23/"><span class="v-num">23</span><span class="v-txt">He shall not come near to the veil, nor come near to the altar, because he has a blemish; that he may not profane my sanctuaries, for I am Yahweh who sanctifies them.'"</span></a>
+<a class="v-row" href="/bible/web/leviticus/21/24/" data-ref="Leviticus 21:24 (World English Bible)" data-verse-url="/bible/web/leviticus/21/24/"><span class="v-num">24</span><span class="v-txt">So Moses spoke to Aaron, and to his sons, and to all the children of Israel.</span></a>
 
     
 <div class="app-cta">

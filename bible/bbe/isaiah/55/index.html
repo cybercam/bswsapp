@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 55</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 55:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Ho! everyone in need, come to the waters, and he who has no strength, let him get food: come, get bread without money; wine and milk without price.</span></div>
-<div class="v-row" data-ref="Isaiah 55:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Why do you give your money for what is not bread, and the fruit of your work for what will not give you pleasure? Give ear to me, so that your food may be good, and you may have the best in full measure.</span></div>
-<div class="v-row" data-ref="Isaiah 55:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Give ear, and come to me, take note with care, so that your souls may have life: and I will make an eternal agreement with you, even the certain mercies of David.</span></div>
-<div class="v-row" data-ref="Isaiah 55:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">See, I have given him as a witness to the peoples, a ruler and a guide to the nations.</span></div>
-<div class="v-row" data-ref="Isaiah 55:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">See, you will send for a nation of which you had no knowledge, and those who had no knowledge of you will come running to you, because of the Lord your God, and because of the Holy One of Israel, for he has given you glory.</span></div>
-<div class="v-row" data-ref="Isaiah 55:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Make search for the Lord while he is there, make prayer to him while he is near:</span></div>
-<div class="v-row" data-ref="Isaiah 55:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Let the sinner give up his way, and the evil-doer his purpose: and let him come back to the Lord, and he will have mercy on him; and to our God, for there is full forgiveness with him.</span></div>
-<div class="v-row" data-ref="Isaiah 55:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For my thoughts are not your thoughts, or your ways my ways, says the Lord.</span></div>
-<div class="v-row" data-ref="Isaiah 55:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.</span></div>
-<div class="v-row" data-ref="Isaiah 55:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For as the rain comes down, and the snow from heaven, and does not go back again, but gives water to the earth, and makes it fertile, giving seed to the planter, and bread for food;</span></div>
-<div class="v-row" data-ref="Isaiah 55:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So will my word be which goes out of my mouth: it will not come back to me with nothing done, but it will give effect to my purpose, and do that for which I have sent it.</span></div>
-<div class="v-row" data-ref="Isaiah 55:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For you will go out with joy, and be guided in peace: the mountains and the hills will make melody before you, and all the trees of the fields will make sounds of joy.</span></div>
-<div class="v-row" data-ref="Isaiah 55:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In place of the thorn will come up the fir-tree, and in place of the blackberry the myrtle: and it will be to the Lord for a name, for an eternal sign which will not be cut off.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/55/1/" data-ref="Isaiah 55:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/1/"><span class="v-num">1</span><span class="v-txt">Ho! everyone in need, come to the waters, and he who has no strength, let him get food: come, get bread without money; wine and milk without price.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/2/" data-ref="Isaiah 55:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/2/"><span class="v-num">2</span><span class="v-txt">Why do you give your money for what is not bread, and the fruit of your work for what will not give you pleasure? Give ear to me, so that your food may be good, and you may have the best in full measure.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/3/" data-ref="Isaiah 55:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/3/"><span class="v-num">3</span><span class="v-txt">Give ear, and come to me, take note with care, so that your souls may have life: and I will make an eternal agreement with you, even the certain mercies of David.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/4/" data-ref="Isaiah 55:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/4/"><span class="v-num">4</span><span class="v-txt">See, I have given him as a witness to the peoples, a ruler and a guide to the nations.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/5/" data-ref="Isaiah 55:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/5/"><span class="v-num">5</span><span class="v-txt">See, you will send for a nation of which you had no knowledge, and those who had no knowledge of you will come running to you, because of the Lord your God, and because of the Holy One of Israel, for he has given you glory.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/6/" data-ref="Isaiah 55:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/6/"><span class="v-num">6</span><span class="v-txt">Make search for the Lord while he is there, make prayer to him while he is near:</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/7/" data-ref="Isaiah 55:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/7/"><span class="v-num">7</span><span class="v-txt">Let the sinner give up his way, and the evil-doer his purpose: and let him come back to the Lord, and he will have mercy on him; and to our God, for there is full forgiveness with him.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/8/" data-ref="Isaiah 55:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/8/"><span class="v-num">8</span><span class="v-txt">For my thoughts are not your thoughts, or your ways my ways, says the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/9/" data-ref="Isaiah 55:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/9/"><span class="v-num">9</span><span class="v-txt">For as the heavens are higher than the earth, so are my ways higher than your ways, and my thoughts than your thoughts.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/10/" data-ref="Isaiah 55:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/10/"><span class="v-num">10</span><span class="v-txt">For as the rain comes down, and the snow from heaven, and does not go back again, but gives water to the earth, and makes it fertile, giving seed to the planter, and bread for food;</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/11/" data-ref="Isaiah 55:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/11/"><span class="v-num">11</span><span class="v-txt">So will my word be which goes out of my mouth: it will not come back to me with nothing done, but it will give effect to my purpose, and do that for which I have sent it.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/12/" data-ref="Isaiah 55:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/12/"><span class="v-num">12</span><span class="v-txt">For you will go out with joy, and be guided in peace: the mountains and the hills will make melody before you, and all the trees of the fields will make sounds of joy.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/55/13/" data-ref="Isaiah 55:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/55/13/"><span class="v-num">13</span><span class="v-txt">In place of the thorn will come up the fir-tree, and in place of the blackberry the myrtle: and it will be to the Lord for a name, for an eternal sign which will not be cut off.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now when Samuel was old, he made his sons judges over Israel.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The name of his first son was Joel and the name of his second Abijah: they were judges in Beer-sheba.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And his sons did not go in his ways, but moved by the love of money took rewards, and were not upright in judging.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then all the responsible men of Israel got together and went to Samuel at Ramah,</span></div>
-<div class="v-row" data-ref="1 Samuel 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And said to him, See now, you are old, and your sons do not go in your ways: give us a king now to be our judge, so that we may be like the other nations.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But Samuel was not pleased when they said to him, Give us a king to be our judge. And Samuel made prayer to the Lord.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the Lord said to Samuel, Give ear to the voice of the people and what they say to you: they have not been turned away from you, but they have been turned away from me, not desiring me to be king over them.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">As they have done from the first, from the day when I took them out of Egypt till this day, turning away from me and worshipping other gods, so now they are acting in the same way to you.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Give ear now to their voice: but make a serious protest to them, and give them a picture of the sort of king who will be their ruler.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Samuel said all these words of the Lord to the people who were desiring a king.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he said, This is the sort of king who will be your ruler: he will take your sons and make them his servants, his horsemen, and drivers of his war-carriages, and they will go running before his war-carriages;</span></div>
-<div class="v-row" data-ref="1 Samuel 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And he will make them captains of thousands and of fifties; some he will put to work ploughing and cutting his grain and making his instruments of war and building his war-carriages.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Your daughters he will take to be makers of perfumes and cooks and bread-makers.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He will take your fields and your vine-gardens and your olive-gardens, all the best of them, and give them to his servants.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He will take a tenth of your seed and of the fruit of your vines and give it to his servants.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He will take your men-servants and your servant-girls, and the best of your oxen and your asses and put them to his work.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He will take a tenth of your sheep: and you will be his servants.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Then you will be crying out because of your king whom you have taken for yourselves; but the Lord will not give you an answer in that day.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">But the people gave no attention to the voice of Samuel; and they said, No, but we will have a king over us,</span></div>
-<div class="v-row" data-ref="1 Samuel 8:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">So that we may be like the other nations, and so that our king may be our judge and go out before us to war.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Then Samuel, after hearing all the people had to say, went and gave an account of it to the Lord.</span></div>
-<div class="v-row" data-ref="1 Samuel 8:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And the Lord said to Samuel, Give ear to their voice and make a king for them. Then Samuel said to the men of Israel, Let every man go back to his town.</span></div>
+    <a class="v-row" href="/bible/bbe/1-samuel/8/1/" data-ref="1 Samuel 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/1/"><span class="v-num">1</span><span class="v-txt">Now when Samuel was old, he made his sons judges over Israel.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/2/" data-ref="1 Samuel 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/2/"><span class="v-num">2</span><span class="v-txt">The name of his first son was Joel and the name of his second Abijah: they were judges in Beer-sheba.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/3/" data-ref="1 Samuel 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/3/"><span class="v-num">3</span><span class="v-txt">And his sons did not go in his ways, but moved by the love of money took rewards, and were not upright in judging.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/4/" data-ref="1 Samuel 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/4/"><span class="v-num">4</span><span class="v-txt">Then all the responsible men of Israel got together and went to Samuel at Ramah,</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/5/" data-ref="1 Samuel 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/5/"><span class="v-num">5</span><span class="v-txt">And said to him, See now, you are old, and your sons do not go in your ways: give us a king now to be our judge, so that we may be like the other nations.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/6/" data-ref="1 Samuel 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/6/"><span class="v-num">6</span><span class="v-txt">But Samuel was not pleased when they said to him, Give us a king to be our judge. And Samuel made prayer to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/7/" data-ref="1 Samuel 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/7/"><span class="v-num">7</span><span class="v-txt">And the Lord said to Samuel, Give ear to the voice of the people and what they say to you: they have not been turned away from you, but they have been turned away from me, not desiring me to be king over them.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/8/" data-ref="1 Samuel 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/8/"><span class="v-num">8</span><span class="v-txt">As they have done from the first, from the day when I took them out of Egypt till this day, turning away from me and worshipping other gods, so now they are acting in the same way to you.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/9/" data-ref="1 Samuel 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/9/"><span class="v-num">9</span><span class="v-txt">Give ear now to their voice: but make a serious protest to them, and give them a picture of the sort of king who will be their ruler.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/10/" data-ref="1 Samuel 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/10/"><span class="v-num">10</span><span class="v-txt">And Samuel said all these words of the Lord to the people who were desiring a king.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/11/" data-ref="1 Samuel 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/11/"><span class="v-num">11</span><span class="v-txt">And he said, This is the sort of king who will be your ruler: he will take your sons and make them his servants, his horsemen, and drivers of his war-carriages, and they will go running before his war-carriages;</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/12/" data-ref="1 Samuel 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/12/"><span class="v-num">12</span><span class="v-txt">And he will make them captains of thousands and of fifties; some he will put to work ploughing and cutting his grain and making his instruments of war and building his war-carriages.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/13/" data-ref="1 Samuel 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/13/"><span class="v-num">13</span><span class="v-txt">Your daughters he will take to be makers of perfumes and cooks and bread-makers.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/14/" data-ref="1 Samuel 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/14/"><span class="v-num">14</span><span class="v-txt">He will take your fields and your vine-gardens and your olive-gardens, all the best of them, and give them to his servants.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/15/" data-ref="1 Samuel 8:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/15/"><span class="v-num">15</span><span class="v-txt">He will take a tenth of your seed and of the fruit of your vines and give it to his servants.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/16/" data-ref="1 Samuel 8:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/16/"><span class="v-num">16</span><span class="v-txt">He will take your men-servants and your servant-girls, and the best of your oxen and your asses and put them to his work.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/17/" data-ref="1 Samuel 8:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/17/"><span class="v-num">17</span><span class="v-txt">He will take a tenth of your sheep: and you will be his servants.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/18/" data-ref="1 Samuel 8:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/18/"><span class="v-num">18</span><span class="v-txt">Then you will be crying out because of your king whom you have taken for yourselves; but the Lord will not give you an answer in that day.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/19/" data-ref="1 Samuel 8:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/19/"><span class="v-num">19</span><span class="v-txt">But the people gave no attention to the voice of Samuel; and they said, No, but we will have a king over us,</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/20/" data-ref="1 Samuel 8:20 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/20/"><span class="v-num">20</span><span class="v-txt">So that we may be like the other nations, and so that our king may be our judge and go out before us to war.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/21/" data-ref="1 Samuel 8:21 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/21/"><span class="v-num">21</span><span class="v-txt">Then Samuel, after hearing all the people had to say, went and gave an account of it to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/8/22/" data-ref="1 Samuel 8:22 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/8/22/"><span class="v-num">22</span><span class="v-txt">And the Lord said to Samuel, Give ear to their voice and make a king for them. Then Samuel said to the men of Israel, Let every man go back to his town.</span></a>
 
     
 <div class="app-cta">

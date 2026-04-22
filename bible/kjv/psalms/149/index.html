@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,15 +204,15 @@ a:hover{text-decoration:underline}
       <h2>Chapter 149</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 149:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Praise ye the LORD. Sing unto the LORD a new song, and his praise in the congregation of saints.</span></div>
-<div class="v-row" data-ref="Psalm 149:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let Israel rejoice in him that made him: let the children of Zion be joyful in their King.</span></div>
-<div class="v-row" data-ref="Psalm 149:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let them praise his name in the dance: let them sing praises unto him with the timbrel and harp.</span></div>
-<div class="v-row" data-ref="Psalm 149:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For the LORD taketh pleasure in his people: he will beautify the meek with salvation.</span></div>
-<div class="v-row" data-ref="Psalm 149:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let the saints be joyful in glory: let them sing aloud upon their beds.</span></div>
-<div class="v-row" data-ref="Psalm 149:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let the high praises of God be in their mouth, and a twoedged sword in their hand;</span></div>
-<div class="v-row" data-ref="Psalm 149:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">To execute vengeance upon the heathen, and punishments upon the people;</span></div>
-<div class="v-row" data-ref="Psalm 149:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">To bind their kings with chains, and their nobles with fetters of iron;</span></div>
-<div class="v-row" data-ref="Psalm 149:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">To execute upon them the judgment written: this honour have all his saints. Praise ye the LORD.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/149/1/" data-ref="Psalm 149:1 (King James Version)" data-verse-url="/bible/kjv/psalms/149/1/"><span class="v-num">1</span><span class="v-txt">Praise ye the LORD. Sing unto the LORD a new song, and his praise in the congregation of saints.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/2/" data-ref="Psalm 149:2 (King James Version)" data-verse-url="/bible/kjv/psalms/149/2/"><span class="v-num">2</span><span class="v-txt">Let Israel rejoice in him that made him: let the children of Zion be joyful in their King.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/3/" data-ref="Psalm 149:3 (King James Version)" data-verse-url="/bible/kjv/psalms/149/3/"><span class="v-num">3</span><span class="v-txt">Let them praise his name in the dance: let them sing praises unto him with the timbrel and harp.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/4/" data-ref="Psalm 149:4 (King James Version)" data-verse-url="/bible/kjv/psalms/149/4/"><span class="v-num">4</span><span class="v-txt">For the LORD taketh pleasure in his people: he will beautify the meek with salvation.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/5/" data-ref="Psalm 149:5 (King James Version)" data-verse-url="/bible/kjv/psalms/149/5/"><span class="v-num">5</span><span class="v-txt">Let the saints be joyful in glory: let them sing aloud upon their beds.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/6/" data-ref="Psalm 149:6 (King James Version)" data-verse-url="/bible/kjv/psalms/149/6/"><span class="v-num">6</span><span class="v-txt">Let the high praises of God be in their mouth, and a twoedged sword in their hand;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/7/" data-ref="Psalm 149:7 (King James Version)" data-verse-url="/bible/kjv/psalms/149/7/"><span class="v-num">7</span><span class="v-txt">To execute vengeance upon the heathen, and punishments upon the people;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/8/" data-ref="Psalm 149:8 (King James Version)" data-verse-url="/bible/kjv/psalms/149/8/"><span class="v-num">8</span><span class="v-txt">To bind their kings with chains, and their nobles with fetters of iron;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/149/9/" data-ref="Psalm 149:9 (King James Version)" data-verse-url="/bible/kjv/psalms/149/9/"><span class="v-num">9</span><span class="v-txt">To execute upon them the judgment written: this honour have all his saints. Praise ye the LORD.</span></a>
 
     
 <div class="app-cta">

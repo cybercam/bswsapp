@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Job 19:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></div>
-<div class="v-row" data-ref="Job 19:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">How long will ye vex my soul, And break me in pieces with words?</span></div>
-<div class="v-row" data-ref="Job 19:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">These ten times have ye reproached me: Ye are not ashamed that ye deal hardly with me.</span></div>
-<div class="v-row" data-ref="Job 19:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And be it indeed that I have erred, Mine error remaineth with myself.</span></div>
-<div class="v-row" data-ref="Job 19:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">If indeed ye will magnify yourselves against me, And plead against me my reproach;</span></div>
-<div class="v-row" data-ref="Job 19:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Know now that God hath subverted me [in my cause], And hath compassed me with his net.</span></div>
-<div class="v-row" data-ref="Job 19:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Behold, I cry out of wrong, but I am not heard: I cry for help, but there is no justice.</span></div>
-<div class="v-row" data-ref="Job 19:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He hath walled up my way that I cannot pass, And hath set darkness in my paths.</span></div>
-<div class="v-row" data-ref="Job 19:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He hath stripped me of my glory, And taken the crown from my head.</span></div>
-<div class="v-row" data-ref="Job 19:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He hath broken me down on every side, and I am gone; And my hope hath he plucked up like a tree.</span></div>
-<div class="v-row" data-ref="Job 19:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He hath also kindled his wrath against me, And he counteth me unto him as [one of] his adversaries.</span></div>
-<div class="v-row" data-ref="Job 19:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">His troops come on together, And cast up their way against me, And encamp round about my tent.</span></div>
-<div class="v-row" data-ref="Job 19:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He hath put my brethren far from me, And mine acquaintance are wholly estranged from me.</span></div>
-<div class="v-row" data-ref="Job 19:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">My kinsfolk have failed, And my familiar friends have forgotten me.</span></div>
-<div class="v-row" data-ref="Job 19:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">They that dwell in my house, and my maids, count me for a stranger; I am an alien in their sight.</span></div>
-<div class="v-row" data-ref="Job 19:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I call unto my servant, and he giveth me no answer, [Though] I entreat him with my mouth.</span></div>
-<div class="v-row" data-ref="Job 19:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">My breath is strange to my wife, And my supplication to the children of mine own mother.</span></div>
-<div class="v-row" data-ref="Job 19:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Even young children despise me; If I arise, they speak against me.</span></div>
-<div class="v-row" data-ref="Job 19:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">All my familiar friends abhor me, And they whom I loved are turned against me.</span></div>
-<div class="v-row" data-ref="Job 19:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My bone cleaveth to my skin and to my flesh, And I am escaped with the skin of my teeth.</span></div>
-<div class="v-row" data-ref="Job 19:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Have pity upon me, have pity upon me, O ye my friends; For the hand of God hath touched me.</span></div>
-<div class="v-row" data-ref="Job 19:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Why do ye persecute me as God, And are not satisfied with my flesh?</span></div>
-<div class="v-row" data-ref="Job 19:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Oh that my words were now written! Oh that they were inscribed in a book!</span></div>
-<div class="v-row" data-ref="Job 19:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">That with an iron pen and lead They were graven in the rock for ever!</span></div>
-<div class="v-row" data-ref="Job 19:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">But as for me I know that my Redeemer liveth, And at last he will stand up upon the earth:</span></div>
-<div class="v-row" data-ref="Job 19:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">And after my skin, [even] this [body], is destroyed, Then without my flesh shall I see God;</span></div>
-<div class="v-row" data-ref="Job 19:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Whom I, even I, shall see, on my side, And mine eyes shall behold, and not as a stranger. My heart is consumed within me.</span></div>
-<div class="v-row" data-ref="Job 19:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">If ye say, How we will persecute him! And that the root of the matter is found in me;</span></div>
-<div class="v-row" data-ref="Job 19:29 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Be ye afraid of the sword: For wrath [bringeth] the punishments of the sword, That ye may know there is a judgment.</span></div>
+    <a class="v-row" href="/bible/asv/job/19/1/" data-ref="Job 19:1 (American Standard Version)" data-verse-url="/bible/asv/job/19/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></a>
+<a class="v-row" href="/bible/asv/job/19/2/" data-ref="Job 19:2 (American Standard Version)" data-verse-url="/bible/asv/job/19/2/"><span class="v-num">2</span><span class="v-txt">How long will ye vex my soul, And break me in pieces with words?</span></a>
+<a class="v-row" href="/bible/asv/job/19/3/" data-ref="Job 19:3 (American Standard Version)" data-verse-url="/bible/asv/job/19/3/"><span class="v-num">3</span><span class="v-txt">These ten times have ye reproached me: Ye are not ashamed that ye deal hardly with me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/4/" data-ref="Job 19:4 (American Standard Version)" data-verse-url="/bible/asv/job/19/4/"><span class="v-num">4</span><span class="v-txt">And be it indeed that I have erred, Mine error remaineth with myself.</span></a>
+<a class="v-row" href="/bible/asv/job/19/5/" data-ref="Job 19:5 (American Standard Version)" data-verse-url="/bible/asv/job/19/5/"><span class="v-num">5</span><span class="v-txt">If indeed ye will magnify yourselves against me, And plead against me my reproach;</span></a>
+<a class="v-row" href="/bible/asv/job/19/6/" data-ref="Job 19:6 (American Standard Version)" data-verse-url="/bible/asv/job/19/6/"><span class="v-num">6</span><span class="v-txt">Know now that God hath subverted me [in my cause], And hath compassed me with his net.</span></a>
+<a class="v-row" href="/bible/asv/job/19/7/" data-ref="Job 19:7 (American Standard Version)" data-verse-url="/bible/asv/job/19/7/"><span class="v-num">7</span><span class="v-txt">Behold, I cry out of wrong, but I am not heard: I cry for help, but there is no justice.</span></a>
+<a class="v-row" href="/bible/asv/job/19/8/" data-ref="Job 19:8 (American Standard Version)" data-verse-url="/bible/asv/job/19/8/"><span class="v-num">8</span><span class="v-txt">He hath walled up my way that I cannot pass, And hath set darkness in my paths.</span></a>
+<a class="v-row" href="/bible/asv/job/19/9/" data-ref="Job 19:9 (American Standard Version)" data-verse-url="/bible/asv/job/19/9/"><span class="v-num">9</span><span class="v-txt">He hath stripped me of my glory, And taken the crown from my head.</span></a>
+<a class="v-row" href="/bible/asv/job/19/10/" data-ref="Job 19:10 (American Standard Version)" data-verse-url="/bible/asv/job/19/10/"><span class="v-num">10</span><span class="v-txt">He hath broken me down on every side, and I am gone; And my hope hath he plucked up like a tree.</span></a>
+<a class="v-row" href="/bible/asv/job/19/11/" data-ref="Job 19:11 (American Standard Version)" data-verse-url="/bible/asv/job/19/11/"><span class="v-num">11</span><span class="v-txt">He hath also kindled his wrath against me, And he counteth me unto him as [one of] his adversaries.</span></a>
+<a class="v-row" href="/bible/asv/job/19/12/" data-ref="Job 19:12 (American Standard Version)" data-verse-url="/bible/asv/job/19/12/"><span class="v-num">12</span><span class="v-txt">His troops come on together, And cast up their way against me, And encamp round about my tent.</span></a>
+<a class="v-row" href="/bible/asv/job/19/13/" data-ref="Job 19:13 (American Standard Version)" data-verse-url="/bible/asv/job/19/13/"><span class="v-num">13</span><span class="v-txt">He hath put my brethren far from me, And mine acquaintance are wholly estranged from me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/14/" data-ref="Job 19:14 (American Standard Version)" data-verse-url="/bible/asv/job/19/14/"><span class="v-num">14</span><span class="v-txt">My kinsfolk have failed, And my familiar friends have forgotten me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/15/" data-ref="Job 19:15 (American Standard Version)" data-verse-url="/bible/asv/job/19/15/"><span class="v-num">15</span><span class="v-txt">They that dwell in my house, and my maids, count me for a stranger; I am an alien in their sight.</span></a>
+<a class="v-row" href="/bible/asv/job/19/16/" data-ref="Job 19:16 (American Standard Version)" data-verse-url="/bible/asv/job/19/16/"><span class="v-num">16</span><span class="v-txt">I call unto my servant, and he giveth me no answer, [Though] I entreat him with my mouth.</span></a>
+<a class="v-row" href="/bible/asv/job/19/17/" data-ref="Job 19:17 (American Standard Version)" data-verse-url="/bible/asv/job/19/17/"><span class="v-num">17</span><span class="v-txt">My breath is strange to my wife, And my supplication to the children of mine own mother.</span></a>
+<a class="v-row" href="/bible/asv/job/19/18/" data-ref="Job 19:18 (American Standard Version)" data-verse-url="/bible/asv/job/19/18/"><span class="v-num">18</span><span class="v-txt">Even young children despise me; If I arise, they speak against me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/19/" data-ref="Job 19:19 (American Standard Version)" data-verse-url="/bible/asv/job/19/19/"><span class="v-num">19</span><span class="v-txt">All my familiar friends abhor me, And they whom I loved are turned against me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/20/" data-ref="Job 19:20 (American Standard Version)" data-verse-url="/bible/asv/job/19/20/"><span class="v-num">20</span><span class="v-txt">My bone cleaveth to my skin and to my flesh, And I am escaped with the skin of my teeth.</span></a>
+<a class="v-row" href="/bible/asv/job/19/21/" data-ref="Job 19:21 (American Standard Version)" data-verse-url="/bible/asv/job/19/21/"><span class="v-num">21</span><span class="v-txt">Have pity upon me, have pity upon me, O ye my friends; For the hand of God hath touched me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/22/" data-ref="Job 19:22 (American Standard Version)" data-verse-url="/bible/asv/job/19/22/"><span class="v-num">22</span><span class="v-txt">Why do ye persecute me as God, And are not satisfied with my flesh?</span></a>
+<a class="v-row" href="/bible/asv/job/19/23/" data-ref="Job 19:23 (American Standard Version)" data-verse-url="/bible/asv/job/19/23/"><span class="v-num">23</span><span class="v-txt">Oh that my words were now written! Oh that they were inscribed in a book!</span></a>
+<a class="v-row" href="/bible/asv/job/19/24/" data-ref="Job 19:24 (American Standard Version)" data-verse-url="/bible/asv/job/19/24/"><span class="v-num">24</span><span class="v-txt">That with an iron pen and lead They were graven in the rock for ever!</span></a>
+<a class="v-row" href="/bible/asv/job/19/25/" data-ref="Job 19:25 (American Standard Version)" data-verse-url="/bible/asv/job/19/25/"><span class="v-num">25</span><span class="v-txt">But as for me I know that my Redeemer liveth, And at last he will stand up upon the earth:</span></a>
+<a class="v-row" href="/bible/asv/job/19/26/" data-ref="Job 19:26 (American Standard Version)" data-verse-url="/bible/asv/job/19/26/"><span class="v-num">26</span><span class="v-txt">And after my skin, [even] this [body], is destroyed, Then without my flesh shall I see God;</span></a>
+<a class="v-row" href="/bible/asv/job/19/27/" data-ref="Job 19:27 (American Standard Version)" data-verse-url="/bible/asv/job/19/27/"><span class="v-num">27</span><span class="v-txt">Whom I, even I, shall see, on my side, And mine eyes shall behold, and not as a stranger. My heart is consumed within me.</span></a>
+<a class="v-row" href="/bible/asv/job/19/28/" data-ref="Job 19:28 (American Standard Version)" data-verse-url="/bible/asv/job/19/28/"><span class="v-num">28</span><span class="v-txt">If ye say, How we will persecute him! And that the root of the matter is found in me;</span></a>
+<a class="v-row" href="/bible/asv/job/19/29/" data-ref="Job 19:29 (American Standard Version)" data-verse-url="/bible/asv/job/19/29/"><span class="v-num">29</span><span class="v-txt">Be ye afraid of the sword: For wrath [bringeth] the punishments of the sword, That ye may know there is a judgment.</span></a>
 
     
 <div class="app-cta">

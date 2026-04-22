@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 22</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 22:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And he showed me a pure river of water of life, clear as crystal, proceeding from the throne of God and of the Lamb.</span></div>
-<div class="v-row" data-ref="Revelation 22:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In the middle of its street, and on either side of the river, [was] the tree of life, which bore twelve fruits, each [tree] yielding its fruit every month. The leaves of the tree [were] for the healing of the nations.</span></div>
-<div class="v-row" data-ref="Revelation 22:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And there shall be no more curse, but the throne of God and of the Lamb shall be in it, and His servants shall serve Him.</span></div>
-<div class="v-row" data-ref="Revelation 22:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They shall see His face, and His name [shall be] on their foreheads.</span></div>
-<div class="v-row" data-ref="Revelation 22:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">There shall be no night there: They need no lamp nor light of the sun, for the Lord God gives them light. And they shall reign forever and ever.</span></div>
-<div class="v-row" data-ref="Revelation 22:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then he said to me, "These words [are] faithful and true." And the Lord God of the holy prophets sent His angel to show His servants the things which must shortly take place.</span></div>
-<div class="v-row" data-ref="Revelation 22:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Behold, I am coming quickly! Blessed [is] he who keeps the words of the prophecy of this book."</span></div>
-<div class="v-row" data-ref="Revelation 22:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now I, John, saw and heard these things. And when I heard and saw, I fell down to worship before the feet of the angel who showed me these things.</span></div>
-<div class="v-row" data-ref="Revelation 22:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then he said to me, "See [that you do] not [do that.] For I am your fellow servant, and of your brethren the prophets, and of those who keep the words of this book. Worship God."</span></div>
-<div class="v-row" data-ref="Revelation 22:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he said to me, "Do not seal the words of the prophecy of this book, for the time is at hand.</span></div>
-<div class="v-row" data-ref="Revelation 22:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"He who is unjust, let him be unjust still; he who is filthy, let him be filthy still; he who is righteous, let him be righteous still; he who is holy, let him be holy still."</span></div>
-<div class="v-row" data-ref="Revelation 22:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">" And behold, I am coming quickly, and My reward [is] with Me, to give to every one according to his work.</span></div>
-<div class="v-row" data-ref="Revelation 22:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"I am the Alpha and the Omega, [the] Beginning and [the] End, the First and the Last."</span></div>
-<div class="v-row" data-ref="Revelation 22:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Blessed [are] those who do His commandments, that they may have the right to the tree of life, and may enter through the gates into the city.</span></div>
-<div class="v-row" data-ref="Revelation 22:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But outside [are] dogs and sorcerers and sexually immoral and murderers and idolaters, and whoever loves and practices a lie.</span></div>
-<div class="v-row" data-ref="Revelation 22:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"I, Jesus, have sent My angel to testify to you these things in the churches. I am the Root and the Offspring of David, the Bright and Morning Star."</span></div>
-<div class="v-row" data-ref="Revelation 22:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the Spirit and the bride say, "Come!" And let him who hears say, "Come!" And let him who thirsts come. Whoever desires, let him take the water of life freely.</span></div>
-<div class="v-row" data-ref="Revelation 22:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For I testify to everyone who hears the words of the prophecy of this book: If anyone adds to these things, God will add to him the plagues that are written in this book;</span></div>
-<div class="v-row" data-ref="Revelation 22:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and if anyone takes away from the words of the book of this prophecy, God shall take away his part from the Book of Life, from the holy city, and [from] the things which are written in this book.</span></div>
-<div class="v-row" data-ref="Revelation 22:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He who testifies to these things says, "Surely I am coming quickly." Amen. Even so, come, Lord Jesus!</span></div>
-<div class="v-row" data-ref="Revelation 22:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The grace of our Lord Jesus Christ [be] with you all. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/22/1/" data-ref="Revelation 22:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/1/"><span class="v-num">1</span><span class="v-txt">And he showed me a pure river of water of life, clear as crystal, proceeding from the throne of God and of the Lamb.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/2/" data-ref="Revelation 22:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/2/"><span class="v-num">2</span><span class="v-txt">In the middle of its street, and on either side of the river, [was] the tree of life, which bore twelve fruits, each [tree] yielding its fruit every month. The leaves of the tree [were] for the healing of the nations.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/3/" data-ref="Revelation 22:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/3/"><span class="v-num">3</span><span class="v-txt">And there shall be no more curse, but the throne of God and of the Lamb shall be in it, and His servants shall serve Him.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/4/" data-ref="Revelation 22:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/4/"><span class="v-num">4</span><span class="v-txt">They shall see His face, and His name [shall be] on their foreheads.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/5/" data-ref="Revelation 22:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/5/"><span class="v-num">5</span><span class="v-txt">There shall be no night there: They need no lamp nor light of the sun, for the Lord God gives them light. And they shall reign forever and ever.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/6/" data-ref="Revelation 22:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/6/"><span class="v-num">6</span><span class="v-txt">Then he said to me, "These words [are] faithful and true." And the Lord God of the holy prophets sent His angel to show His servants the things which must shortly take place.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/7/" data-ref="Revelation 22:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/7/"><span class="v-num">7</span><span class="v-txt">"Behold, I am coming quickly! Blessed [is] he who keeps the words of the prophecy of this book."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/8/" data-ref="Revelation 22:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/8/"><span class="v-num">8</span><span class="v-txt">Now I, John, saw and heard these things. And when I heard and saw, I fell down to worship before the feet of the angel who showed me these things.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/9/" data-ref="Revelation 22:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/9/"><span class="v-num">9</span><span class="v-txt">Then he said to me, "See [that you do] not [do that.] For I am your fellow servant, and of your brethren the prophets, and of those who keep the words of this book. Worship God."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/10/" data-ref="Revelation 22:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/10/"><span class="v-num">10</span><span class="v-txt">And he said to me, "Do not seal the words of the prophecy of this book, for the time is at hand.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/11/" data-ref="Revelation 22:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/11/"><span class="v-num">11</span><span class="v-txt">"He who is unjust, let him be unjust still; he who is filthy, let him be filthy still; he who is righteous, let him be righteous still; he who is holy, let him be holy still."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/12/" data-ref="Revelation 22:12 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/12/"><span class="v-num">12</span><span class="v-txt">" And behold, I am coming quickly, and My reward [is] with Me, to give to every one according to his work.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/13/" data-ref="Revelation 22:13 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/13/"><span class="v-num">13</span><span class="v-txt">"I am the Alpha and the Omega, [the] Beginning and [the] End, the First and the Last."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/14/" data-ref="Revelation 22:14 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/14/"><span class="v-num">14</span><span class="v-txt">Blessed [are] those who do His commandments, that they may have the right to the tree of life, and may enter through the gates into the city.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/15/" data-ref="Revelation 22:15 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/15/"><span class="v-num">15</span><span class="v-txt">But outside [are] dogs and sorcerers and sexually immoral and murderers and idolaters, and whoever loves and practices a lie.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/16/" data-ref="Revelation 22:16 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/16/"><span class="v-num">16</span><span class="v-txt">"I, Jesus, have sent My angel to testify to you these things in the churches. I am the Root and the Offspring of David, the Bright and Morning Star."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/17/" data-ref="Revelation 22:17 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/17/"><span class="v-num">17</span><span class="v-txt">And the Spirit and the bride say, "Come!" And let him who hears say, "Come!" And let him who thirsts come. Whoever desires, let him take the water of life freely.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/18/" data-ref="Revelation 22:18 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/18/"><span class="v-num">18</span><span class="v-txt">For I testify to everyone who hears the words of the prophecy of this book: If anyone adds to these things, God will add to him the plagues that are written in this book;</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/19/" data-ref="Revelation 22:19 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/19/"><span class="v-num">19</span><span class="v-txt">and if anyone takes away from the words of the book of this prophecy, God shall take away his part from the Book of Life, from the holy city, and [from] the things which are written in this book.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/20/" data-ref="Revelation 22:20 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/20/"><span class="v-num">20</span><span class="v-txt">He who testifies to these things says, "Surely I am coming quickly." Amen. Even so, come, Lord Jesus!</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/22/21/" data-ref="Revelation 22:21 (New King James Version)" data-verse-url="/bible/nkjv/revelation/22/21/"><span class="v-num">21</span><span class="v-txt">The grace of our Lord Jesus Christ [be] with you all. Amen.</span></a>
 
     
 <div class="app-cta">

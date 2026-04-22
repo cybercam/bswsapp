@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 15:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After these things the word of Yahweh came to Abram in a vision, saying, "Don't be afraid, Abram. I am your shield, your exceedingly great reward."</span></div>
-<div class="v-row" data-ref="Genesis 15:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Abram said, "Lord Yahweh, what will you give me, seeing I go childless, and he who will inherit my estate is Eliezer of Damascus?"</span></div>
-<div class="v-row" data-ref="Genesis 15:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Abram said, "Behold, to me you have given no seed: and, behold, one born in my house is my heir."</span></div>
-<div class="v-row" data-ref="Genesis 15:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Behold, the word of Yahweh came to him, saying, "This man will not be your heir, but he who will come forth out of your own body will be your heir."</span></div>
-<div class="v-row" data-ref="Genesis 15:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Yahweh brought him outside, and said, "Look now toward the sky, and count the stars, if you are able to count them." He said to Abram, "So shall your seed be."</span></div>
-<div class="v-row" data-ref="Genesis 15:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He believed in Yahweh; and he reckoned it to him for righteousness.</span></div>
-<div class="v-row" data-ref="Genesis 15:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He said to him, "I am Yahweh who brought you out of Ur of the Chaldees, to give you this land to inherit it."</span></div>
-<div class="v-row" data-ref="Genesis 15:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He said, "Lord Yahweh, how will I know that I will inherit it?"</span></div>
-<div class="v-row" data-ref="Genesis 15:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He said to him, "Take me a heifer three years old, a female goat three years old, a ram three years old, a turtle-dove, and a young pigeon."</span></div>
-<div class="v-row" data-ref="Genesis 15:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He took him all these, and divided them in the middle, and laid each half opposite the other; but he didn't divide the birds.</span></div>
-<div class="v-row" data-ref="Genesis 15:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The birds of prey came down on the carcasses, and Abram drove them away.</span></div>
-<div class="v-row" data-ref="Genesis 15:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When the sun was going down, a deep sleep fell on Abram. Now terror and great darkness fell on him.</span></div>
-<div class="v-row" data-ref="Genesis 15:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He said to Abram, "Know for sure that your seed will live as foreigners in a land that is not theirs, and will serve them. They will afflict them four hundred years.</span></div>
-<div class="v-row" data-ref="Genesis 15:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I will also judge that nation, whom they will serve. Afterward they will come out with great substance.</span></div>
-<div class="v-row" data-ref="Genesis 15:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But you will go to your fathers in peace. You will be buried in a good old age.</span></div>
-<div class="v-row" data-ref="Genesis 15:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">In the fourth generation they will come here again, for the iniquity of the Amorite is not yet full."</span></div>
-<div class="v-row" data-ref="Genesis 15:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">It came to pass that, when the sun went down, and it was dark, behold, a smoking furnace, and a flaming torch passed between these pieces.</span></div>
-<div class="v-row" data-ref="Genesis 15:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">In that day Yahweh made a covenant with Abram, saying, "To your seed have I given this land, from the river of Egypt to the great river, the river Euphrates:</span></div>
-<div class="v-row" data-ref="Genesis 15:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">the Kenites, the Kenizzites, the Kadmonites,</span></div>
-<div class="v-row" data-ref="Genesis 15:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">the Hittites, the Perizzites, the Rephaim,</span></div>
-<div class="v-row" data-ref="Genesis 15:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">the Amorites, the Canaanites, the Girgashites, and the Jebusites."</span></div>
+    <a class="v-row" href="/bible/web/genesis/15/1/" data-ref="Genesis 15:1 (World English Bible)" data-verse-url="/bible/web/genesis/15/1/"><span class="v-num">1</span><span class="v-txt">After these things the word of Yahweh came to Abram in a vision, saying, "Don't be afraid, Abram. I am your shield, your exceedingly great reward."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/2/" data-ref="Genesis 15:2 (World English Bible)" data-verse-url="/bible/web/genesis/15/2/"><span class="v-num">2</span><span class="v-txt">Abram said, "Lord Yahweh, what will you give me, seeing I go childless, and he who will inherit my estate is Eliezer of Damascus?"</span></a>
+<a class="v-row" href="/bible/web/genesis/15/3/" data-ref="Genesis 15:3 (World English Bible)" data-verse-url="/bible/web/genesis/15/3/"><span class="v-num">3</span><span class="v-txt">Abram said, "Behold, to me you have given no seed: and, behold, one born in my house is my heir."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/4/" data-ref="Genesis 15:4 (World English Bible)" data-verse-url="/bible/web/genesis/15/4/"><span class="v-num">4</span><span class="v-txt">Behold, the word of Yahweh came to him, saying, "This man will not be your heir, but he who will come forth out of your own body will be your heir."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/5/" data-ref="Genesis 15:5 (World English Bible)" data-verse-url="/bible/web/genesis/15/5/"><span class="v-num">5</span><span class="v-txt">Yahweh brought him outside, and said, "Look now toward the sky, and count the stars, if you are able to count them." He said to Abram, "So shall your seed be."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/6/" data-ref="Genesis 15:6 (World English Bible)" data-verse-url="/bible/web/genesis/15/6/"><span class="v-num">6</span><span class="v-txt">He believed in Yahweh; and he reckoned it to him for righteousness.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/7/" data-ref="Genesis 15:7 (World English Bible)" data-verse-url="/bible/web/genesis/15/7/"><span class="v-num">7</span><span class="v-txt">He said to him, "I am Yahweh who brought you out of Ur of the Chaldees, to give you this land to inherit it."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/8/" data-ref="Genesis 15:8 (World English Bible)" data-verse-url="/bible/web/genesis/15/8/"><span class="v-num">8</span><span class="v-txt">He said, "Lord Yahweh, how will I know that I will inherit it?"</span></a>
+<a class="v-row" href="/bible/web/genesis/15/9/" data-ref="Genesis 15:9 (World English Bible)" data-verse-url="/bible/web/genesis/15/9/"><span class="v-num">9</span><span class="v-txt">He said to him, "Take me a heifer three years old, a female goat three years old, a ram three years old, a turtle-dove, and a young pigeon."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/10/" data-ref="Genesis 15:10 (World English Bible)" data-verse-url="/bible/web/genesis/15/10/"><span class="v-num">10</span><span class="v-txt">He took him all these, and divided them in the middle, and laid each half opposite the other; but he didn't divide the birds.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/11/" data-ref="Genesis 15:11 (World English Bible)" data-verse-url="/bible/web/genesis/15/11/"><span class="v-num">11</span><span class="v-txt">The birds of prey came down on the carcasses, and Abram drove them away.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/12/" data-ref="Genesis 15:12 (World English Bible)" data-verse-url="/bible/web/genesis/15/12/"><span class="v-num">12</span><span class="v-txt">When the sun was going down, a deep sleep fell on Abram. Now terror and great darkness fell on him.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/13/" data-ref="Genesis 15:13 (World English Bible)" data-verse-url="/bible/web/genesis/15/13/"><span class="v-num">13</span><span class="v-txt">He said to Abram, "Know for sure that your seed will live as foreigners in a land that is not theirs, and will serve them. They will afflict them four hundred years.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/14/" data-ref="Genesis 15:14 (World English Bible)" data-verse-url="/bible/web/genesis/15/14/"><span class="v-num">14</span><span class="v-txt">I will also judge that nation, whom they will serve. Afterward they will come out with great substance.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/15/" data-ref="Genesis 15:15 (World English Bible)" data-verse-url="/bible/web/genesis/15/15/"><span class="v-num">15</span><span class="v-txt">But you will go to your fathers in peace. You will be buried in a good old age.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/16/" data-ref="Genesis 15:16 (World English Bible)" data-verse-url="/bible/web/genesis/15/16/"><span class="v-num">16</span><span class="v-txt">In the fourth generation they will come here again, for the iniquity of the Amorite is not yet full."</span></a>
+<a class="v-row" href="/bible/web/genesis/15/17/" data-ref="Genesis 15:17 (World English Bible)" data-verse-url="/bible/web/genesis/15/17/"><span class="v-num">17</span><span class="v-txt">It came to pass that, when the sun went down, and it was dark, behold, a smoking furnace, and a flaming torch passed between these pieces.</span></a>
+<a class="v-row" href="/bible/web/genesis/15/18/" data-ref="Genesis 15:18 (World English Bible)" data-verse-url="/bible/web/genesis/15/18/"><span class="v-num">18</span><span class="v-txt">In that day Yahweh made a covenant with Abram, saying, "To your seed have I given this land, from the river of Egypt to the great river, the river Euphrates:</span></a>
+<a class="v-row" href="/bible/web/genesis/15/19/" data-ref="Genesis 15:19 (World English Bible)" data-verse-url="/bible/web/genesis/15/19/"><span class="v-num">19</span><span class="v-txt">the Kenites, the Kenizzites, the Kadmonites,</span></a>
+<a class="v-row" href="/bible/web/genesis/15/20/" data-ref="Genesis 15:20 (World English Bible)" data-verse-url="/bible/web/genesis/15/20/"><span class="v-num">20</span><span class="v-txt">the Hittites, the Perizzites, the Rephaim,</span></a>
+<a class="v-row" href="/bible/web/genesis/15/21/" data-ref="Genesis 15:21 (World English Bible)" data-verse-url="/bible/web/genesis/15/21/"><span class="v-num">21</span><span class="v-txt">the Amorites, the Canaanites, the Girgashites, and the Jebusites."</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 23</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 23:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the life of Sarah was a hundred and seven and twenty years. These were the years of the life of Sarah.</span></div>
-<div class="v-row" data-ref="Genesis 23:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Sarah died in Kiriath-arba (the same is Hebron), in the land of Canaan. And Abraham came to mourn for Sarah, and to weep for her.</span></div>
-<div class="v-row" data-ref="Genesis 23:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Abraham rose up from before his dead, and spake unto the children of Heth, saying,</span></div>
-<div class="v-row" data-ref="Genesis 23:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I am a stranger and a sojourner with you. Give me a possession of a burying-place with you, that I may bury my dead out of my sight.</span></div>
-<div class="v-row" data-ref="Genesis 23:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the children of Heth answered Abraham, saying unto him,</span></div>
-<div class="v-row" data-ref="Genesis 23:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Hear us, my lord. Thou art a prince of God among us. In the choice of our sepulchres bury thy dead. None of us shall withhold from thee his sepulchre, but that thou mayest bury thy dead.</span></div>
-<div class="v-row" data-ref="Genesis 23:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And Abraham rose up, and bowed himself to the people of the land, even to the children of Heth.</span></div>
-<div class="v-row" data-ref="Genesis 23:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he communed with them, saying, If it be your mind that I should bury my dead out of my sight, hear me, and entreat for me to Ephron the son of Zohar,</span></div>
-<div class="v-row" data-ref="Genesis 23:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">that he may give me the cave of Machpelah, which he hath, which is in the end of his field. For the full price let him give it to me in the midst of you for a possession of a burying-place.</span></div>
-<div class="v-row" data-ref="Genesis 23:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now Ephron was sitting in the midst of the children of Heth. And Ephron the Hittite answered Abraham in the audience of the children of Heth, even of all that went in at the gate of his city, saying,</span></div>
-<div class="v-row" data-ref="Genesis 23:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Nay, my lord, hear me. The field give I thee, and the cave that is therein, I give it thee. In the presence of the children of my people give I it thee. Bury thy dead.</span></div>
-<div class="v-row" data-ref="Genesis 23:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Abraham bowed himself down before the people of the land.</span></div>
-<div class="v-row" data-ref="Genesis 23:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And he spake unto Ephron in the audience of the people of the land, saying, But if thou wilt, I pray thee, hear me. I will give the price of the field. Take it of me, and I will bury my dead there.</span></div>
-<div class="v-row" data-ref="Genesis 23:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Ephron answered Abraham, saying unto him,</span></div>
-<div class="v-row" data-ref="Genesis 23:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My lord, hearken unto me. A piece of land worth four hundred shekels of silver, what is that betwixt me and thee? Bury therefore thy dead.</span></div>
-<div class="v-row" data-ref="Genesis 23:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Abraham hearkened unto Ephron. And Abraham weighed to Ephron the silver which he had named in the audience of the children of Heth, four hundred shekels of silver, current [money] with the merchant.</span></div>
-<div class="v-row" data-ref="Genesis 23:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So the field of Ephron, which was in Machpelah, which was before Mamre, the field, and the cave which was therein, and all the trees that were in the field, that were in all the border thereof round about, were made sure</span></div>
-<div class="v-row" data-ref="Genesis 23:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">unto Abraham for a possession in the presence of the children of Heth, before all that went in at the gate of his city.</span></div>
-<div class="v-row" data-ref="Genesis 23:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah before Mamre (the same is Hebron), in the land of Canaan.</span></div>
-<div class="v-row" data-ref="Genesis 23:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And the field, and the cave that is therein, were made sure unto Abraham for a possession of a burying-place by the children of Heth.</span></div>
+    <a class="v-row" href="/bible/asv/genesis/23/1/" data-ref="Genesis 23:1 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/1/"><span class="v-num">1</span><span class="v-txt">And the life of Sarah was a hundred and seven and twenty years. These were the years of the life of Sarah.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/2/" data-ref="Genesis 23:2 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/2/"><span class="v-num">2</span><span class="v-txt">And Sarah died in Kiriath-arba (the same is Hebron), in the land of Canaan. And Abraham came to mourn for Sarah, and to weep for her.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/3/" data-ref="Genesis 23:3 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/3/"><span class="v-num">3</span><span class="v-txt">And Abraham rose up from before his dead, and spake unto the children of Heth, saying,</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/4/" data-ref="Genesis 23:4 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/4/"><span class="v-num">4</span><span class="v-txt">I am a stranger and a sojourner with you. Give me a possession of a burying-place with you, that I may bury my dead out of my sight.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/5/" data-ref="Genesis 23:5 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/5/"><span class="v-num">5</span><span class="v-txt">And the children of Heth answered Abraham, saying unto him,</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/6/" data-ref="Genesis 23:6 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/6/"><span class="v-num">6</span><span class="v-txt">Hear us, my lord. Thou art a prince of God among us. In the choice of our sepulchres bury thy dead. None of us shall withhold from thee his sepulchre, but that thou mayest bury thy dead.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/7/" data-ref="Genesis 23:7 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/7/"><span class="v-num">7</span><span class="v-txt">And Abraham rose up, and bowed himself to the people of the land, even to the children of Heth.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/8/" data-ref="Genesis 23:8 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/8/"><span class="v-num">8</span><span class="v-txt">And he communed with them, saying, If it be your mind that I should bury my dead out of my sight, hear me, and entreat for me to Ephron the son of Zohar,</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/9/" data-ref="Genesis 23:9 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/9/"><span class="v-num">9</span><span class="v-txt">that he may give me the cave of Machpelah, which he hath, which is in the end of his field. For the full price let him give it to me in the midst of you for a possession of a burying-place.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/10/" data-ref="Genesis 23:10 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/10/"><span class="v-num">10</span><span class="v-txt">Now Ephron was sitting in the midst of the children of Heth. And Ephron the Hittite answered Abraham in the audience of the children of Heth, even of all that went in at the gate of his city, saying,</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/11/" data-ref="Genesis 23:11 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/11/"><span class="v-num">11</span><span class="v-txt">Nay, my lord, hear me. The field give I thee, and the cave that is therein, I give it thee. In the presence of the children of my people give I it thee. Bury thy dead.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/12/" data-ref="Genesis 23:12 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/12/"><span class="v-num">12</span><span class="v-txt">And Abraham bowed himself down before the people of the land.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/13/" data-ref="Genesis 23:13 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/13/"><span class="v-num">13</span><span class="v-txt">And he spake unto Ephron in the audience of the people of the land, saying, But if thou wilt, I pray thee, hear me. I will give the price of the field. Take it of me, and I will bury my dead there.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/14/" data-ref="Genesis 23:14 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/14/"><span class="v-num">14</span><span class="v-txt">And Ephron answered Abraham, saying unto him,</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/15/" data-ref="Genesis 23:15 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/15/"><span class="v-num">15</span><span class="v-txt">My lord, hearken unto me. A piece of land worth four hundred shekels of silver, what is that betwixt me and thee? Bury therefore thy dead.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/16/" data-ref="Genesis 23:16 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/16/"><span class="v-num">16</span><span class="v-txt">And Abraham hearkened unto Ephron. And Abraham weighed to Ephron the silver which he had named in the audience of the children of Heth, four hundred shekels of silver, current [money] with the merchant.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/17/" data-ref="Genesis 23:17 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/17/"><span class="v-num">17</span><span class="v-txt">So the field of Ephron, which was in Machpelah, which was before Mamre, the field, and the cave which was therein, and all the trees that were in the field, that were in all the border thereof round about, were made sure</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/18/" data-ref="Genesis 23:18 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/18/"><span class="v-num">18</span><span class="v-txt">unto Abraham for a possession in the presence of the children of Heth, before all that went in at the gate of his city.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/19/" data-ref="Genesis 23:19 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/19/"><span class="v-num">19</span><span class="v-txt">And after this, Abraham buried Sarah his wife in the cave of the field of Machpelah before Mamre (the same is Hebron), in the land of Canaan.</span></a>
+<a class="v-row" href="/bible/asv/genesis/23/20/" data-ref="Genesis 23:20 (American Standard Version)" data-verse-url="/bible/asv/genesis/23/20/"><span class="v-num">20</span><span class="v-txt">And the field, and the cave that is therein, were made sure unto Abraham for a possession of a burying-place by the children of Heth.</span></a>
 
     
 <div class="app-cta">

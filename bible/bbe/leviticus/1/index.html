@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the voice of the Lord came to Moses out of the Tent of meeting, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Give these orders to the children of Israel: When anyone of you makes an offering to the Lord, you are to take it from the cattle, from the herd or from the flock.</span></div>
-<div class="v-row" data-ref="Leviticus 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If the offering is a burned offering of the herd, let him give a male without a mark: he is to give it at the door of the Tent of meeting so that he may be pleasing to the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he is to put his hand on the head of the burned offering and it will be taken for him, to take away his sin.</span></div>
-<div class="v-row" data-ref="Leviticus 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the ox is to be put to death before the Lord: then Aaron's sons, the priests, are to take the blood and put some of it on and round the altar which is at the door of the Tent of meeting.</span></div>
-<div class="v-row" data-ref="Leviticus 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the burned offering is to be skinned and cut up into its parts.</span></div>
-<div class="v-row" data-ref="Leviticus 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And Aaron's sons, the priests, are to put fire on the altar and put the wood in order on the fire:</span></div>
-<div class="v-row" data-ref="Leviticus 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Aaron's sons, the priests, are to put the parts, the head and the fat, in order on the wood which is on the fire on the altar:</span></div>
-<div class="v-row" data-ref="Leviticus 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But its inside parts and its legs are to be washed with water, and it will all be burned on the altar by the priest for a burned offering, an offering made by fire, for a sweet smell to the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And if his offering is of the flock, a burned offering of sheep or goats, let him give a male without a mark.</span></div>
-<div class="v-row" data-ref="Leviticus 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he is to put it to death on the north side of the altar before the Lord: and Aaron's sons, the priests, are to put some of the blood on and round the altar.</span></div>
-<div class="v-row" data-ref="Leviticus 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the offering is to be cut into its parts, with its head and its fat; and the priest is to put them in order on the wood which is on the fire on the altar:</span></div>
-<div class="v-row" data-ref="Leviticus 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But the inside parts and the legs are to be washed with water; and the priest will make an offering of all of it, burning it on the altar: it is a burned offering, an offering made by fire, for a sweet smell to the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And if his offering to the Lord is a burned offering of birds, then he is to make his offering of doves or of young pigeons.</span></div>
-<div class="v-row" data-ref="Leviticus 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the priest is to take it to the altar, and after its head has been twisted off, it is to be burned on the altar, and its blood drained out on the side of the altar:</span></div>
-<div class="v-row" data-ref="Leviticus 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he is to take away its stomach, with its feathers, and put it down by the east side of the altar, where the burned waste is put:</span></div>
-<div class="v-row" data-ref="Leviticus 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And let it be broken open at the wings, but not cut in two; and let it be burned on the altar by the priest on the wood which is on the fire; it is a burned offering; an offering made by fire for a sweet smell to the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/leviticus/1/1/" data-ref="Leviticus 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/1/"><span class="v-num">1</span><span class="v-txt">And the voice of the Lord came to Moses out of the Tent of meeting, saying,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/2/" data-ref="Leviticus 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/2/"><span class="v-num">2</span><span class="v-txt">Give these orders to the children of Israel: When anyone of you makes an offering to the Lord, you are to take it from the cattle, from the herd or from the flock.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/3/" data-ref="Leviticus 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/3/"><span class="v-num">3</span><span class="v-txt">If the offering is a burned offering of the herd, let him give a male without a mark: he is to give it at the door of the Tent of meeting so that he may be pleasing to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/4/" data-ref="Leviticus 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/4/"><span class="v-num">4</span><span class="v-txt">And he is to put his hand on the head of the burned offering and it will be taken for him, to take away his sin.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/5/" data-ref="Leviticus 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/5/"><span class="v-num">5</span><span class="v-txt">And the ox is to be put to death before the Lord: then Aaron's sons, the priests, are to take the blood and put some of it on and round the altar which is at the door of the Tent of meeting.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/6/" data-ref="Leviticus 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/6/"><span class="v-num">6</span><span class="v-txt">And the burned offering is to be skinned and cut up into its parts.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/7/" data-ref="Leviticus 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/7/"><span class="v-num">7</span><span class="v-txt">And Aaron's sons, the priests, are to put fire on the altar and put the wood in order on the fire:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/8/" data-ref="Leviticus 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/8/"><span class="v-num">8</span><span class="v-txt">And Aaron's sons, the priests, are to put the parts, the head and the fat, in order on the wood which is on the fire on the altar:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/9/" data-ref="Leviticus 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/9/"><span class="v-num">9</span><span class="v-txt">But its inside parts and its legs are to be washed with water, and it will all be burned on the altar by the priest for a burned offering, an offering made by fire, for a sweet smell to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/10/" data-ref="Leviticus 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/10/"><span class="v-num">10</span><span class="v-txt">And if his offering is of the flock, a burned offering of sheep or goats, let him give a male without a mark.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/11/" data-ref="Leviticus 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/11/"><span class="v-num">11</span><span class="v-txt">And he is to put it to death on the north side of the altar before the Lord: and Aaron's sons, the priests, are to put some of the blood on and round the altar.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/12/" data-ref="Leviticus 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/12/"><span class="v-num">12</span><span class="v-txt">And the offering is to be cut into its parts, with its head and its fat; and the priest is to put them in order on the wood which is on the fire on the altar:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/13/" data-ref="Leviticus 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/13/"><span class="v-num">13</span><span class="v-txt">But the inside parts and the legs are to be washed with water; and the priest will make an offering of all of it, burning it on the altar: it is a burned offering, an offering made by fire, for a sweet smell to the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/14/" data-ref="Leviticus 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/14/"><span class="v-num">14</span><span class="v-txt">And if his offering to the Lord is a burned offering of birds, then he is to make his offering of doves or of young pigeons.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/15/" data-ref="Leviticus 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/15/"><span class="v-num">15</span><span class="v-txt">And the priest is to take it to the altar, and after its head has been twisted off, it is to be burned on the altar, and its blood drained out on the side of the altar:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/16/" data-ref="Leviticus 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/16/"><span class="v-num">16</span><span class="v-txt">And he is to take away its stomach, with its feathers, and put it down by the east side of the altar, where the burned waste is put:</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/1/17/" data-ref="Leviticus 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/1/17/"><span class="v-num">17</span><span class="v-txt">And let it be broken open at the wings, but not cut in two; and let it be burned on the altar by the priest on the wood which is on the fire; it is a burned offering; an offering made by fire for a sweet smell to the Lord.</span></a>
 
     
 <div class="app-cta">

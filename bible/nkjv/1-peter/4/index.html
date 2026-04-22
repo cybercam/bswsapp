@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Peter 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Therefore, since Christ suffered for us in the flesh, arm yourselves also with the same mind, for he who has suffered in the flesh has ceased from sin,</span></div>
-<div class="v-row" data-ref="1 Peter 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">that he no longer should live the rest of [his] time in the flesh for the lusts of men, but for the will of God.</span></div>
-<div class="v-row" data-ref="1 Peter 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For we [have spent] enough of our past lifetime in doing the will of the Gentiles -- when we walked in lewdness, lusts, drunkenness, revelries, drinking parties, and abominable idolatries.</span></div>
-<div class="v-row" data-ref="1 Peter 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">In regard to these, they think it strange that you do not run with [them] in the same flood of dissipation, speaking evil of [you.]</span></div>
-<div class="v-row" data-ref="1 Peter 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They will give an account to Him who is ready to judge the living and the dead.</span></div>
-<div class="v-row" data-ref="1 Peter 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For this reason the gospel was preached also to those who are dead, that they might be judged according to men in the flesh, but live according to God in the spirit.</span></div>
-<div class="v-row" data-ref="1 Peter 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But the end of all things is at hand; therefore be serious and watchful in your prayers.</span></div>
-<div class="v-row" data-ref="1 Peter 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And above all things have fervent love for one another, for "love will cover a multitude of sins."</span></div>
-<div class="v-row" data-ref="1 Peter 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">[Be] hospitable to one another without grumbling.</span></div>
-<div class="v-row" data-ref="1 Peter 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">As each one has received a gift, minister it to one another, as good stewards of the manifold grace of God.</span></div>
-<div class="v-row" data-ref="1 Peter 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If anyone speaks, [let him speak] as the oracles of God. If anyone ministers, [let him do it] as with the ability which God supplies, that in all things God may be glorified through Jesus Christ, to whom belong the glory and the dominion forever and ever. Amen.</span></div>
-<div class="v-row" data-ref="1 Peter 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Beloved, do not think it strange concerning the fiery trial which is to try you, as though some strange thing happened to you;</span></div>
-<div class="v-row" data-ref="1 Peter 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">but rejoice to the extent that you partake of Christ's sufferings, that when His glory is revealed, you may also be glad with exceeding joy.</span></div>
-<div class="v-row" data-ref="1 Peter 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If you are reproached for the name of Christ, blessed [are you,] for the Spirit of glory and of God rests upon you. On their part He is blasphemed, but on your part He is glorified.</span></div>
-<div class="v-row" data-ref="1 Peter 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But let none of you suffer as a murderer, a thief, an evildoer, or as a busybody in other people's matters.</span></div>
-<div class="v-row" data-ref="1 Peter 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Yet if [anyone suffers] as a Christian, let him not be ashamed, but let him glorify God in this matter.</span></div>
-<div class="v-row" data-ref="1 Peter 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the time [has come] for judgment to begin at the house of God; and if [it begins] with us first, what will [be] the end of those who do not obey the gospel of God?</span></div>
-<div class="v-row" data-ref="1 Peter 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now "If the righteous one is scarcely saved, Where will the ungodly and the sinner appear?"</span></div>
-<div class="v-row" data-ref="1 Peter 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Therefore let those who suffer according to the will of God commit their souls [to Him] in doing good, as to a faithful Creator.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-peter/4/1/" data-ref="1 Peter 4:1 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/1/"><span class="v-num">1</span><span class="v-txt">Therefore, since Christ suffered for us in the flesh, arm yourselves also with the same mind, for he who has suffered in the flesh has ceased from sin,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/2/" data-ref="1 Peter 4:2 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/2/"><span class="v-num">2</span><span class="v-txt">that he no longer should live the rest of [his] time in the flesh for the lusts of men, but for the will of God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/3/" data-ref="1 Peter 4:3 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/3/"><span class="v-num">3</span><span class="v-txt">For we [have spent] enough of our past lifetime in doing the will of the Gentiles -- when we walked in lewdness, lusts, drunkenness, revelries, drinking parties, and abominable idolatries.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/4/" data-ref="1 Peter 4:4 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/4/"><span class="v-num">4</span><span class="v-txt">In regard to these, they think it strange that you do not run with [them] in the same flood of dissipation, speaking evil of [you.]</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/5/" data-ref="1 Peter 4:5 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/5/"><span class="v-num">5</span><span class="v-txt">They will give an account to Him who is ready to judge the living and the dead.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/6/" data-ref="1 Peter 4:6 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/6/"><span class="v-num">6</span><span class="v-txt">For this reason the gospel was preached also to those who are dead, that they might be judged according to men in the flesh, but live according to God in the spirit.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/7/" data-ref="1 Peter 4:7 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/7/"><span class="v-num">7</span><span class="v-txt">But the end of all things is at hand; therefore be serious and watchful in your prayers.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/8/" data-ref="1 Peter 4:8 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/8/"><span class="v-num">8</span><span class="v-txt">And above all things have fervent love for one another, for "love will cover a multitude of sins."</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/9/" data-ref="1 Peter 4:9 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/9/"><span class="v-num">9</span><span class="v-txt">[Be] hospitable to one another without grumbling.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/10/" data-ref="1 Peter 4:10 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/10/"><span class="v-num">10</span><span class="v-txt">As each one has received a gift, minister it to one another, as good stewards of the manifold grace of God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/11/" data-ref="1 Peter 4:11 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/11/"><span class="v-num">11</span><span class="v-txt">If anyone speaks, [let him speak] as the oracles of God. If anyone ministers, [let him do it] as with the ability which God supplies, that in all things God may be glorified through Jesus Christ, to whom belong the glory and the dominion forever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/12/" data-ref="1 Peter 4:12 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/12/"><span class="v-num">12</span><span class="v-txt">Beloved, do not think it strange concerning the fiery trial which is to try you, as though some strange thing happened to you;</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/13/" data-ref="1 Peter 4:13 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/13/"><span class="v-num">13</span><span class="v-txt">but rejoice to the extent that you partake of Christ's sufferings, that when His glory is revealed, you may also be glad with exceeding joy.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/14/" data-ref="1 Peter 4:14 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/14/"><span class="v-num">14</span><span class="v-txt">If you are reproached for the name of Christ, blessed [are you,] for the Spirit of glory and of God rests upon you. On their part He is blasphemed, but on your part He is glorified.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/15/" data-ref="1 Peter 4:15 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/15/"><span class="v-num">15</span><span class="v-txt">But let none of you suffer as a murderer, a thief, an evildoer, or as a busybody in other people's matters.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/16/" data-ref="1 Peter 4:16 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/16/"><span class="v-num">16</span><span class="v-txt">Yet if [anyone suffers] as a Christian, let him not be ashamed, but let him glorify God in this matter.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/17/" data-ref="1 Peter 4:17 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/17/"><span class="v-num">17</span><span class="v-txt">For the time [has come] for judgment to begin at the house of God; and if [it begins] with us first, what will [be] the end of those who do not obey the gospel of God?</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/18/" data-ref="1 Peter 4:18 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/18/"><span class="v-num">18</span><span class="v-txt">Now "If the righteous one is scarcely saved, Where will the ungodly and the sinner appear?"</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/4/19/" data-ref="1 Peter 4:19 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/4/19/"><span class="v-num">19</span><span class="v-txt">Therefore let those who suffer according to the will of God commit their souls [to Him] in doing good, as to a faithful Creator.</span></a>
 
     
 <div class="app-cta">

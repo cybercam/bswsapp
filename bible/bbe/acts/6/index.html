@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Acts 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now in those days, when the number of the disciples was increasing, protests were made by the Greek Jews against the Hebrews, because their widows were not taken care of in the distribution of food every day.</span></div>
-<div class="v-row" data-ref="Acts 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the Apostles sent for all the disciples and said, It is not right for us to give up preaching the word of God in order to make distribution of food.</span></div>
-<div class="v-row" data-ref="Acts 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Take then from among you seven men of good name, full of the Spirit and of wisdom, to whom we may give control of this business.</span></div>
-<div class="v-row" data-ref="Acts 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then we will give all our time to prayer and the teaching of the word.</span></div>
-<div class="v-row" data-ref="Acts 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And this saying was pleasing to all of them: and they made selection of Stephen, a man full of faith and of the Holy Spirit, and Philip and Prochorus and Nicanor and Timon and Parmenas and Nicolas of Antioch, who had become a Jew:</span></div>
-<div class="v-row" data-ref="Acts 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">These they took to the Apostles, who, after prayer, put their hands on them.</span></div>
-<div class="v-row" data-ref="Acts 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the word of God was increasing in power; and the number of the disciples in Jerusalem became very great, and a great number of priests were in agreement with the faith.</span></div>
-<div class="v-row" data-ref="Acts 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Stephen, full of grace and power, did great wonders and signs among the people.</span></div>
-<div class="v-row" data-ref="Acts 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But some of those who were of the Synagogue named that of the Libertines, and some of the men of Cyrene and of Alexandria and those from Cilicia and Asia, had arguments with Stephen.</span></div>
-<div class="v-row" data-ref="Acts 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But they were not able to get the better of him, for his words were full of wisdom and of the Spirit.</span></div>
-<div class="v-row" data-ref="Acts 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then they got men to say, He has said evil against Moses and against God, in our hearing.</span></div>
-<div class="v-row" data-ref="Acts 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the people, with the rulers and the scribes, were moved against him, and they came and took him before the Sanhedrin,</span></div>
-<div class="v-row" data-ref="Acts 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And they got false witnesses who said, This man is for ever saying things against this holy place and against the law:</span></div>
-<div class="v-row" data-ref="Acts 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For he has said in our hearing that this Jesus of Nazareth will put this place to destruction and make changes in the rules which were handed down to us by Moses.</span></div>
-<div class="v-row" data-ref="Acts 6:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And all those who were in the Sanhedrin, looking at him, saw that his face was like the face of an angel.</span></div>
+    <a class="v-row" href="/bible/bbe/acts/6/1/" data-ref="Acts 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/1/"><span class="v-num">1</span><span class="v-txt">Now in those days, when the number of the disciples was increasing, protests were made by the Greek Jews against the Hebrews, because their widows were not taken care of in the distribution of food every day.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/2/" data-ref="Acts 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/2/"><span class="v-num">2</span><span class="v-txt">And the Apostles sent for all the disciples and said, It is not right for us to give up preaching the word of God in order to make distribution of food.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/3/" data-ref="Acts 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/3/"><span class="v-num">3</span><span class="v-txt">Take then from among you seven men of good name, full of the Spirit and of wisdom, to whom we may give control of this business.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/4/" data-ref="Acts 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/4/"><span class="v-num">4</span><span class="v-txt">Then we will give all our time to prayer and the teaching of the word.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/5/" data-ref="Acts 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/5/"><span class="v-num">5</span><span class="v-txt">And this saying was pleasing to all of them: and they made selection of Stephen, a man full of faith and of the Holy Spirit, and Philip and Prochorus and Nicanor and Timon and Parmenas and Nicolas of Antioch, who had become a Jew:</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/6/" data-ref="Acts 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/6/"><span class="v-num">6</span><span class="v-txt">These they took to the Apostles, who, after prayer, put their hands on them.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/7/" data-ref="Acts 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/7/"><span class="v-num">7</span><span class="v-txt">And the word of God was increasing in power; and the number of the disciples in Jerusalem became very great, and a great number of priests were in agreement with the faith.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/8/" data-ref="Acts 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/8/"><span class="v-num">8</span><span class="v-txt">And Stephen, full of grace and power, did great wonders and signs among the people.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/9/" data-ref="Acts 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/9/"><span class="v-num">9</span><span class="v-txt">But some of those who were of the Synagogue named that of the Libertines, and some of the men of Cyrene and of Alexandria and those from Cilicia and Asia, had arguments with Stephen.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/10/" data-ref="Acts 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/10/"><span class="v-num">10</span><span class="v-txt">But they were not able to get the better of him, for his words were full of wisdom and of the Spirit.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/11/" data-ref="Acts 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/11/"><span class="v-num">11</span><span class="v-txt">Then they got men to say, He has said evil against Moses and against God, in our hearing.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/12/" data-ref="Acts 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/12/"><span class="v-num">12</span><span class="v-txt">And the people, with the rulers and the scribes, were moved against him, and they came and took him before the Sanhedrin,</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/13/" data-ref="Acts 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/13/"><span class="v-num">13</span><span class="v-txt">And they got false witnesses who said, This man is for ever saying things against this holy place and against the law:</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/14/" data-ref="Acts 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/14/"><span class="v-num">14</span><span class="v-txt">For he has said in our hearing that this Jesus of Nazareth will put this place to destruction and make changes in the rules which were handed down to us by Moses.</span></a>
+<a class="v-row" href="/bible/bbe/acts/6/15/" data-ref="Acts 6:15 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/6/15/"><span class="v-num">15</span><span class="v-txt">And all those who were in the Sanhedrin, looking at him, saw that his face was like the face of an angel.</span></a>
 
     
 <div class="app-cta">

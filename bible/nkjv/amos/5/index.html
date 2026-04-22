@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Amos 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear this word which I take up against you, a lamentation, O house of Israel:</span></div>
-<div class="v-row" data-ref="Amos 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The virgin of Israel has fallen; She will rise no more. She lies forsaken on her land; [There is] no one to raise her up.</span></div>
-<div class="v-row" data-ref="Amos 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For thus says the Lord GOD: "The city that goes out by a thousand Shall have a hundred left, And that which goes out by a hundred Shall have ten left to the house of Israel."</span></div>
-<div class="v-row" data-ref="Amos 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For thus says the LORD to the house of Israel: "Seek Me and live;</span></div>
-<div class="v-row" data-ref="Amos 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But do not seek Bethel, Nor enter Gilgal, Nor pass over to Beersheba; For Gilgal shall surely go into captivity, And Bethel shall come to nothing.</span></div>
-<div class="v-row" data-ref="Amos 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Seek the LORD and live, Lest He break out like fire [in] the house of Joseph, And devour [it,] With no one to quench [it] in Bethel --</span></div>
-<div class="v-row" data-ref="Amos 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You who turn justice to wormwood, And lay righteousness to rest in the earth!"</span></div>
-<div class="v-row" data-ref="Amos 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He made the Pleiades and Orion; He turns the shadow of death into morning And makes the day dark as night; He calls for the waters of the sea And pours them out on the face of the earth; The LORD [is] His name.</span></div>
-<div class="v-row" data-ref="Amos 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He rains ruin upon the strong, So that fury comes upon the fortress.</span></div>
-<div class="v-row" data-ref="Amos 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">They hate the one who rebukes in the gate, And they abhor the one who speaks uprightly.</span></div>
-<div class="v-row" data-ref="Amos 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Therefore, because you tread down the poor And take grain taxes from him, Though you have built houses of hewn stone, Yet you shall not dwell in them; You have planted pleasant vineyards, But you shall not drink wine from them.</span></div>
-<div class="v-row" data-ref="Amos 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For I know your manifold transgressions And your mighty sins: Afflicting the just [and] taking bribes; Diverting the poor [from justice] at the gate.</span></div>
-<div class="v-row" data-ref="Amos 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore the prudent keep silent at that time, For it [is] an evil time.</span></div>
-<div class="v-row" data-ref="Amos 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Seek good and not evil, That you may live; So the LORD God of hosts will be with you, As you have spoken.</span></div>
-<div class="v-row" data-ref="Amos 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Hate evil, love good; Establish justice in the gate. It may be that the LORD God of hosts Will be gracious to the remnant of Joseph.</span></div>
-<div class="v-row" data-ref="Amos 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Therefore the LORD God of hosts, the Lord, says this: "[There shall be] wailing in all streets, And they shall say in all the highways, 'Alas! Alas!' They shall call the farmer to mourning, And skillful lamenters to wailing.</span></div>
-<div class="v-row" data-ref="Amos 5:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">In all vineyards [there shall be] wailing, For I will pass through you," Says the LORD.</span></div>
-<div class="v-row" data-ref="Amos 5:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Woe to you who desire the day of the LORD! For what good [is] the day of the LORD to you? It [will be] darkness, and not light.</span></div>
-<div class="v-row" data-ref="Amos 5:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">It [will be] as though a man fled from a lion, And a bear met him! Or [as though] he went into the house, Leaned his hand on the wall, And a serpent bit him!</span></div>
-<div class="v-row" data-ref="Amos 5:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">[Is] not the day of the LORD darkness, and not light? [Is it not] very dark, with no brightness in it?</span></div>
-<div class="v-row" data-ref="Amos 5:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">" I hate, I despise your feast days, And I do not savor your sacred assemblies.</span></div>
-<div class="v-row" data-ref="Amos 5:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Though you offer Me burnt offerings and your grain offerings, I will not accept [them,] Nor will I regard your fattened peace offerings.</span></div>
-<div class="v-row" data-ref="Amos 5:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Take away from Me the noise of your songs, For I will not hear the melody of your stringed instruments.</span></div>
-<div class="v-row" data-ref="Amos 5:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">But let justice run down like water, And righteousness like a mighty stream.</span></div>
-<div class="v-row" data-ref="Amos 5:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">" Did you offer Me sacrifices and offerings In the wilderness forty years, O house of Israel?</span></div>
-<div class="v-row" data-ref="Amos 5:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">You also carried Sikkuth your king And Chiun, your idols, The star of your gods, Which you made for yourselves.</span></div>
-<div class="v-row" data-ref="Amos 5:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Therefore I will send you into captivity beyond Damascus," Says the LORD, whose name [is] the God of hosts.</span></div>
+    <a class="v-row" href="/bible/nkjv/amos/5/1/" data-ref="Amos 5:1 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/1/"><span class="v-num">1</span><span class="v-txt">Hear this word which I take up against you, a lamentation, O house of Israel:</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/2/" data-ref="Amos 5:2 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/2/"><span class="v-num">2</span><span class="v-txt">The virgin of Israel has fallen; She will rise no more. She lies forsaken on her land; [There is] no one to raise her up.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/3/" data-ref="Amos 5:3 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/3/"><span class="v-num">3</span><span class="v-txt">For thus says the Lord GOD: "The city that goes out by a thousand Shall have a hundred left, And that which goes out by a hundred Shall have ten left to the house of Israel."</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/4/" data-ref="Amos 5:4 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/4/"><span class="v-num">4</span><span class="v-txt">For thus says the LORD to the house of Israel: "Seek Me and live;</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/5/" data-ref="Amos 5:5 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/5/"><span class="v-num">5</span><span class="v-txt">But do not seek Bethel, Nor enter Gilgal, Nor pass over to Beersheba; For Gilgal shall surely go into captivity, And Bethel shall come to nothing.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/6/" data-ref="Amos 5:6 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/6/"><span class="v-num">6</span><span class="v-txt">Seek the LORD and live, Lest He break out like fire [in] the house of Joseph, And devour [it,] With no one to quench [it] in Bethel --</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/7/" data-ref="Amos 5:7 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/7/"><span class="v-num">7</span><span class="v-txt">You who turn justice to wormwood, And lay righteousness to rest in the earth!"</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/8/" data-ref="Amos 5:8 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/8/"><span class="v-num">8</span><span class="v-txt">He made the Pleiades and Orion; He turns the shadow of death into morning And makes the day dark as night; He calls for the waters of the sea And pours them out on the face of the earth; The LORD [is] His name.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/9/" data-ref="Amos 5:9 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/9/"><span class="v-num">9</span><span class="v-txt">He rains ruin upon the strong, So that fury comes upon the fortress.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/10/" data-ref="Amos 5:10 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/10/"><span class="v-num">10</span><span class="v-txt">They hate the one who rebukes in the gate, And they abhor the one who speaks uprightly.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/11/" data-ref="Amos 5:11 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/11/"><span class="v-num">11</span><span class="v-txt">Therefore, because you tread down the poor And take grain taxes from him, Though you have built houses of hewn stone, Yet you shall not dwell in them; You have planted pleasant vineyards, But you shall not drink wine from them.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/12/" data-ref="Amos 5:12 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/12/"><span class="v-num">12</span><span class="v-txt">For I know your manifold transgressions And your mighty sins: Afflicting the just [and] taking bribes; Diverting the poor [from justice] at the gate.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/13/" data-ref="Amos 5:13 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/13/"><span class="v-num">13</span><span class="v-txt">Therefore the prudent keep silent at that time, For it [is] an evil time.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/14/" data-ref="Amos 5:14 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/14/"><span class="v-num">14</span><span class="v-txt">Seek good and not evil, That you may live; So the LORD God of hosts will be with you, As you have spoken.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/15/" data-ref="Amos 5:15 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/15/"><span class="v-num">15</span><span class="v-txt">Hate evil, love good; Establish justice in the gate. It may be that the LORD God of hosts Will be gracious to the remnant of Joseph.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/16/" data-ref="Amos 5:16 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/16/"><span class="v-num">16</span><span class="v-txt">Therefore the LORD God of hosts, the Lord, says this: "[There shall be] wailing in all streets, And they shall say in all the highways, 'Alas! Alas!' They shall call the farmer to mourning, And skillful lamenters to wailing.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/17/" data-ref="Amos 5:17 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/17/"><span class="v-num">17</span><span class="v-txt">In all vineyards [there shall be] wailing, For I will pass through you," Says the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/18/" data-ref="Amos 5:18 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/18/"><span class="v-num">18</span><span class="v-txt">Woe to you who desire the day of the LORD! For what good [is] the day of the LORD to you? It [will be] darkness, and not light.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/19/" data-ref="Amos 5:19 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/19/"><span class="v-num">19</span><span class="v-txt">It [will be] as though a man fled from a lion, And a bear met him! Or [as though] he went into the house, Leaned his hand on the wall, And a serpent bit him!</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/20/" data-ref="Amos 5:20 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/20/"><span class="v-num">20</span><span class="v-txt">[Is] not the day of the LORD darkness, and not light? [Is it not] very dark, with no brightness in it?</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/21/" data-ref="Amos 5:21 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/21/"><span class="v-num">21</span><span class="v-txt">" I hate, I despise your feast days, And I do not savor your sacred assemblies.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/22/" data-ref="Amos 5:22 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/22/"><span class="v-num">22</span><span class="v-txt">Though you offer Me burnt offerings and your grain offerings, I will not accept [them,] Nor will I regard your fattened peace offerings.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/23/" data-ref="Amos 5:23 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/23/"><span class="v-num">23</span><span class="v-txt">Take away from Me the noise of your songs, For I will not hear the melody of your stringed instruments.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/24/" data-ref="Amos 5:24 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/24/"><span class="v-num">24</span><span class="v-txt">But let justice run down like water, And righteousness like a mighty stream.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/25/" data-ref="Amos 5:25 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/25/"><span class="v-num">25</span><span class="v-txt">" Did you offer Me sacrifices and offerings In the wilderness forty years, O house of Israel?</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/26/" data-ref="Amos 5:26 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/26/"><span class="v-num">26</span><span class="v-txt">You also carried Sikkuth your king And Chiun, your idols, The star of your gods, Which you made for yourselves.</span></a>
+<a class="v-row" href="/bible/nkjv/amos/5/27/" data-ref="Amos 5:27 (New King James Version)" data-verse-url="/bible/nkjv/amos/5/27/"><span class="v-num">27</span><span class="v-txt">Therefore I will send you into captivity beyond Damascus," Says the LORD, whose name [is] the God of hosts.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 7:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then the LORD said to Noah, "Come into the ark, you and all your household, because I have seen [that] you [are] righteous before Me in this generation.</span></div>
-<div class="v-row" data-ref="Genesis 7:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"You shall take with you seven each of every clean animal, a male and his female; two each of animals that [are] unclean, a male and his female;</span></div>
-<div class="v-row" data-ref="Genesis 7:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"also seven each of birds of the air, male and female, to keep the species alive on the face of all the earth.</span></div>
-<div class="v-row" data-ref="Genesis 7:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"For after seven more days I will cause it to rain on the earth forty days and forty nights, and I will destroy from the face of the earth all living things that I have made."</span></div>
-<div class="v-row" data-ref="Genesis 7:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Noah did according to all that the LORD commanded him.</span></div>
-<div class="v-row" data-ref="Genesis 7:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Noah [was] six hundred years old when the floodwaters were on the earth.</span></div>
-<div class="v-row" data-ref="Genesis 7:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So Noah, with his sons, his wife, and his sons' wives, went into the ark because of the waters of the flood.</span></div>
-<div class="v-row" data-ref="Genesis 7:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Of clean animals, of animals that [are] unclean, of birds, and of everything that creeps on the earth,</span></div>
-<div class="v-row" data-ref="Genesis 7:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">two by two they went into the ark to Noah, male and female, as God had commanded Noah.</span></div>
-<div class="v-row" data-ref="Genesis 7:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And it came to pass after seven days that the waters of the flood were on the earth.</span></div>
-<div class="v-row" data-ref="Genesis 7:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In the six hundredth year of Noah's life, in the second month, the seventeenth day of the month, on that day all the fountains of the great deep were broken up, and the windows of heaven were opened.</span></div>
-<div class="v-row" data-ref="Genesis 7:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And the rain was on the earth forty days and forty nights.</span></div>
-<div class="v-row" data-ref="Genesis 7:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">On the very same day Noah and Noah's sons, Shem, Ham, and Japheth, and Noah's wife and the three wives of his sons with them, entered the ark --</span></div>
-<div class="v-row" data-ref="Genesis 7:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">they and every beast after its kind, all cattle after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort.</span></div>
-<div class="v-row" data-ref="Genesis 7:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And they went into the ark to Noah, two by two, of all flesh in which [is] the breath of life.</span></div>
-<div class="v-row" data-ref="Genesis 7:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">So those that entered, male and female of all flesh, went in as God had commanded him; and the LORD shut him in.</span></div>
-<div class="v-row" data-ref="Genesis 7:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Now the flood was on the earth forty days. The waters increased and lifted up the ark, and it rose high above the earth.</span></div>
-<div class="v-row" data-ref="Genesis 7:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The waters prevailed and greatly increased on the earth, and the ark moved about on the surface of the waters.</span></div>
-<div class="v-row" data-ref="Genesis 7:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And the waters prevailed exceedingly on the earth, and all the high hills under the whole heaven were covered.</span></div>
-<div class="v-row" data-ref="Genesis 7:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The waters prevailed fifteen cubits upward, and the mountains were covered.</span></div>
-<div class="v-row" data-ref="Genesis 7:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And all flesh died that moved on the earth: birds and cattle and beasts and every creeping thing that creeps on the earth, and every man.</span></div>
-<div class="v-row" data-ref="Genesis 7:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">All in whose nostrils [was] the breath of the spirit of life, all that [was] on the dry [land,] died.</span></div>
-<div class="v-row" data-ref="Genesis 7:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">So He destroyed all living things which were on the face of the ground: both man and cattle, creeping thing and bird of the air. They were destroyed from the earth. Only Noah and those who [were] with him in the ark remained [alive.]</span></div>
-<div class="v-row" data-ref="Genesis 7:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And the waters prevailed on the earth one hundred and fifty days.</span></div>
+    <a class="v-row" href="/bible/nkjv/genesis/7/1/" data-ref="Genesis 7:1 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/1/"><span class="v-num">1</span><span class="v-txt">Then the LORD said to Noah, "Come into the ark, you and all your household, because I have seen [that] you [are] righteous before Me in this generation.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/2/" data-ref="Genesis 7:2 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/2/"><span class="v-num">2</span><span class="v-txt">"You shall take with you seven each of every clean animal, a male and his female; two each of animals that [are] unclean, a male and his female;</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/3/" data-ref="Genesis 7:3 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/3/"><span class="v-num">3</span><span class="v-txt">"also seven each of birds of the air, male and female, to keep the species alive on the face of all the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/4/" data-ref="Genesis 7:4 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/4/"><span class="v-num">4</span><span class="v-txt">"For after seven more days I will cause it to rain on the earth forty days and forty nights, and I will destroy from the face of the earth all living things that I have made."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/5/" data-ref="Genesis 7:5 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/5/"><span class="v-num">5</span><span class="v-txt">And Noah did according to all that the LORD commanded him.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/6/" data-ref="Genesis 7:6 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/6/"><span class="v-num">6</span><span class="v-txt">Noah [was] six hundred years old when the floodwaters were on the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/7/" data-ref="Genesis 7:7 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/7/"><span class="v-num">7</span><span class="v-txt">So Noah, with his sons, his wife, and his sons' wives, went into the ark because of the waters of the flood.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/8/" data-ref="Genesis 7:8 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/8/"><span class="v-num">8</span><span class="v-txt">Of clean animals, of animals that [are] unclean, of birds, and of everything that creeps on the earth,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/9/" data-ref="Genesis 7:9 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/9/"><span class="v-num">9</span><span class="v-txt">two by two they went into the ark to Noah, male and female, as God had commanded Noah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/10/" data-ref="Genesis 7:10 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/10/"><span class="v-num">10</span><span class="v-txt">And it came to pass after seven days that the waters of the flood were on the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/11/" data-ref="Genesis 7:11 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/11/"><span class="v-num">11</span><span class="v-txt">In the six hundredth year of Noah's life, in the second month, the seventeenth day of the month, on that day all the fountains of the great deep were broken up, and the windows of heaven were opened.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/12/" data-ref="Genesis 7:12 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/12/"><span class="v-num">12</span><span class="v-txt">And the rain was on the earth forty days and forty nights.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/13/" data-ref="Genesis 7:13 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/13/"><span class="v-num">13</span><span class="v-txt">On the very same day Noah and Noah's sons, Shem, Ham, and Japheth, and Noah's wife and the three wives of his sons with them, entered the ark --</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/14/" data-ref="Genesis 7:14 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/14/"><span class="v-num">14</span><span class="v-txt">they and every beast after its kind, all cattle after their kind, every creeping thing that creeps on the earth after its kind, and every bird after its kind, every bird of every sort.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/15/" data-ref="Genesis 7:15 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/15/"><span class="v-num">15</span><span class="v-txt">And they went into the ark to Noah, two by two, of all flesh in which [is] the breath of life.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/16/" data-ref="Genesis 7:16 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/16/"><span class="v-num">16</span><span class="v-txt">So those that entered, male and female of all flesh, went in as God had commanded him; and the LORD shut him in.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/17/" data-ref="Genesis 7:17 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/17/"><span class="v-num">17</span><span class="v-txt">Now the flood was on the earth forty days. The waters increased and lifted up the ark, and it rose high above the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/18/" data-ref="Genesis 7:18 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/18/"><span class="v-num">18</span><span class="v-txt">The waters prevailed and greatly increased on the earth, and the ark moved about on the surface of the waters.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/19/" data-ref="Genesis 7:19 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/19/"><span class="v-num">19</span><span class="v-txt">And the waters prevailed exceedingly on the earth, and all the high hills under the whole heaven were covered.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/20/" data-ref="Genesis 7:20 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/20/"><span class="v-num">20</span><span class="v-txt">The waters prevailed fifteen cubits upward, and the mountains were covered.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/21/" data-ref="Genesis 7:21 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/21/"><span class="v-num">21</span><span class="v-txt">And all flesh died that moved on the earth: birds and cattle and beasts and every creeping thing that creeps on the earth, and every man.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/22/" data-ref="Genesis 7:22 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/22/"><span class="v-num">22</span><span class="v-txt">All in whose nostrils [was] the breath of the spirit of life, all that [was] on the dry [land,] died.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/23/" data-ref="Genesis 7:23 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/23/"><span class="v-num">23</span><span class="v-txt">So He destroyed all living things which were on the face of the ground: both man and cattle, creeping thing and bird of the air. They were destroyed from the earth. Only Noah and those who [were] with him in the ark remained [alive.]</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/7/24/" data-ref="Genesis 7:24 (New King James Version)" data-verse-url="/bible/nkjv/genesis/7/24/"><span class="v-num">24</span><span class="v-txt">And the waters prevailed on the earth one hundred and fifty days.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Micah 6:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear now what the LORD says: "Arise, plead your case before the mountains, And let the hills hear your voice.</span></div>
-<div class="v-row" data-ref="Micah 6:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hear, O you mountains, the LORD's complaint, And you strong foundations of the earth; For the LORD has a complaint against His people, And He will contend with Israel.</span></div>
-<div class="v-row" data-ref="Micah 6:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"O My people, what have I done to you? And how have I wearied you? Testify against Me.</span></div>
-<div class="v-row" data-ref="Micah 6:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For I brought you up from the land of Egypt, I redeemed you from the house of bondage; And I sent before you Moses, Aaron, and Miriam.</span></div>
-<div class="v-row" data-ref="Micah 6:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">O My people, remember now What Balak king of Moab counseled, And what Balaam the son of Beor answered him, From Acacia Grove to Gilgal, That you may know the righteousness of the LORD."</span></div>
-<div class="v-row" data-ref="Micah 6:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">With what shall I come before the LORD, [And] bow myself before the High God? Shall I come before Him with burnt offerings, With calves a year old?</span></div>
-<div class="v-row" data-ref="Micah 6:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Will the LORD be pleased with thousands of rams, Ten thousand rivers of oil? Shall I give my firstborn [for] my transgression, The fruit of my body [for] the sin of my soul?</span></div>
-<div class="v-row" data-ref="Micah 6:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He has shown you, O man, what [is] good; And what does the LORD require of you But to do justly, To love mercy, And to walk humbly with your God?</span></div>
-<div class="v-row" data-ref="Micah 6:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The LORD's voice cries to the city -- Wisdom shall see Your name: "Hear the Rod! Who has appointed it?</span></div>
-<div class="v-row" data-ref="Micah 6:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Are there yet the treasures of wickedness In the house of the wicked, And the short measure [that is] an abomination?</span></div>
-<div class="v-row" data-ref="Micah 6:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Shall I count pure [those] with the wicked scales, And with the bag of deceitful weights?</span></div>
-<div class="v-row" data-ref="Micah 6:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For her rich men are full of violence, Her inhabitants have spoken lies, And their tongue is deceitful in their mouth.</span></div>
-<div class="v-row" data-ref="Micah 6:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"Therefore I will also make [you] sick by striking you, By making [you] desolate because of your sins.</span></div>
-<div class="v-row" data-ref="Micah 6:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You shall eat, but not be satisfied; Hunger [shall be] in your midst. You may carry [some] away, but shall not save [them;] And what you do rescue I will give over to the sword.</span></div>
-<div class="v-row" data-ref="Micah 6:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"You shall sow, but not reap; You shall tread the olives, but not anoint yourselves with oil; And [make] sweet wine, but not drink wine.</span></div>
-<div class="v-row" data-ref="Micah 6:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the statutes of Omri are kept; All the works of Ahab's house [are done;] And you walk in their counsels, That I may make you a desolation, And your inhabitants a hissing. Therefore you shall bear the reproach of My people."</span></div>
+    <a class="v-row" href="/bible/nkjv/micah/6/1/" data-ref="Micah 6:1 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/1/"><span class="v-num">1</span><span class="v-txt">Hear now what the LORD says: "Arise, plead your case before the mountains, And let the hills hear your voice.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/2/" data-ref="Micah 6:2 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/2/"><span class="v-num">2</span><span class="v-txt">Hear, O you mountains, the LORD's complaint, And you strong foundations of the earth; For the LORD has a complaint against His people, And He will contend with Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/3/" data-ref="Micah 6:3 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/3/"><span class="v-num">3</span><span class="v-txt">"O My people, what have I done to you? And how have I wearied you? Testify against Me.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/4/" data-ref="Micah 6:4 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/4/"><span class="v-num">4</span><span class="v-txt">For I brought you up from the land of Egypt, I redeemed you from the house of bondage; And I sent before you Moses, Aaron, and Miriam.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/5/" data-ref="Micah 6:5 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/5/"><span class="v-num">5</span><span class="v-txt">O My people, remember now What Balak king of Moab counseled, And what Balaam the son of Beor answered him, From Acacia Grove to Gilgal, That you may know the righteousness of the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/6/" data-ref="Micah 6:6 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/6/"><span class="v-num">6</span><span class="v-txt">With what shall I come before the LORD, [And] bow myself before the High God? Shall I come before Him with burnt offerings, With calves a year old?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/7/" data-ref="Micah 6:7 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/7/"><span class="v-num">7</span><span class="v-txt">Will the LORD be pleased with thousands of rams, Ten thousand rivers of oil? Shall I give my firstborn [for] my transgression, The fruit of my body [for] the sin of my soul?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/8/" data-ref="Micah 6:8 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/8/"><span class="v-num">8</span><span class="v-txt">He has shown you, O man, what [is] good; And what does the LORD require of you But to do justly, To love mercy, And to walk humbly with your God?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/9/" data-ref="Micah 6:9 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/9/"><span class="v-num">9</span><span class="v-txt">The LORD's voice cries to the city -- Wisdom shall see Your name: "Hear the Rod! Who has appointed it?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/10/" data-ref="Micah 6:10 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/10/"><span class="v-num">10</span><span class="v-txt">Are there yet the treasures of wickedness In the house of the wicked, And the short measure [that is] an abomination?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/11/" data-ref="Micah 6:11 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/11/"><span class="v-num">11</span><span class="v-txt">Shall I count pure [those] with the wicked scales, And with the bag of deceitful weights?</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/12/" data-ref="Micah 6:12 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/12/"><span class="v-num">12</span><span class="v-txt">For her rich men are full of violence, Her inhabitants have spoken lies, And their tongue is deceitful in their mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/13/" data-ref="Micah 6:13 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/13/"><span class="v-num">13</span><span class="v-txt">"Therefore I will also make [you] sick by striking you, By making [you] desolate because of your sins.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/14/" data-ref="Micah 6:14 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/14/"><span class="v-num">14</span><span class="v-txt">You shall eat, but not be satisfied; Hunger [shall be] in your midst. You may carry [some] away, but shall not save [them;] And what you do rescue I will give over to the sword.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/15/" data-ref="Micah 6:15 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/15/"><span class="v-num">15</span><span class="v-txt">"You shall sow, but not reap; You shall tread the olives, but not anoint yourselves with oil; And [make] sweet wine, but not drink wine.</span></a>
+<a class="v-row" href="/bible/nkjv/micah/6/16/" data-ref="Micah 6:16 (New King James Version)" data-verse-url="/bible/nkjv/micah/6/16/"><span class="v-num">16</span><span class="v-txt">For the statutes of Omri are kept; All the works of Ahab's house [are done;] And you walk in their counsels, That I may make you a desolation, And your inhabitants a hissing. Therefore you shall bear the reproach of My people."</span></a>
 
     
 <div class="app-cta">

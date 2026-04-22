@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 13:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I stood upon the sand of the sea, and saw a beast rise up out of the sea, having seven heads and ten horns, and upon his horns ten crowns, and upon his heads the name of blasphemy.</span></div>
-<div class="v-row" data-ref="Revelation 13:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the beast which I saw was like unto a leopard, and his feet were as the feet of a bear, and his mouth as the mouth of a lion: and the dragon gave him his power, and his seat, and great authority.</span></div>
-<div class="v-row" data-ref="Revelation 13:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And I saw one of his heads as it were wounded to death; and his deadly wound was healed: and all the world wondered after the beast.</span></div>
-<div class="v-row" data-ref="Revelation 13:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they worshipped the dragon which gave power unto the beast: and they worshipped the beast, saying, Who is like unto the beast? who is able to make war with him?</span></div>
-<div class="v-row" data-ref="Revelation 13:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And there was given unto him a mouth speaking great things and blasphemies; and power was given unto him to continue forty and two months.</span></div>
-<div class="v-row" data-ref="Revelation 13:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he opened his mouth in blasphemy against God, to blaspheme his name, and his tabernacle, and them that dwell in heaven.</span></div>
-<div class="v-row" data-ref="Revelation 13:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And it was given unto him to make war with the saints, and to overcome them: and power was given him over all kindreds, and tongues, and nations.</span></div>
-<div class="v-row" data-ref="Revelation 13:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And all that dwell upon the earth shall worship him, whose names are not written in the book of life of the Lamb slain from the foundation of the world.</span></div>
-<div class="v-row" data-ref="Revelation 13:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">If any man have an ear, let him hear.</span></div>
-<div class="v-row" data-ref="Revelation 13:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He that leadeth into captivity shall go into captivity: he that killeth with the sword must be killed with the sword. Here is the patience and the faith of the saints.</span></div>
-<div class="v-row" data-ref="Revelation 13:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And I beheld another beast coming up out of the earth; and he had two horns like a lamb, and he spake as a dragon.</span></div>
-<div class="v-row" data-ref="Revelation 13:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And he exerciseth all the power of the first beast before him, and causeth the earth and them which dwell therein to worship the first beast, whose deadly wound was healed.</span></div>
-<div class="v-row" data-ref="Revelation 13:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And he doeth great wonders, so that he maketh fire come down from heaven on the earth in the sight of men,</span></div>
-<div class="v-row" data-ref="Revelation 13:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And deceiveth them that dwell on the earth by the means of those miracles which he had power to do in the sight of the beast; saying to them that dwell on the earth, that they should make an image to the beast, which had the wound by a sword, and did live.</span></div>
-<div class="v-row" data-ref="Revelation 13:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And he had power to give life unto the image of the beast, that the image of the beast should both speak, and cause that as many as would not worship the image of the beast should be killed.</span></div>
-<div class="v-row" data-ref="Revelation 13:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he causeth all, both small and great, rich and poor, free and bond, to receive a mark in their right hand, or in their foreheads:</span></div>
-<div class="v-row" data-ref="Revelation 13:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And that no man might buy or sell, save he that had the mark, or the name of the beast, or the number of his name.</span></div>
-<div class="v-row" data-ref="Revelation 13:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Here is wisdom. Let him that hath understanding count the number of the beast: for it is the number of a man; and his number is Six hundred threescore and six.</span></div>
+    <a class="v-row" href="/bible/kjv/revelation/13/1/" data-ref="Revelation 13:1 (King James Version)" data-verse-url="/bible/kjv/revelation/13/1/"><span class="v-num">1</span><span class="v-txt">And I stood upon the sand of the sea, and saw a beast rise up out of the sea, having seven heads and ten horns, and upon his horns ten crowns, and upon his heads the name of blasphemy.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/2/" data-ref="Revelation 13:2 (King James Version)" data-verse-url="/bible/kjv/revelation/13/2/"><span class="v-num">2</span><span class="v-txt">And the beast which I saw was like unto a leopard, and his feet were as the feet of a bear, and his mouth as the mouth of a lion: and the dragon gave him his power, and his seat, and great authority.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/3/" data-ref="Revelation 13:3 (King James Version)" data-verse-url="/bible/kjv/revelation/13/3/"><span class="v-num">3</span><span class="v-txt">And I saw one of his heads as it were wounded to death; and his deadly wound was healed: and all the world wondered after the beast.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/4/" data-ref="Revelation 13:4 (King James Version)" data-verse-url="/bible/kjv/revelation/13/4/"><span class="v-num">4</span><span class="v-txt">And they worshipped the dragon which gave power unto the beast: and they worshipped the beast, saying, Who is like unto the beast? who is able to make war with him?</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/5/" data-ref="Revelation 13:5 (King James Version)" data-verse-url="/bible/kjv/revelation/13/5/"><span class="v-num">5</span><span class="v-txt">And there was given unto him a mouth speaking great things and blasphemies; and power was given unto him to continue forty and two months.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/6/" data-ref="Revelation 13:6 (King James Version)" data-verse-url="/bible/kjv/revelation/13/6/"><span class="v-num">6</span><span class="v-txt">And he opened his mouth in blasphemy against God, to blaspheme his name, and his tabernacle, and them that dwell in heaven.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/7/" data-ref="Revelation 13:7 (King James Version)" data-verse-url="/bible/kjv/revelation/13/7/"><span class="v-num">7</span><span class="v-txt">And it was given unto him to make war with the saints, and to overcome them: and power was given him over all kindreds, and tongues, and nations.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/8/" data-ref="Revelation 13:8 (King James Version)" data-verse-url="/bible/kjv/revelation/13/8/"><span class="v-num">8</span><span class="v-txt">And all that dwell upon the earth shall worship him, whose names are not written in the book of life of the Lamb slain from the foundation of the world.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/9/" data-ref="Revelation 13:9 (King James Version)" data-verse-url="/bible/kjv/revelation/13/9/"><span class="v-num">9</span><span class="v-txt">If any man have an ear, let him hear.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/10/" data-ref="Revelation 13:10 (King James Version)" data-verse-url="/bible/kjv/revelation/13/10/"><span class="v-num">10</span><span class="v-txt">He that leadeth into captivity shall go into captivity: he that killeth with the sword must be killed with the sword. Here is the patience and the faith of the saints.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/11/" data-ref="Revelation 13:11 (King James Version)" data-verse-url="/bible/kjv/revelation/13/11/"><span class="v-num">11</span><span class="v-txt">And I beheld another beast coming up out of the earth; and he had two horns like a lamb, and he spake as a dragon.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/12/" data-ref="Revelation 13:12 (King James Version)" data-verse-url="/bible/kjv/revelation/13/12/"><span class="v-num">12</span><span class="v-txt">And he exerciseth all the power of the first beast before him, and causeth the earth and them which dwell therein to worship the first beast, whose deadly wound was healed.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/13/" data-ref="Revelation 13:13 (King James Version)" data-verse-url="/bible/kjv/revelation/13/13/"><span class="v-num">13</span><span class="v-txt">And he doeth great wonders, so that he maketh fire come down from heaven on the earth in the sight of men,</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/14/" data-ref="Revelation 13:14 (King James Version)" data-verse-url="/bible/kjv/revelation/13/14/"><span class="v-num">14</span><span class="v-txt">And deceiveth them that dwell on the earth by the means of those miracles which he had power to do in the sight of the beast; saying to them that dwell on the earth, that they should make an image to the beast, which had the wound by a sword, and did live.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/15/" data-ref="Revelation 13:15 (King James Version)" data-verse-url="/bible/kjv/revelation/13/15/"><span class="v-num">15</span><span class="v-txt">And he had power to give life unto the image of the beast, that the image of the beast should both speak, and cause that as many as would not worship the image of the beast should be killed.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/16/" data-ref="Revelation 13:16 (King James Version)" data-verse-url="/bible/kjv/revelation/13/16/"><span class="v-num">16</span><span class="v-txt">And he causeth all, both small and great, rich and poor, free and bond, to receive a mark in their right hand, or in their foreheads:</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/17/" data-ref="Revelation 13:17 (King James Version)" data-verse-url="/bible/kjv/revelation/13/17/"><span class="v-num">17</span><span class="v-txt">And that no man might buy or sell, save he that had the mark, or the name of the beast, or the number of his name.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/13/18/" data-ref="Revelation 13:18 (King James Version)" data-verse-url="/bible/kjv/revelation/13/18/"><span class="v-num">18</span><span class="v-txt">Here is wisdom. Let him that hath understanding count the number of the beast: for it is the number of a man; and his number is Six hundred threescore and six.</span></a>
 
     
 <div class="app-cta">

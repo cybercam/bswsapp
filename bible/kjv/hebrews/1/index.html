@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 1:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">God, who at sundry times and in divers manners spake in time past unto the fathers by the prophets,</span></div>
-<div class="v-row" data-ref="Hebrews 1:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hath in these last days spoken unto us by his Son, whom he hath appointed heir of all things, by whom also he made the worlds;</span></div>
-<div class="v-row" data-ref="Hebrews 1:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Who being the brightness of his glory, and the express image of his person, and upholding all things by the word of his power, when he had by himself purged our sins, sat down on the right hand of the Majesty on high;</span></div>
-<div class="v-row" data-ref="Hebrews 1:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Being made so much better than the angels, as he hath by inheritance obtained a more excellent name than they.</span></div>
-<div class="v-row" data-ref="Hebrews 1:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For unto which of the angels said he at any time, Thou art my Son, this day have I begotten thee? And again, I will be to him a Father, and he shall be to me a Son?</span></div>
-<div class="v-row" data-ref="Hebrews 1:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And again, when he bringeth in the firstbegotten into the world, he saith, And let all the angels of God worship him.</span></div>
-<div class="v-row" data-ref="Hebrews 1:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And of the angels he saith, Who maketh his angels spirits, and his ministers a flame of fire.</span></div>
-<div class="v-row" data-ref="Hebrews 1:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But unto the Son he saith, Thy throne, O God, is for ever and ever: a sceptre of righteousness is the sceptre of thy kingdom.</span></div>
-<div class="v-row" data-ref="Hebrews 1:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Thou hast loved righteousness, and hated iniquity; therefore God, even thy God, hath anointed thee with the oil of gladness above thy fellows.</span></div>
-<div class="v-row" data-ref="Hebrews 1:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And, Thou, Lord, in the beginning hast laid the foundation of the earth; and the heavens are the works of thine hands:</span></div>
-<div class="v-row" data-ref="Hebrews 1:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">They shall perish; but thou remainest; and they all shall wax old as doth a garment;</span></div>
-<div class="v-row" data-ref="Hebrews 1:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And as a vesture shalt thou fold them up, and they shall be changed: but thou art the same, and thy years shall not fail.</span></div>
-<div class="v-row" data-ref="Hebrews 1:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But to which of the angels said he at any time, Sit on my right hand, until I make thine enemies thy footstool?</span></div>
-<div class="v-row" data-ref="Hebrews 1:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Are they not all ministering spirits, sent forth to minister for them who shall be heirs of salvation?</span></div>
+    <a class="v-row" href="/bible/kjv/hebrews/1/1/" data-ref="Hebrews 1:1 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/1/"><span class="v-num">1</span><span class="v-txt">God, who at sundry times and in divers manners spake in time past unto the fathers by the prophets,</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/2/" data-ref="Hebrews 1:2 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/2/"><span class="v-num">2</span><span class="v-txt">Hath in these last days spoken unto us by his Son, whom he hath appointed heir of all things, by whom also he made the worlds;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/3/" data-ref="Hebrews 1:3 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/3/"><span class="v-num">3</span><span class="v-txt">Who being the brightness of his glory, and the express image of his person, and upholding all things by the word of his power, when he had by himself purged our sins, sat down on the right hand of the Majesty on high;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/4/" data-ref="Hebrews 1:4 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/4/"><span class="v-num">4</span><span class="v-txt">Being made so much better than the angels, as he hath by inheritance obtained a more excellent name than they.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/5/" data-ref="Hebrews 1:5 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/5/"><span class="v-num">5</span><span class="v-txt">For unto which of the angels said he at any time, Thou art my Son, this day have I begotten thee? And again, I will be to him a Father, and he shall be to me a Son?</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/6/" data-ref="Hebrews 1:6 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/6/"><span class="v-num">6</span><span class="v-txt">And again, when he bringeth in the firstbegotten into the world, he saith, And let all the angels of God worship him.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/7/" data-ref="Hebrews 1:7 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/7/"><span class="v-num">7</span><span class="v-txt">And of the angels he saith, Who maketh his angels spirits, and his ministers a flame of fire.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/8/" data-ref="Hebrews 1:8 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/8/"><span class="v-num">8</span><span class="v-txt">But unto the Son he saith, Thy throne, O God, is for ever and ever: a sceptre of righteousness is the sceptre of thy kingdom.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/9/" data-ref="Hebrews 1:9 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/9/"><span class="v-num">9</span><span class="v-txt">Thou hast loved righteousness, and hated iniquity; therefore God, even thy God, hath anointed thee with the oil of gladness above thy fellows.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/10/" data-ref="Hebrews 1:10 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/10/"><span class="v-num">10</span><span class="v-txt">And, Thou, Lord, in the beginning hast laid the foundation of the earth; and the heavens are the works of thine hands:</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/11/" data-ref="Hebrews 1:11 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/11/"><span class="v-num">11</span><span class="v-txt">They shall perish; but thou remainest; and they all shall wax old as doth a garment;</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/12/" data-ref="Hebrews 1:12 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/12/"><span class="v-num">12</span><span class="v-txt">And as a vesture shalt thou fold them up, and they shall be changed: but thou art the same, and thy years shall not fail.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/13/" data-ref="Hebrews 1:13 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/13/"><span class="v-num">13</span><span class="v-txt">But to which of the angels said he at any time, Sit on my right hand, until I make thine enemies thy footstool?</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/1/14/" data-ref="Hebrews 1:14 (King James Version)" data-verse-url="/bible/kjv/hebrews/1/14/"><span class="v-num">14</span><span class="v-txt">Are they not all ministering spirits, sent forth to minister for them who shall be heirs of salvation?</span></a>
 
     
 <div class="app-cta">

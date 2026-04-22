@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Titus 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul, a bondservant of God and an apostle of Jesus Christ, according to the faith of God's elect and the acknowledgment of the truth which accords with godliness,</span></div>
-<div class="v-row" data-ref="Titus 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">in hope of eternal life which God, who cannot lie, promised before time began,</span></div>
-<div class="v-row" data-ref="Titus 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">but has in due time manifested His word through preaching, which was committed to me according to the commandment of God our Savior;</span></div>
-<div class="v-row" data-ref="Titus 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">To Titus, a true son in [our] common faith: Grace, mercy, [and] peace from God the Father and the Lord Jesus Christ our Savior.</span></div>
-<div class="v-row" data-ref="Titus 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For this reason I left you in Crete, that you should set in order the things that are lacking, and appoint elders in every city as I commanded you --</span></div>
-<div class="v-row" data-ref="Titus 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">if a man is blameless, the husband of one wife, having faithful children not accused of dissipation or insubordination.</span></div>
-<div class="v-row" data-ref="Titus 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For a bishop must be blameless, as a steward of God, not self-willed, not quick-tempered, not given to wine, not violent, not greedy for money,</span></div>
-<div class="v-row" data-ref="Titus 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">but hospitable, a lover of what is good, sober-minded, just, holy, self-controlled,</span></div>
-<div class="v-row" data-ref="Titus 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">holding fast the faithful word as he has been taught, that he may be able, by sound doctrine, both to exhort and convict those who contradict.</span></div>
-<div class="v-row" data-ref="Titus 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For there are many insubordinate, both idle talkers and deceivers, especially those of the circumcision,</span></div>
-<div class="v-row" data-ref="Titus 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">whose mouths must be stopped, who subvert whole households, teaching things which they ought not, for the sake of dishonest gain.</span></div>
-<div class="v-row" data-ref="Titus 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">One of them, a prophet of their own, said, "Cretans [are] always liars, evil beasts, lazy gluttons."</span></div>
-<div class="v-row" data-ref="Titus 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">This testimony is true. Therefore rebuke them sharply, that they may be sound in the faith,</span></div>
-<div class="v-row" data-ref="Titus 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">not giving heed to Jewish fables and commandments of men who turn from the truth.</span></div>
-<div class="v-row" data-ref="Titus 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">To the pure all things are pure, but to those who are defiled and unbelieving nothing is pure; but even their mind and conscience are defiled.</span></div>
-<div class="v-row" data-ref="Titus 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">They profess to know God, but in works they deny Him, being abominable, disobedient, and disqualified for every good work.</span></div>
+    <a class="v-row" href="/bible/nkjv/titus/1/1/" data-ref="Titus 1:1 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/1/"><span class="v-num">1</span><span class="v-txt">Paul, a bondservant of God and an apostle of Jesus Christ, according to the faith of God's elect and the acknowledgment of the truth which accords with godliness,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/2/" data-ref="Titus 1:2 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/2/"><span class="v-num">2</span><span class="v-txt">in hope of eternal life which God, who cannot lie, promised before time began,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/3/" data-ref="Titus 1:3 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/3/"><span class="v-num">3</span><span class="v-txt">but has in due time manifested His word through preaching, which was committed to me according to the commandment of God our Savior;</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/4/" data-ref="Titus 1:4 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/4/"><span class="v-num">4</span><span class="v-txt">To Titus, a true son in [our] common faith: Grace, mercy, [and] peace from God the Father and the Lord Jesus Christ our Savior.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/5/" data-ref="Titus 1:5 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/5/"><span class="v-num">5</span><span class="v-txt">For this reason I left you in Crete, that you should set in order the things that are lacking, and appoint elders in every city as I commanded you --</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/6/" data-ref="Titus 1:6 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/6/"><span class="v-num">6</span><span class="v-txt">if a man is blameless, the husband of one wife, having faithful children not accused of dissipation or insubordination.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/7/" data-ref="Titus 1:7 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/7/"><span class="v-num">7</span><span class="v-txt">For a bishop must be blameless, as a steward of God, not self-willed, not quick-tempered, not given to wine, not violent, not greedy for money,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/8/" data-ref="Titus 1:8 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/8/"><span class="v-num">8</span><span class="v-txt">but hospitable, a lover of what is good, sober-minded, just, holy, self-controlled,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/9/" data-ref="Titus 1:9 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/9/"><span class="v-num">9</span><span class="v-txt">holding fast the faithful word as he has been taught, that he may be able, by sound doctrine, both to exhort and convict those who contradict.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/10/" data-ref="Titus 1:10 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/10/"><span class="v-num">10</span><span class="v-txt">For there are many insubordinate, both idle talkers and deceivers, especially those of the circumcision,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/11/" data-ref="Titus 1:11 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/11/"><span class="v-num">11</span><span class="v-txt">whose mouths must be stopped, who subvert whole households, teaching things which they ought not, for the sake of dishonest gain.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/12/" data-ref="Titus 1:12 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/12/"><span class="v-num">12</span><span class="v-txt">One of them, a prophet of their own, said, "Cretans [are] always liars, evil beasts, lazy gluttons."</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/13/" data-ref="Titus 1:13 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/13/"><span class="v-num">13</span><span class="v-txt">This testimony is true. Therefore rebuke them sharply, that they may be sound in the faith,</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/14/" data-ref="Titus 1:14 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/14/"><span class="v-num">14</span><span class="v-txt">not giving heed to Jewish fables and commandments of men who turn from the truth.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/15/" data-ref="Titus 1:15 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/15/"><span class="v-num">15</span><span class="v-txt">To the pure all things are pure, but to those who are defiled and unbelieving nothing is pure; but even their mind and conscience are defiled.</span></a>
+<a class="v-row" href="/bible/nkjv/titus/1/16/" data-ref="Titus 1:16 (New King James Version)" data-verse-url="/bible/nkjv/titus/1/16/"><span class="v-num">16</span><span class="v-txt">They profess to know God, but in works they deny Him, being abominable, disobedient, and disqualified for every good work.</span></a>
 
     
 <div class="app-cta">

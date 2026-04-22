@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Esther 7:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So the king and Haman came to banquet with Esther the queen.</span></div>
-<div class="v-row" data-ref="Esther 7:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the king said again unto Esther on the second day at the banquet of wine, What is thy petition, queen Esther? and it shall be granted thee: and what is thy request? even to the half of the kingdom it shall be performed.</span></div>
-<div class="v-row" data-ref="Esther 7:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then Esther the queen answered and said, If I have found favor in thy sight, O king, and if it please the king, let my life be given me at my petition, and my people at my request:</span></div>
-<div class="v-row" data-ref="Esther 7:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">for we are sold, I and my people, to be destroyed, to be slain, and to perish. But if we had been sold for bondmen and bondwomen, I had held my peace, although the adversary could not have compensated for the king's damage.</span></div>
-<div class="v-row" data-ref="Esther 7:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then spake the king Ahasuerus and said unto Esther the queen, Who is he, and where is he, that durst presume in his heart to do so?</span></div>
-<div class="v-row" data-ref="Esther 7:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Esther said, An adversary and an enemy, even this wicked Haman. Then Haman was afraid before the king and the queen.</span></div>
-<div class="v-row" data-ref="Esther 7:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the king arose in his wrath from the banquet of wine [and went] into the palace garden: and Haman stood up to make request for his life to Esther the queen; for he saw that there was evil determined against him by the king.</span></div>
-<div class="v-row" data-ref="Esther 7:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the king returned out of the palace garden into the place of the banquet of wine; and Haman was fallen upon the couch whereon Esther was. Then said the king, Will he even force the queen before me in the house? As the word went out of the king's mouth, they covered Haman's face.</span></div>
-<div class="v-row" data-ref="Esther 7:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then said Harbonah, one of the chamberlains that were before the king, Behold also, the gallows fifty cubits high, which Haman hath made for Mordecai, who spake good for the king, standeth in the house of Haman. And the king said, Hang him thereon.</span></div>
-<div class="v-row" data-ref="Esther 7:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So they hanged Haman on the gallows that he had prepared for Mordecai. Then was the king's wrath pacified.</span></div>
+    <a class="v-row" href="/bible/asv/esther/7/1/" data-ref="Esther 7:1 (American Standard Version)" data-verse-url="/bible/asv/esther/7/1/"><span class="v-num">1</span><span class="v-txt">So the king and Haman came to banquet with Esther the queen.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/2/" data-ref="Esther 7:2 (American Standard Version)" data-verse-url="/bible/asv/esther/7/2/"><span class="v-num">2</span><span class="v-txt">And the king said again unto Esther on the second day at the banquet of wine, What is thy petition, queen Esther? and it shall be granted thee: and what is thy request? even to the half of the kingdom it shall be performed.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/3/" data-ref="Esther 7:3 (American Standard Version)" data-verse-url="/bible/asv/esther/7/3/"><span class="v-num">3</span><span class="v-txt">Then Esther the queen answered and said, If I have found favor in thy sight, O king, and if it please the king, let my life be given me at my petition, and my people at my request:</span></a>
+<a class="v-row" href="/bible/asv/esther/7/4/" data-ref="Esther 7:4 (American Standard Version)" data-verse-url="/bible/asv/esther/7/4/"><span class="v-num">4</span><span class="v-txt">for we are sold, I and my people, to be destroyed, to be slain, and to perish. But if we had been sold for bondmen and bondwomen, I had held my peace, although the adversary could not have compensated for the king's damage.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/5/" data-ref="Esther 7:5 (American Standard Version)" data-verse-url="/bible/asv/esther/7/5/"><span class="v-num">5</span><span class="v-txt">Then spake the king Ahasuerus and said unto Esther the queen, Who is he, and where is he, that durst presume in his heart to do so?</span></a>
+<a class="v-row" href="/bible/asv/esther/7/6/" data-ref="Esther 7:6 (American Standard Version)" data-verse-url="/bible/asv/esther/7/6/"><span class="v-num">6</span><span class="v-txt">And Esther said, An adversary and an enemy, even this wicked Haman. Then Haman was afraid before the king and the queen.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/7/" data-ref="Esther 7:7 (American Standard Version)" data-verse-url="/bible/asv/esther/7/7/"><span class="v-num">7</span><span class="v-txt">And the king arose in his wrath from the banquet of wine [and went] into the palace garden: and Haman stood up to make request for his life to Esther the queen; for he saw that there was evil determined against him by the king.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/8/" data-ref="Esther 7:8 (American Standard Version)" data-verse-url="/bible/asv/esther/7/8/"><span class="v-num">8</span><span class="v-txt">Then the king returned out of the palace garden into the place of the banquet of wine; and Haman was fallen upon the couch whereon Esther was. Then said the king, Will he even force the queen before me in the house? As the word went out of the king's mouth, they covered Haman's face.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/9/" data-ref="Esther 7:9 (American Standard Version)" data-verse-url="/bible/asv/esther/7/9/"><span class="v-num">9</span><span class="v-txt">Then said Harbonah, one of the chamberlains that were before the king, Behold also, the gallows fifty cubits high, which Haman hath made for Mordecai, who spake good for the king, standeth in the house of Haman. And the king said, Hang him thereon.</span></a>
+<a class="v-row" href="/bible/asv/esther/7/10/" data-ref="Esther 7:10 (American Standard Version)" data-verse-url="/bible/asv/esther/7/10/"><span class="v-num">10</span><span class="v-txt">So they hanged Haman on the gallows that he had prepared for Mordecai. Then was the king's wrath pacified.</span></a>
 
     
 <div class="app-cta">

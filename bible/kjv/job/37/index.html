@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 37</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 37:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">At this also my heart trembleth, and is moved out of his place.</span></div>
-<div class="v-row" data-ref="Job 37:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hear attentively the noise of his voice, and the sound that goeth out of his mouth.</span></div>
-<div class="v-row" data-ref="Job 37:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He directeth it under the whole heaven, and his lightning unto the ends of the earth.</span></div>
-<div class="v-row" data-ref="Job 37:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">After it a voice roareth: he thundereth with the voice of his excellency; and he will not stay them when his voice is heard.</span></div>
-<div class="v-row" data-ref="Job 37:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">God thundereth marvellously with his voice; great things doeth he, which we cannot comprehend.</span></div>
-<div class="v-row" data-ref="Job 37:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For he saith to the snow, Be thou on the earth; likewise to the small rain, and to the great rain of his strength.</span></div>
-<div class="v-row" data-ref="Job 37:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He sealeth up the hand of every man; that all men may know his work.</span></div>
-<div class="v-row" data-ref="Job 37:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the beasts go into dens, and remain in their places.</span></div>
-<div class="v-row" data-ref="Job 37:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Out of the south cometh the whirlwind: and cold out of the north.</span></div>
-<div class="v-row" data-ref="Job 37:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">By the breath of God frost is given: and the breadth of the waters is straitened.</span></div>
-<div class="v-row" data-ref="Job 37:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Also by watering he wearieth the thick cloud: he scattereth his bright cloud:</span></div>
-<div class="v-row" data-ref="Job 37:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And it is turned round about by his counsels: that they may do whatsoever he commandeth them upon the face of the world in the earth.</span></div>
-<div class="v-row" data-ref="Job 37:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He causeth it to come, whether for correction, or for his land, or for mercy.</span></div>
-<div class="v-row" data-ref="Job 37:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Hearken unto this, O Job: stand still, and consider the wondrous works of God.</span></div>
-<div class="v-row" data-ref="Job 37:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Dost thou know when God disposed them, and caused the light of his cloud to shine?</span></div>
-<div class="v-row" data-ref="Job 37:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Dost thou know the balancings of the clouds, the wondrous works of him which is perfect in knowledge?</span></div>
-<div class="v-row" data-ref="Job 37:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">How thy garments are warm, when he quieteth the earth by the south wind?</span></div>
-<div class="v-row" data-ref="Job 37:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Hast thou with him spread out the sky, which is strong, and as a molten looking glass?</span></div>
-<div class="v-row" data-ref="Job 37:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Teach us what we shall say unto him; for we cannot order our speech by reason of darkness.</span></div>
-<div class="v-row" data-ref="Job 37:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Shall it be told him that I speak? if a man speak, surely he shall be swallowed up.</span></div>
-<div class="v-row" data-ref="Job 37:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And now men see not the bright light which is in the clouds: but the wind passeth, and cleanseth them.</span></div>
-<div class="v-row" data-ref="Job 37:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Fair weather cometh out of the north: with God is terrible majesty.</span></div>
-<div class="v-row" data-ref="Job 37:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Touching the Almighty, we cannot find him out: he is excellent in power, and in judgment, and in plenty of justice: he will not afflict.</span></div>
-<div class="v-row" data-ref="Job 37:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Men do therefore fear him: he respecteth not any that are wise of heart.</span></div>
+    <a class="v-row" href="/bible/kjv/job/37/1/" data-ref="Job 37:1 (King James Version)" data-verse-url="/bible/kjv/job/37/1/"><span class="v-num">1</span><span class="v-txt">At this also my heart trembleth, and is moved out of his place.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/2/" data-ref="Job 37:2 (King James Version)" data-verse-url="/bible/kjv/job/37/2/"><span class="v-num">2</span><span class="v-txt">Hear attentively the noise of his voice, and the sound that goeth out of his mouth.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/3/" data-ref="Job 37:3 (King James Version)" data-verse-url="/bible/kjv/job/37/3/"><span class="v-num">3</span><span class="v-txt">He directeth it under the whole heaven, and his lightning unto the ends of the earth.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/4/" data-ref="Job 37:4 (King James Version)" data-verse-url="/bible/kjv/job/37/4/"><span class="v-num">4</span><span class="v-txt">After it a voice roareth: he thundereth with the voice of his excellency; and he will not stay them when his voice is heard.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/5/" data-ref="Job 37:5 (King James Version)" data-verse-url="/bible/kjv/job/37/5/"><span class="v-num">5</span><span class="v-txt">God thundereth marvellously with his voice; great things doeth he, which we cannot comprehend.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/6/" data-ref="Job 37:6 (King James Version)" data-verse-url="/bible/kjv/job/37/6/"><span class="v-num">6</span><span class="v-txt">For he saith to the snow, Be thou on the earth; likewise to the small rain, and to the great rain of his strength.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/7/" data-ref="Job 37:7 (King James Version)" data-verse-url="/bible/kjv/job/37/7/"><span class="v-num">7</span><span class="v-txt">He sealeth up the hand of every man; that all men may know his work.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/8/" data-ref="Job 37:8 (King James Version)" data-verse-url="/bible/kjv/job/37/8/"><span class="v-num">8</span><span class="v-txt">Then the beasts go into dens, and remain in their places.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/9/" data-ref="Job 37:9 (King James Version)" data-verse-url="/bible/kjv/job/37/9/"><span class="v-num">9</span><span class="v-txt">Out of the south cometh the whirlwind: and cold out of the north.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/10/" data-ref="Job 37:10 (King James Version)" data-verse-url="/bible/kjv/job/37/10/"><span class="v-num">10</span><span class="v-txt">By the breath of God frost is given: and the breadth of the waters is straitened.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/11/" data-ref="Job 37:11 (King James Version)" data-verse-url="/bible/kjv/job/37/11/"><span class="v-num">11</span><span class="v-txt">Also by watering he wearieth the thick cloud: he scattereth his bright cloud:</span></a>
+<a class="v-row" href="/bible/kjv/job/37/12/" data-ref="Job 37:12 (King James Version)" data-verse-url="/bible/kjv/job/37/12/"><span class="v-num">12</span><span class="v-txt">And it is turned round about by his counsels: that they may do whatsoever he commandeth them upon the face of the world in the earth.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/13/" data-ref="Job 37:13 (King James Version)" data-verse-url="/bible/kjv/job/37/13/"><span class="v-num">13</span><span class="v-txt">He causeth it to come, whether for correction, or for his land, or for mercy.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/14/" data-ref="Job 37:14 (King James Version)" data-verse-url="/bible/kjv/job/37/14/"><span class="v-num">14</span><span class="v-txt">Hearken unto this, O Job: stand still, and consider the wondrous works of God.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/15/" data-ref="Job 37:15 (King James Version)" data-verse-url="/bible/kjv/job/37/15/"><span class="v-num">15</span><span class="v-txt">Dost thou know when God disposed them, and caused the light of his cloud to shine?</span></a>
+<a class="v-row" href="/bible/kjv/job/37/16/" data-ref="Job 37:16 (King James Version)" data-verse-url="/bible/kjv/job/37/16/"><span class="v-num">16</span><span class="v-txt">Dost thou know the balancings of the clouds, the wondrous works of him which is perfect in knowledge?</span></a>
+<a class="v-row" href="/bible/kjv/job/37/17/" data-ref="Job 37:17 (King James Version)" data-verse-url="/bible/kjv/job/37/17/"><span class="v-num">17</span><span class="v-txt">How thy garments are warm, when he quieteth the earth by the south wind?</span></a>
+<a class="v-row" href="/bible/kjv/job/37/18/" data-ref="Job 37:18 (King James Version)" data-verse-url="/bible/kjv/job/37/18/"><span class="v-num">18</span><span class="v-txt">Hast thou with him spread out the sky, which is strong, and as a molten looking glass?</span></a>
+<a class="v-row" href="/bible/kjv/job/37/19/" data-ref="Job 37:19 (King James Version)" data-verse-url="/bible/kjv/job/37/19/"><span class="v-num">19</span><span class="v-txt">Teach us what we shall say unto him; for we cannot order our speech by reason of darkness.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/20/" data-ref="Job 37:20 (King James Version)" data-verse-url="/bible/kjv/job/37/20/"><span class="v-num">20</span><span class="v-txt">Shall it be told him that I speak? if a man speak, surely he shall be swallowed up.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/21/" data-ref="Job 37:21 (King James Version)" data-verse-url="/bible/kjv/job/37/21/"><span class="v-num">21</span><span class="v-txt">And now men see not the bright light which is in the clouds: but the wind passeth, and cleanseth them.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/22/" data-ref="Job 37:22 (King James Version)" data-verse-url="/bible/kjv/job/37/22/"><span class="v-num">22</span><span class="v-txt">Fair weather cometh out of the north: with God is terrible majesty.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/23/" data-ref="Job 37:23 (King James Version)" data-verse-url="/bible/kjv/job/37/23/"><span class="v-num">23</span><span class="v-txt">Touching the Almighty, we cannot find him out: he is excellent in power, and in judgment, and in plenty of justice: he will not afflict.</span></a>
+<a class="v-row" href="/bible/kjv/job/37/24/" data-ref="Job 37:24 (King James Version)" data-verse-url="/bible/kjv/job/37/24/"><span class="v-num">24</span><span class="v-txt">Men do therefore fear him: he respecteth not any that are wise of heart.</span></a>
 
     
 <div class="app-cta">

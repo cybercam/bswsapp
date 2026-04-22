@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 5:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I saw in the right hand of him that sat on the throne a book written within and on the backside, sealed with seven seals.</span></div>
-<div class="v-row" data-ref="Revelation 5:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And I saw a strong angel proclaiming with a loud voice, Who is worthy to open the book, and to loose the seals thereof?</span></div>
-<div class="v-row" data-ref="Revelation 5:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And no man in heaven, nor in earth, neither under the earth, was able to open the book, neither to look thereon.</span></div>
-<div class="v-row" data-ref="Revelation 5:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I wept much, because no man was found worthy to open and to read the book, neither to look thereon.</span></div>
-<div class="v-row" data-ref="Revelation 5:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And one of the elders saith unto me, Weep not: behold, the Lion of the tribe of Juda, the Root of David, hath prevailed to open the book, and to loose the seven seals thereof.</span></div>
-<div class="v-row" data-ref="Revelation 5:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And I beheld, and, lo, in the midst of the throne and of the four beasts, and in the midst of the elders, stood a Lamb as it had been slain, having seven horns and seven eyes, which are the seven Spirits of God sent forth into all the earth.</span></div>
-<div class="v-row" data-ref="Revelation 5:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he came and took the book out of the right hand of him that sat upon the throne.</span></div>
-<div class="v-row" data-ref="Revelation 5:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when he had taken the book, the four beasts and four and twenty elders fell down before the Lamb, having every one of them harps, and golden vials full of odours, which are the prayers of saints.</span></div>
-<div class="v-row" data-ref="Revelation 5:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And they sung a new song, saying, Thou art worthy to take the book, and to open the seals thereof: for thou wast slain, and hast redeemed us to God by thy blood out of every kindred, and tongue, and people, and nation;</span></div>
-<div class="v-row" data-ref="Revelation 5:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And hast made us unto our God kings and priests: and we shall reign on the earth.</span></div>
-<div class="v-row" data-ref="Revelation 5:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And I beheld, and I heard the voice of many angels round about the throne and the beasts and the elders: and the number of them was ten thousand times ten thousand, and thousands of thousands;</span></div>
-<div class="v-row" data-ref="Revelation 5:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Saying with a loud voice, Worthy is the Lamb that was slain to receive power, and riches, and wisdom, and strength, and honour, and glory, and blessing.</span></div>
-<div class="v-row" data-ref="Revelation 5:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And every creature which is in heaven, and on the earth, and under the earth, and such as are in the sea, and all that are in them, heard I saying, Blessing, and honour, and glory, and power, be unto him that sitteth upon the throne, and unto the Lamb for ever and ever.</span></div>
-<div class="v-row" data-ref="Revelation 5:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the four beasts said, Amen. And the four and twenty elders fell down and worshipped him that liveth for ever and ever.</span></div>
+    <a class="v-row" href="/bible/kjv/revelation/5/1/" data-ref="Revelation 5:1 (King James Version)" data-verse-url="/bible/kjv/revelation/5/1/"><span class="v-num">1</span><span class="v-txt">And I saw in the right hand of him that sat on the throne a book written within and on the backside, sealed with seven seals.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/2/" data-ref="Revelation 5:2 (King James Version)" data-verse-url="/bible/kjv/revelation/5/2/"><span class="v-num">2</span><span class="v-txt">And I saw a strong angel proclaiming with a loud voice, Who is worthy to open the book, and to loose the seals thereof?</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/3/" data-ref="Revelation 5:3 (King James Version)" data-verse-url="/bible/kjv/revelation/5/3/"><span class="v-num">3</span><span class="v-txt">And no man in heaven, nor in earth, neither under the earth, was able to open the book, neither to look thereon.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/4/" data-ref="Revelation 5:4 (King James Version)" data-verse-url="/bible/kjv/revelation/5/4/"><span class="v-num">4</span><span class="v-txt">And I wept much, because no man was found worthy to open and to read the book, neither to look thereon.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/5/" data-ref="Revelation 5:5 (King James Version)" data-verse-url="/bible/kjv/revelation/5/5/"><span class="v-num">5</span><span class="v-txt">And one of the elders saith unto me, Weep not: behold, the Lion of the tribe of Juda, the Root of David, hath prevailed to open the book, and to loose the seven seals thereof.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/6/" data-ref="Revelation 5:6 (King James Version)" data-verse-url="/bible/kjv/revelation/5/6/"><span class="v-num">6</span><span class="v-txt">And I beheld, and, lo, in the midst of the throne and of the four beasts, and in the midst of the elders, stood a Lamb as it had been slain, having seven horns and seven eyes, which are the seven Spirits of God sent forth into all the earth.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/7/" data-ref="Revelation 5:7 (King James Version)" data-verse-url="/bible/kjv/revelation/5/7/"><span class="v-num">7</span><span class="v-txt">And he came and took the book out of the right hand of him that sat upon the throne.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/8/" data-ref="Revelation 5:8 (King James Version)" data-verse-url="/bible/kjv/revelation/5/8/"><span class="v-num">8</span><span class="v-txt">And when he had taken the book, the four beasts and four and twenty elders fell down before the Lamb, having every one of them harps, and golden vials full of odours, which are the prayers of saints.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/9/" data-ref="Revelation 5:9 (King James Version)" data-verse-url="/bible/kjv/revelation/5/9/"><span class="v-num">9</span><span class="v-txt">And they sung a new song, saying, Thou art worthy to take the book, and to open the seals thereof: for thou wast slain, and hast redeemed us to God by thy blood out of every kindred, and tongue, and people, and nation;</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/10/" data-ref="Revelation 5:10 (King James Version)" data-verse-url="/bible/kjv/revelation/5/10/"><span class="v-num">10</span><span class="v-txt">And hast made us unto our God kings and priests: and we shall reign on the earth.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/11/" data-ref="Revelation 5:11 (King James Version)" data-verse-url="/bible/kjv/revelation/5/11/"><span class="v-num">11</span><span class="v-txt">And I beheld, and I heard the voice of many angels round about the throne and the beasts and the elders: and the number of them was ten thousand times ten thousand, and thousands of thousands;</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/12/" data-ref="Revelation 5:12 (King James Version)" data-verse-url="/bible/kjv/revelation/5/12/"><span class="v-num">12</span><span class="v-txt">Saying with a loud voice, Worthy is the Lamb that was slain to receive power, and riches, and wisdom, and strength, and honour, and glory, and blessing.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/13/" data-ref="Revelation 5:13 (King James Version)" data-verse-url="/bible/kjv/revelation/5/13/"><span class="v-num">13</span><span class="v-txt">And every creature which is in heaven, and on the earth, and under the earth, and such as are in the sea, and all that are in them, heard I saying, Blessing, and honour, and glory, and power, be unto him that sitteth upon the throne, and unto the Lamb for ever and ever.</span></a>
+<a class="v-row" href="/bible/kjv/revelation/5/14/" data-ref="Revelation 5:14 (King James Version)" data-verse-url="/bible/kjv/revelation/5/14/"><span class="v-num">14</span><span class="v-txt">And the four beasts said, Amen. And the four and twenty elders fell down and worshipped him that liveth for ever and ever.</span></a>
 
     
 <div class="app-cta">

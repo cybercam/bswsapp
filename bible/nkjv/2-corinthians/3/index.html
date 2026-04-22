@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Corinthians 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Do we begin again to commend ourselves? Or do we need, as some [others,] epistles of commendation to you or [letters] of commendation from you?</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You are our epistle written in our hearts, known and read by all men;</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">clearly [you are] an epistle of Christ, ministered by us, written not with ink but by the Spirit of the living God, not on tablets of stone but on tablets of flesh, [that is,] of the heart.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And we have such trust through Christ toward God.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Not that we are sufficient of ourselves to think of anything as [being] from ourselves, but our sufficiency [is] from God,</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">who also made us sufficient as ministers of the new covenant, not of the letter but of the Spirit; for the letter kills, but the Spirit gives life.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But if the ministry of death, written [and] engraved on stones, was glorious, so that the children of Israel could not look steadily at the face of Moses because of the glory of his countenance, which [glory] was passing away,</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">how will the ministry of the Spirit not be more glorious?</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For if the ministry of condemnation [had] glory, the ministry of righteousness exceeds much more in glory.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For even what was made glorious had no glory in this respect, because of the glory that excels.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For if what is passing away [was] glorious, what remains [is] much more glorious.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore, since we have such hope, we use great boldness of speech --</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">unlike Moses, [who] put a veil over his face so that the children of Israel could not look steadily at the end of what was passing away.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But their minds were blinded. For until this day the same veil remains unlifted in the reading of the Old Testament, because the [veil] is taken away in Christ.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But even to this day, when Moses is read, a veil lies on their heart.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Nevertheless when one turns to the Lord, the veil is taken away.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Now the Lord is the Spirit; and where the Spirit of the Lord [is,] there [is] liberty.</span></div>
-<div class="v-row" data-ref="2 Corinthians 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But we all, with unveiled face, beholding as in a mirror the glory of the Lord, are being transformed into the same image from glory to glory, just as by the Spirit of the Lord.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-corinthians/3/1/" data-ref="2 Corinthians 3:1 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/1/"><span class="v-num">1</span><span class="v-txt">Do we begin again to commend ourselves? Or do we need, as some [others,] epistles of commendation to you or [letters] of commendation from you?</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/2/" data-ref="2 Corinthians 3:2 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/2/"><span class="v-num">2</span><span class="v-txt">You are our epistle written in our hearts, known and read by all men;</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/3/" data-ref="2 Corinthians 3:3 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/3/"><span class="v-num">3</span><span class="v-txt">clearly [you are] an epistle of Christ, ministered by us, written not with ink but by the Spirit of the living God, not on tablets of stone but on tablets of flesh, [that is,] of the heart.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/4/" data-ref="2 Corinthians 3:4 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/4/"><span class="v-num">4</span><span class="v-txt">And we have such trust through Christ toward God.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/5/" data-ref="2 Corinthians 3:5 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/5/"><span class="v-num">5</span><span class="v-txt">Not that we are sufficient of ourselves to think of anything as [being] from ourselves, but our sufficiency [is] from God,</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/6/" data-ref="2 Corinthians 3:6 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/6/"><span class="v-num">6</span><span class="v-txt">who also made us sufficient as ministers of the new covenant, not of the letter but of the Spirit; for the letter kills, but the Spirit gives life.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/7/" data-ref="2 Corinthians 3:7 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/7/"><span class="v-num">7</span><span class="v-txt">But if the ministry of death, written [and] engraved on stones, was glorious, so that the children of Israel could not look steadily at the face of Moses because of the glory of his countenance, which [glory] was passing away,</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/8/" data-ref="2 Corinthians 3:8 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/8/"><span class="v-num">8</span><span class="v-txt">how will the ministry of the Spirit not be more glorious?</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/9/" data-ref="2 Corinthians 3:9 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/9/"><span class="v-num">9</span><span class="v-txt">For if the ministry of condemnation [had] glory, the ministry of righteousness exceeds much more in glory.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/10/" data-ref="2 Corinthians 3:10 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/10/"><span class="v-num">10</span><span class="v-txt">For even what was made glorious had no glory in this respect, because of the glory that excels.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/11/" data-ref="2 Corinthians 3:11 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/11/"><span class="v-num">11</span><span class="v-txt">For if what is passing away [was] glorious, what remains [is] much more glorious.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/12/" data-ref="2 Corinthians 3:12 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/12/"><span class="v-num">12</span><span class="v-txt">Therefore, since we have such hope, we use great boldness of speech --</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/13/" data-ref="2 Corinthians 3:13 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/13/"><span class="v-num">13</span><span class="v-txt">unlike Moses, [who] put a veil over his face so that the children of Israel could not look steadily at the end of what was passing away.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/14/" data-ref="2 Corinthians 3:14 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/14/"><span class="v-num">14</span><span class="v-txt">But their minds were blinded. For until this day the same veil remains unlifted in the reading of the Old Testament, because the [veil] is taken away in Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/15/" data-ref="2 Corinthians 3:15 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/15/"><span class="v-num">15</span><span class="v-txt">But even to this day, when Moses is read, a veil lies on their heart.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/16/" data-ref="2 Corinthians 3:16 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/16/"><span class="v-num">16</span><span class="v-txt">Nevertheless when one turns to the Lord, the veil is taken away.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/17/" data-ref="2 Corinthians 3:17 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/17/"><span class="v-num">17</span><span class="v-txt">Now the Lord is the Spirit; and where the Spirit of the Lord [is,] there [is] liberty.</span></a>
+<a class="v-row" href="/bible/nkjv/2-corinthians/3/18/" data-ref="2 Corinthians 3:18 (New King James Version)" data-verse-url="/bible/nkjv/2-corinthians/3/18/"><span class="v-num">18</span><span class="v-txt">But we all, with unveiled face, beholding as in a mirror the glory of the Lord, are being transformed into the same image from glory to glory, just as by the Spirit of the Lord.</span></a>
 
     
 <div class="app-cta">

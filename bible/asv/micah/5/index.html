@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Micah 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now shalt thou gather thyself in troops, O daughter of troops: he hath laid siege against us; they shall smite the judge of Israel with a rod upon the cheek.</span></div>
-<div class="v-row" data-ref="Micah 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">But thou, Beth-lehem Ephrathah, which art little to be among the thousands of Judah, out of thee shall one come forth unto me that is to be ruler in Israel; whose goings forth are from of old, from everlasting.</span></div>
-<div class="v-row" data-ref="Micah 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Therefore will he give them up, until the time that she who travaileth hath brought forth: then the residue of his brethren shall return unto the children of Israel.</span></div>
-<div class="v-row" data-ref="Micah 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he shall stand, and shall feed [his flock] in the strength of Jehovah, in the majesty of the name of Jehovah his God: and they shall abide; for now shall he be great unto the ends of the earth.</span></div>
-<div class="v-row" data-ref="Micah 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And this [man] shall be [our] peace. When the Assyrian shall come into our land, and when he shall tread in our palaces, then shall we raise against him seven shepherds, and eight principal men.</span></div>
-<div class="v-row" data-ref="Micah 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And they shall waste the land of Assyria with the sword, and the land of Nimrod in the entrances thereof: and he shall deliver us from the Assyrian, when he cometh into our land, and when he treadeth within our border.</span></div>
-<div class="v-row" data-ref="Micah 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the remnant of Jacob shall be in the midst of many peoples as dew from Jehovah, as showers upon the grass, that tarry not for man, nor wait for the sons of men.</span></div>
-<div class="v-row" data-ref="Micah 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the remnant of Jacob shall be among the nations, in the midst of many peoples, as a lion among the beasts of the forest, as a young lion among the flocks of sheep; who, if he go through, treadeth down and teareth in pieces, and there is none to deliver.</span></div>
-<div class="v-row" data-ref="Micah 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let thy hand be lifted up above thine adversaries, and let all thine enemies be cut off.</span></div>
-<div class="v-row" data-ref="Micah 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And it shall come to pass in that day, saith Jehovah, that I will cut off thy horses out of the midst of thee, and will destroy thy chariots:</span></div>
-<div class="v-row" data-ref="Micah 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">and I will cut off the cities of thy land, and will throw down all thy strongholds.</span></div>
-<div class="v-row" data-ref="Micah 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I will cut off witchcrafts out of thy hand; and thou shalt have no [more] soothsayers:</span></div>
-<div class="v-row" data-ref="Micah 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and I will cut off thy graven images and thy pillars out of the midst of thee; and thou shalt no more worship the work of thy hands;</span></div>
-<div class="v-row" data-ref="Micah 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">and I will pluck up thine Asherim out of the midst of thee; and I will destroy thy cities.</span></div>
-<div class="v-row" data-ref="Micah 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And I will execute vengeance in anger and wrath upon the nations which hearkened not.</span></div>
+    <a class="v-row" href="/bible/asv/micah/5/1/" data-ref="Micah 5:1 (American Standard Version)" data-verse-url="/bible/asv/micah/5/1/"><span class="v-num">1</span><span class="v-txt">Now shalt thou gather thyself in troops, O daughter of troops: he hath laid siege against us; they shall smite the judge of Israel with a rod upon the cheek.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/2/" data-ref="Micah 5:2 (American Standard Version)" data-verse-url="/bible/asv/micah/5/2/"><span class="v-num">2</span><span class="v-txt">But thou, Beth-lehem Ephrathah, which art little to be among the thousands of Judah, out of thee shall one come forth unto me that is to be ruler in Israel; whose goings forth are from of old, from everlasting.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/3/" data-ref="Micah 5:3 (American Standard Version)" data-verse-url="/bible/asv/micah/5/3/"><span class="v-num">3</span><span class="v-txt">Therefore will he give them up, until the time that she who travaileth hath brought forth: then the residue of his brethren shall return unto the children of Israel.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/4/" data-ref="Micah 5:4 (American Standard Version)" data-verse-url="/bible/asv/micah/5/4/"><span class="v-num">4</span><span class="v-txt">And he shall stand, and shall feed [his flock] in the strength of Jehovah, in the majesty of the name of Jehovah his God: and they shall abide; for now shall he be great unto the ends of the earth.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/5/" data-ref="Micah 5:5 (American Standard Version)" data-verse-url="/bible/asv/micah/5/5/"><span class="v-num">5</span><span class="v-txt">And this [man] shall be [our] peace. When the Assyrian shall come into our land, and when he shall tread in our palaces, then shall we raise against him seven shepherds, and eight principal men.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/6/" data-ref="Micah 5:6 (American Standard Version)" data-verse-url="/bible/asv/micah/5/6/"><span class="v-num">6</span><span class="v-txt">And they shall waste the land of Assyria with the sword, and the land of Nimrod in the entrances thereof: and he shall deliver us from the Assyrian, when he cometh into our land, and when he treadeth within our border.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/7/" data-ref="Micah 5:7 (American Standard Version)" data-verse-url="/bible/asv/micah/5/7/"><span class="v-num">7</span><span class="v-txt">And the remnant of Jacob shall be in the midst of many peoples as dew from Jehovah, as showers upon the grass, that tarry not for man, nor wait for the sons of men.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/8/" data-ref="Micah 5:8 (American Standard Version)" data-verse-url="/bible/asv/micah/5/8/"><span class="v-num">8</span><span class="v-txt">And the remnant of Jacob shall be among the nations, in the midst of many peoples, as a lion among the beasts of the forest, as a young lion among the flocks of sheep; who, if he go through, treadeth down and teareth in pieces, and there is none to deliver.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/9/" data-ref="Micah 5:9 (American Standard Version)" data-verse-url="/bible/asv/micah/5/9/"><span class="v-num">9</span><span class="v-txt">Let thy hand be lifted up above thine adversaries, and let all thine enemies be cut off.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/10/" data-ref="Micah 5:10 (American Standard Version)" data-verse-url="/bible/asv/micah/5/10/"><span class="v-num">10</span><span class="v-txt">And it shall come to pass in that day, saith Jehovah, that I will cut off thy horses out of the midst of thee, and will destroy thy chariots:</span></a>
+<a class="v-row" href="/bible/asv/micah/5/11/" data-ref="Micah 5:11 (American Standard Version)" data-verse-url="/bible/asv/micah/5/11/"><span class="v-num">11</span><span class="v-txt">and I will cut off the cities of thy land, and will throw down all thy strongholds.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/12/" data-ref="Micah 5:12 (American Standard Version)" data-verse-url="/bible/asv/micah/5/12/"><span class="v-num">12</span><span class="v-txt">And I will cut off witchcrafts out of thy hand; and thou shalt have no [more] soothsayers:</span></a>
+<a class="v-row" href="/bible/asv/micah/5/13/" data-ref="Micah 5:13 (American Standard Version)" data-verse-url="/bible/asv/micah/5/13/"><span class="v-num">13</span><span class="v-txt">and I will cut off thy graven images and thy pillars out of the midst of thee; and thou shalt no more worship the work of thy hands;</span></a>
+<a class="v-row" href="/bible/asv/micah/5/14/" data-ref="Micah 5:14 (American Standard Version)" data-verse-url="/bible/asv/micah/5/14/"><span class="v-num">14</span><span class="v-txt">and I will pluck up thine Asherim out of the midst of thee; and I will destroy thy cities.</span></a>
+<a class="v-row" href="/bible/asv/micah/5/15/" data-ref="Micah 5:15 (American Standard Version)" data-verse-url="/bible/asv/micah/5/15/"><span class="v-num">15</span><span class="v-txt">And I will execute vengeance in anger and wrath upon the nations which hearkened not.</span></a>
 
     
 <div class="app-cta">

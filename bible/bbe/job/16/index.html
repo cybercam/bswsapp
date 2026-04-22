@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 16:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></div>
-<div class="v-row" data-ref="Job 16:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Such things have frequently come to my ears: you are comforters who only give trouble.</span></div>
-<div class="v-row" data-ref="Job 16:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">May words which are like the wind be stopped? or what is troubling you to make answer to them?</span></div>
-<div class="v-row" data-ref="Job 16:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">It would not be hard for me to say such things if your souls were in my soul's place; joining words together against you, and shaking my head at you:</span></div>
-<div class="v-row" data-ref="Job 16:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I might give you strength with my mouth, and not keep back the comfort of my lips.</span></div>
-<div class="v-row" data-ref="Job 16:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If I say what is in my mind, my pain becomes no less: and if I keep quiet, how much of it goes from me?</span></div>
-<div class="v-row" data-ref="Job 16:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But now he has overcome me with weariness and fear, and I am in the grip of all my trouble.</span></div>
-<div class="v-row" data-ref="Job 16:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">It has come up as a witness against me, and the wasting of my flesh makes answer to my face.</span></div>
-<div class="v-row" data-ref="Job 16:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I am broken by his wrath, and his hate has gone after me; he has made his teeth sharp against me: my haters are looking on me with cruel eyes;</span></div>
-<div class="v-row" data-ref="Job 16:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Their mouths are open wide against me; the blows of his bitter words are falling on my face; all of them come together in a mass against me.</span></div>
-<div class="v-row" data-ref="Job 16:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">God gives me over to the power of sinners, sending me violently into the hands of evil-doers.</span></div>
-<div class="v-row" data-ref="Job 16:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I was in comfort, but I have been broken up by his hands; he has taken me by the neck, shaking me to bits; he has put me up as a mark for his arrows.</span></div>
-<div class="v-row" data-ref="Job 16:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">His bowmen come round about me; their arrows go through my body without mercy; my life is drained out on the earth.</span></div>
-<div class="v-row" data-ref="Job 16:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I am broken with wound after wound; he comes rushing on me like a man of war.</span></div>
-<div class="v-row" data-ref="Job 16:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I have made haircloth the clothing of my skin, and my horn is rolled in the dust.</span></div>
-<div class="v-row" data-ref="Job 16:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">My face is red with weeping, and my eyes are becoming dark;</span></div>
-<div class="v-row" data-ref="Job 16:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Though my hands have done no violent acts, and my prayer is clean.</span></div>
-<div class="v-row" data-ref="Job 16:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">O earth, let not my blood be covered, and let my cry have no resting-place!</span></div>
-<div class="v-row" data-ref="Job 16:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Even now my witness is in heaven, and the supporter of my cause is on high.</span></div>
-<div class="v-row" data-ref="Job 16:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My friends make sport of me; to God my eyes are weeping,</span></div>
-<div class="v-row" data-ref="Job 16:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">So that he may give decision for a man in his cause with God, and between a son of man and his neighbour.</span></div>
-<div class="v-row" data-ref="Job 16:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For in a short time I will take the journey from which I will not come back.</span></div>
+    <a class="v-row" href="/bible/bbe/job/16/1/" data-ref="Job 16:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/1/"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/16/2/" data-ref="Job 16:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/2/"><span class="v-num">2</span><span class="v-txt">Such things have frequently come to my ears: you are comforters who only give trouble.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/3/" data-ref="Job 16:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/3/"><span class="v-num">3</span><span class="v-txt">May words which are like the wind be stopped? or what is troubling you to make answer to them?</span></a>
+<a class="v-row" href="/bible/bbe/job/16/4/" data-ref="Job 16:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/4/"><span class="v-num">4</span><span class="v-txt">It would not be hard for me to say such things if your souls were in my soul's place; joining words together against you, and shaking my head at you:</span></a>
+<a class="v-row" href="/bible/bbe/job/16/5/" data-ref="Job 16:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/5/"><span class="v-num">5</span><span class="v-txt">I might give you strength with my mouth, and not keep back the comfort of my lips.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/6/" data-ref="Job 16:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/6/"><span class="v-num">6</span><span class="v-txt">If I say what is in my mind, my pain becomes no less: and if I keep quiet, how much of it goes from me?</span></a>
+<a class="v-row" href="/bible/bbe/job/16/7/" data-ref="Job 16:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/7/"><span class="v-num">7</span><span class="v-txt">But now he has overcome me with weariness and fear, and I am in the grip of all my trouble.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/8/" data-ref="Job 16:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/8/"><span class="v-num">8</span><span class="v-txt">It has come up as a witness against me, and the wasting of my flesh makes answer to my face.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/9/" data-ref="Job 16:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/9/"><span class="v-num">9</span><span class="v-txt">I am broken by his wrath, and his hate has gone after me; he has made his teeth sharp against me: my haters are looking on me with cruel eyes;</span></a>
+<a class="v-row" href="/bible/bbe/job/16/10/" data-ref="Job 16:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/10/"><span class="v-num">10</span><span class="v-txt">Their mouths are open wide against me; the blows of his bitter words are falling on my face; all of them come together in a mass against me.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/11/" data-ref="Job 16:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/11/"><span class="v-num">11</span><span class="v-txt">God gives me over to the power of sinners, sending me violently into the hands of evil-doers.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/12/" data-ref="Job 16:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/12/"><span class="v-num">12</span><span class="v-txt">I was in comfort, but I have been broken up by his hands; he has taken me by the neck, shaking me to bits; he has put me up as a mark for his arrows.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/13/" data-ref="Job 16:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/13/"><span class="v-num">13</span><span class="v-txt">His bowmen come round about me; their arrows go through my body without mercy; my life is drained out on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/14/" data-ref="Job 16:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/14/"><span class="v-num">14</span><span class="v-txt">I am broken with wound after wound; he comes rushing on me like a man of war.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/15/" data-ref="Job 16:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/15/"><span class="v-num">15</span><span class="v-txt">I have made haircloth the clothing of my skin, and my horn is rolled in the dust.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/16/" data-ref="Job 16:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/16/"><span class="v-num">16</span><span class="v-txt">My face is red with weeping, and my eyes are becoming dark;</span></a>
+<a class="v-row" href="/bible/bbe/job/16/17/" data-ref="Job 16:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/17/"><span class="v-num">17</span><span class="v-txt">Though my hands have done no violent acts, and my prayer is clean.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/18/" data-ref="Job 16:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/18/"><span class="v-num">18</span><span class="v-txt">O earth, let not my blood be covered, and let my cry have no resting-place!</span></a>
+<a class="v-row" href="/bible/bbe/job/16/19/" data-ref="Job 16:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/19/"><span class="v-num">19</span><span class="v-txt">Even now my witness is in heaven, and the supporter of my cause is on high.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/20/" data-ref="Job 16:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/20/"><span class="v-num">20</span><span class="v-txt">My friends make sport of me; to God my eyes are weeping,</span></a>
+<a class="v-row" href="/bible/bbe/job/16/21/" data-ref="Job 16:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/21/"><span class="v-num">21</span><span class="v-txt">So that he may give decision for a man in his cause with God, and between a son of man and his neighbour.</span></a>
+<a class="v-row" href="/bible/bbe/job/16/22/" data-ref="Job 16:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/16/22/"><span class="v-num">22</span><span class="v-txt">For in a short time I will take the journey from which I will not come back.</span></a>
 
     
 <div class="app-cta">

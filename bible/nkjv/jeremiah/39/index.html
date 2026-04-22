@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 39</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 39:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In the ninth year of Zedekiah king of Judah, in the tenth month, Nebuchadnezzar king of Babylon and all his army came against Jerusalem, and besieged it.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In the eleventh year of Zedekiah, in the fourth month, on the ninth [day] of the month, the city was penetrated.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then all the princes of the king of Babylon came in and sat in the Middle Gate: Nergal-Sharezer, Samgar-Nebo, Sarsechim, Rabsaris, Nergal-Sarezer, Rabmag, with the rest of the princes of the king of Babylon.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So it was, when Zedekiah the king of Judah and all the men of war saw them, that they fled and went out of the city by night, by way of the king's garden, by the gate between the two walls. And he went out by way of the plain.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But the Chaldean army pursued them and overtook Zedekiah in the plains of Jericho. And when they had captured him, they brought him up to Nebuchadnezzar king of Babylon, to Riblah in the land of Hamath, where he pronounced judgment on him.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then the king of Babylon killed the sons of Zedekiah before his eyes in Riblah; the king of Babylon also killed all the nobles of Judah.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Moreover he put out Zedekiah's eyes, and bound him with bronze fetters to carry him off to Babylon.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the Chaldeans burned the king's house and the houses of the people with fire, and broke down the walls of Jerusalem.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then Nebuzaradan the captain of the guard carried away captive to Babylon the remnant of the people who remained in the city and those who defected to him, with the rest of the people who remained.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But Nebuzaradan the captain of the guard left in the land of Judah the poor people, who had nothing, and gave them vineyards and fields at the same time.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now Nebuchadnezzar king of Babylon gave charge concerning Jeremiah to Nebuzaradan the captain of the guard, saying,</span></div>
-<div class="v-row" data-ref="Jeremiah 39:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Take him and look after him, and do him no harm; but do to him just as he says to you."</span></div>
-<div class="v-row" data-ref="Jeremiah 39:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So Nebuzaradan the captain of the guard sent Nebushasban, Rabsaris, Nergal-Sharezer, Rabmag, and all the king of Babylon's chief officers;</span></div>
-<div class="v-row" data-ref="Jeremiah 39:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">then they sent [someone] to take Jeremiah from the court of the prison, and committed him to Gedaliah the son of Ahikam, the son of Shaphan, that he should take him home. So he dwelt among the people.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Meanwhile the word of the LORD had come to Jeremiah while he was shut up in the court of the prison, saying,</span></div>
-<div class="v-row" data-ref="Jeremiah 39:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"Go and speak to Ebed-Melech the Ethiopian, saying, 'Thus says the LORD of hosts, the God of Israel: "Behold, I will bring My words upon this city for adversity and not for good, and they shall be [performed] in that day before you.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"But I will deliver you in that day," says the LORD, "and you shall not be given into the hand of the men of whom you [are] afraid.</span></div>
-<div class="v-row" data-ref="Jeremiah 39:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">"For I will surely deliver you, and you shall not fall by the sword; but your life shall be as a prize to you, because you have put your trust in Me," says the LORD.' "</span></div>
+    <a class="v-row" href="/bible/nkjv/jeremiah/39/1/" data-ref="Jeremiah 39:1 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/1/"><span class="v-num">1</span><span class="v-txt">In the ninth year of Zedekiah king of Judah, in the tenth month, Nebuchadnezzar king of Babylon and all his army came against Jerusalem, and besieged it.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/2/" data-ref="Jeremiah 39:2 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/2/"><span class="v-num">2</span><span class="v-txt">In the eleventh year of Zedekiah, in the fourth month, on the ninth [day] of the month, the city was penetrated.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/3/" data-ref="Jeremiah 39:3 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/3/"><span class="v-num">3</span><span class="v-txt">Then all the princes of the king of Babylon came in and sat in the Middle Gate: Nergal-Sharezer, Samgar-Nebo, Sarsechim, Rabsaris, Nergal-Sarezer, Rabmag, with the rest of the princes of the king of Babylon.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/4/" data-ref="Jeremiah 39:4 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/4/"><span class="v-num">4</span><span class="v-txt">So it was, when Zedekiah the king of Judah and all the men of war saw them, that they fled and went out of the city by night, by way of the king's garden, by the gate between the two walls. And he went out by way of the plain.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/5/" data-ref="Jeremiah 39:5 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/5/"><span class="v-num">5</span><span class="v-txt">But the Chaldean army pursued them and overtook Zedekiah in the plains of Jericho. And when they had captured him, they brought him up to Nebuchadnezzar king of Babylon, to Riblah in the land of Hamath, where he pronounced judgment on him.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/6/" data-ref="Jeremiah 39:6 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/6/"><span class="v-num">6</span><span class="v-txt">Then the king of Babylon killed the sons of Zedekiah before his eyes in Riblah; the king of Babylon also killed all the nobles of Judah.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/7/" data-ref="Jeremiah 39:7 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/7/"><span class="v-num">7</span><span class="v-txt">Moreover he put out Zedekiah's eyes, and bound him with bronze fetters to carry him off to Babylon.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/8/" data-ref="Jeremiah 39:8 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/8/"><span class="v-num">8</span><span class="v-txt">And the Chaldeans burned the king's house and the houses of the people with fire, and broke down the walls of Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/9/" data-ref="Jeremiah 39:9 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/9/"><span class="v-num">9</span><span class="v-txt">Then Nebuzaradan the captain of the guard carried away captive to Babylon the remnant of the people who remained in the city and those who defected to him, with the rest of the people who remained.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/10/" data-ref="Jeremiah 39:10 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/10/"><span class="v-num">10</span><span class="v-txt">But Nebuzaradan the captain of the guard left in the land of Judah the poor people, who had nothing, and gave them vineyards and fields at the same time.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/11/" data-ref="Jeremiah 39:11 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/11/"><span class="v-num">11</span><span class="v-txt">Now Nebuchadnezzar king of Babylon gave charge concerning Jeremiah to Nebuzaradan the captain of the guard, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/12/" data-ref="Jeremiah 39:12 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/12/"><span class="v-num">12</span><span class="v-txt">"Take him and look after him, and do him no harm; but do to him just as he says to you."</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/13/" data-ref="Jeremiah 39:13 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/13/"><span class="v-num">13</span><span class="v-txt">So Nebuzaradan the captain of the guard sent Nebushasban, Rabsaris, Nergal-Sharezer, Rabmag, and all the king of Babylon's chief officers;</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/14/" data-ref="Jeremiah 39:14 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/14/"><span class="v-num">14</span><span class="v-txt">then they sent [someone] to take Jeremiah from the court of the prison, and committed him to Gedaliah the son of Ahikam, the son of Shaphan, that he should take him home. So he dwelt among the people.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/15/" data-ref="Jeremiah 39:15 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/15/"><span class="v-num">15</span><span class="v-txt">Meanwhile the word of the LORD had come to Jeremiah while he was shut up in the court of the prison, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/16/" data-ref="Jeremiah 39:16 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/16/"><span class="v-num">16</span><span class="v-txt">"Go and speak to Ebed-Melech the Ethiopian, saying, 'Thus says the LORD of hosts, the God of Israel: "Behold, I will bring My words upon this city for adversity and not for good, and they shall be [performed] in that day before you.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/17/" data-ref="Jeremiah 39:17 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/17/"><span class="v-num">17</span><span class="v-txt">"But I will deliver you in that day," says the LORD, "and you shall not be given into the hand of the men of whom you [are] afraid.</span></a>
+<a class="v-row" href="/bible/nkjv/jeremiah/39/18/" data-ref="Jeremiah 39:18 (New King James Version)" data-verse-url="/bible/nkjv/jeremiah/39/18/"><span class="v-num">18</span><span class="v-txt">"For I will surely deliver you, and you shall not fall by the sword; but your life shall be as a prize to you, because you have put your trust in Me," says the LORD.' "</span></a>
 
     
 <div class="app-cta">

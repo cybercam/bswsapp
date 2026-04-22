@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 50</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 50:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thus says the LORD: "Where [is] the certificate of your mother's divorce, Whom I have put away? Or which of My creditors [is it] to whom I have sold you? For your iniquities you have sold yourselves, And for your transgressions your mother has been put away.</span></div>
-<div class="v-row" data-ref="Isaiah 50:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Why, when I came, [was there] no man? [Why,] when I called, [was there] none to answer? Is My hand shortened at all that it cannot redeem? Or have I no power to deliver? Indeed with My rebuke I dry up the sea, I make the rivers a wilderness; Their fish stink because [there is] no water, And die of thirst.</span></div>
-<div class="v-row" data-ref="Isaiah 50:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I clothe the heavens with blackness, And I make sackcloth their covering."</span></div>
-<div class="v-row" data-ref="Isaiah 50:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">" The Lord GOD has given Me The tongue of the learned, That I should know how to speak A word in season to [him who is] weary. He awakens Me morning by morning, He awakens My ear To hear as the learned.</span></div>
-<div class="v-row" data-ref="Isaiah 50:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The Lord GOD has opened My ear; And I was not rebellious, Nor did I turn away.</span></div>
-<div class="v-row" data-ref="Isaiah 50:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I gave My back to those who struck [Me,] And My cheeks to those who plucked out the beard; I did not hide My face from shame and spitting.</span></div>
-<div class="v-row" data-ref="Isaiah 50:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">" For the Lord GOD will help Me; Therefore I will not be disgraced; Therefore I have set My face like a flint, And I know that I will not be ashamed.</span></div>
-<div class="v-row" data-ref="Isaiah 50:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">[He is] near who justifies Me; Who will contend with Me? Let us stand together. Who [is] My adversary? Let him come near Me.</span></div>
-<div class="v-row" data-ref="Isaiah 50:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Surely the Lord GOD will help Me; Who [is] he [who] will condemn Me? Indeed they will all grow old like a garment; The moth will eat them up.</span></div>
-<div class="v-row" data-ref="Isaiah 50:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">" Who among you fears the LORD? Who obeys the voice of His Servant? Who walks in darkness And has no light? Let him trust in the name of the LORD And rely upon his God.</span></div>
-<div class="v-row" data-ref="Isaiah 50:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Look, all you who kindle a fire, Who encircle [yourselves] with sparks: Walk in the light of your fire and in the sparks you have kindled -- This you shall have from My hand: You shall lie down in torment.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/50/1/" data-ref="Isaiah 50:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/1/"><span class="v-num">1</span><span class="v-txt">Thus says the LORD: "Where [is] the certificate of your mother's divorce, Whom I have put away? Or which of My creditors [is it] to whom I have sold you? For your iniquities you have sold yourselves, And for your transgressions your mother has been put away.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/2/" data-ref="Isaiah 50:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/2/"><span class="v-num">2</span><span class="v-txt">Why, when I came, [was there] no man? [Why,] when I called, [was there] none to answer? Is My hand shortened at all that it cannot redeem? Or have I no power to deliver? Indeed with My rebuke I dry up the sea, I make the rivers a wilderness; Their fish stink because [there is] no water, And die of thirst.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/3/" data-ref="Isaiah 50:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/3/"><span class="v-num">3</span><span class="v-txt">I clothe the heavens with blackness, And I make sackcloth their covering."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/4/" data-ref="Isaiah 50:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/4/"><span class="v-num">4</span><span class="v-txt">" The Lord GOD has given Me The tongue of the learned, That I should know how to speak A word in season to [him who is] weary. He awakens Me morning by morning, He awakens My ear To hear as the learned.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/5/" data-ref="Isaiah 50:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/5/"><span class="v-num">5</span><span class="v-txt">The Lord GOD has opened My ear; And I was not rebellious, Nor did I turn away.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/6/" data-ref="Isaiah 50:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/6/"><span class="v-num">6</span><span class="v-txt">I gave My back to those who struck [Me,] And My cheeks to those who plucked out the beard; I did not hide My face from shame and spitting.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/7/" data-ref="Isaiah 50:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/7/"><span class="v-num">7</span><span class="v-txt">" For the Lord GOD will help Me; Therefore I will not be disgraced; Therefore I have set My face like a flint, And I know that I will not be ashamed.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/8/" data-ref="Isaiah 50:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/8/"><span class="v-num">8</span><span class="v-txt">[He is] near who justifies Me; Who will contend with Me? Let us stand together. Who [is] My adversary? Let him come near Me.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/9/" data-ref="Isaiah 50:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/9/"><span class="v-num">9</span><span class="v-txt">Surely the Lord GOD will help Me; Who [is] he [who] will condemn Me? Indeed they will all grow old like a garment; The moth will eat them up.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/10/" data-ref="Isaiah 50:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/10/"><span class="v-num">10</span><span class="v-txt">" Who among you fears the LORD? Who obeys the voice of His Servant? Who walks in darkness And has no light? Let him trust in the name of the LORD And rely upon his God.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/50/11/" data-ref="Isaiah 50:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/50/11/"><span class="v-num">11</span><span class="v-txt">Look, all you who kindle a fire, Who encircle [yourselves] with sparks: Walk in the light of your fire and in the sparks you have kindled -- This you shall have from My hand: You shall lie down in torment.</span></a>
 
     
 <div class="app-cta">

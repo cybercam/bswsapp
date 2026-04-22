@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Ruth 4:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now Boaz went up to the gate, and sat him down there: and, behold, the near kinsman of whom Boaz spoke came by; to whom he said, Ho, such a one! turn aside, sit down here. He turned aside, and sat down.</span></div>
-<div class="v-row" data-ref="Ruth 4:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He took ten men of the elders of the city, and said, Sit you down here. They sat down.</span></div>
-<div class="v-row" data-ref="Ruth 4:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He said to the near kinsman, Naomi, who has come back out of the country of Moab, is selling the parcel of land, which was our brother Elimelech's:</span></div>
-<div class="v-row" data-ref="Ruth 4:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I thought to disclose it to you, saying, Buy it before those who sit here, and before the elders of my people. If you will redeem it, redeem it: but if you will not redeem it, then tell me, that I may know; for there is none to redeem it besides you; and I am after you. He said, I will redeem it.</span></div>
-<div class="v-row" data-ref="Ruth 4:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then said Boaz, What day you buy the field of the hand of Naomi, you must buy it also of Ruth the Moabitess, the wife of the dead, to raise up the name of the dead on his inheritance.</span></div>
-<div class="v-row" data-ref="Ruth 4:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The near kinsman said, I can't redeem it for myself, lest I mar my own inheritance: take my right of redemption on you; for I can't redeem it.</span></div>
-<div class="v-row" data-ref="Ruth 4:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now this was the custom in former time in Israel concerning redeeming and concerning exchanging, to confirm all things: a man drew off his shoe, and gave it to his neighbor; and this was the manner of attestation in Israel.</span></div>
-<div class="v-row" data-ref="Ruth 4:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">So the near kinsman said to Boaz, Buy it for yourself. He drew off his shoe.</span></div>
-<div class="v-row" data-ref="Ruth 4:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Boaz said to the elders, and to all the people, You are witnesses this day, that I have bought all that was Elimelech's, and all that was Chilion's and Mahlon's, of the hand of Naomi.</span></div>
-<div class="v-row" data-ref="Ruth 4:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Moreover Ruth the Moabitess, the wife of Mahlon, have I purchased to be my wife, to raise up the name of the dead on his inheritance, that the name of the dead not be cut off from among his brothers, and from the gate of his place: you are witnesses this day.</span></div>
-<div class="v-row" data-ref="Ruth 4:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">All the people who were in the gate, and the elders, said, We are witnesses. Yahweh make the woman who has come into your house like Rachel and like Leah, which two built the house of Israel: and do you worthily in Ephrathah, and be famous in Bethlehem:</span></div>
-<div class="v-row" data-ref="Ruth 4:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">and let your house be like the house of Perez, whom Tamar bore to Judah, of the seed which Yahweh shall give you of this young woman.</span></div>
-<div class="v-row" data-ref="Ruth 4:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So Boaz took Ruth, and she became his wife; and he went in to her, and Yahweh gave her conception, and she bore a son.</span></div>
-<div class="v-row" data-ref="Ruth 4:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The women said to Naomi, Blessed be Yahweh, who has not left you this day without a near kinsman; and let his name be famous in Israel.</span></div>
-<div class="v-row" data-ref="Ruth 4:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He shall be to you a restorer of life, and sustain you in your old age, for your daughter-in-law, who loves you, who is better to you than seven sons, has borne him.</span></div>
-<div class="v-row" data-ref="Ruth 4:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Naomi took the child, and laid it in her bosom, and became nurse to it.</span></div>
-<div class="v-row" data-ref="Ruth 4:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The women her neighbors gave it a name, saying, There is a son born to Naomi; and they named him Obed: he is the father of Jesse, the father of David.</span></div>
-<div class="v-row" data-ref="Ruth 4:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now this is the history of the generations of Perez: Perez became the father of Hezron,</span></div>
-<div class="v-row" data-ref="Ruth 4:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and Hezron became the father of Ram, and Ram became the father of Amminadab,</span></div>
-<div class="v-row" data-ref="Ruth 4:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">and Amminadab became the father of Nahshon, and Nahshon became the father of Salmon,</span></div>
-<div class="v-row" data-ref="Ruth 4:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">and Salmon became the father of Boaz, and Boaz became the father of Obed,</span></div>
-<div class="v-row" data-ref="Ruth 4:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">and Obed became the father of Jesse, and Jesse became the father of David.</span></div>
+    <a class="v-row" href="/bible/web/ruth/4/1/" data-ref="Ruth 4:1 (World English Bible)" data-verse-url="/bible/web/ruth/4/1/"><span class="v-num">1</span><span class="v-txt">Now Boaz went up to the gate, and sat him down there: and, behold, the near kinsman of whom Boaz spoke came by; to whom he said, Ho, such a one! turn aside, sit down here. He turned aside, and sat down.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/2/" data-ref="Ruth 4:2 (World English Bible)" data-verse-url="/bible/web/ruth/4/2/"><span class="v-num">2</span><span class="v-txt">He took ten men of the elders of the city, and said, Sit you down here. They sat down.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/3/" data-ref="Ruth 4:3 (World English Bible)" data-verse-url="/bible/web/ruth/4/3/"><span class="v-num">3</span><span class="v-txt">He said to the near kinsman, Naomi, who has come back out of the country of Moab, is selling the parcel of land, which was our brother Elimelech's:</span></a>
+<a class="v-row" href="/bible/web/ruth/4/4/" data-ref="Ruth 4:4 (World English Bible)" data-verse-url="/bible/web/ruth/4/4/"><span class="v-num">4</span><span class="v-txt">I thought to disclose it to you, saying, Buy it before those who sit here, and before the elders of my people. If you will redeem it, redeem it: but if you will not redeem it, then tell me, that I may know; for there is none to redeem it besides you; and I am after you. He said, I will redeem it.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/5/" data-ref="Ruth 4:5 (World English Bible)" data-verse-url="/bible/web/ruth/4/5/"><span class="v-num">5</span><span class="v-txt">Then said Boaz, What day you buy the field of the hand of Naomi, you must buy it also of Ruth the Moabitess, the wife of the dead, to raise up the name of the dead on his inheritance.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/6/" data-ref="Ruth 4:6 (World English Bible)" data-verse-url="/bible/web/ruth/4/6/"><span class="v-num">6</span><span class="v-txt">The near kinsman said, I can't redeem it for myself, lest I mar my own inheritance: take my right of redemption on you; for I can't redeem it.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/7/" data-ref="Ruth 4:7 (World English Bible)" data-verse-url="/bible/web/ruth/4/7/"><span class="v-num">7</span><span class="v-txt">Now this was the custom in former time in Israel concerning redeeming and concerning exchanging, to confirm all things: a man drew off his shoe, and gave it to his neighbor; and this was the manner of attestation in Israel.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/8/" data-ref="Ruth 4:8 (World English Bible)" data-verse-url="/bible/web/ruth/4/8/"><span class="v-num">8</span><span class="v-txt">So the near kinsman said to Boaz, Buy it for yourself. He drew off his shoe.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/9/" data-ref="Ruth 4:9 (World English Bible)" data-verse-url="/bible/web/ruth/4/9/"><span class="v-num">9</span><span class="v-txt">Boaz said to the elders, and to all the people, You are witnesses this day, that I have bought all that was Elimelech's, and all that was Chilion's and Mahlon's, of the hand of Naomi.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/10/" data-ref="Ruth 4:10 (World English Bible)" data-verse-url="/bible/web/ruth/4/10/"><span class="v-num">10</span><span class="v-txt">Moreover Ruth the Moabitess, the wife of Mahlon, have I purchased to be my wife, to raise up the name of the dead on his inheritance, that the name of the dead not be cut off from among his brothers, and from the gate of his place: you are witnesses this day.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/11/" data-ref="Ruth 4:11 (World English Bible)" data-verse-url="/bible/web/ruth/4/11/"><span class="v-num">11</span><span class="v-txt">All the people who were in the gate, and the elders, said, We are witnesses. Yahweh make the woman who has come into your house like Rachel and like Leah, which two built the house of Israel: and do you worthily in Ephrathah, and be famous in Bethlehem:</span></a>
+<a class="v-row" href="/bible/web/ruth/4/12/" data-ref="Ruth 4:12 (World English Bible)" data-verse-url="/bible/web/ruth/4/12/"><span class="v-num">12</span><span class="v-txt">and let your house be like the house of Perez, whom Tamar bore to Judah, of the seed which Yahweh shall give you of this young woman.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/13/" data-ref="Ruth 4:13 (World English Bible)" data-verse-url="/bible/web/ruth/4/13/"><span class="v-num">13</span><span class="v-txt">So Boaz took Ruth, and she became his wife; and he went in to her, and Yahweh gave her conception, and she bore a son.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/14/" data-ref="Ruth 4:14 (World English Bible)" data-verse-url="/bible/web/ruth/4/14/"><span class="v-num">14</span><span class="v-txt">The women said to Naomi, Blessed be Yahweh, who has not left you this day without a near kinsman; and let his name be famous in Israel.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/15/" data-ref="Ruth 4:15 (World English Bible)" data-verse-url="/bible/web/ruth/4/15/"><span class="v-num">15</span><span class="v-txt">He shall be to you a restorer of life, and sustain you in your old age, for your daughter-in-law, who loves you, who is better to you than seven sons, has borne him.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/16/" data-ref="Ruth 4:16 (World English Bible)" data-verse-url="/bible/web/ruth/4/16/"><span class="v-num">16</span><span class="v-txt">Naomi took the child, and laid it in her bosom, and became nurse to it.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/17/" data-ref="Ruth 4:17 (World English Bible)" data-verse-url="/bible/web/ruth/4/17/"><span class="v-num">17</span><span class="v-txt">The women her neighbors gave it a name, saying, There is a son born to Naomi; and they named him Obed: he is the father of Jesse, the father of David.</span></a>
+<a class="v-row" href="/bible/web/ruth/4/18/" data-ref="Ruth 4:18 (World English Bible)" data-verse-url="/bible/web/ruth/4/18/"><span class="v-num">18</span><span class="v-txt">Now this is the history of the generations of Perez: Perez became the father of Hezron,</span></a>
+<a class="v-row" href="/bible/web/ruth/4/19/" data-ref="Ruth 4:19 (World English Bible)" data-verse-url="/bible/web/ruth/4/19/"><span class="v-num">19</span><span class="v-txt">and Hezron became the father of Ram, and Ram became the father of Amminadab,</span></a>
+<a class="v-row" href="/bible/web/ruth/4/20/" data-ref="Ruth 4:20 (World English Bible)" data-verse-url="/bible/web/ruth/4/20/"><span class="v-num">20</span><span class="v-txt">and Amminadab became the father of Nahshon, and Nahshon became the father of Salmon,</span></a>
+<a class="v-row" href="/bible/web/ruth/4/21/" data-ref="Ruth 4:21 (World English Bible)" data-verse-url="/bible/web/ruth/4/21/"><span class="v-num">21</span><span class="v-txt">and Salmon became the father of Boaz, and Boaz became the father of Obed,</span></a>
+<a class="v-row" href="/bible/web/ruth/4/22/" data-ref="Ruth 4:22 (World English Bible)" data-verse-url="/bible/web/ruth/4/22/"><span class="v-num">22</span><span class="v-txt">and Obed became the father of Jesse, and Jesse became the father of David.</span></a>
 
     
 <div class="app-cta">

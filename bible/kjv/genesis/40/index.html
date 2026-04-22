@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 40</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 40:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came to pass after these things, that the butler of the king of Egypt and his baker had offended their lord the king of Egypt.</span></div>
-<div class="v-row" data-ref="Genesis 40:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Pharaoh was wroth against two of his officers, against the chief of the butlers, and against the chief of the bakers.</span></div>
-<div class="v-row" data-ref="Genesis 40:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And he put them in ward in the house of the captain of the guard, into the prison, the place where Joseph was bound.</span></div>
-<div class="v-row" data-ref="Genesis 40:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the captain of the guard charged Joseph with them, and he served them: and they continued a season in ward.</span></div>
-<div class="v-row" data-ref="Genesis 40:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And they dreamed a dream both of them, each man his dream in one night, each man according to the interpretation of his dream, the butler and the baker of the king of Egypt, which were bound in the prison.</span></div>
-<div class="v-row" data-ref="Genesis 40:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Joseph came in unto them in the morning, and looked upon them, and, behold, they were sad.</span></div>
-<div class="v-row" data-ref="Genesis 40:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he asked Pharaoh's officers that were with him in the ward of his lord's house, saying, Wherefore look ye so sadly to day?</span></div>
-<div class="v-row" data-ref="Genesis 40:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And they said unto him, We have dreamed a dream, and there is no interpreter of it. And Joseph said unto them, Do not interpretations belong to God? tell me them, I pray you.</span></div>
-<div class="v-row" data-ref="Genesis 40:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the chief butler told his dream to Joseph, and said to him, In my dream, behold, a vine was before me;</span></div>
-<div class="v-row" data-ref="Genesis 40:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And in the vine were three branches: and it was as though it budded, and her blossoms shot forth; and the clusters thereof brought forth ripe grapes:</span></div>
-<div class="v-row" data-ref="Genesis 40:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Pharaoh's cup was in my hand: and I took the grapes, and pressed them into Pharaoh's cup, and I gave the cup into Pharaoh's hand.</span></div>
-<div class="v-row" data-ref="Genesis 40:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Joseph said unto him, This is the interpretation of it: The three branches are three days:</span></div>
-<div class="v-row" data-ref="Genesis 40:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Yet within three days shall Pharaoh lift up thine head, and restore thee unto thy place: and thou shalt deliver Pharaoh's cup into his hand, after the former manner when thou wast his butler.</span></div>
-<div class="v-row" data-ref="Genesis 40:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But think on me when it shall be well with thee, and shew kindness, I pray thee, unto me, and make mention of me unto Pharaoh, and bring me out of this house:</span></div>
-<div class="v-row" data-ref="Genesis 40:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For indeed I was stolen away out of the land of the Hebrews: and here also have I done nothing that they should put me into the dungeon.</span></div>
-<div class="v-row" data-ref="Genesis 40:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">When the chief baker saw that the interpretation was good, he said unto Joseph, I also was in my dream, and, behold, I had three white baskets on my head:</span></div>
-<div class="v-row" data-ref="Genesis 40:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And in the uppermost basket there was of all manner of bakemeats for Pharaoh; and the birds did eat them out of the basket upon my head.</span></div>
-<div class="v-row" data-ref="Genesis 40:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Joseph answered and said, This is the interpretation thereof: The three baskets are three days:</span></div>
-<div class="v-row" data-ref="Genesis 40:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Yet within three days shall Pharaoh lift up thy head from off thee, and shall hang thee on a tree; and the birds shall eat thy flesh from off thee.</span></div>
-<div class="v-row" data-ref="Genesis 40:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And it came to pass the third day, which was Pharaoh's birthday, that he made a feast unto all his servants: and he lifted up the head of the chief butler and of the chief baker among his servants.</span></div>
-<div class="v-row" data-ref="Genesis 40:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And he restored the chief butler unto his butlership again; and he gave the cup into Pharaoh's hand:</span></div>
-<div class="v-row" data-ref="Genesis 40:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But he hanged the chief baker: as Joseph had interpreted to them.</span></div>
-<div class="v-row" data-ref="Genesis 40:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Yet did not the chief butler remember Joseph, but forgat him.</span></div>
+    <a class="v-row" href="/bible/kjv/genesis/40/1/" data-ref="Genesis 40:1 (King James Version)" data-verse-url="/bible/kjv/genesis/40/1/"><span class="v-num">1</span><span class="v-txt">And it came to pass after these things, that the butler of the king of Egypt and his baker had offended their lord the king of Egypt.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/2/" data-ref="Genesis 40:2 (King James Version)" data-verse-url="/bible/kjv/genesis/40/2/"><span class="v-num">2</span><span class="v-txt">And Pharaoh was wroth against two of his officers, against the chief of the butlers, and against the chief of the bakers.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/3/" data-ref="Genesis 40:3 (King James Version)" data-verse-url="/bible/kjv/genesis/40/3/"><span class="v-num">3</span><span class="v-txt">And he put them in ward in the house of the captain of the guard, into the prison, the place where Joseph was bound.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/4/" data-ref="Genesis 40:4 (King James Version)" data-verse-url="/bible/kjv/genesis/40/4/"><span class="v-num">4</span><span class="v-txt">And the captain of the guard charged Joseph with them, and he served them: and they continued a season in ward.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/5/" data-ref="Genesis 40:5 (King James Version)" data-verse-url="/bible/kjv/genesis/40/5/"><span class="v-num">5</span><span class="v-txt">And they dreamed a dream both of them, each man his dream in one night, each man according to the interpretation of his dream, the butler and the baker of the king of Egypt, which were bound in the prison.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/6/" data-ref="Genesis 40:6 (King James Version)" data-verse-url="/bible/kjv/genesis/40/6/"><span class="v-num">6</span><span class="v-txt">And Joseph came in unto them in the morning, and looked upon them, and, behold, they were sad.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/7/" data-ref="Genesis 40:7 (King James Version)" data-verse-url="/bible/kjv/genesis/40/7/"><span class="v-num">7</span><span class="v-txt">And he asked Pharaoh's officers that were with him in the ward of his lord's house, saying, Wherefore look ye so sadly to day?</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/8/" data-ref="Genesis 40:8 (King James Version)" data-verse-url="/bible/kjv/genesis/40/8/"><span class="v-num">8</span><span class="v-txt">And they said unto him, We have dreamed a dream, and there is no interpreter of it. And Joseph said unto them, Do not interpretations belong to God? tell me them, I pray you.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/9/" data-ref="Genesis 40:9 (King James Version)" data-verse-url="/bible/kjv/genesis/40/9/"><span class="v-num">9</span><span class="v-txt">And the chief butler told his dream to Joseph, and said to him, In my dream, behold, a vine was before me;</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/10/" data-ref="Genesis 40:10 (King James Version)" data-verse-url="/bible/kjv/genesis/40/10/"><span class="v-num">10</span><span class="v-txt">And in the vine were three branches: and it was as though it budded, and her blossoms shot forth; and the clusters thereof brought forth ripe grapes:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/11/" data-ref="Genesis 40:11 (King James Version)" data-verse-url="/bible/kjv/genesis/40/11/"><span class="v-num">11</span><span class="v-txt">And Pharaoh's cup was in my hand: and I took the grapes, and pressed them into Pharaoh's cup, and I gave the cup into Pharaoh's hand.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/12/" data-ref="Genesis 40:12 (King James Version)" data-verse-url="/bible/kjv/genesis/40/12/"><span class="v-num">12</span><span class="v-txt">And Joseph said unto him, This is the interpretation of it: The three branches are three days:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/13/" data-ref="Genesis 40:13 (King James Version)" data-verse-url="/bible/kjv/genesis/40/13/"><span class="v-num">13</span><span class="v-txt">Yet within three days shall Pharaoh lift up thine head, and restore thee unto thy place: and thou shalt deliver Pharaoh's cup into his hand, after the former manner when thou wast his butler.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/14/" data-ref="Genesis 40:14 (King James Version)" data-verse-url="/bible/kjv/genesis/40/14/"><span class="v-num">14</span><span class="v-txt">But think on me when it shall be well with thee, and shew kindness, I pray thee, unto me, and make mention of me unto Pharaoh, and bring me out of this house:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/15/" data-ref="Genesis 40:15 (King James Version)" data-verse-url="/bible/kjv/genesis/40/15/"><span class="v-num">15</span><span class="v-txt">For indeed I was stolen away out of the land of the Hebrews: and here also have I done nothing that they should put me into the dungeon.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/16/" data-ref="Genesis 40:16 (King James Version)" data-verse-url="/bible/kjv/genesis/40/16/"><span class="v-num">16</span><span class="v-txt">When the chief baker saw that the interpretation was good, he said unto Joseph, I also was in my dream, and, behold, I had three white baskets on my head:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/17/" data-ref="Genesis 40:17 (King James Version)" data-verse-url="/bible/kjv/genesis/40/17/"><span class="v-num">17</span><span class="v-txt">And in the uppermost basket there was of all manner of bakemeats for Pharaoh; and the birds did eat them out of the basket upon my head.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/18/" data-ref="Genesis 40:18 (King James Version)" data-verse-url="/bible/kjv/genesis/40/18/"><span class="v-num">18</span><span class="v-txt">And Joseph answered and said, This is the interpretation thereof: The three baskets are three days:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/19/" data-ref="Genesis 40:19 (King James Version)" data-verse-url="/bible/kjv/genesis/40/19/"><span class="v-num">19</span><span class="v-txt">Yet within three days shall Pharaoh lift up thy head from off thee, and shall hang thee on a tree; and the birds shall eat thy flesh from off thee.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/20/" data-ref="Genesis 40:20 (King James Version)" data-verse-url="/bible/kjv/genesis/40/20/"><span class="v-num">20</span><span class="v-txt">And it came to pass the third day, which was Pharaoh's birthday, that he made a feast unto all his servants: and he lifted up the head of the chief butler and of the chief baker among his servants.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/21/" data-ref="Genesis 40:21 (King James Version)" data-verse-url="/bible/kjv/genesis/40/21/"><span class="v-num">21</span><span class="v-txt">And he restored the chief butler unto his butlership again; and he gave the cup into Pharaoh's hand:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/22/" data-ref="Genesis 40:22 (King James Version)" data-verse-url="/bible/kjv/genesis/40/22/"><span class="v-num">22</span><span class="v-txt">But he hanged the chief baker: as Joseph had interpreted to them.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/40/23/" data-ref="Genesis 40:23 (King James Version)" data-verse-url="/bible/kjv/genesis/40/23/"><span class="v-num">23</span><span class="v-txt">Yet did not the chief butler remember Joseph, but forgat him.</span></a>
 
     
 <div class="app-cta">

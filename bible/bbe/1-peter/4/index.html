@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Peter 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So that as Jesus was put to death in the flesh, do you yourselves be of the same mind; for the death of the flesh puts an end to sin;</span></div>
-<div class="v-row" data-ref="1 Peter 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So that you may give the rest of your lives in the flesh, not to the desires of men, but to the purpose of God.</span></div>
-<div class="v-row" data-ref="1 Peter 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Because for long enough, in times past, we have been living after the way of the Gentiles, given up to the desires of the flesh, to drinking and feasting and loose behaviour and unclean worship of images;</span></div>
-<div class="v-row" data-ref="1 Peter 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they are wondering that you no longer go with them in this violent wasting of life, and are saying evil things of you:</span></div>
-<div class="v-row" data-ref="1 Peter 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But they will have to give an account of themselves to him who is ready to be the judge of the living and the dead.</span></div>
-<div class="v-row" data-ref="1 Peter 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For this was the reason why the good news of Jesus was given even to the dead, so that they might be judged as men in the flesh, but might be living before God in the spirit.</span></div>
-<div class="v-row" data-ref="1 Peter 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But the end of all things is near: so be serious in your behaviour and keep on the watch with prayer;</span></div>
-<div class="v-row" data-ref="1 Peter 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And most of all be warm in your love for one another; because in love there is forgiveness for sins without number:</span></div>
-<div class="v-row" data-ref="1 Peter 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Keep open house for all with a glad heart;</span></div>
-<div class="v-row" data-ref="1 Peter 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Making distribution among one another of whatever has been given to you, like true servants of the unmeasured grace of God;</span></div>
-<div class="v-row" data-ref="1 Peter 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">If anyone has anything to say, let it be as the words of God; if anyone has the desire to be the servant of others, let him do it in the strength which is given by God; so that in all things God may have the glory through Jesus Christ, whose are the glory and the power for ever.</span></div>
-<div class="v-row" data-ref="1 Peter 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Dear brothers, do not be surprised, as if it was something strange, if your faith is tested as by fire:</span></div>
-<div class="v-row" data-ref="1 Peter 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But be glad that you are given a part in the pains of Christ; so that at the revelation of his glory you may have great joy.</span></div>
-<div class="v-row" data-ref="1 Peter 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If men say evil things of you because of the name of Christ, happy are you; for the Spirit of glory and of God is resting on you.</span></div>
-<div class="v-row" data-ref="1 Peter 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let no one among you undergo punishment as a taker of life, or as a thief, or as an evil-doer, or as one who is over-interested in other men's business;</span></div>
-<div class="v-row" data-ref="1 Peter 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But if he undergoes punishment as a Christian, that is no shame to him; let him give glory to God in this name.</span></div>
-<div class="v-row" data-ref="1 Peter 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the time has come for the judging, starting with the church of God; but if it makes a start with us, what will be the end of those who are not under the rule of God?</span></div>
-<div class="v-row" data-ref="1 Peter 4:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And if it is hard for even the good man to get salvation, what chance has the man without religion or the sinner?</span></div>
-<div class="v-row" data-ref="1 Peter 4:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For this reason let those who by the purpose of God undergo punishment, keep on in well-doing and put their souls into the safe hands of their Maker.</span></div>
+    <a class="v-row" href="/bible/bbe/1-peter/4/1/" data-ref="1 Peter 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/1/"><span class="v-num">1</span><span class="v-txt">So that as Jesus was put to death in the flesh, do you yourselves be of the same mind; for the death of the flesh puts an end to sin;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/2/" data-ref="1 Peter 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/2/"><span class="v-num">2</span><span class="v-txt">So that you may give the rest of your lives in the flesh, not to the desires of men, but to the purpose of God.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/3/" data-ref="1 Peter 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/3/"><span class="v-num">3</span><span class="v-txt">Because for long enough, in times past, we have been living after the way of the Gentiles, given up to the desires of the flesh, to drinking and feasting and loose behaviour and unclean worship of images;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/4/" data-ref="1 Peter 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/4/"><span class="v-num">4</span><span class="v-txt">And they are wondering that you no longer go with them in this violent wasting of life, and are saying evil things of you:</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/5/" data-ref="1 Peter 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/5/"><span class="v-num">5</span><span class="v-txt">But they will have to give an account of themselves to him who is ready to be the judge of the living and the dead.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/6/" data-ref="1 Peter 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/6/"><span class="v-num">6</span><span class="v-txt">For this was the reason why the good news of Jesus was given even to the dead, so that they might be judged as men in the flesh, but might be living before God in the spirit.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/7/" data-ref="1 Peter 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/7/"><span class="v-num">7</span><span class="v-txt">But the end of all things is near: so be serious in your behaviour and keep on the watch with prayer;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/8/" data-ref="1 Peter 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/8/"><span class="v-num">8</span><span class="v-txt">And most of all be warm in your love for one another; because in love there is forgiveness for sins without number:</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/9/" data-ref="1 Peter 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/9/"><span class="v-num">9</span><span class="v-txt">Keep open house for all with a glad heart;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/10/" data-ref="1 Peter 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/10/"><span class="v-num">10</span><span class="v-txt">Making distribution among one another of whatever has been given to you, like true servants of the unmeasured grace of God;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/11/" data-ref="1 Peter 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/11/"><span class="v-num">11</span><span class="v-txt">If anyone has anything to say, let it be as the words of God; if anyone has the desire to be the servant of others, let him do it in the strength which is given by God; so that in all things God may have the glory through Jesus Christ, whose are the glory and the power for ever.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/12/" data-ref="1 Peter 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/12/"><span class="v-num">12</span><span class="v-txt">Dear brothers, do not be surprised, as if it was something strange, if your faith is tested as by fire:</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/13/" data-ref="1 Peter 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/13/"><span class="v-num">13</span><span class="v-txt">But be glad that you are given a part in the pains of Christ; so that at the revelation of his glory you may have great joy.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/14/" data-ref="1 Peter 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/14/"><span class="v-num">14</span><span class="v-txt">If men say evil things of you because of the name of Christ, happy are you; for the Spirit of glory and of God is resting on you.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/15/" data-ref="1 Peter 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/15/"><span class="v-num">15</span><span class="v-txt">Let no one among you undergo punishment as a taker of life, or as a thief, or as an evil-doer, or as one who is over-interested in other men's business;</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/16/" data-ref="1 Peter 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/16/"><span class="v-num">16</span><span class="v-txt">But if he undergoes punishment as a Christian, that is no shame to him; let him give glory to God in this name.</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/17/" data-ref="1 Peter 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/17/"><span class="v-num">17</span><span class="v-txt">For the time has come for the judging, starting with the church of God; but if it makes a start with us, what will be the end of those who are not under the rule of God?</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/18/" data-ref="1 Peter 4:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/18/"><span class="v-num">18</span><span class="v-txt">And if it is hard for even the good man to get salvation, what chance has the man without religion or the sinner?</span></a>
+<a class="v-row" href="/bible/bbe/1-peter/4/19/" data-ref="1 Peter 4:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-peter/4/19/"><span class="v-num">19</span><span class="v-txt">For this reason let those who by the purpose of God undergo punishment, keep on in well-doing and put their souls into the safe hands of their Maker.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 21</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 21:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the Lord said to Moses, Say to the priests, the sons of Aaron, Let no man make himself unclean for the dead among his people;</span></div>
-<div class="v-row" data-ref="Leviticus 21:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">But only for his near relations, for his mother or his father, his son or his daughter, and his brother;</span></div>
-<div class="v-row" data-ref="Leviticus 21:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And for his sister, a virgin, for she is his near relation and has had no husband, he may make himself unclean.</span></div>
-<div class="v-row" data-ref="Leviticus 21:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But let him, being a chief among his people, not make himself unclean in such a way as to put shame on himself.</span></div>
-<div class="v-row" data-ref="Leviticus 21:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They are not to have their hair cut off for the dead, or the hair on their chins cut short, or make cuts in their flesh.</span></div>
-<div class="v-row" data-ref="Leviticus 21:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let them be holy to their God and not make the name of their God common; for the fire offerings of the Lord and the bread of their God are offered by them, and they are to be holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They may not take as wife a loose or common woman, or one who has been put away by her husband: for the priest is holy to his God.</span></div>
-<div class="v-row" data-ref="Leviticus 21:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he is to be holy in your eyes, for by him the bread of your God is offered; he is to be holy in your eyes, for I the Lord, who make you holy, am holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And if the daughter of a priest makes herself common and by her loose behaviour puts shame on her father, let her be burned with fire.</span></div>
-<div class="v-row" data-ref="Leviticus 21:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he who is the chief priest among his brothers, on whose head the holy oil has been put, who is marked out to put on the holy robes, may not let his hair go loose or have his clothing out of order as a sign of sorrow.</span></div>
-<div class="v-row" data-ref="Leviticus 21:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He may not go near any dead body or make himself unclean for his father or his mother;</span></div>
-<div class="v-row" data-ref="Leviticus 21:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He may not go out of the holy place or make the holy place of his God common; for the crown of the holy oil of his God is on him: I am the Lord.</span></div>
-<div class="v-row" data-ref="Leviticus 21:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And let him take as his wife one who has not had relations with a man.</span></div>
-<div class="v-row" data-ref="Leviticus 21:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A widow, or one whose husband has put her away, or a common woman of loose behaviour, may not be the wife of a priest; but let him take a virgin from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 21:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And he may not make his seed unclean among his people, for I the Lord have made him holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the Lord said to Moses,</span></div>
-<div class="v-row" data-ref="Leviticus 21:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Say to Aaron, If a man of your family, in any generation, is damaged in body, let him not come near to make the offering of the bread of his God.</span></div>
-<div class="v-row" data-ref="Leviticus 21:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For any man whose body is damaged may not come near: one who is blind, or has not the use of his legs, or one who has a broken nose or any unnatural growth,</span></div>
-<div class="v-row" data-ref="Leviticus 21:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Or a man with broken feet or hands,</span></div>
-<div class="v-row" data-ref="Leviticus 21:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Or one whose back is bent, or one who is unnaturally small, or one who has a damaged eye, or whose skin is diseased, or whose sex parts are damaged;</span></div>
-<div class="v-row" data-ref="Leviticus 21:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">No man of the offspring of Aaron whose body is damaged in any way may come near to give the fire offerings of the Lord: he is damaged, he may not come near to make the offerings.</span></div>
-<div class="v-row" data-ref="Leviticus 21:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He may take of the bread of God, the holy and the most holy;</span></div>
-<div class="v-row" data-ref="Leviticus 21:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">But he may not go inside the veil or come near the altar, because he is damaged; and he may not make my holy places common; for I the Lord have made them holy.</span></div>
-<div class="v-row" data-ref="Leviticus 21:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">These are the words which Moses said to Aaron and to his sons and to all the children of Israel.</span></div>
+    <a class="v-row" href="/bible/bbe/leviticus/21/1/" data-ref="Leviticus 21:1 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/1/"><span class="v-num">1</span><span class="v-txt">And the Lord said to Moses, Say to the priests, the sons of Aaron, Let no man make himself unclean for the dead among his people;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/2/" data-ref="Leviticus 21:2 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/2/"><span class="v-num">2</span><span class="v-txt">But only for his near relations, for his mother or his father, his son or his daughter, and his brother;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/3/" data-ref="Leviticus 21:3 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/3/"><span class="v-num">3</span><span class="v-txt">And for his sister, a virgin, for she is his near relation and has had no husband, he may make himself unclean.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/4/" data-ref="Leviticus 21:4 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/4/"><span class="v-num">4</span><span class="v-txt">But let him, being a chief among his people, not make himself unclean in such a way as to put shame on himself.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/5/" data-ref="Leviticus 21:5 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/5/"><span class="v-num">5</span><span class="v-txt">They are not to have their hair cut off for the dead, or the hair on their chins cut short, or make cuts in their flesh.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/6/" data-ref="Leviticus 21:6 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/6/"><span class="v-num">6</span><span class="v-txt">Let them be holy to their God and not make the name of their God common; for the fire offerings of the Lord and the bread of their God are offered by them, and they are to be holy.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/7/" data-ref="Leviticus 21:7 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/7/"><span class="v-num">7</span><span class="v-txt">They may not take as wife a loose or common woman, or one who has been put away by her husband: for the priest is holy to his God.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/8/" data-ref="Leviticus 21:8 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/8/"><span class="v-num">8</span><span class="v-txt">And he is to be holy in your eyes, for by him the bread of your God is offered; he is to be holy in your eyes, for I the Lord, who make you holy, am holy.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/9/" data-ref="Leviticus 21:9 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/9/"><span class="v-num">9</span><span class="v-txt">And if the daughter of a priest makes herself common and by her loose behaviour puts shame on her father, let her be burned with fire.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/10/" data-ref="Leviticus 21:10 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/10/"><span class="v-num">10</span><span class="v-txt">And he who is the chief priest among his brothers, on whose head the holy oil has been put, who is marked out to put on the holy robes, may not let his hair go loose or have his clothing out of order as a sign of sorrow.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/11/" data-ref="Leviticus 21:11 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/11/"><span class="v-num">11</span><span class="v-txt">He may not go near any dead body or make himself unclean for his father or his mother;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/12/" data-ref="Leviticus 21:12 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/12/"><span class="v-num">12</span><span class="v-txt">He may not go out of the holy place or make the holy place of his God common; for the crown of the holy oil of his God is on him: I am the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/13/" data-ref="Leviticus 21:13 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/13/"><span class="v-num">13</span><span class="v-txt">And let him take as his wife one who has not had relations with a man.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/14/" data-ref="Leviticus 21:14 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/14/"><span class="v-num">14</span><span class="v-txt">A widow, or one whose husband has put her away, or a common woman of loose behaviour, may not be the wife of a priest; but let him take a virgin from among his people.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/15/" data-ref="Leviticus 21:15 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/15/"><span class="v-num">15</span><span class="v-txt">And he may not make his seed unclean among his people, for I the Lord have made him holy.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/16/" data-ref="Leviticus 21:16 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/16/"><span class="v-num">16</span><span class="v-txt">And the Lord said to Moses,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/17/" data-ref="Leviticus 21:17 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/17/"><span class="v-num">17</span><span class="v-txt">Say to Aaron, If a man of your family, in any generation, is damaged in body, let him not come near to make the offering of the bread of his God.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/18/" data-ref="Leviticus 21:18 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/18/"><span class="v-num">18</span><span class="v-txt">For any man whose body is damaged may not come near: one who is blind, or has not the use of his legs, or one who has a broken nose or any unnatural growth,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/19/" data-ref="Leviticus 21:19 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/19/"><span class="v-num">19</span><span class="v-txt">Or a man with broken feet or hands,</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/20/" data-ref="Leviticus 21:20 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/20/"><span class="v-num">20</span><span class="v-txt">Or one whose back is bent, or one who is unnaturally small, or one who has a damaged eye, or whose skin is diseased, or whose sex parts are damaged;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/21/" data-ref="Leviticus 21:21 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/21/"><span class="v-num">21</span><span class="v-txt">No man of the offspring of Aaron whose body is damaged in any way may come near to give the fire offerings of the Lord: he is damaged, he may not come near to make the offerings.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/22/" data-ref="Leviticus 21:22 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/22/"><span class="v-num">22</span><span class="v-txt">He may take of the bread of God, the holy and the most holy;</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/23/" data-ref="Leviticus 21:23 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/23/"><span class="v-num">23</span><span class="v-txt">But he may not go inside the veil or come near the altar, because he is damaged; and he may not make my holy places common; for I the Lord have made them holy.</span></a>
+<a class="v-row" href="/bible/bbe/leviticus/21/24/" data-ref="Leviticus 21:24 (Bible in Basic English)" data-verse-url="/bible/bbe/leviticus/21/24/"><span class="v-num">24</span><span class="v-txt">These are the words which Moses said to Aaron and to his sons and to all the children of Israel.</span></a>
 
     
 <div class="app-cta">

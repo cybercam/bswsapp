@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Deuteronomy 8:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Every commandment which I command you today you must be careful to observe, that you may live and multiply, and go in and possess the land of which the LORD swore to your fathers.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"And you shall remember that the LORD your God led you all the way these forty years in the wilderness, to humble you [and] test you, to know what [was] in your heart, whether you would keep His commandments or not.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"So He humbled you, allowed you to hunger, and fed you with manna which you did not know nor did your fathers know, that He might make you know that man shall not live by bread alone; but man lives by every [word] that proceeds from the mouth of the LORD.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"Your garments did not wear out on you, nor did your foot swell these forty years.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"You should know in your heart that as a man chastens his son, [so] the LORD your God chastens you.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Therefore you shall keep the commandments of the LORD your God, to walk in His ways and to fear Him.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"For the LORD your God is bringing you into a good land, a land of brooks of water, of fountains and springs, that flow out of valleys and hills;</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"a land of wheat and barley, of vines and fig trees and pomegranates, a land of olive oil and honey;</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"a land in which you will eat bread without scarcity, in which you will lack nothing; a land whose stones [are] iron and out of whose hills you can dig copper.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"When you have eaten and are full, then you shall bless the LORD your God for the good land which He has given you.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">" Beware that you do not forget the LORD your God by not keeping His commandments, His judgments, and His statutes which I command you today,</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"lest -- [when] you have eaten and are full, and have built beautiful houses and dwell [in them;]</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"and [when] your herds and your flocks multiply, and your silver and your gold are multiplied, and all that you have is multiplied;</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"when your heart is lifted up, and you forget the LORD your God who brought you out of the land of Egypt, from the house of bondage;</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"who led you through that great and terrible wilderness, [in which were] fiery serpents and scorpions and thirsty land where there was no water; who brought water for you out of the flinty rock;</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"who fed you in the wilderness with manna, which your fathers did not know, that He might humble you and that He might test you, to do you good in the end --</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"then you say in your heart, 'My power and the might of my hand have gained me this wealth.'</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">"And you shall remember the LORD your God, for [it is] He who gives you power to get wealth, that He may establish His covenant which He swore to your fathers, as [it is] this day.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"Then it shall be, if you by any means forget the LORD your God, and follow other gods, and serve them and worship them, I testify against you this day that you shall surely perish.</span></div>
-<div class="v-row" data-ref="Deuteronomy 8:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">"As the nations which the LORD destroys before you, so you shall perish, because you would not be obedient to the voice of the LORD your God.</span></div>
+    <a class="v-row" href="/bible/nkjv/deuteronomy/8/1/" data-ref="Deuteronomy 8:1 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/1/"><span class="v-num">1</span><span class="v-txt">"Every commandment which I command you today you must be careful to observe, that you may live and multiply, and go in and possess the land of which the LORD swore to your fathers.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/2/" data-ref="Deuteronomy 8:2 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/2/"><span class="v-num">2</span><span class="v-txt">"And you shall remember that the LORD your God led you all the way these forty years in the wilderness, to humble you [and] test you, to know what [was] in your heart, whether you would keep His commandments or not.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/3/" data-ref="Deuteronomy 8:3 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/3/"><span class="v-num">3</span><span class="v-txt">"So He humbled you, allowed you to hunger, and fed you with manna which you did not know nor did your fathers know, that He might make you know that man shall not live by bread alone; but man lives by every [word] that proceeds from the mouth of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/4/" data-ref="Deuteronomy 8:4 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/4/"><span class="v-num">4</span><span class="v-txt">"Your garments did not wear out on you, nor did your foot swell these forty years.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/5/" data-ref="Deuteronomy 8:5 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/5/"><span class="v-num">5</span><span class="v-txt">"You should know in your heart that as a man chastens his son, [so] the LORD your God chastens you.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/6/" data-ref="Deuteronomy 8:6 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/6/"><span class="v-num">6</span><span class="v-txt">"Therefore you shall keep the commandments of the LORD your God, to walk in His ways and to fear Him.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/7/" data-ref="Deuteronomy 8:7 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/7/"><span class="v-num">7</span><span class="v-txt">"For the LORD your God is bringing you into a good land, a land of brooks of water, of fountains and springs, that flow out of valleys and hills;</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/8/" data-ref="Deuteronomy 8:8 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/8/"><span class="v-num">8</span><span class="v-txt">"a land of wheat and barley, of vines and fig trees and pomegranates, a land of olive oil and honey;</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/9/" data-ref="Deuteronomy 8:9 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/9/"><span class="v-num">9</span><span class="v-txt">"a land in which you will eat bread without scarcity, in which you will lack nothing; a land whose stones [are] iron and out of whose hills you can dig copper.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/10/" data-ref="Deuteronomy 8:10 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/10/"><span class="v-num">10</span><span class="v-txt">"When you have eaten and are full, then you shall bless the LORD your God for the good land which He has given you.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/11/" data-ref="Deuteronomy 8:11 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/11/"><span class="v-num">11</span><span class="v-txt">" Beware that you do not forget the LORD your God by not keeping His commandments, His judgments, and His statutes which I command you today,</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/12/" data-ref="Deuteronomy 8:12 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/12/"><span class="v-num">12</span><span class="v-txt">"lest -- [when] you have eaten and are full, and have built beautiful houses and dwell [in them;]</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/13/" data-ref="Deuteronomy 8:13 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/13/"><span class="v-num">13</span><span class="v-txt">"and [when] your herds and your flocks multiply, and your silver and your gold are multiplied, and all that you have is multiplied;</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/14/" data-ref="Deuteronomy 8:14 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/14/"><span class="v-num">14</span><span class="v-txt">"when your heart is lifted up, and you forget the LORD your God who brought you out of the land of Egypt, from the house of bondage;</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/15/" data-ref="Deuteronomy 8:15 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/15/"><span class="v-num">15</span><span class="v-txt">"who led you through that great and terrible wilderness, [in which were] fiery serpents and scorpions and thirsty land where there was no water; who brought water for you out of the flinty rock;</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/16/" data-ref="Deuteronomy 8:16 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/16/"><span class="v-num">16</span><span class="v-txt">"who fed you in the wilderness with manna, which your fathers did not know, that He might humble you and that He might test you, to do you good in the end --</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/17/" data-ref="Deuteronomy 8:17 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/17/"><span class="v-num">17</span><span class="v-txt">"then you say in your heart, 'My power and the might of my hand have gained me this wealth.'</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/18/" data-ref="Deuteronomy 8:18 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/18/"><span class="v-num">18</span><span class="v-txt">"And you shall remember the LORD your God, for [it is] He who gives you power to get wealth, that He may establish His covenant which He swore to your fathers, as [it is] this day.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/19/" data-ref="Deuteronomy 8:19 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/19/"><span class="v-num">19</span><span class="v-txt">"Then it shall be, if you by any means forget the LORD your God, and follow other gods, and serve them and worship them, I testify against you this day that you shall surely perish.</span></a>
+<a class="v-row" href="/bible/nkjv/deuteronomy/8/20/" data-ref="Deuteronomy 8:20 (New King James Version)" data-verse-url="/bible/nkjv/deuteronomy/8/20/"><span class="v-num">20</span><span class="v-txt">"As the nations which the LORD destroys before you, so you shall perish, because you would not be obedient to the voice of the LORD your God.</span></a>
 
     
 <div class="app-cta">

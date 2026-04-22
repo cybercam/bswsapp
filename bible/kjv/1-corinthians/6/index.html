@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 6:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Dare any of you, having a matter against another, go to law before the unjust, and not before the saints?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Do ye not know that the saints shall judge the world? and if the world shall be judged by you, are ye unworthy to judge the smallest matters?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Know ye not that we shall judge angels? how much more things that pertain to this life?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If then ye have judgments of things pertaining to this life, set them to judge who are least esteemed in the church.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I speak to your shame. Is it so, that there is not a wise man among you? no, not one that shall be able to judge between his brethren?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But brother goeth to law with brother, and that before the unbelievers.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now therefore there is utterly a fault among you, because ye go to law one with another. Why do ye not rather take wrong? why do ye not rather suffer yourselves to be defrauded?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Nay, ye do wrong, and defraud, and that your brethren.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Know ye not that the unrighteous shall not inherit the kingdom of God? Be not deceived: neither fornicators, nor idolaters, nor adulterers, nor effeminate, nor abusers of themselves with mankind,</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Nor thieves, nor covetous, nor drunkards, nor revilers, nor extortioners, shall inherit the kingdom of God.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And such were some of you: but ye are washed, but ye are sanctified, but ye are justified in the name of the Lord Jesus, and by the Spirit of our God.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">All things are lawful unto me, but all things are not expedient: all things are lawful for me, but I will not be brought under the power of any.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Meats for the belly, and the belly for meats: but God shall destroy both it and them. Now the body is not for fornication, but for the Lord; and the Lord for the body.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And God hath both raised up the Lord, and will also raise up us by his own power.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Know ye not that your bodies are the members of Christ? shall I then take the members of Christ, and make them the members of an harlot? God forbid.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">What? know ye not that he which is joined to an harlot is one body? for two, saith he, shall be one flesh.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But he that is joined unto the Lord is one spirit.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Flee fornication. Every sin that a man doeth is without the body; but he that committeth fornication sinneth against his own body.</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own?</span></div>
-<div class="v-row" data-ref="1 Corinthians 6:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For ye are bought with a price: therefore glorify God in your body, and in your spirit, which are God's.</span></div>
+    <a class="v-row" href="/bible/kjv/1-corinthians/6/1/" data-ref="1 Corinthians 6:1 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/1/"><span class="v-num">1</span><span class="v-txt">Dare any of you, having a matter against another, go to law before the unjust, and not before the saints?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/2/" data-ref="1 Corinthians 6:2 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/2/"><span class="v-num">2</span><span class="v-txt">Do ye not know that the saints shall judge the world? and if the world shall be judged by you, are ye unworthy to judge the smallest matters?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/3/" data-ref="1 Corinthians 6:3 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/3/"><span class="v-num">3</span><span class="v-txt">Know ye not that we shall judge angels? how much more things that pertain to this life?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/4/" data-ref="1 Corinthians 6:4 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/4/"><span class="v-num">4</span><span class="v-txt">If then ye have judgments of things pertaining to this life, set them to judge who are least esteemed in the church.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/5/" data-ref="1 Corinthians 6:5 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/5/"><span class="v-num">5</span><span class="v-txt">I speak to your shame. Is it so, that there is not a wise man among you? no, not one that shall be able to judge between his brethren?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/6/" data-ref="1 Corinthians 6:6 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/6/"><span class="v-num">6</span><span class="v-txt">But brother goeth to law with brother, and that before the unbelievers.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/7/" data-ref="1 Corinthians 6:7 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/7/"><span class="v-num">7</span><span class="v-txt">Now therefore there is utterly a fault among you, because ye go to law one with another. Why do ye not rather take wrong? why do ye not rather suffer yourselves to be defrauded?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/8/" data-ref="1 Corinthians 6:8 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/8/"><span class="v-num">8</span><span class="v-txt">Nay, ye do wrong, and defraud, and that your brethren.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/9/" data-ref="1 Corinthians 6:9 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/9/"><span class="v-num">9</span><span class="v-txt">Know ye not that the unrighteous shall not inherit the kingdom of God? Be not deceived: neither fornicators, nor idolaters, nor adulterers, nor effeminate, nor abusers of themselves with mankind,</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/10/" data-ref="1 Corinthians 6:10 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/10/"><span class="v-num">10</span><span class="v-txt">Nor thieves, nor covetous, nor drunkards, nor revilers, nor extortioners, shall inherit the kingdom of God.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/11/" data-ref="1 Corinthians 6:11 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/11/"><span class="v-num">11</span><span class="v-txt">And such were some of you: but ye are washed, but ye are sanctified, but ye are justified in the name of the Lord Jesus, and by the Spirit of our God.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/12/" data-ref="1 Corinthians 6:12 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/12/"><span class="v-num">12</span><span class="v-txt">All things are lawful unto me, but all things are not expedient: all things are lawful for me, but I will not be brought under the power of any.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/13/" data-ref="1 Corinthians 6:13 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/13/"><span class="v-num">13</span><span class="v-txt">Meats for the belly, and the belly for meats: but God shall destroy both it and them. Now the body is not for fornication, but for the Lord; and the Lord for the body.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/14/" data-ref="1 Corinthians 6:14 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/14/"><span class="v-num">14</span><span class="v-txt">And God hath both raised up the Lord, and will also raise up us by his own power.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/15/" data-ref="1 Corinthians 6:15 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/15/"><span class="v-num">15</span><span class="v-txt">Know ye not that your bodies are the members of Christ? shall I then take the members of Christ, and make them the members of an harlot? God forbid.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/16/" data-ref="1 Corinthians 6:16 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/16/"><span class="v-num">16</span><span class="v-txt">What? know ye not that he which is joined to an harlot is one body? for two, saith he, shall be one flesh.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/17/" data-ref="1 Corinthians 6:17 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/17/"><span class="v-num">17</span><span class="v-txt">But he that is joined unto the Lord is one spirit.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/18/" data-ref="1 Corinthians 6:18 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/18/"><span class="v-num">18</span><span class="v-txt">Flee fornication. Every sin that a man doeth is without the body; but he that committeth fornication sinneth against his own body.</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/19/" data-ref="1 Corinthians 6:19 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/19/"><span class="v-num">19</span><span class="v-txt">What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own?</span></a>
+<a class="v-row" href="/bible/kjv/1-corinthians/6/20/" data-ref="1 Corinthians 6:20 (King James Version)" data-verse-url="/bible/kjv/1-corinthians/6/20/"><span class="v-num">20</span><span class="v-txt">For ye are bought with a price: therefore glorify God in your body, and in your spirit, which are God's.</span></a>
 
     
 <div class="app-cta">

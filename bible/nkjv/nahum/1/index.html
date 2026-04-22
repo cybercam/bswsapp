@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Nahum 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden against Nineveh. The book of the vision of Nahum the Elkoshite.</span></div>
-<div class="v-row" data-ref="Nahum 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">God [is] jealous, and the LORD avenges; The LORD avenges and [is] furious. The LORD will take vengeance on His adversaries, And He reserves [wrath] for His enemies;</span></div>
-<div class="v-row" data-ref="Nahum 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The LORD [is] slow to anger and great in power, And will not at all acquit [the wicked.] The LORD has His way In the whirlwind and in the storm, And the clouds [are] the dust of His feet.</span></div>
-<div class="v-row" data-ref="Nahum 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He rebukes the sea and makes it dry, And dries up all the rivers. Bashan and Carmel wither, And the flower of Lebanon wilts.</span></div>
-<div class="v-row" data-ref="Nahum 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The mountains quake before Him, The hills melt, And the earth heaves at His presence, Yes, the world and all who dwell in it.</span></div>
-<div class="v-row" data-ref="Nahum 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Who can stand before His indignation? And who can endure the fierceness of His anger? His fury is poured out like fire, And the rocks are thrown down by Him.</span></div>
-<div class="v-row" data-ref="Nahum 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The LORD [is] good, A stronghold in the day of trouble; And He knows those who trust in Him.</span></div>
-<div class="v-row" data-ref="Nahum 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But with an overflowing flood He will make an utter end of its place, And darkness will pursue His enemies.</span></div>
-<div class="v-row" data-ref="Nahum 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What do you conspire against the LORD? He will make an utter end [of it.] Affliction will not rise up a second time.</span></div>
-<div class="v-row" data-ref="Nahum 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For while tangled [like] thorns, And while drunken [like] drunkards, They shall be devoured like stubble fully dried.</span></div>
-<div class="v-row" data-ref="Nahum 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">From you comes forth [one] Who plots evil against the LORD, A wicked counselor.</span></div>
-<div class="v-row" data-ref="Nahum 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Thus says the LORD: "Though [they are] safe, and likewise many, Yet in this manner they will be cut down When he passes through. Though I have afflicted you, I will afflict you no more;</span></div>
-<div class="v-row" data-ref="Nahum 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For now I will break off his yoke from you, And burst your bonds apart."</span></div>
-<div class="v-row" data-ref="Nahum 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The LORD has given a command concerning you: "Your name shall be perpetuated no longer. Out of the house of your gods I will cut off the carved image and the molded image. I will dig your grave, For you are vile."</span></div>
-<div class="v-row" data-ref="Nahum 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Behold, on the mountains The feet of him who brings good tidings, Who proclaims peace! O Judah, keep your appointed feasts, Perform your vows. For the wicked one shall no more pass through you; He is utterly cut off.</span></div>
+    <a class="v-row" href="/bible/nkjv/nahum/1/1/" data-ref="Nahum 1:1 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/1/"><span class="v-num">1</span><span class="v-txt">The burden against Nineveh. The book of the vision of Nahum the Elkoshite.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/2/" data-ref="Nahum 1:2 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/2/"><span class="v-num">2</span><span class="v-txt">God [is] jealous, and the LORD avenges; The LORD avenges and [is] furious. The LORD will take vengeance on His adversaries, And He reserves [wrath] for His enemies;</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/3/" data-ref="Nahum 1:3 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/3/"><span class="v-num">3</span><span class="v-txt">The LORD [is] slow to anger and great in power, And will not at all acquit [the wicked.] The LORD has His way In the whirlwind and in the storm, And the clouds [are] the dust of His feet.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/4/" data-ref="Nahum 1:4 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/4/"><span class="v-num">4</span><span class="v-txt">He rebukes the sea and makes it dry, And dries up all the rivers. Bashan and Carmel wither, And the flower of Lebanon wilts.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/5/" data-ref="Nahum 1:5 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/5/"><span class="v-num">5</span><span class="v-txt">The mountains quake before Him, The hills melt, And the earth heaves at His presence, Yes, the world and all who dwell in it.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/6/" data-ref="Nahum 1:6 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/6/"><span class="v-num">6</span><span class="v-txt">Who can stand before His indignation? And who can endure the fierceness of His anger? His fury is poured out like fire, And the rocks are thrown down by Him.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/7/" data-ref="Nahum 1:7 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/7/"><span class="v-num">7</span><span class="v-txt">The LORD [is] good, A stronghold in the day of trouble; And He knows those who trust in Him.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/8/" data-ref="Nahum 1:8 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/8/"><span class="v-num">8</span><span class="v-txt">But with an overflowing flood He will make an utter end of its place, And darkness will pursue His enemies.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/9/" data-ref="Nahum 1:9 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/9/"><span class="v-num">9</span><span class="v-txt">What do you conspire against the LORD? He will make an utter end [of it.] Affliction will not rise up a second time.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/10/" data-ref="Nahum 1:10 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/10/"><span class="v-num">10</span><span class="v-txt">For while tangled [like] thorns, And while drunken [like] drunkards, They shall be devoured like stubble fully dried.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/11/" data-ref="Nahum 1:11 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/11/"><span class="v-num">11</span><span class="v-txt">From you comes forth [one] Who plots evil against the LORD, A wicked counselor.</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/12/" data-ref="Nahum 1:12 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/12/"><span class="v-num">12</span><span class="v-txt">Thus says the LORD: "Though [they are] safe, and likewise many, Yet in this manner they will be cut down When he passes through. Though I have afflicted you, I will afflict you no more;</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/13/" data-ref="Nahum 1:13 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/13/"><span class="v-num">13</span><span class="v-txt">For now I will break off his yoke from you, And burst your bonds apart."</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/14/" data-ref="Nahum 1:14 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/14/"><span class="v-num">14</span><span class="v-txt">The LORD has given a command concerning you: "Your name shall be perpetuated no longer. Out of the house of your gods I will cut off the carved image and the molded image. I will dig your grave, For you are vile."</span></a>
+<a class="v-row" href="/bible/nkjv/nahum/1/15/" data-ref="Nahum 1:15 (New King James Version)" data-verse-url="/bible/nkjv/nahum/1/15/"><span class="v-num">15</span><span class="v-txt">Behold, on the mountains The feet of him who brings good tidings, Who proclaims peace! O Judah, keep your appointed feasts, Perform your vows. For the wicked one shall no more pass through you; He is utterly cut off.</span></a>
 
     
 <div class="app-cta">

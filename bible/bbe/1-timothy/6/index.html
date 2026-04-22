@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let all who are servants under the yoke give all honour to their masters, so that no evil may be said against the name of God and his teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And let those whose masters are of the faith have respect for them because they are brothers, working for them the more readily, because those who take part in the good work are of the faith and are dear. Give orders and teaching about these things.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If any man gives different teaching, not in agreement with the true words of our Lord Jesus Christ, and with the teaching which is in agreement with true religion,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He has an over-high opinion of himself; being without knowledge, having only an unhealthy love of questionings and wars of words, from which come envy, fighting, cruel words, evil thoughts,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Bitter talk of men who, being evil in mind and dead to what is true, take the faith to be a way of making profit.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But true faith, with peace of mind, is of great profit:</span></div>
-<div class="v-row" data-ref="1 Timothy 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For we came into the world with nothing, and we are not able to take anything out;</span></div>
-<div class="v-row" data-ref="1 Timothy 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But if we have food and a roof over us, let that be enough.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But those who have a desire for wealth are falling into danger, and are taken as in a net by a number of foolish and damaging desires, through which men are overtaken by death and destruction.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For the love of money is a root of all evil: and some whose hearts were fixed on it have been turned away from the faith, and been wounded with unnumbered sorrows.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But you, O man of God, keep yourself from these things, and go after righteousness, religion, faith, love, a quiet mind, gentle behaviour.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Be fighting the good fight of the faith; take for yourself the life eternal, for which you were marked out, and of which you gave witness in the eyes of all.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I give you orders before God, the giver of life, and Christ Jesus, who before Pontius Pilate gave witness to the faith,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">To keep the word untouched by evil, clear from all shame, till the revelation of our Lord Jesus Christ:</span></div>
-<div class="v-row" data-ref="1 Timothy 6:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Which at the right time he will make clear, who is the eternal and only Ruler, King of kings, and Lord of lords;</span></div>
-<div class="v-row" data-ref="1 Timothy 6:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Who only has life for ever, living in light to which no man may come near; whom no man has seen or is able to see: to whom be honour and power for ever. So be it.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Give orders to those who have money and goods in this life, not to be lifted up in their minds, or to put their hope in the uncertain chances of wealth, but in God who gives us in full measure all things for our use;</span></div>
-<div class="v-row" data-ref="1 Timothy 6:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And to do good, having wealth in good works, being quick to give, taking part with one another;</span></div>
-<div class="v-row" data-ref="1 Timothy 6:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Making ready for themselves a safe place for the time to come, so that the true life may be theirs.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">O Timothy, take good care of that which is given to you, turning away from the wrong and foolish talk and arguments of that knowledge which is falsely so named;</span></div>
-<div class="v-row" data-ref="1 Timothy 6:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Through which some, who gave their minds to it, have been turned away from the faith. Grace be with you.</span></div>
+    <a class="v-row" href="/bible/bbe/1-timothy/6/1/" data-ref="1 Timothy 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/1/"><span class="v-num">1</span><span class="v-txt">Let all who are servants under the yoke give all honour to their masters, so that no evil may be said against the name of God and his teaching.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/2/" data-ref="1 Timothy 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/2/"><span class="v-num">2</span><span class="v-txt">And let those whose masters are of the faith have respect for them because they are brothers, working for them the more readily, because those who take part in the good work are of the faith and are dear. Give orders and teaching about these things.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/3/" data-ref="1 Timothy 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/3/"><span class="v-num">3</span><span class="v-txt">If any man gives different teaching, not in agreement with the true words of our Lord Jesus Christ, and with the teaching which is in agreement with true religion,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/4/" data-ref="1 Timothy 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/4/"><span class="v-num">4</span><span class="v-txt">He has an over-high opinion of himself; being without knowledge, having only an unhealthy love of questionings and wars of words, from which come envy, fighting, cruel words, evil thoughts,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/5/" data-ref="1 Timothy 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/5/"><span class="v-num">5</span><span class="v-txt">Bitter talk of men who, being evil in mind and dead to what is true, take the faith to be a way of making profit.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/6/" data-ref="1 Timothy 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/6/"><span class="v-num">6</span><span class="v-txt">But true faith, with peace of mind, is of great profit:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/7/" data-ref="1 Timothy 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/7/"><span class="v-num">7</span><span class="v-txt">For we came into the world with nothing, and we are not able to take anything out;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/8/" data-ref="1 Timothy 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/8/"><span class="v-num">8</span><span class="v-txt">But if we have food and a roof over us, let that be enough.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/9/" data-ref="1 Timothy 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/9/"><span class="v-num">9</span><span class="v-txt">But those who have a desire for wealth are falling into danger, and are taken as in a net by a number of foolish and damaging desires, through which men are overtaken by death and destruction.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/10/" data-ref="1 Timothy 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/10/"><span class="v-num">10</span><span class="v-txt">For the love of money is a root of all evil: and some whose hearts were fixed on it have been turned away from the faith, and been wounded with unnumbered sorrows.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/11/" data-ref="1 Timothy 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/11/"><span class="v-num">11</span><span class="v-txt">But you, O man of God, keep yourself from these things, and go after righteousness, religion, faith, love, a quiet mind, gentle behaviour.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/12/" data-ref="1 Timothy 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/12/"><span class="v-num">12</span><span class="v-txt">Be fighting the good fight of the faith; take for yourself the life eternal, for which you were marked out, and of which you gave witness in the eyes of all.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/13/" data-ref="1 Timothy 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/13/"><span class="v-num">13</span><span class="v-txt">I give you orders before God, the giver of life, and Christ Jesus, who before Pontius Pilate gave witness to the faith,</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/14/" data-ref="1 Timothy 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/14/"><span class="v-num">14</span><span class="v-txt">To keep the word untouched by evil, clear from all shame, till the revelation of our Lord Jesus Christ:</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/15/" data-ref="1 Timothy 6:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/15/"><span class="v-num">15</span><span class="v-txt">Which at the right time he will make clear, who is the eternal and only Ruler, King of kings, and Lord of lords;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/16/" data-ref="1 Timothy 6:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/16/"><span class="v-num">16</span><span class="v-txt">Who only has life for ever, living in light to which no man may come near; whom no man has seen or is able to see: to whom be honour and power for ever. So be it.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/17/" data-ref="1 Timothy 6:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/17/"><span class="v-num">17</span><span class="v-txt">Give orders to those who have money and goods in this life, not to be lifted up in their minds, or to put their hope in the uncertain chances of wealth, but in God who gives us in full measure all things for our use;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/18/" data-ref="1 Timothy 6:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/18/"><span class="v-num">18</span><span class="v-txt">And to do good, having wealth in good works, being quick to give, taking part with one another;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/19/" data-ref="1 Timothy 6:19 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/19/"><span class="v-num">19</span><span class="v-txt">Making ready for themselves a safe place for the time to come, so that the true life may be theirs.</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/20/" data-ref="1 Timothy 6:20 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/20/"><span class="v-num">20</span><span class="v-txt">O Timothy, take good care of that which is given to you, turning away from the wrong and foolish talk and arguments of that knowledge which is falsely so named;</span></a>
+<a class="v-row" href="/bible/bbe/1-timothy/6/21/" data-ref="1 Timothy 6:21 (Bible in Basic English)" data-verse-url="/bible/bbe/1-timothy/6/21/"><span class="v-num">21</span><span class="v-txt">Through which some, who gave their minds to it, have been turned away from the faith. Grace be with you.</span></a>
 
     
 <div class="app-cta">

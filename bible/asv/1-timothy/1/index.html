@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul, an apostle of Christ Jesus according to the commandment of God our Saviour, and Christ Jesus our hope;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">unto Timothy, my true child in faith: Grace, mercy, peace, from God the Father and Christ Jesus our Lord.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">As I exhorted thee to tarry at Ephesus, when I was going into Macedonia, that thou mightest charge certain men not to teach a different doctrine,</span></div>
-<div class="v-row" data-ref="1 Timothy 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">neither to give heed to fables and endless genealogies, which minister questionings, rather than a dispensation of God which is in faith; [so do I now].</span></div>
-<div class="v-row" data-ref="1 Timothy 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But the end of the charge is love out of a pure heart and a good conscience and faith unfeigned:</span></div>
-<div class="v-row" data-ref="1 Timothy 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">from which things some having swerved have turned aside unto vain talking;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">desiring to be teachers of the law, though they understand neither what they say, nor whereof they confidently affirm.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But we know that the law is good, if a man use it lawfully,</span></div>
-<div class="v-row" data-ref="1 Timothy 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">as knowing this, that law is not made for a righteous man, but for the lawless and unruly, for the ungodly and sinners, for the unholy and profane, for murderers of fathers and murderers of mothers, for manslayers,</span></div>
-<div class="v-row" data-ref="1 Timothy 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">for fornicators, for abusers of themselves with men, for menstealers, for liars, for false swearers, and if there be any other thing contrary to the sound doctrine;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">according to the gospel of the glory of the blessed God, which was committed to my trust.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I thank him that enabled me, [even] Christ Jesus our Lord, for that he counted me faithful, appointing me to [his] service;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">though I was before a blasphemer, and a persecutor, and injurious: howbeit I obtained mercy, because I did it ignorantly in unbelief;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">and the grace of our Lord abounded exceedingly with faith and love which is in Christ Jesus.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Faithful is the saying, and worthy of all acceptation, that Christ Jesus came into the world to save sinners; of whom I am chief:</span></div>
-<div class="v-row" data-ref="1 Timothy 1:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">howbeit for this cause I obtained mercy, that in me as chief might Jesus Christ show forth all his longsuffering, for an ensample of them that should thereafter believe on him unto eternal life.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Now unto the King eternal, immortal, invisible, the only God, [be] honor and glory forever and ever. Amen.</span></div>
-<div class="v-row" data-ref="1 Timothy 1:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">This charge I commit unto thee, my child Timothy, according to the prophecies which led the way to thee, that by them thou mayest war the good warfare;</span></div>
-<div class="v-row" data-ref="1 Timothy 1:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">holding faith and a good conscience; which some having thrust from them made shipwreck concerning the faith:</span></div>
-<div class="v-row" data-ref="1 Timothy 1:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">of whom is Hymenaeus and Alexander; whom I delivered unto Satan, that they might be taught not to blaspheme.</span></div>
+    <a class="v-row" href="/bible/asv/1-timothy/1/1/" data-ref="1 Timothy 1:1 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/1/"><span class="v-num">1</span><span class="v-txt">Paul, an apostle of Christ Jesus according to the commandment of God our Saviour, and Christ Jesus our hope;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/2/" data-ref="1 Timothy 1:2 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/2/"><span class="v-num">2</span><span class="v-txt">unto Timothy, my true child in faith: Grace, mercy, peace, from God the Father and Christ Jesus our Lord.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/3/" data-ref="1 Timothy 1:3 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/3/"><span class="v-num">3</span><span class="v-txt">As I exhorted thee to tarry at Ephesus, when I was going into Macedonia, that thou mightest charge certain men not to teach a different doctrine,</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/4/" data-ref="1 Timothy 1:4 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/4/"><span class="v-num">4</span><span class="v-txt">neither to give heed to fables and endless genealogies, which minister questionings, rather than a dispensation of God which is in faith; [so do I now].</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/5/" data-ref="1 Timothy 1:5 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/5/"><span class="v-num">5</span><span class="v-txt">But the end of the charge is love out of a pure heart and a good conscience and faith unfeigned:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/6/" data-ref="1 Timothy 1:6 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/6/"><span class="v-num">6</span><span class="v-txt">from which things some having swerved have turned aside unto vain talking;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/7/" data-ref="1 Timothy 1:7 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/7/"><span class="v-num">7</span><span class="v-txt">desiring to be teachers of the law, though they understand neither what they say, nor whereof they confidently affirm.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/8/" data-ref="1 Timothy 1:8 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/8/"><span class="v-num">8</span><span class="v-txt">But we know that the law is good, if a man use it lawfully,</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/9/" data-ref="1 Timothy 1:9 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/9/"><span class="v-num">9</span><span class="v-txt">as knowing this, that law is not made for a righteous man, but for the lawless and unruly, for the ungodly and sinners, for the unholy and profane, for murderers of fathers and murderers of mothers, for manslayers,</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/10/" data-ref="1 Timothy 1:10 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/10/"><span class="v-num">10</span><span class="v-txt">for fornicators, for abusers of themselves with men, for menstealers, for liars, for false swearers, and if there be any other thing contrary to the sound doctrine;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/11/" data-ref="1 Timothy 1:11 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/11/"><span class="v-num">11</span><span class="v-txt">according to the gospel of the glory of the blessed God, which was committed to my trust.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/12/" data-ref="1 Timothy 1:12 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/12/"><span class="v-num">12</span><span class="v-txt">I thank him that enabled me, [even] Christ Jesus our Lord, for that he counted me faithful, appointing me to [his] service;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/13/" data-ref="1 Timothy 1:13 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/13/"><span class="v-num">13</span><span class="v-txt">though I was before a blasphemer, and a persecutor, and injurious: howbeit I obtained mercy, because I did it ignorantly in unbelief;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/14/" data-ref="1 Timothy 1:14 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/14/"><span class="v-num">14</span><span class="v-txt">and the grace of our Lord abounded exceedingly with faith and love which is in Christ Jesus.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/15/" data-ref="1 Timothy 1:15 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/15/"><span class="v-num">15</span><span class="v-txt">Faithful is the saying, and worthy of all acceptation, that Christ Jesus came into the world to save sinners; of whom I am chief:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/16/" data-ref="1 Timothy 1:16 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/16/"><span class="v-num">16</span><span class="v-txt">howbeit for this cause I obtained mercy, that in me as chief might Jesus Christ show forth all his longsuffering, for an ensample of them that should thereafter believe on him unto eternal life.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/17/" data-ref="1 Timothy 1:17 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/17/"><span class="v-num">17</span><span class="v-txt">Now unto the King eternal, immortal, invisible, the only God, [be] honor and glory forever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/18/" data-ref="1 Timothy 1:18 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/18/"><span class="v-num">18</span><span class="v-txt">This charge I commit unto thee, my child Timothy, according to the prophecies which led the way to thee, that by them thou mayest war the good warfare;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/19/" data-ref="1 Timothy 1:19 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/19/"><span class="v-num">19</span><span class="v-txt">holding faith and a good conscience; which some having thrust from them made shipwreck concerning the faith:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/1/20/" data-ref="1 Timothy 1:20 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/1/20/"><span class="v-num">20</span><span class="v-txt">of whom is Hymenaeus and Alexander; whom I delivered unto Satan, that they might be taught not to blaspheme.</span></a>
 
     
 <div class="app-cta">

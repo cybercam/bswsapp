@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 4:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Furthermore then we beseech you, brethren, and exhort you by the Lord Jesus, that as ye have received of us how ye ought to walk and to please God, so ye would abound more and more.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For ye know what commandments we gave you by the Lord Jesus.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For this is the will of God, even your sanctification, that ye should abstain from fornication:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">That every one of you should know how to possess his vessel in sanctification and honour;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Not in the lust of concupiscence, even as the Gentiles which know not God:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">That no man go beyond and defraud his brother in any matter: because that the Lord is the avenger of all such, as we also have forewarned you and testified.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For God hath not called us unto uncleanness, but unto holiness.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He therefore that despiseth, despiseth not man, but God, who hath also given unto us his holy Spirit.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But as touching brotherly love ye need not that I write unto you: for ye yourselves are taught of God to love one another.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And indeed ye do it toward all the brethren which are in all Macedonia: but we beseech you, brethren, that ye increase more and more;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And that ye study to be quiet, and to do your own business, and to work with your own hands, as we commanded you;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">That ye may walk honestly toward them that are without, and that ye may have lack of nothing.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But I would not have you to be ignorant, brethren, concerning them which are asleep, that ye sorrow not, even as others which have no hope.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For if we believe that Jesus died and rose again, even so them also which sleep in Jesus will God bring with him.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For this we say unto you by the word of the Lord, that we which are alive and remain unto the coming of the Lord shall not prevent them which are asleep.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the Lord himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God: and the dead in Christ shall rise first:</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Then we which are alive and remain shall be caught up together with them in the clouds, to meet the Lord in the air: and so shall we ever be with the Lord.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Wherefore comfort one another with these words.</span></div>
+    <a class="v-row" href="/bible/kjv/1-thessalonians/4/1/" data-ref="1 Thessalonians 4:1 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/1/"><span class="v-num">1</span><span class="v-txt">Furthermore then we beseech you, brethren, and exhort you by the Lord Jesus, that as ye have received of us how ye ought to walk and to please God, so ye would abound more and more.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/2/" data-ref="1 Thessalonians 4:2 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/2/"><span class="v-num">2</span><span class="v-txt">For ye know what commandments we gave you by the Lord Jesus.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/3/" data-ref="1 Thessalonians 4:3 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/3/"><span class="v-num">3</span><span class="v-txt">For this is the will of God, even your sanctification, that ye should abstain from fornication:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/4/" data-ref="1 Thessalonians 4:4 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/4/"><span class="v-num">4</span><span class="v-txt">That every one of you should know how to possess his vessel in sanctification and honour;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/5/" data-ref="1 Thessalonians 4:5 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/5/"><span class="v-num">5</span><span class="v-txt">Not in the lust of concupiscence, even as the Gentiles which know not God:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/6/" data-ref="1 Thessalonians 4:6 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/6/"><span class="v-num">6</span><span class="v-txt">That no man go beyond and defraud his brother in any matter: because that the Lord is the avenger of all such, as we also have forewarned you and testified.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/7/" data-ref="1 Thessalonians 4:7 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/7/"><span class="v-num">7</span><span class="v-txt">For God hath not called us unto uncleanness, but unto holiness.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/8/" data-ref="1 Thessalonians 4:8 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/8/"><span class="v-num">8</span><span class="v-txt">He therefore that despiseth, despiseth not man, but God, who hath also given unto us his holy Spirit.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/9/" data-ref="1 Thessalonians 4:9 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/9/"><span class="v-num">9</span><span class="v-txt">But as touching brotherly love ye need not that I write unto you: for ye yourselves are taught of God to love one another.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/10/" data-ref="1 Thessalonians 4:10 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/10/"><span class="v-num">10</span><span class="v-txt">And indeed ye do it toward all the brethren which are in all Macedonia: but we beseech you, brethren, that ye increase more and more;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/11/" data-ref="1 Thessalonians 4:11 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/11/"><span class="v-num">11</span><span class="v-txt">And that ye study to be quiet, and to do your own business, and to work with your own hands, as we commanded you;</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/12/" data-ref="1 Thessalonians 4:12 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/12/"><span class="v-num">12</span><span class="v-txt">That ye may walk honestly toward them that are without, and that ye may have lack of nothing.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/13/" data-ref="1 Thessalonians 4:13 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/13/"><span class="v-num">13</span><span class="v-txt">But I would not have you to be ignorant, brethren, concerning them which are asleep, that ye sorrow not, even as others which have no hope.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/14/" data-ref="1 Thessalonians 4:14 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/14/"><span class="v-num">14</span><span class="v-txt">For if we believe that Jesus died and rose again, even so them also which sleep in Jesus will God bring with him.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/15/" data-ref="1 Thessalonians 4:15 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/15/"><span class="v-num">15</span><span class="v-txt">For this we say unto you by the word of the Lord, that we which are alive and remain unto the coming of the Lord shall not prevent them which are asleep.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/16/" data-ref="1 Thessalonians 4:16 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/16/"><span class="v-num">16</span><span class="v-txt">For the Lord himself shall descend from heaven with a shout, with the voice of the archangel, and with the trump of God: and the dead in Christ shall rise first:</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/17/" data-ref="1 Thessalonians 4:17 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/17/"><span class="v-num">17</span><span class="v-txt">Then we which are alive and remain shall be caught up together with them in the clouds, to meet the Lord in the air: and so shall we ever be with the Lord.</span></a>
+<a class="v-row" href="/bible/kjv/1-thessalonians/4/18/" data-ref="1 Thessalonians 4:18 (King James Version)" data-verse-url="/bible/kjv/1-thessalonians/4/18/"><span class="v-num">18</span><span class="v-txt">Wherefore comfort one another with these words.</span></a>
 
     
 <div class="app-cta">

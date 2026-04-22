@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 79</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 79:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm of Asaph. O God, the nations have come into Your inheritance; Your holy temple they have defiled; They have laid Jerusalem in heaps.</span></div>
-<div class="v-row" data-ref="Psalm 79:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The dead bodies of Your servants They have given [as] food for the birds of the heavens, The flesh of Your saints to the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Psalm 79:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Their blood they have shed like water all around Jerusalem, And [there was] no one to bury [them.]</span></div>
-<div class="v-row" data-ref="Psalm 79:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">We have become a reproach to our neighbors, A scorn and derision to those who are around us.</span></div>
-<div class="v-row" data-ref="Psalm 79:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">How long, LORD? Will You be angry forever? Will Your jealousy burn like fire?</span></div>
-<div class="v-row" data-ref="Psalm 79:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Pour out Your wrath on the nations that do not know You, And on the kingdoms that do not call on Your name.</span></div>
-<div class="v-row" data-ref="Psalm 79:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For they have devoured Jacob, And laid waste his dwelling place.</span></div>
-<div class="v-row" data-ref="Psalm 79:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Oh, do not remember former iniquities against us! Let Your tender mercies come speedily to meet us, For we have been brought very low.</span></div>
-<div class="v-row" data-ref="Psalm 79:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Help us, O God of our salvation, For the glory of Your name; And deliver us, and provide atonement for our sins, For Your name's sake!</span></div>
-<div class="v-row" data-ref="Psalm 79:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Why should the nations say, "Where [is] their God?" Let there be known among the nations in our sight The avenging of the blood of Your servants [which has been] shed.</span></div>
-<div class="v-row" data-ref="Psalm 79:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let the groaning of the prisoner come before You; According to the greatness of Your power Preserve those who are appointed to die;</span></div>
-<div class="v-row" data-ref="Psalm 79:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And return to our neighbors sevenfold into their bosom Their reproach with which they have reproached You, O Lord.</span></div>
-<div class="v-row" data-ref="Psalm 79:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So we, Your people and sheep of Your pasture, Will give You thanks forever; We will show forth Your praise to all generations.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/79/1/" data-ref="Psalm 79:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/1/"><span class="v-num">1</span><span class="v-txt">A Psalm of Asaph. O God, the nations have come into Your inheritance; Your holy temple they have defiled; They have laid Jerusalem in heaps.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/2/" data-ref="Psalm 79:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/2/"><span class="v-num">2</span><span class="v-txt">The dead bodies of Your servants They have given [as] food for the birds of the heavens, The flesh of Your saints to the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/3/" data-ref="Psalm 79:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/3/"><span class="v-num">3</span><span class="v-txt">Their blood they have shed like water all around Jerusalem, And [there was] no one to bury [them.]</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/4/" data-ref="Psalm 79:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/4/"><span class="v-num">4</span><span class="v-txt">We have become a reproach to our neighbors, A scorn and derision to those who are around us.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/5/" data-ref="Psalm 79:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/5/"><span class="v-num">5</span><span class="v-txt">How long, LORD? Will You be angry forever? Will Your jealousy burn like fire?</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/6/" data-ref="Psalm 79:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/6/"><span class="v-num">6</span><span class="v-txt">Pour out Your wrath on the nations that do not know You, And on the kingdoms that do not call on Your name.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/7/" data-ref="Psalm 79:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/7/"><span class="v-num">7</span><span class="v-txt">For they have devoured Jacob, And laid waste his dwelling place.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/8/" data-ref="Psalm 79:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/8/"><span class="v-num">8</span><span class="v-txt">Oh, do not remember former iniquities against us! Let Your tender mercies come speedily to meet us, For we have been brought very low.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/9/" data-ref="Psalm 79:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/9/"><span class="v-num">9</span><span class="v-txt">Help us, O God of our salvation, For the glory of Your name; And deliver us, and provide atonement for our sins, For Your name's sake!</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/10/" data-ref="Psalm 79:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/10/"><span class="v-num">10</span><span class="v-txt">Why should the nations say, "Where [is] their God?" Let there be known among the nations in our sight The avenging of the blood of Your servants [which has been] shed.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/11/" data-ref="Psalm 79:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/11/"><span class="v-num">11</span><span class="v-txt">Let the groaning of the prisoner come before You; According to the greatness of Your power Preserve those who are appointed to die;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/12/" data-ref="Psalm 79:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/12/"><span class="v-num">12</span><span class="v-txt">And return to our neighbors sevenfold into their bosom Their reproach with which they have reproached You, O Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/79/13/" data-ref="Psalm 79:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/79/13/"><span class="v-num">13</span><span class="v-txt">So we, Your people and sheep of Your pasture, Will give You thanks forever; We will show forth Your praise to all generations.</span></a>
 
     
 <div class="app-cta">

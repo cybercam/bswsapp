@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 10:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Why do you keep far away, O Lord? why are you not to be seen in times of trouble?</span></div>
-<div class="v-row" data-ref="Psalm 10:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The evil-doer in his pride is cruel to the poor; let him be taken by the tricks of his invention.</span></div>
-<div class="v-row" data-ref="Psalm 10:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the evil-doer is lifted up because of the purpose of his heart, and he whose mind is fixed on wealth is turned away from the Lord, saying evil against him.</span></div>
-<div class="v-row" data-ref="Psalm 10:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The evil-doer in his pride says, God will not make a search. All his thoughts are, There is no God.</span></div>
-<div class="v-row" data-ref="Psalm 10:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">His ways are ever fixed; your decisions are higher than he may see: as for his haters, they are as nothing to him.</span></div>
-<div class="v-row" data-ref="Psalm 10:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He has said in his heart, I will not be moved: through all generations I will never be in trouble.</span></div>
-<div class="v-row" data-ref="Psalm 10:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing and deceit and false words: under his tongue are evil purposes and dark thoughts.</span></div>
-<div class="v-row" data-ref="Psalm 10:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He is waiting in the dark places of the towns: in the secret places he puts to death those who have done no wrong: his eyes are secretly turned against the poor.</span></div>
-<div class="v-row" data-ref="Psalm 10:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He keeps himself in a secret place like a lion in his hole, waiting to put his hands on the poor man, and pulling him into his net.</span></div>
-<div class="v-row" data-ref="Psalm 10:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The upright are crushed and made low, and the feeble are overcome by his strong ones.</span></div>
-<div class="v-row" data-ref="Psalm 10:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He says in his heart, God has no memory of me: his face is turned away; he will never see it.</span></div>
-<div class="v-row" data-ref="Psalm 10:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Up! O Lord; let your hand be lifted: give thought to the poor.</span></div>
-<div class="v-row" data-ref="Psalm 10:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Why has the evil-doer a low opinion of God, saying in his heart, You will not make search for it?</span></div>
-<div class="v-row" data-ref="Psalm 10:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You have seen it; for your eyes are on sorrow and grief, to take it into your hand: the poor man puts his faith in you; you have been the helper of the child who has no father.</span></div>
-<div class="v-row" data-ref="Psalm 10:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let the arm of the sinner and the evil-doer be broken; go on searching for his sin till there is no more.</span></div>
-<div class="v-row" data-ref="Psalm 10:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The Lord is King for ever and ever; the nations are gone from his land.</span></div>
-<div class="v-row" data-ref="Psalm 10:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Lord, you have given ear to the prayer of the poor: you will make strong their hearts, you will give them a hearing:</span></div>
-<div class="v-row" data-ref="Psalm 10:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To give decision for the child without a father and for the broken-hearted, so that the man of the earth may no longer be feared.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/10/1/" data-ref="Psalm 10:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/1/"><span class="v-num">1</span><span class="v-txt">Why do you keep far away, O Lord? why are you not to be seen in times of trouble?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/2/" data-ref="Psalm 10:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/2/"><span class="v-num">2</span><span class="v-txt">The evil-doer in his pride is cruel to the poor; let him be taken by the tricks of his invention.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/3/" data-ref="Psalm 10:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/3/"><span class="v-num">3</span><span class="v-txt">For the evil-doer is lifted up because of the purpose of his heart, and he whose mind is fixed on wealth is turned away from the Lord, saying evil against him.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/4/" data-ref="Psalm 10:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/4/"><span class="v-num">4</span><span class="v-txt">The evil-doer in his pride says, God will not make a search. All his thoughts are, There is no God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/5/" data-ref="Psalm 10:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/5/"><span class="v-num">5</span><span class="v-txt">His ways are ever fixed; your decisions are higher than he may see: as for his haters, they are as nothing to him.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/6/" data-ref="Psalm 10:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/6/"><span class="v-num">6</span><span class="v-txt">He has said in his heart, I will not be moved: through all generations I will never be in trouble.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/7/" data-ref="Psalm 10:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/7/"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing and deceit and false words: under his tongue are evil purposes and dark thoughts.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/8/" data-ref="Psalm 10:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/8/"><span class="v-num">8</span><span class="v-txt">He is waiting in the dark places of the towns: in the secret places he puts to death those who have done no wrong: his eyes are secretly turned against the poor.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/9/" data-ref="Psalm 10:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/9/"><span class="v-num">9</span><span class="v-txt">He keeps himself in a secret place like a lion in his hole, waiting to put his hands on the poor man, and pulling him into his net.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/10/" data-ref="Psalm 10:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/10/"><span class="v-num">10</span><span class="v-txt">The upright are crushed and made low, and the feeble are overcome by his strong ones.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/11/" data-ref="Psalm 10:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/11/"><span class="v-num">11</span><span class="v-txt">He says in his heart, God has no memory of me: his face is turned away; he will never see it.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/12/" data-ref="Psalm 10:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/12/"><span class="v-num">12</span><span class="v-txt">Up! O Lord; let your hand be lifted: give thought to the poor.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/13/" data-ref="Psalm 10:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/13/"><span class="v-num">13</span><span class="v-txt">Why has the evil-doer a low opinion of God, saying in his heart, You will not make search for it?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/14/" data-ref="Psalm 10:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/14/"><span class="v-num">14</span><span class="v-txt">You have seen it; for your eyes are on sorrow and grief, to take it into your hand: the poor man puts his faith in you; you have been the helper of the child who has no father.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/15/" data-ref="Psalm 10:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/15/"><span class="v-num">15</span><span class="v-txt">Let the arm of the sinner and the evil-doer be broken; go on searching for his sin till there is no more.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/16/" data-ref="Psalm 10:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/16/"><span class="v-num">16</span><span class="v-txt">The Lord is King for ever and ever; the nations are gone from his land.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/17/" data-ref="Psalm 10:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/17/"><span class="v-num">17</span><span class="v-txt">Lord, you have given ear to the prayer of the poor: you will make strong their hearts, you will give them a hearing:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/10/18/" data-ref="Psalm 10:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/10/18/"><span class="v-num">18</span><span class="v-txt">To give decision for the child without a father and for the broken-hearted, so that the man of the earth may no longer be feared.</span></a>
 
     
 <div class="app-cta">

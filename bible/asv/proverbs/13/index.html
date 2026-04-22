@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 13:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A wise son [heareth] his father's instruction; But a scoffer heareth not rebuke.</span></div>
-<div class="v-row" data-ref="Proverbs 13:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A man shall eat good by the fruit of his mouth; But the soul of the treacherous [shall eat] violence.</span></div>
-<div class="v-row" data-ref="Proverbs 13:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He that guardeth his mouth keepeth his life; [But] he that openeth wide his lips shall have destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 13:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The soul of the sluggard desireth, and hath nothing; But the soul of the diligent shall be made fat.</span></div>
-<div class="v-row" data-ref="Proverbs 13:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">A righteous man hateth lying; But a wicked man is loathsome, and cometh to shame.</span></div>
-<div class="v-row" data-ref="Proverbs 13:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Righteousness guardeth him that is upright in the way; But wickedness overthroweth the sinner.</span></div>
-<div class="v-row" data-ref="Proverbs 13:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">There is that maketh himself rich, yet hath nothing: There is that maketh himself poor, yet hath great wealth.</span></div>
-<div class="v-row" data-ref="Proverbs 13:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The ransom of a man's life is his riches; But the poor heareth no threatening.</span></div>
-<div class="v-row" data-ref="Proverbs 13:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The light of the righteous rejoiceth; But the lamp of the wicked shall be put out.</span></div>
-<div class="v-row" data-ref="Proverbs 13:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">By pride cometh only contention; But with the well-advised is wisdom.</span></div>
-<div class="v-row" data-ref="Proverbs 13:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Wealth gotten by vanity shall be diminished; But he that gathereth by labor shall have increase.</span></div>
-<div class="v-row" data-ref="Proverbs 13:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Hope deferred maketh the heart sick; But when the desire cometh, it is a tree of life.</span></div>
-<div class="v-row" data-ref="Proverbs 13:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Whoso despiseth the word bringeth destruction on himself; But he that feareth the commandment shall be rewarded.</span></div>
-<div class="v-row" data-ref="Proverbs 13:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The law of the wise is a fountain of life, That one may depart from the snares of death.</span></div>
-<div class="v-row" data-ref="Proverbs 13:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Good understanding giveth favor; But the way of the transgressor is hard.</span></div>
-<div class="v-row" data-ref="Proverbs 13:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Every prudent man worketh with knowledge; But a fool flaunteth [his] folly.</span></div>
-<div class="v-row" data-ref="Proverbs 13:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">A wicked messenger falleth into evil; But a faithful ambassador is health.</span></div>
-<div class="v-row" data-ref="Proverbs 13:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Poverty and shame [shall be to] him that refuseth correction; But he that regardeth reproof shall be honored.</span></div>
-<div class="v-row" data-ref="Proverbs 13:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The desire accomplished is sweet to the soul; But it is an abomination to fools to depart from evil.</span></div>
-<div class="v-row" data-ref="Proverbs 13:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Walk with wise men, and thou shalt be wise; But the companion of fools shall smart for it.</span></div>
-<div class="v-row" data-ref="Proverbs 13:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Evil pursueth sinners; But the righteous shall be recompensed with good.</span></div>
-<div class="v-row" data-ref="Proverbs 13:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A good man leaveth an inheritance to his children's children; And the wealth of the sinner is laid up for the righteous.</span></div>
-<div class="v-row" data-ref="Proverbs 13:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Much food [is in] the tillage of the poor; But there is that is destroyed by reason of injustice.</span></div>
-<div class="v-row" data-ref="Proverbs 13:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He that spareth his rod hateth his son; But he that loveth him chasteneth him betimes.</span></div>
-<div class="v-row" data-ref="Proverbs 13:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">The righteous eateth to the satisfying of his soul; But the belly of the wicked shall want.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/13/1/" data-ref="Proverbs 13:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/1/"><span class="v-num">1</span><span class="v-txt">A wise son [heareth] his father's instruction; But a scoffer heareth not rebuke.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/2/" data-ref="Proverbs 13:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/2/"><span class="v-num">2</span><span class="v-txt">A man shall eat good by the fruit of his mouth; But the soul of the treacherous [shall eat] violence.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/3/" data-ref="Proverbs 13:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/3/"><span class="v-num">3</span><span class="v-txt">He that guardeth his mouth keepeth his life; [But] he that openeth wide his lips shall have destruction.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/4/" data-ref="Proverbs 13:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/4/"><span class="v-num">4</span><span class="v-txt">The soul of the sluggard desireth, and hath nothing; But the soul of the diligent shall be made fat.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/5/" data-ref="Proverbs 13:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/5/"><span class="v-num">5</span><span class="v-txt">A righteous man hateth lying; But a wicked man is loathsome, and cometh to shame.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/6/" data-ref="Proverbs 13:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/6/"><span class="v-num">6</span><span class="v-txt">Righteousness guardeth him that is upright in the way; But wickedness overthroweth the sinner.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/7/" data-ref="Proverbs 13:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/7/"><span class="v-num">7</span><span class="v-txt">There is that maketh himself rich, yet hath nothing: There is that maketh himself poor, yet hath great wealth.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/8/" data-ref="Proverbs 13:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/8/"><span class="v-num">8</span><span class="v-txt">The ransom of a man's life is his riches; But the poor heareth no threatening.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/9/" data-ref="Proverbs 13:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/9/"><span class="v-num">9</span><span class="v-txt">The light of the righteous rejoiceth; But the lamp of the wicked shall be put out.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/10/" data-ref="Proverbs 13:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/10/"><span class="v-num">10</span><span class="v-txt">By pride cometh only contention; But with the well-advised is wisdom.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/11/" data-ref="Proverbs 13:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/11/"><span class="v-num">11</span><span class="v-txt">Wealth gotten by vanity shall be diminished; But he that gathereth by labor shall have increase.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/12/" data-ref="Proverbs 13:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/12/"><span class="v-num">12</span><span class="v-txt">Hope deferred maketh the heart sick; But when the desire cometh, it is a tree of life.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/13/" data-ref="Proverbs 13:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/13/"><span class="v-num">13</span><span class="v-txt">Whoso despiseth the word bringeth destruction on himself; But he that feareth the commandment shall be rewarded.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/14/" data-ref="Proverbs 13:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/14/"><span class="v-num">14</span><span class="v-txt">The law of the wise is a fountain of life, That one may depart from the snares of death.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/15/" data-ref="Proverbs 13:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/15/"><span class="v-num">15</span><span class="v-txt">Good understanding giveth favor; But the way of the transgressor is hard.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/16/" data-ref="Proverbs 13:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/16/"><span class="v-num">16</span><span class="v-txt">Every prudent man worketh with knowledge; But a fool flaunteth [his] folly.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/17/" data-ref="Proverbs 13:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/17/"><span class="v-num">17</span><span class="v-txt">A wicked messenger falleth into evil; But a faithful ambassador is health.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/18/" data-ref="Proverbs 13:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/18/"><span class="v-num">18</span><span class="v-txt">Poverty and shame [shall be to] him that refuseth correction; But he that regardeth reproof shall be honored.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/19/" data-ref="Proverbs 13:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/19/"><span class="v-num">19</span><span class="v-txt">The desire accomplished is sweet to the soul; But it is an abomination to fools to depart from evil.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/20/" data-ref="Proverbs 13:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/20/"><span class="v-num">20</span><span class="v-txt">Walk with wise men, and thou shalt be wise; But the companion of fools shall smart for it.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/21/" data-ref="Proverbs 13:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/21/"><span class="v-num">21</span><span class="v-txt">Evil pursueth sinners; But the righteous shall be recompensed with good.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/22/" data-ref="Proverbs 13:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/22/"><span class="v-num">22</span><span class="v-txt">A good man leaveth an inheritance to his children's children; And the wealth of the sinner is laid up for the righteous.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/23/" data-ref="Proverbs 13:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/23/"><span class="v-num">23</span><span class="v-txt">Much food [is in] the tillage of the poor; But there is that is destroyed by reason of injustice.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/24/" data-ref="Proverbs 13:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/24/"><span class="v-num">24</span><span class="v-txt">He that spareth his rod hateth his son; But he that loveth him chasteneth him betimes.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/13/25/" data-ref="Proverbs 13:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/13/25/"><span class="v-num">25</span><span class="v-txt">The righteous eateth to the satisfying of his soul; But the belly of the wicked shall want.</span></a>
 
     
 <div class="app-cta">

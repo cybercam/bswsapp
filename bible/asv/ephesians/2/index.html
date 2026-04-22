@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Ephesians 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And you [did he make alive,] when ye were dead through your trespasses and sins,</span></div>
-<div class="v-row" data-ref="Ephesians 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">wherein ye once walked according to the course of this world, according to the prince of the powers of the air, of the spirit that now worketh in the sons of disobedience;</span></div>
-<div class="v-row" data-ref="Ephesians 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">among whom we also all once lived in the lust of our flesh, doing the desires of the flesh and of the mind, and were by nature children of wrath, even as the rest: --</span></div>
-<div class="v-row" data-ref="Ephesians 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">but God, being rich in mercy, for his great love wherewith he loved us,</span></div>
-<div class="v-row" data-ref="Ephesians 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">even when we were dead through our trespasses, made us alive together with Christ (by grace have ye been saved),</span></div>
-<div class="v-row" data-ref="Ephesians 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and raised us up with him, and made us to sit with him in the heavenly [places], in Christ Jesus:</span></div>
-<div class="v-row" data-ref="Ephesians 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">that in the ages to come he might show the exceeding riches of his grace in kindness toward us in Christ Jesus:</span></div>
-<div class="v-row" data-ref="Ephesians 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">for by grace have ye been saved through faith; and that not of yourselves, [it is] the gift of God;</span></div>
-<div class="v-row" data-ref="Ephesians 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">not of works, that no man should glory.</span></div>
-<div class="v-row" data-ref="Ephesians 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For we are his workmanship, created in Christ Jesus for good works, which God afore prepared that we should walk in them.</span></div>
-<div class="v-row" data-ref="Ephesians 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Wherefore remember, that once ye, the Gentiles in the flesh, who are called Uncircumcision by that which is called Circumcision, in the flesh, made by hands;</span></div>
-<div class="v-row" data-ref="Ephesians 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">that ye were at that time separate from Christ, alienated from the commonwealth of Israel, and strangers from the covenants of the promise, having no hope and without God in the world.</span></div>
-<div class="v-row" data-ref="Ephesians 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But now in Christ Jesus ye that once were far off are made nigh in the blood of Christ.</span></div>
-<div class="v-row" data-ref="Ephesians 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For he is our peace, who made both one, and brake down the middle wall of partition,</span></div>
-<div class="v-row" data-ref="Ephesians 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">having abolished in the flesh the enmity, [even] the law of commandments [contained] in ordinances; that he might create in himself of the two one new man, [so] making peace;</span></div>
-<div class="v-row" data-ref="Ephesians 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">and might reconcile them both in one body unto God through the cross, having slain the enmity thereby:</span></div>
-<div class="v-row" data-ref="Ephesians 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">and he came and preached peace to you that were far off, and peace to them that were nigh:</span></div>
-<div class="v-row" data-ref="Ephesians 2:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">for through him we both have our access in one Spirit unto the Father.</span></div>
-<div class="v-row" data-ref="Ephesians 2:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So then ye are no more strangers and sojourners, but ye are fellow-citizens with the saints, and of the household of God,</span></div>
-<div class="v-row" data-ref="Ephesians 2:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">being built upon the foundation of the apostles and prophets, Christ Jesus himself being the chief corner stone;</span></div>
-<div class="v-row" data-ref="Ephesians 2:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">in whom each several building, fitly framed together, groweth into a holy temple in the Lord;</span></div>
-<div class="v-row" data-ref="Ephesians 2:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">in whom ye also are builded together for a habitation of God in the Spirit.</span></div>
+    <a class="v-row" href="/bible/asv/ephesians/2/1/" data-ref="Ephesians 2:1 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/1/"><span class="v-num">1</span><span class="v-txt">And you [did he make alive,] when ye were dead through your trespasses and sins,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/2/" data-ref="Ephesians 2:2 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/2/"><span class="v-num">2</span><span class="v-txt">wherein ye once walked according to the course of this world, according to the prince of the powers of the air, of the spirit that now worketh in the sons of disobedience;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/3/" data-ref="Ephesians 2:3 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/3/"><span class="v-num">3</span><span class="v-txt">among whom we also all once lived in the lust of our flesh, doing the desires of the flesh and of the mind, and were by nature children of wrath, even as the rest: --</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/4/" data-ref="Ephesians 2:4 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/4/"><span class="v-num">4</span><span class="v-txt">but God, being rich in mercy, for his great love wherewith he loved us,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/5/" data-ref="Ephesians 2:5 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/5/"><span class="v-num">5</span><span class="v-txt">even when we were dead through our trespasses, made us alive together with Christ (by grace have ye been saved),</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/6/" data-ref="Ephesians 2:6 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/6/"><span class="v-num">6</span><span class="v-txt">and raised us up with him, and made us to sit with him in the heavenly [places], in Christ Jesus:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/7/" data-ref="Ephesians 2:7 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/7/"><span class="v-num">7</span><span class="v-txt">that in the ages to come he might show the exceeding riches of his grace in kindness toward us in Christ Jesus:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/8/" data-ref="Ephesians 2:8 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/8/"><span class="v-num">8</span><span class="v-txt">for by grace have ye been saved through faith; and that not of yourselves, [it is] the gift of God;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/9/" data-ref="Ephesians 2:9 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/9/"><span class="v-num">9</span><span class="v-txt">not of works, that no man should glory.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/10/" data-ref="Ephesians 2:10 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/10/"><span class="v-num">10</span><span class="v-txt">For we are his workmanship, created in Christ Jesus for good works, which God afore prepared that we should walk in them.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/11/" data-ref="Ephesians 2:11 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/11/"><span class="v-num">11</span><span class="v-txt">Wherefore remember, that once ye, the Gentiles in the flesh, who are called Uncircumcision by that which is called Circumcision, in the flesh, made by hands;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/12/" data-ref="Ephesians 2:12 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/12/"><span class="v-num">12</span><span class="v-txt">that ye were at that time separate from Christ, alienated from the commonwealth of Israel, and strangers from the covenants of the promise, having no hope and without God in the world.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/13/" data-ref="Ephesians 2:13 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/13/"><span class="v-num">13</span><span class="v-txt">But now in Christ Jesus ye that once were far off are made nigh in the blood of Christ.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/14/" data-ref="Ephesians 2:14 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/14/"><span class="v-num">14</span><span class="v-txt">For he is our peace, who made both one, and brake down the middle wall of partition,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/15/" data-ref="Ephesians 2:15 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/15/"><span class="v-num">15</span><span class="v-txt">having abolished in the flesh the enmity, [even] the law of commandments [contained] in ordinances; that he might create in himself of the two one new man, [so] making peace;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/16/" data-ref="Ephesians 2:16 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/16/"><span class="v-num">16</span><span class="v-txt">and might reconcile them both in one body unto God through the cross, having slain the enmity thereby:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/17/" data-ref="Ephesians 2:17 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/17/"><span class="v-num">17</span><span class="v-txt">and he came and preached peace to you that were far off, and peace to them that were nigh:</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/18/" data-ref="Ephesians 2:18 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/18/"><span class="v-num">18</span><span class="v-txt">for through him we both have our access in one Spirit unto the Father.</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/19/" data-ref="Ephesians 2:19 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/19/"><span class="v-num">19</span><span class="v-txt">So then ye are no more strangers and sojourners, but ye are fellow-citizens with the saints, and of the household of God,</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/20/" data-ref="Ephesians 2:20 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/20/"><span class="v-num">20</span><span class="v-txt">being built upon the foundation of the apostles and prophets, Christ Jesus himself being the chief corner stone;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/21/" data-ref="Ephesians 2:21 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/21/"><span class="v-num">21</span><span class="v-txt">in whom each several building, fitly framed together, groweth into a holy temple in the Lord;</span></a>
+<a class="v-row" href="/bible/asv/ephesians/2/22/" data-ref="Ephesians 2:22 (American Standard Version)" data-verse-url="/bible/asv/ephesians/2/22/"><span class="v-num">22</span><span class="v-txt">in whom ye also are builded together for a habitation of God in the Spirit.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After the death of Moses the servant of the LORD, it came to pass that the LORD spoke to Joshua the son of Nun, Moses' assistant, saying:</span></div>
-<div class="v-row" data-ref="Joshua 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Moses My servant is dead. Now therefore, arise, go over this Jordan, you and all this people, to the land which I am giving to them -- the children of Israel.</span></div>
-<div class="v-row" data-ref="Joshua 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Every place that the sole of your foot will tread upon I have given you, as I said to Moses.</span></div>
-<div class="v-row" data-ref="Joshua 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"From the wilderness and this Lebanon as far as the great river, the River Euphrates, all the land of the Hittites, and to the Great Sea toward the going down of the sun, shall be your territory.</span></div>
-<div class="v-row" data-ref="Joshua 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"No man shall [be able to] stand before you all the days of your life; as I was with Moses, [so] I will be with you. I will not leave you nor forsake you.</span></div>
-<div class="v-row" data-ref="Joshua 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Be strong and of good courage, for to this people you shall divide as an inheritance the land which I swore to their fathers to give them.</span></div>
-<div class="v-row" data-ref="Joshua 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Only be strong and very courageous, that you may observe to do according to all the law which Moses My servant commanded you; do not turn from it to the right hand or to the left, that you may prosper wherever you go.</span></div>
-<div class="v-row" data-ref="Joshua 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night, that you may observe to do according to all that is written in it. For then you will make your way prosperous, and then you will have good success.</span></div>
-<div class="v-row" data-ref="Joshua 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"Have I not commanded you? Be strong and of good courage; do not be afraid, nor be dismayed, for the LORD your God [is] with you wherever you go."</span></div>
-<div class="v-row" data-ref="Joshua 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Joshua commanded the officers of the people, saying,</span></div>
-<div class="v-row" data-ref="Joshua 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"Pass through the camp and command the people, saying, 'Prepare provisions for yourselves, for within three days you will cross over this Jordan, to go in to possess the land which the LORD your God is giving you to possess.' "</span></div>
-<div class="v-row" data-ref="Joshua 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And to the Reubenites, the Gadites, and half the tribe of Manasseh Joshua spoke, saying,</span></div>
-<div class="v-row" data-ref="Joshua 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"Remember the word which Moses the servant of the LORD commanded you, saying, 'The LORD your God is giving you rest and is giving you this land.'</span></div>
-<div class="v-row" data-ref="Joshua 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"Your wives, your little ones, and your livestock shall remain in the land which Moses gave you on this side of the Jordan. But you shall pass before your brethren armed, all your mighty men of valor, and help them,</span></div>
-<div class="v-row" data-ref="Joshua 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"until the LORD has given your brethren rest, as He [gave] you, and they also have taken possession of the land which the LORD your God is giving them. Then you shall return to the land of your possession and enjoy it, which Moses the LORD's servant gave you on this side of the Jordan toward the sunrise."</span></div>
-<div class="v-row" data-ref="Joshua 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">So they answered Joshua, saying, "All that you command us we will do, and wherever you send us we will go.</span></div>
-<div class="v-row" data-ref="Joshua 1:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Just as we heeded Moses in all things, so we will heed you. Only the LORD your God be with you, as He was with Moses.</span></div>
-<div class="v-row" data-ref="Joshua 1:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">"Whoever rebels against your command and does not heed your words, in all that you command him, shall be put to death. Only be strong and of good courage."</span></div>
+    <a class="v-row" href="/bible/nkjv/joshua/1/1/" data-ref="Joshua 1:1 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/1/"><span class="v-num">1</span><span class="v-txt">After the death of Moses the servant of the LORD, it came to pass that the LORD spoke to Joshua the son of Nun, Moses' assistant, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/2/" data-ref="Joshua 1:2 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/2/"><span class="v-num">2</span><span class="v-txt">"Moses My servant is dead. Now therefore, arise, go over this Jordan, you and all this people, to the land which I am giving to them -- the children of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/3/" data-ref="Joshua 1:3 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/3/"><span class="v-num">3</span><span class="v-txt">"Every place that the sole of your foot will tread upon I have given you, as I said to Moses.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/4/" data-ref="Joshua 1:4 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/4/"><span class="v-num">4</span><span class="v-txt">"From the wilderness and this Lebanon as far as the great river, the River Euphrates, all the land of the Hittites, and to the Great Sea toward the going down of the sun, shall be your territory.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/5/" data-ref="Joshua 1:5 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/5/"><span class="v-num">5</span><span class="v-txt">"No man shall [be able to] stand before you all the days of your life; as I was with Moses, [so] I will be with you. I will not leave you nor forsake you.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/6/" data-ref="Joshua 1:6 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/6/"><span class="v-num">6</span><span class="v-txt">"Be strong and of good courage, for to this people you shall divide as an inheritance the land which I swore to their fathers to give them.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/7/" data-ref="Joshua 1:7 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/7/"><span class="v-num">7</span><span class="v-txt">"Only be strong and very courageous, that you may observe to do according to all the law which Moses My servant commanded you; do not turn from it to the right hand or to the left, that you may prosper wherever you go.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/8/" data-ref="Joshua 1:8 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/8/"><span class="v-num">8</span><span class="v-txt">"This Book of the Law shall not depart from your mouth, but you shall meditate in it day and night, that you may observe to do according to all that is written in it. For then you will make your way prosperous, and then you will have good success.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/9/" data-ref="Joshua 1:9 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/9/"><span class="v-num">9</span><span class="v-txt">"Have I not commanded you? Be strong and of good courage; do not be afraid, nor be dismayed, for the LORD your God [is] with you wherever you go."</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/10/" data-ref="Joshua 1:10 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/10/"><span class="v-num">10</span><span class="v-txt">Then Joshua commanded the officers of the people, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/11/" data-ref="Joshua 1:11 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/11/"><span class="v-num">11</span><span class="v-txt">"Pass through the camp and command the people, saying, 'Prepare provisions for yourselves, for within three days you will cross over this Jordan, to go in to possess the land which the LORD your God is giving you to possess.' "</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/12/" data-ref="Joshua 1:12 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/12/"><span class="v-num">12</span><span class="v-txt">And to the Reubenites, the Gadites, and half the tribe of Manasseh Joshua spoke, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/13/" data-ref="Joshua 1:13 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/13/"><span class="v-num">13</span><span class="v-txt">"Remember the word which Moses the servant of the LORD commanded you, saying, 'The LORD your God is giving you rest and is giving you this land.'</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/14/" data-ref="Joshua 1:14 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/14/"><span class="v-num">14</span><span class="v-txt">"Your wives, your little ones, and your livestock shall remain in the land which Moses gave you on this side of the Jordan. But you shall pass before your brethren armed, all your mighty men of valor, and help them,</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/15/" data-ref="Joshua 1:15 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/15/"><span class="v-num">15</span><span class="v-txt">"until the LORD has given your brethren rest, as He [gave] you, and they also have taken possession of the land which the LORD your God is giving them. Then you shall return to the land of your possession and enjoy it, which Moses the LORD's servant gave you on this side of the Jordan toward the sunrise."</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/16/" data-ref="Joshua 1:16 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/16/"><span class="v-num">16</span><span class="v-txt">So they answered Joshua, saying, "All that you command us we will do, and wherever you send us we will go.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/17/" data-ref="Joshua 1:17 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/17/"><span class="v-num">17</span><span class="v-txt">"Just as we heeded Moses in all things, so we will heed you. Only the LORD your God be with you, as He was with Moses.</span></a>
+<a class="v-row" href="/bible/nkjv/joshua/1/18/" data-ref="Joshua 1:18 (New King James Version)" data-verse-url="/bible/nkjv/joshua/1/18/"><span class="v-num">18</span><span class="v-txt">"Whoever rebels against your command and does not heed your words, in all that you command him, shall be put to death. Only be strong and of good courage."</span></a>
 
     
 <div class="app-cta">

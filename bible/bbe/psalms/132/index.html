@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 132</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 132:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Song of the going up. Lord, give thought to David, and to all his troubles;</span></div>
-<div class="v-row" data-ref="Psalm 132:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">How he made an oath to the Lord, and gave his word to the great God of Jacob, saying,</span></div>
-<div class="v-row" data-ref="Psalm 132:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Truly, I will not come into my house, or go to my bed,</span></div>
-<div class="v-row" data-ref="Psalm 132:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I will not give sleep to my eyes, or rest to my eyeballs,</span></div>
-<div class="v-row" data-ref="Psalm 132:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Till I have got a place for the Lord, a resting-place for the great God of Jacob.</span></div>
-<div class="v-row" data-ref="Psalm 132:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">We had news of it at Ephrathah: we came to it in the fields of the wood.</span></div>
-<div class="v-row" data-ref="Psalm 132:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Let us go into his tent; let us give worship at his feet.</span></div>
-<div class="v-row" data-ref="Psalm 132:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Come back, O Lord, to your resting-place; you and the ark of your strength.</span></div>
-<div class="v-row" data-ref="Psalm 132:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Let your priests be clothed with righteousness; and let your saints give cries of joy.</span></div>
-<div class="v-row" data-ref="Psalm 132:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because of your servant David, do not give up your king.</span></div>
-<div class="v-row" data-ref="Psalm 132:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The Lord gave a true oath to David, which he will not take back, saying, I will give your kingdom to the fruit of your body.</span></div>
-<div class="v-row" data-ref="Psalm 132:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">If your children keep my word, and the teachings which I will give them, their children will be rulers of your kingdom for ever.</span></div>
-<div class="v-row" data-ref="Psalm 132:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For the Lord's heart is on Zion, desiring it for his resting-place.</span></div>
-<div class="v-row" data-ref="Psalm 132:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">This is my rest for ever: here will I ever be; for this is my desire.</span></div>
-<div class="v-row" data-ref="Psalm 132:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My blessing will be on her food; and her poor will be full of bread.</span></div>
-<div class="v-row" data-ref="Psalm 132:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Her priests will be clothed with salvation; and her saints will give cries of joy.</span></div>
-<div class="v-row" data-ref="Psalm 132:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">There I will make the horn of David fertile: I have made ready a light for my king.</span></div>
-<div class="v-row" data-ref="Psalm 132:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">His haters will be clothed with shame; but I will make his crown shining.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/132/1/" data-ref="Psalm 132:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/1/"><span class="v-num">1</span><span class="v-txt">A Song of the going up. Lord, give thought to David, and to all his troubles;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/2/" data-ref="Psalm 132:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/2/"><span class="v-num">2</span><span class="v-txt">How he made an oath to the Lord, and gave his word to the great God of Jacob, saying,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/3/" data-ref="Psalm 132:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/3/"><span class="v-num">3</span><span class="v-txt">Truly, I will not come into my house, or go to my bed,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/4/" data-ref="Psalm 132:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/4/"><span class="v-num">4</span><span class="v-txt">I will not give sleep to my eyes, or rest to my eyeballs,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/5/" data-ref="Psalm 132:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/5/"><span class="v-num">5</span><span class="v-txt">Till I have got a place for the Lord, a resting-place for the great God of Jacob.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/6/" data-ref="Psalm 132:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/6/"><span class="v-num">6</span><span class="v-txt">We had news of it at Ephrathah: we came to it in the fields of the wood.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/7/" data-ref="Psalm 132:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/7/"><span class="v-num">7</span><span class="v-txt">Let us go into his tent; let us give worship at his feet.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/8/" data-ref="Psalm 132:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/8/"><span class="v-num">8</span><span class="v-txt">Come back, O Lord, to your resting-place; you and the ark of your strength.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/9/" data-ref="Psalm 132:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/9/"><span class="v-num">9</span><span class="v-txt">Let your priests be clothed with righteousness; and let your saints give cries of joy.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/10/" data-ref="Psalm 132:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/10/"><span class="v-num">10</span><span class="v-txt">Because of your servant David, do not give up your king.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/11/" data-ref="Psalm 132:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/11/"><span class="v-num">11</span><span class="v-txt">The Lord gave a true oath to David, which he will not take back, saying, I will give your kingdom to the fruit of your body.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/12/" data-ref="Psalm 132:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/12/"><span class="v-num">12</span><span class="v-txt">If your children keep my word, and the teachings which I will give them, their children will be rulers of your kingdom for ever.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/13/" data-ref="Psalm 132:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/13/"><span class="v-num">13</span><span class="v-txt">For the Lord's heart is on Zion, desiring it for his resting-place.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/14/" data-ref="Psalm 132:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/14/"><span class="v-num">14</span><span class="v-txt">This is my rest for ever: here will I ever be; for this is my desire.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/15/" data-ref="Psalm 132:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/15/"><span class="v-num">15</span><span class="v-txt">My blessing will be on her food; and her poor will be full of bread.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/16/" data-ref="Psalm 132:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/16/"><span class="v-num">16</span><span class="v-txt">Her priests will be clothed with salvation; and her saints will give cries of joy.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/17/" data-ref="Psalm 132:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/17/"><span class="v-num">17</span><span class="v-txt">There I will make the horn of David fertile: I have made ready a light for my king.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/132/18/" data-ref="Psalm 132:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/132/18/"><span class="v-num">18</span><span class="v-txt">His haters will be clothed with shame; but I will make his crown shining.</span></a>
 
     
 <div class="app-cta">

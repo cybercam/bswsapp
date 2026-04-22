@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="3 John 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I, a ruler in the church, send word to the well loved Gaius, for whom I have true love.</span></div>
-<div class="v-row" data-ref="3 John 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">My loved one, it is my prayer that you may do well in all things, and be healthy in body, even as your soul does well.</span></div>
-<div class="v-row" data-ref="3 John 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For it gave me great joy when some of the brothers came and gave witness that you had the true faith and were walking in the true way.</span></div>
-<div class="v-row" data-ref="3 John 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I have no greater joy than to have news that my children are walking in the true way.</span></div>
-<div class="v-row" data-ref="3 John 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My loved one, you are doing a good work in being kind to those brothers who come from other places;</span></div>
-<div class="v-row" data-ref="3 John 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Who have given witness to the church of your love for them: and you will do well to send them on their way well cared for, as is right for servants of God:</span></div>
-<div class="v-row" data-ref="3 John 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For they went out for love of the Name, taking nothing from the Gentiles.</span></div>
-<div class="v-row" data-ref="3 John 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">So it is right for us to take in such men as guests, so that we may take our part in the work of the true faith.</span></div>
-<div class="v-row" data-ref="3 John 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I sent a letter to the church, but Diotrephes, whose desire is ever to have the first place among them, will not have us there.</span></div>
-<div class="v-row" data-ref="3 John 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So if I come, I will keep in mind the things he does, talking against us with evil words: and as if this was not enough, he does not take the brothers into his house, and those who are ready to take them in, he keeps from doing so, putting them out of the church if they do.</span></div>
-<div class="v-row" data-ref="3 John 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My loved one, do not be copying what is evil, but what is good. He who does good is of God: he who does evil has not seen God.</span></div>
-<div class="v-row" data-ref="3 John 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Demetrius has the approval of all men and of what is true: and we give the same witness, and you are certain that our witness is true.</span></div>
-<div class="v-row" data-ref="3 John 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I had much to say to you, but it is not my purpose to put it all down with ink and pen:</span></div>
-<div class="v-row" data-ref="3 John 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I am hoping to see you in a short time, and to have talk with you face to face. May you have peace. Your friends here send you their love. Give my love to our friends by name.</span></div>
+    <a class="v-row" href="/bible/bbe/3-john/1/1/" data-ref="3 John 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/1/"><span class="v-num">1</span><span class="v-txt">I, a ruler in the church, send word to the well loved Gaius, for whom I have true love.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/2/" data-ref="3 John 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/2/"><span class="v-num">2</span><span class="v-txt">My loved one, it is my prayer that you may do well in all things, and be healthy in body, even as your soul does well.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/3/" data-ref="3 John 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/3/"><span class="v-num">3</span><span class="v-txt">For it gave me great joy when some of the brothers came and gave witness that you had the true faith and were walking in the true way.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/4/" data-ref="3 John 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/4/"><span class="v-num">4</span><span class="v-txt">I have no greater joy than to have news that my children are walking in the true way.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/5/" data-ref="3 John 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/5/"><span class="v-num">5</span><span class="v-txt">My loved one, you are doing a good work in being kind to those brothers who come from other places;</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/6/" data-ref="3 John 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/6/"><span class="v-num">6</span><span class="v-txt">Who have given witness to the church of your love for them: and you will do well to send them on their way well cared for, as is right for servants of God:</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/7/" data-ref="3 John 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/7/"><span class="v-num">7</span><span class="v-txt">For they went out for love of the Name, taking nothing from the Gentiles.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/8/" data-ref="3 John 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/8/"><span class="v-num">8</span><span class="v-txt">So it is right for us to take in such men as guests, so that we may take our part in the work of the true faith.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/9/" data-ref="3 John 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/9/"><span class="v-num">9</span><span class="v-txt">I sent a letter to the church, but Diotrephes, whose desire is ever to have the first place among them, will not have us there.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/10/" data-ref="3 John 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/10/"><span class="v-num">10</span><span class="v-txt">So if I come, I will keep in mind the things he does, talking against us with evil words: and as if this was not enough, he does not take the brothers into his house, and those who are ready to take them in, he keeps from doing so, putting them out of the church if they do.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/11/" data-ref="3 John 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/11/"><span class="v-num">11</span><span class="v-txt">My loved one, do not be copying what is evil, but what is good. He who does good is of God: he who does evil has not seen God.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/12/" data-ref="3 John 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/12/"><span class="v-num">12</span><span class="v-txt">Demetrius has the approval of all men and of what is true: and we give the same witness, and you are certain that our witness is true.</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/13/" data-ref="3 John 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/13/"><span class="v-num">13</span><span class="v-txt">I had much to say to you, but it is not my purpose to put it all down with ink and pen:</span></a>
+<a class="v-row" href="/bible/bbe/3-john/1/14/" data-ref="3 John 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/3-john/1/14/"><span class="v-num">14</span><span class="v-txt">But I am hoping to see you in a short time, and to have talk with you face to face. May you have peace. Your friends here send you their love. Give my love to our friends by name.</span></a>
 
     
 <div class="app-cta">

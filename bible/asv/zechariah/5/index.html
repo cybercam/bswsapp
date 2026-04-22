@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then again I lifted up mine eyes, and saw, and, behold, a flying roll.</span></div>
-<div class="v-row" data-ref="Zechariah 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said unto me, What seest thou? And I answered, I see a flying roll; the length thereof is twenty cubits, and the breadth thereof ten cubits.</span></div>
-<div class="v-row" data-ref="Zechariah 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then said he unto me, This is the curse that goeth forth over the face of the whole land: for every one that stealeth shall be cut off on the one side according to it; and every one that sweareth shall be cut off on the other side according to it.</span></div>
-<div class="v-row" data-ref="Zechariah 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I will cause it to go forth, saith Jehovah of hosts, and it shall enter into the house of the thief, and into the house of him that sweareth falsely by my name; and it shall abide in the midst of his house, and shall consume it with the timber thereof and the stones thereof.</span></div>
-<div class="v-row" data-ref="Zechariah 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the angel that talked with me went forth, and said unto me, Lift up now thine eyes, and see what is this that goeth forth.</span></div>
-<div class="v-row" data-ref="Zechariah 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And I said, What is it? And he said, This is the ephah that goeth forth. He said moreover, This is their appearance in all the land</span></div>
-<div class="v-row" data-ref="Zechariah 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">(and, behold, there was lifted up a talent of lead); and this is a woman sitting in the midst of the ephah.</span></div>
-<div class="v-row" data-ref="Zechariah 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he said, This is Wickedness: and he cast her down into the midst of the ephah; and he cast the weight of lead upon the mouth thereof.</span></div>
-<div class="v-row" data-ref="Zechariah 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then lifted I up mine eyes, and saw, and, behold, there came forth two women, and the wind was in their wings; now they had wings like the wings of a stork; and they lifted up the ephah between earth and heaven.</span></div>
-<div class="v-row" data-ref="Zechariah 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then said I to the angel that talked with me, Whither do these bear the ephah?</span></div>
-<div class="v-row" data-ref="Zechariah 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he said unto me, To build her a house in the land of Shinar: and when it is prepared, she shall be set there in her own place.</span></div>
+    <a class="v-row" href="/bible/asv/zechariah/5/1/" data-ref="Zechariah 5:1 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/1/"><span class="v-num">1</span><span class="v-txt">Then again I lifted up mine eyes, and saw, and, behold, a flying roll.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/2/" data-ref="Zechariah 5:2 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/2/"><span class="v-num">2</span><span class="v-txt">And he said unto me, What seest thou? And I answered, I see a flying roll; the length thereof is twenty cubits, and the breadth thereof ten cubits.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/3/" data-ref="Zechariah 5:3 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/3/"><span class="v-num">3</span><span class="v-txt">Then said he unto me, This is the curse that goeth forth over the face of the whole land: for every one that stealeth shall be cut off on the one side according to it; and every one that sweareth shall be cut off on the other side according to it.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/4/" data-ref="Zechariah 5:4 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/4/"><span class="v-num">4</span><span class="v-txt">I will cause it to go forth, saith Jehovah of hosts, and it shall enter into the house of the thief, and into the house of him that sweareth falsely by my name; and it shall abide in the midst of his house, and shall consume it with the timber thereof and the stones thereof.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/5/" data-ref="Zechariah 5:5 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/5/"><span class="v-num">5</span><span class="v-txt">Then the angel that talked with me went forth, and said unto me, Lift up now thine eyes, and see what is this that goeth forth.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/6/" data-ref="Zechariah 5:6 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/6/"><span class="v-num">6</span><span class="v-txt">And I said, What is it? And he said, This is the ephah that goeth forth. He said moreover, This is their appearance in all the land</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/7/" data-ref="Zechariah 5:7 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/7/"><span class="v-num">7</span><span class="v-txt">(and, behold, there was lifted up a talent of lead); and this is a woman sitting in the midst of the ephah.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/8/" data-ref="Zechariah 5:8 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/8/"><span class="v-num">8</span><span class="v-txt">And he said, This is Wickedness: and he cast her down into the midst of the ephah; and he cast the weight of lead upon the mouth thereof.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/9/" data-ref="Zechariah 5:9 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/9/"><span class="v-num">9</span><span class="v-txt">Then lifted I up mine eyes, and saw, and, behold, there came forth two women, and the wind was in their wings; now they had wings like the wings of a stork; and they lifted up the ephah between earth and heaven.</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/10/" data-ref="Zechariah 5:10 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/10/"><span class="v-num">10</span><span class="v-txt">Then said I to the angel that talked with me, Whither do these bear the ephah?</span></a>
+<a class="v-row" href="/bible/asv/zechariah/5/11/" data-ref="Zechariah 5:11 (American Standard Version)" data-verse-url="/bible/asv/zechariah/5/11/"><span class="v-num">11</span><span class="v-txt">And he said unto me, To build her a house in the land of Shinar: and when it is prepared, she shall be set there in her own place.</span></a>
 
     
 <div class="app-cta">

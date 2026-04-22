@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 19</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 19:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">This is what the Lord has said: Go and get for money a potter's bottle made of earth, and take with you some of the responsible men of the people and of the priests;</span></div>
-<div class="v-row" data-ref="Jeremiah 19:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And go out to the valley of the son of Hinnom, by the way into the door of broken pots, and there say in a loud voice the words which I will give you;</span></div>
-<div class="v-row" data-ref="Jeremiah 19:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Say, Give ear to the word of the Lord, O kings of Judah and people of Jerusalem; the Lord of armies, the God of Israel, has said, See, I will send evil on this place which will be bitter to the ears of anyone hearing of it.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Because they have given me up, and made this place a strange place, burning perfumes in it to other gods, of whom they and their fathers and the kings of Judah had no knowledge; and they have made this place full of the blood of those who have done no wrong;</span></div>
-<div class="v-row" data-ref="Jeremiah 19:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And they have put up the high places of the Baal, burning their sons in the fire; a thing which was not ordered by me, and it was never in my mind:</span></div>
-<div class="v-row" data-ref="Jeremiah 19:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For this cause, see, a time is coming, says the Lord, when this place will no longer be named Topheth, or, The valley of the son of Hinnom, but, The valley of Death.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I will make the purpose of Judah and Jerusalem come to nothing in this place; I will have them put to the sword by their haters, and by the hands of those who have designs on their life; and their dead bodies I will give to be food for the birds of heaven and the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I will make this town a thing of wonder and a cause of surprise; everyone who goes by will be overcome with wonder and make sounds of surprise, because of all its troubles.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I will make them take the flesh of their sons and the flesh of their daughters for food, they will be making a meal of one another, because of their bitter need and the cruel grip of their haters and those who have made designs against their life.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then let the potter's bottle be broken before the eyes of the men who have gone with you,</span></div>
-<div class="v-row" data-ref="Jeremiah 19:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And say to them, This is what the Lord of armies has said: Even so will this people and this town be broken by me, as a potter's bottle is broken and may not be put together again: and the bodies of the dead will be put in the earth in Topheth, till there is no more room.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">This is what I will do to this place, says the Lord, and to its people, making this town like Topheth:</span></div>
-<div class="v-row" data-ref="Jeremiah 19:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the houses of Jerusalem, and the houses of the kings of Judah, which they have made unclean, will be like the place of Topheth, even all the houses on whose roofs perfumes have been burned to all the army of heaven, and drink offerings drained out to other gods.</span></div>
-<div class="v-row" data-ref="Jeremiah 19:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then Jeremiah came from Topheth, where the Lord had sent him to give the prophet's word; and he took his place in the open square of the Lord's house, and said to all the people,</span></div>
-<div class="v-row" data-ref="Jeremiah 19:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The Lord of armies, the God of Israel, has said: See, I will send on this town and on all her towns all the evil which I have said; because they made their necks stiff, so that they might not give ear to my words.</span></div>
+    <a class="v-row" href="/bible/bbe/jeremiah/19/1/" data-ref="Jeremiah 19:1 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/1/"><span class="v-num">1</span><span class="v-txt">This is what the Lord has said: Go and get for money a potter's bottle made of earth, and take with you some of the responsible men of the people and of the priests;</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/2/" data-ref="Jeremiah 19:2 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/2/"><span class="v-num">2</span><span class="v-txt">And go out to the valley of the son of Hinnom, by the way into the door of broken pots, and there say in a loud voice the words which I will give you;</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/3/" data-ref="Jeremiah 19:3 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/3/"><span class="v-num">3</span><span class="v-txt">Say, Give ear to the word of the Lord, O kings of Judah and people of Jerusalem; the Lord of armies, the God of Israel, has said, See, I will send evil on this place which will be bitter to the ears of anyone hearing of it.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/4/" data-ref="Jeremiah 19:4 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/4/"><span class="v-num">4</span><span class="v-txt">Because they have given me up, and made this place a strange place, burning perfumes in it to other gods, of whom they and their fathers and the kings of Judah had no knowledge; and they have made this place full of the blood of those who have done no wrong;</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/5/" data-ref="Jeremiah 19:5 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/5/"><span class="v-num">5</span><span class="v-txt">And they have put up the high places of the Baal, burning their sons in the fire; a thing which was not ordered by me, and it was never in my mind:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/6/" data-ref="Jeremiah 19:6 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/6/"><span class="v-num">6</span><span class="v-txt">For this cause, see, a time is coming, says the Lord, when this place will no longer be named Topheth, or, The valley of the son of Hinnom, but, The valley of Death.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/7/" data-ref="Jeremiah 19:7 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/7/"><span class="v-num">7</span><span class="v-txt">I will make the purpose of Judah and Jerusalem come to nothing in this place; I will have them put to the sword by their haters, and by the hands of those who have designs on their life; and their dead bodies I will give to be food for the birds of heaven and the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/8/" data-ref="Jeremiah 19:8 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/8/"><span class="v-num">8</span><span class="v-txt">And I will make this town a thing of wonder and a cause of surprise; everyone who goes by will be overcome with wonder and make sounds of surprise, because of all its troubles.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/9/" data-ref="Jeremiah 19:9 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/9/"><span class="v-num">9</span><span class="v-txt">I will make them take the flesh of their sons and the flesh of their daughters for food, they will be making a meal of one another, because of their bitter need and the cruel grip of their haters and those who have made designs against their life.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/10/" data-ref="Jeremiah 19:10 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/10/"><span class="v-num">10</span><span class="v-txt">Then let the potter's bottle be broken before the eyes of the men who have gone with you,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/11/" data-ref="Jeremiah 19:11 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/11/"><span class="v-num">11</span><span class="v-txt">And say to them, This is what the Lord of armies has said: Even so will this people and this town be broken by me, as a potter's bottle is broken and may not be put together again: and the bodies of the dead will be put in the earth in Topheth, till there is no more room.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/12/" data-ref="Jeremiah 19:12 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/12/"><span class="v-num">12</span><span class="v-txt">This is what I will do to this place, says the Lord, and to its people, making this town like Topheth:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/13/" data-ref="Jeremiah 19:13 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/13/"><span class="v-num">13</span><span class="v-txt">And the houses of Jerusalem, and the houses of the kings of Judah, which they have made unclean, will be like the place of Topheth, even all the houses on whose roofs perfumes have been burned to all the army of heaven, and drink offerings drained out to other gods.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/14/" data-ref="Jeremiah 19:14 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/14/"><span class="v-num">14</span><span class="v-txt">Then Jeremiah came from Topheth, where the Lord had sent him to give the prophet's word; and he took his place in the open square of the Lord's house, and said to all the people,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/19/15/" data-ref="Jeremiah 19:15 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/19/15/"><span class="v-num">15</span><span class="v-txt">The Lord of armies, the God of Israel, has said: See, I will send on this town and on all her towns all the evil which I have said; because they made their necks stiff, so that they might not give ear to my words.</span></a>
 
     
 <div class="app-cta">

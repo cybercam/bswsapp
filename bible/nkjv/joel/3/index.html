@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joel 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"For behold, in those days and at that time, When I bring back the captives of Judah and Jerusalem,</span></div>
-<div class="v-row" data-ref="Joel 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will also gather all nations, And bring them down to the Valley of Jehoshaphat; And I will enter into judgment with them there On account of My people, My heritage Israel, Whom they have scattered among the nations; They have also divided up My land.</span></div>
-<div class="v-row" data-ref="Joel 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They have cast lots for My people, Have given a boy [as payment] for a harlot, And sold a girl for wine, that they may drink.</span></div>
-<div class="v-row" data-ref="Joel 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">" Indeed, what have you to do with Me, O Tyre and Sidon, and all the coasts of Philistia? Will you retaliate against Me? But if you retaliate against Me, Swiftly and speedily I will return your retaliation upon your own head;</span></div>
-<div class="v-row" data-ref="Joel 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Because you have taken My silver and My gold, And have carried into your temples My prized possessions.</span></div>
-<div class="v-row" data-ref="Joel 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Also the people of Judah and the people of Jerusalem You have sold to the Greeks, That you may remove them far from their borders.</span></div>
-<div class="v-row" data-ref="Joel 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"Behold, I will raise them Out of the place to which you have sold them, And will return your retaliation upon your own head.</span></div>
-<div class="v-row" data-ref="Joel 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I will sell your sons and your daughters Into the hand of the people of Judah, And they will sell them to the Sabeans, To a people far off; For the LORD has spoken."</span></div>
-<div class="v-row" data-ref="Joel 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Proclaim this among the nations: "Prepare for war! Wake up the mighty men, Let all the men of war draw near, Let them come up.</span></div>
-<div class="v-row" data-ref="Joel 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Beat your plowshares into swords And your pruning hooks into spears; Let the weak say, 'I [am] strong.' "</span></div>
-<div class="v-row" data-ref="Joel 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Assemble and come, all you nations, And gather together all around. Cause Your mighty ones to go down there, O LORD.</span></div>
-<div class="v-row" data-ref="Joel 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Let the nations be wakened, and come up to the Valley of Jehoshaphat; For there I will sit to judge all the surrounding nations.</span></div>
-<div class="v-row" data-ref="Joel 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Put in the sickle, for the harvest is ripe. Come, go down; For the winepress is full, The vats overflow -- For their wickedness [is] great."</span></div>
-<div class="v-row" data-ref="Joel 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Multitudes, multitudes in the valley of decision! For the day of the LORD [is] near in the valley of decision.</span></div>
-<div class="v-row" data-ref="Joel 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The sun and moon will grow dark, And the stars will diminish their brightness.</span></div>
-<div class="v-row" data-ref="Joel 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The LORD also will roar from Zion, And utter His voice from Jerusalem; The heavens and earth will shake; But the LORD will be a shelter for His people, And the strength of the children of Israel.</span></div>
-<div class="v-row" data-ref="Joel 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"So you shall know that I [am] the LORD your God, Dwelling in Zion My holy mountain. Then Jerusalem shall be holy, And no aliens shall ever pass through her again."</span></div>
-<div class="v-row" data-ref="Joel 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And it will come to pass in that day [That] the mountains shall drip with new wine, The hills shall flow with milk, And all the brooks of Judah shall be flooded with water; A fountain shall flow from the house of the LORD And water the Valley of Acacias.</span></div>
-<div class="v-row" data-ref="Joel 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">"Egypt shall be a desolation, And Edom a desolate wilderness, Because of violence [against] the people of Judah, For they have shed innocent blood in their land.</span></div>
-<div class="v-row" data-ref="Joel 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But Judah shall abide forever, And Jerusalem from generation to generation.</span></div>
-<div class="v-row" data-ref="Joel 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">"For I will acquit them of the guilt of bloodshed, whom I had not acquitted; For the LORD dwells in Zion."</span></div>
+    <a class="v-row" href="/bible/nkjv/joel/3/1/" data-ref="Joel 3:1 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/1/"><span class="v-num">1</span><span class="v-txt">"For behold, in those days and at that time, When I bring back the captives of Judah and Jerusalem,</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/2/" data-ref="Joel 3:2 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/2/"><span class="v-num">2</span><span class="v-txt">I will also gather all nations, And bring them down to the Valley of Jehoshaphat; And I will enter into judgment with them there On account of My people, My heritage Israel, Whom they have scattered among the nations; They have also divided up My land.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/3/" data-ref="Joel 3:3 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/3/"><span class="v-num">3</span><span class="v-txt">They have cast lots for My people, Have given a boy [as payment] for a harlot, And sold a girl for wine, that they may drink.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/4/" data-ref="Joel 3:4 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/4/"><span class="v-num">4</span><span class="v-txt">" Indeed, what have you to do with Me, O Tyre and Sidon, and all the coasts of Philistia? Will you retaliate against Me? But if you retaliate against Me, Swiftly and speedily I will return your retaliation upon your own head;</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/5/" data-ref="Joel 3:5 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/5/"><span class="v-num">5</span><span class="v-txt">Because you have taken My silver and My gold, And have carried into your temples My prized possessions.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/6/" data-ref="Joel 3:6 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/6/"><span class="v-num">6</span><span class="v-txt">Also the people of Judah and the people of Jerusalem You have sold to the Greeks, That you may remove them far from their borders.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/7/" data-ref="Joel 3:7 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/7/"><span class="v-num">7</span><span class="v-txt">"Behold, I will raise them Out of the place to which you have sold them, And will return your retaliation upon your own head.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/8/" data-ref="Joel 3:8 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/8/"><span class="v-num">8</span><span class="v-txt">I will sell your sons and your daughters Into the hand of the people of Judah, And they will sell them to the Sabeans, To a people far off; For the LORD has spoken."</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/9/" data-ref="Joel 3:9 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/9/"><span class="v-num">9</span><span class="v-txt">Proclaim this among the nations: "Prepare for war! Wake up the mighty men, Let all the men of war draw near, Let them come up.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/10/" data-ref="Joel 3:10 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/10/"><span class="v-num">10</span><span class="v-txt">Beat your plowshares into swords And your pruning hooks into spears; Let the weak say, 'I [am] strong.' "</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/11/" data-ref="Joel 3:11 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/11/"><span class="v-num">11</span><span class="v-txt">Assemble and come, all you nations, And gather together all around. Cause Your mighty ones to go down there, O LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/12/" data-ref="Joel 3:12 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/12/"><span class="v-num">12</span><span class="v-txt">"Let the nations be wakened, and come up to the Valley of Jehoshaphat; For there I will sit to judge all the surrounding nations.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/13/" data-ref="Joel 3:13 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/13/"><span class="v-num">13</span><span class="v-txt">Put in the sickle, for the harvest is ripe. Come, go down; For the winepress is full, The vats overflow -- For their wickedness [is] great."</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/14/" data-ref="Joel 3:14 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/14/"><span class="v-num">14</span><span class="v-txt">Multitudes, multitudes in the valley of decision! For the day of the LORD [is] near in the valley of decision.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/15/" data-ref="Joel 3:15 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/15/"><span class="v-num">15</span><span class="v-txt">The sun and moon will grow dark, And the stars will diminish their brightness.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/16/" data-ref="Joel 3:16 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/16/"><span class="v-num">16</span><span class="v-txt">The LORD also will roar from Zion, And utter His voice from Jerusalem; The heavens and earth will shake; But the LORD will be a shelter for His people, And the strength of the children of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/17/" data-ref="Joel 3:17 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/17/"><span class="v-num">17</span><span class="v-txt">"So you shall know that I [am] the LORD your God, Dwelling in Zion My holy mountain. Then Jerusalem shall be holy, And no aliens shall ever pass through her again."</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/18/" data-ref="Joel 3:18 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/18/"><span class="v-num">18</span><span class="v-txt">And it will come to pass in that day [That] the mountains shall drip with new wine, The hills shall flow with milk, And all the brooks of Judah shall be flooded with water; A fountain shall flow from the house of the LORD And water the Valley of Acacias.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/19/" data-ref="Joel 3:19 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/19/"><span class="v-num">19</span><span class="v-txt">"Egypt shall be a desolation, And Edom a desolate wilderness, Because of violence [against] the people of Judah, For they have shed innocent blood in their land.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/20/" data-ref="Joel 3:20 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/20/"><span class="v-num">20</span><span class="v-txt">But Judah shall abide forever, And Jerusalem from generation to generation.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/3/21/" data-ref="Joel 3:21 (New King James Version)" data-verse-url="/bible/nkjv/joel/3/21/"><span class="v-num">21</span><span class="v-txt">"For I will acquit them of the guilt of bloodshed, whom I had not acquitted; For the LORD dwells in Zion."</span></a>
 
     
 <div class="app-cta">

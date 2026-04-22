@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 7:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the men of Kiriath-jearim came, and fetched up the ark of Jehovah, and brought it into the house of Abinadab in the hill, and sanctified Eleazar his son to keep the ark of Jehovah.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it came to pass, from the day that the ark abode in Kiriath-jearim, that the time was long; for it was twenty years: and all the house of Israel lamented after Jehovah.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Samuel spake unto all the house of Israel, saying, If ye do return unto Jehovah with all your heart, then put away the foreign gods and the Ashtaroth from among you, and direct your hearts unto Jehovah, and serve him only; and he will deliver you out of the hand of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then the children of Israel did put away the Baalim and the Ashtaroth, and served Jehovah only.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Samuel said, Gather all Israel to Mizpah, and I will pray for you unto Jehovah.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And they gathered together to Mizpah, and drew water, and poured it out before Jehovah, and fasted on that day, and said there, We have sinned against Jehovah. And Samuel judged the children of Israel in Mizpah.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And when the Philistines heard that the children of Israel were gathered together to Mizpah, the lords of the Philistines went up against Israel. And when the children of Israel heard it, they were afraid of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the children of Israel said to Samuel, Cease not to cry unto Jehovah our God for us, that he will save us out of the hand of the Philistines.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Samuel took a sucking lamb, and offered it for a whole burnt-offering unto Jehovah: and Samuel cried unto Jehovah for Israel; and Jehovah answered him.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And as Samuel was offering up the burnt-offering, the Philistines drew near to battle against Israel; but Jehovah thundered with a great thunder on that day upon the Philistines, and discomfited them; and they were smitten down before Israel.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the men of Israel went out of Mizpah, and pursued the Philistines, and smote them, until they came under Beth-car.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then Samuel took a stone, and set it between Mizpah and Shen, and called the name of it Ebenezer, saying, Hitherto hath Jehovah helped us.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So the Philistines were subdued, and they came no more within the border of Israel: and the hand of Jehovah was against the Philistines all the days of Samuel.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the cities which the Philistines had taken from Israel were restored to Israel, from Ekron even unto Gath; and the border thereof did Israel deliver out of the hand of the Philistines. And there was peace between Israel and the Amorites.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Samuel judged Israel all the days of his life.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And he went from year to year in circuit to Beth-el and Gilgal, and Mizpah; and he judged Israel in all those places.</span></div>
-<div class="v-row" data-ref="1 Samuel 7:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And his return was to Ramah, for there was his house; and there he judged Israel: and he built there an altar unto Jehovah.</span></div>
+    <a class="v-row" href="/bible/asv/1-samuel/7/1/" data-ref="1 Samuel 7:1 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/1/"><span class="v-num">1</span><span class="v-txt">And the men of Kiriath-jearim came, and fetched up the ark of Jehovah, and brought it into the house of Abinadab in the hill, and sanctified Eleazar his son to keep the ark of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/2/" data-ref="1 Samuel 7:2 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/2/"><span class="v-num">2</span><span class="v-txt">And it came to pass, from the day that the ark abode in Kiriath-jearim, that the time was long; for it was twenty years: and all the house of Israel lamented after Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/3/" data-ref="1 Samuel 7:3 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/3/"><span class="v-num">3</span><span class="v-txt">And Samuel spake unto all the house of Israel, saying, If ye do return unto Jehovah with all your heart, then put away the foreign gods and the Ashtaroth from among you, and direct your hearts unto Jehovah, and serve him only; and he will deliver you out of the hand of the Philistines.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/4/" data-ref="1 Samuel 7:4 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/4/"><span class="v-num">4</span><span class="v-txt">Then the children of Israel did put away the Baalim and the Ashtaroth, and served Jehovah only.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/5/" data-ref="1 Samuel 7:5 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/5/"><span class="v-num">5</span><span class="v-txt">And Samuel said, Gather all Israel to Mizpah, and I will pray for you unto Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/6/" data-ref="1 Samuel 7:6 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/6/"><span class="v-num">6</span><span class="v-txt">And they gathered together to Mizpah, and drew water, and poured it out before Jehovah, and fasted on that day, and said there, We have sinned against Jehovah. And Samuel judged the children of Israel in Mizpah.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/7/" data-ref="1 Samuel 7:7 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/7/"><span class="v-num">7</span><span class="v-txt">And when the Philistines heard that the children of Israel were gathered together to Mizpah, the lords of the Philistines went up against Israel. And when the children of Israel heard it, they were afraid of the Philistines.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/8/" data-ref="1 Samuel 7:8 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/8/"><span class="v-num">8</span><span class="v-txt">And the children of Israel said to Samuel, Cease not to cry unto Jehovah our God for us, that he will save us out of the hand of the Philistines.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/9/" data-ref="1 Samuel 7:9 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/9/"><span class="v-num">9</span><span class="v-txt">And Samuel took a sucking lamb, and offered it for a whole burnt-offering unto Jehovah: and Samuel cried unto Jehovah for Israel; and Jehovah answered him.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/10/" data-ref="1 Samuel 7:10 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/10/"><span class="v-num">10</span><span class="v-txt">And as Samuel was offering up the burnt-offering, the Philistines drew near to battle against Israel; but Jehovah thundered with a great thunder on that day upon the Philistines, and discomfited them; and they were smitten down before Israel.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/11/" data-ref="1 Samuel 7:11 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/11/"><span class="v-num">11</span><span class="v-txt">And the men of Israel went out of Mizpah, and pursued the Philistines, and smote them, until they came under Beth-car.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/12/" data-ref="1 Samuel 7:12 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/12/"><span class="v-num">12</span><span class="v-txt">Then Samuel took a stone, and set it between Mizpah and Shen, and called the name of it Ebenezer, saying, Hitherto hath Jehovah helped us.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/13/" data-ref="1 Samuel 7:13 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/13/"><span class="v-num">13</span><span class="v-txt">So the Philistines were subdued, and they came no more within the border of Israel: and the hand of Jehovah was against the Philistines all the days of Samuel.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/14/" data-ref="1 Samuel 7:14 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/14/"><span class="v-num">14</span><span class="v-txt">And the cities which the Philistines had taken from Israel were restored to Israel, from Ekron even unto Gath; and the border thereof did Israel deliver out of the hand of the Philistines. And there was peace between Israel and the Amorites.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/15/" data-ref="1 Samuel 7:15 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/15/"><span class="v-num">15</span><span class="v-txt">And Samuel judged Israel all the days of his life.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/16/" data-ref="1 Samuel 7:16 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/16/"><span class="v-num">16</span><span class="v-txt">And he went from year to year in circuit to Beth-el and Gilgal, and Mizpah; and he judged Israel in all those places.</span></a>
+<a class="v-row" href="/bible/asv/1-samuel/7/17/" data-ref="1 Samuel 7:17 (American Standard Version)" data-verse-url="/bible/asv/1-samuel/7/17/"><span class="v-num">17</span><span class="v-txt">And his return was to Ramah, for there was his house; and there he judged Israel: and he built there an altar unto Jehovah.</span></a>
 
     
 <div class="app-cta">

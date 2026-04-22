@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Exodus 17:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">All the congregation of the children of Israel traveled from the wilderness of Sin, by their journeys, according to Yahweh's commandment, and encamped in Rephidim; but there was no water for the people to drink.</span></div>
-<div class="v-row" data-ref="Exodus 17:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Therefore the people quarreled with Moses, and said, "Give us water to drink." Moses said to them, "Why do you quarrel with me? Why do you test Yahweh?"</span></div>
-<div class="v-row" data-ref="Exodus 17:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The people were thirsty for water there; and the people murmured against Moses, and said, "Why have you brought us up out of Egypt, to kill us, our children, and our livestock with thirst?"</span></div>
-<div class="v-row" data-ref="Exodus 17:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Moses cried to Yahweh, saying, "What shall I do with these people? They are almost ready to stone me."</span></div>
-<div class="v-row" data-ref="Exodus 17:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Yahweh said to Moses, "Walk on before the people, and take the elders of Israel with you, and take the rod in your hand with which you struck the Nile, and go.</span></div>
-<div class="v-row" data-ref="Exodus 17:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Behold, I will stand before you there on the rock in Horeb. You shall strike the rock, and water will come out of it, that the people may drink." Moses did so in the sight of the elders of Israel.</span></div>
-<div class="v-row" data-ref="Exodus 17:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He called the name of the place Massah, and Meribah, because the children of Israel quarreled, and because they tested Yahweh, saying, "Is Yahweh among us, or not?"</span></div>
-<div class="v-row" data-ref="Exodus 17:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then Amalek came and fought with Israel in Rephidim.</span></div>
-<div class="v-row" data-ref="Exodus 17:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Moses said to Joshua, "Choose men for us, and go out, fight with Amalek. Tomorrow I will stand on the top of the hill with God's rod in my hand."</span></div>
-<div class="v-row" data-ref="Exodus 17:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So Joshua did as Moses had told him, and fought with Amalek; and Moses, Aaron, and Hur went up to the top of the hill.</span></div>
-<div class="v-row" data-ref="Exodus 17:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">It happened, when Moses held up his hand, that Israel prevailed; and when he let down his hand, Amalek prevailed.</span></div>
-<div class="v-row" data-ref="Exodus 17:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But Moses' hands were heavy; and they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset.</span></div>
-<div class="v-row" data-ref="Exodus 17:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Joshua defeated Amalek and his people with the edge of the sword.</span></div>
-<div class="v-row" data-ref="Exodus 17:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Yahweh said to Moses, "Write this for a memorial in a book, and rehearse it in the ears of Joshua: that I will utterly blot out the memory of Amalek from under the sky."</span></div>
-<div class="v-row" data-ref="Exodus 17:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Moses built an altar, and called the name of it Yahweh our Banner.</span></div>
-<div class="v-row" data-ref="Exodus 17:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He said, "Yah has sworn: 'Yahweh will have war with Amalek from generation to generation.'"</span></div>
+    <a class="v-row" href="/bible/web/exodus/17/1/" data-ref="Exodus 17:1 (World English Bible)" data-verse-url="/bible/web/exodus/17/1/"><span class="v-num">1</span><span class="v-txt">All the congregation of the children of Israel traveled from the wilderness of Sin, by their journeys, according to Yahweh's commandment, and encamped in Rephidim; but there was no water for the people to drink.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/2/" data-ref="Exodus 17:2 (World English Bible)" data-verse-url="/bible/web/exodus/17/2/"><span class="v-num">2</span><span class="v-txt">Therefore the people quarreled with Moses, and said, "Give us water to drink." Moses said to them, "Why do you quarrel with me? Why do you test Yahweh?"</span></a>
+<a class="v-row" href="/bible/web/exodus/17/3/" data-ref="Exodus 17:3 (World English Bible)" data-verse-url="/bible/web/exodus/17/3/"><span class="v-num">3</span><span class="v-txt">The people were thirsty for water there; and the people murmured against Moses, and said, "Why have you brought us up out of Egypt, to kill us, our children, and our livestock with thirst?"</span></a>
+<a class="v-row" href="/bible/web/exodus/17/4/" data-ref="Exodus 17:4 (World English Bible)" data-verse-url="/bible/web/exodus/17/4/"><span class="v-num">4</span><span class="v-txt">Moses cried to Yahweh, saying, "What shall I do with these people? They are almost ready to stone me."</span></a>
+<a class="v-row" href="/bible/web/exodus/17/5/" data-ref="Exodus 17:5 (World English Bible)" data-verse-url="/bible/web/exodus/17/5/"><span class="v-num">5</span><span class="v-txt">Yahweh said to Moses, "Walk on before the people, and take the elders of Israel with you, and take the rod in your hand with which you struck the Nile, and go.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/6/" data-ref="Exodus 17:6 (World English Bible)" data-verse-url="/bible/web/exodus/17/6/"><span class="v-num">6</span><span class="v-txt">Behold, I will stand before you there on the rock in Horeb. You shall strike the rock, and water will come out of it, that the people may drink." Moses did so in the sight of the elders of Israel.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/7/" data-ref="Exodus 17:7 (World English Bible)" data-verse-url="/bible/web/exodus/17/7/"><span class="v-num">7</span><span class="v-txt">He called the name of the place Massah, and Meribah, because the children of Israel quarreled, and because they tested Yahweh, saying, "Is Yahweh among us, or not?"</span></a>
+<a class="v-row" href="/bible/web/exodus/17/8/" data-ref="Exodus 17:8 (World English Bible)" data-verse-url="/bible/web/exodus/17/8/"><span class="v-num">8</span><span class="v-txt">Then Amalek came and fought with Israel in Rephidim.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/9/" data-ref="Exodus 17:9 (World English Bible)" data-verse-url="/bible/web/exodus/17/9/"><span class="v-num">9</span><span class="v-txt">Moses said to Joshua, "Choose men for us, and go out, fight with Amalek. Tomorrow I will stand on the top of the hill with God's rod in my hand."</span></a>
+<a class="v-row" href="/bible/web/exodus/17/10/" data-ref="Exodus 17:10 (World English Bible)" data-verse-url="/bible/web/exodus/17/10/"><span class="v-num">10</span><span class="v-txt">So Joshua did as Moses had told him, and fought with Amalek; and Moses, Aaron, and Hur went up to the top of the hill.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/11/" data-ref="Exodus 17:11 (World English Bible)" data-verse-url="/bible/web/exodus/17/11/"><span class="v-num">11</span><span class="v-txt">It happened, when Moses held up his hand, that Israel prevailed; and when he let down his hand, Amalek prevailed.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/12/" data-ref="Exodus 17:12 (World English Bible)" data-verse-url="/bible/web/exodus/17/12/"><span class="v-num">12</span><span class="v-txt">But Moses' hands were heavy; and they took a stone, and put it under him, and he sat on it. Aaron and Hur held up his hands, the one on the one side, and the other on the other side. His hands were steady until sunset.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/13/" data-ref="Exodus 17:13 (World English Bible)" data-verse-url="/bible/web/exodus/17/13/"><span class="v-num">13</span><span class="v-txt">Joshua defeated Amalek and his people with the edge of the sword.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/14/" data-ref="Exodus 17:14 (World English Bible)" data-verse-url="/bible/web/exodus/17/14/"><span class="v-num">14</span><span class="v-txt">Yahweh said to Moses, "Write this for a memorial in a book, and rehearse it in the ears of Joshua: that I will utterly blot out the memory of Amalek from under the sky."</span></a>
+<a class="v-row" href="/bible/web/exodus/17/15/" data-ref="Exodus 17:15 (World English Bible)" data-verse-url="/bible/web/exodus/17/15/"><span class="v-num">15</span><span class="v-txt">Moses built an altar, and called the name of it Yahweh our Banner.</span></a>
+<a class="v-row" href="/bible/web/exodus/17/16/" data-ref="Exodus 17:16 (World English Bible)" data-verse-url="/bible/web/exodus/17/16/"><span class="v-num">16</span><span class="v-txt">He said, "Yah has sworn: 'Yahweh will have war with Amalek from generation to generation.'"</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 42</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 42:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then he brought me forth into the utter court, the way toward the north: and he brought me into the chamber that was over against the separate place, and which was before the building toward the north.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Before the length of an hundred cubits was the north door, and the breadth was fifty cubits.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Over against the twenty cubits which were for the inner court, and over against the pavement which was for the utter court, was gallery against gallery in three stories.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And before the chambers was a walk of ten cubits breadth inward, a way of one cubit; and their doors toward the north.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Now the upper chambers were shorter: for the galleries were higher than these, than the lower, and than the middlemost of the building.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For they were in three stories, but had not pillars as the pillars of the courts: therefore the building was straitened more than the lowest and the middlemost from the ground.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the wall that was without over against the chambers, toward the utter court on the forepart of the chambers, the length thereof was fifty cubits.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the length of the chambers that were in the utter court was fifty cubits: and, lo, before the temple were an hundred cubits.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And from under these chambers was the entry on the east side, as one goeth into them from the utter court.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The chambers were in the thickness of the wall of the court toward the east, over against the separate place, and over against the building.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the way before them was like the appearance of the chambers which were toward the north, as long as they, and as broad as they: and all their goings out were both according to their fashions, and according to their doors.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And according to the doors of the chambers that were toward the south was a door in the head of the way, even the way directly before the wall toward the east, as one entereth into them.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then said he unto me, The north chambers and the south chambers, which are before the separate place, they be holy chambers, where the priests that approach unto the LORD shall eat the most holy things: there shall they lay the most holy things, and the meat offering, and the sin offering, and the trespass offering; for the place is holy.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">When the priests enter therein, then shall they not go out of the holy place into the utter court, but there they shall lay their garments wherein they minister; for they are holy; and shall put on other garments, and shall approach to those things which are for the people.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Now when he had made an end of measuring the inner house, he brought me forth toward the gate whose prospect is toward the east, and measured it round about.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He measured the east side with the measuring reed, five hundred reeds, with the measuring reed round about.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He measured the north side, five hundred reeds, with the measuring reed round about.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He measured the south side, five hundred reeds, with the measuring reed.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He turned about to the west side, and measured five hundred reeds with the measuring reed.</span></div>
-<div class="v-row" data-ref="Ezekiel 42:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He measured it by the four sides: it had a wall round about, five hundred reeds long, and five hundred broad, to make a separation between the sanctuary and the profane place.</span></div>
+    <a class="v-row" href="/bible/kjv/ezekiel/42/1/" data-ref="Ezekiel 42:1 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/1/"><span class="v-num">1</span><span class="v-txt">Then he brought me forth into the utter court, the way toward the north: and he brought me into the chamber that was over against the separate place, and which was before the building toward the north.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/2/" data-ref="Ezekiel 42:2 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/2/"><span class="v-num">2</span><span class="v-txt">Before the length of an hundred cubits was the north door, and the breadth was fifty cubits.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/3/" data-ref="Ezekiel 42:3 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/3/"><span class="v-num">3</span><span class="v-txt">Over against the twenty cubits which were for the inner court, and over against the pavement which was for the utter court, was gallery against gallery in three stories.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/4/" data-ref="Ezekiel 42:4 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/4/"><span class="v-num">4</span><span class="v-txt">And before the chambers was a walk of ten cubits breadth inward, a way of one cubit; and their doors toward the north.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/5/" data-ref="Ezekiel 42:5 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/5/"><span class="v-num">5</span><span class="v-txt">Now the upper chambers were shorter: for the galleries were higher than these, than the lower, and than the middlemost of the building.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/6/" data-ref="Ezekiel 42:6 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/6/"><span class="v-num">6</span><span class="v-txt">For they were in three stories, but had not pillars as the pillars of the courts: therefore the building was straitened more than the lowest and the middlemost from the ground.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/7/" data-ref="Ezekiel 42:7 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/7/"><span class="v-num">7</span><span class="v-txt">And the wall that was without over against the chambers, toward the utter court on the forepart of the chambers, the length thereof was fifty cubits.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/8/" data-ref="Ezekiel 42:8 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/8/"><span class="v-num">8</span><span class="v-txt">For the length of the chambers that were in the utter court was fifty cubits: and, lo, before the temple were an hundred cubits.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/9/" data-ref="Ezekiel 42:9 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/9/"><span class="v-num">9</span><span class="v-txt">And from under these chambers was the entry on the east side, as one goeth into them from the utter court.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/10/" data-ref="Ezekiel 42:10 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/10/"><span class="v-num">10</span><span class="v-txt">The chambers were in the thickness of the wall of the court toward the east, over against the separate place, and over against the building.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/11/" data-ref="Ezekiel 42:11 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/11/"><span class="v-num">11</span><span class="v-txt">And the way before them was like the appearance of the chambers which were toward the north, as long as they, and as broad as they: and all their goings out were both according to their fashions, and according to their doors.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/12/" data-ref="Ezekiel 42:12 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/12/"><span class="v-num">12</span><span class="v-txt">And according to the doors of the chambers that were toward the south was a door in the head of the way, even the way directly before the wall toward the east, as one entereth into them.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/13/" data-ref="Ezekiel 42:13 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/13/"><span class="v-num">13</span><span class="v-txt">Then said he unto me, The north chambers and the south chambers, which are before the separate place, they be holy chambers, where the priests that approach unto the LORD shall eat the most holy things: there shall they lay the most holy things, and the meat offering, and the sin offering, and the trespass offering; for the place is holy.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/14/" data-ref="Ezekiel 42:14 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/14/"><span class="v-num">14</span><span class="v-txt">When the priests enter therein, then shall they not go out of the holy place into the utter court, but there they shall lay their garments wherein they minister; for they are holy; and shall put on other garments, and shall approach to those things which are for the people.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/15/" data-ref="Ezekiel 42:15 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/15/"><span class="v-num">15</span><span class="v-txt">Now when he had made an end of measuring the inner house, he brought me forth toward the gate whose prospect is toward the east, and measured it round about.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/16/" data-ref="Ezekiel 42:16 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/16/"><span class="v-num">16</span><span class="v-txt">He measured the east side with the measuring reed, five hundred reeds, with the measuring reed round about.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/17/" data-ref="Ezekiel 42:17 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/17/"><span class="v-num">17</span><span class="v-txt">He measured the north side, five hundred reeds, with the measuring reed round about.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/18/" data-ref="Ezekiel 42:18 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/18/"><span class="v-num">18</span><span class="v-txt">He measured the south side, five hundred reeds, with the measuring reed.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/19/" data-ref="Ezekiel 42:19 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/19/"><span class="v-num">19</span><span class="v-txt">He turned about to the west side, and measured five hundred reeds with the measuring reed.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/42/20/" data-ref="Ezekiel 42:20 (King James Version)" data-verse-url="/bible/kjv/ezekiel/42/20/"><span class="v-num">20</span><span class="v-txt">He measured it by the four sides: it had a wall round about, five hundred reeds long, and five hundred broad, to make a separation between the sanctuary and the profane place.</span></a>
 
     
 <div class="app-cta">

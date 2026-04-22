@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 5:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thus all the work that Solomon made for the house of the LORD was finished: and Solomon brought in all the things that David his father had dedicated; and the silver, and the gold, and all the instruments, put he among the treasures of the house of God.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then Solomon assembled the elders of Israel, and all the heads of the tribes, the chief of the fathers of the children of Israel, unto Jerusalem, to bring up the ark of the covenant of the LORD out of the city of David, which is Zion.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Wherefore all the men of Israel assembled themselves unto the king in the feast which was in the seventh month.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And all the elders of Israel came; and the Levites took up the ark.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And they brought up the ark, and the tabernacle of the congregation, and all the holy vessels that were in the tabernacle, these did the priests and the Levites bring up.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Also king Solomon, and all the congregation of Israel that were assembled unto him before the ark, sacrificed sheep and oxen, which could not be told nor numbered for multitude.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the priests brought in the ark of the covenant of the LORD unto his place, to the oracle of the house, into the most holy place, even under the wings of the cherubims:</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the cherubims spread forth their wings over the place of the ark, and the cherubims covered the ark and the staves thereof above.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And they drew out the staves of the ark, that the ends of the staves were seen from the ark before the oracle; but they were not seen without. And there it is unto this day.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">There was nothing in the ark save the two tables which Moses put therein at Horeb, when the LORD made a covenant with the children of Israel, when they came out of Egypt.</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And it came to pass, when the priests were come out of the holy place: (for all the priests that were present were sanctified, and did not then wait by course:</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Also the Levites which were the singers, all of them of Asaph, of Heman, of Jeduthun, with their sons and their brethren, being arrayed in white linen, having cymbals and psalteries and harps, stood at the east end of the altar, and with them an hundred and twenty priests sounding with trumpets:)</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">It came even to pass, as the trumpeters and singers were as one, to make one sound to be heard in praising and thanking the LORD; and when they lifted up their voice with the trumpets and cymbals and instruments of musick, and praised the LORD, saying, For he is good; for his mercy endureth for ever: that then the house was filled with a cloud, even the house of the LORD;</span></div>
-<div class="v-row" data-ref="2 Chronicles 5:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">So that the priests could not stand to minister by reason of the cloud: for the glory of the LORD had filled the house of God.</span></div>
+    <a class="v-row" href="/bible/kjv/2-chronicles/5/1/" data-ref="2 Chronicles 5:1 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/1/"><span class="v-num">1</span><span class="v-txt">Thus all the work that Solomon made for the house of the LORD was finished: and Solomon brought in all the things that David his father had dedicated; and the silver, and the gold, and all the instruments, put he among the treasures of the house of God.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/2/" data-ref="2 Chronicles 5:2 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/2/"><span class="v-num">2</span><span class="v-txt">Then Solomon assembled the elders of Israel, and all the heads of the tribes, the chief of the fathers of the children of Israel, unto Jerusalem, to bring up the ark of the covenant of the LORD out of the city of David, which is Zion.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/3/" data-ref="2 Chronicles 5:3 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/3/"><span class="v-num">3</span><span class="v-txt">Wherefore all the men of Israel assembled themselves unto the king in the feast which was in the seventh month.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/4/" data-ref="2 Chronicles 5:4 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/4/"><span class="v-num">4</span><span class="v-txt">And all the elders of Israel came; and the Levites took up the ark.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/5/" data-ref="2 Chronicles 5:5 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/5/"><span class="v-num">5</span><span class="v-txt">And they brought up the ark, and the tabernacle of the congregation, and all the holy vessels that were in the tabernacle, these did the priests and the Levites bring up.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/6/" data-ref="2 Chronicles 5:6 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/6/"><span class="v-num">6</span><span class="v-txt">Also king Solomon, and all the congregation of Israel that were assembled unto him before the ark, sacrificed sheep and oxen, which could not be told nor numbered for multitude.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/7/" data-ref="2 Chronicles 5:7 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/7/"><span class="v-num">7</span><span class="v-txt">And the priests brought in the ark of the covenant of the LORD unto his place, to the oracle of the house, into the most holy place, even under the wings of the cherubims:</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/8/" data-ref="2 Chronicles 5:8 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/8/"><span class="v-num">8</span><span class="v-txt">For the cherubims spread forth their wings over the place of the ark, and the cherubims covered the ark and the staves thereof above.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/9/" data-ref="2 Chronicles 5:9 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/9/"><span class="v-num">9</span><span class="v-txt">And they drew out the staves of the ark, that the ends of the staves were seen from the ark before the oracle; but they were not seen without. And there it is unto this day.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/10/" data-ref="2 Chronicles 5:10 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/10/"><span class="v-num">10</span><span class="v-txt">There was nothing in the ark save the two tables which Moses put therein at Horeb, when the LORD made a covenant with the children of Israel, when they came out of Egypt.</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/11/" data-ref="2 Chronicles 5:11 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/11/"><span class="v-num">11</span><span class="v-txt">And it came to pass, when the priests were come out of the holy place: (for all the priests that were present were sanctified, and did not then wait by course:</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/12/" data-ref="2 Chronicles 5:12 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/12/"><span class="v-num">12</span><span class="v-txt">Also the Levites which were the singers, all of them of Asaph, of Heman, of Jeduthun, with their sons and their brethren, being arrayed in white linen, having cymbals and psalteries and harps, stood at the east end of the altar, and with them an hundred and twenty priests sounding with trumpets:)</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/13/" data-ref="2 Chronicles 5:13 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/13/"><span class="v-num">13</span><span class="v-txt">It came even to pass, as the trumpeters and singers were as one, to make one sound to be heard in praising and thanking the LORD; and when they lifted up their voice with the trumpets and cymbals and instruments of musick, and praised the LORD, saying, For he is good; for his mercy endureth for ever: that then the house was filled with a cloud, even the house of the LORD;</span></a>
+<a class="v-row" href="/bible/kjv/2-chronicles/5/14/" data-ref="2 Chronicles 5:14 (King James Version)" data-verse-url="/bible/kjv/2-chronicles/5/14/"><span class="v-num">14</span><span class="v-txt">So that the priests could not stand to minister by reason of the cloud: for the glory of the LORD had filled the house of God.</span></a>
 
     
 <div class="app-cta">

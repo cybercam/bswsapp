@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 7:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After his I saw four angels standing at the four corners of the earth, holding the four winds of the earth, that no wind should blow on the earth, or on the sea, or upon any tree.</span></div>
-<div class="v-row" data-ref="Revelation 7:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And I saw another angel ascend from the sunrising, having the seal of the living God: and he cried with a great voice to the four angels to whom it was given to hurt the earth and the sea,</span></div>
-<div class="v-row" data-ref="Revelation 7:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">saying, Hurt not the earth, neither the sea, nor the trees, till we shall have sealed the servants of our God on their foreheads.</span></div>
-<div class="v-row" data-ref="Revelation 7:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I heard the number of them that were sealed, a hundred and forty and four thousand, sealed out of every tribe of the children of Israel:</span></div>
-<div class="v-row" data-ref="Revelation 7:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Of the tribe of Judah [were] sealed twelve thousand: Of the tribe of Reuben twelve thousand; Of the tribe of Gad twelve thousand;</span></div>
-<div class="v-row" data-ref="Revelation 7:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Of the tribe of Asher twelve thousand; Of the tribe of Naphtali twelve thousand; Of the tribe of Manasseh twelve thousand;</span></div>
-<div class="v-row" data-ref="Revelation 7:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Of the tribe of Simeon twelve thousand; Of the tribe of Levi twelve thousand; Of the tribe of Issachar twelve thousand;</span></div>
-<div class="v-row" data-ref="Revelation 7:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Of the tribe of Zebulun twelve thousand; Of the tribe of Joseph twelve thousand; Of the tribe of Benjamin [were] sealed twelve thousand.</span></div>
-<div class="v-row" data-ref="Revelation 7:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">After these things I saw, and behold, a great multitude, which no man could number, out of every nation and of [all] tribes and peoples and tongues, standing before the throne and before the Lamb, arrayed in white robes, and palms in their hands;</span></div>
-<div class="v-row" data-ref="Revelation 7:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">and they cry with a great voice, saying, Salvation unto our God who sitteth on the throne, and unto the Lamb.</span></div>
-<div class="v-row" data-ref="Revelation 7:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And all the angels were standing round about the throne, and [about] the elders and the four living creatures; and they fell before the throne on their faces, and worshipped God,</span></div>
-<div class="v-row" data-ref="Revelation 7:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">saying, Amen: Blessing, and glory, and wisdom, and thanksgiving, and honor, and power, and might, [be] unto our God for ever and ever. Amen.</span></div>
-<div class="v-row" data-ref="Revelation 7:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And one of the elders answered, saying unto me, These that are arrayed in white robes, who are they, and whence came they?</span></div>
-<div class="v-row" data-ref="Revelation 7:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And I say unto him, My lord, thou knowest. And he said to me, These are they that come of the great tribulation, and they washed their robes, and made them white in the blood of the Lamb.</span></div>
-<div class="v-row" data-ref="Revelation 7:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore are they before the throne of God; and they serve him day and night in his temple: and he that sitteth on the throne shall spread his tabernacle over them.</span></div>
-<div class="v-row" data-ref="Revelation 7:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">They shall hunger no more, neither thirst any more; neither shall the sun strike upon them, nor any heat:</span></div>
-<div class="v-row" data-ref="Revelation 7:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">for the Lamb that is in the midst of the throne shall be their shepherd, and shall guide them unto fountains of waters of life: and God shall wipe away every tear from their eyes.</span></div>
+    <a class="v-row" href="/bible/asv/revelation/7/1/" data-ref="Revelation 7:1 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/1/"><span class="v-num">1</span><span class="v-txt">After his I saw four angels standing at the four corners of the earth, holding the four winds of the earth, that no wind should blow on the earth, or on the sea, or upon any tree.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/2/" data-ref="Revelation 7:2 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/2/"><span class="v-num">2</span><span class="v-txt">And I saw another angel ascend from the sunrising, having the seal of the living God: and he cried with a great voice to the four angels to whom it was given to hurt the earth and the sea,</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/3/" data-ref="Revelation 7:3 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/3/"><span class="v-num">3</span><span class="v-txt">saying, Hurt not the earth, neither the sea, nor the trees, till we shall have sealed the servants of our God on their foreheads.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/4/" data-ref="Revelation 7:4 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/4/"><span class="v-num">4</span><span class="v-txt">And I heard the number of them that were sealed, a hundred and forty and four thousand, sealed out of every tribe of the children of Israel:</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/5/" data-ref="Revelation 7:5 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/5/"><span class="v-num">5</span><span class="v-txt">Of the tribe of Judah [were] sealed twelve thousand: Of the tribe of Reuben twelve thousand; Of the tribe of Gad twelve thousand;</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/6/" data-ref="Revelation 7:6 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/6/"><span class="v-num">6</span><span class="v-txt">Of the tribe of Asher twelve thousand; Of the tribe of Naphtali twelve thousand; Of the tribe of Manasseh twelve thousand;</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/7/" data-ref="Revelation 7:7 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/7/"><span class="v-num">7</span><span class="v-txt">Of the tribe of Simeon twelve thousand; Of the tribe of Levi twelve thousand; Of the tribe of Issachar twelve thousand;</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/8/" data-ref="Revelation 7:8 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/8/"><span class="v-num">8</span><span class="v-txt">Of the tribe of Zebulun twelve thousand; Of the tribe of Joseph twelve thousand; Of the tribe of Benjamin [were] sealed twelve thousand.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/9/" data-ref="Revelation 7:9 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/9/"><span class="v-num">9</span><span class="v-txt">After these things I saw, and behold, a great multitude, which no man could number, out of every nation and of [all] tribes and peoples and tongues, standing before the throne and before the Lamb, arrayed in white robes, and palms in their hands;</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/10/" data-ref="Revelation 7:10 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/10/"><span class="v-num">10</span><span class="v-txt">and they cry with a great voice, saying, Salvation unto our God who sitteth on the throne, and unto the Lamb.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/11/" data-ref="Revelation 7:11 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/11/"><span class="v-num">11</span><span class="v-txt">And all the angels were standing round about the throne, and [about] the elders and the four living creatures; and they fell before the throne on their faces, and worshipped God,</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/12/" data-ref="Revelation 7:12 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/12/"><span class="v-num">12</span><span class="v-txt">saying, Amen: Blessing, and glory, and wisdom, and thanksgiving, and honor, and power, and might, [be] unto our God for ever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/13/" data-ref="Revelation 7:13 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/13/"><span class="v-num">13</span><span class="v-txt">And one of the elders answered, saying unto me, These that are arrayed in white robes, who are they, and whence came they?</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/14/" data-ref="Revelation 7:14 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/14/"><span class="v-num">14</span><span class="v-txt">And I say unto him, My lord, thou knowest. And he said to me, These are they that come of the great tribulation, and they washed their robes, and made them white in the blood of the Lamb.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/15/" data-ref="Revelation 7:15 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/15/"><span class="v-num">15</span><span class="v-txt">Therefore are they before the throne of God; and they serve him day and night in his temple: and he that sitteth on the throne shall spread his tabernacle over them.</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/16/" data-ref="Revelation 7:16 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/16/"><span class="v-num">16</span><span class="v-txt">They shall hunger no more, neither thirst any more; neither shall the sun strike upon them, nor any heat:</span></a>
+<a class="v-row" href="/bible/asv/revelation/7/17/" data-ref="Revelation 7:17 (American Standard Version)" data-verse-url="/bible/asv/revelation/7/17/"><span class="v-num">17</span><span class="v-txt">for the Lamb that is in the midst of the throne shall be their shepherd, and shall guide them unto fountains of waters of life: and God shall wipe away every tear from their eyes.</span></a>
 
     
 <div class="app-cta">

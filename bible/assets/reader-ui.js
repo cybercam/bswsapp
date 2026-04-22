@@ -29,6 +29,25 @@ function closeSidebar() {
   document.getElementById("overlay")?.classList.remove("active");
 }
 
+function isDesktopSidebarMode() {
+  return window.matchMedia("(min-width: 900px)").matches;
+}
+
+function toggleSidebarFromMenu() {
+  if (isDesktopSidebarMode()) {
+    document.body.classList.toggle("sidebar-collapsed");
+    closeSidebar();
+    return;
+  }
+
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar?.classList.contains("open")) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+}
+
 function isChapterPage() {
   return document.querySelector(".v-row") !== null;
 }
@@ -71,6 +90,17 @@ function getSelectedVerses() {
     ref: sel.dataset.ref || "",
     txt: sel.querySelector(".v-txt")?.textContent || "",
   }));
+}
+
+function cleanVerseRef(ref) {
+  return String(ref || "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+}
+
+function buildSelectedExportPayload(selected) {
+  const verseText = selected
+    .map((v) => `"${v.txt}" — ${cleanVerseRef(v.ref)}`)
+    .join("\n\n");
+  return verseText ? `${verseText}\n\n${window.location.href}` : window.location.href;
 }
 
 function clearSelectedVerses() {
@@ -199,10 +229,12 @@ function downloadAudioFallback() {
   const selected = getSelectedVerses();
   const hasSelection = selected.length > 0;
   const text = hasSelection
-    ? selected.map((v) => `${v.ref} ${v.txt}`).join("\n\n")
-    : [...document.querySelectorAll(".v-row")]
-        .map((r) => `${r.dataset.ref || ""} ${r.querySelector(".v-txt")?.textContent || ""}`)
-        .join("\n");
+    ? buildSelectedExportPayload(selected)
+    : [
+        ...document.querySelectorAll(".v-row"),
+      ]
+        .map((r) => `"${r.querySelector(".v-txt")?.textContent || ""}" — ${cleanVerseRef(r.dataset.ref || "")}`)
+        .join("\n\n") + `\n\n${window.location.href}`;
   const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
@@ -239,8 +271,12 @@ function sidebarSearch(q) {
     item.appendChild(refEl);
     item.appendChild(txtEl);
     item.addEventListener("click", () => {
+      const verseUrl = res.el.dataset.verseUrl;
+      if (verseUrl) {
+        window.location.href = verseUrl;
+        return;
+      }
       res.el.scrollIntoView({ behavior: "smooth", block: "center" });
-      selectVerse(res.el);
       closeSidebar();
     });
     sr.appendChild(item);
@@ -257,7 +293,7 @@ function sidebarSearch(q) {
 }
 
 function initReaderUi() {
-  document.getElementById("menu-btn")?.addEventListener("click", openSidebar);
+  document.getElementById("menu-btn")?.addEventListener("click", toggleSidebarFromMenu);
   document.getElementById("overlay")?.addEventListener("click", closeSidebar);
 
   document.getElementById("theme-btn")?.addEventListener("click", () => {
@@ -294,6 +330,15 @@ function initReaderUi() {
   document.getElementById("font-inc-vbar-btn")?.addEventListener("click", () => updateFontScale(0.1));
   document.getElementById("font-dec-vbar-btn")?.addEventListener("click", () => updateFontScale(-0.1));
 
+  document.querySelectorAll(".v-row").forEach((row) => {
+    row.addEventListener("click", (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey) {
+        e.preventDefault();
+        selectVerse(row);
+      }
+    });
+  });
+
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".v-row") && !e.target.closest("#vbar")) clearSelectedVerses();
   });
@@ -301,7 +346,7 @@ function initReaderUi() {
   document.getElementById("copy-btn")?.addEventListener("click", () => {
     const selected = getSelectedVerses();
     if (!selected.length) return;
-    const payload = selected.map((v) => `"${v.txt}" — ${v.ref}`).join("\n\n");
+    const payload = buildSelectedExportPayload(selected);
     navigator.clipboard.writeText(payload).then(() => {
       const btn = document.getElementById("copy-btn");
       if (!btn) return;
@@ -316,12 +361,12 @@ function initReaderUi() {
     const selected = getSelectedVerses();
     if (!selected.length) return;
     const url = window.location.href;
-    const payload = selected.map((v) => `"${v.txt}" — ${v.ref}`).join("\n\n");
-    const title = selected.length === 1 ? selected[0].ref : `${selected.length} verses`;
+    const payload = buildSelectedExportPayload(selected);
+    const title = selected.length === 1 ? cleanVerseRef(selected[0].ref) : `${selected.length} verses`;
     if (navigator.share) {
       navigator.share({ title, text: payload, url });
     } else {
-      navigator.clipboard.writeText(`${payload}\n\n${url}`);
+      navigator.clipboard.writeText(payload);
     }
   });
 

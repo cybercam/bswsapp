@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 32</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 32:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Behold, a king will reign in righteousness, And princes will rule with justice.</span></div>
-<div class="v-row" data-ref="Isaiah 32:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A man will be as a hiding place from the wind, And a cover from the tempest, As rivers of water in a dry place, As the shadow of a great rock in a weary land.</span></div>
-<div class="v-row" data-ref="Isaiah 32:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The eyes of those who see will not be dim, And the ears of those who hear will listen.</span></div>
-<div class="v-row" data-ref="Isaiah 32:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Also the heart of the rash will understand knowledge, And the tongue of the stammerers will be ready to speak plainly.</span></div>
-<div class="v-row" data-ref="Isaiah 32:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The foolish person will no longer be called generous, Nor the miser said [to be] bountiful;</span></div>
-<div class="v-row" data-ref="Isaiah 32:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For the foolish person will speak foolishness, And his heart will work iniquity: To practice ungodliness, To utter error against the LORD, To keep the hungry unsatisfied, And he will cause the drink of the thirsty to fail.</span></div>
-<div class="v-row" data-ref="Isaiah 32:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Also the schemes of the schemer [are] evil; He devises wicked plans To destroy the poor with lying words, Even when the needy speaks justice.</span></div>
-<div class="v-row" data-ref="Isaiah 32:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But a generous man devises generous things, And by generosity he shall stand.</span></div>
-<div class="v-row" data-ref="Isaiah 32:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Rise up, you women who are at ease, Hear my voice; You complacent daughters, Give ear to my speech.</span></div>
-<div class="v-row" data-ref="Isaiah 32:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In a year and [some] days You will be troubled, you complacent women; For the vintage will fail, The gathering will not come.</span></div>
-<div class="v-row" data-ref="Isaiah 32:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Tremble, you [women] who are at ease; Be troubled, you complacent ones; Strip yourselves, make yourselves bare, And gird [sackcloth] on [your] waists.</span></div>
-<div class="v-row" data-ref="Isaiah 32:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">People shall mourn upon their breasts For the pleasant fields, for the fruitful vine.</span></div>
-<div class="v-row" data-ref="Isaiah 32:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">On the land of my people will come up thorns [and] briers, Yes, on all the happy homes [in] the joyous city;</span></div>
-<div class="v-row" data-ref="Isaiah 32:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Because the palaces will be forsaken, The bustling city will be deserted. The forts and towers will become lairs forever, A joy of wild donkeys, a pasture of flocks --</span></div>
-<div class="v-row" data-ref="Isaiah 32:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Until the Spirit is poured upon us from on high, And the wilderness becomes a fruitful field, And the fruitful field is counted as a forest.</span></div>
-<div class="v-row" data-ref="Isaiah 32:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Then justice will dwell in the wilderness, And righteousness remain in the fruitful field.</span></div>
-<div class="v-row" data-ref="Isaiah 32:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The work of righteousness will be peace, And the effect of righteousness, quietness and assurance forever.</span></div>
-<div class="v-row" data-ref="Isaiah 32:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">My people will dwell in a peaceful habitation, In secure dwellings, and in quiet resting places,</span></div>
-<div class="v-row" data-ref="Isaiah 32:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Though hail comes down on the forest, And the city is brought low in humiliation.</span></div>
-<div class="v-row" data-ref="Isaiah 32:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Blessed [are] you who sow beside all waters, Who send out freely the feet of the ox and the donkey.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/32/1/" data-ref="Isaiah 32:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/1/"><span class="v-num">1</span><span class="v-txt">Behold, a king will reign in righteousness, And princes will rule with justice.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/2/" data-ref="Isaiah 32:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/2/"><span class="v-num">2</span><span class="v-txt">A man will be as a hiding place from the wind, And a cover from the tempest, As rivers of water in a dry place, As the shadow of a great rock in a weary land.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/3/" data-ref="Isaiah 32:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/3/"><span class="v-num">3</span><span class="v-txt">The eyes of those who see will not be dim, And the ears of those who hear will listen.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/4/" data-ref="Isaiah 32:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/4/"><span class="v-num">4</span><span class="v-txt">Also the heart of the rash will understand knowledge, And the tongue of the stammerers will be ready to speak plainly.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/5/" data-ref="Isaiah 32:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/5/"><span class="v-num">5</span><span class="v-txt">The foolish person will no longer be called generous, Nor the miser said [to be] bountiful;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/6/" data-ref="Isaiah 32:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/6/"><span class="v-num">6</span><span class="v-txt">For the foolish person will speak foolishness, And his heart will work iniquity: To practice ungodliness, To utter error against the LORD, To keep the hungry unsatisfied, And he will cause the drink of the thirsty to fail.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/7/" data-ref="Isaiah 32:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/7/"><span class="v-num">7</span><span class="v-txt">Also the schemes of the schemer [are] evil; He devises wicked plans To destroy the poor with lying words, Even when the needy speaks justice.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/8/" data-ref="Isaiah 32:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/8/"><span class="v-num">8</span><span class="v-txt">But a generous man devises generous things, And by generosity he shall stand.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/9/" data-ref="Isaiah 32:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/9/"><span class="v-num">9</span><span class="v-txt">Rise up, you women who are at ease, Hear my voice; You complacent daughters, Give ear to my speech.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/10/" data-ref="Isaiah 32:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/10/"><span class="v-num">10</span><span class="v-txt">In a year and [some] days You will be troubled, you complacent women; For the vintage will fail, The gathering will not come.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/11/" data-ref="Isaiah 32:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/11/"><span class="v-num">11</span><span class="v-txt">Tremble, you [women] who are at ease; Be troubled, you complacent ones; Strip yourselves, make yourselves bare, And gird [sackcloth] on [your] waists.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/12/" data-ref="Isaiah 32:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/12/"><span class="v-num">12</span><span class="v-txt">People shall mourn upon their breasts For the pleasant fields, for the fruitful vine.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/13/" data-ref="Isaiah 32:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/13/"><span class="v-num">13</span><span class="v-txt">On the land of my people will come up thorns [and] briers, Yes, on all the happy homes [in] the joyous city;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/14/" data-ref="Isaiah 32:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/14/"><span class="v-num">14</span><span class="v-txt">Because the palaces will be forsaken, The bustling city will be deserted. The forts and towers will become lairs forever, A joy of wild donkeys, a pasture of flocks --</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/15/" data-ref="Isaiah 32:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/15/"><span class="v-num">15</span><span class="v-txt">Until the Spirit is poured upon us from on high, And the wilderness becomes a fruitful field, And the fruitful field is counted as a forest.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/16/" data-ref="Isaiah 32:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/16/"><span class="v-num">16</span><span class="v-txt">Then justice will dwell in the wilderness, And righteousness remain in the fruitful field.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/17/" data-ref="Isaiah 32:17 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/17/"><span class="v-num">17</span><span class="v-txt">The work of righteousness will be peace, And the effect of righteousness, quietness and assurance forever.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/18/" data-ref="Isaiah 32:18 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/18/"><span class="v-num">18</span><span class="v-txt">My people will dwell in a peaceful habitation, In secure dwellings, and in quiet resting places,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/19/" data-ref="Isaiah 32:19 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/19/"><span class="v-num">19</span><span class="v-txt">Though hail comes down on the forest, And the city is brought low in humiliation.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/32/20/" data-ref="Isaiah 32:20 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/32/20/"><span class="v-num">20</span><span class="v-txt">Blessed [are] you who sow beside all waters, Who send out freely the feet of the ox and the donkey.</span></a>
 
     
 <div class="app-cta">

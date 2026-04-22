@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 4:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let us therefore fear, lest, a promise being left us of entering into his rest, any of you should seem to come short of it.</span></div>
-<div class="v-row" data-ref="Hebrews 4:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For unto us was the gospel preached, as well as unto them: but the word preached did not profit them, not being mixed with faith in them that heard it.</span></div>
-<div class="v-row" data-ref="Hebrews 4:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For we which have believed do enter into rest, as he said, As I have sworn in my wrath, if they shall enter into my rest: although the works were finished from the foundation of the world.</span></div>
-<div class="v-row" data-ref="Hebrews 4:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For he spake in a certain place of the seventh day on this wise, And God did rest the seventh day from all his works.</span></div>
-<div class="v-row" data-ref="Hebrews 4:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And in this place again, If they shall enter into my rest.</span></div>
-<div class="v-row" data-ref="Hebrews 4:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Seeing therefore it remaineth that some must enter therein, and they to whom it was first preached entered not in because of unbelief:</span></div>
-<div class="v-row" data-ref="Hebrews 4:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Again, he limiteth a certain day, saying in David, To day, after so long a time; as it is said, To day if ye will hear his voice, harden not your hearts.</span></div>
-<div class="v-row" data-ref="Hebrews 4:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For if Jesus had given them rest, then would he not afterward have spoken of another day.</span></div>
-<div class="v-row" data-ref="Hebrews 4:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">There remaineth therefore a rest to the people of God.</span></div>
-<div class="v-row" data-ref="Hebrews 4:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For he that is entered into his rest, he also hath ceased from his own works, as God did from his.</span></div>
-<div class="v-row" data-ref="Hebrews 4:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Let us labour therefore to enter into that rest, lest any man fall after the same example of unbelief.</span></div>
-<div class="v-row" data-ref="Hebrews 4:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart.</span></div>
-<div class="v-row" data-ref="Hebrews 4:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Neither is there any creature that is not manifest in his sight: but all things are naked and opened unto the eyes of him with whom we have to do.</span></div>
-<div class="v-row" data-ref="Hebrews 4:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Seeing then that we have a great high priest, that is passed into the heavens, Jesus the Son of God, let us hold fast our profession.</span></div>
-<div class="v-row" data-ref="Hebrews 4:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For we have not an high priest which cannot be touched with the feeling of our infirmities; but was in all points tempted like as we are, yet without sin.</span></div>
-<div class="v-row" data-ref="Hebrews 4:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.</span></div>
+    <a class="v-row" href="/bible/kjv/hebrews/4/1/" data-ref="Hebrews 4:1 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/1/"><span class="v-num">1</span><span class="v-txt">Let us therefore fear, lest, a promise being left us of entering into his rest, any of you should seem to come short of it.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/2/" data-ref="Hebrews 4:2 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/2/"><span class="v-num">2</span><span class="v-txt">For unto us was the gospel preached, as well as unto them: but the word preached did not profit them, not being mixed with faith in them that heard it.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/3/" data-ref="Hebrews 4:3 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/3/"><span class="v-num">3</span><span class="v-txt">For we which have believed do enter into rest, as he said, As I have sworn in my wrath, if they shall enter into my rest: although the works were finished from the foundation of the world.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/4/" data-ref="Hebrews 4:4 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/4/"><span class="v-num">4</span><span class="v-txt">For he spake in a certain place of the seventh day on this wise, And God did rest the seventh day from all his works.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/5/" data-ref="Hebrews 4:5 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/5/"><span class="v-num">5</span><span class="v-txt">And in this place again, If they shall enter into my rest.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/6/" data-ref="Hebrews 4:6 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/6/"><span class="v-num">6</span><span class="v-txt">Seeing therefore it remaineth that some must enter therein, and they to whom it was first preached entered not in because of unbelief:</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/7/" data-ref="Hebrews 4:7 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/7/"><span class="v-num">7</span><span class="v-txt">Again, he limiteth a certain day, saying in David, To day, after so long a time; as it is said, To day if ye will hear his voice, harden not your hearts.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/8/" data-ref="Hebrews 4:8 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/8/"><span class="v-num">8</span><span class="v-txt">For if Jesus had given them rest, then would he not afterward have spoken of another day.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/9/" data-ref="Hebrews 4:9 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/9/"><span class="v-num">9</span><span class="v-txt">There remaineth therefore a rest to the people of God.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/10/" data-ref="Hebrews 4:10 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/10/"><span class="v-num">10</span><span class="v-txt">For he that is entered into his rest, he also hath ceased from his own works, as God did from his.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/11/" data-ref="Hebrews 4:11 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/11/"><span class="v-num">11</span><span class="v-txt">Let us labour therefore to enter into that rest, lest any man fall after the same example of unbelief.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/12/" data-ref="Hebrews 4:12 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/12/"><span class="v-num">12</span><span class="v-txt">For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/13/" data-ref="Hebrews 4:13 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/13/"><span class="v-num">13</span><span class="v-txt">Neither is there any creature that is not manifest in his sight: but all things are naked and opened unto the eyes of him with whom we have to do.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/14/" data-ref="Hebrews 4:14 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/14/"><span class="v-num">14</span><span class="v-txt">Seeing then that we have a great high priest, that is passed into the heavens, Jesus the Son of God, let us hold fast our profession.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/15/" data-ref="Hebrews 4:15 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/15/"><span class="v-num">15</span><span class="v-txt">For we have not an high priest which cannot be touched with the feeling of our infirmities; but was in all points tempted like as we are, yet without sin.</span></a>
+<a class="v-row" href="/bible/kjv/hebrews/4/16/" data-ref="Hebrews 4:16 (King James Version)" data-verse-url="/bible/kjv/hebrews/4/16/"><span class="v-num">16</span><span class="v-txt">Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.</span></a>
 
     
 <div class="app-cta">

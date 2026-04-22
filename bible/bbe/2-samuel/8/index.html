@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Samuel 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came about after this that David made an attack on the Philistines and overcame them; and David took the authority of the mother-town from the hands of the Philistines.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he overcame the Moabites, and he had them measured with a line when they were stretched out on the earth; marking out two lines for death and one full line for life. So the Moabites became servants to David and gave him offerings.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And David overcame Hadadezer, the son of Rehob, king of Zobah, when he went to make his power seen by the River.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And David took from him one thousand, seven hundred horsemen and twenty thousand footmen: and David had the leg-muscles of the horses cut, only keeping enough of them for a hundred war-carriages.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when the Aramaeans of Damascus came to the help of Hadadezer, king of Zobah, David put to the sword twenty-two thousand of the Aramaeans.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And David put armed forces in Aram of Damascus: and the Aramaeans became servants to David and gave him offerings. And the Lord made David overcome wherever he went.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And David took their gold body-covers from the servants of Hadadezer and took them to Jerusalem.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And from Tebah and Berothai, towns of Hadadezer, King David took a great store of brass.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And when Tou, king of Hamath, had news that David had overcome all the army of Hadadezer,</span></div>
-<div class="v-row" data-ref="2 Samuel 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He sent his son Hadoram to David, with words of peace and blessing, because he had overcome Hadadezer in the fight, for Hadadezer had wars with Tou; and Hadoram took with him vessels of silver and gold and brass:</span></div>
-<div class="v-row" data-ref="2 Samuel 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">These King David made holy to the Lord, together with the silver and gold which he had taken from the nations he had overcome --</span></div>
-<div class="v-row" data-ref="2 Samuel 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The nations of Edom and Moab, and the children of Ammon and the Philistines and the Amalekites and the goods he had taken from Hadadezer, the son of Rehob, king of Zobah.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And David got great honour for himself, when he came back, by the destruction of Edom in the valley of Salt, to the number of eighteen thousand men.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he put armed forces in Edom; all through Edom he had armed forces stationed, and all the Edomites became servants to David. And the Lord made David overcome wherever he went.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And David was king over all Israel, judging and giving right decisions for all his people.</span></div>
-<div class="v-row" data-ref="2 Samuel 8:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Joab, the son of Zeruiah, was chief of the army; and Jehoshaphat, the son of Ahilud, was keeper of the records;</span></div>
-<div class="v-row" data-ref="2 Samuel 8:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And Zadok and Abiathar, the son of Ahimelech, the son of Ahitub, were priests; and Seraiah was the scribe;</span></div>
-<div class="v-row" data-ref="2 Samuel 8:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Benaiah, the son of Jehoiada, was over the Cherethites and the Pelethites; and David's sons were priests.</span></div>
+    <a class="v-row" href="/bible/bbe/2-samuel/8/1/" data-ref="2 Samuel 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/1/"><span class="v-num">1</span><span class="v-txt">And it came about after this that David made an attack on the Philistines and overcame them; and David took the authority of the mother-town from the hands of the Philistines.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/2/" data-ref="2 Samuel 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/2/"><span class="v-num">2</span><span class="v-txt">And he overcame the Moabites, and he had them measured with a line when they were stretched out on the earth; marking out two lines for death and one full line for life. So the Moabites became servants to David and gave him offerings.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/3/" data-ref="2 Samuel 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/3/"><span class="v-num">3</span><span class="v-txt">And David overcame Hadadezer, the son of Rehob, king of Zobah, when he went to make his power seen by the River.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/4/" data-ref="2 Samuel 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/4/"><span class="v-num">4</span><span class="v-txt">And David took from him one thousand, seven hundred horsemen and twenty thousand footmen: and David had the leg-muscles of the horses cut, only keeping enough of them for a hundred war-carriages.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/5/" data-ref="2 Samuel 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/5/"><span class="v-num">5</span><span class="v-txt">And when the Aramaeans of Damascus came to the help of Hadadezer, king of Zobah, David put to the sword twenty-two thousand of the Aramaeans.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/6/" data-ref="2 Samuel 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/6/"><span class="v-num">6</span><span class="v-txt">And David put armed forces in Aram of Damascus: and the Aramaeans became servants to David and gave him offerings. And the Lord made David overcome wherever he went.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/7/" data-ref="2 Samuel 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/7/"><span class="v-num">7</span><span class="v-txt">And David took their gold body-covers from the servants of Hadadezer and took them to Jerusalem.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/8/" data-ref="2 Samuel 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/8/"><span class="v-num">8</span><span class="v-txt">And from Tebah and Berothai, towns of Hadadezer, King David took a great store of brass.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/9/" data-ref="2 Samuel 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/9/"><span class="v-num">9</span><span class="v-txt">And when Tou, king of Hamath, had news that David had overcome all the army of Hadadezer,</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/10/" data-ref="2 Samuel 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/10/"><span class="v-num">10</span><span class="v-txt">He sent his son Hadoram to David, with words of peace and blessing, because he had overcome Hadadezer in the fight, for Hadadezer had wars with Tou; and Hadoram took with him vessels of silver and gold and brass:</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/11/" data-ref="2 Samuel 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/11/"><span class="v-num">11</span><span class="v-txt">These King David made holy to the Lord, together with the silver and gold which he had taken from the nations he had overcome --</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/12/" data-ref="2 Samuel 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/12/"><span class="v-num">12</span><span class="v-txt">The nations of Edom and Moab, and the children of Ammon and the Philistines and the Amalekites and the goods he had taken from Hadadezer, the son of Rehob, king of Zobah.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/13/" data-ref="2 Samuel 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/13/"><span class="v-num">13</span><span class="v-txt">And David got great honour for himself, when he came back, by the destruction of Edom in the valley of Salt, to the number of eighteen thousand men.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/14/" data-ref="2 Samuel 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/14/"><span class="v-num">14</span><span class="v-txt">And he put armed forces in Edom; all through Edom he had armed forces stationed, and all the Edomites became servants to David. And the Lord made David overcome wherever he went.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/15/" data-ref="2 Samuel 8:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/15/"><span class="v-num">15</span><span class="v-txt">And David was king over all Israel, judging and giving right decisions for all his people.</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/16/" data-ref="2 Samuel 8:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/16/"><span class="v-num">16</span><span class="v-txt">And Joab, the son of Zeruiah, was chief of the army; and Jehoshaphat, the son of Ahilud, was keeper of the records;</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/17/" data-ref="2 Samuel 8:17 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/17/"><span class="v-num">17</span><span class="v-txt">And Zadok and Abiathar, the son of Ahimelech, the son of Ahitub, were priests; and Seraiah was the scribe;</span></a>
+<a class="v-row" href="/bible/bbe/2-samuel/8/18/" data-ref="2 Samuel 8:18 (Bible in Basic English)" data-verse-url="/bible/bbe/2-samuel/8/18/"><span class="v-num">18</span><span class="v-txt">And Benaiah, the son of Jehoiada, was over the Cherethites and the Pelethites; and David's sons were priests.</span></a>
 
     
 <div class="app-cta">

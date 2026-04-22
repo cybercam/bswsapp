@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 9:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">He cried also in mine ears with a loud voice, saying, Cause them that have charge over the city to draw near, even every man with his destroying weapon in his hand.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And, behold, six men came from the way of the higher gate, which lieth toward the north, and every man a slaughter weapon in his hand; and one man among them was clothed with linen, with a writer's inkhorn by his side: and they went in, and stood beside the brasen altar.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the glory of the God of Israel was gone up from the cherub, whereupon he was, to the threshold of the house. And he called to the man clothed with linen, which had the writer's inkhorn by his side;</span></div>
-<div class="v-row" data-ref="Ezekiel 9:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the LORD said unto him, Go through the midst of the city, through the midst of Jerusalem, and set a mark upon the foreheads of the men that sigh and that cry for all the abominations that be done in the midst thereof.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And to the others he said in mine hearing, Go ye after him through the city, and smite: let not your eye spare, neither have ye pity:</span></div>
-<div class="v-row" data-ref="Ezekiel 9:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Slay utterly old and young, both maids, and little children, and women: but come not near any man upon whom is the mark; and begin at my sanctuary. Then they began at the ancient men which were before the house.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he said unto them, Defile the house, and fill the courts with the slain: go ye forth. And they went forth, and slew in the city.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And it came to pass, while they were slaying them, and I was left, that I fell upon my face, and cried, and said, Ah Lord GOD! wilt thou destroy all the residue of Israel in thy pouring out of thy fury upon Jerusalem?</span></div>
-<div class="v-row" data-ref="Ezekiel 9:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then said he unto me, The iniquity of the house of Israel and Judah is exceeding great, and the land is full of blood, and the city full of perverseness: for they say, The LORD hath forsaken the earth, and the LORD seeth not.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And as for me also, mine eye shall not spare, neither will I have pity, but I will recompense their way upon their head.</span></div>
-<div class="v-row" data-ref="Ezekiel 9:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And, behold, the man clothed with linen, which had the inkhorn by his side, reported the matter, saying, I have done as thou hast commanded me.</span></div>
+    <a class="v-row" href="/bible/kjv/ezekiel/9/1/" data-ref="Ezekiel 9:1 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/1/"><span class="v-num">1</span><span class="v-txt">He cried also in mine ears with a loud voice, saying, Cause them that have charge over the city to draw near, even every man with his destroying weapon in his hand.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/2/" data-ref="Ezekiel 9:2 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/2/"><span class="v-num">2</span><span class="v-txt">And, behold, six men came from the way of the higher gate, which lieth toward the north, and every man a slaughter weapon in his hand; and one man among them was clothed with linen, with a writer's inkhorn by his side: and they went in, and stood beside the brasen altar.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/3/" data-ref="Ezekiel 9:3 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/3/"><span class="v-num">3</span><span class="v-txt">And the glory of the God of Israel was gone up from the cherub, whereupon he was, to the threshold of the house. And he called to the man clothed with linen, which had the writer's inkhorn by his side;</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/4/" data-ref="Ezekiel 9:4 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/4/"><span class="v-num">4</span><span class="v-txt">And the LORD said unto him, Go through the midst of the city, through the midst of Jerusalem, and set a mark upon the foreheads of the men that sigh and that cry for all the abominations that be done in the midst thereof.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/5/" data-ref="Ezekiel 9:5 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/5/"><span class="v-num">5</span><span class="v-txt">And to the others he said in mine hearing, Go ye after him through the city, and smite: let not your eye spare, neither have ye pity:</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/6/" data-ref="Ezekiel 9:6 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/6/"><span class="v-num">6</span><span class="v-txt">Slay utterly old and young, both maids, and little children, and women: but come not near any man upon whom is the mark; and begin at my sanctuary. Then they began at the ancient men which were before the house.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/7/" data-ref="Ezekiel 9:7 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/7/"><span class="v-num">7</span><span class="v-txt">And he said unto them, Defile the house, and fill the courts with the slain: go ye forth. And they went forth, and slew in the city.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/8/" data-ref="Ezekiel 9:8 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/8/"><span class="v-num">8</span><span class="v-txt">And it came to pass, while they were slaying them, and I was left, that I fell upon my face, and cried, and said, Ah Lord GOD! wilt thou destroy all the residue of Israel in thy pouring out of thy fury upon Jerusalem?</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/9/" data-ref="Ezekiel 9:9 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/9/"><span class="v-num">9</span><span class="v-txt">Then said he unto me, The iniquity of the house of Israel and Judah is exceeding great, and the land is full of blood, and the city full of perverseness: for they say, The LORD hath forsaken the earth, and the LORD seeth not.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/10/" data-ref="Ezekiel 9:10 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/10/"><span class="v-num">10</span><span class="v-txt">And as for me also, mine eye shall not spare, neither will I have pity, but I will recompense their way upon their head.</span></a>
+<a class="v-row" href="/bible/kjv/ezekiel/9/11/" data-ref="Ezekiel 9:11 (King James Version)" data-verse-url="/bible/kjv/ezekiel/9/11/"><span class="v-num">11</span><span class="v-txt">And, behold, the man clothed with linen, which had the inkhorn by his side, reported the matter, saying, I have done as thou hast commanded me.</span></a>
 
     
 <div class="app-cta">

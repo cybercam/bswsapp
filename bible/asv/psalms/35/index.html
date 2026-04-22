@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 35</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 35:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Strive thou, O Jehovah, with them that strive with me: Fight thou against them that fight against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Take hold of shield and buckler, And stand up for my help.</span></div>
-<div class="v-row" data-ref="Psalm 35:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Draw out also the spear, and stop the way against them that pursue me: Say unto my soul, I am thy salvation.</span></div>
-<div class="v-row" data-ref="Psalm 35:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Let them be put to shame and brought to dishonor that seek after my soul: Let them be turned back and confounded that devise my hurt.</span></div>
-<div class="v-row" data-ref="Psalm 35:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let them be as chaff before the wind, And the angel of Jehovah driving [them] on.</span></div>
-<div class="v-row" data-ref="Psalm 35:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let their way be dark and slippery, And the angel of Jehovah pursuing them.</span></div>
-<div class="v-row" data-ref="Psalm 35:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For without cause have they hid for me their net [in] a pit; Without cause have they digged [a pit] for my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let destruction come upon him unawares; And let his net that he hath hid catch himself: With destruction let him fall therein.</span></div>
-<div class="v-row" data-ref="Psalm 35:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And my soul shall be joyful in Jehovah: It shall rejoice in his salvation.</span></div>
-<div class="v-row" data-ref="Psalm 35:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All my bones shall say, Jehovah, who is like unto thee, Who deliverest the poor from him that is too strong for him, Yea, the poor and the needy from him that robbeth him?</span></div>
-<div class="v-row" data-ref="Psalm 35:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Unrighteous witnesses rise up; They ask me of things that I know not.</span></div>
-<div class="v-row" data-ref="Psalm 35:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">They reward me evil for good, [To] the bereaving of my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But as for me, when they were sick, my clothing was sackcloth: I afflicted my soul with fasting; And my prayer returned into mine own bosom.</span></div>
-<div class="v-row" data-ref="Psalm 35:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I behaved myself as though it had been my friend or my brother: I bowed down mourning, as one that bewaileth his mother.</span></div>
-<div class="v-row" data-ref="Psalm 35:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But in mine adversity they rejoiced, and gathered themselves together: The abjects gathered themselves together against me, and I knew [it] not; They did tear me, and ceased not:</span></div>
-<div class="v-row" data-ref="Psalm 35:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Like the profane mockers in feasts, They gnashed upon me with their teeth.</span></div>
-<div class="v-row" data-ref="Psalm 35:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Lord, how long wilt thou look on? Rescue my soul from their destructions, My darling from the lions.</span></div>
-<div class="v-row" data-ref="Psalm 35:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I will give thee thanks in the great assembly: I will praise thee among much people.</span></div>
-<div class="v-row" data-ref="Psalm 35:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Let not them that are mine enemies wrongfully rejoice over me; Neither let them wink with the eye that hate me without a cause.</span></div>
-<div class="v-row" data-ref="Psalm 35:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For they speak not peace; But they devise deceitful words against them that are quiet in the land.</span></div>
-<div class="v-row" data-ref="Psalm 35:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Yea, they opened their mouth wide against me; They said, Aha, aha, our eye hath seen it.</span></div>
-<div class="v-row" data-ref="Psalm 35:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Thou hast seen it, O Jehovah; Keep not silence: O Lord, be not far from me.</span></div>
-<div class="v-row" data-ref="Psalm 35:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Stir up thyself, and awake to the justice [due] unto me, [Even] unto my cause, my God and my Lord.</span></div>
-<div class="v-row" data-ref="Psalm 35:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Judge me, O Jehovah my God, according to thy righteousness; And let them not rejoice over me.</span></div>
-<div class="v-row" data-ref="Psalm 35:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Let them not say in their heart, Aha, so would we have it: Let them not say, We have swallowed him up.</span></div>
-<div class="v-row" data-ref="Psalm 35:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Let them be put to shame and confounded together that rejoice at my hurt: Let them be clothed with shame and dishonor that magnify themselves against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Let them shout for joy, and be glad, that favor my righteous cause: Yea, let them say continually, Jehovah be magnified, Who hath pleasure in the prosperity of his servant.</span></div>
-<div class="v-row" data-ref="Psalm 35:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And my tongue shall talk of thy righteousness [And] of thy praise all the day long.</span></div>
+    <a class="v-row" href="/bible/asv/psalms/35/1/" data-ref="Psalm 35:1 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/1/"><span class="v-num">1</span><span class="v-txt">Strive thou, O Jehovah, with them that strive with me: Fight thou against them that fight against me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/2/" data-ref="Psalm 35:2 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/2/"><span class="v-num">2</span><span class="v-txt">Take hold of shield and buckler, And stand up for my help.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/3/" data-ref="Psalm 35:3 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/3/"><span class="v-num">3</span><span class="v-txt">Draw out also the spear, and stop the way against them that pursue me: Say unto my soul, I am thy salvation.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/4/" data-ref="Psalm 35:4 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/4/"><span class="v-num">4</span><span class="v-txt">Let them be put to shame and brought to dishonor that seek after my soul: Let them be turned back and confounded that devise my hurt.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/5/" data-ref="Psalm 35:5 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/5/"><span class="v-num">5</span><span class="v-txt">Let them be as chaff before the wind, And the angel of Jehovah driving [them] on.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/6/" data-ref="Psalm 35:6 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/6/"><span class="v-num">6</span><span class="v-txt">Let their way be dark and slippery, And the angel of Jehovah pursuing them.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/7/" data-ref="Psalm 35:7 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/7/"><span class="v-num">7</span><span class="v-txt">For without cause have they hid for me their net [in] a pit; Without cause have they digged [a pit] for my soul.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/8/" data-ref="Psalm 35:8 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/8/"><span class="v-num">8</span><span class="v-txt">Let destruction come upon him unawares; And let his net that he hath hid catch himself: With destruction let him fall therein.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/9/" data-ref="Psalm 35:9 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/9/"><span class="v-num">9</span><span class="v-txt">And my soul shall be joyful in Jehovah: It shall rejoice in his salvation.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/10/" data-ref="Psalm 35:10 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/10/"><span class="v-num">10</span><span class="v-txt">All my bones shall say, Jehovah, who is like unto thee, Who deliverest the poor from him that is too strong for him, Yea, the poor and the needy from him that robbeth him?</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/11/" data-ref="Psalm 35:11 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/11/"><span class="v-num">11</span><span class="v-txt">Unrighteous witnesses rise up; They ask me of things that I know not.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/12/" data-ref="Psalm 35:12 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/12/"><span class="v-num">12</span><span class="v-txt">They reward me evil for good, [To] the bereaving of my soul.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/13/" data-ref="Psalm 35:13 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/13/"><span class="v-num">13</span><span class="v-txt">But as for me, when they were sick, my clothing was sackcloth: I afflicted my soul with fasting; And my prayer returned into mine own bosom.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/14/" data-ref="Psalm 35:14 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/14/"><span class="v-num">14</span><span class="v-txt">I behaved myself as though it had been my friend or my brother: I bowed down mourning, as one that bewaileth his mother.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/15/" data-ref="Psalm 35:15 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/15/"><span class="v-num">15</span><span class="v-txt">But in mine adversity they rejoiced, and gathered themselves together: The abjects gathered themselves together against me, and I knew [it] not; They did tear me, and ceased not:</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/16/" data-ref="Psalm 35:16 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/16/"><span class="v-num">16</span><span class="v-txt">Like the profane mockers in feasts, They gnashed upon me with their teeth.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/17/" data-ref="Psalm 35:17 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/17/"><span class="v-num">17</span><span class="v-txt">Lord, how long wilt thou look on? Rescue my soul from their destructions, My darling from the lions.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/18/" data-ref="Psalm 35:18 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/18/"><span class="v-num">18</span><span class="v-txt">I will give thee thanks in the great assembly: I will praise thee among much people.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/19/" data-ref="Psalm 35:19 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/19/"><span class="v-num">19</span><span class="v-txt">Let not them that are mine enemies wrongfully rejoice over me; Neither let them wink with the eye that hate me without a cause.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/20/" data-ref="Psalm 35:20 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/20/"><span class="v-num">20</span><span class="v-txt">For they speak not peace; But they devise deceitful words against them that are quiet in the land.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/21/" data-ref="Psalm 35:21 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/21/"><span class="v-num">21</span><span class="v-txt">Yea, they opened their mouth wide against me; They said, Aha, aha, our eye hath seen it.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/22/" data-ref="Psalm 35:22 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/22/"><span class="v-num">22</span><span class="v-txt">Thou hast seen it, O Jehovah; Keep not silence: O Lord, be not far from me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/23/" data-ref="Psalm 35:23 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/23/"><span class="v-num">23</span><span class="v-txt">Stir up thyself, and awake to the justice [due] unto me, [Even] unto my cause, my God and my Lord.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/24/" data-ref="Psalm 35:24 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/24/"><span class="v-num">24</span><span class="v-txt">Judge me, O Jehovah my God, according to thy righteousness; And let them not rejoice over me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/25/" data-ref="Psalm 35:25 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/25/"><span class="v-num">25</span><span class="v-txt">Let them not say in their heart, Aha, so would we have it: Let them not say, We have swallowed him up.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/26/" data-ref="Psalm 35:26 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/26/"><span class="v-num">26</span><span class="v-txt">Let them be put to shame and confounded together that rejoice at my hurt: Let them be clothed with shame and dishonor that magnify themselves against me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/27/" data-ref="Psalm 35:27 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/27/"><span class="v-num">27</span><span class="v-txt">Let them shout for joy, and be glad, that favor my righteous cause: Yea, let them say continually, Jehovah be magnified, Who hath pleasure in the prosperity of his servant.</span></a>
+<a class="v-row" href="/bible/asv/psalms/35/28/" data-ref="Psalm 35:28 (American Standard Version)" data-verse-url="/bible/asv/psalms/35/28/"><span class="v-num">28</span><span class="v-txt">And my tongue shall talk of thy righteousness [And] of thy praise all the day long.</span></a>
 
     
 <div class="app-cta">

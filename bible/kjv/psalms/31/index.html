@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 31:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">In thee, O LORD, do I put my trust; let me never be ashamed: deliver me in thy righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 31:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Bow down thine ear to me; deliver me speedily: be thou my strong rock, for an house of defence to save me.</span></div>
-<div class="v-row" data-ref="Psalm 31:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For thou art my rock and my fortress; therefore for thy name's sake lead me, and guide me.</span></div>
-<div class="v-row" data-ref="Psalm 31:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Pull me out of the net that they have laid privily for me: for thou art my strength.</span></div>
-<div class="v-row" data-ref="Psalm 31:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Into thine hand I commit my spirit: thou hast redeemed me, O LORD God of truth.</span></div>
-<div class="v-row" data-ref="Psalm 31:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I have hated them that regard lying vanities: but I trust in the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 31:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I will be glad and rejoice in thy mercy: for thou hast considered my trouble; thou hast known my soul in adversities;</span></div>
-<div class="v-row" data-ref="Psalm 31:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And hast not shut me up into the hand of the enemy: thou hast set my feet in a large room.</span></div>
-<div class="v-row" data-ref="Psalm 31:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Have mercy upon me, O LORD, for I am in trouble: mine eye is consumed with grief, yea, my soul and my belly.</span></div>
-<div class="v-row" data-ref="Psalm 31:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For my life is spent with grief, and my years with sighing: my strength faileth because of mine iniquity, and my bones are consumed.</span></div>
-<div class="v-row" data-ref="Psalm 31:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I was a reproach among all mine enemies, but especially among my neighbours, and a fear to mine acquaintance: they that did see me without fled from me.</span></div>
-<div class="v-row" data-ref="Psalm 31:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I am forgotten as a dead man out of mind: I am like a broken vessel.</span></div>
-<div class="v-row" data-ref="Psalm 31:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For I have heard the slander of many: fear was on every side: while they took counsel together against me, they devised to take away my life.</span></div>
-<div class="v-row" data-ref="Psalm 31:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I trusted in thee, O LORD: I said, Thou art my God.</span></div>
-<div class="v-row" data-ref="Psalm 31:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">My times are in thy hand: deliver me from the hand of mine enemies, and from them that persecute me.</span></div>
-<div class="v-row" data-ref="Psalm 31:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Make thy face to shine upon thy servant: save me for thy mercies' sake.</span></div>
-<div class="v-row" data-ref="Psalm 31:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let me not be ashamed, O LORD; for I have called upon thee: let the wicked be ashamed, and let them be silent in the grave.</span></div>
-<div class="v-row" data-ref="Psalm 31:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let the lying lips be put to silence; which speak grievous things proudly and contemptuously against the righteous.</span></div>
-<div class="v-row" data-ref="Psalm 31:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Oh how great is thy goodness, which thou hast laid up for them that fear thee; which thou hast wrought for them that trust in thee before the sons of men!</span></div>
-<div class="v-row" data-ref="Psalm 31:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Thou shalt hide them in the secret of thy presence from the pride of man: thou shalt keep them secretly in a pavilion from the strife of tongues.</span></div>
-<div class="v-row" data-ref="Psalm 31:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Blessed be the LORD: for he hath shewed me his marvellous kindness in a strong city.</span></div>
-<div class="v-row" data-ref="Psalm 31:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For I said in my haste, I am cut off from before thine eyes: nevertheless thou heardest the voice of my supplications when I cried unto thee.</span></div>
-<div class="v-row" data-ref="Psalm 31:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">O love the LORD, all ye his saints: for the LORD preserveth the faithful, and plentifully rewardeth the proud doer.</span></div>
-<div class="v-row" data-ref="Psalm 31:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Be of good courage, and he shall strengthen your heart, all ye that hope in the LORD.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/31/1/" data-ref="Psalm 31:1 (King James Version)" data-verse-url="/bible/kjv/psalms/31/1/"><span class="v-num">1</span><span class="v-txt">In thee, O LORD, do I put my trust; let me never be ashamed: deliver me in thy righteousness.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/2/" data-ref="Psalm 31:2 (King James Version)" data-verse-url="/bible/kjv/psalms/31/2/"><span class="v-num">2</span><span class="v-txt">Bow down thine ear to me; deliver me speedily: be thou my strong rock, for an house of defence to save me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/3/" data-ref="Psalm 31:3 (King James Version)" data-verse-url="/bible/kjv/psalms/31/3/"><span class="v-num">3</span><span class="v-txt">For thou art my rock and my fortress; therefore for thy name's sake lead me, and guide me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/4/" data-ref="Psalm 31:4 (King James Version)" data-verse-url="/bible/kjv/psalms/31/4/"><span class="v-num">4</span><span class="v-txt">Pull me out of the net that they have laid privily for me: for thou art my strength.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/5/" data-ref="Psalm 31:5 (King James Version)" data-verse-url="/bible/kjv/psalms/31/5/"><span class="v-num">5</span><span class="v-txt">Into thine hand I commit my spirit: thou hast redeemed me, O LORD God of truth.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/6/" data-ref="Psalm 31:6 (King James Version)" data-verse-url="/bible/kjv/psalms/31/6/"><span class="v-num">6</span><span class="v-txt">I have hated them that regard lying vanities: but I trust in the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/7/" data-ref="Psalm 31:7 (King James Version)" data-verse-url="/bible/kjv/psalms/31/7/"><span class="v-num">7</span><span class="v-txt">I will be glad and rejoice in thy mercy: for thou hast considered my trouble; thou hast known my soul in adversities;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/8/" data-ref="Psalm 31:8 (King James Version)" data-verse-url="/bible/kjv/psalms/31/8/"><span class="v-num">8</span><span class="v-txt">And hast not shut me up into the hand of the enemy: thou hast set my feet in a large room.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/9/" data-ref="Psalm 31:9 (King James Version)" data-verse-url="/bible/kjv/psalms/31/9/"><span class="v-num">9</span><span class="v-txt">Have mercy upon me, O LORD, for I am in trouble: mine eye is consumed with grief, yea, my soul and my belly.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/10/" data-ref="Psalm 31:10 (King James Version)" data-verse-url="/bible/kjv/psalms/31/10/"><span class="v-num">10</span><span class="v-txt">For my life is spent with grief, and my years with sighing: my strength faileth because of mine iniquity, and my bones are consumed.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/11/" data-ref="Psalm 31:11 (King James Version)" data-verse-url="/bible/kjv/psalms/31/11/"><span class="v-num">11</span><span class="v-txt">I was a reproach among all mine enemies, but especially among my neighbours, and a fear to mine acquaintance: they that did see me without fled from me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/12/" data-ref="Psalm 31:12 (King James Version)" data-verse-url="/bible/kjv/psalms/31/12/"><span class="v-num">12</span><span class="v-txt">I am forgotten as a dead man out of mind: I am like a broken vessel.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/13/" data-ref="Psalm 31:13 (King James Version)" data-verse-url="/bible/kjv/psalms/31/13/"><span class="v-num">13</span><span class="v-txt">For I have heard the slander of many: fear was on every side: while they took counsel together against me, they devised to take away my life.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/14/" data-ref="Psalm 31:14 (King James Version)" data-verse-url="/bible/kjv/psalms/31/14/"><span class="v-num">14</span><span class="v-txt">But I trusted in thee, O LORD: I said, Thou art my God.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/15/" data-ref="Psalm 31:15 (King James Version)" data-verse-url="/bible/kjv/psalms/31/15/"><span class="v-num">15</span><span class="v-txt">My times are in thy hand: deliver me from the hand of mine enemies, and from them that persecute me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/16/" data-ref="Psalm 31:16 (King James Version)" data-verse-url="/bible/kjv/psalms/31/16/"><span class="v-num">16</span><span class="v-txt">Make thy face to shine upon thy servant: save me for thy mercies' sake.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/17/" data-ref="Psalm 31:17 (King James Version)" data-verse-url="/bible/kjv/psalms/31/17/"><span class="v-num">17</span><span class="v-txt">Let me not be ashamed, O LORD; for I have called upon thee: let the wicked be ashamed, and let them be silent in the grave.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/18/" data-ref="Psalm 31:18 (King James Version)" data-verse-url="/bible/kjv/psalms/31/18/"><span class="v-num">18</span><span class="v-txt">Let the lying lips be put to silence; which speak grievous things proudly and contemptuously against the righteous.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/19/" data-ref="Psalm 31:19 (King James Version)" data-verse-url="/bible/kjv/psalms/31/19/"><span class="v-num">19</span><span class="v-txt">Oh how great is thy goodness, which thou hast laid up for them that fear thee; which thou hast wrought for them that trust in thee before the sons of men!</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/20/" data-ref="Psalm 31:20 (King James Version)" data-verse-url="/bible/kjv/psalms/31/20/"><span class="v-num">20</span><span class="v-txt">Thou shalt hide them in the secret of thy presence from the pride of man: thou shalt keep them secretly in a pavilion from the strife of tongues.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/21/" data-ref="Psalm 31:21 (King James Version)" data-verse-url="/bible/kjv/psalms/31/21/"><span class="v-num">21</span><span class="v-txt">Blessed be the LORD: for he hath shewed me his marvellous kindness in a strong city.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/22/" data-ref="Psalm 31:22 (King James Version)" data-verse-url="/bible/kjv/psalms/31/22/"><span class="v-num">22</span><span class="v-txt">For I said in my haste, I am cut off from before thine eyes: nevertheless thou heardest the voice of my supplications when I cried unto thee.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/23/" data-ref="Psalm 31:23 (King James Version)" data-verse-url="/bible/kjv/psalms/31/23/"><span class="v-num">23</span><span class="v-txt">O love the LORD, all ye his saints: for the LORD preserveth the faithful, and plentifully rewardeth the proud doer.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/31/24/" data-ref="Psalm 31:24 (King James Version)" data-verse-url="/bible/kjv/psalms/31/24/"><span class="v-num">24</span><span class="v-txt">Be of good courage, and he shall strengthen your heart, all ye that hope in the LORD.</span></a>
 
     
 <div class="app-cta">

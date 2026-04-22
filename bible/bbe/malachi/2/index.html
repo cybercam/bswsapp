@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Malachi 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And now, O you priests, this order is for you.</span></div>
-<div class="v-row" data-ref="Malachi 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If you will not give ear and take it to heart, to give glory to my name, says the Lord of armies, then I will send the curse on you and will put a curse on your blessing: truly, even now I have put a curse on it, because you do not take it to heart.</span></div>
-<div class="v-row" data-ref="Malachi 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">See, I will have your arm cut off, and will put waste on your faces, even the waste from your feasts; and you will be taken away with it.</span></div>
-<div class="v-row" data-ref="Malachi 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And you will be certain that I have sent this order to you, so that it might be my agreement with Levi, says the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My agreement with him was on my side life and peace, and I gave them to him; on his side fear, and he had fear of me and gave honour to my name.</span></div>
-<div class="v-row" data-ref="Malachi 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">True teaching was in his mouth, and no evil was seen on his lips: he was walking with me in peace and righteousness, turning numbers of people away from evil-doing.</span></div>
-<div class="v-row" data-ref="Malachi 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For it is right for the priest's lips to keep knowledge, and for men to be waiting for the law from his mouth: for he is the servant sent from the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But you are turned out of the way; you have made the law hard for numbers of people; you have made the agreement of Levi of no value, says the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And so I have taken away your honour and made you low before all the people, even as you have not kept my ways, and have given no thought to me in using the law.</span></div>
-<div class="v-row" data-ref="Malachi 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Have we not all one father? has not one God made us? why are we, every one of us, acting falsely to his brother, putting shame on the agreement of our fathers?</span></div>
-<div class="v-row" data-ref="Malachi 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Judah has been acting falsely, and a disgusting thing has been done in Jerusalem; for Judah has made unclean the holy place of the Lord which is dear to him, and has taken as his wife the daughter of a strange god.</span></div>
-<div class="v-row" data-ref="Malachi 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The Lord will have the man who does this cut off root and branch out of the tents of Jacob, and him who makes an offering to the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And this again you do: covering the altar of the Lord with weeping and with grief, so that he gives no more thought to the offering, and does not take it with pleasure from your hand.</span></div>
-<div class="v-row" data-ref="Malachi 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But you say, For what reason? Because the Lord has been a witness between you and the wife of your early years, to whom you have been untrue, though she is your friend and the wife to whom you have given your word.</span></div>
-<div class="v-row" data-ref="Malachi 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">... So give thought to your spirit, and let no one be false to the wife of his early years.</span></div>
-<div class="v-row" data-ref="Malachi 2:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For I am against the putting away of a wife, says the Lord, the God of Israel, and against him who is clothed with violent acts, says the Lord of armies: so give thought to your spirit and do not be false in your acts.</span></div>
-<div class="v-row" data-ref="Malachi 2:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">You have made the Lord tired with your words. And still you say, How have we made him tired? By your saying, Everyone who does evil is good in the eyes of the Lord, and he has delight in them; or, Where is God the judge?</span></div>
+    <a class="v-row" href="/bible/bbe/malachi/2/1/" data-ref="Malachi 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/1/"><span class="v-num">1</span><span class="v-txt">And now, O you priests, this order is for you.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/2/" data-ref="Malachi 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/2/"><span class="v-num">2</span><span class="v-txt">If you will not give ear and take it to heart, to give glory to my name, says the Lord of armies, then I will send the curse on you and will put a curse on your blessing: truly, even now I have put a curse on it, because you do not take it to heart.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/3/" data-ref="Malachi 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/3/"><span class="v-num">3</span><span class="v-txt">See, I will have your arm cut off, and will put waste on your faces, even the waste from your feasts; and you will be taken away with it.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/4/" data-ref="Malachi 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/4/"><span class="v-num">4</span><span class="v-txt">And you will be certain that I have sent this order to you, so that it might be my agreement with Levi, says the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/5/" data-ref="Malachi 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/5/"><span class="v-num">5</span><span class="v-txt">My agreement with him was on my side life and peace, and I gave them to him; on his side fear, and he had fear of me and gave honour to my name.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/6/" data-ref="Malachi 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/6/"><span class="v-num">6</span><span class="v-txt">True teaching was in his mouth, and no evil was seen on his lips: he was walking with me in peace and righteousness, turning numbers of people away from evil-doing.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/7/" data-ref="Malachi 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/7/"><span class="v-num">7</span><span class="v-txt">For it is right for the priest's lips to keep knowledge, and for men to be waiting for the law from his mouth: for he is the servant sent from the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/8/" data-ref="Malachi 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/8/"><span class="v-num">8</span><span class="v-txt">But you are turned out of the way; you have made the law hard for numbers of people; you have made the agreement of Levi of no value, says the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/9/" data-ref="Malachi 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/9/"><span class="v-num">9</span><span class="v-txt">And so I have taken away your honour and made you low before all the people, even as you have not kept my ways, and have given no thought to me in using the law.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/10/" data-ref="Malachi 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/10/"><span class="v-num">10</span><span class="v-txt">Have we not all one father? has not one God made us? why are we, every one of us, acting falsely to his brother, putting shame on the agreement of our fathers?</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/11/" data-ref="Malachi 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/11/"><span class="v-num">11</span><span class="v-txt">Judah has been acting falsely, and a disgusting thing has been done in Jerusalem; for Judah has made unclean the holy place of the Lord which is dear to him, and has taken as his wife the daughter of a strange god.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/12/" data-ref="Malachi 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/12/"><span class="v-num">12</span><span class="v-txt">The Lord will have the man who does this cut off root and branch out of the tents of Jacob, and him who makes an offering to the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/13/" data-ref="Malachi 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/13/"><span class="v-num">13</span><span class="v-txt">And this again you do: covering the altar of the Lord with weeping and with grief, so that he gives no more thought to the offering, and does not take it with pleasure from your hand.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/14/" data-ref="Malachi 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/14/"><span class="v-num">14</span><span class="v-txt">But you say, For what reason? Because the Lord has been a witness between you and the wife of your early years, to whom you have been untrue, though she is your friend and the wife to whom you have given your word.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/15/" data-ref="Malachi 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/15/"><span class="v-num">15</span><span class="v-txt">... So give thought to your spirit, and let no one be false to the wife of his early years.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/16/" data-ref="Malachi 2:16 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/16/"><span class="v-num">16</span><span class="v-txt">For I am against the putting away of a wife, says the Lord, the God of Israel, and against him who is clothed with violent acts, says the Lord of armies: so give thought to your spirit and do not be false in your acts.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/2/17/" data-ref="Malachi 2:17 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/2/17/"><span class="v-num">17</span><span class="v-txt">You have made the Lord tired with your words. And still you say, How have we made him tired? By your saying, Everyone who does evil is good in the eyes of the Lord, and he has delight in them; or, Where is God the judge?</span></a>
 
     
 <div class="app-cta">

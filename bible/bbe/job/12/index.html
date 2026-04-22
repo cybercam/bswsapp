@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 12:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></div>
-<div class="v-row" data-ref="Job 12:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">No doubt you have knowledge, and wisdom will come to an end with you.</span></div>
-<div class="v-row" data-ref="Job 12:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But I have a mind as well as you; I am equal to you: yes, who has not knowledge of such things as these?</span></div>
-<div class="v-row" data-ref="Job 12:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">It seems that I am to be as one who is a cause of laughing to his neighbour, one who makes his prayer to God and is answered! the upright man who has done no wrong is to be made sport of!</span></div>
-<div class="v-row" data-ref="Job 12:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">In the thought of him who is in comfort there is no respect for one who is in trouble; such is the fate of those whose feet are slipping.</span></div>
-<div class="v-row" data-ref="Job 12:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">There is wealth in the tents of those who make destruction, and those by whom God is moved to wrath are safe; even those whose god is their strength.</span></div>
-<div class="v-row" data-ref="Job 12:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But put now a question to the beasts, and get teaching from them; or to the birds of the heaven, and they will make it clear to you;</span></div>
-<div class="v-row" data-ref="Job 12:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Or to the things which go flat on the earth, and they will give you wisdom; and the fishes of the sea will give you news of it.</span></div>
-<div class="v-row" data-ref="Job 12:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Who does not see by all these that the hand of the Lord has done this?</span></div>
-<div class="v-row" data-ref="Job 12:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">In whose hand is the soul of every living thing, and the breath of all flesh of man.</span></div>
-<div class="v-row" data-ref="Job 12:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Are not words tested by the ear, even as food is tasted by the mouth?</span></div>
-<div class="v-row" data-ref="Job 12:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Old men have wisdom, and a long life gives knowledge.</span></div>
-<div class="v-row" data-ref="Job 12:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">With him there is wisdom and strength; power and knowledge are his.</span></div>
-<div class="v-row" data-ref="Job 12:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Truly, there is no building up of what is pulled down by him; when a man is shut up by him, no one may let him loose.</span></div>
-<div class="v-row" data-ref="Job 12:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Truly, he keeps back the waters and they are dry; he sends them out and the earth is overturned.</span></div>
-<div class="v-row" data-ref="Job 12:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">With him are strength and wise designs; he who is guided into error, together with his guide, are in his hands;</span></div>
-<div class="v-row" data-ref="Job 12:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He takes away the wisdom of the wise guides, and makes judges foolish;</span></div>
-<div class="v-row" data-ref="Job 12:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He undoes the chains of kings, and puts his band on them;</span></div>
-<div class="v-row" data-ref="Job 12:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He makes priests prisoners, overturning those in safe positions;</span></div>
-<div class="v-row" data-ref="Job 12:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He makes the words of responsible persons without effect, and takes away the good sense of the old;</span></div>
-<div class="v-row" data-ref="Job 12:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He puts shame on chiefs, and takes away the power of the strong;</span></div>
-<div class="v-row" data-ref="Job 12:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Uncovering deep things out of the dark, and making the deep shade bright;</span></div>
-<div class="v-row" data-ref="Job 12:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Increasing nations, and sending destruction on them; making wide the lands of peoples, and then giving them up.</span></div>
-<div class="v-row" data-ref="Job 12:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He takes away the wisdom of the rulers of the earth, and sends them wandering in a waste where there is no way.</span></div>
-<div class="v-row" data-ref="Job 12:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">They go feeling about in the dark without light, wandering without help like those overcome with wine.</span></div>
+    <a class="v-row" href="/bible/bbe/job/12/1/" data-ref="Job 12:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/1/"><span class="v-num">1</span><span class="v-txt">And Job made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/12/2/" data-ref="Job 12:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/2/"><span class="v-num">2</span><span class="v-txt">No doubt you have knowledge, and wisdom will come to an end with you.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/3/" data-ref="Job 12:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/3/"><span class="v-num">3</span><span class="v-txt">But I have a mind as well as you; I am equal to you: yes, who has not knowledge of such things as these?</span></a>
+<a class="v-row" href="/bible/bbe/job/12/4/" data-ref="Job 12:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/4/"><span class="v-num">4</span><span class="v-txt">It seems that I am to be as one who is a cause of laughing to his neighbour, one who makes his prayer to God and is answered! the upright man who has done no wrong is to be made sport of!</span></a>
+<a class="v-row" href="/bible/bbe/job/12/5/" data-ref="Job 12:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/5/"><span class="v-num">5</span><span class="v-txt">In the thought of him who is in comfort there is no respect for one who is in trouble; such is the fate of those whose feet are slipping.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/6/" data-ref="Job 12:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/6/"><span class="v-num">6</span><span class="v-txt">There is wealth in the tents of those who make destruction, and those by whom God is moved to wrath are safe; even those whose god is their strength.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/7/" data-ref="Job 12:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/7/"><span class="v-num">7</span><span class="v-txt">But put now a question to the beasts, and get teaching from them; or to the birds of the heaven, and they will make it clear to you;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/8/" data-ref="Job 12:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/8/"><span class="v-num">8</span><span class="v-txt">Or to the things which go flat on the earth, and they will give you wisdom; and the fishes of the sea will give you news of it.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/9/" data-ref="Job 12:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/9/"><span class="v-num">9</span><span class="v-txt">Who does not see by all these that the hand of the Lord has done this?</span></a>
+<a class="v-row" href="/bible/bbe/job/12/10/" data-ref="Job 12:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/10/"><span class="v-num">10</span><span class="v-txt">In whose hand is the soul of every living thing, and the breath of all flesh of man.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/11/" data-ref="Job 12:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/11/"><span class="v-num">11</span><span class="v-txt">Are not words tested by the ear, even as food is tasted by the mouth?</span></a>
+<a class="v-row" href="/bible/bbe/job/12/12/" data-ref="Job 12:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/12/"><span class="v-num">12</span><span class="v-txt">Old men have wisdom, and a long life gives knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/13/" data-ref="Job 12:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/13/"><span class="v-num">13</span><span class="v-txt">With him there is wisdom and strength; power and knowledge are his.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/14/" data-ref="Job 12:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/14/"><span class="v-num">14</span><span class="v-txt">Truly, there is no building up of what is pulled down by him; when a man is shut up by him, no one may let him loose.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/15/" data-ref="Job 12:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/15/"><span class="v-num">15</span><span class="v-txt">Truly, he keeps back the waters and they are dry; he sends them out and the earth is overturned.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/16/" data-ref="Job 12:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/16/"><span class="v-num">16</span><span class="v-txt">With him are strength and wise designs; he who is guided into error, together with his guide, are in his hands;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/17/" data-ref="Job 12:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/17/"><span class="v-num">17</span><span class="v-txt">He takes away the wisdom of the wise guides, and makes judges foolish;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/18/" data-ref="Job 12:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/18/"><span class="v-num">18</span><span class="v-txt">He undoes the chains of kings, and puts his band on them;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/19/" data-ref="Job 12:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/19/"><span class="v-num">19</span><span class="v-txt">He makes priests prisoners, overturning those in safe positions;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/20/" data-ref="Job 12:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/20/"><span class="v-num">20</span><span class="v-txt">He makes the words of responsible persons without effect, and takes away the good sense of the old;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/21/" data-ref="Job 12:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/21/"><span class="v-num">21</span><span class="v-txt">He puts shame on chiefs, and takes away the power of the strong;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/22/" data-ref="Job 12:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/22/"><span class="v-num">22</span><span class="v-txt">Uncovering deep things out of the dark, and making the deep shade bright;</span></a>
+<a class="v-row" href="/bible/bbe/job/12/23/" data-ref="Job 12:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/23/"><span class="v-num">23</span><span class="v-txt">Increasing nations, and sending destruction on them; making wide the lands of peoples, and then giving them up.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/24/" data-ref="Job 12:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/24/"><span class="v-num">24</span><span class="v-txt">He takes away the wisdom of the rulers of the earth, and sends them wandering in a waste where there is no way.</span></a>
+<a class="v-row" href="/bible/bbe/job/12/25/" data-ref="Job 12:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/12/25/"><span class="v-num">25</span><span class="v-txt">They go feeling about in the dark without light, wandering without help like those overcome with wine.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 54</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 54:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Sing, O barren, thou that didst not bear; break forth into singing, and cry aloud, thou that didst not travail with child: for more are the children of the desolate than the children of the married wife, saith Jehovah.</span></div>
-<div class="v-row" data-ref="Isaiah 54:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Enlarge the place of thy tent, and let them stretch forth the curtains of thy habitations; spare not: lengthen thy cords, and strengthen thy stakes.</span></div>
-<div class="v-row" data-ref="Isaiah 54:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For thou shalt spread abroad on the right hand and on the left; and thy seed shall possess the nations, and make the desolate cities to be inhabited.</span></div>
-<div class="v-row" data-ref="Isaiah 54:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Fear not; for thou shalt not be ashamed: neither be thou confounded; for thou shalt not be put to shame: for thou shalt forget the shame of thy youth; and the reproach of thy widowhood shalt thou remember no more.</span></div>
-<div class="v-row" data-ref="Isaiah 54:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For thy Maker is thy husband; Jehovah of hosts is his name: and the Holy One of Israel is thy Redeemer; the God of the whole earth shall he be called.</span></div>
-<div class="v-row" data-ref="Isaiah 54:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For Jehovah hath called thee as a wife forsaken and grieved in spirit, even a wife of youth, when she is cast off, saith thy God.</span></div>
-<div class="v-row" data-ref="Isaiah 54:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For a small moment have I forsaken thee; but with great mercies will I gather thee.</span></div>
-<div class="v-row" data-ref="Isaiah 54:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">In overflowing wrath I hid my face from thee for a moment; but with everlasting lovingkindness will I have mercy on thee, saith Jehovah thy Redeemer.</span></div>
-<div class="v-row" data-ref="Isaiah 54:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For this is [as] the waters of Noah unto me; for as I have sworn that the waters of Noah shall no more go over the earth, so have I sworn that I will not be wroth with thee, nor rebuke thee.</span></div>
-<div class="v-row" data-ref="Isaiah 54:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For the mountains may depart, and the hills be removed; but my lovingkindness shall not depart from thee, neither shall my covenant of peace be removed, saith Jehovah that hath mercy on thee.</span></div>
-<div class="v-row" data-ref="Isaiah 54:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">O thou afflicted, tossed with tempest, and not comforted, behold, I will set thy stones in fair colors, and lay thy foundations with sapphires.</span></div>
-<div class="v-row" data-ref="Isaiah 54:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I will make thy pinnacles of rubies, and thy gates of carbuncles, and all thy border of precious stones.</span></div>
-<div class="v-row" data-ref="Isaiah 54:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And all thy children shall be taught of Jehovah; and great shall be the peace of thy children.</span></div>
-<div class="v-row" data-ref="Isaiah 54:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">In righteousness shalt thou be established: thou shalt be far from oppression, for thou shalt not fear; and from terror, for it shall not come near thee.</span></div>
-<div class="v-row" data-ref="Isaiah 54:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Behold, they may gather together, but not by me: whosoever shall gather together against thee shall fall because of thee.</span></div>
-<div class="v-row" data-ref="Isaiah 54:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Behold, I have created the smith that bloweth the fire of coals, and bringeth forth a weapon for his work; and I have created the waster to destroy.</span></div>
-<div class="v-row" data-ref="Isaiah 54:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn. This is the heritage of the servants of Jehovah, and their righteousness which is of me, saith Jehovah.</span></div>
+    <a class="v-row" href="/bible/asv/isaiah/54/1/" data-ref="Isaiah 54:1 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/1/"><span class="v-num">1</span><span class="v-txt">Sing, O barren, thou that didst not bear; break forth into singing, and cry aloud, thou that didst not travail with child: for more are the children of the desolate than the children of the married wife, saith Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/2/" data-ref="Isaiah 54:2 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/2/"><span class="v-num">2</span><span class="v-txt">Enlarge the place of thy tent, and let them stretch forth the curtains of thy habitations; spare not: lengthen thy cords, and strengthen thy stakes.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/3/" data-ref="Isaiah 54:3 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/3/"><span class="v-num">3</span><span class="v-txt">For thou shalt spread abroad on the right hand and on the left; and thy seed shall possess the nations, and make the desolate cities to be inhabited.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/4/" data-ref="Isaiah 54:4 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/4/"><span class="v-num">4</span><span class="v-txt">Fear not; for thou shalt not be ashamed: neither be thou confounded; for thou shalt not be put to shame: for thou shalt forget the shame of thy youth; and the reproach of thy widowhood shalt thou remember no more.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/5/" data-ref="Isaiah 54:5 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/5/"><span class="v-num">5</span><span class="v-txt">For thy Maker is thy husband; Jehovah of hosts is his name: and the Holy One of Israel is thy Redeemer; the God of the whole earth shall he be called.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/6/" data-ref="Isaiah 54:6 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/6/"><span class="v-num">6</span><span class="v-txt">For Jehovah hath called thee as a wife forsaken and grieved in spirit, even a wife of youth, when she is cast off, saith thy God.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/7/" data-ref="Isaiah 54:7 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/7/"><span class="v-num">7</span><span class="v-txt">For a small moment have I forsaken thee; but with great mercies will I gather thee.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/8/" data-ref="Isaiah 54:8 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/8/"><span class="v-num">8</span><span class="v-txt">In overflowing wrath I hid my face from thee for a moment; but with everlasting lovingkindness will I have mercy on thee, saith Jehovah thy Redeemer.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/9/" data-ref="Isaiah 54:9 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/9/"><span class="v-num">9</span><span class="v-txt">For this is [as] the waters of Noah unto me; for as I have sworn that the waters of Noah shall no more go over the earth, so have I sworn that I will not be wroth with thee, nor rebuke thee.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/10/" data-ref="Isaiah 54:10 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/10/"><span class="v-num">10</span><span class="v-txt">For the mountains may depart, and the hills be removed; but my lovingkindness shall not depart from thee, neither shall my covenant of peace be removed, saith Jehovah that hath mercy on thee.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/11/" data-ref="Isaiah 54:11 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/11/"><span class="v-num">11</span><span class="v-txt">O thou afflicted, tossed with tempest, and not comforted, behold, I will set thy stones in fair colors, and lay thy foundations with sapphires.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/12/" data-ref="Isaiah 54:12 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/12/"><span class="v-num">12</span><span class="v-txt">And I will make thy pinnacles of rubies, and thy gates of carbuncles, and all thy border of precious stones.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/13/" data-ref="Isaiah 54:13 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/13/"><span class="v-num">13</span><span class="v-txt">And all thy children shall be taught of Jehovah; and great shall be the peace of thy children.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/14/" data-ref="Isaiah 54:14 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/14/"><span class="v-num">14</span><span class="v-txt">In righteousness shalt thou be established: thou shalt be far from oppression, for thou shalt not fear; and from terror, for it shall not come near thee.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/15/" data-ref="Isaiah 54:15 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/15/"><span class="v-num">15</span><span class="v-txt">Behold, they may gather together, but not by me: whosoever shall gather together against thee shall fall because of thee.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/16/" data-ref="Isaiah 54:16 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/16/"><span class="v-num">16</span><span class="v-txt">Behold, I have created the smith that bloweth the fire of coals, and bringeth forth a weapon for his work; and I have created the waster to destroy.</span></a>
+<a class="v-row" href="/bible/asv/isaiah/54/17/" data-ref="Isaiah 54:17 (American Standard Version)" data-verse-url="/bible/asv/isaiah/54/17/"><span class="v-num">17</span><span class="v-txt">No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn. This is the heritage of the servants of Jehovah, and their righteousness which is of me, saith Jehovah.</span></a>
 
     
 <div class="app-cta">

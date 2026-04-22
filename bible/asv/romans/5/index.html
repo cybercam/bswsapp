@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Romans 5:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;</span></div>
-<div class="v-row" data-ref="Romans 5:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">through whom also we have had our access by faith into this grace wherein we stand; and we rejoice in hope of the glory of God.</span></div>
-<div class="v-row" data-ref="Romans 5:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And not only so, but we also rejoice in our tribulations: knowing that tribulation worketh stedfastness;</span></div>
-<div class="v-row" data-ref="Romans 5:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">and stedfastness, approvedness; and approvedness, hope:</span></div>
-<div class="v-row" data-ref="Romans 5:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and hope putteth not to shame; because the love of God hath been shed abroad in our hearts through the Holy Spirit which was given unto us.</span></div>
-<div class="v-row" data-ref="Romans 5:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For while we were yet weak, in due season Christ died for the ungodly.</span></div>
-<div class="v-row" data-ref="Romans 5:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For scarcely for a righteous man will one die: for peradventure for the good man some one would even dare to die.</span></div>
-<div class="v-row" data-ref="Romans 5:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But God commendeth his own love toward us, in that, while we were yet sinners, Christ died for us.</span></div>
-<div class="v-row" data-ref="Romans 5:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Much more then, being now justified by his blood, shall we be saved from the wrath [of God] through him.</span></div>
-<div class="v-row" data-ref="Romans 5:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For if, while we were enemies, we were reconciled to God through the death of his Son, much more, being reconciled, shall we be saved by his life;</span></div>
-<div class="v-row" data-ref="Romans 5:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">and not only so, but we also rejoice in God through our Lord Jesus Christ, through whom we have now received the reconciliation.</span></div>
-<div class="v-row" data-ref="Romans 5:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore, as through one man sin entered into the world, and death through sin; and so death passed unto all men, for that all sinned:</span></div>
-<div class="v-row" data-ref="Romans 5:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">for until the law sin was in the world; but sin is not imputed when there is no law.</span></div>
-<div class="v-row" data-ref="Romans 5:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Nevertheless death reigned from Adam until Moses, even over them that had not sinned after the likeness of Adam's transgression, who is a figure of him that was to come.</span></div>
-<div class="v-row" data-ref="Romans 5:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But not as the trespass, so also [is] the free gift. For if by the trespass of the one the many died, much more did the grace of God, and the gift by the grace of the one man, Jesus Christ, abound unto the many.</span></div>
-<div class="v-row" data-ref="Romans 5:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And not as through one that sinned, [so] is the gift: for the judgment [came] of one unto condemnation, but the free gift [came] of many trespasses unto justification.</span></div>
-<div class="v-row" data-ref="Romans 5:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For if, by the trespass of the one, death reigned through the one; much more shall they that receive the abundance of grace and of the gift of righteousness reign in life through the one, [even] Jesus Christ.</span></div>
-<div class="v-row" data-ref="Romans 5:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">So then as through one trespass [the judgment came] unto all men to condemnation; even so through one act of righteousness [the free gift came] unto all men to justification of life.</span></div>
-<div class="v-row" data-ref="Romans 5:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For as through the one man's disobedience the many were made sinners, even so through the obedience of the one shall the many be made righteous.</span></div>
-<div class="v-row" data-ref="Romans 5:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And the law came in besides, that the trespass might abound; but where sin abounded, grace did abound more exceedingly:</span></div>
-<div class="v-row" data-ref="Romans 5:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">that, as sin reigned in death, even so might grace reign through righteousness unto eternal life through Jesus Christ our Lord.</span></div>
+    <a class="v-row" href="/bible/asv/romans/5/1/" data-ref="Romans 5:1 (American Standard Version)" data-verse-url="/bible/asv/romans/5/1/"><span class="v-num">1</span><span class="v-txt">Being therefore justified by faith, we have peace with God through our Lord Jesus Christ;</span></a>
+<a class="v-row" href="/bible/asv/romans/5/2/" data-ref="Romans 5:2 (American Standard Version)" data-verse-url="/bible/asv/romans/5/2/"><span class="v-num">2</span><span class="v-txt">through whom also we have had our access by faith into this grace wherein we stand; and we rejoice in hope of the glory of God.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/3/" data-ref="Romans 5:3 (American Standard Version)" data-verse-url="/bible/asv/romans/5/3/"><span class="v-num">3</span><span class="v-txt">And not only so, but we also rejoice in our tribulations: knowing that tribulation worketh stedfastness;</span></a>
+<a class="v-row" href="/bible/asv/romans/5/4/" data-ref="Romans 5:4 (American Standard Version)" data-verse-url="/bible/asv/romans/5/4/"><span class="v-num">4</span><span class="v-txt">and stedfastness, approvedness; and approvedness, hope:</span></a>
+<a class="v-row" href="/bible/asv/romans/5/5/" data-ref="Romans 5:5 (American Standard Version)" data-verse-url="/bible/asv/romans/5/5/"><span class="v-num">5</span><span class="v-txt">and hope putteth not to shame; because the love of God hath been shed abroad in our hearts through the Holy Spirit which was given unto us.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/6/" data-ref="Romans 5:6 (American Standard Version)" data-verse-url="/bible/asv/romans/5/6/"><span class="v-num">6</span><span class="v-txt">For while we were yet weak, in due season Christ died for the ungodly.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/7/" data-ref="Romans 5:7 (American Standard Version)" data-verse-url="/bible/asv/romans/5/7/"><span class="v-num">7</span><span class="v-txt">For scarcely for a righteous man will one die: for peradventure for the good man some one would even dare to die.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/8/" data-ref="Romans 5:8 (American Standard Version)" data-verse-url="/bible/asv/romans/5/8/"><span class="v-num">8</span><span class="v-txt">But God commendeth his own love toward us, in that, while we were yet sinners, Christ died for us.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/9/" data-ref="Romans 5:9 (American Standard Version)" data-verse-url="/bible/asv/romans/5/9/"><span class="v-num">9</span><span class="v-txt">Much more then, being now justified by his blood, shall we be saved from the wrath [of God] through him.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/10/" data-ref="Romans 5:10 (American Standard Version)" data-verse-url="/bible/asv/romans/5/10/"><span class="v-num">10</span><span class="v-txt">For if, while we were enemies, we were reconciled to God through the death of his Son, much more, being reconciled, shall we be saved by his life;</span></a>
+<a class="v-row" href="/bible/asv/romans/5/11/" data-ref="Romans 5:11 (American Standard Version)" data-verse-url="/bible/asv/romans/5/11/"><span class="v-num">11</span><span class="v-txt">and not only so, but we also rejoice in God through our Lord Jesus Christ, through whom we have now received the reconciliation.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/12/" data-ref="Romans 5:12 (American Standard Version)" data-verse-url="/bible/asv/romans/5/12/"><span class="v-num">12</span><span class="v-txt">Therefore, as through one man sin entered into the world, and death through sin; and so death passed unto all men, for that all sinned:</span></a>
+<a class="v-row" href="/bible/asv/romans/5/13/" data-ref="Romans 5:13 (American Standard Version)" data-verse-url="/bible/asv/romans/5/13/"><span class="v-num">13</span><span class="v-txt">for until the law sin was in the world; but sin is not imputed when there is no law.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/14/" data-ref="Romans 5:14 (American Standard Version)" data-verse-url="/bible/asv/romans/5/14/"><span class="v-num">14</span><span class="v-txt">Nevertheless death reigned from Adam until Moses, even over them that had not sinned after the likeness of Adam's transgression, who is a figure of him that was to come.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/15/" data-ref="Romans 5:15 (American Standard Version)" data-verse-url="/bible/asv/romans/5/15/"><span class="v-num">15</span><span class="v-txt">But not as the trespass, so also [is] the free gift. For if by the trespass of the one the many died, much more did the grace of God, and the gift by the grace of the one man, Jesus Christ, abound unto the many.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/16/" data-ref="Romans 5:16 (American Standard Version)" data-verse-url="/bible/asv/romans/5/16/"><span class="v-num">16</span><span class="v-txt">And not as through one that sinned, [so] is the gift: for the judgment [came] of one unto condemnation, but the free gift [came] of many trespasses unto justification.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/17/" data-ref="Romans 5:17 (American Standard Version)" data-verse-url="/bible/asv/romans/5/17/"><span class="v-num">17</span><span class="v-txt">For if, by the trespass of the one, death reigned through the one; much more shall they that receive the abundance of grace and of the gift of righteousness reign in life through the one, [even] Jesus Christ.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/18/" data-ref="Romans 5:18 (American Standard Version)" data-verse-url="/bible/asv/romans/5/18/"><span class="v-num">18</span><span class="v-txt">So then as through one trespass [the judgment came] unto all men to condemnation; even so through one act of righteousness [the free gift came] unto all men to justification of life.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/19/" data-ref="Romans 5:19 (American Standard Version)" data-verse-url="/bible/asv/romans/5/19/"><span class="v-num">19</span><span class="v-txt">For as through the one man's disobedience the many were made sinners, even so through the obedience of the one shall the many be made righteous.</span></a>
+<a class="v-row" href="/bible/asv/romans/5/20/" data-ref="Romans 5:20 (American Standard Version)" data-verse-url="/bible/asv/romans/5/20/"><span class="v-num">20</span><span class="v-txt">And the law came in besides, that the trespass might abound; but where sin abounded, grace did abound more exceedingly:</span></a>
+<a class="v-row" href="/bible/asv/romans/5/21/" data-ref="Romans 5:21 (American Standard Version)" data-verse-url="/bible/asv/romans/5/21/"><span class="v-num">21</span><span class="v-txt">that, as sin reigned in death, even so might grace reign through righteousness unto eternal life through Jesus Christ our Lord.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Walk prudently when you go to the house of God; and draw near to hear rather than to give the sacrifice of fools, for they do not know that they do evil.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Do not be rash with your mouth, And let not your heart utter anything hastily before God. For God [is] in heaven, and you on earth; Therefore let your words be few.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For a dream comes through much activity, And a fool's voice [is known] by [his] many words.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">When you make a vow to God, do not delay to pay it; For [He has] no pleasure in fools. Pay what you have vowed --</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Better not to vow than to vow and not pay.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Do not let your mouth cause your flesh to sin, nor say before the messenger [of God] that it [was] an error. Why should God be angry at your excuse and destroy the work of your hands?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For in the multitude of dreams and many words [there is] also vanity. But fear God.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">If you see the oppression of the poor, and the violent perversion of justice and righteousness in a province, do not marvel at the matter; for high official watches over high official, and higher officials are over them.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Moreover the profit of the land is for all; [even] the king is served from the field.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He who loves silver will not be satisfied with silver; Nor he who loves abundance, with increase. This also [is] vanity.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">When goods increase, They increase who eat them; So what profit have the owners Except to see [them] with their eyes?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The sleep of a laboring man [is] sweet, Whether he eats little or much; But the abundance of the rich will not permit him to sleep.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">There is a severe evil [which] I have seen under the sun: Riches kept for their owner to his hurt.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But those riches perish through misfortune; When he begets a son, [there is] nothing in his hand.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">As he came from his mother's womb, naked shall he return, To go as he came; And he shall take nothing from his labor Which he may carry away in his hand.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And this also [is] a severe evil -- Just exactly as he came, so shall he go. And what profit has he who has labored for the wind?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">All his days he also eats in darkness, And [he has] much sorrow and sickness and anger.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Here is what I have seen: [It is] good and fitting [for one] to eat and drink, and to enjoy the good of all his labor in which he toils under the sun all the days of his life which God gives him; for it [is] his heritage.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">As for every man to whom God has given riches and wealth, and given him power to eat of it, to receive his heritage and rejoice in his labor -- this [is] the gift of God.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 5:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For he will not dwell unduly on the days of his life, because God keeps [him] busy with the joy of his heart.</span></div>
+    <a class="v-row" href="/bible/nkjv/ecclesiastes/5/1/" data-ref="Ecclesiastes 5:1 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/1/"><span class="v-num">1</span><span class="v-txt">Walk prudently when you go to the house of God; and draw near to hear rather than to give the sacrifice of fools, for they do not know that they do evil.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/2/" data-ref="Ecclesiastes 5:2 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/2/"><span class="v-num">2</span><span class="v-txt">Do not be rash with your mouth, And let not your heart utter anything hastily before God. For God [is] in heaven, and you on earth; Therefore let your words be few.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/3/" data-ref="Ecclesiastes 5:3 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/3/"><span class="v-num">3</span><span class="v-txt">For a dream comes through much activity, And a fool's voice [is known] by [his] many words.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/4/" data-ref="Ecclesiastes 5:4 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/4/"><span class="v-num">4</span><span class="v-txt">When you make a vow to God, do not delay to pay it; For [He has] no pleasure in fools. Pay what you have vowed --</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/5/" data-ref="Ecclesiastes 5:5 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/5/"><span class="v-num">5</span><span class="v-txt">Better not to vow than to vow and not pay.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/6/" data-ref="Ecclesiastes 5:6 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/6/"><span class="v-num">6</span><span class="v-txt">Do not let your mouth cause your flesh to sin, nor say before the messenger [of God] that it [was] an error. Why should God be angry at your excuse and destroy the work of your hands?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/7/" data-ref="Ecclesiastes 5:7 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/7/"><span class="v-num">7</span><span class="v-txt">For in the multitude of dreams and many words [there is] also vanity. But fear God.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/8/" data-ref="Ecclesiastes 5:8 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/8/"><span class="v-num">8</span><span class="v-txt">If you see the oppression of the poor, and the violent perversion of justice and righteousness in a province, do not marvel at the matter; for high official watches over high official, and higher officials are over them.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/9/" data-ref="Ecclesiastes 5:9 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/9/"><span class="v-num">9</span><span class="v-txt">Moreover the profit of the land is for all; [even] the king is served from the field.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/10/" data-ref="Ecclesiastes 5:10 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/10/"><span class="v-num">10</span><span class="v-txt">He who loves silver will not be satisfied with silver; Nor he who loves abundance, with increase. This also [is] vanity.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/11/" data-ref="Ecclesiastes 5:11 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/11/"><span class="v-num">11</span><span class="v-txt">When goods increase, They increase who eat them; So what profit have the owners Except to see [them] with their eyes?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/12/" data-ref="Ecclesiastes 5:12 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/12/"><span class="v-num">12</span><span class="v-txt">The sleep of a laboring man [is] sweet, Whether he eats little or much; But the abundance of the rich will not permit him to sleep.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/13/" data-ref="Ecclesiastes 5:13 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/13/"><span class="v-num">13</span><span class="v-txt">There is a severe evil [which] I have seen under the sun: Riches kept for their owner to his hurt.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/14/" data-ref="Ecclesiastes 5:14 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/14/"><span class="v-num">14</span><span class="v-txt">But those riches perish through misfortune; When he begets a son, [there is] nothing in his hand.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/15/" data-ref="Ecclesiastes 5:15 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/15/"><span class="v-num">15</span><span class="v-txt">As he came from his mother's womb, naked shall he return, To go as he came; And he shall take nothing from his labor Which he may carry away in his hand.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/16/" data-ref="Ecclesiastes 5:16 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/16/"><span class="v-num">16</span><span class="v-txt">And this also [is] a severe evil -- Just exactly as he came, so shall he go. And what profit has he who has labored for the wind?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/17/" data-ref="Ecclesiastes 5:17 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/17/"><span class="v-num">17</span><span class="v-txt">All his days he also eats in darkness, And [he has] much sorrow and sickness and anger.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/18/" data-ref="Ecclesiastes 5:18 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/18/"><span class="v-num">18</span><span class="v-txt">Here is what I have seen: [It is] good and fitting [for one] to eat and drink, and to enjoy the good of all his labor in which he toils under the sun all the days of his life which God gives him; for it [is] his heritage.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/19/" data-ref="Ecclesiastes 5:19 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/19/"><span class="v-num">19</span><span class="v-txt">As for every man to whom God has given riches and wealth, and given him power to eat of it, to receive his heritage and rejoice in his labor -- this [is] the gift of God.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/5/20/" data-ref="Ecclesiastes 5:20 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/5/20/"><span class="v-num">20</span><span class="v-txt">For he will not dwell unduly on the days of his life, because God keeps [him] busy with the joy of his heart.</span></a>
 
     
 <div class="app-cta">

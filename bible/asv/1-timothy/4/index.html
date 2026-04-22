@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 4:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">But the Spirit saith expressly, that in later times some shall fall away from the faith, giving heed to seducing spirits and doctrines of demons,</span></div>
-<div class="v-row" data-ref="1 Timothy 4:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">through the hypocrisy of men that speak lies, branded in their own conscience as with a hot iron;</span></div>
-<div class="v-row" data-ref="1 Timothy 4:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">forbidding to marry, [and commanding] to abstain from meats, which God created to be received with thanksgiving by them that believe and know the truth.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For every creature of God is good, and nothing is to be rejected, if it be received with thanksgiving:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">for it is sanctified through the word of God and prayer.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If thou put the brethren in mind of these things, thou shalt be a good minister of Christ Jesus, nourished in the words of the faith, and of the good doctrine which thou hast followed [until now]:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">but refuse profane and old wives' fables. And exercise thyself unto godliness:</span></div>
-<div class="v-row" data-ref="1 Timothy 4:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">for bodily exercise is profitable for a little; but godliness is profitable for all things, having promise of the life which now is, and of that which is to come.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Faithful is the saying, and worthy of all acceptation.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For to this end we labor and strive, because we have our hope set on the living God, who is the Saviour of all men, specially of them that believe.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">These things command and teach.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let no man despise thy youth; but be thou an ensample to them that believe, in word, in manner of life, in love, in faith, in purity.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Till I come, give heed to reading, to exhortation, to teaching.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Neglect not the gift that is in thee, which was given thee by prophecy, with the laying on of the hands of the presbytery.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Be diligent in these things; give thyself wholly to them; that thy progress may be manifest unto all.</span></div>
-<div class="v-row" data-ref="1 Timothy 4:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Take heed to thyself, and to thy teaching. Continue in these things; for in doing this thou shalt save both thyself and them that hear thee.</span></div>
+    <a class="v-row" href="/bible/asv/1-timothy/4/1/" data-ref="1 Timothy 4:1 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/1/"><span class="v-num">1</span><span class="v-txt">But the Spirit saith expressly, that in later times some shall fall away from the faith, giving heed to seducing spirits and doctrines of demons,</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/2/" data-ref="1 Timothy 4:2 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/2/"><span class="v-num">2</span><span class="v-txt">through the hypocrisy of men that speak lies, branded in their own conscience as with a hot iron;</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/3/" data-ref="1 Timothy 4:3 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/3/"><span class="v-num">3</span><span class="v-txt">forbidding to marry, [and commanding] to abstain from meats, which God created to be received with thanksgiving by them that believe and know the truth.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/4/" data-ref="1 Timothy 4:4 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/4/"><span class="v-num">4</span><span class="v-txt">For every creature of God is good, and nothing is to be rejected, if it be received with thanksgiving:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/5/" data-ref="1 Timothy 4:5 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/5/"><span class="v-num">5</span><span class="v-txt">for it is sanctified through the word of God and prayer.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/6/" data-ref="1 Timothy 4:6 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/6/"><span class="v-num">6</span><span class="v-txt">If thou put the brethren in mind of these things, thou shalt be a good minister of Christ Jesus, nourished in the words of the faith, and of the good doctrine which thou hast followed [until now]:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/7/" data-ref="1 Timothy 4:7 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/7/"><span class="v-num">7</span><span class="v-txt">but refuse profane and old wives' fables. And exercise thyself unto godliness:</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/8/" data-ref="1 Timothy 4:8 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/8/"><span class="v-num">8</span><span class="v-txt">for bodily exercise is profitable for a little; but godliness is profitable for all things, having promise of the life which now is, and of that which is to come.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/9/" data-ref="1 Timothy 4:9 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/9/"><span class="v-num">9</span><span class="v-txt">Faithful is the saying, and worthy of all acceptation.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/10/" data-ref="1 Timothy 4:10 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/10/"><span class="v-num">10</span><span class="v-txt">For to this end we labor and strive, because we have our hope set on the living God, who is the Saviour of all men, specially of them that believe.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/11/" data-ref="1 Timothy 4:11 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/11/"><span class="v-num">11</span><span class="v-txt">These things command and teach.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/12/" data-ref="1 Timothy 4:12 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/12/"><span class="v-num">12</span><span class="v-txt">Let no man despise thy youth; but be thou an ensample to them that believe, in word, in manner of life, in love, in faith, in purity.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/13/" data-ref="1 Timothy 4:13 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/13/"><span class="v-num">13</span><span class="v-txt">Till I come, give heed to reading, to exhortation, to teaching.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/14/" data-ref="1 Timothy 4:14 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/14/"><span class="v-num">14</span><span class="v-txt">Neglect not the gift that is in thee, which was given thee by prophecy, with the laying on of the hands of the presbytery.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/15/" data-ref="1 Timothy 4:15 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/15/"><span class="v-num">15</span><span class="v-txt">Be diligent in these things; give thyself wholly to them; that thy progress may be manifest unto all.</span></a>
+<a class="v-row" href="/bible/asv/1-timothy/4/16/" data-ref="1 Timothy 4:16 (American Standard Version)" data-verse-url="/bible/asv/1-timothy/4/16/"><span class="v-num">16</span><span class="v-txt">Take heed to thyself, and to thy teaching. Continue in these things; for in doing this thou shalt save both thyself and them that hear thee.</span></a>
 
     
 <div class="app-cta">

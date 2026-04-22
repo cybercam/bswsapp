@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="James 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Where do wars and fights [come] from among you? Do [they] not [come] from your [desires for] pleasure that war in your members?</span></div>
-<div class="v-row" data-ref="James 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You lust and do not have. You murder and covet and cannot obtain. You fight and war. Yet you do not have because you do not ask.</span></div>
-<div class="v-row" data-ref="James 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You ask and do not receive, because you ask amiss, that you may spend [it] on your pleasures.</span></div>
-<div class="v-row" data-ref="James 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Adulterers and adulteresses! Do you not know that friendship with the world is enmity with God? Whoever therefore wants to be a friend of the world makes himself an enemy of God.</span></div>
-<div class="v-row" data-ref="James 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Or do you think that the Scripture says in vain, "The Spirit who dwells in us yearns jealously"?</span></div>
-<div class="v-row" data-ref="James 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But He gives more grace. Therefore He says: "God resists the proud, But gives grace to the humble."</span></div>
-<div class="v-row" data-ref="James 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore submit to God. Resist the devil and he will flee from you.</span></div>
-<div class="v-row" data-ref="James 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Draw near to God and He will draw near to you. Cleanse [your] hands, [you] sinners; and purify [your] hearts, [you] double-minded.</span></div>
-<div class="v-row" data-ref="James 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Lament and mourn and weep! Let your laughter be turned to mourning and [your] joy to gloom.</span></div>
-<div class="v-row" data-ref="James 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Humble yourselves in the sight of the Lord, and He will lift you up.</span></div>
-<div class="v-row" data-ref="James 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Do not speak evil of one another, brethren. He who speaks evil of a brother and judges his brother, speaks evil of the law and judges the law. But if you judge the law, you are not a doer of the law but a judge.</span></div>
-<div class="v-row" data-ref="James 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">There is one Lawgiver, who is able to save and to destroy. Who are you to judge another?</span></div>
-<div class="v-row" data-ref="James 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Come now, you who say, "Today or tomorrow we will go to such and such a city, spend a year there, buy and sell, and make a profit";</span></div>
-<div class="v-row" data-ref="James 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">whereas you do not know what [will happen] tomorrow. For what [is] your life? It is even a vapor that appears for a little time and then vanishes away.</span></div>
-<div class="v-row" data-ref="James 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Instead you [ought] to say, "If the Lord wills, we shall live and do this or that."</span></div>
-<div class="v-row" data-ref="James 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But now you boast in your arrogance. All such boasting is evil.</span></div>
-<div class="v-row" data-ref="James 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Therefore, to him who knows to do good and does not do [it,] to him it is sin.</span></div>
+    <a class="v-row" href="/bible/nkjv/james/4/1/" data-ref="James 4:1 (New King James Version)" data-verse-url="/bible/nkjv/james/4/1/"><span class="v-num">1</span><span class="v-txt">Where do wars and fights [come] from among you? Do [they] not [come] from your [desires for] pleasure that war in your members?</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/2/" data-ref="James 4:2 (New King James Version)" data-verse-url="/bible/nkjv/james/4/2/"><span class="v-num">2</span><span class="v-txt">You lust and do not have. You murder and covet and cannot obtain. You fight and war. Yet you do not have because you do not ask.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/3/" data-ref="James 4:3 (New King James Version)" data-verse-url="/bible/nkjv/james/4/3/"><span class="v-num">3</span><span class="v-txt">You ask and do not receive, because you ask amiss, that you may spend [it] on your pleasures.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/4/" data-ref="James 4:4 (New King James Version)" data-verse-url="/bible/nkjv/james/4/4/"><span class="v-num">4</span><span class="v-txt">Adulterers and adulteresses! Do you not know that friendship with the world is enmity with God? Whoever therefore wants to be a friend of the world makes himself an enemy of God.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/5/" data-ref="James 4:5 (New King James Version)" data-verse-url="/bible/nkjv/james/4/5/"><span class="v-num">5</span><span class="v-txt">Or do you think that the Scripture says in vain, "The Spirit who dwells in us yearns jealously"?</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/6/" data-ref="James 4:6 (New King James Version)" data-verse-url="/bible/nkjv/james/4/6/"><span class="v-num">6</span><span class="v-txt">But He gives more grace. Therefore He says: "God resists the proud, But gives grace to the humble."</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/7/" data-ref="James 4:7 (New King James Version)" data-verse-url="/bible/nkjv/james/4/7/"><span class="v-num">7</span><span class="v-txt">Therefore submit to God. Resist the devil and he will flee from you.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/8/" data-ref="James 4:8 (New King James Version)" data-verse-url="/bible/nkjv/james/4/8/"><span class="v-num">8</span><span class="v-txt">Draw near to God and He will draw near to you. Cleanse [your] hands, [you] sinners; and purify [your] hearts, [you] double-minded.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/9/" data-ref="James 4:9 (New King James Version)" data-verse-url="/bible/nkjv/james/4/9/"><span class="v-num">9</span><span class="v-txt">Lament and mourn and weep! Let your laughter be turned to mourning and [your] joy to gloom.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/10/" data-ref="James 4:10 (New King James Version)" data-verse-url="/bible/nkjv/james/4/10/"><span class="v-num">10</span><span class="v-txt">Humble yourselves in the sight of the Lord, and He will lift you up.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/11/" data-ref="James 4:11 (New King James Version)" data-verse-url="/bible/nkjv/james/4/11/"><span class="v-num">11</span><span class="v-txt">Do not speak evil of one another, brethren. He who speaks evil of a brother and judges his brother, speaks evil of the law and judges the law. But if you judge the law, you are not a doer of the law but a judge.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/12/" data-ref="James 4:12 (New King James Version)" data-verse-url="/bible/nkjv/james/4/12/"><span class="v-num">12</span><span class="v-txt">There is one Lawgiver, who is able to save and to destroy. Who are you to judge another?</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/13/" data-ref="James 4:13 (New King James Version)" data-verse-url="/bible/nkjv/james/4/13/"><span class="v-num">13</span><span class="v-txt">Come now, you who say, "Today or tomorrow we will go to such and such a city, spend a year there, buy and sell, and make a profit";</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/14/" data-ref="James 4:14 (New King James Version)" data-verse-url="/bible/nkjv/james/4/14/"><span class="v-num">14</span><span class="v-txt">whereas you do not know what [will happen] tomorrow. For what [is] your life? It is even a vapor that appears for a little time and then vanishes away.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/15/" data-ref="James 4:15 (New King James Version)" data-verse-url="/bible/nkjv/james/4/15/"><span class="v-num">15</span><span class="v-txt">Instead you [ought] to say, "If the Lord wills, we shall live and do this or that."</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/16/" data-ref="James 4:16 (New King James Version)" data-verse-url="/bible/nkjv/james/4/16/"><span class="v-num">16</span><span class="v-txt">But now you boast in your arrogance. All such boasting is evil.</span></a>
+<a class="v-row" href="/bible/nkjv/james/4/17/" data-ref="James 4:17 (New King James Version)" data-verse-url="/bible/nkjv/james/4/17/"><span class="v-num">17</span><span class="v-txt">Therefore, to him who knows to do good and does not do [it,] to him it is sin.</span></a>
 
     
 <div class="app-cta">

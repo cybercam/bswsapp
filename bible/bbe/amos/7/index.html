@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Amos 7:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">This is what the Lord God let me see: and I saw that, when the growth of the late grass was starting, he made locusts; it was the late growth after the king's cutting was done.</span></div>
-<div class="v-row" data-ref="Amos 7:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it came about that after they had taken all the grass of the land, I said, O Lord God, have mercy: how will Jacob be able to keep his place? for he is small.</span></div>
-<div class="v-row" data-ref="Amos 7:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The Lord, changing his purpose about this, said, It will not be.</span></div>
-<div class="v-row" data-ref="Amos 7:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">This is what the Lord let me see: and I saw that the Lord God sent for a great fire to be the instrument of his punishment; and, after burning up the great deep, it was about to put an end to the Lord's heritage.</span></div>
-<div class="v-row" data-ref="Amos 7:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then said I, O Lord God, let there be an end: how will Jacob be able to keep his place? for he is small.</span></div>
-<div class="v-row" data-ref="Amos 7:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The Lord, changing his purpose about this, said, And this will not be.</span></div>
-<div class="v-row" data-ref="Amos 7:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">This is what he let me see: and I saw the Lord stationed by a wall made straight by a weighted line, and he had a weighted line in his hand.</span></div>
-<div class="v-row" data-ref="Amos 7:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the Lord said to me, Amos, what do you see? And I said, A weighted line. Then the Lord said, See, I will let down a weighted line among my people Israel; never again will my eyes be shut to their sin:</span></div>
-<div class="v-row" data-ref="Amos 7:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the high places of Isaac will be unpeopled, and the holy places of Israel will be made waste; and I will come up against the family of Jeroboam with the sword.</span></div>
-<div class="v-row" data-ref="Amos 7:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then Amaziah, the priest of Beth-el, sent to Jeroboam, king of Israel, saying, Amos has made designs against you among the people of Israel: the land is troubled by his words.</span></div>
-<div class="v-row" data-ref="Amos 7:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For Amos has said, Jeroboam will be put to the sword, and Israel will certainly be taken away as a prisoner out of his land.</span></div>
-<div class="v-row" data-ref="Amos 7:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Amaziah said to Amos, O seer, go in flight into the land of Judah, and there get your living by working as a prophet:</span></div>
-<div class="v-row" data-ref="Amos 7:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But be a prophet no longer at Beth-el: for it is the holy place of the king, and the king's house.</span></div>
-<div class="v-row" data-ref="Amos 7:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then Amos in answer said to Amaziah, I am no prophet, or one of the sons of the prophets; I am a herdman and one who takes care of sycamore-trees:</span></div>
-<div class="v-row" data-ref="Amos 7:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the Lord took me from the flock, and the Lord said to me, Go, be a prophet to my people Israel.</span></div>
-<div class="v-row" data-ref="Amos 7:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Now then, give ear to the word of the Lord: You say, Be no prophet to Israel, and say not a word against the people of Isaac.</span></div>
-<div class="v-row" data-ref="Amos 7:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So this is what the Lord has said: Your wife will be a loose woman in the town, and your sons and your daughters will be put to the sword, and your land will be cut up into parts by a line; and you yourself will come to your end in an unclean land, and Israel will certainly be taken away a prisoner out of his land.</span></div>
+    <a class="v-row" href="/bible/bbe/amos/7/1/" data-ref="Amos 7:1 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/1/"><span class="v-num">1</span><span class="v-txt">This is what the Lord God let me see: and I saw that, when the growth of the late grass was starting, he made locusts; it was the late growth after the king's cutting was done.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/2/" data-ref="Amos 7:2 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/2/"><span class="v-num">2</span><span class="v-txt">And it came about that after they had taken all the grass of the land, I said, O Lord God, have mercy: how will Jacob be able to keep his place? for he is small.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/3/" data-ref="Amos 7:3 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/3/"><span class="v-num">3</span><span class="v-txt">The Lord, changing his purpose about this, said, It will not be.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/4/" data-ref="Amos 7:4 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/4/"><span class="v-num">4</span><span class="v-txt">This is what the Lord let me see: and I saw that the Lord God sent for a great fire to be the instrument of his punishment; and, after burning up the great deep, it was about to put an end to the Lord's heritage.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/5/" data-ref="Amos 7:5 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/5/"><span class="v-num">5</span><span class="v-txt">Then said I, O Lord God, let there be an end: how will Jacob be able to keep his place? for he is small.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/6/" data-ref="Amos 7:6 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/6/"><span class="v-num">6</span><span class="v-txt">The Lord, changing his purpose about this, said, And this will not be.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/7/" data-ref="Amos 7:7 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/7/"><span class="v-num">7</span><span class="v-txt">This is what he let me see: and I saw the Lord stationed by a wall made straight by a weighted line, and he had a weighted line in his hand.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/8/" data-ref="Amos 7:8 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/8/"><span class="v-num">8</span><span class="v-txt">And the Lord said to me, Amos, what do you see? And I said, A weighted line. Then the Lord said, See, I will let down a weighted line among my people Israel; never again will my eyes be shut to their sin:</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/9/" data-ref="Amos 7:9 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/9/"><span class="v-num">9</span><span class="v-txt">And the high places of Isaac will be unpeopled, and the holy places of Israel will be made waste; and I will come up against the family of Jeroboam with the sword.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/10/" data-ref="Amos 7:10 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/10/"><span class="v-num">10</span><span class="v-txt">Then Amaziah, the priest of Beth-el, sent to Jeroboam, king of Israel, saying, Amos has made designs against you among the people of Israel: the land is troubled by his words.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/11/" data-ref="Amos 7:11 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/11/"><span class="v-num">11</span><span class="v-txt">For Amos has said, Jeroboam will be put to the sword, and Israel will certainly be taken away as a prisoner out of his land.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/12/" data-ref="Amos 7:12 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/12/"><span class="v-num">12</span><span class="v-txt">And Amaziah said to Amos, O seer, go in flight into the land of Judah, and there get your living by working as a prophet:</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/13/" data-ref="Amos 7:13 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/13/"><span class="v-num">13</span><span class="v-txt">But be a prophet no longer at Beth-el: for it is the holy place of the king, and the king's house.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/14/" data-ref="Amos 7:14 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/14/"><span class="v-num">14</span><span class="v-txt">Then Amos in answer said to Amaziah, I am no prophet, or one of the sons of the prophets; I am a herdman and one who takes care of sycamore-trees:</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/15/" data-ref="Amos 7:15 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/15/"><span class="v-num">15</span><span class="v-txt">And the Lord took me from the flock, and the Lord said to me, Go, be a prophet to my people Israel.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/16/" data-ref="Amos 7:16 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/16/"><span class="v-num">16</span><span class="v-txt">Now then, give ear to the word of the Lord: You say, Be no prophet to Israel, and say not a word against the people of Isaac.</span></a>
+<a class="v-row" href="/bible/bbe/amos/7/17/" data-ref="Amos 7:17 (Bible in Basic English)" data-verse-url="/bible/bbe/amos/7/17/"><span class="v-num">17</span><span class="v-txt">So this is what the Lord has said: Your wife will be a loose woman in the town, and your sons and your daughters will be put to the sword, and your land will be cut up into parts by a line; and you yourself will come to your end in an unclean land, and Israel will certainly be taken away a prisoner out of his land.</span></a>
 
     
 <div class="app-cta">

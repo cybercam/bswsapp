@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 10:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My soul is tired of life; I will let my sad thoughts go free in words; my soul will make a bitter outcry.</span></div>
-<div class="v-row" data-ref="Job 10:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will say to God, Do not put me down as a sinner; make clear to me what you have against me.</span></div>
-<div class="v-row" data-ref="Job 10:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">What profit is it to you to be cruel, to give up the work of your hands, looking kindly on the design of evil-doers?</span></div>
-<div class="v-row" data-ref="Job 10:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Have you eyes of flesh, or do you see as man sees?</span></div>
-<div class="v-row" data-ref="Job 10:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Are your days as the days of man, or your years like his,</span></div>
-<div class="v-row" data-ref="Job 10:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">That you take note of my sin, searching after my wrongdoing,</span></div>
-<div class="v-row" data-ref="Job 10:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Though you see that I am not an evil-doer; and there is no one who is able to take a man out of your hands?</span></div>
-<div class="v-row" data-ref="Job 10:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Your hands made me, and I was formed by you, but then, changing your purpose, you gave me up to destruction.</span></div>
-<div class="v-row" data-ref="Job 10:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">O keep in mind that you made me out of earth; and will you send me back again to dust?</span></div>
-<div class="v-row" data-ref="Job 10:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Was I not drained out like milk, becoming hard like cheese?</span></div>
-<div class="v-row" data-ref="Job 10:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">By you I was clothed with skin and flesh, and joined together with bones and muscles.</span></div>
-<div class="v-row" data-ref="Job 10:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">You have been kind to me, and your grace has been with me, and your care has kept my spirit safe.</span></div>
-<div class="v-row" data-ref="Job 10:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But you kept these things in the secret of your heart; I am certain this was in your thoughts:</span></div>
-<div class="v-row" data-ref="Job 10:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">That, if I did wrong, you would take note of it, and would not make me clear from sin:</span></div>
-<div class="v-row" data-ref="Job 10:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">That, if I was an evil-doer, the curse would come on me; and if I was upright, my head would not be lifted up, being full of shame and overcome with trouble.</span></div>
-<div class="v-row" data-ref="Job 10:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And that if there was cause for pride, you would go after me like a lion; and again put out your wonders against me:</span></div>
-<div class="v-row" data-ref="Job 10:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">That you would send new witnesses against me, increasing your wrath against me, and letting loose new armies on me.</span></div>
-<div class="v-row" data-ref="Job 10:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Why then did you make me come out of my mother's body? It would have been better for me to have taken my last breath, and for no eye to have seen me,</span></div>
-<div class="v-row" data-ref="Job 10:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And for me to have been as if I had not been; to have been taken from my mother's body straight to my last resting-place.</span></div>
-<div class="v-row" data-ref="Job 10:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Are not the days of my life small in number? Let your eyes be turned away from me, so that I may have a little pleasure,</span></div>
-<div class="v-row" data-ref="Job 10:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Before I go to the place from which I will not come back, to the land where all is dark and black,</span></div>
-<div class="v-row" data-ref="Job 10:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A land of thick dark, without order, where the very light is dark.</span></div>
+    <a class="v-row" href="/bible/bbe/job/10/1/" data-ref="Job 10:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/1/"><span class="v-num">1</span><span class="v-txt">My soul is tired of life; I will let my sad thoughts go free in words; my soul will make a bitter outcry.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/2/" data-ref="Job 10:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/2/"><span class="v-num">2</span><span class="v-txt">I will say to God, Do not put me down as a sinner; make clear to me what you have against me.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/3/" data-ref="Job 10:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/3/"><span class="v-num">3</span><span class="v-txt">What profit is it to you to be cruel, to give up the work of your hands, looking kindly on the design of evil-doers?</span></a>
+<a class="v-row" href="/bible/bbe/job/10/4/" data-ref="Job 10:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/4/"><span class="v-num">4</span><span class="v-txt">Have you eyes of flesh, or do you see as man sees?</span></a>
+<a class="v-row" href="/bible/bbe/job/10/5/" data-ref="Job 10:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/5/"><span class="v-num">5</span><span class="v-txt">Are your days as the days of man, or your years like his,</span></a>
+<a class="v-row" href="/bible/bbe/job/10/6/" data-ref="Job 10:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/6/"><span class="v-num">6</span><span class="v-txt">That you take note of my sin, searching after my wrongdoing,</span></a>
+<a class="v-row" href="/bible/bbe/job/10/7/" data-ref="Job 10:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/7/"><span class="v-num">7</span><span class="v-txt">Though you see that I am not an evil-doer; and there is no one who is able to take a man out of your hands?</span></a>
+<a class="v-row" href="/bible/bbe/job/10/8/" data-ref="Job 10:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/8/"><span class="v-num">8</span><span class="v-txt">Your hands made me, and I was formed by you, but then, changing your purpose, you gave me up to destruction.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/9/" data-ref="Job 10:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/9/"><span class="v-num">9</span><span class="v-txt">O keep in mind that you made me out of earth; and will you send me back again to dust?</span></a>
+<a class="v-row" href="/bible/bbe/job/10/10/" data-ref="Job 10:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/10/"><span class="v-num">10</span><span class="v-txt">Was I not drained out like milk, becoming hard like cheese?</span></a>
+<a class="v-row" href="/bible/bbe/job/10/11/" data-ref="Job 10:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/11/"><span class="v-num">11</span><span class="v-txt">By you I was clothed with skin and flesh, and joined together with bones and muscles.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/12/" data-ref="Job 10:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/12/"><span class="v-num">12</span><span class="v-txt">You have been kind to me, and your grace has been with me, and your care has kept my spirit safe.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/13/" data-ref="Job 10:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/13/"><span class="v-num">13</span><span class="v-txt">But you kept these things in the secret of your heart; I am certain this was in your thoughts:</span></a>
+<a class="v-row" href="/bible/bbe/job/10/14/" data-ref="Job 10:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/14/"><span class="v-num">14</span><span class="v-txt">That, if I did wrong, you would take note of it, and would not make me clear from sin:</span></a>
+<a class="v-row" href="/bible/bbe/job/10/15/" data-ref="Job 10:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/15/"><span class="v-num">15</span><span class="v-txt">That, if I was an evil-doer, the curse would come on me; and if I was upright, my head would not be lifted up, being full of shame and overcome with trouble.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/16/" data-ref="Job 10:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/16/"><span class="v-num">16</span><span class="v-txt">And that if there was cause for pride, you would go after me like a lion; and again put out your wonders against me:</span></a>
+<a class="v-row" href="/bible/bbe/job/10/17/" data-ref="Job 10:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/17/"><span class="v-num">17</span><span class="v-txt">That you would send new witnesses against me, increasing your wrath against me, and letting loose new armies on me.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/18/" data-ref="Job 10:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/18/"><span class="v-num">18</span><span class="v-txt">Why then did you make me come out of my mother's body? It would have been better for me to have taken my last breath, and for no eye to have seen me,</span></a>
+<a class="v-row" href="/bible/bbe/job/10/19/" data-ref="Job 10:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/19/"><span class="v-num">19</span><span class="v-txt">And for me to have been as if I had not been; to have been taken from my mother's body straight to my last resting-place.</span></a>
+<a class="v-row" href="/bible/bbe/job/10/20/" data-ref="Job 10:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/20/"><span class="v-num">20</span><span class="v-txt">Are not the days of my life small in number? Let your eyes be turned away from me, so that I may have a little pleasure,</span></a>
+<a class="v-row" href="/bible/bbe/job/10/21/" data-ref="Job 10:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/21/"><span class="v-num">21</span><span class="v-txt">Before I go to the place from which I will not come back, to the land where all is dark and black,</span></a>
+<a class="v-row" href="/bible/bbe/job/10/22/" data-ref="Job 10:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/10/22/"><span class="v-num">22</span><span class="v-txt">A land of thick dark, without order, where the very light is dark.</span></a>
 
     
 <div class="app-cta">

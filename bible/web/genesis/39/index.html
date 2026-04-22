@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 39</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 39:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Joseph was brought down to Egypt. Potiphar, an officer of Pharaoh's, the captain of the guard, an Egyptian, bought him from the hand of the Ishmaelites that had brought him down there.</span></div>
-<div class="v-row" data-ref="Genesis 39:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Yahweh was with Joseph, and he was a prosperous man. He was in the house of his master the Egyptian.</span></div>
-<div class="v-row" data-ref="Genesis 39:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">His master saw that Yahweh was with him, and that Yahweh made all that he did prosper in his hand.</span></div>
-<div class="v-row" data-ref="Genesis 39:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Joseph found favor in his sight. He ministered to him, and he made him overseer over his house, and all that he had he put into his hand.</span></div>
-<div class="v-row" data-ref="Genesis 39:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">It happened from the time that he made him overseer in his house, and over all that he had, that Yahweh blessed the Egyptian's house for Joseph's sake; and the blessing of Yahweh was on all that he had, in the house and in the field.</span></div>
-<div class="v-row" data-ref="Genesis 39:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He left all that he had in Joseph's hand. He didn't concern himself with anything, except for the food which he ate. Joseph was well-built and handsome.</span></div>
-<div class="v-row" data-ref="Genesis 39:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">It happened after these things, that his master's wife cast her eyes on Joseph; and she said, "Lie with me."</span></div>
-<div class="v-row" data-ref="Genesis 39:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But he refused, and said to his master's wife, "Behold, my master doesn't know what is with me in the house, and he has put all that he has into my hand.</span></div>
-<div class="v-row" data-ref="Genesis 39:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He isn't greater in this house than I, neither has he kept back anything from me but you, because you are his wife. How then can I do this great wickedness, and sin against God?"</span></div>
-<div class="v-row" data-ref="Genesis 39:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">It happened that as she spoke to Joseph day by day, that he didn't listen to her, to lie by her, or to be with her.</span></div>
-<div class="v-row" data-ref="Genesis 39:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">It happened about this time, that he went into the house to do his work, and there were none of the men of the house inside.</span></div>
-<div class="v-row" data-ref="Genesis 39:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">She caught him by his garment, saying, "Lie with me!" He left his garment in her hand, and ran outside.</span></div>
-<div class="v-row" data-ref="Genesis 39:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">It happened, when she saw that he had left his garment in her hand, and had run outside,</span></div>
-<div class="v-row" data-ref="Genesis 39:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">that she called to the men of her house, and spoke to them, saying, "Behold, he has brought in a Hebrew to us to mock us. He came in to me to lie with me, and I cried with a loud voice.</span></div>
-<div class="v-row" data-ref="Genesis 39:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">It happened, when he heard that I lifted up my voice and cried, that he left his garment by me, and ran outside."</span></div>
-<div class="v-row" data-ref="Genesis 39:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">She laid up his garment by her, until his master came home.</span></div>
-<div class="v-row" data-ref="Genesis 39:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">She spoke to him according to these words, saying, "The Hebrew servant, whom you have brought to us, came in to me to mock me,</span></div>
-<div class="v-row" data-ref="Genesis 39:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">and it happened, as I lifted up my voice and cried, that he left his garment by me, and ran outside."</span></div>
-<div class="v-row" data-ref="Genesis 39:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">It happened, when his master heard the words of his wife, which she spoke to him, saying, "This is what your servant did to me," that his wrath was kindled.</span></div>
-<div class="v-row" data-ref="Genesis 39:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Joseph's master took him, and put him into the prison, the place where the king's prisoners were bound, and he was there in custody.</span></div>
-<div class="v-row" data-ref="Genesis 39:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison.</span></div>
-<div class="v-row" data-ref="Genesis 39:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The keeper of the prison committed to Joseph's hand all the prisoners who were in the prison. Whatever they did there, he was the doer of it.</span></div>
-<div class="v-row" data-ref="Genesis 39:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The keeper of the prison didn't look after anything that was under his hand, because Yahweh was with him; and that which he did, Yahweh made it prosper.</span></div>
+    <a class="v-row" href="/bible/web/genesis/39/1/" data-ref="Genesis 39:1 (World English Bible)" data-verse-url="/bible/web/genesis/39/1/"><span class="v-num">1</span><span class="v-txt">Joseph was brought down to Egypt. Potiphar, an officer of Pharaoh's, the captain of the guard, an Egyptian, bought him from the hand of the Ishmaelites that had brought him down there.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/2/" data-ref="Genesis 39:2 (World English Bible)" data-verse-url="/bible/web/genesis/39/2/"><span class="v-num">2</span><span class="v-txt">Yahweh was with Joseph, and he was a prosperous man. He was in the house of his master the Egyptian.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/3/" data-ref="Genesis 39:3 (World English Bible)" data-verse-url="/bible/web/genesis/39/3/"><span class="v-num">3</span><span class="v-txt">His master saw that Yahweh was with him, and that Yahweh made all that he did prosper in his hand.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/4/" data-ref="Genesis 39:4 (World English Bible)" data-verse-url="/bible/web/genesis/39/4/"><span class="v-num">4</span><span class="v-txt">Joseph found favor in his sight. He ministered to him, and he made him overseer over his house, and all that he had he put into his hand.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/5/" data-ref="Genesis 39:5 (World English Bible)" data-verse-url="/bible/web/genesis/39/5/"><span class="v-num">5</span><span class="v-txt">It happened from the time that he made him overseer in his house, and over all that he had, that Yahweh blessed the Egyptian's house for Joseph's sake; and the blessing of Yahweh was on all that he had, in the house and in the field.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/6/" data-ref="Genesis 39:6 (World English Bible)" data-verse-url="/bible/web/genesis/39/6/"><span class="v-num">6</span><span class="v-txt">He left all that he had in Joseph's hand. He didn't concern himself with anything, except for the food which he ate. Joseph was well-built and handsome.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/7/" data-ref="Genesis 39:7 (World English Bible)" data-verse-url="/bible/web/genesis/39/7/"><span class="v-num">7</span><span class="v-txt">It happened after these things, that his master's wife cast her eyes on Joseph; and she said, "Lie with me."</span></a>
+<a class="v-row" href="/bible/web/genesis/39/8/" data-ref="Genesis 39:8 (World English Bible)" data-verse-url="/bible/web/genesis/39/8/"><span class="v-num">8</span><span class="v-txt">But he refused, and said to his master's wife, "Behold, my master doesn't know what is with me in the house, and he has put all that he has into my hand.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/9/" data-ref="Genesis 39:9 (World English Bible)" data-verse-url="/bible/web/genesis/39/9/"><span class="v-num">9</span><span class="v-txt">He isn't greater in this house than I, neither has he kept back anything from me but you, because you are his wife. How then can I do this great wickedness, and sin against God?"</span></a>
+<a class="v-row" href="/bible/web/genesis/39/10/" data-ref="Genesis 39:10 (World English Bible)" data-verse-url="/bible/web/genesis/39/10/"><span class="v-num">10</span><span class="v-txt">It happened that as she spoke to Joseph day by day, that he didn't listen to her, to lie by her, or to be with her.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/11/" data-ref="Genesis 39:11 (World English Bible)" data-verse-url="/bible/web/genesis/39/11/"><span class="v-num">11</span><span class="v-txt">It happened about this time, that he went into the house to do his work, and there were none of the men of the house inside.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/12/" data-ref="Genesis 39:12 (World English Bible)" data-verse-url="/bible/web/genesis/39/12/"><span class="v-num">12</span><span class="v-txt">She caught him by his garment, saying, "Lie with me!" He left his garment in her hand, and ran outside.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/13/" data-ref="Genesis 39:13 (World English Bible)" data-verse-url="/bible/web/genesis/39/13/"><span class="v-num">13</span><span class="v-txt">It happened, when she saw that he had left his garment in her hand, and had run outside,</span></a>
+<a class="v-row" href="/bible/web/genesis/39/14/" data-ref="Genesis 39:14 (World English Bible)" data-verse-url="/bible/web/genesis/39/14/"><span class="v-num">14</span><span class="v-txt">that she called to the men of her house, and spoke to them, saying, "Behold, he has brought in a Hebrew to us to mock us. He came in to me to lie with me, and I cried with a loud voice.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/15/" data-ref="Genesis 39:15 (World English Bible)" data-verse-url="/bible/web/genesis/39/15/"><span class="v-num">15</span><span class="v-txt">It happened, when he heard that I lifted up my voice and cried, that he left his garment by me, and ran outside."</span></a>
+<a class="v-row" href="/bible/web/genesis/39/16/" data-ref="Genesis 39:16 (World English Bible)" data-verse-url="/bible/web/genesis/39/16/"><span class="v-num">16</span><span class="v-txt">She laid up his garment by her, until his master came home.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/17/" data-ref="Genesis 39:17 (World English Bible)" data-verse-url="/bible/web/genesis/39/17/"><span class="v-num">17</span><span class="v-txt">She spoke to him according to these words, saying, "The Hebrew servant, whom you have brought to us, came in to me to mock me,</span></a>
+<a class="v-row" href="/bible/web/genesis/39/18/" data-ref="Genesis 39:18 (World English Bible)" data-verse-url="/bible/web/genesis/39/18/"><span class="v-num">18</span><span class="v-txt">and it happened, as I lifted up my voice and cried, that he left his garment by me, and ran outside."</span></a>
+<a class="v-row" href="/bible/web/genesis/39/19/" data-ref="Genesis 39:19 (World English Bible)" data-verse-url="/bible/web/genesis/39/19/"><span class="v-num">19</span><span class="v-txt">It happened, when his master heard the words of his wife, which she spoke to him, saying, "This is what your servant did to me," that his wrath was kindled.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/20/" data-ref="Genesis 39:20 (World English Bible)" data-verse-url="/bible/web/genesis/39/20/"><span class="v-num">20</span><span class="v-txt">Joseph's master took him, and put him into the prison, the place where the king's prisoners were bound, and he was there in custody.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/21/" data-ref="Genesis 39:21 (World English Bible)" data-verse-url="/bible/web/genesis/39/21/"><span class="v-num">21</span><span class="v-txt">But Yahweh was with Joseph, and showed kindness to him, and gave him favor in the sight of the keeper of the prison.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/22/" data-ref="Genesis 39:22 (World English Bible)" data-verse-url="/bible/web/genesis/39/22/"><span class="v-num">22</span><span class="v-txt">The keeper of the prison committed to Joseph's hand all the prisoners who were in the prison. Whatever they did there, he was the doer of it.</span></a>
+<a class="v-row" href="/bible/web/genesis/39/23/" data-ref="Genesis 39:23 (World English Bible)" data-verse-url="/bible/web/genesis/39/23/"><span class="v-num">23</span><span class="v-txt">The keeper of the prison didn't look after anything that was under his hand, because Yahweh was with him; and that which he did, Yahweh made it prosper.</span></a>
 
     
 <div class="app-cta">

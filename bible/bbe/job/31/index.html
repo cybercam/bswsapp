@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,46 +204,46 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 31:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I made an agreement with my eyes; how then might my eyes be looking on a virgin?</span></div>
-<div class="v-row" data-ref="Job 31:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For what is God's reward from on high, or the heritage given by the Ruler of all from heaven?</span></div>
-<div class="v-row" data-ref="Job 31:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Is it not trouble for the sinner, and destruction for the evil-doers?</span></div>
-<div class="v-row" data-ref="Job 31:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Does he not see my ways, and are not my steps all numbered?</span></div>
-<div class="v-row" data-ref="Job 31:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">If I have gone in false ways, or my foot has been quick in working deceit;</span></div>
-<div class="v-row" data-ref="Job 31:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">(Let me be measured in upright scales, and let God see my righteousness:)</span></div>
-<div class="v-row" data-ref="Job 31:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If my steps have been turned out of the way, or if my heart went after my eyes, or if the property of another is in my hands;</span></div>
-<div class="v-row" data-ref="Job 31:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let me put seed in the earth for another to have the fruit of it, and let my produce be uprooted.</span></div>
-<div class="v-row" data-ref="Job 31:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">If my heart went after another man's wife, or if I was waiting secretly at my neighbour's door;</span></div>
-<div class="v-row" data-ref="Job 31:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then let my wife give pleasure to another man and let others make use of her body.</span></div>
-<div class="v-row" data-ref="Job 31:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For that would be a crime; it would be an act for which punishment would be measured out by the judges:</span></div>
-<div class="v-row" data-ref="Job 31:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">It would be a fire burning even to destruction, and taking away all my produce.</span></div>
-<div class="v-row" data-ref="Job 31:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">If I did wrong in the cause of my man-servant, or my woman-servant, when they went to law with me;</span></div>
-<div class="v-row" data-ref="Job 31:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">What then will I do when God comes as my judge? and what answer may I give to his questions?</span></div>
-<div class="v-row" data-ref="Job 31:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Did not God make him as well as me? did he not give us life in our mothers' bodies?</span></div>
-<div class="v-row" data-ref="Job 31:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If I kept back the desire of the poor; if the widow's eye was looking for help to no purpose;</span></div>
-<div class="v-row" data-ref="Job 31:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">If I kept my food for myself, and did not give some of it to the child with no father;</span></div>
-<div class="v-row" data-ref="Job 31:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">(For I was cared for by God as by a father from my earliest days; he was my guide from the body of my mother;)</span></div>
-<div class="v-row" data-ref="Job 31:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">If I saw one near to death for need of clothing, and that the poor had nothing covering him;</span></div>
-<div class="v-row" data-ref="Job 31:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If his back did not give me a blessing, and the wool of my sheep did not make him warm;</span></div>
-<div class="v-row" data-ref="Job 31:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">If my hand had been lifted up against him who had done no wrong, when I saw that I was supported by the judges;</span></div>
-<div class="v-row" data-ref="Job 31:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">May my arm be pulled from my body, and be broken from its base.</span></div>
-<div class="v-row" data-ref="Job 31:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For the fear of God kept me back, and because of his power I might not do such things.</span></div>
-<div class="v-row" data-ref="Job 31:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If I made gold my hope, or if I ever said to the best gold, I have put my faith in you;</span></div>
-<div class="v-row" data-ref="Job 31:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">If I was glad because my wealth was great, and because my hand had got together a great store;</span></div>
-<div class="v-row" data-ref="Job 31:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">If, when I saw the sun shining, and the moon moving on its bright way,</span></div>
-<div class="v-row" data-ref="Job 31:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">A secret feeling of worship came into my heart, and my hand gave kisses from my mouth;</span></div>
-<div class="v-row" data-ref="Job 31:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">That would have been another sin to be rewarded with punishment by the judges; for I would have been false to God on high.</span></div>
-<div class="v-row" data-ref="Job 31:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">If I was glad at the trouble of my hater, and gave cries of joy when evil overtook him;</span></div>
-<div class="v-row" data-ref="Job 31:30 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">(For I did not let my mouth give way to sin, in putting a curse on his life;)</span></div>
-<div class="v-row" data-ref="Job 31:31 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">If the men of my tent did not say, Who has not had full measure of his meat?</span></div>
-<div class="v-row" data-ref="Job 31:32 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">The traveller did not take his night's rest in the street, and my doors were open to anyone on a journey;</span></div>
-<div class="v-row" data-ref="Job 31:33 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">If I kept my evil doings covered, and my sin in the secret of my breast,</span></div>
-<div class="v-row" data-ref="Job 31:34 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">For fear of the great body of people, or for fear that families might make sport of me, so that I kept quiet, and did not go out of my door;</span></div>
-<div class="v-row" data-ref="Job 31:35 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">If only God would give ear to me, and the Ruler of all would give me an answer! or if what he has against me had been put in writing!</span></div>
-<div class="v-row" data-ref="Job 31:36 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">36</span><span class="v-txt">Truly I would take up the book in my hands; it would be to me as a crown;</span></div>
-<div class="v-row" data-ref="Job 31:37 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">37</span><span class="v-txt">I would make clear the number of my steps, I would put it before him like a prince! The words of Job are ended.</span></div>
-<div class="v-row" data-ref="Job 31:38 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">38</span><span class="v-txt">If my land has made an outcry against me, or the ploughed earth has been in sorrow;</span></div>
-<div class="v-row" data-ref="Job 31:39 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">39</span><span class="v-txt">If I have taken its produce without payment, causing the death of its owners;</span></div>
-<div class="v-row" data-ref="Job 31:40 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">40</span><span class="v-txt">Then in place of grain let thorns come up, and in place of barley evil-smelling plants.</span></div>
+    <a class="v-row" href="/bible/bbe/job/31/1/" data-ref="Job 31:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/1/"><span class="v-num">1</span><span class="v-txt">I made an agreement with my eyes; how then might my eyes be looking on a virgin?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/2/" data-ref="Job 31:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/2/"><span class="v-num">2</span><span class="v-txt">For what is God's reward from on high, or the heritage given by the Ruler of all from heaven?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/3/" data-ref="Job 31:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/3/"><span class="v-num">3</span><span class="v-txt">Is it not trouble for the sinner, and destruction for the evil-doers?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/4/" data-ref="Job 31:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/4/"><span class="v-num">4</span><span class="v-txt">Does he not see my ways, and are not my steps all numbered?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/5/" data-ref="Job 31:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/5/"><span class="v-num">5</span><span class="v-txt">If I have gone in false ways, or my foot has been quick in working deceit;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/6/" data-ref="Job 31:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/6/"><span class="v-num">6</span><span class="v-txt">(Let me be measured in upright scales, and let God see my righteousness:)</span></a>
+<a class="v-row" href="/bible/bbe/job/31/7/" data-ref="Job 31:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/7/"><span class="v-num">7</span><span class="v-txt">If my steps have been turned out of the way, or if my heart went after my eyes, or if the property of another is in my hands;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/8/" data-ref="Job 31:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/8/"><span class="v-num">8</span><span class="v-txt">Let me put seed in the earth for another to have the fruit of it, and let my produce be uprooted.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/9/" data-ref="Job 31:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/9/"><span class="v-num">9</span><span class="v-txt">If my heart went after another man's wife, or if I was waiting secretly at my neighbour's door;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/10/" data-ref="Job 31:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/10/"><span class="v-num">10</span><span class="v-txt">Then let my wife give pleasure to another man and let others make use of her body.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/11/" data-ref="Job 31:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/11/"><span class="v-num">11</span><span class="v-txt">For that would be a crime; it would be an act for which punishment would be measured out by the judges:</span></a>
+<a class="v-row" href="/bible/bbe/job/31/12/" data-ref="Job 31:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/12/"><span class="v-num">12</span><span class="v-txt">It would be a fire burning even to destruction, and taking away all my produce.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/13/" data-ref="Job 31:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/13/"><span class="v-num">13</span><span class="v-txt">If I did wrong in the cause of my man-servant, or my woman-servant, when they went to law with me;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/14/" data-ref="Job 31:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/14/"><span class="v-num">14</span><span class="v-txt">What then will I do when God comes as my judge? and what answer may I give to his questions?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/15/" data-ref="Job 31:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/15/"><span class="v-num">15</span><span class="v-txt">Did not God make him as well as me? did he not give us life in our mothers' bodies?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/16/" data-ref="Job 31:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/16/"><span class="v-num">16</span><span class="v-txt">If I kept back the desire of the poor; if the widow's eye was looking for help to no purpose;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/17/" data-ref="Job 31:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/17/"><span class="v-num">17</span><span class="v-txt">If I kept my food for myself, and did not give some of it to the child with no father;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/18/" data-ref="Job 31:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/18/"><span class="v-num">18</span><span class="v-txt">(For I was cared for by God as by a father from my earliest days; he was my guide from the body of my mother;)</span></a>
+<a class="v-row" href="/bible/bbe/job/31/19/" data-ref="Job 31:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/19/"><span class="v-num">19</span><span class="v-txt">If I saw one near to death for need of clothing, and that the poor had nothing covering him;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/20/" data-ref="Job 31:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/20/"><span class="v-num">20</span><span class="v-txt">If his back did not give me a blessing, and the wool of my sheep did not make him warm;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/21/" data-ref="Job 31:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/21/"><span class="v-num">21</span><span class="v-txt">If my hand had been lifted up against him who had done no wrong, when I saw that I was supported by the judges;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/22/" data-ref="Job 31:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/22/"><span class="v-num">22</span><span class="v-txt">May my arm be pulled from my body, and be broken from its base.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/23/" data-ref="Job 31:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/23/"><span class="v-num">23</span><span class="v-txt">For the fear of God kept me back, and because of his power I might not do such things.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/24/" data-ref="Job 31:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/24/"><span class="v-num">24</span><span class="v-txt">If I made gold my hope, or if I ever said to the best gold, I have put my faith in you;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/25/" data-ref="Job 31:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/25/"><span class="v-num">25</span><span class="v-txt">If I was glad because my wealth was great, and because my hand had got together a great store;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/26/" data-ref="Job 31:26 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/26/"><span class="v-num">26</span><span class="v-txt">If, when I saw the sun shining, and the moon moving on its bright way,</span></a>
+<a class="v-row" href="/bible/bbe/job/31/27/" data-ref="Job 31:27 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/27/"><span class="v-num">27</span><span class="v-txt">A secret feeling of worship came into my heart, and my hand gave kisses from my mouth;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/28/" data-ref="Job 31:28 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/28/"><span class="v-num">28</span><span class="v-txt">That would have been another sin to be rewarded with punishment by the judges; for I would have been false to God on high.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/29/" data-ref="Job 31:29 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/29/"><span class="v-num">29</span><span class="v-txt">If I was glad at the trouble of my hater, and gave cries of joy when evil overtook him;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/30/" data-ref="Job 31:30 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/30/"><span class="v-num">30</span><span class="v-txt">(For I did not let my mouth give way to sin, in putting a curse on his life;)</span></a>
+<a class="v-row" href="/bible/bbe/job/31/31/" data-ref="Job 31:31 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/31/"><span class="v-num">31</span><span class="v-txt">If the men of my tent did not say, Who has not had full measure of his meat?</span></a>
+<a class="v-row" href="/bible/bbe/job/31/32/" data-ref="Job 31:32 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/32/"><span class="v-num">32</span><span class="v-txt">The traveller did not take his night's rest in the street, and my doors were open to anyone on a journey;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/33/" data-ref="Job 31:33 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/33/"><span class="v-num">33</span><span class="v-txt">If I kept my evil doings covered, and my sin in the secret of my breast,</span></a>
+<a class="v-row" href="/bible/bbe/job/31/34/" data-ref="Job 31:34 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/34/"><span class="v-num">34</span><span class="v-txt">For fear of the great body of people, or for fear that families might make sport of me, so that I kept quiet, and did not go out of my door;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/35/" data-ref="Job 31:35 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/35/"><span class="v-num">35</span><span class="v-txt">If only God would give ear to me, and the Ruler of all would give me an answer! or if what he has against me had been put in writing!</span></a>
+<a class="v-row" href="/bible/bbe/job/31/36/" data-ref="Job 31:36 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/36/"><span class="v-num">36</span><span class="v-txt">Truly I would take up the book in my hands; it would be to me as a crown;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/37/" data-ref="Job 31:37 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/37/"><span class="v-num">37</span><span class="v-txt">I would make clear the number of my steps, I would put it before him like a prince! The words of Job are ended.</span></a>
+<a class="v-row" href="/bible/bbe/job/31/38/" data-ref="Job 31:38 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/38/"><span class="v-num">38</span><span class="v-txt">If my land has made an outcry against me, or the ploughed earth has been in sorrow;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/39/" data-ref="Job 31:39 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/39/"><span class="v-num">39</span><span class="v-txt">If I have taken its produce without payment, causing the death of its owners;</span></a>
+<a class="v-row" href="/bible/bbe/job/31/40/" data-ref="Job 31:40 (Bible in Basic English)" data-verse-url="/bible/bbe/job/31/40/"><span class="v-num">40</span><span class="v-txt">Then in place of grain let thorns come up, and in place of barley evil-smelling plants.</span></a>
 
     
 <div class="app-cta">

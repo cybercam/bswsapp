@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,38 +204,38 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 10:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now these are the generations of the sons of Noah, Shem, Ham, and Japheth: and unto them were sons born after the flood.</span></div>
-<div class="v-row" data-ref="Genesis 10:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The sons of Japheth; Gomer, and Magog, and Madai, and Javan, and Tubal, and Meshech, and Tiras.</span></div>
-<div class="v-row" data-ref="Genesis 10:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the sons of Gomer; Ashkenaz, and Riphath, and Togarmah.</span></div>
-<div class="v-row" data-ref="Genesis 10:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the sons of Javan; Elishah, and Tarshish, Kittim, and Dodanim.</span></div>
-<div class="v-row" data-ref="Genesis 10:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">By these were the isles of the Gentiles divided in their lands; every one after his tongue, after their families, in their nations.</span></div>
-<div class="v-row" data-ref="Genesis 10:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the sons of Ham; Cush, and Mizraim, and Phut, and Canaan.</span></div>
-<div class="v-row" data-ref="Genesis 10:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the sons of Cush; Seba, and Havilah, and Sabtah, and Raamah, and Sabtecha: and the sons of Raamah; Sheba, and Dedan.</span></div>
-<div class="v-row" data-ref="Genesis 10:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Cush begat Nimrod: he began to be a mighty one in the earth.</span></div>
-<div class="v-row" data-ref="Genesis 10:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He was a mighty hunter before the LORD: wherefore it is said, Even as Nimrod the mighty hunter before the LORD.</span></div>
-<div class="v-row" data-ref="Genesis 10:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the beginning of his kingdom was Babel, and Erech, and Accad, and Calneh, in the land of Shinar.</span></div>
-<div class="v-row" data-ref="Genesis 10:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Out of that land went forth Asshur, and builded Nineveh, and the city Rehoboth, and Calah,</span></div>
-<div class="v-row" data-ref="Genesis 10:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Resen between Nineveh and Calah: the same is a great city.</span></div>
-<div class="v-row" data-ref="Genesis 10:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Mizraim begat Ludim, and Anamim, and Lehabim, and Naphtuhim,</span></div>
-<div class="v-row" data-ref="Genesis 10:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Pathrusim, and Casluhim, (out of whom came Philistim,) and Caphtorim.</span></div>
-<div class="v-row" data-ref="Genesis 10:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Canaan begat Sidon his firstborn, and Heth,</span></div>
-<div class="v-row" data-ref="Genesis 10:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the Jebusite, and the Amorite, and the Girgasite,</span></div>
-<div class="v-row" data-ref="Genesis 10:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the Hivite, and the Arkite, and the Sinite,</span></div>
-<div class="v-row" data-ref="Genesis 10:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And the Arvadite, and the Zemarite, and the Hamathite: and afterward were the families of the Canaanites spread abroad.</span></div>
-<div class="v-row" data-ref="Genesis 10:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And the border of the Canaanites was from Sidon, as thou comest to Gerar, unto Gaza; as thou goest, unto Sodom, and Gomorrah, and Admah, and Zeboim, even unto Lasha.</span></div>
-<div class="v-row" data-ref="Genesis 10:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">These are the sons of Ham, after their families, after their tongues, in their countries, and in their nations.</span></div>
-<div class="v-row" data-ref="Genesis 10:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Unto Shem also, the father of all the children of Eber, the brother of Japheth the elder, even to him were children born.</span></div>
-<div class="v-row" data-ref="Genesis 10:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The children of Shem; Elam, and Asshur, and Arphaxad, and Lud, and Aram.</span></div>
-<div class="v-row" data-ref="Genesis 10:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And the children of Aram; Uz, and Hul, and Gether, and Mash.</span></div>
-<div class="v-row" data-ref="Genesis 10:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And Arphaxad begat Salah; and Salah begat Eber.</span></div>
-<div class="v-row" data-ref="Genesis 10:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And unto Eber were born two sons: the name of one was Peleg; for in his days was the earth divided; and his brother's name was Joktan.</span></div>
-<div class="v-row" data-ref="Genesis 10:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">And Joktan begat Almodad, and Sheleph, and Hazarmaveth, and Jerah,</span></div>
-<div class="v-row" data-ref="Genesis 10:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">And Hadoram, and Uzal, and Diklah,</span></div>
-<div class="v-row" data-ref="Genesis 10:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">And Obal, and Abimael, and Sheba,</span></div>
-<div class="v-row" data-ref="Genesis 10:29 (King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">And Ophir, and Havilah, and Jobab: all these were the sons of Joktan.</span></div>
-<div class="v-row" data-ref="Genesis 10:30 (King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">And their dwelling was from Mesha, as thou goest unto Sephar a mount of the east.</span></div>
-<div class="v-row" data-ref="Genesis 10:31 (King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">These are the sons of Shem, after their families, after their tongues, in their lands, after their nations.</span></div>
-<div class="v-row" data-ref="Genesis 10:32 (King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">These are the families of the sons of Noah, after their generations, in their nations: and by these were the nations divided in the earth after the flood.</span></div>
+    <a class="v-row" href="/bible/kjv/genesis/10/1/" data-ref="Genesis 10:1 (King James Version)" data-verse-url="/bible/kjv/genesis/10/1/"><span class="v-num">1</span><span class="v-txt">Now these are the generations of the sons of Noah, Shem, Ham, and Japheth: and unto them were sons born after the flood.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/2/" data-ref="Genesis 10:2 (King James Version)" data-verse-url="/bible/kjv/genesis/10/2/"><span class="v-num">2</span><span class="v-txt">The sons of Japheth; Gomer, and Magog, and Madai, and Javan, and Tubal, and Meshech, and Tiras.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/3/" data-ref="Genesis 10:3 (King James Version)" data-verse-url="/bible/kjv/genesis/10/3/"><span class="v-num">3</span><span class="v-txt">And the sons of Gomer; Ashkenaz, and Riphath, and Togarmah.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/4/" data-ref="Genesis 10:4 (King James Version)" data-verse-url="/bible/kjv/genesis/10/4/"><span class="v-num">4</span><span class="v-txt">And the sons of Javan; Elishah, and Tarshish, Kittim, and Dodanim.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/5/" data-ref="Genesis 10:5 (King James Version)" data-verse-url="/bible/kjv/genesis/10/5/"><span class="v-num">5</span><span class="v-txt">By these were the isles of the Gentiles divided in their lands; every one after his tongue, after their families, in their nations.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/6/" data-ref="Genesis 10:6 (King James Version)" data-verse-url="/bible/kjv/genesis/10/6/"><span class="v-num">6</span><span class="v-txt">And the sons of Ham; Cush, and Mizraim, and Phut, and Canaan.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/7/" data-ref="Genesis 10:7 (King James Version)" data-verse-url="/bible/kjv/genesis/10/7/"><span class="v-num">7</span><span class="v-txt">And the sons of Cush; Seba, and Havilah, and Sabtah, and Raamah, and Sabtecha: and the sons of Raamah; Sheba, and Dedan.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/8/" data-ref="Genesis 10:8 (King James Version)" data-verse-url="/bible/kjv/genesis/10/8/"><span class="v-num">8</span><span class="v-txt">And Cush begat Nimrod: he began to be a mighty one in the earth.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/9/" data-ref="Genesis 10:9 (King James Version)" data-verse-url="/bible/kjv/genesis/10/9/"><span class="v-num">9</span><span class="v-txt">He was a mighty hunter before the LORD: wherefore it is said, Even as Nimrod the mighty hunter before the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/10/" data-ref="Genesis 10:10 (King James Version)" data-verse-url="/bible/kjv/genesis/10/10/"><span class="v-num">10</span><span class="v-txt">And the beginning of his kingdom was Babel, and Erech, and Accad, and Calneh, in the land of Shinar.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/11/" data-ref="Genesis 10:11 (King James Version)" data-verse-url="/bible/kjv/genesis/10/11/"><span class="v-num">11</span><span class="v-txt">Out of that land went forth Asshur, and builded Nineveh, and the city Rehoboth, and Calah,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/12/" data-ref="Genesis 10:12 (King James Version)" data-verse-url="/bible/kjv/genesis/10/12/"><span class="v-num">12</span><span class="v-txt">And Resen between Nineveh and Calah: the same is a great city.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/13/" data-ref="Genesis 10:13 (King James Version)" data-verse-url="/bible/kjv/genesis/10/13/"><span class="v-num">13</span><span class="v-txt">And Mizraim begat Ludim, and Anamim, and Lehabim, and Naphtuhim,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/14/" data-ref="Genesis 10:14 (King James Version)" data-verse-url="/bible/kjv/genesis/10/14/"><span class="v-num">14</span><span class="v-txt">And Pathrusim, and Casluhim, (out of whom came Philistim,) and Caphtorim.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/15/" data-ref="Genesis 10:15 (King James Version)" data-verse-url="/bible/kjv/genesis/10/15/"><span class="v-num">15</span><span class="v-txt">And Canaan begat Sidon his firstborn, and Heth,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/16/" data-ref="Genesis 10:16 (King James Version)" data-verse-url="/bible/kjv/genesis/10/16/"><span class="v-num">16</span><span class="v-txt">And the Jebusite, and the Amorite, and the Girgasite,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/17/" data-ref="Genesis 10:17 (King James Version)" data-verse-url="/bible/kjv/genesis/10/17/"><span class="v-num">17</span><span class="v-txt">And the Hivite, and the Arkite, and the Sinite,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/18/" data-ref="Genesis 10:18 (King James Version)" data-verse-url="/bible/kjv/genesis/10/18/"><span class="v-num">18</span><span class="v-txt">And the Arvadite, and the Zemarite, and the Hamathite: and afterward were the families of the Canaanites spread abroad.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/19/" data-ref="Genesis 10:19 (King James Version)" data-verse-url="/bible/kjv/genesis/10/19/"><span class="v-num">19</span><span class="v-txt">And the border of the Canaanites was from Sidon, as thou comest to Gerar, unto Gaza; as thou goest, unto Sodom, and Gomorrah, and Admah, and Zeboim, even unto Lasha.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/20/" data-ref="Genesis 10:20 (King James Version)" data-verse-url="/bible/kjv/genesis/10/20/"><span class="v-num">20</span><span class="v-txt">These are the sons of Ham, after their families, after their tongues, in their countries, and in their nations.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/21/" data-ref="Genesis 10:21 (King James Version)" data-verse-url="/bible/kjv/genesis/10/21/"><span class="v-num">21</span><span class="v-txt">Unto Shem also, the father of all the children of Eber, the brother of Japheth the elder, even to him were children born.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/22/" data-ref="Genesis 10:22 (King James Version)" data-verse-url="/bible/kjv/genesis/10/22/"><span class="v-num">22</span><span class="v-txt">The children of Shem; Elam, and Asshur, and Arphaxad, and Lud, and Aram.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/23/" data-ref="Genesis 10:23 (King James Version)" data-verse-url="/bible/kjv/genesis/10/23/"><span class="v-num">23</span><span class="v-txt">And the children of Aram; Uz, and Hul, and Gether, and Mash.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/24/" data-ref="Genesis 10:24 (King James Version)" data-verse-url="/bible/kjv/genesis/10/24/"><span class="v-num">24</span><span class="v-txt">And Arphaxad begat Salah; and Salah begat Eber.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/25/" data-ref="Genesis 10:25 (King James Version)" data-verse-url="/bible/kjv/genesis/10/25/"><span class="v-num">25</span><span class="v-txt">And unto Eber were born two sons: the name of one was Peleg; for in his days was the earth divided; and his brother's name was Joktan.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/26/" data-ref="Genesis 10:26 (King James Version)" data-verse-url="/bible/kjv/genesis/10/26/"><span class="v-num">26</span><span class="v-txt">And Joktan begat Almodad, and Sheleph, and Hazarmaveth, and Jerah,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/27/" data-ref="Genesis 10:27 (King James Version)" data-verse-url="/bible/kjv/genesis/10/27/"><span class="v-num">27</span><span class="v-txt">And Hadoram, and Uzal, and Diklah,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/28/" data-ref="Genesis 10:28 (King James Version)" data-verse-url="/bible/kjv/genesis/10/28/"><span class="v-num">28</span><span class="v-txt">And Obal, and Abimael, and Sheba,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/29/" data-ref="Genesis 10:29 (King James Version)" data-verse-url="/bible/kjv/genesis/10/29/"><span class="v-num">29</span><span class="v-txt">And Ophir, and Havilah, and Jobab: all these were the sons of Joktan.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/30/" data-ref="Genesis 10:30 (King James Version)" data-verse-url="/bible/kjv/genesis/10/30/"><span class="v-num">30</span><span class="v-txt">And their dwelling was from Mesha, as thou goest unto Sephar a mount of the east.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/31/" data-ref="Genesis 10:31 (King James Version)" data-verse-url="/bible/kjv/genesis/10/31/"><span class="v-num">31</span><span class="v-txt">These are the sons of Shem, after their families, after their tongues, in their lands, after their nations.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/10/32/" data-ref="Genesis 10:32 (King James Version)" data-verse-url="/bible/kjv/genesis/10/32/"><span class="v-num">32</span><span class="v-txt">These are the families of the sons of Noah, after their generations, in their nations: and by these were the nations divided in the earth after the flood.</span></a>
 
     
 <div class="app-cta">

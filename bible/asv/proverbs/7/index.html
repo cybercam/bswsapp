@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 7:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My son, keep my words, And lay up my commandments with thee.</span></div>
-<div class="v-row" data-ref="Proverbs 7:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Keep my commandments and live; And my law as the apple of thine eye.</span></div>
-<div class="v-row" data-ref="Proverbs 7:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Bind them upon thy fingers; Write them upon the tablet of thy heart.</span></div>
-<div class="v-row" data-ref="Proverbs 7:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Say unto wisdom, Thou art my sister; And call understanding [thy] kinswoman:</span></div>
-<div class="v-row" data-ref="Proverbs 7:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">That they may keep thee from the strange woman, From he foreigner that flattereth with her words.</span></div>
-<div class="v-row" data-ref="Proverbs 7:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For at the window of my house I looked forth through my lattice;</span></div>
-<div class="v-row" data-ref="Proverbs 7:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I beheld among the simple ones, I discerned among the youths, A young man void of understanding,</span></div>
-<div class="v-row" data-ref="Proverbs 7:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Passing through the street near her corner; And he went the way to her house,</span></div>
-<div class="v-row" data-ref="Proverbs 7:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">In the twilight, in the evening of the day, In the middle of the night and in the darkness.</span></div>
-<div class="v-row" data-ref="Proverbs 7:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And, behold, there met him a woman With the attire of a harlot, and wily of heart.</span></div>
-<div class="v-row" data-ref="Proverbs 7:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">She is clamorous and wilful; Her feet abide not in her house:</span></div>
-<div class="v-row" data-ref="Proverbs 7:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Now she is in the streets, now in the broad places, And lieth in wait at every corner.</span></div>
-<div class="v-row" data-ref="Proverbs 7:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">So she caught him, and kissed him, [And] with an impudent face she said unto him:</span></div>
-<div class="v-row" data-ref="Proverbs 7:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Sacrifices of peace-offerings are with me; This day have I paid my vows.</span></div>
-<div class="v-row" data-ref="Proverbs 7:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore came I forth to meet thee, Diligently to seek thy face, and I have found thee.</span></div>
-<div class="v-row" data-ref="Proverbs 7:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I have spread my couch with carpets of tapestry, With striped cloths of the yarn of Egypt.</span></div>
-<div class="v-row" data-ref="Proverbs 7:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I have perfumed my bed With myrrh, aloes, and cinnamon.</span></div>
-<div class="v-row" data-ref="Proverbs 7:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Come, let us take our fill of love until the morning; Let us solace ourselves with loves.</span></div>
-<div class="v-row" data-ref="Proverbs 7:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For the man is not at home; He is gone a long journey:</span></div>
-<div class="v-row" data-ref="Proverbs 7:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He hath taken a bag of money with him; He will come home at the full moon.</span></div>
-<div class="v-row" data-ref="Proverbs 7:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">With her much fair speech she causeth him to yield; With the flattering of her lips she forceth him along.</span></div>
-<div class="v-row" data-ref="Proverbs 7:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He goeth after her straightway, As an ox goeth to the slaughter, Or as [one in] fetters to the correction of the fool;</span></div>
-<div class="v-row" data-ref="Proverbs 7:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Till an arrow strike through his liver; As a bird hasteth to the snare, And knoweth not that it is for his life.</span></div>
-<div class="v-row" data-ref="Proverbs 7:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Now therefore, [my] sons, hearken unto me, And attend to the words of my mouth.</span></div>
-<div class="v-row" data-ref="Proverbs 7:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Let not thy heart decline to her ways; Go not astray in her paths.</span></div>
-<div class="v-row" data-ref="Proverbs 7:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For she hath cast down many wounded: Yea, all her slain are a mighty host.</span></div>
-<div class="v-row" data-ref="Proverbs 7:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Her house is the way to Sheol, Going down to the chambers of death.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/7/1/" data-ref="Proverbs 7:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/1/"><span class="v-num">1</span><span class="v-txt">My son, keep my words, And lay up my commandments with thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/2/" data-ref="Proverbs 7:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/2/"><span class="v-num">2</span><span class="v-txt">Keep my commandments and live; And my law as the apple of thine eye.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/3/" data-ref="Proverbs 7:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/3/"><span class="v-num">3</span><span class="v-txt">Bind them upon thy fingers; Write them upon the tablet of thy heart.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/4/" data-ref="Proverbs 7:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/4/"><span class="v-num">4</span><span class="v-txt">Say unto wisdom, Thou art my sister; And call understanding [thy] kinswoman:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/5/" data-ref="Proverbs 7:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/5/"><span class="v-num">5</span><span class="v-txt">That they may keep thee from the strange woman, From he foreigner that flattereth with her words.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/6/" data-ref="Proverbs 7:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/6/"><span class="v-num">6</span><span class="v-txt">For at the window of my house I looked forth through my lattice;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/7/" data-ref="Proverbs 7:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/7/"><span class="v-num">7</span><span class="v-txt">And I beheld among the simple ones, I discerned among the youths, A young man void of understanding,</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/8/" data-ref="Proverbs 7:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/8/"><span class="v-num">8</span><span class="v-txt">Passing through the street near her corner; And he went the way to her house,</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/9/" data-ref="Proverbs 7:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/9/"><span class="v-num">9</span><span class="v-txt">In the twilight, in the evening of the day, In the middle of the night and in the darkness.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/10/" data-ref="Proverbs 7:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/10/"><span class="v-num">10</span><span class="v-txt">And, behold, there met him a woman With the attire of a harlot, and wily of heart.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/11/" data-ref="Proverbs 7:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/11/"><span class="v-num">11</span><span class="v-txt">She is clamorous and wilful; Her feet abide not in her house:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/12/" data-ref="Proverbs 7:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/12/"><span class="v-num">12</span><span class="v-txt">Now she is in the streets, now in the broad places, And lieth in wait at every corner.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/13/" data-ref="Proverbs 7:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/13/"><span class="v-num">13</span><span class="v-txt">So she caught him, and kissed him, [And] with an impudent face she said unto him:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/14/" data-ref="Proverbs 7:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/14/"><span class="v-num">14</span><span class="v-txt">Sacrifices of peace-offerings are with me; This day have I paid my vows.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/15/" data-ref="Proverbs 7:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/15/"><span class="v-num">15</span><span class="v-txt">Therefore came I forth to meet thee, Diligently to seek thy face, and I have found thee.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/16/" data-ref="Proverbs 7:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/16/"><span class="v-num">16</span><span class="v-txt">I have spread my couch with carpets of tapestry, With striped cloths of the yarn of Egypt.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/17/" data-ref="Proverbs 7:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/17/"><span class="v-num">17</span><span class="v-txt">I have perfumed my bed With myrrh, aloes, and cinnamon.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/18/" data-ref="Proverbs 7:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/18/"><span class="v-num">18</span><span class="v-txt">Come, let us take our fill of love until the morning; Let us solace ourselves with loves.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/19/" data-ref="Proverbs 7:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/19/"><span class="v-num">19</span><span class="v-txt">For the man is not at home; He is gone a long journey:</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/20/" data-ref="Proverbs 7:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/20/"><span class="v-num">20</span><span class="v-txt">He hath taken a bag of money with him; He will come home at the full moon.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/21/" data-ref="Proverbs 7:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/21/"><span class="v-num">21</span><span class="v-txt">With her much fair speech she causeth him to yield; With the flattering of her lips she forceth him along.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/22/" data-ref="Proverbs 7:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/22/"><span class="v-num">22</span><span class="v-txt">He goeth after her straightway, As an ox goeth to the slaughter, Or as [one in] fetters to the correction of the fool;</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/23/" data-ref="Proverbs 7:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/23/"><span class="v-num">23</span><span class="v-txt">Till an arrow strike through his liver; As a bird hasteth to the snare, And knoweth not that it is for his life.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/24/" data-ref="Proverbs 7:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/24/"><span class="v-num">24</span><span class="v-txt">Now therefore, [my] sons, hearken unto me, And attend to the words of my mouth.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/25/" data-ref="Proverbs 7:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/25/"><span class="v-num">25</span><span class="v-txt">Let not thy heart decline to her ways; Go not astray in her paths.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/26/" data-ref="Proverbs 7:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/26/"><span class="v-num">26</span><span class="v-txt">For she hath cast down many wounded: Yea, all her slain are a mighty host.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/7/27/" data-ref="Proverbs 7:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/7/27/"><span class="v-num">27</span><span class="v-txt">Her house is the way to Sheol, Going down to the chambers of death.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 14</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 14:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">As for man, the son of woman, his days are short and full of trouble.</span></div>
-<div class="v-row" data-ref="Job 14:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He comes out like a flower, and is cut down: he goes in flight like a shade, and is never seen again.</span></div>
-<div class="v-row" data-ref="Job 14:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Is it on such a one as this that your eyes are fixed, with the purpose of judging him?</span></div>
-<div class="v-row" data-ref="Job 14:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If only a clean thing might come out of an unclean! But it is not possible.</span></div>
-<div class="v-row" data-ref="Job 14:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">If his days are ordered, and you have knowledge of the number of his months, having given him a fixed limit past which he may not go;</span></div>
-<div class="v-row" data-ref="Job 14:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let your eyes be turned away from him, and take your hand from him, so that he may have pleasure at the end of his day, like a servant working for payment.</span></div>
-<div class="v-row" data-ref="Job 14:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For there is hope of a tree; if it is cut down, it will come to life again, and its branches will not come to an end.</span></div>
-<div class="v-row" data-ref="Job 14:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Though its root may be old in the earth, and its cut-off end may be dead in the dust;</span></div>
-<div class="v-row" data-ref="Job 14:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Still, at the smell of water, it will make buds, and put out branches like a young plant.</span></div>
-<div class="v-row" data-ref="Job 14:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But man comes to his death and is gone: he gives up his spirit, and where is he?</span></div>
-<div class="v-row" data-ref="Job 14:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The waters go from a pool, and a river becomes waste and dry;</span></div>
-<div class="v-row" data-ref="Job 14:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So man goes down to his last resting-place and comes not again: till the heavens come to an end, they will not be awake or come out of their sleep.</span></div>
-<div class="v-row" data-ref="Job 14:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">If only you would keep me safe in the underworld, putting me in a secret place till your wrath is past, giving me a fixed time when I might come to your memory again!</span></div>
-<div class="v-row" data-ref="Job 14:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">If death takes a man, will he come to life again? All the days of my trouble I would be waiting, till the time came for me to be free.</span></div>
-<div class="v-row" data-ref="Job 14:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">At the sound of your voice I would give an answer, and you would have a desire for the work of your hands.</span></div>
-<div class="v-row" data-ref="Job 14:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For now my steps are numbered by you, and my sin is not overlooked.</span></div>
-<div class="v-row" data-ref="Job 14:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">My wrongdoing is corded up in a bag, and my sin is shut up safe.</span></div>
-<div class="v-row" data-ref="Job 14:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But truly a mountain falling comes to dust, and a rock is moved from its place;</span></div>
-<div class="v-row" data-ref="Job 14:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The stones are crushed small by the force of the waters; the dust of the earth is washed away by their overflowing: and so you put an end to the hope of man.</span></div>
-<div class="v-row" data-ref="Job 14:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">You overcome him for ever, and he is gone; his face is changed in death, and you send him away.</span></div>
-<div class="v-row" data-ref="Job 14:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">His sons come to honour, and he has no knowledge of it; they are made low, but he is not conscious of it.</span></div>
-<div class="v-row" data-ref="Job 14:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Only his flesh still has pain, and his soul is sad.</span></div>
+    <a class="v-row" href="/bible/bbe/job/14/1/" data-ref="Job 14:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/1/"><span class="v-num">1</span><span class="v-txt">As for man, the son of woman, his days are short and full of trouble.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/2/" data-ref="Job 14:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/2/"><span class="v-num">2</span><span class="v-txt">He comes out like a flower, and is cut down: he goes in flight like a shade, and is never seen again.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/3/" data-ref="Job 14:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/3/"><span class="v-num">3</span><span class="v-txt">Is it on such a one as this that your eyes are fixed, with the purpose of judging him?</span></a>
+<a class="v-row" href="/bible/bbe/job/14/4/" data-ref="Job 14:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/4/"><span class="v-num">4</span><span class="v-txt">If only a clean thing might come out of an unclean! But it is not possible.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/5/" data-ref="Job 14:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/5/"><span class="v-num">5</span><span class="v-txt">If his days are ordered, and you have knowledge of the number of his months, having given him a fixed limit past which he may not go;</span></a>
+<a class="v-row" href="/bible/bbe/job/14/6/" data-ref="Job 14:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/6/"><span class="v-num">6</span><span class="v-txt">Let your eyes be turned away from him, and take your hand from him, so that he may have pleasure at the end of his day, like a servant working for payment.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/7/" data-ref="Job 14:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/7/"><span class="v-num">7</span><span class="v-txt">For there is hope of a tree; if it is cut down, it will come to life again, and its branches will not come to an end.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/8/" data-ref="Job 14:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/8/"><span class="v-num">8</span><span class="v-txt">Though its root may be old in the earth, and its cut-off end may be dead in the dust;</span></a>
+<a class="v-row" href="/bible/bbe/job/14/9/" data-ref="Job 14:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/9/"><span class="v-num">9</span><span class="v-txt">Still, at the smell of water, it will make buds, and put out branches like a young plant.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/10/" data-ref="Job 14:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/10/"><span class="v-num">10</span><span class="v-txt">But man comes to his death and is gone: he gives up his spirit, and where is he?</span></a>
+<a class="v-row" href="/bible/bbe/job/14/11/" data-ref="Job 14:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/11/"><span class="v-num">11</span><span class="v-txt">The waters go from a pool, and a river becomes waste and dry;</span></a>
+<a class="v-row" href="/bible/bbe/job/14/12/" data-ref="Job 14:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/12/"><span class="v-num">12</span><span class="v-txt">So man goes down to his last resting-place and comes not again: till the heavens come to an end, they will not be awake or come out of their sleep.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/13/" data-ref="Job 14:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/13/"><span class="v-num">13</span><span class="v-txt">If only you would keep me safe in the underworld, putting me in a secret place till your wrath is past, giving me a fixed time when I might come to your memory again!</span></a>
+<a class="v-row" href="/bible/bbe/job/14/14/" data-ref="Job 14:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/14/"><span class="v-num">14</span><span class="v-txt">If death takes a man, will he come to life again? All the days of my trouble I would be waiting, till the time came for me to be free.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/15/" data-ref="Job 14:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/15/"><span class="v-num">15</span><span class="v-txt">At the sound of your voice I would give an answer, and you would have a desire for the work of your hands.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/16/" data-ref="Job 14:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/16/"><span class="v-num">16</span><span class="v-txt">For now my steps are numbered by you, and my sin is not overlooked.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/17/" data-ref="Job 14:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/17/"><span class="v-num">17</span><span class="v-txt">My wrongdoing is corded up in a bag, and my sin is shut up safe.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/18/" data-ref="Job 14:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/18/"><span class="v-num">18</span><span class="v-txt">But truly a mountain falling comes to dust, and a rock is moved from its place;</span></a>
+<a class="v-row" href="/bible/bbe/job/14/19/" data-ref="Job 14:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/19/"><span class="v-num">19</span><span class="v-txt">The stones are crushed small by the force of the waters; the dust of the earth is washed away by their overflowing: and so you put an end to the hope of man.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/20/" data-ref="Job 14:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/20/"><span class="v-num">20</span><span class="v-txt">You overcome him for ever, and he is gone; his face is changed in death, and you send him away.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/21/" data-ref="Job 14:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/21/"><span class="v-num">21</span><span class="v-txt">His sons come to honour, and he has no knowledge of it; they are made low, but he is not conscious of it.</span></a>
+<a class="v-row" href="/bible/bbe/job/14/22/" data-ref="Job 14:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/14/22/"><span class="v-num">22</span><span class="v-txt">Only his flesh still has pain, and his soul is sad.</span></a>
 
     
 <div class="app-cta">

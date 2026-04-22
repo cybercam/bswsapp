@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,15 +204,15 @@ a:hover{text-decoration:underline}
       <h2>Chapter 122</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 122:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Song of Ascents. Of David. I was glad when they said to me, "Let us go into the house of the LORD."</span></div>
-<div class="v-row" data-ref="Psalm 122:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Our feet have been standing Within your gates, O Jerusalem!</span></div>
-<div class="v-row" data-ref="Psalm 122:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Jerusalem is built As a city that is compact together,</span></div>
-<div class="v-row" data-ref="Psalm 122:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Where the tribes go up, The tribes of the LORD, To the Testimony of Israel, To give thanks to the name of the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 122:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For thrones are set there for judgment, The thrones of the house of David.</span></div>
-<div class="v-row" data-ref="Psalm 122:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Pray for the peace of Jerusalem: "May they prosper who love you.</span></div>
-<div class="v-row" data-ref="Psalm 122:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Peace be within your walls, Prosperity within your palaces."</span></div>
-<div class="v-row" data-ref="Psalm 122:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the sake of my brethren and companions, I will now say, "Peace [be] within you."</span></div>
-<div class="v-row" data-ref="Psalm 122:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Because of the house of the LORD our God I will seek your good.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/122/1/" data-ref="Psalm 122:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/1/"><span class="v-num">1</span><span class="v-txt">A Song of Ascents. Of David. I was glad when they said to me, "Let us go into the house of the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/2/" data-ref="Psalm 122:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/2/"><span class="v-num">2</span><span class="v-txt">Our feet have been standing Within your gates, O Jerusalem!</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/3/" data-ref="Psalm 122:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/3/"><span class="v-num">3</span><span class="v-txt">Jerusalem is built As a city that is compact together,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/4/" data-ref="Psalm 122:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/4/"><span class="v-num">4</span><span class="v-txt">Where the tribes go up, The tribes of the LORD, To the Testimony of Israel, To give thanks to the name of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/5/" data-ref="Psalm 122:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/5/"><span class="v-num">5</span><span class="v-txt">For thrones are set there for judgment, The thrones of the house of David.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/6/" data-ref="Psalm 122:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/6/"><span class="v-num">6</span><span class="v-txt">Pray for the peace of Jerusalem: "May they prosper who love you.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/7/" data-ref="Psalm 122:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/7/"><span class="v-num">7</span><span class="v-txt">Peace be within your walls, Prosperity within your palaces."</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/8/" data-ref="Psalm 122:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/8/"><span class="v-num">8</span><span class="v-txt">For the sake of my brethren and companions, I will now say, "Peace [be] within you."</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/122/9/" data-ref="Psalm 122:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/122/9/"><span class="v-num">9</span><span class="v-txt">Because of the house of the LORD our God I will seek your good.</span></a>
 
     
 <div class="app-cta">

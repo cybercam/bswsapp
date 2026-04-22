@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 55</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 55:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker, on Neginoth. Maschil. Of David. Give hearing to my prayer, O God; and let not your ear be shut against my request.</span></div>
-<div class="v-row" data-ref="Psalm 55:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Give thought to me, and let my prayer be answered: I have been made low in sorrow;</span></div>
-<div class="v-row" data-ref="Psalm 55:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I am troubled because of the voice of the cruel ones, because of the loud cry of the evil-doers; for they put a weight of evil on me, and they are cruel in their hate for me.</span></div>
-<div class="v-row" data-ref="Psalm 55:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">My heart is deeply wounded, and the fear of death has come on me.</span></div>
-<div class="v-row" data-ref="Psalm 55:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Fear and shaking have come over me, with deep fear I am covered.</span></div>
-<div class="v-row" data-ref="Psalm 55:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And I said, If only I had wings like a dove! for then I would go in flight from here and be at rest.</span></div>
-<div class="v-row" data-ref="Psalm 55:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I would go wandering far away, living in the waste land. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 55:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I would quickly take cover from the driving storm and from the violent wind.</span></div>
-<div class="v-row" data-ref="Psalm 55:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Send destruction on them, O Lord, make a division of tongues among them: for I have seen fighting and violent acts in the town.</span></div>
-<div class="v-row" data-ref="Psalm 55:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">By day and night they go round the town, on the walls; trouble and sorrow are in the heart of it.</span></div>
-<div class="v-row" data-ref="Psalm 55:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Evil is there; cruel rule and deceit are ever in the streets.</span></div>
-<div class="v-row" data-ref="Psalm 55:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For it was not my hater who said evil of me; that would have been no grief to me; it was not one outside the number of my friends who made himself strong against me, or I would have kept myself from him in a secret place;</span></div>
-<div class="v-row" data-ref="Psalm 55:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But it was you, my equal, my guide, my well-loved friend.</span></div>
-<div class="v-row" data-ref="Psalm 55:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">We had loving talk together, and went to the house of God in company.</span></div>
-<div class="v-row" data-ref="Psalm 55:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let the hand of death come on them suddenly, and let them go down living into the underworld; because evil is in their houses and in their hearts.</span></div>
-<div class="v-row" data-ref="Psalm 55:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">As for me, I will make my prayer to God, and he will be my saviour.</span></div>
-<div class="v-row" data-ref="Psalm 55:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">In the evening and in the morning and in the middle of the day I will make my prayer with sounds of grief; and my voice will come to his ears.</span></div>
-<div class="v-row" data-ref="Psalm 55:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He has taken my soul away from the attack which was made against me, and given it peace; for great numbers were against me.</span></div>
-<div class="v-row" data-ref="Psalm 55:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">God will give thought to me; he who from early times is strong will send pain and trouble on them. (Selah.) Because they are unchanged, they have no fear of God.</span></div>
-<div class="v-row" data-ref="Psalm 55:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He has put out his hand against those who were at peace with him; he has not kept his agreement.</span></div>
-<div class="v-row" data-ref="Psalm 55:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The words of his mouth were smoother than butter, but war was in his heart; his words were softer than oil, but they were sharp swords.</span></div>
-<div class="v-row" data-ref="Psalm 55:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Put your cares on the Lord, and he will be your support; he will not let the upright man be moved.</span></div>
-<div class="v-row" data-ref="Psalm 55:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">But you, O God, will send them down into the underworld; the cruel and the false will be cut off before half their days are ended; but I will have faith in you.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/55/1/" data-ref="Psalm 55:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker, on Neginoth. Maschil. Of David. Give hearing to my prayer, O God; and let not your ear be shut against my request.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/2/" data-ref="Psalm 55:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/2/"><span class="v-num">2</span><span class="v-txt">Give thought to me, and let my prayer be answered: I have been made low in sorrow;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/3/" data-ref="Psalm 55:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/3/"><span class="v-num">3</span><span class="v-txt">I am troubled because of the voice of the cruel ones, because of the loud cry of the evil-doers; for they put a weight of evil on me, and they are cruel in their hate for me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/4/" data-ref="Psalm 55:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/4/"><span class="v-num">4</span><span class="v-txt">My heart is deeply wounded, and the fear of death has come on me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/5/" data-ref="Psalm 55:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/5/"><span class="v-num">5</span><span class="v-txt">Fear and shaking have come over me, with deep fear I am covered.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/6/" data-ref="Psalm 55:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/6/"><span class="v-num">6</span><span class="v-txt">And I said, If only I had wings like a dove! for then I would go in flight from here and be at rest.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/7/" data-ref="Psalm 55:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/7/"><span class="v-num">7</span><span class="v-txt">I would go wandering far away, living in the waste land. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/8/" data-ref="Psalm 55:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/8/"><span class="v-num">8</span><span class="v-txt">I would quickly take cover from the driving storm and from the violent wind.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/9/" data-ref="Psalm 55:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/9/"><span class="v-num">9</span><span class="v-txt">Send destruction on them, O Lord, make a division of tongues among them: for I have seen fighting and violent acts in the town.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/10/" data-ref="Psalm 55:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/10/"><span class="v-num">10</span><span class="v-txt">By day and night they go round the town, on the walls; trouble and sorrow are in the heart of it.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/11/" data-ref="Psalm 55:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/11/"><span class="v-num">11</span><span class="v-txt">Evil is there; cruel rule and deceit are ever in the streets.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/12/" data-ref="Psalm 55:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/12/"><span class="v-num">12</span><span class="v-txt">For it was not my hater who said evil of me; that would have been no grief to me; it was not one outside the number of my friends who made himself strong against me, or I would have kept myself from him in a secret place;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/13/" data-ref="Psalm 55:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/13/"><span class="v-num">13</span><span class="v-txt">But it was you, my equal, my guide, my well-loved friend.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/14/" data-ref="Psalm 55:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/14/"><span class="v-num">14</span><span class="v-txt">We had loving talk together, and went to the house of God in company.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/15/" data-ref="Psalm 55:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/15/"><span class="v-num">15</span><span class="v-txt">Let the hand of death come on them suddenly, and let them go down living into the underworld; because evil is in their houses and in their hearts.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/16/" data-ref="Psalm 55:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/16/"><span class="v-num">16</span><span class="v-txt">As for me, I will make my prayer to God, and he will be my saviour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/17/" data-ref="Psalm 55:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/17/"><span class="v-num">17</span><span class="v-txt">In the evening and in the morning and in the middle of the day I will make my prayer with sounds of grief; and my voice will come to his ears.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/18/" data-ref="Psalm 55:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/18/"><span class="v-num">18</span><span class="v-txt">He has taken my soul away from the attack which was made against me, and given it peace; for great numbers were against me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/19/" data-ref="Psalm 55:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/19/"><span class="v-num">19</span><span class="v-txt">God will give thought to me; he who from early times is strong will send pain and trouble on them. (Selah.) Because they are unchanged, they have no fear of God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/20/" data-ref="Psalm 55:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/20/"><span class="v-num">20</span><span class="v-txt">He has put out his hand against those who were at peace with him; he has not kept his agreement.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/21/" data-ref="Psalm 55:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/21/"><span class="v-num">21</span><span class="v-txt">The words of his mouth were smoother than butter, but war was in his heart; his words were softer than oil, but they were sharp swords.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/22/" data-ref="Psalm 55:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/22/"><span class="v-num">22</span><span class="v-txt">Put your cares on the Lord, and he will be your support; he will not let the upright man be moved.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/55/23/" data-ref="Psalm 55:23 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/55/23/"><span class="v-num">23</span><span class="v-txt">But you, O God, will send them down into the underworld; the cruel and the false will be cut off before half their days are ended; but I will have faith in you.</span></a>
 
     
 <div class="app-cta">

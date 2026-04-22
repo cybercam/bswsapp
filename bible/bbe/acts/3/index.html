@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Acts 3:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now Peter and John were going up to the Temple at the ninth hour, the hour of prayer;</span></div>
-<div class="v-row" data-ref="Acts 3:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And a certain man who from birth had had no power in his legs, was taken there every day, and put down at the door of the Temple which is named Beautiful, requesting money from those who went into the Temple;</span></div>
-<div class="v-row" data-ref="Acts 3:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He then, seeing Peter and John going into the Temple, made a request to them.</span></div>
-<div class="v-row" data-ref="Acts 3:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Peter, looking at him, with John, said, Keep your eyes on us.</span></div>
-<div class="v-row" data-ref="Acts 3:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And he gave attention to them, hoping to get something from them.</span></div>
-<div class="v-row" data-ref="Acts 3:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But Peter said, I have no silver or gold, but what I have, that I give to you. In the name of Jesus Christ of Nazareth, get up on your feet.</span></div>
-<div class="v-row" data-ref="Acts 3:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he took him by his right hand, lifting him up; and straight away his feet and the bones of his legs became strong,</span></div>
-<div class="v-row" data-ref="Acts 3:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And, jumping up, he got on to his feet and went into the Temple with them, walking and jumping and giving praise to God.</span></div>
-<div class="v-row" data-ref="Acts 3:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And all the people saw him walking and praising God:</span></div>
-<div class="v-row" data-ref="Acts 3:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And they saw that it was the man who made requests for money at the door of the Temple, and they were full of wonder and surprise at what had taken place.</span></div>
-<div class="v-row" data-ref="Acts 3:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And while he kept his hands on Peter and John, all the people came running together to the covered way which is named Solomon's, full of wonder.</span></div>
-<div class="v-row" data-ref="Acts 3:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And when Peter saw it he said to the people, You men of Israel, why are you so greatly surprised at this man? or why are you looking at us as if by our power or virtue we had given him the use of his legs?</span></div>
-<div class="v-row" data-ref="Acts 3:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The God of Abraham, of Isaac, and of Jacob, the God of our fathers, has given glory to his servant Jesus; whom you gave up, turning your backs on him, when Pilate had made the decision to let him go free.</span></div>
-<div class="v-row" data-ref="Acts 3:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But you would have nothing to do with the Holy and Upright One, and made request for a man of blood to be given to you,</span></div>
-<div class="v-row" data-ref="Acts 3:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And put to death the Lord of life; whom God gave back from the dead; of which fact we are witnesses.</span></div>
-<div class="v-row" data-ref="Acts 3:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And his name, through faith in his name, has made this man strong, whom you see and have knowledge of: yes, the faith which is through him has made him well, before you all.</span></div>
-<div class="v-row" data-ref="Acts 3:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And now, my brothers, I am conscious that you did this, as did your rulers, without knowledge.</span></div>
-<div class="v-row" data-ref="Acts 3:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But the things which God had made clear before, by the mouth of all the prophets, that the Christ would have to undergo, he has put into effect in this way.</span></div>
-<div class="v-row" data-ref="Acts 3:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So then, let your hearts be changed and be turned to God, so that your sins may be completely taken away, and times of blessing may come from the Lord;</span></div>
-<div class="v-row" data-ref="Acts 3:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And that he may send the Christ who was marked out for you from the first, even Jesus:</span></div>
-<div class="v-row" data-ref="Acts 3:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Who is to be kept in heaven till the time when all things are put right, of which God has given word by the mouth of his holy prophets, who have been from the earliest times.</span></div>
-<div class="v-row" data-ref="Acts 3:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For Moses said, The Lord will give you a prophet from among your people, like me; you will give ear to everything which he will say to you.</span></div>
-<div class="v-row" data-ref="Acts 3:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And every soul who does not give attention to that prophet, will be cut off from among the people.</span></div>
-<div class="v-row" data-ref="Acts 3:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And all the prophets from Samuel and those who came after, every one of them, gave word of these days.</span></div>
-<div class="v-row" data-ref="Acts 3:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">You are the sons of the prophets, and of the agreement which God made with your fathers, saying to Abraham, Through your seed a blessing will come on all the families of the earth.</span></div>
-<div class="v-row" data-ref="Acts 3:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">To you, first, God sent his servant, blessing you by turning every one of you from his sins.</span></div>
+    <a class="v-row" href="/bible/bbe/acts/3/1/" data-ref="Acts 3:1 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/1/"><span class="v-num">1</span><span class="v-txt">Now Peter and John were going up to the Temple at the ninth hour, the hour of prayer;</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/2/" data-ref="Acts 3:2 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/2/"><span class="v-num">2</span><span class="v-txt">And a certain man who from birth had had no power in his legs, was taken there every day, and put down at the door of the Temple which is named Beautiful, requesting money from those who went into the Temple;</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/3/" data-ref="Acts 3:3 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/3/"><span class="v-num">3</span><span class="v-txt">He then, seeing Peter and John going into the Temple, made a request to them.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/4/" data-ref="Acts 3:4 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/4/"><span class="v-num">4</span><span class="v-txt">And Peter, looking at him, with John, said, Keep your eyes on us.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/5/" data-ref="Acts 3:5 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/5/"><span class="v-num">5</span><span class="v-txt">And he gave attention to them, hoping to get something from them.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/6/" data-ref="Acts 3:6 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/6/"><span class="v-num">6</span><span class="v-txt">But Peter said, I have no silver or gold, but what I have, that I give to you. In the name of Jesus Christ of Nazareth, get up on your feet.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/7/" data-ref="Acts 3:7 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/7/"><span class="v-num">7</span><span class="v-txt">And he took him by his right hand, lifting him up; and straight away his feet and the bones of his legs became strong,</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/8/" data-ref="Acts 3:8 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/8/"><span class="v-num">8</span><span class="v-txt">And, jumping up, he got on to his feet and went into the Temple with them, walking and jumping and giving praise to God.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/9/" data-ref="Acts 3:9 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/9/"><span class="v-num">9</span><span class="v-txt">And all the people saw him walking and praising God:</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/10/" data-ref="Acts 3:10 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/10/"><span class="v-num">10</span><span class="v-txt">And they saw that it was the man who made requests for money at the door of the Temple, and they were full of wonder and surprise at what had taken place.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/11/" data-ref="Acts 3:11 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/11/"><span class="v-num">11</span><span class="v-txt">And while he kept his hands on Peter and John, all the people came running together to the covered way which is named Solomon's, full of wonder.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/12/" data-ref="Acts 3:12 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/12/"><span class="v-num">12</span><span class="v-txt">And when Peter saw it he said to the people, You men of Israel, why are you so greatly surprised at this man? or why are you looking at us as if by our power or virtue we had given him the use of his legs?</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/13/" data-ref="Acts 3:13 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/13/"><span class="v-num">13</span><span class="v-txt">The God of Abraham, of Isaac, and of Jacob, the God of our fathers, has given glory to his servant Jesus; whom you gave up, turning your backs on him, when Pilate had made the decision to let him go free.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/14/" data-ref="Acts 3:14 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/14/"><span class="v-num">14</span><span class="v-txt">But you would have nothing to do with the Holy and Upright One, and made request for a man of blood to be given to you,</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/15/" data-ref="Acts 3:15 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/15/"><span class="v-num">15</span><span class="v-txt">And put to death the Lord of life; whom God gave back from the dead; of which fact we are witnesses.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/16/" data-ref="Acts 3:16 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/16/"><span class="v-num">16</span><span class="v-txt">And his name, through faith in his name, has made this man strong, whom you see and have knowledge of: yes, the faith which is through him has made him well, before you all.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/17/" data-ref="Acts 3:17 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/17/"><span class="v-num">17</span><span class="v-txt">And now, my brothers, I am conscious that you did this, as did your rulers, without knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/18/" data-ref="Acts 3:18 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/18/"><span class="v-num">18</span><span class="v-txt">But the things which God had made clear before, by the mouth of all the prophets, that the Christ would have to undergo, he has put into effect in this way.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/19/" data-ref="Acts 3:19 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/19/"><span class="v-num">19</span><span class="v-txt">So then, let your hearts be changed and be turned to God, so that your sins may be completely taken away, and times of blessing may come from the Lord;</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/20/" data-ref="Acts 3:20 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/20/"><span class="v-num">20</span><span class="v-txt">And that he may send the Christ who was marked out for you from the first, even Jesus:</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/21/" data-ref="Acts 3:21 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/21/"><span class="v-num">21</span><span class="v-txt">Who is to be kept in heaven till the time when all things are put right, of which God has given word by the mouth of his holy prophets, who have been from the earliest times.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/22/" data-ref="Acts 3:22 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/22/"><span class="v-num">22</span><span class="v-txt">For Moses said, The Lord will give you a prophet from among your people, like me; you will give ear to everything which he will say to you.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/23/" data-ref="Acts 3:23 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/23/"><span class="v-num">23</span><span class="v-txt">And every soul who does not give attention to that prophet, will be cut off from among the people.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/24/" data-ref="Acts 3:24 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/24/"><span class="v-num">24</span><span class="v-txt">And all the prophets from Samuel and those who came after, every one of them, gave word of these days.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/25/" data-ref="Acts 3:25 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/25/"><span class="v-num">25</span><span class="v-txt">You are the sons of the prophets, and of the agreement which God made with your fathers, saying to Abraham, Through your seed a blessing will come on all the families of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/acts/3/26/" data-ref="Acts 3:26 (Bible in Basic English)" data-verse-url="/bible/bbe/acts/3/26/"><span class="v-num">26</span><span class="v-txt">To you, first, God sent his servant, blessing you by turning every one of you from his sins.</span></a>
 
     
 <div class="app-cta">

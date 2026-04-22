@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 13:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">When Ephraim spake, there was trembling; he exalted himself in Israel; but when he offended in Baal, he died.</span></div>
-<div class="v-row" data-ref="Hosea 13:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And now they sin more and more, and have made them molten images of their silver, even idols according to their own understanding, all of them the work of the craftsmen: they say of them, Let the men that sacrifice kiss the calves.</span></div>
-<div class="v-row" data-ref="Hosea 13:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Therefore they shall be as the morning cloud, and as the dew that passeth early away, as the chaff that is driven with the whirlwind out of the threshing-floor, and as the smoke out of the chimney.</span></div>
-<div class="v-row" data-ref="Hosea 13:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Yet I am Jehovah thy God from the land of Egypt; and thou shalt know no god but me, and besides me there is no saviour.</span></div>
-<div class="v-row" data-ref="Hosea 13:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I did know thee in the wilderness, in the land of great drought.</span></div>
-<div class="v-row" data-ref="Hosea 13:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">According to their pasture, so were they filled; they were filled, and their heart was exalted: therefore have they forgotten me.</span></div>
-<div class="v-row" data-ref="Hosea 13:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore am I unto them as a lion; as a leopard will I watch by the way;</span></div>
-<div class="v-row" data-ref="Hosea 13:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I will meet them as a bear that is bereaved of her whelps, and will rend the caul of their heart; and there will I devour them like a lioness; the wild beast shall tear them.</span></div>
-<div class="v-row" data-ref="Hosea 13:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">It is thy destruction, O Israel, that [thou art] against me, against thy help.</span></div>
-<div class="v-row" data-ref="Hosea 13:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Where now is thy king, that he may save thee in all thy cities? and thy judges, of whom thou saidst, Give me a king and princes?</span></div>
-<div class="v-row" data-ref="Hosea 13:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I have given thee a king in mine anger, and have taken him away in my wrath.</span></div>
-<div class="v-row" data-ref="Hosea 13:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The iniquity of Ephraim is bound up; his sin is laid up in store.</span></div>
-<div class="v-row" data-ref="Hosea 13:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The sorrows of a travailing woman shall come upon him: he is an unwise son; for it is time he should not tarry in the place of the breaking forth of children.</span></div>
-<div class="v-row" data-ref="Hosea 13:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I will ransom them from the power of Sheol; I will redeem them from death: O death, where are thy plagues? O Sheol, where is thy destruction? repentance shall be hid from mine eyes.</span></div>
-<div class="v-row" data-ref="Hosea 13:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Though he be fruitful among his brethren, an east wind shall come, the breath of Jehovah coming up from the wilderness; and his spring shall become dry, and his fountain shall be dried up: he shall make spoil of the treasure of all goodly vessels.</span></div>
-<div class="v-row" data-ref="Hosea 13:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Samaria shall bear her guilt; for she hath rebelled against her God: they shall fall by the sword; their infants shall be dashed in pieces, and their women with child shall be ripped up.</span></div>
+    <a class="v-row" href="/bible/asv/hosea/13/1/" data-ref="Hosea 13:1 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/1/"><span class="v-num">1</span><span class="v-txt">When Ephraim spake, there was trembling; he exalted himself in Israel; but when he offended in Baal, he died.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/2/" data-ref="Hosea 13:2 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/2/"><span class="v-num">2</span><span class="v-txt">And now they sin more and more, and have made them molten images of their silver, even idols according to their own understanding, all of them the work of the craftsmen: they say of them, Let the men that sacrifice kiss the calves.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/3/" data-ref="Hosea 13:3 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/3/"><span class="v-num">3</span><span class="v-txt">Therefore they shall be as the morning cloud, and as the dew that passeth early away, as the chaff that is driven with the whirlwind out of the threshing-floor, and as the smoke out of the chimney.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/4/" data-ref="Hosea 13:4 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/4/"><span class="v-num">4</span><span class="v-txt">Yet I am Jehovah thy God from the land of Egypt; and thou shalt know no god but me, and besides me there is no saviour.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/5/" data-ref="Hosea 13:5 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/5/"><span class="v-num">5</span><span class="v-txt">I did know thee in the wilderness, in the land of great drought.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/6/" data-ref="Hosea 13:6 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/6/"><span class="v-num">6</span><span class="v-txt">According to their pasture, so were they filled; they were filled, and their heart was exalted: therefore have they forgotten me.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/7/" data-ref="Hosea 13:7 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/7/"><span class="v-num">7</span><span class="v-txt">Therefore am I unto them as a lion; as a leopard will I watch by the way;</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/8/" data-ref="Hosea 13:8 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/8/"><span class="v-num">8</span><span class="v-txt">I will meet them as a bear that is bereaved of her whelps, and will rend the caul of their heart; and there will I devour them like a lioness; the wild beast shall tear them.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/9/" data-ref="Hosea 13:9 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/9/"><span class="v-num">9</span><span class="v-txt">It is thy destruction, O Israel, that [thou art] against me, against thy help.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/10/" data-ref="Hosea 13:10 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/10/"><span class="v-num">10</span><span class="v-txt">Where now is thy king, that he may save thee in all thy cities? and thy judges, of whom thou saidst, Give me a king and princes?</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/11/" data-ref="Hosea 13:11 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/11/"><span class="v-num">11</span><span class="v-txt">I have given thee a king in mine anger, and have taken him away in my wrath.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/12/" data-ref="Hosea 13:12 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/12/"><span class="v-num">12</span><span class="v-txt">The iniquity of Ephraim is bound up; his sin is laid up in store.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/13/" data-ref="Hosea 13:13 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/13/"><span class="v-num">13</span><span class="v-txt">The sorrows of a travailing woman shall come upon him: he is an unwise son; for it is time he should not tarry in the place of the breaking forth of children.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/14/" data-ref="Hosea 13:14 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/14/"><span class="v-num">14</span><span class="v-txt">I will ransom them from the power of Sheol; I will redeem them from death: O death, where are thy plagues? O Sheol, where is thy destruction? repentance shall be hid from mine eyes.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/15/" data-ref="Hosea 13:15 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/15/"><span class="v-num">15</span><span class="v-txt">Though he be fruitful among his brethren, an east wind shall come, the breath of Jehovah coming up from the wilderness; and his spring shall become dry, and his fountain shall be dried up: he shall make spoil of the treasure of all goodly vessels.</span></a>
+<a class="v-row" href="/bible/asv/hosea/13/16/" data-ref="Hosea 13:16 (American Standard Version)" data-verse-url="/bible/asv/hosea/13/16/"><span class="v-num">16</span><span class="v-txt">Samaria shall bear her guilt; for she hath rebelled against her God: they shall fall by the sword; their infants shall be dashed in pieces, and their women with child shall be ripped up.</span></a>
 
     
 <div class="app-cta">

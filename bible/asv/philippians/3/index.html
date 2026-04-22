@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Philippians 3:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Finally, my brethren, rejoice in the Lord. To write the same things to you, to me indeed is not irksome, but for you it is safe.</span></div>
-<div class="v-row" data-ref="Philippians 3:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Beware of the dogs, beware of the evil workers, beware of the concision:</span></div>
-<div class="v-row" data-ref="Philippians 3:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">for we are the circumcision, who worship by the Spirit of God, and glory in Christ Jesus, and have no confidence in the flesh:</span></div>
-<div class="v-row" data-ref="Philippians 3:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">though I myself might have confidence even in the flesh: if any other man thinketh to have confidence in the flesh, I yet more:</span></div>
-<div class="v-row" data-ref="Philippians 3:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">circumcised the eighth day, of the stock of Israel, of the tribe of Benjamin, a Hebrew of Hebrews; as touching the law, a Pharisee;</span></div>
-<div class="v-row" data-ref="Philippians 3:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">as touching zeal, persecuting the church; as touching the righteousness which is in the law, found blameless.</span></div>
-<div class="v-row" data-ref="Philippians 3:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Howbeit what things were gain to me, these have I counted loss for Christ.</span></div>
-<div class="v-row" data-ref="Philippians 3:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Yea verily, and I count all things to be loss for the excellency of the knowledge of Christ Jesus my Lord: for whom I suffered the loss of all things, and do count them but refuse, that I may gain Christ,</span></div>
-<div class="v-row" data-ref="Philippians 3:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">and be found in him, not having a righteousness of mine own, [even] that which is of the law, but that which is through faith in Christ, the righteousness which is from God by faith:</span></div>
-<div class="v-row" data-ref="Philippians 3:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">that I may know him, and the power of his resurrection, and the fellowship of his sufferings, becoming conformed unto his death;</span></div>
-<div class="v-row" data-ref="Philippians 3:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">if by any means I may attain unto the resurrection from the dead.</span></div>
-<div class="v-row" data-ref="Philippians 3:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Not that I have already obtained, or am already made perfect: but I press on, if so be that I may lay hold on that for which also I was laid hold on by Christ Jesus.</span></div>
-<div class="v-row" data-ref="Philippians 3:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Brethren, I count not myself yet to have laid hold: but one thing [I do], forgetting the things which are behind, and stretching forward to the things which are before,</span></div>
-<div class="v-row" data-ref="Philippians 3:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I press on toward the goal unto the prize of the high calling of God in Christ Jesus.</span></div>
-<div class="v-row" data-ref="Philippians 3:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let us therefore, as many as are perfect, be thus minded: and if in anything ye are otherwise minded, this also shall God reveal unto you:</span></div>
-<div class="v-row" data-ref="Philippians 3:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">only, whereunto we have attained, by that same [rule] let us walk.</span></div>
-<div class="v-row" data-ref="Philippians 3:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Brethren, be ye imitators together of me, and mark them that so walk even as ye have us for an ensample.</span></div>
-<div class="v-row" data-ref="Philippians 3:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For many walk, of whom I told you often, and now tell you even weeping, [that they are] the enemies of the cross of Christ:</span></div>
-<div class="v-row" data-ref="Philippians 3:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">whose end is perdition, whose god is the belly, and [whose] glory is in their shame, who mind earthly things.</span></div>
-<div class="v-row" data-ref="Philippians 3:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For our citizenship is in heaven; whence also we wait for a Saviour, the Lord Jesus Christ:</span></div>
-<div class="v-row" data-ref="Philippians 3:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">who shall fashion anew the body of our humiliation, [that it may be] conformed to the body of his glory, according to the working whereby he is able even to subject all things unto himself.</span></div>
+    <a class="v-row" href="/bible/asv/philippians/3/1/" data-ref="Philippians 3:1 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/1/"><span class="v-num">1</span><span class="v-txt">Finally, my brethren, rejoice in the Lord. To write the same things to you, to me indeed is not irksome, but for you it is safe.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/2/" data-ref="Philippians 3:2 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/2/"><span class="v-num">2</span><span class="v-txt">Beware of the dogs, beware of the evil workers, beware of the concision:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/3/" data-ref="Philippians 3:3 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/3/"><span class="v-num">3</span><span class="v-txt">for we are the circumcision, who worship by the Spirit of God, and glory in Christ Jesus, and have no confidence in the flesh:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/4/" data-ref="Philippians 3:4 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/4/"><span class="v-num">4</span><span class="v-txt">though I myself might have confidence even in the flesh: if any other man thinketh to have confidence in the flesh, I yet more:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/5/" data-ref="Philippians 3:5 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/5/"><span class="v-num">5</span><span class="v-txt">circumcised the eighth day, of the stock of Israel, of the tribe of Benjamin, a Hebrew of Hebrews; as touching the law, a Pharisee;</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/6/" data-ref="Philippians 3:6 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/6/"><span class="v-num">6</span><span class="v-txt">as touching zeal, persecuting the church; as touching the righteousness which is in the law, found blameless.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/7/" data-ref="Philippians 3:7 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/7/"><span class="v-num">7</span><span class="v-txt">Howbeit what things were gain to me, these have I counted loss for Christ.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/8/" data-ref="Philippians 3:8 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/8/"><span class="v-num">8</span><span class="v-txt">Yea verily, and I count all things to be loss for the excellency of the knowledge of Christ Jesus my Lord: for whom I suffered the loss of all things, and do count them but refuse, that I may gain Christ,</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/9/" data-ref="Philippians 3:9 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/9/"><span class="v-num">9</span><span class="v-txt">and be found in him, not having a righteousness of mine own, [even] that which is of the law, but that which is through faith in Christ, the righteousness which is from God by faith:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/10/" data-ref="Philippians 3:10 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/10/"><span class="v-num">10</span><span class="v-txt">that I may know him, and the power of his resurrection, and the fellowship of his sufferings, becoming conformed unto his death;</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/11/" data-ref="Philippians 3:11 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/11/"><span class="v-num">11</span><span class="v-txt">if by any means I may attain unto the resurrection from the dead.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/12/" data-ref="Philippians 3:12 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/12/"><span class="v-num">12</span><span class="v-txt">Not that I have already obtained, or am already made perfect: but I press on, if so be that I may lay hold on that for which also I was laid hold on by Christ Jesus.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/13/" data-ref="Philippians 3:13 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/13/"><span class="v-num">13</span><span class="v-txt">Brethren, I count not myself yet to have laid hold: but one thing [I do], forgetting the things which are behind, and stretching forward to the things which are before,</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/14/" data-ref="Philippians 3:14 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/14/"><span class="v-num">14</span><span class="v-txt">I press on toward the goal unto the prize of the high calling of God in Christ Jesus.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/15/" data-ref="Philippians 3:15 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/15/"><span class="v-num">15</span><span class="v-txt">Let us therefore, as many as are perfect, be thus minded: and if in anything ye are otherwise minded, this also shall God reveal unto you:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/16/" data-ref="Philippians 3:16 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/16/"><span class="v-num">16</span><span class="v-txt">only, whereunto we have attained, by that same [rule] let us walk.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/17/" data-ref="Philippians 3:17 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/17/"><span class="v-num">17</span><span class="v-txt">Brethren, be ye imitators together of me, and mark them that so walk even as ye have us for an ensample.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/18/" data-ref="Philippians 3:18 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/18/"><span class="v-num">18</span><span class="v-txt">For many walk, of whom I told you often, and now tell you even weeping, [that they are] the enemies of the cross of Christ:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/19/" data-ref="Philippians 3:19 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/19/"><span class="v-num">19</span><span class="v-txt">whose end is perdition, whose god is the belly, and [whose] glory is in their shame, who mind earthly things.</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/20/" data-ref="Philippians 3:20 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/20/"><span class="v-num">20</span><span class="v-txt">For our citizenship is in heaven; whence also we wait for a Saviour, the Lord Jesus Christ:</span></a>
+<a class="v-row" href="/bible/asv/philippians/3/21/" data-ref="Philippians 3:21 (American Standard Version)" data-verse-url="/bible/asv/philippians/3/21/"><span class="v-num">21</span><span class="v-txt">who shall fashion anew the body of our humiliation, [that it may be] conformed to the body of his glory, according to the working whereby he is able even to subject all things unto himself.</span></a>
 
     
 <div class="app-cta">

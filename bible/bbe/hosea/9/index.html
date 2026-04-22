@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Hosea 9:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Have no joy, O Israel, and do not be glad like the nations; for you have been untrue to your God; your desire has been for the loose woman's reward on every grain-floor.</span></div>
-<div class="v-row" data-ref="Hosea 9:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The grain-floor and the place where the grapes are crushed will not give them food; there will be no new wine for them.</span></div>
-<div class="v-row" data-ref="Hosea 9:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They will have no resting-place in the Lord's land, but Ephraim will go back to Egypt, and they will take unclean food in Assyria.</span></div>
-<div class="v-row" data-ref="Hosea 9:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They will give no wine offering to the Lord, they will not make offerings ready for him; their bread will be like the bread of those in sorrow; all who take it will be unclean, because their bread will be only for their desire, it will not come into the house of the Lord.</span></div>
-<div class="v-row" data-ref="Hosea 9:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">What will you do on the day of worship, and on the day of the feast of the Lord?</span></div>
-<div class="v-row" data-ref="Hosea 9:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For see, they are going away into Assyria; Egypt will get them together, Memphis will be their last resting-place; their fair silver vessels will be covered over with field plants, and thorns will come up in their tents.</span></div>
-<div class="v-row" data-ref="Hosea 9:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The days of punishment, the days of reward are come; Israel will be put to shame; the prophet is foolish, the man who has the spirit is off his head, because of your great sin.</span></div>
-<div class="v-row" data-ref="Hosea 9:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">There is great hate against the watchman of Ephraim, the people of my God; as for the prophet, there is a net in all his ways, and hate in the house of his God.</span></div>
-<div class="v-row" data-ref="Hosea 9:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They have gone deep in evil as in the days of Gibeah; he will keep in mind their wrongdoing, he will give them punishment for their sins.</span></div>
-<div class="v-row" data-ref="Hosea 9:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I made discovery of Israel as of grapes in the waste land; I saw your fathers as the first-fruits of the fig-tree in her early fruit time; but they came to Baal-peor, and made themselves holy to the thing of shame, and became disgusting like that to which they gave their love.</span></div>
-<div class="v-row" data-ref="Hosea 9:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">As for Ephraim, their glory will go in flight like a bird: there will be no birth and no one with child and no giving of life.</span></div>
-<div class="v-row" data-ref="Hosea 9:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Even though their children have come to growth I will take them away, so that not a man will be there; for their evil-doing will be complete and they will be put to shame because of it.</span></div>
-<div class="v-row" data-ref="Hosea 9:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">As I have seen a beast whose young have been taken from her, so Ephraim will give birth to children only for them to be put to death.</span></div>
-<div class="v-row" data-ref="Hosea 9:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">O Lord, what will you give them? Give them bodies which may not give birth and breasts without milk.</span></div>
-<div class="v-row" data-ref="Hosea 9:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">All their evil-doing is in Gilgal; there I had hate for them; because of their evil-doing I will send them out of my house; they will no longer be dear to me; all their rulers are uncontrolled.</span></div>
-<div class="v-row" data-ref="Hosea 9:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The rod has come on Ephraim, their root is dry, let them have no fruit; even though they give birth, I will put to death the dearest fruit of their bodies.</span></div>
-<div class="v-row" data-ref="Hosea 9:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">My God will give them up because they did not give ear to him; they will be wandering among the nations.</span></div>
+    <a class="v-row" href="/bible/bbe/hosea/9/1/" data-ref="Hosea 9:1 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/1/"><span class="v-num">1</span><span class="v-txt">Have no joy, O Israel, and do not be glad like the nations; for you have been untrue to your God; your desire has been for the loose woman's reward on every grain-floor.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/2/" data-ref="Hosea 9:2 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/2/"><span class="v-num">2</span><span class="v-txt">The grain-floor and the place where the grapes are crushed will not give them food; there will be no new wine for them.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/3/" data-ref="Hosea 9:3 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/3/"><span class="v-num">3</span><span class="v-txt">They will have no resting-place in the Lord's land, but Ephraim will go back to Egypt, and they will take unclean food in Assyria.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/4/" data-ref="Hosea 9:4 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/4/"><span class="v-num">4</span><span class="v-txt">They will give no wine offering to the Lord, they will not make offerings ready for him; their bread will be like the bread of those in sorrow; all who take it will be unclean, because their bread will be only for their desire, it will not come into the house of the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/5/" data-ref="Hosea 9:5 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/5/"><span class="v-num">5</span><span class="v-txt">What will you do on the day of worship, and on the day of the feast of the Lord?</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/6/" data-ref="Hosea 9:6 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/6/"><span class="v-num">6</span><span class="v-txt">For see, they are going away into Assyria; Egypt will get them together, Memphis will be their last resting-place; their fair silver vessels will be covered over with field plants, and thorns will come up in their tents.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/7/" data-ref="Hosea 9:7 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/7/"><span class="v-num">7</span><span class="v-txt">The days of punishment, the days of reward are come; Israel will be put to shame; the prophet is foolish, the man who has the spirit is off his head, because of your great sin.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/8/" data-ref="Hosea 9:8 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/8/"><span class="v-num">8</span><span class="v-txt">There is great hate against the watchman of Ephraim, the people of my God; as for the prophet, there is a net in all his ways, and hate in the house of his God.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/9/" data-ref="Hosea 9:9 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/9/"><span class="v-num">9</span><span class="v-txt">They have gone deep in evil as in the days of Gibeah; he will keep in mind their wrongdoing, he will give them punishment for their sins.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/10/" data-ref="Hosea 9:10 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/10/"><span class="v-num">10</span><span class="v-txt">I made discovery of Israel as of grapes in the waste land; I saw your fathers as the first-fruits of the fig-tree in her early fruit time; but they came to Baal-peor, and made themselves holy to the thing of shame, and became disgusting like that to which they gave their love.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/11/" data-ref="Hosea 9:11 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/11/"><span class="v-num">11</span><span class="v-txt">As for Ephraim, their glory will go in flight like a bird: there will be no birth and no one with child and no giving of life.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/12/" data-ref="Hosea 9:12 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/12/"><span class="v-num">12</span><span class="v-txt">Even though their children have come to growth I will take them away, so that not a man will be there; for their evil-doing will be complete and they will be put to shame because of it.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/13/" data-ref="Hosea 9:13 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/13/"><span class="v-num">13</span><span class="v-txt">As I have seen a beast whose young have been taken from her, so Ephraim will give birth to children only for them to be put to death.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/14/" data-ref="Hosea 9:14 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/14/"><span class="v-num">14</span><span class="v-txt">O Lord, what will you give them? Give them bodies which may not give birth and breasts without milk.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/15/" data-ref="Hosea 9:15 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/15/"><span class="v-num">15</span><span class="v-txt">All their evil-doing is in Gilgal; there I had hate for them; because of their evil-doing I will send them out of my house; they will no longer be dear to me; all their rulers are uncontrolled.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/16/" data-ref="Hosea 9:16 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/16/"><span class="v-num">16</span><span class="v-txt">The rod has come on Ephraim, their root is dry, let them have no fruit; even though they give birth, I will put to death the dearest fruit of their bodies.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/9/17/" data-ref="Hosea 9:17 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/9/17/"><span class="v-num">17</span><span class="v-txt">My God will give them up because they did not give ear to him; they will be wandering among the nations.</span></a>
 
     
 <div class="app-cta">

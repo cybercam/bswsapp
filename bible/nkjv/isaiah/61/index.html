@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 61</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 61:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"The Spirit of the Lord GOD [is] upon Me, Because the LORD has anointed Me To preach good tidings to the poor; He has sent Me to heal the brokenhearted, To proclaim liberty to the captives, And the opening of the prison to [those who are] bound;</span></div>
-<div class="v-row" data-ref="Isaiah 61:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">To proclaim the acceptable year of the LORD, And the day of vengeance of our God; To comfort all who mourn,</span></div>
-<div class="v-row" data-ref="Isaiah 61:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">To console those who mourn in Zion, To give them beauty for ashes, The oil of joy for mourning, The garment of praise for the spirit of heaviness; That they may be called trees of righteousness, The planting of the LORD, that He may be glorified."</span></div>
-<div class="v-row" data-ref="Isaiah 61:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they shall rebuild the old ruins, They shall raise up the former desolations, And they shall repair the ruined cities, The desolations of many generations.</span></div>
-<div class="v-row" data-ref="Isaiah 61:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Strangers shall stand and feed your flocks, And the sons of the foreigner [Shall be] your plowmen and your vinedressers.</span></div>
-<div class="v-row" data-ref="Isaiah 61:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But you shall be named the priests of the LORD, They shall call you the servants of our God. You shall eat the riches of the Gentiles, And in their glory you shall boast.</span></div>
-<div class="v-row" data-ref="Isaiah 61:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Instead of your shame [you shall have] double [honor,] And [instead of] confusion they shall rejoice in their portion. Therefore in their land they shall possess double; Everlasting joy shall be theirs.</span></div>
-<div class="v-row" data-ref="Isaiah 61:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"For I, the LORD, love justice; I hate robbery for burnt offering; I will direct their work in truth, And will make with them an everlasting covenant.</span></div>
-<div class="v-row" data-ref="Isaiah 61:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Their descendants shall be known among the Gentiles, And their offspring among the people. All who see them shall acknowledge them, That they [are] the posterity [whom] the LORD has blessed."</span></div>
-<div class="v-row" data-ref="Isaiah 61:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I will greatly rejoice in the LORD, My soul shall be joyful in my God; For He has clothed me with the garments of salvation, He has covered me with the robe of righteousness, As a bridegroom decks [himself] with ornaments, And as a bride adorns [herself] with her jewels.</span></div>
-<div class="v-row" data-ref="Isaiah 61:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For as the earth brings forth its bud, As the garden causes the things that are sown in it to spring forth, So the Lord GOD will cause righteousness and praise to spring forth before all the nations.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/61/1/" data-ref="Isaiah 61:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/1/"><span class="v-num">1</span><span class="v-txt">"The Spirit of the Lord GOD [is] upon Me, Because the LORD has anointed Me To preach good tidings to the poor; He has sent Me to heal the brokenhearted, To proclaim liberty to the captives, And the opening of the prison to [those who are] bound;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/2/" data-ref="Isaiah 61:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/2/"><span class="v-num">2</span><span class="v-txt">To proclaim the acceptable year of the LORD, And the day of vengeance of our God; To comfort all who mourn,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/3/" data-ref="Isaiah 61:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/3/"><span class="v-num">3</span><span class="v-txt">To console those who mourn in Zion, To give them beauty for ashes, The oil of joy for mourning, The garment of praise for the spirit of heaviness; That they may be called trees of righteousness, The planting of the LORD, that He may be glorified."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/4/" data-ref="Isaiah 61:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/4/"><span class="v-num">4</span><span class="v-txt">And they shall rebuild the old ruins, They shall raise up the former desolations, And they shall repair the ruined cities, The desolations of many generations.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/5/" data-ref="Isaiah 61:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/5/"><span class="v-num">5</span><span class="v-txt">Strangers shall stand and feed your flocks, And the sons of the foreigner [Shall be] your plowmen and your vinedressers.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/6/" data-ref="Isaiah 61:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/6/"><span class="v-num">6</span><span class="v-txt">But you shall be named the priests of the LORD, They shall call you the servants of our God. You shall eat the riches of the Gentiles, And in their glory you shall boast.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/7/" data-ref="Isaiah 61:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/7/"><span class="v-num">7</span><span class="v-txt">Instead of your shame [you shall have] double [honor,] And [instead of] confusion they shall rejoice in their portion. Therefore in their land they shall possess double; Everlasting joy shall be theirs.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/8/" data-ref="Isaiah 61:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/8/"><span class="v-num">8</span><span class="v-txt">"For I, the LORD, love justice; I hate robbery for burnt offering; I will direct their work in truth, And will make with them an everlasting covenant.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/9/" data-ref="Isaiah 61:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/9/"><span class="v-num">9</span><span class="v-txt">Their descendants shall be known among the Gentiles, And their offspring among the people. All who see them shall acknowledge them, That they [are] the posterity [whom] the LORD has blessed."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/10/" data-ref="Isaiah 61:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/10/"><span class="v-num">10</span><span class="v-txt">I will greatly rejoice in the LORD, My soul shall be joyful in my God; For He has clothed me with the garments of salvation, He has covered me with the robe of righteousness, As a bridegroom decks [himself] with ornaments, And as a bride adorns [herself] with her jewels.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/61/11/" data-ref="Isaiah 61:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/61/11/"><span class="v-num">11</span><span class="v-txt">For as the earth brings forth its bud, As the garden causes the things that are sown in it to spring forth, So the Lord GOD will cause righteousness and praise to spring forth before all the nations.</span></a>
 
     
 <div class="app-cta">

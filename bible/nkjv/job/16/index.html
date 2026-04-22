@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 16:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered and said:</span></div>
-<div class="v-row" data-ref="Job 16:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"I have heard many such things; Miserable comforters [are] you all!</span></div>
-<div class="v-row" data-ref="Job 16:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Shall words of wind have an end? Or what provokes you that you answer?</span></div>
-<div class="v-row" data-ref="Job 16:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I also could speak as you [do,] If your soul were in my soul's place. I could heap up words against you, And shake my head at you;</span></div>
-<div class="v-row" data-ref="Job 16:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">[But] I would strengthen you with my mouth, And the comfort of my lips would relieve [your grief.]</span></div>
-<div class="v-row" data-ref="Job 16:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">" Though I speak, my grief is not relieved; And [if] I remain silent, how am I eased?</span></div>
-<div class="v-row" data-ref="Job 16:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But now He has worn me out; You have made desolate all my company.</span></div>
-<div class="v-row" data-ref="Job 16:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You have shriveled me up, And it is a witness [against me;] My leanness rises up against me [And] bears witness to my face.</span></div>
-<div class="v-row" data-ref="Job 16:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He tears [me] in His wrath, and hates me; He gnashes at me with His teeth; My adversary sharpens His gaze on me.</span></div>
-<div class="v-row" data-ref="Job 16:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">They gape at me with their mouth, They strike me reproachfully on the cheek, They gather together against me.</span></div>
-<div class="v-row" data-ref="Job 16:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">God has delivered me to the ungodly, And turned me over to the hands of the wicked.</span></div>
-<div class="v-row" data-ref="Job 16:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I was at ease, but He has shattered me; He also has taken [me] by my neck, and shaken me to pieces; He has set me up for His target,</span></div>
-<div class="v-row" data-ref="Job 16:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">His archers surround me. He pierces my heart and does not pity; He pours out my gall on the ground.</span></div>
-<div class="v-row" data-ref="Job 16:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He breaks me with wound upon wound; He runs at me like a warrior.</span></div>
-<div class="v-row" data-ref="Job 16:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"I have sewn sackcloth over my skin, And laid my head in the dust.</span></div>
-<div class="v-row" data-ref="Job 16:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">My face is flushed from weeping, And on my eyelids [is] the shadow of death;</span></div>
-<div class="v-row" data-ref="Job 16:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Although no violence [is] in my hands, And my prayer [is] pure.</span></div>
-<div class="v-row" data-ref="Job 16:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">" O earth, do not cover my blood, And let my cry have no [resting] place!</span></div>
-<div class="v-row" data-ref="Job 16:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Surely even now my witness [is] in heaven, And my evidence [is] on high.</span></div>
-<div class="v-row" data-ref="Job 16:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My friends scorn me; My eyes pour out [tears] to God.</span></div>
-<div class="v-row" data-ref="Job 16:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Oh, that one might plead for a man with God, As a man [pleads] for his neighbor!</span></div>
-<div class="v-row" data-ref="Job 16:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For when a few years are finished, I shall go the way of no return.</span></div>
+    <a class="v-row" href="/bible/nkjv/job/16/1/" data-ref="Job 16:1 (New King James Version)" data-verse-url="/bible/nkjv/job/16/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/2/" data-ref="Job 16:2 (New King James Version)" data-verse-url="/bible/nkjv/job/16/2/"><span class="v-num">2</span><span class="v-txt">"I have heard many such things; Miserable comforters [are] you all!</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/3/" data-ref="Job 16:3 (New King James Version)" data-verse-url="/bible/nkjv/job/16/3/"><span class="v-num">3</span><span class="v-txt">Shall words of wind have an end? Or what provokes you that you answer?</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/4/" data-ref="Job 16:4 (New King James Version)" data-verse-url="/bible/nkjv/job/16/4/"><span class="v-num">4</span><span class="v-txt">I also could speak as you [do,] If your soul were in my soul's place. I could heap up words against you, And shake my head at you;</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/5/" data-ref="Job 16:5 (New King James Version)" data-verse-url="/bible/nkjv/job/16/5/"><span class="v-num">5</span><span class="v-txt">[But] I would strengthen you with my mouth, And the comfort of my lips would relieve [your grief.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/6/" data-ref="Job 16:6 (New King James Version)" data-verse-url="/bible/nkjv/job/16/6/"><span class="v-num">6</span><span class="v-txt">" Though I speak, my grief is not relieved; And [if] I remain silent, how am I eased?</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/7/" data-ref="Job 16:7 (New King James Version)" data-verse-url="/bible/nkjv/job/16/7/"><span class="v-num">7</span><span class="v-txt">But now He has worn me out; You have made desolate all my company.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/8/" data-ref="Job 16:8 (New King James Version)" data-verse-url="/bible/nkjv/job/16/8/"><span class="v-num">8</span><span class="v-txt">You have shriveled me up, And it is a witness [against me;] My leanness rises up against me [And] bears witness to my face.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/9/" data-ref="Job 16:9 (New King James Version)" data-verse-url="/bible/nkjv/job/16/9/"><span class="v-num">9</span><span class="v-txt">He tears [me] in His wrath, and hates me; He gnashes at me with His teeth; My adversary sharpens His gaze on me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/10/" data-ref="Job 16:10 (New King James Version)" data-verse-url="/bible/nkjv/job/16/10/"><span class="v-num">10</span><span class="v-txt">They gape at me with their mouth, They strike me reproachfully on the cheek, They gather together against me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/11/" data-ref="Job 16:11 (New King James Version)" data-verse-url="/bible/nkjv/job/16/11/"><span class="v-num">11</span><span class="v-txt">God has delivered me to the ungodly, And turned me over to the hands of the wicked.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/12/" data-ref="Job 16:12 (New King James Version)" data-verse-url="/bible/nkjv/job/16/12/"><span class="v-num">12</span><span class="v-txt">I was at ease, but He has shattered me; He also has taken [me] by my neck, and shaken me to pieces; He has set me up for His target,</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/13/" data-ref="Job 16:13 (New King James Version)" data-verse-url="/bible/nkjv/job/16/13/"><span class="v-num">13</span><span class="v-txt">His archers surround me. He pierces my heart and does not pity; He pours out my gall on the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/14/" data-ref="Job 16:14 (New King James Version)" data-verse-url="/bible/nkjv/job/16/14/"><span class="v-num">14</span><span class="v-txt">He breaks me with wound upon wound; He runs at me like a warrior.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/15/" data-ref="Job 16:15 (New King James Version)" data-verse-url="/bible/nkjv/job/16/15/"><span class="v-num">15</span><span class="v-txt">"I have sewn sackcloth over my skin, And laid my head in the dust.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/16/" data-ref="Job 16:16 (New King James Version)" data-verse-url="/bible/nkjv/job/16/16/"><span class="v-num">16</span><span class="v-txt">My face is flushed from weeping, And on my eyelids [is] the shadow of death;</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/17/" data-ref="Job 16:17 (New King James Version)" data-verse-url="/bible/nkjv/job/16/17/"><span class="v-num">17</span><span class="v-txt">Although no violence [is] in my hands, And my prayer [is] pure.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/18/" data-ref="Job 16:18 (New King James Version)" data-verse-url="/bible/nkjv/job/16/18/"><span class="v-num">18</span><span class="v-txt">" O earth, do not cover my blood, And let my cry have no [resting] place!</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/19/" data-ref="Job 16:19 (New King James Version)" data-verse-url="/bible/nkjv/job/16/19/"><span class="v-num">19</span><span class="v-txt">Surely even now my witness [is] in heaven, And my evidence [is] on high.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/20/" data-ref="Job 16:20 (New King James Version)" data-verse-url="/bible/nkjv/job/16/20/"><span class="v-num">20</span><span class="v-txt">My friends scorn me; My eyes pour out [tears] to God.</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/21/" data-ref="Job 16:21 (New King James Version)" data-verse-url="/bible/nkjv/job/16/21/"><span class="v-num">21</span><span class="v-txt">Oh, that one might plead for a man with God, As a man [pleads] for his neighbor!</span></a>
+<a class="v-row" href="/bible/nkjv/job/16/22/" data-ref="Job 16:22 (New King James Version)" data-verse-url="/bible/nkjv/job/16/22/"><span class="v-num">22</span><span class="v-txt">For when a few years are finished, I shall go the way of no return.</span></a>
 
     
 <div class="app-cta">

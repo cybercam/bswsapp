@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ecclesiastes 8:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Who [is] like a wise [man?] And who knows the interpretation of a thing? A man's wisdom makes his face shine, And the sternness of his face is changed.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I [say,] "Keep the king's commandment for the sake of your oath to God.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Do not be hasty to go from his presence. Do not take your stand for an evil thing, for he does whatever pleases him."</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Where the word of a king [is, there is] power; And who may say to him, "What are you doing?"</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He who keeps his command will experience nothing harmful; And a wise man's heart discerns both time and judgment,</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Because for every matter there is a time and judgment, Though the misery of man increases greatly.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For he does not know what will happen; So who can tell him when it will occur?</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">No one has power over the spirit to retain the spirit, And no one has power in the day of death. [There is] no release from that war, And wickedness will not deliver those who are given to it.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">All this I have seen, and applied my heart to every work that is done under the sun: [There is] a time in which one man rules over another to his own hurt.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then I saw the wicked buried, who had come and gone from the place of holiness, and they were forgotten in the city where they had so done. This also [is] vanity.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Because the sentence against an evil work is not executed speedily, therefore the heart of the sons of men is fully set in them to do evil.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Though a sinner does evil a hundred [times,] and his [days] are prolonged, yet I surely know that it will be well with those who fear God, who fear before Him.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But it will not be well with the wicked; nor will he prolong [his] days, [which are] as a shadow, because he does not fear before God.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">There is a vanity which occurs on earth, that there are just [men] to whom it happens according to the work of the wicked; again, there are wicked [men] to whom it happens according to the work of the righteous. I said that this also [is] vanity.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So I commended enjoyment, because a man has nothing better under the sun than to eat, drink, and be merry; for this will remain with him in his labor [all] the days of his life which God gives him under the sun.</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">When I applied my heart to know wisdom and to see the business that is done on earth, even though one sees no sleep day or night,</span></div>
-<div class="v-row" data-ref="Ecclesiastes 8:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">then I saw all the work of God, that a man cannot find out the work that is done under the sun. For though a man labors to discover [it,] yet he will not find [it;] moreover, though a wise [man] attempts to know [it,] he will not be able to find [it.]</span></div>
+    <a class="v-row" href="/bible/nkjv/ecclesiastes/8/1/" data-ref="Ecclesiastes 8:1 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/1/"><span class="v-num">1</span><span class="v-txt">Who [is] like a wise [man?] And who knows the interpretation of a thing? A man's wisdom makes his face shine, And the sternness of his face is changed.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/2/" data-ref="Ecclesiastes 8:2 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/2/"><span class="v-num">2</span><span class="v-txt">I [say,] "Keep the king's commandment for the sake of your oath to God.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/3/" data-ref="Ecclesiastes 8:3 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/3/"><span class="v-num">3</span><span class="v-txt">"Do not be hasty to go from his presence. Do not take your stand for an evil thing, for he does whatever pleases him."</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/4/" data-ref="Ecclesiastes 8:4 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/4/"><span class="v-num">4</span><span class="v-txt">Where the word of a king [is, there is] power; And who may say to him, "What are you doing?"</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/5/" data-ref="Ecclesiastes 8:5 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/5/"><span class="v-num">5</span><span class="v-txt">He who keeps his command will experience nothing harmful; And a wise man's heart discerns both time and judgment,</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/6/" data-ref="Ecclesiastes 8:6 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/6/"><span class="v-num">6</span><span class="v-txt">Because for every matter there is a time and judgment, Though the misery of man increases greatly.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/7/" data-ref="Ecclesiastes 8:7 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/7/"><span class="v-num">7</span><span class="v-txt">For he does not know what will happen; So who can tell him when it will occur?</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/8/" data-ref="Ecclesiastes 8:8 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/8/"><span class="v-num">8</span><span class="v-txt">No one has power over the spirit to retain the spirit, And no one has power in the day of death. [There is] no release from that war, And wickedness will not deliver those who are given to it.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/9/" data-ref="Ecclesiastes 8:9 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/9/"><span class="v-num">9</span><span class="v-txt">All this I have seen, and applied my heart to every work that is done under the sun: [There is] a time in which one man rules over another to his own hurt.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/10/" data-ref="Ecclesiastes 8:10 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/10/"><span class="v-num">10</span><span class="v-txt">Then I saw the wicked buried, who had come and gone from the place of holiness, and they were forgotten in the city where they had so done. This also [is] vanity.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/11/" data-ref="Ecclesiastes 8:11 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/11/"><span class="v-num">11</span><span class="v-txt">Because the sentence against an evil work is not executed speedily, therefore the heart of the sons of men is fully set in them to do evil.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/12/" data-ref="Ecclesiastes 8:12 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/12/"><span class="v-num">12</span><span class="v-txt">Though a sinner does evil a hundred [times,] and his [days] are prolonged, yet I surely know that it will be well with those who fear God, who fear before Him.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/13/" data-ref="Ecclesiastes 8:13 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/13/"><span class="v-num">13</span><span class="v-txt">But it will not be well with the wicked; nor will he prolong [his] days, [which are] as a shadow, because he does not fear before God.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/14/" data-ref="Ecclesiastes 8:14 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/14/"><span class="v-num">14</span><span class="v-txt">There is a vanity which occurs on earth, that there are just [men] to whom it happens according to the work of the wicked; again, there are wicked [men] to whom it happens according to the work of the righteous. I said that this also [is] vanity.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/15/" data-ref="Ecclesiastes 8:15 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/15/"><span class="v-num">15</span><span class="v-txt">So I commended enjoyment, because a man has nothing better under the sun than to eat, drink, and be merry; for this will remain with him in his labor [all] the days of his life which God gives him under the sun.</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/16/" data-ref="Ecclesiastes 8:16 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/16/"><span class="v-num">16</span><span class="v-txt">When I applied my heart to know wisdom and to see the business that is done on earth, even though one sees no sleep day or night,</span></a>
+<a class="v-row" href="/bible/nkjv/ecclesiastes/8/17/" data-ref="Ecclesiastes 8:17 (New King James Version)" data-verse-url="/bible/nkjv/ecclesiastes/8/17/"><span class="v-num">17</span><span class="v-txt">then I saw all the work of God, that a man cannot find out the work that is done under the sun. For though a man labors to discover [it,] yet he will not find [it;] moreover, though a wise [man] attempts to know [it,] he will not be able to find [it.]</span></a>
 
     
 <div class="app-cta">

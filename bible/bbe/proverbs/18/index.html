@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 18</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 18:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">He who keeps himself separate for his private purpose goes against all good sense.</span></div>
-<div class="v-row" data-ref="Proverbs 18:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A foolish man has no pleasure in good sense, but only to let what is in his heart come to light.</span></div>
-<div class="v-row" data-ref="Proverbs 18:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When the evil-doer comes, a low opinion comes with him, and with the loss of honour comes shame.</span></div>
-<div class="v-row" data-ref="Proverbs 18:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The words of a man's mouth are like deep waters: the fountain of wisdom is like a flowing stream.</span></div>
-<div class="v-row" data-ref="Proverbs 18:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">To have respect for the person of the evil-doer is not good, or to give a wrong decision against the upright.</span></div>
-<div class="v-row" data-ref="Proverbs 18:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">A foolish man's lips are a cause of fighting, and his mouth makes him open to blows.</span></div>
-<div class="v-row" data-ref="Proverbs 18:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The mouth of a foolish man is his destruction, and his lips are a net for his soul.</span></div>
-<div class="v-row" data-ref="Proverbs 18:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The words of one who says evil of his neighbour secretly are like sweet food, and go down into the inner parts of the stomach.</span></div>
-<div class="v-row" data-ref="Proverbs 18:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He who does not give his mind to his work is brother to him who makes destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 18:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The name of the Lord is a strong tower: the upright man running into it is safe.</span></div>
-<div class="v-row" data-ref="Proverbs 18:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The property of a man of wealth is his strong town, and it is as a high wall in the thoughts of his heart.</span></div>
-<div class="v-row" data-ref="Proverbs 18:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Before destruction the heart of man is full of pride, and before honour goes a gentle spirit.</span></div>
-<div class="v-row" data-ref="Proverbs 18:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">To give an answer before hearing is a foolish thing and a cause of shame.</span></div>
-<div class="v-row" data-ref="Proverbs 18:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The spirit of a man will be his support when he is ill; but how may a broken spirit be lifted up?</span></div>
-<div class="v-row" data-ref="Proverbs 18:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The heart of the man of good sense gets knowledge; the ear of the wise is searching for knowledge.</span></div>
-<div class="v-row" data-ref="Proverbs 18:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">A man's offering makes room for him, letting him come before great men.</span></div>
-<div class="v-row" data-ref="Proverbs 18:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The man who first puts his cause before the judge seems to be in the right; but then his neighbour comes and puts his cause in its true light.</span></div>
-<div class="v-row" data-ref="Proverbs 18:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The decision of chance puts an end to argument, parting the strong.</span></div>
-<div class="v-row" data-ref="Proverbs 18:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">A brother wounded is like a strong town, and violent acts are like a locked tower.</span></div>
-<div class="v-row" data-ref="Proverbs 18:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">With the fruit of a man's mouth his stomach will be full; the produce of his lips will be his in full measure.</span></div>
-<div class="v-row" data-ref="Proverbs 18:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Death and life are in the power of the tongue; and those to whom it is dear will have its fruit for their food.</span></div>
-<div class="v-row" data-ref="Proverbs 18:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Whoever gets a wife gets a good thing, and has the approval of the Lord.</span></div>
-<div class="v-row" data-ref="Proverbs 18:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The poor man makes requests for grace, but the man of wealth gives a rough answer.</span></div>
-<div class="v-row" data-ref="Proverbs 18:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">There are friends who may be a man's destruction, but there is a lover who keeps nearer than a brother.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/18/1/" data-ref="Proverbs 18:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/1/"><span class="v-num">1</span><span class="v-txt">He who keeps himself separate for his private purpose goes against all good sense.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/2/" data-ref="Proverbs 18:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/2/"><span class="v-num">2</span><span class="v-txt">A foolish man has no pleasure in good sense, but only to let what is in his heart come to light.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/3/" data-ref="Proverbs 18:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/3/"><span class="v-num">3</span><span class="v-txt">When the evil-doer comes, a low opinion comes with him, and with the loss of honour comes shame.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/4/" data-ref="Proverbs 18:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/4/"><span class="v-num">4</span><span class="v-txt">The words of a man's mouth are like deep waters: the fountain of wisdom is like a flowing stream.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/5/" data-ref="Proverbs 18:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/5/"><span class="v-num">5</span><span class="v-txt">To have respect for the person of the evil-doer is not good, or to give a wrong decision against the upright.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/6/" data-ref="Proverbs 18:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/6/"><span class="v-num">6</span><span class="v-txt">A foolish man's lips are a cause of fighting, and his mouth makes him open to blows.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/7/" data-ref="Proverbs 18:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/7/"><span class="v-num">7</span><span class="v-txt">The mouth of a foolish man is his destruction, and his lips are a net for his soul.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/8/" data-ref="Proverbs 18:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/8/"><span class="v-num">8</span><span class="v-txt">The words of one who says evil of his neighbour secretly are like sweet food, and go down into the inner parts of the stomach.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/9/" data-ref="Proverbs 18:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/9/"><span class="v-num">9</span><span class="v-txt">He who does not give his mind to his work is brother to him who makes destruction.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/10/" data-ref="Proverbs 18:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/10/"><span class="v-num">10</span><span class="v-txt">The name of the Lord is a strong tower: the upright man running into it is safe.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/11/" data-ref="Proverbs 18:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/11/"><span class="v-num">11</span><span class="v-txt">The property of a man of wealth is his strong town, and it is as a high wall in the thoughts of his heart.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/12/" data-ref="Proverbs 18:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/12/"><span class="v-num">12</span><span class="v-txt">Before destruction the heart of man is full of pride, and before honour goes a gentle spirit.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/13/" data-ref="Proverbs 18:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/13/"><span class="v-num">13</span><span class="v-txt">To give an answer before hearing is a foolish thing and a cause of shame.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/14/" data-ref="Proverbs 18:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/14/"><span class="v-num">14</span><span class="v-txt">The spirit of a man will be his support when he is ill; but how may a broken spirit be lifted up?</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/15/" data-ref="Proverbs 18:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/15/"><span class="v-num">15</span><span class="v-txt">The heart of the man of good sense gets knowledge; the ear of the wise is searching for knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/16/" data-ref="Proverbs 18:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/16/"><span class="v-num">16</span><span class="v-txt">A man's offering makes room for him, letting him come before great men.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/17/" data-ref="Proverbs 18:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/17/"><span class="v-num">17</span><span class="v-txt">The man who first puts his cause before the judge seems to be in the right; but then his neighbour comes and puts his cause in its true light.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/18/" data-ref="Proverbs 18:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/18/"><span class="v-num">18</span><span class="v-txt">The decision of chance puts an end to argument, parting the strong.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/19/" data-ref="Proverbs 18:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/19/"><span class="v-num">19</span><span class="v-txt">A brother wounded is like a strong town, and violent acts are like a locked tower.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/20/" data-ref="Proverbs 18:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/20/"><span class="v-num">20</span><span class="v-txt">With the fruit of a man's mouth his stomach will be full; the produce of his lips will be his in full measure.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/21/" data-ref="Proverbs 18:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/21/"><span class="v-num">21</span><span class="v-txt">Death and life are in the power of the tongue; and those to whom it is dear will have its fruit for their food.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/22/" data-ref="Proverbs 18:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/22/"><span class="v-num">22</span><span class="v-txt">Whoever gets a wife gets a good thing, and has the approval of the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/23/" data-ref="Proverbs 18:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/23/"><span class="v-num">23</span><span class="v-txt">The poor man makes requests for grace, but the man of wealth gives a rough answer.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/18/24/" data-ref="Proverbs 18:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/18/24/"><span class="v-num">24</span><span class="v-txt">There are friends who may be a man's destruction, but there is a lover who keeps nearer than a brother.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 8:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Moreover the LORD said to me, "Take a large scroll, and write on it with a man's pen concerning Maher-Shalal-Hash-Baz.</span></div>
-<div class="v-row" data-ref="Isaiah 8:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"And I will take for Myself faithful witnesses to record, Uriah the priest and Zechariah the son of Jeberechiah."</span></div>
-<div class="v-row" data-ref="Isaiah 8:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then I went to the prophetess, and she conceived and bore a son. Then the LORD said to me, "Call his name Maher-Shalal-Hash-Baz;</span></div>
-<div class="v-row" data-ref="Isaiah 8:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"for before the child shall have knowledge to cry 'My father' and 'My mother,' the riches of Damascus and the spoil of Samaria will be taken away before the king of Assyria."</span></div>
-<div class="v-row" data-ref="Isaiah 8:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The LORD also spoke to me again, saying:</span></div>
-<div class="v-row" data-ref="Isaiah 8:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"Inasmuch as these people refused The waters of Shiloah that flow softly, And rejoice in Rezin and in Remaliah's son;</span></div>
-<div class="v-row" data-ref="Isaiah 8:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now therefore, behold, the Lord brings up over them The waters of the River, strong and mighty -- The king of Assyria and all his glory; He will go up over all his channels And go over all his banks.</span></div>
-<div class="v-row" data-ref="Isaiah 8:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He will pass through Judah, He will overflow and pass over, He will reach up to the neck; And the stretching out of his wings Will fill the breadth of Your land, O Immanuel.</span></div>
-<div class="v-row" data-ref="Isaiah 8:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">" Be shattered, O you peoples, and be broken in pieces! Give ear, all you from far countries. Gird yourselves, but be broken in pieces; Gird yourselves, but be broken in pieces.</span></div>
-<div class="v-row" data-ref="Isaiah 8:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Take counsel together, but it will come to nothing; Speak the word, but it will not stand, For God [is] with us."</span></div>
-<div class="v-row" data-ref="Isaiah 8:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the LORD spoke thus to me with a strong hand, and instructed me that I should not walk in the way of this people, saying:</span></div>
-<div class="v-row" data-ref="Isaiah 8:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"Do not say, 'A conspiracy,' Concerning all that this people call a conspiracy, Nor be afraid of their threats, nor be troubled.</span></div>
-<div class="v-row" data-ref="Isaiah 8:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The LORD of hosts, Him you shall hallow; [Let] Him [be] your fear, And [let] Him [be] your dread.</span></div>
-<div class="v-row" data-ref="Isaiah 8:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He will be as a sanctuary, But a stone of stumbling and a rock of offense To both the houses of Israel, As a trap and a snare to the inhabitants of Jerusalem.</span></div>
-<div class="v-row" data-ref="Isaiah 8:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And many among them shall stumble; They shall fall and be broken, Be snared and taken."</span></div>
-<div class="v-row" data-ref="Isaiah 8:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Bind up the testimony, Seal the law among my disciples.</span></div>
-<div class="v-row" data-ref="Isaiah 8:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And I will wait on the LORD, Who hides His face from the house of Jacob; And I will hope in Him.</span></div>
-<div class="v-row" data-ref="Isaiah 8:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Here am I and the children whom the LORD has given me! [We are] for signs and wonders in Israel From the LORD of hosts, Who dwells in Mount Zion.</span></div>
-<div class="v-row" data-ref="Isaiah 8:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And when they say to you, "Seek those who are mediums and wizards, who whisper and mutter," should not a people seek their God? [Should they seek] the dead on behalf of the living?</span></div>
-<div class="v-row" data-ref="Isaiah 8:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">To the law and to the testimony! If they do not speak according to this word, [it is] because [there is] no light in them.</span></div>
-<div class="v-row" data-ref="Isaiah 8:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">They will pass through it hard pressed and hungry; and it shall happen, when they are hungry, that they will be enraged and curse their king and their God, and look upward.</span></div>
-<div class="v-row" data-ref="Isaiah 8:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Then they will look to the earth, and see trouble and darkness, gloom of anguish; and [they will be] driven into darkness.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/8/1/" data-ref="Isaiah 8:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/1/"><span class="v-num">1</span><span class="v-txt">Moreover the LORD said to me, "Take a large scroll, and write on it with a man's pen concerning Maher-Shalal-Hash-Baz.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/2/" data-ref="Isaiah 8:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/2/"><span class="v-num">2</span><span class="v-txt">"And I will take for Myself faithful witnesses to record, Uriah the priest and Zechariah the son of Jeberechiah."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/3/" data-ref="Isaiah 8:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/3/"><span class="v-num">3</span><span class="v-txt">Then I went to the prophetess, and she conceived and bore a son. Then the LORD said to me, "Call his name Maher-Shalal-Hash-Baz;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/4/" data-ref="Isaiah 8:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/4/"><span class="v-num">4</span><span class="v-txt">"for before the child shall have knowledge to cry 'My father' and 'My mother,' the riches of Damascus and the spoil of Samaria will be taken away before the king of Assyria."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/5/" data-ref="Isaiah 8:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/5/"><span class="v-num">5</span><span class="v-txt">The LORD also spoke to me again, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/6/" data-ref="Isaiah 8:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/6/"><span class="v-num">6</span><span class="v-txt">"Inasmuch as these people refused The waters of Shiloah that flow softly, And rejoice in Rezin and in Remaliah's son;</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/7/" data-ref="Isaiah 8:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/7/"><span class="v-num">7</span><span class="v-txt">Now therefore, behold, the Lord brings up over them The waters of the River, strong and mighty -- The king of Assyria and all his glory; He will go up over all his channels And go over all his banks.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/8/" data-ref="Isaiah 8:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/8/"><span class="v-num">8</span><span class="v-txt">He will pass through Judah, He will overflow and pass over, He will reach up to the neck; And the stretching out of his wings Will fill the breadth of Your land, O Immanuel.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/9/" data-ref="Isaiah 8:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/9/"><span class="v-num">9</span><span class="v-txt">" Be shattered, O you peoples, and be broken in pieces! Give ear, all you from far countries. Gird yourselves, but be broken in pieces; Gird yourselves, but be broken in pieces.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/10/" data-ref="Isaiah 8:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/10/"><span class="v-num">10</span><span class="v-txt">Take counsel together, but it will come to nothing; Speak the word, but it will not stand, For God [is] with us."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/11/" data-ref="Isaiah 8:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/11/"><span class="v-num">11</span><span class="v-txt">For the LORD spoke thus to me with a strong hand, and instructed me that I should not walk in the way of this people, saying:</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/12/" data-ref="Isaiah 8:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/12/"><span class="v-num">12</span><span class="v-txt">"Do not say, 'A conspiracy,' Concerning all that this people call a conspiracy, Nor be afraid of their threats, nor be troubled.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/13/" data-ref="Isaiah 8:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/13/"><span class="v-num">13</span><span class="v-txt">The LORD of hosts, Him you shall hallow; [Let] Him [be] your fear, And [let] Him [be] your dread.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/14/" data-ref="Isaiah 8:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/14/"><span class="v-num">14</span><span class="v-txt">He will be as a sanctuary, But a stone of stumbling and a rock of offense To both the houses of Israel, As a trap and a snare to the inhabitants of Jerusalem.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/15/" data-ref="Isaiah 8:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/15/"><span class="v-num">15</span><span class="v-txt">And many among them shall stumble; They shall fall and be broken, Be snared and taken."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/16/" data-ref="Isaiah 8:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/16/"><span class="v-num">16</span><span class="v-txt">Bind up the testimony, Seal the law among my disciples.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/17/" data-ref="Isaiah 8:17 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/17/"><span class="v-num">17</span><span class="v-txt">And I will wait on the LORD, Who hides His face from the house of Jacob; And I will hope in Him.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/18/" data-ref="Isaiah 8:18 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/18/"><span class="v-num">18</span><span class="v-txt">Here am I and the children whom the LORD has given me! [We are] for signs and wonders in Israel From the LORD of hosts, Who dwells in Mount Zion.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/19/" data-ref="Isaiah 8:19 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/19/"><span class="v-num">19</span><span class="v-txt">And when they say to you, "Seek those who are mediums and wizards, who whisper and mutter," should not a people seek their God? [Should they seek] the dead on behalf of the living?</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/20/" data-ref="Isaiah 8:20 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/20/"><span class="v-num">20</span><span class="v-txt">To the law and to the testimony! If they do not speak according to this word, [it is] because [there is] no light in them.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/21/" data-ref="Isaiah 8:21 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/21/"><span class="v-num">21</span><span class="v-txt">They will pass through it hard pressed and hungry; and it shall happen, when they are hungry, that they will be enraged and curse their king and their God, and look upward.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/8/22/" data-ref="Isaiah 8:22 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/8/22/"><span class="v-num">22</span><span class="v-txt">Then they will look to the earth, and see trouble and darkness, gloom of anguish; and [they will be] driven into darkness.</span></a>
 
     
 <div class="app-cta">

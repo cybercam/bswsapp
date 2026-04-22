@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 15:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the Spirit of God came upon Azariah the son of Oded.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he went out to meet Asa, and said to him: "Hear me, Asa, and all Judah and Benjamin. The LORD [is] with you while you are with Him. If you seek Him, He will be found by you; but if you forsake Him, He will forsake you.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"For a long time Israel [has been] without the true God, without a teaching priest, and without law;</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"but when in their trouble they turned to the LORD God of Israel, and sought Him, He was found by them.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"And in those times [there was] no peace to the one who went out, nor to the one who came in, but great turmoil [was] on all the inhabitants of the lands.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">"So nation was destroyed by nation, and city by city, for God troubled them with every adversity.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"But you, be strong and do not let your hands be weak, for your work shall be rewarded!"</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when Asa heard these words and the prophecy of Oded the prophet, he took courage, and removed the abominable idols from all the land of Judah and Benjamin and from the cities which he had taken in the mountains of Ephraim; and he restored the altar of the LORD that [was] before the vestibule of the LORD.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then he gathered all Judah and Benjamin, and those who dwelt with them from Ephraim, Manasseh, and Simeon, for they came over to him in great numbers from Israel when they saw that the LORD his God was with him.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So they gathered together at Jerusalem in the third month, in the fifteenth year of the reign of Asa.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they offered to the LORD at that time seven hundred bulls and seven thousand sheep from the spoil they had brought.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then they entered into a covenant to seek the LORD God of their fathers with all their heart and with all their soul;</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and whoever would not seek the LORD God of Israel was to be put to death, whether small or great, whether man or woman.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then they took an oath before the LORD with a loud voice, with shouting and trumpets and rams' horns.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And all Judah rejoiced at the oath, for they had sworn with all their heart and sought Him with all their soul; and He was found by them, and the LORD gave them rest all around.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Also he removed Maachah, the mother of Asa the king, from [being] queen mother, because she had made an obscene image of Asherah; and Asa cut down her obscene image, then crushed and burned [it] by the Brook Kidron.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the high places were not removed from Israel. Nevertheless the heart of Asa was loyal all his days.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He also brought into the house of God the things that his father had dedicated and that he himself had dedicated: silver and gold and utensils.</span></div>
-<div class="v-row" data-ref="2 Chronicles 15:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And there was no war until the thirty-fifth year of the reign of Asa.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-chronicles/15/1/" data-ref="2 Chronicles 15:1 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/1/"><span class="v-num">1</span><span class="v-txt">Now the Spirit of God came upon Azariah the son of Oded.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/2/" data-ref="2 Chronicles 15:2 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/2/"><span class="v-num">2</span><span class="v-txt">And he went out to meet Asa, and said to him: "Hear me, Asa, and all Judah and Benjamin. The LORD [is] with you while you are with Him. If you seek Him, He will be found by you; but if you forsake Him, He will forsake you.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/3/" data-ref="2 Chronicles 15:3 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/3/"><span class="v-num">3</span><span class="v-txt">"For a long time Israel [has been] without the true God, without a teaching priest, and without law;</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/4/" data-ref="2 Chronicles 15:4 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/4/"><span class="v-num">4</span><span class="v-txt">"but when in their trouble they turned to the LORD God of Israel, and sought Him, He was found by them.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/5/" data-ref="2 Chronicles 15:5 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/5/"><span class="v-num">5</span><span class="v-txt">"And in those times [there was] no peace to the one who went out, nor to the one who came in, but great turmoil [was] on all the inhabitants of the lands.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/6/" data-ref="2 Chronicles 15:6 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/6/"><span class="v-num">6</span><span class="v-txt">"So nation was destroyed by nation, and city by city, for God troubled them with every adversity.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/7/" data-ref="2 Chronicles 15:7 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/7/"><span class="v-num">7</span><span class="v-txt">"But you, be strong and do not let your hands be weak, for your work shall be rewarded!"</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/8/" data-ref="2 Chronicles 15:8 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/8/"><span class="v-num">8</span><span class="v-txt">And when Asa heard these words and the prophecy of Oded the prophet, he took courage, and removed the abominable idols from all the land of Judah and Benjamin and from the cities which he had taken in the mountains of Ephraim; and he restored the altar of the LORD that [was] before the vestibule of the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/9/" data-ref="2 Chronicles 15:9 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/9/"><span class="v-num">9</span><span class="v-txt">Then he gathered all Judah and Benjamin, and those who dwelt with them from Ephraim, Manasseh, and Simeon, for they came over to him in great numbers from Israel when they saw that the LORD his God was with him.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/10/" data-ref="2 Chronicles 15:10 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/10/"><span class="v-num">10</span><span class="v-txt">So they gathered together at Jerusalem in the third month, in the fifteenth year of the reign of Asa.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/11/" data-ref="2 Chronicles 15:11 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/11/"><span class="v-num">11</span><span class="v-txt">And they offered to the LORD at that time seven hundred bulls and seven thousand sheep from the spoil they had brought.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/12/" data-ref="2 Chronicles 15:12 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/12/"><span class="v-num">12</span><span class="v-txt">Then they entered into a covenant to seek the LORD God of their fathers with all their heart and with all their soul;</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/13/" data-ref="2 Chronicles 15:13 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/13/"><span class="v-num">13</span><span class="v-txt">and whoever would not seek the LORD God of Israel was to be put to death, whether small or great, whether man or woman.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/14/" data-ref="2 Chronicles 15:14 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/14/"><span class="v-num">14</span><span class="v-txt">Then they took an oath before the LORD with a loud voice, with shouting and trumpets and rams' horns.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/15/" data-ref="2 Chronicles 15:15 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/15/"><span class="v-num">15</span><span class="v-txt">And all Judah rejoiced at the oath, for they had sworn with all their heart and sought Him with all their soul; and He was found by them, and the LORD gave them rest all around.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/16/" data-ref="2 Chronicles 15:16 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/16/"><span class="v-num">16</span><span class="v-txt">Also he removed Maachah, the mother of Asa the king, from [being] queen mother, because she had made an obscene image of Asherah; and Asa cut down her obscene image, then crushed and burned [it] by the Brook Kidron.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/17/" data-ref="2 Chronicles 15:17 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/17/"><span class="v-num">17</span><span class="v-txt">But the high places were not removed from Israel. Nevertheless the heart of Asa was loyal all his days.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/18/" data-ref="2 Chronicles 15:18 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/18/"><span class="v-num">18</span><span class="v-txt">He also brought into the house of God the things that his father had dedicated and that he himself had dedicated: silver and gold and utensils.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/15/19/" data-ref="2 Chronicles 15:19 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/15/19/"><span class="v-num">19</span><span class="v-txt">And there was no war until the thirty-fifth year of the reign of Asa.</span></a>
 
     
 <div class="app-cta">

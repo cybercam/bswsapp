@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 35</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 35:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Elihu made answer and said,</span></div>
-<div class="v-row" data-ref="Job 35:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Does it seem to you to be right, and righteousness before God, to say,</span></div>
-<div class="v-row" data-ref="Job 35:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">What profit is it to me, and how am I better off than if I had done wrong?</span></div>
-<div class="v-row" data-ref="Job 35:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I will make answer to you and to your friends:</span></div>
-<div class="v-row" data-ref="Job 35:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let your eyes be turned to the heavens, and lifted up to see the skies; they are higher than you.</span></div>
-<div class="v-row" data-ref="Job 35:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If you have done wrong, is he any the worse for it? and if your sins are great in number, what is it to him?</span></div>
-<div class="v-row" data-ref="Job 35:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If you are upright, what do you give to him? or what does he take from your hand?</span></div>
-<div class="v-row" data-ref="Job 35:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Your evil-doing may have an effect on a man like yourself, or your righteousness on a son of man.</span></div>
-<div class="v-row" data-ref="Job 35:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Because the hand of the cruel is hard on them, men are making sounds of grief; they are crying out for help because of the arm of the strong.</span></div>
-<div class="v-row" data-ref="Job 35:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But no one has said, Where is God my Maker, who gives songs in the night;</span></div>
-<div class="v-row" data-ref="Job 35:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Who gives us more knowledge than the beasts of the earth, and makes us wiser than the birds of the heaven?</span></div>
-<div class="v-row" data-ref="Job 35:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">There they are crying out because of the pride of the evil-doers, but he gives them no answer.</span></div>
-<div class="v-row" data-ref="Job 35:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But God will not give ear to what is false, or the Ruler of all take note of it;</span></div>
-<div class="v-row" data-ref="Job 35:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">How much less when you say that you do not see him; that the cause is before him, and you are waiting for him.</span></div>
-<div class="v-row" data-ref="Job 35:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And now ... ;</span></div>
-<div class="v-row" data-ref="Job 35:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Job's mouth is open wide to give out what is of no profit, increasing words without knowledge.</span></div>
+    <a class="v-row" href="/bible/bbe/job/35/1/" data-ref="Job 35:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/1/"><span class="v-num">1</span><span class="v-txt">And Elihu made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/35/2/" data-ref="Job 35:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/2/"><span class="v-num">2</span><span class="v-txt">Does it seem to you to be right, and righteousness before God, to say,</span></a>
+<a class="v-row" href="/bible/bbe/job/35/3/" data-ref="Job 35:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/3/"><span class="v-num">3</span><span class="v-txt">What profit is it to me, and how am I better off than if I had done wrong?</span></a>
+<a class="v-row" href="/bible/bbe/job/35/4/" data-ref="Job 35:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/4/"><span class="v-num">4</span><span class="v-txt">I will make answer to you and to your friends:</span></a>
+<a class="v-row" href="/bible/bbe/job/35/5/" data-ref="Job 35:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/5/"><span class="v-num">5</span><span class="v-txt">Let your eyes be turned to the heavens, and lifted up to see the skies; they are higher than you.</span></a>
+<a class="v-row" href="/bible/bbe/job/35/6/" data-ref="Job 35:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/6/"><span class="v-num">6</span><span class="v-txt">If you have done wrong, is he any the worse for it? and if your sins are great in number, what is it to him?</span></a>
+<a class="v-row" href="/bible/bbe/job/35/7/" data-ref="Job 35:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/7/"><span class="v-num">7</span><span class="v-txt">If you are upright, what do you give to him? or what does he take from your hand?</span></a>
+<a class="v-row" href="/bible/bbe/job/35/8/" data-ref="Job 35:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/8/"><span class="v-num">8</span><span class="v-txt">Your evil-doing may have an effect on a man like yourself, or your righteousness on a son of man.</span></a>
+<a class="v-row" href="/bible/bbe/job/35/9/" data-ref="Job 35:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/9/"><span class="v-num">9</span><span class="v-txt">Because the hand of the cruel is hard on them, men are making sounds of grief; they are crying out for help because of the arm of the strong.</span></a>
+<a class="v-row" href="/bible/bbe/job/35/10/" data-ref="Job 35:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/10/"><span class="v-num">10</span><span class="v-txt">But no one has said, Where is God my Maker, who gives songs in the night;</span></a>
+<a class="v-row" href="/bible/bbe/job/35/11/" data-ref="Job 35:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/11/"><span class="v-num">11</span><span class="v-txt">Who gives us more knowledge than the beasts of the earth, and makes us wiser than the birds of the heaven?</span></a>
+<a class="v-row" href="/bible/bbe/job/35/12/" data-ref="Job 35:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/12/"><span class="v-num">12</span><span class="v-txt">There they are crying out because of the pride of the evil-doers, but he gives them no answer.</span></a>
+<a class="v-row" href="/bible/bbe/job/35/13/" data-ref="Job 35:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/13/"><span class="v-num">13</span><span class="v-txt">But God will not give ear to what is false, or the Ruler of all take note of it;</span></a>
+<a class="v-row" href="/bible/bbe/job/35/14/" data-ref="Job 35:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/14/"><span class="v-num">14</span><span class="v-txt">How much less when you say that you do not see him; that the cause is before him, and you are waiting for him.</span></a>
+<a class="v-row" href="/bible/bbe/job/35/15/" data-ref="Job 35:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/15/"><span class="v-num">15</span><span class="v-txt">And now ... ;</span></a>
+<a class="v-row" href="/bible/bbe/job/35/16/" data-ref="Job 35:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/35/16/"><span class="v-num">16</span><span class="v-txt">And Job's mouth is open wide to give out what is of no profit, increasing words without knowledge.</span></a>
 
     
 <div class="app-cta">

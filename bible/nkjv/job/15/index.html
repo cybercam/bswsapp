@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,41 +204,41 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 15:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Eliphaz the Temanite answered and said:</span></div>
-<div class="v-row" data-ref="Job 15:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Should a wise man answer with empty knowledge, And fill himself with the east wind?</span></div>
-<div class="v-row" data-ref="Job 15:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Should he reason with unprofitable talk, Or by speeches with which he can do no good?</span></div>
-<div class="v-row" data-ref="Job 15:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Yes, you cast off fear, And restrain prayer before God.</span></div>
-<div class="v-row" data-ref="Job 15:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For your iniquity teaches your mouth, And you choose the tongue of the crafty.</span></div>
-<div class="v-row" data-ref="Job 15:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Your own mouth condemns you, and not I; Yes, your own lips testify against you.</span></div>
-<div class="v-row" data-ref="Job 15:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"[Are] you the first man [who] was born? Or were you made before the hills?</span></div>
-<div class="v-row" data-ref="Job 15:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Have you heard the counsel of God? Do you limit wisdom to yourself?</span></div>
-<div class="v-row" data-ref="Job 15:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">What do you know that we do not know? [What] do you understand that [is] not in us?</span></div>
-<div class="v-row" data-ref="Job 15:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Both the gray-haired and the aged [are] among us, Much older than your father.</span></div>
-<div class="v-row" data-ref="Job 15:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">[Are] the consolations of God too small for you, And the word [spoken] gently with you?</span></div>
-<div class="v-row" data-ref="Job 15:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Why does your heart carry you away, And what do your eyes wink at,</span></div>
-<div class="v-row" data-ref="Job 15:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">That you turn your spirit against God, And let [such] words go out of your mouth?</span></div>
-<div class="v-row" data-ref="Job 15:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"What [is] man, that he could be pure? And [he who is] born of a woman, that he could be righteous?</span></div>
-<div class="v-row" data-ref="Job 15:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If [God] puts no trust in His saints, And the heavens are not pure in His sight,</span></div>
-<div class="v-row" data-ref="Job 15:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">How much less man, [who is] abominable and filthy, Who drinks iniquity like water!</span></div>
-<div class="v-row" data-ref="Job 15:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">" I will tell you, hear me; What I have seen I will declare,</span></div>
-<div class="v-row" data-ref="Job 15:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">What wise men have told, Not hiding [anything received] from their fathers,</span></div>
-<div class="v-row" data-ref="Job 15:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">To whom alone the land was given, And no alien passed among them:</span></div>
-<div class="v-row" data-ref="Job 15:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The wicked man writhes with pain all [his] days, And the number of years is hidden from the oppressor.</span></div>
-<div class="v-row" data-ref="Job 15:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Dreadful sounds [are] in his ears; In prosperity the destroyer comes upon him.</span></div>
-<div class="v-row" data-ref="Job 15:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He does not believe that he will return from darkness, For a sword is waiting for him.</span></div>
-<div class="v-row" data-ref="Job 15:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He wanders about for bread, [saying,] 'Where [is it?'] He knows that a day of darkness is ready at his hand.</span></div>
-<div class="v-row" data-ref="Job 15:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Trouble and anguish make him afraid; They overpower him, like a king ready for battle.</span></div>
-<div class="v-row" data-ref="Job 15:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For he stretches out his hand against God, And acts defiantly against the Almighty,</span></div>
-<div class="v-row" data-ref="Job 15:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Running stubbornly against Him With his strong, embossed shield.</span></div>
-<div class="v-row" data-ref="Job 15:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">"Though he has covered his face with his fatness, And made [his] waist heavy with fat,</span></div>
-<div class="v-row" data-ref="Job 15:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">He dwells in desolate cities, In houses which no one inhabits, Which are destined to become ruins.</span></div>
-<div class="v-row" data-ref="Job 15:29 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">He will not be rich, Nor will his wealth continue, Nor will his possessions overspread the earth.</span></div>
-<div class="v-row" data-ref="Job 15:30 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">He will not depart from darkness; The flame will dry out his branches, And by the breath of His mouth he will go away.</span></div>
-<div class="v-row" data-ref="Job 15:31 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">Let him not trust in futile [things,] deceiving himself, For futility will be his reward.</span></div>
-<div class="v-row" data-ref="Job 15:32 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">It will be accomplished before his time, And his branch will not be green.</span></div>
-<div class="v-row" data-ref="Job 15:33 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">He will shake off his unripe grape like a vine, And cast off his blossom like an olive tree.</span></div>
-<div class="v-row" data-ref="Job 15:34 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">For the company of hypocrites [will be] barren, And fire will consume the tents of bribery.</span></div>
-<div class="v-row" data-ref="Job 15:35 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">They conceive trouble and bring forth futility; Their womb prepares deceit."</span></div>
+    <a class="v-row" href="/bible/nkjv/job/15/1/" data-ref="Job 15:1 (New King James Version)" data-verse-url="/bible/nkjv/job/15/1/"><span class="v-num">1</span><span class="v-txt">Then Eliphaz the Temanite answered and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/2/" data-ref="Job 15:2 (New King James Version)" data-verse-url="/bible/nkjv/job/15/2/"><span class="v-num">2</span><span class="v-txt">"Should a wise man answer with empty knowledge, And fill himself with the east wind?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/3/" data-ref="Job 15:3 (New King James Version)" data-verse-url="/bible/nkjv/job/15/3/"><span class="v-num">3</span><span class="v-txt">Should he reason with unprofitable talk, Or by speeches with which he can do no good?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/4/" data-ref="Job 15:4 (New King James Version)" data-verse-url="/bible/nkjv/job/15/4/"><span class="v-num">4</span><span class="v-txt">Yes, you cast off fear, And restrain prayer before God.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/5/" data-ref="Job 15:5 (New King James Version)" data-verse-url="/bible/nkjv/job/15/5/"><span class="v-num">5</span><span class="v-txt">For your iniquity teaches your mouth, And you choose the tongue of the crafty.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/6/" data-ref="Job 15:6 (New King James Version)" data-verse-url="/bible/nkjv/job/15/6/"><span class="v-num">6</span><span class="v-txt">Your own mouth condemns you, and not I; Yes, your own lips testify against you.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/7/" data-ref="Job 15:7 (New King James Version)" data-verse-url="/bible/nkjv/job/15/7/"><span class="v-num">7</span><span class="v-txt">"[Are] you the first man [who] was born? Or were you made before the hills?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/8/" data-ref="Job 15:8 (New King James Version)" data-verse-url="/bible/nkjv/job/15/8/"><span class="v-num">8</span><span class="v-txt">Have you heard the counsel of God? Do you limit wisdom to yourself?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/9/" data-ref="Job 15:9 (New King James Version)" data-verse-url="/bible/nkjv/job/15/9/"><span class="v-num">9</span><span class="v-txt">What do you know that we do not know? [What] do you understand that [is] not in us?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/10/" data-ref="Job 15:10 (New King James Version)" data-verse-url="/bible/nkjv/job/15/10/"><span class="v-num">10</span><span class="v-txt">Both the gray-haired and the aged [are] among us, Much older than your father.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/11/" data-ref="Job 15:11 (New King James Version)" data-verse-url="/bible/nkjv/job/15/11/"><span class="v-num">11</span><span class="v-txt">[Are] the consolations of God too small for you, And the word [spoken] gently with you?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/12/" data-ref="Job 15:12 (New King James Version)" data-verse-url="/bible/nkjv/job/15/12/"><span class="v-num">12</span><span class="v-txt">Why does your heart carry you away, And what do your eyes wink at,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/13/" data-ref="Job 15:13 (New King James Version)" data-verse-url="/bible/nkjv/job/15/13/"><span class="v-num">13</span><span class="v-txt">That you turn your spirit against God, And let [such] words go out of your mouth?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/14/" data-ref="Job 15:14 (New King James Version)" data-verse-url="/bible/nkjv/job/15/14/"><span class="v-num">14</span><span class="v-txt">"What [is] man, that he could be pure? And [he who is] born of a woman, that he could be righteous?</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/15/" data-ref="Job 15:15 (New King James Version)" data-verse-url="/bible/nkjv/job/15/15/"><span class="v-num">15</span><span class="v-txt">If [God] puts no trust in His saints, And the heavens are not pure in His sight,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/16/" data-ref="Job 15:16 (New King James Version)" data-verse-url="/bible/nkjv/job/15/16/"><span class="v-num">16</span><span class="v-txt">How much less man, [who is] abominable and filthy, Who drinks iniquity like water!</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/17/" data-ref="Job 15:17 (New King James Version)" data-verse-url="/bible/nkjv/job/15/17/"><span class="v-num">17</span><span class="v-txt">" I will tell you, hear me; What I have seen I will declare,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/18/" data-ref="Job 15:18 (New King James Version)" data-verse-url="/bible/nkjv/job/15/18/"><span class="v-num">18</span><span class="v-txt">What wise men have told, Not hiding [anything received] from their fathers,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/19/" data-ref="Job 15:19 (New King James Version)" data-verse-url="/bible/nkjv/job/15/19/"><span class="v-num">19</span><span class="v-txt">To whom alone the land was given, And no alien passed among them:</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/20/" data-ref="Job 15:20 (New King James Version)" data-verse-url="/bible/nkjv/job/15/20/"><span class="v-num">20</span><span class="v-txt">The wicked man writhes with pain all [his] days, And the number of years is hidden from the oppressor.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/21/" data-ref="Job 15:21 (New King James Version)" data-verse-url="/bible/nkjv/job/15/21/"><span class="v-num">21</span><span class="v-txt">Dreadful sounds [are] in his ears; In prosperity the destroyer comes upon him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/22/" data-ref="Job 15:22 (New King James Version)" data-verse-url="/bible/nkjv/job/15/22/"><span class="v-num">22</span><span class="v-txt">He does not believe that he will return from darkness, For a sword is waiting for him.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/23/" data-ref="Job 15:23 (New King James Version)" data-verse-url="/bible/nkjv/job/15/23/"><span class="v-num">23</span><span class="v-txt">He wanders about for bread, [saying,] 'Where [is it?'] He knows that a day of darkness is ready at his hand.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/24/" data-ref="Job 15:24 (New King James Version)" data-verse-url="/bible/nkjv/job/15/24/"><span class="v-num">24</span><span class="v-txt">Trouble and anguish make him afraid; They overpower him, like a king ready for battle.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/25/" data-ref="Job 15:25 (New King James Version)" data-verse-url="/bible/nkjv/job/15/25/"><span class="v-num">25</span><span class="v-txt">For he stretches out his hand against God, And acts defiantly against the Almighty,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/26/" data-ref="Job 15:26 (New King James Version)" data-verse-url="/bible/nkjv/job/15/26/"><span class="v-num">26</span><span class="v-txt">Running stubbornly against Him With his strong, embossed shield.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/27/" data-ref="Job 15:27 (New King James Version)" data-verse-url="/bible/nkjv/job/15/27/"><span class="v-num">27</span><span class="v-txt">"Though he has covered his face with his fatness, And made [his] waist heavy with fat,</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/28/" data-ref="Job 15:28 (New King James Version)" data-verse-url="/bible/nkjv/job/15/28/"><span class="v-num">28</span><span class="v-txt">He dwells in desolate cities, In houses which no one inhabits, Which are destined to become ruins.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/29/" data-ref="Job 15:29 (New King James Version)" data-verse-url="/bible/nkjv/job/15/29/"><span class="v-num">29</span><span class="v-txt">He will not be rich, Nor will his wealth continue, Nor will his possessions overspread the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/30/" data-ref="Job 15:30 (New King James Version)" data-verse-url="/bible/nkjv/job/15/30/"><span class="v-num">30</span><span class="v-txt">He will not depart from darkness; The flame will dry out his branches, And by the breath of His mouth he will go away.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/31/" data-ref="Job 15:31 (New King James Version)" data-verse-url="/bible/nkjv/job/15/31/"><span class="v-num">31</span><span class="v-txt">Let him not trust in futile [things,] deceiving himself, For futility will be his reward.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/32/" data-ref="Job 15:32 (New King James Version)" data-verse-url="/bible/nkjv/job/15/32/"><span class="v-num">32</span><span class="v-txt">It will be accomplished before his time, And his branch will not be green.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/33/" data-ref="Job 15:33 (New King James Version)" data-verse-url="/bible/nkjv/job/15/33/"><span class="v-num">33</span><span class="v-txt">He will shake off his unripe grape like a vine, And cast off his blossom like an olive tree.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/34/" data-ref="Job 15:34 (New King James Version)" data-verse-url="/bible/nkjv/job/15/34/"><span class="v-num">34</span><span class="v-txt">For the company of hypocrites [will be] barren, And fire will consume the tents of bribery.</span></a>
+<a class="v-row" href="/bible/nkjv/job/15/35/" data-ref="Job 15:35 (New King James Version)" data-verse-url="/bible/nkjv/job/15/35/"><span class="v-num">35</span><span class="v-txt">They conceive trouble and bring forth futility; Their womb prepares deceit."</span></a>
 
     
 <div class="app-cta">

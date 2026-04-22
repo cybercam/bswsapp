@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 13</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 13:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Abram went up out of Egypt, he, and his wife, and all that he had, and Lot with him, into the south.</span></div>
-<div class="v-row" data-ref="Genesis 13:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Abram was very rich in cattle, in silver, and in gold.</span></div>
-<div class="v-row" data-ref="Genesis 13:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And he went on his journeys from the south even to Bethel, unto the place where his tent had been at the beginning, between Bethel and Hai;</span></div>
-<div class="v-row" data-ref="Genesis 13:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Unto the place of the altar, which he had made there at the first: and there Abram called on the name of the LORD.</span></div>
-<div class="v-row" data-ref="Genesis 13:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Lot also, which went with Abram, had flocks, and herds, and tents.</span></div>
-<div class="v-row" data-ref="Genesis 13:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the land was not able to bear them, that they might dwell together: for their substance was great, so that they could not dwell together.</span></div>
-<div class="v-row" data-ref="Genesis 13:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And there was a strife between the herdmen of Abram's cattle and the herdmen of Lot's cattle: and the Canaanite and the Perizzite dwelled then in the land.</span></div>
-<div class="v-row" data-ref="Genesis 13:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Abram said unto Lot, Let there be no strife, I pray thee, between me and thee, and between my herdmen and thy herdmen; for we be brethren.</span></div>
-<div class="v-row" data-ref="Genesis 13:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Is not the whole land before thee? separate thyself, I pray thee, from me: if thou wilt take the left hand, then I will go to the right; or if thou depart to the right hand, then I will go to the left.</span></div>
-<div class="v-row" data-ref="Genesis 13:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Lot lifted up his eyes, and beheld all the plain of Jordan, that it was well watered every where, before the LORD destroyed Sodom and Gomorrah, even as the garden of the LORD, like the land of Egypt, as thou comest unto Zoar.</span></div>
-<div class="v-row" data-ref="Genesis 13:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then Lot chose him all the plain of Jordan; and Lot journeyed east: and they separated themselves the one from the other.</span></div>
-<div class="v-row" data-ref="Genesis 13:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Abram dwelled in the land of Canaan, and Lot dwelled in the cities of the plain, and pitched his tent toward Sodom.</span></div>
-<div class="v-row" data-ref="Genesis 13:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But the men of Sodom were wicked and sinners before the LORD exceedingly.</span></div>
-<div class="v-row" data-ref="Genesis 13:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the LORD said unto Abram, after that Lot was separated from him, Lift up now thine eyes, and look from the place where thou art northward, and southward, and eastward, and westward:</span></div>
-<div class="v-row" data-ref="Genesis 13:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For all the land which thou seest, to thee will I give it, and to thy seed for ever.</span></div>
-<div class="v-row" data-ref="Genesis 13:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And I will make thy seed as the dust of the earth: so that if a man can number the dust of the earth, then shall thy seed also be numbered.</span></div>
-<div class="v-row" data-ref="Genesis 13:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Arise, walk through the land in the length of it and in the breadth of it; for I will give it unto thee.</span></div>
-<div class="v-row" data-ref="Genesis 13:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Then Abram removed his tent, and came and dwelt in the plain of Mamre, which is in Hebron, and built there an altar unto the LORD.</span></div>
+    <a class="v-row" href="/bible/kjv/genesis/13/1/" data-ref="Genesis 13:1 (King James Version)" data-verse-url="/bible/kjv/genesis/13/1/"><span class="v-num">1</span><span class="v-txt">And Abram went up out of Egypt, he, and his wife, and all that he had, and Lot with him, into the south.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/2/" data-ref="Genesis 13:2 (King James Version)" data-verse-url="/bible/kjv/genesis/13/2/"><span class="v-num">2</span><span class="v-txt">And Abram was very rich in cattle, in silver, and in gold.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/3/" data-ref="Genesis 13:3 (King James Version)" data-verse-url="/bible/kjv/genesis/13/3/"><span class="v-num">3</span><span class="v-txt">And he went on his journeys from the south even to Bethel, unto the place where his tent had been at the beginning, between Bethel and Hai;</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/4/" data-ref="Genesis 13:4 (King James Version)" data-verse-url="/bible/kjv/genesis/13/4/"><span class="v-num">4</span><span class="v-txt">Unto the place of the altar, which he had made there at the first: and there Abram called on the name of the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/5/" data-ref="Genesis 13:5 (King James Version)" data-verse-url="/bible/kjv/genesis/13/5/"><span class="v-num">5</span><span class="v-txt">And Lot also, which went with Abram, had flocks, and herds, and tents.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/6/" data-ref="Genesis 13:6 (King James Version)" data-verse-url="/bible/kjv/genesis/13/6/"><span class="v-num">6</span><span class="v-txt">And the land was not able to bear them, that they might dwell together: for their substance was great, so that they could not dwell together.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/7/" data-ref="Genesis 13:7 (King James Version)" data-verse-url="/bible/kjv/genesis/13/7/"><span class="v-num">7</span><span class="v-txt">And there was a strife between the herdmen of Abram's cattle and the herdmen of Lot's cattle: and the Canaanite and the Perizzite dwelled then in the land.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/8/" data-ref="Genesis 13:8 (King James Version)" data-verse-url="/bible/kjv/genesis/13/8/"><span class="v-num">8</span><span class="v-txt">And Abram said unto Lot, Let there be no strife, I pray thee, between me and thee, and between my herdmen and thy herdmen; for we be brethren.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/9/" data-ref="Genesis 13:9 (King James Version)" data-verse-url="/bible/kjv/genesis/13/9/"><span class="v-num">9</span><span class="v-txt">Is not the whole land before thee? separate thyself, I pray thee, from me: if thou wilt take the left hand, then I will go to the right; or if thou depart to the right hand, then I will go to the left.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/10/" data-ref="Genesis 13:10 (King James Version)" data-verse-url="/bible/kjv/genesis/13/10/"><span class="v-num">10</span><span class="v-txt">And Lot lifted up his eyes, and beheld all the plain of Jordan, that it was well watered every where, before the LORD destroyed Sodom and Gomorrah, even as the garden of the LORD, like the land of Egypt, as thou comest unto Zoar.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/11/" data-ref="Genesis 13:11 (King James Version)" data-verse-url="/bible/kjv/genesis/13/11/"><span class="v-num">11</span><span class="v-txt">Then Lot chose him all the plain of Jordan; and Lot journeyed east: and they separated themselves the one from the other.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/12/" data-ref="Genesis 13:12 (King James Version)" data-verse-url="/bible/kjv/genesis/13/12/"><span class="v-num">12</span><span class="v-txt">Abram dwelled in the land of Canaan, and Lot dwelled in the cities of the plain, and pitched his tent toward Sodom.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/13/" data-ref="Genesis 13:13 (King James Version)" data-verse-url="/bible/kjv/genesis/13/13/"><span class="v-num">13</span><span class="v-txt">But the men of Sodom were wicked and sinners before the LORD exceedingly.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/14/" data-ref="Genesis 13:14 (King James Version)" data-verse-url="/bible/kjv/genesis/13/14/"><span class="v-num">14</span><span class="v-txt">And the LORD said unto Abram, after that Lot was separated from him, Lift up now thine eyes, and look from the place where thou art northward, and southward, and eastward, and westward:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/15/" data-ref="Genesis 13:15 (King James Version)" data-verse-url="/bible/kjv/genesis/13/15/"><span class="v-num">15</span><span class="v-txt">For all the land which thou seest, to thee will I give it, and to thy seed for ever.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/16/" data-ref="Genesis 13:16 (King James Version)" data-verse-url="/bible/kjv/genesis/13/16/"><span class="v-num">16</span><span class="v-txt">And I will make thy seed as the dust of the earth: so that if a man can number the dust of the earth, then shall thy seed also be numbered.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/17/" data-ref="Genesis 13:17 (King James Version)" data-verse-url="/bible/kjv/genesis/13/17/"><span class="v-num">17</span><span class="v-txt">Arise, walk through the land in the length of it and in the breadth of it; for I will give it unto thee.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/13/18/" data-ref="Genesis 13:18 (King James Version)" data-verse-url="/bible/kjv/genesis/13/18/"><span class="v-num">18</span><span class="v-txt">Then Abram removed his tent, and came and dwelt in the plain of Mamre, which is in Hebron, and built there an altar unto the LORD.</span></a>
 
     
 <div class="app-cta">

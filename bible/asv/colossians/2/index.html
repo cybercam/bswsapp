@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Colossians 2:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For I would have you know how greatly I strive for you, and for them at Laodicea, and for as many as have not seen my face in the flesh;</span></div>
-<div class="v-row" data-ref="Colossians 2:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">that their hearts may be comforted, they being knit together in love, and unto all riches of the full assurance of understanding, that they may know the mystery of God, [even] Christ,</span></div>
-<div class="v-row" data-ref="Colossians 2:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">in whom are all the treasures of wisdom and knowledge hidden.</span></div>
-<div class="v-row" data-ref="Colossians 2:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">This I say, that no one may delude you with persuasiveness of speech.</span></div>
-<div class="v-row" data-ref="Colossians 2:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For though I am absent in the flesh, yet am I with you in the spirit, joying and beholding your order, and the stedfastness of your faith in Christ.</span></div>
-<div class="v-row" data-ref="Colossians 2:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">As therefore ye received Christ Jesus the Lord, [so] walk in him,</span></div>
-<div class="v-row" data-ref="Colossians 2:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">rooted and builded up in him, and established in your faith, even as ye were taught, abounding in thanksgiving.</span></div>
-<div class="v-row" data-ref="Colossians 2:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Take heed lest there shall be any one that maketh spoil of you through his philosophy and vain deceit, after the tradition of men, after the rudiments of the world, and not after Christ:</span></div>
-<div class="v-row" data-ref="Colossians 2:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">for in him dwelleth all the fulness of the Godhead bodily,</span></div>
-<div class="v-row" data-ref="Colossians 2:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">and in him ye are made full, who is the head of all principality and power:</span></div>
-<div class="v-row" data-ref="Colossians 2:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">in whom ye were also circumcised with a circumcision not made with hands, in the putting off of the body of the flesh, in the circumcision of Christ;</span></div>
-<div class="v-row" data-ref="Colossians 2:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">having been buried with him in baptism, wherein ye were also raised with him through faith in the working of God, who raised him from the dead.</span></div>
-<div class="v-row" data-ref="Colossians 2:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And you, being dead through your trespasses and the uncircumcision of your flesh, you, [I say], did he make alive together with him, having forgiven us all our trespasses;</span></div>
-<div class="v-row" data-ref="Colossians 2:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">having blotted out the bond written in ordinances that was against us, which was contrary to us: and he hath taken it out that way, nailing it to the cross;</span></div>
-<div class="v-row" data-ref="Colossians 2:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">having despoiled the principalities and the powers, he made a show of them openly, triumphing over them in it.</span></div>
-<div class="v-row" data-ref="Colossians 2:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let no man therefore judge you in meat, or in drink, or in respect of a feast day or a new moon or a sabbath day:</span></div>
-<div class="v-row" data-ref="Colossians 2:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">which are a shadow of the things to come; but the body is Christ's.</span></div>
-<div class="v-row" data-ref="Colossians 2:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let no man rob you of your prize by a voluntary humility and worshipping of the angels, dwelling in the things which he hath seen, vainly puffed up by his fleshly mind,</span></div>
-<div class="v-row" data-ref="Colossians 2:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and not holding fast the Head, from whom all the body, being supplied and knit together through the joints and bands, increasing with the increase of God.</span></div>
-<div class="v-row" data-ref="Colossians 2:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If ye died with Christ from the rudiments of the world, why, as though living in the world, do ye subject yourselves to ordinances,</span></div>
-<div class="v-row" data-ref="Colossians 2:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Handle not, nor taste, nor touch</span></div>
-<div class="v-row" data-ref="Colossians 2:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">(all which things are to perish with the using), after the precepts and doctrines of men?</span></div>
-<div class="v-row" data-ref="Colossians 2:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Which things have indeed a show of wisdom in will-worship, and humility, and severity to the body; [but are] not of any value against the indulgence of the flesh.</span></div>
+    <a class="v-row" href="/bible/asv/colossians/2/1/" data-ref="Colossians 2:1 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/1/"><span class="v-num">1</span><span class="v-txt">For I would have you know how greatly I strive for you, and for them at Laodicea, and for as many as have not seen my face in the flesh;</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/2/" data-ref="Colossians 2:2 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/2/"><span class="v-num">2</span><span class="v-txt">that their hearts may be comforted, they being knit together in love, and unto all riches of the full assurance of understanding, that they may know the mystery of God, [even] Christ,</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/3/" data-ref="Colossians 2:3 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/3/"><span class="v-num">3</span><span class="v-txt">in whom are all the treasures of wisdom and knowledge hidden.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/4/" data-ref="Colossians 2:4 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/4/"><span class="v-num">4</span><span class="v-txt">This I say, that no one may delude you with persuasiveness of speech.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/5/" data-ref="Colossians 2:5 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/5/"><span class="v-num">5</span><span class="v-txt">For though I am absent in the flesh, yet am I with you in the spirit, joying and beholding your order, and the stedfastness of your faith in Christ.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/6/" data-ref="Colossians 2:6 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/6/"><span class="v-num">6</span><span class="v-txt">As therefore ye received Christ Jesus the Lord, [so] walk in him,</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/7/" data-ref="Colossians 2:7 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/7/"><span class="v-num">7</span><span class="v-txt">rooted and builded up in him, and established in your faith, even as ye were taught, abounding in thanksgiving.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/8/" data-ref="Colossians 2:8 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/8/"><span class="v-num">8</span><span class="v-txt">Take heed lest there shall be any one that maketh spoil of you through his philosophy and vain deceit, after the tradition of men, after the rudiments of the world, and not after Christ:</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/9/" data-ref="Colossians 2:9 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/9/"><span class="v-num">9</span><span class="v-txt">for in him dwelleth all the fulness of the Godhead bodily,</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/10/" data-ref="Colossians 2:10 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/10/"><span class="v-num">10</span><span class="v-txt">and in him ye are made full, who is the head of all principality and power:</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/11/" data-ref="Colossians 2:11 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/11/"><span class="v-num">11</span><span class="v-txt">in whom ye were also circumcised with a circumcision not made with hands, in the putting off of the body of the flesh, in the circumcision of Christ;</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/12/" data-ref="Colossians 2:12 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/12/"><span class="v-num">12</span><span class="v-txt">having been buried with him in baptism, wherein ye were also raised with him through faith in the working of God, who raised him from the dead.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/13/" data-ref="Colossians 2:13 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/13/"><span class="v-num">13</span><span class="v-txt">And you, being dead through your trespasses and the uncircumcision of your flesh, you, [I say], did he make alive together with him, having forgiven us all our trespasses;</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/14/" data-ref="Colossians 2:14 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/14/"><span class="v-num">14</span><span class="v-txt">having blotted out the bond written in ordinances that was against us, which was contrary to us: and he hath taken it out that way, nailing it to the cross;</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/15/" data-ref="Colossians 2:15 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/15/"><span class="v-num">15</span><span class="v-txt">having despoiled the principalities and the powers, he made a show of them openly, triumphing over them in it.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/16/" data-ref="Colossians 2:16 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/16/"><span class="v-num">16</span><span class="v-txt">Let no man therefore judge you in meat, or in drink, or in respect of a feast day or a new moon or a sabbath day:</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/17/" data-ref="Colossians 2:17 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/17/"><span class="v-num">17</span><span class="v-txt">which are a shadow of the things to come; but the body is Christ's.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/18/" data-ref="Colossians 2:18 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/18/"><span class="v-num">18</span><span class="v-txt">Let no man rob you of your prize by a voluntary humility and worshipping of the angels, dwelling in the things which he hath seen, vainly puffed up by his fleshly mind,</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/19/" data-ref="Colossians 2:19 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/19/"><span class="v-num">19</span><span class="v-txt">and not holding fast the Head, from whom all the body, being supplied and knit together through the joints and bands, increasing with the increase of God.</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/20/" data-ref="Colossians 2:20 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/20/"><span class="v-num">20</span><span class="v-txt">If ye died with Christ from the rudiments of the world, why, as though living in the world, do ye subject yourselves to ordinances,</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/21/" data-ref="Colossians 2:21 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/21/"><span class="v-num">21</span><span class="v-txt">Handle not, nor taste, nor touch</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/22/" data-ref="Colossians 2:22 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/22/"><span class="v-num">22</span><span class="v-txt">(all which things are to perish with the using), after the precepts and doctrines of men?</span></a>
+<a class="v-row" href="/bible/asv/colossians/2/23/" data-ref="Colossians 2:23 (American Standard Version)" data-verse-url="/bible/asv/colossians/2/23/"><span class="v-num">23</span><span class="v-txt">Which things have indeed a show of wisdom in will-worship, and humility, and severity to the body; [but are] not of any value against the indulgence of the flesh.</span></a>
 
     
 <div class="app-cta">

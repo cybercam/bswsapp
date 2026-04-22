@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Genesis 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And after a time, when men were increasing on the earth, and had daughters,</span></div>
-<div class="v-row" data-ref="Genesis 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The sons of God saw that the daughters of men were fair; and they took wives for themselves from those who were pleasing to them.</span></div>
-<div class="v-row" data-ref="Genesis 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the Lord said, My spirit will not be in man for ever, for he is only flesh; so the days of his life will be a hundred and twenty years.</span></div>
-<div class="v-row" data-ref="Genesis 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">There were men of great strength and size on the earth in those days; and after that, when the sons of God had connection with the daughters of men, they gave birth to children: these were the great men of old days, the men of great name.</span></div>
-<div class="v-row" data-ref="Genesis 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the Lord saw that the sin of man was great on the earth, and that all the thoughts of his heart were evil.</span></div>
-<div class="v-row" data-ref="Genesis 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the Lord had sorrow because he had made man on the earth, and grief was in his heart.</span></div>
-<div class="v-row" data-ref="Genesis 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the Lord said, I will take away man, whom I have made, from the face of the earth, even man and beast and that which goes on the earth and every bird of the air; for I have sorrow for having made them.</span></div>
-<div class="v-row" data-ref="Genesis 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But Noah had grace in the eyes of God.</span></div>
-<div class="v-row" data-ref="Genesis 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">These are the generations of Noah. Noah was an upright man and without sin in his generation: he went in the ways of God.</span></div>
-<div class="v-row" data-ref="Genesis 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Noah had three sons, Shem, Ham, and Japheth.</span></div>
-<div class="v-row" data-ref="Genesis 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the earth was evil in God's eyes and full of violent ways.</span></div>
-<div class="v-row" data-ref="Genesis 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And God, looking on the earth, saw that it was evil: for the way of all flesh had become evil on the earth.</span></div>
-<div class="v-row" data-ref="Genesis 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And God said to Noah, The end of all flesh has come; the earth is full of their violent doings, and now I will put an end to them with the earth.</span></div>
-<div class="v-row" data-ref="Genesis 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Make for yourself an ark of gopher wood with rooms in it, and make it safe from the water inside and out.</span></div>
-<div class="v-row" data-ref="Genesis 6:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And this is the way you are to make it: it is to be three hundred cubits long, fifty cubits wide, and thirty cubits high.</span></div>
-<div class="v-row" data-ref="Genesis 6:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">You are to put a window in the ark, a cubit from the roof, and a door in the side of it, and you are to make it with a lower and second and third floors.</span></div>
-<div class="v-row" data-ref="Genesis 6:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For truly, I will send a great flow of waters over the earth, for the destruction from under the heaven of all flesh in which is the breath of life; everything on the earth will come to an end.</span></div>
-<div class="v-row" data-ref="Genesis 6:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But with you I will make an agreement; and you will come into the ark, you and your sons and your wife and your sons' wives with you.</span></div>
-<div class="v-row" data-ref="Genesis 6:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And you will take with you into the ark two of every sort of living thing, and keep them safe with you; they will be male and female.</span></div>
-<div class="v-row" data-ref="Genesis 6:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Two of every sort of bird and cattle and of every sort of living thing which goes on the earth will you take with you to keep them from destruction.</span></div>
-<div class="v-row" data-ref="Genesis 6:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And make a store of every sort of food for yourself and them.</span></div>
-<div class="v-row" data-ref="Genesis 6:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And all these things Noah did; as God said, so he did.</span></div>
+    <a class="v-row" href="/bible/bbe/genesis/6/1/" data-ref="Genesis 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/1/"><span class="v-num">1</span><span class="v-txt">And after a time, when men were increasing on the earth, and had daughters,</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/2/" data-ref="Genesis 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/2/"><span class="v-num">2</span><span class="v-txt">The sons of God saw that the daughters of men were fair; and they took wives for themselves from those who were pleasing to them.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/3/" data-ref="Genesis 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/3/"><span class="v-num">3</span><span class="v-txt">And the Lord said, My spirit will not be in man for ever, for he is only flesh; so the days of his life will be a hundred and twenty years.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/4/" data-ref="Genesis 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/4/"><span class="v-num">4</span><span class="v-txt">There were men of great strength and size on the earth in those days; and after that, when the sons of God had connection with the daughters of men, they gave birth to children: these were the great men of old days, the men of great name.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/5/" data-ref="Genesis 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/5/"><span class="v-num">5</span><span class="v-txt">And the Lord saw that the sin of man was great on the earth, and that all the thoughts of his heart were evil.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/6/" data-ref="Genesis 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/6/"><span class="v-num">6</span><span class="v-txt">And the Lord had sorrow because he had made man on the earth, and grief was in his heart.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/7/" data-ref="Genesis 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/7/"><span class="v-num">7</span><span class="v-txt">And the Lord said, I will take away man, whom I have made, from the face of the earth, even man and beast and that which goes on the earth and every bird of the air; for I have sorrow for having made them.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/8/" data-ref="Genesis 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/8/"><span class="v-num">8</span><span class="v-txt">But Noah had grace in the eyes of God.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/9/" data-ref="Genesis 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/9/"><span class="v-num">9</span><span class="v-txt">These are the generations of Noah. Noah was an upright man and without sin in his generation: he went in the ways of God.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/10/" data-ref="Genesis 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/10/"><span class="v-num">10</span><span class="v-txt">And Noah had three sons, Shem, Ham, and Japheth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/11/" data-ref="Genesis 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/11/"><span class="v-num">11</span><span class="v-txt">And the earth was evil in God's eyes and full of violent ways.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/12/" data-ref="Genesis 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/12/"><span class="v-num">12</span><span class="v-txt">And God, looking on the earth, saw that it was evil: for the way of all flesh had become evil on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/13/" data-ref="Genesis 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/13/"><span class="v-num">13</span><span class="v-txt">And God said to Noah, The end of all flesh has come; the earth is full of their violent doings, and now I will put an end to them with the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/14/" data-ref="Genesis 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/14/"><span class="v-num">14</span><span class="v-txt">Make for yourself an ark of gopher wood with rooms in it, and make it safe from the water inside and out.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/15/" data-ref="Genesis 6:15 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/15/"><span class="v-num">15</span><span class="v-txt">And this is the way you are to make it: it is to be three hundred cubits long, fifty cubits wide, and thirty cubits high.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/16/" data-ref="Genesis 6:16 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/16/"><span class="v-num">16</span><span class="v-txt">You are to put a window in the ark, a cubit from the roof, and a door in the side of it, and you are to make it with a lower and second and third floors.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/17/" data-ref="Genesis 6:17 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/17/"><span class="v-num">17</span><span class="v-txt">For truly, I will send a great flow of waters over the earth, for the destruction from under the heaven of all flesh in which is the breath of life; everything on the earth will come to an end.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/18/" data-ref="Genesis 6:18 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/18/"><span class="v-num">18</span><span class="v-txt">But with you I will make an agreement; and you will come into the ark, you and your sons and your wife and your sons' wives with you.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/19/" data-ref="Genesis 6:19 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/19/"><span class="v-num">19</span><span class="v-txt">And you will take with you into the ark two of every sort of living thing, and keep them safe with you; they will be male and female.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/20/" data-ref="Genesis 6:20 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/20/"><span class="v-num">20</span><span class="v-txt">Two of every sort of bird and cattle and of every sort of living thing which goes on the earth will you take with you to keep them from destruction.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/21/" data-ref="Genesis 6:21 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/21/"><span class="v-num">21</span><span class="v-txt">And make a store of every sort of food for yourself and them.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/6/22/" data-ref="Genesis 6:22 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/6/22/"><span class="v-num">22</span><span class="v-txt">And all these things Noah did; as God said, so he did.</span></a>
 
     
 <div class="app-cta">

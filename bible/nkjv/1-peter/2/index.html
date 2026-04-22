@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Peter 2:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Therefore, laying aside all malice, all deceit, hypocrisy, envy, and all evil speaking,</span></div>
-<div class="v-row" data-ref="1 Peter 2:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">as newborn babes, desire the pure milk of the word, that you may grow thereby,</span></div>
-<div class="v-row" data-ref="1 Peter 2:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">if indeed you have tasted that the Lord [is] gracious.</span></div>
-<div class="v-row" data-ref="1 Peter 2:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Coming to Him [as to] a living stone, rejected indeed by men, but chosen by God [and] precious,</span></div>
-<div class="v-row" data-ref="1 Peter 2:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">you also, as living stones, are being built up a spiritual house, a holy priesthood, to offer up spiritual sacrifices acceptable to God through Jesus Christ.</span></div>
-<div class="v-row" data-ref="1 Peter 2:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Therefore it is also contained in the Scripture, "Behold, I lay in Zion A chief cornerstone, elect, precious, And he who believes on Him will by no means be put to shame."</span></div>
-<div class="v-row" data-ref="1 Peter 2:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore, to you who believe, [He is] precious; but to those who are disobedient, "The stone which the builders rejected Has become the chief cornerstone,"</span></div>
-<div class="v-row" data-ref="1 Peter 2:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">and "A stone of stumbling And a rock of offense." They stumble, being disobedient to the word, to which they also were appointed.</span></div>
-<div class="v-row" data-ref="1 Peter 2:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But you [are] a chosen generation, a royal priesthood, a holy nation, His own special people, that you may proclaim the praises of Him who called you out of darkness into His marvelous light;</span></div>
-<div class="v-row" data-ref="1 Peter 2:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">who once [were] not a people but [are] now the people of God, who had not obtained mercy but now have obtained mercy.</span></div>
-<div class="v-row" data-ref="1 Peter 2:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Beloved, I beg [you] as sojourners and pilgrims, abstain from fleshly lusts which war against the soul,</span></div>
-<div class="v-row" data-ref="1 Peter 2:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">having your conduct honorable among the Gentiles, that when they speak against you as evildoers, they may, by [your] good works which they observe, glorify God in the day of visitation.</span></div>
-<div class="v-row" data-ref="1 Peter 2:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore submit yourselves to every ordinance of man for the Lord's sake, whether to the king as supreme,</span></div>
-<div class="v-row" data-ref="1 Peter 2:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">or to governors, as to those who are sent by him for the punishment of evildoers and [for the] praise of those who do good.</span></div>
-<div class="v-row" data-ref="1 Peter 2:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For this is the will of God, that by doing good you may put to silence the ignorance of foolish men --</span></div>
-<div class="v-row" data-ref="1 Peter 2:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">as free, yet not using liberty as a cloak for vice, but as bondservants of God.</span></div>
-<div class="v-row" data-ref="1 Peter 2:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Honor all [people.] Love the brotherhood. Fear God. Honor the king.</span></div>
-<div class="v-row" data-ref="1 Peter 2:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Servants, [be] submissive to [your] masters with all fear, not only to the good and gentle, but also to the harsh.</span></div>
-<div class="v-row" data-ref="1 Peter 2:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">For this [is] commendable, if because of conscience toward God one endures grief, suffering wrongfully.</span></div>
-<div class="v-row" data-ref="1 Peter 2:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For what credit [is it] if, when you are beaten for your faults, you take it patiently? But when you do good and suffer, if you take it patiently, this [is] commendable before God.</span></div>
-<div class="v-row" data-ref="1 Peter 2:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For to this you were called, because Christ also suffered for us, leaving us an example, that you should follow His steps:</span></div>
-<div class="v-row" data-ref="1 Peter 2:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">"Who committed no sin, Nor was deceit found in His mouth";</span></div>
-<div class="v-row" data-ref="1 Peter 2:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">who, when He was reviled, did not revile in return; when He suffered, He did not threaten, but committed [Himself] to Him who judges righteously;</span></div>
-<div class="v-row" data-ref="1 Peter 2:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">who Himself bore our sins in His own body on the tree, that we, having died to sins, might live for righteousness -- by whose stripes you were healed.</span></div>
-<div class="v-row" data-ref="1 Peter 2:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For you were like sheep going astray, but have now returned to the Shepherd and Overseer of your souls.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-peter/2/1/" data-ref="1 Peter 2:1 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/1/"><span class="v-num">1</span><span class="v-txt">Therefore, laying aside all malice, all deceit, hypocrisy, envy, and all evil speaking,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/2/" data-ref="1 Peter 2:2 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/2/"><span class="v-num">2</span><span class="v-txt">as newborn babes, desire the pure milk of the word, that you may grow thereby,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/3/" data-ref="1 Peter 2:3 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/3/"><span class="v-num">3</span><span class="v-txt">if indeed you have tasted that the Lord [is] gracious.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/4/" data-ref="1 Peter 2:4 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/4/"><span class="v-num">4</span><span class="v-txt">Coming to Him [as to] a living stone, rejected indeed by men, but chosen by God [and] precious,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/5/" data-ref="1 Peter 2:5 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/5/"><span class="v-num">5</span><span class="v-txt">you also, as living stones, are being built up a spiritual house, a holy priesthood, to offer up spiritual sacrifices acceptable to God through Jesus Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/6/" data-ref="1 Peter 2:6 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/6/"><span class="v-num">6</span><span class="v-txt">Therefore it is also contained in the Scripture, "Behold, I lay in Zion A chief cornerstone, elect, precious, And he who believes on Him will by no means be put to shame."</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/7/" data-ref="1 Peter 2:7 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/7/"><span class="v-num">7</span><span class="v-txt">Therefore, to you who believe, [He is] precious; but to those who are disobedient, "The stone which the builders rejected Has become the chief cornerstone,"</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/8/" data-ref="1 Peter 2:8 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/8/"><span class="v-num">8</span><span class="v-txt">and "A stone of stumbling And a rock of offense." They stumble, being disobedient to the word, to which they also were appointed.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/9/" data-ref="1 Peter 2:9 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/9/"><span class="v-num">9</span><span class="v-txt">But you [are] a chosen generation, a royal priesthood, a holy nation, His own special people, that you may proclaim the praises of Him who called you out of darkness into His marvelous light;</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/10/" data-ref="1 Peter 2:10 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/10/"><span class="v-num">10</span><span class="v-txt">who once [were] not a people but [are] now the people of God, who had not obtained mercy but now have obtained mercy.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/11/" data-ref="1 Peter 2:11 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/11/"><span class="v-num">11</span><span class="v-txt">Beloved, I beg [you] as sojourners and pilgrims, abstain from fleshly lusts which war against the soul,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/12/" data-ref="1 Peter 2:12 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/12/"><span class="v-num">12</span><span class="v-txt">having your conduct honorable among the Gentiles, that when they speak against you as evildoers, they may, by [your] good works which they observe, glorify God in the day of visitation.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/13/" data-ref="1 Peter 2:13 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/13/"><span class="v-num">13</span><span class="v-txt">Therefore submit yourselves to every ordinance of man for the Lord's sake, whether to the king as supreme,</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/14/" data-ref="1 Peter 2:14 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/14/"><span class="v-num">14</span><span class="v-txt">or to governors, as to those who are sent by him for the punishment of evildoers and [for the] praise of those who do good.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/15/" data-ref="1 Peter 2:15 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/15/"><span class="v-num">15</span><span class="v-txt">For this is the will of God, that by doing good you may put to silence the ignorance of foolish men --</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/16/" data-ref="1 Peter 2:16 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/16/"><span class="v-num">16</span><span class="v-txt">as free, yet not using liberty as a cloak for vice, but as bondservants of God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/17/" data-ref="1 Peter 2:17 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/17/"><span class="v-num">17</span><span class="v-txt">Honor all [people.] Love the brotherhood. Fear God. Honor the king.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/18/" data-ref="1 Peter 2:18 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/18/"><span class="v-num">18</span><span class="v-txt">Servants, [be] submissive to [your] masters with all fear, not only to the good and gentle, but also to the harsh.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/19/" data-ref="1 Peter 2:19 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/19/"><span class="v-num">19</span><span class="v-txt">For this [is] commendable, if because of conscience toward God one endures grief, suffering wrongfully.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/20/" data-ref="1 Peter 2:20 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/20/"><span class="v-num">20</span><span class="v-txt">For what credit [is it] if, when you are beaten for your faults, you take it patiently? But when you do good and suffer, if you take it patiently, this [is] commendable before God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/21/" data-ref="1 Peter 2:21 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/21/"><span class="v-num">21</span><span class="v-txt">For to this you were called, because Christ also suffered for us, leaving us an example, that you should follow His steps:</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/22/" data-ref="1 Peter 2:22 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/22/"><span class="v-num">22</span><span class="v-txt">"Who committed no sin, Nor was deceit found in His mouth";</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/23/" data-ref="1 Peter 2:23 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/23/"><span class="v-num">23</span><span class="v-txt">who, when He was reviled, did not revile in return; when He suffered, He did not threaten, but committed [Himself] to Him who judges righteously;</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/24/" data-ref="1 Peter 2:24 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/24/"><span class="v-num">24</span><span class="v-txt">who Himself bore our sins in His own body on the tree, that we, having died to sins, might live for righteousness -- by whose stripes you were healed.</span></a>
+<a class="v-row" href="/bible/nkjv/1-peter/2/25/" data-ref="1 Peter 2:25 (New King James Version)" data-verse-url="/bible/nkjv/1-peter/2/25/"><span class="v-num">25</span><span class="v-txt">For you were like sheep going astray, but have now returned to the Shepherd and Overseer of your souls.</span></a>
 
     
 <div class="app-cta">

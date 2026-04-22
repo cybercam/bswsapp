@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now at the end of twenty years, in which time Solomon had put up the house of the Lord and a house for himself,</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He took in hand the building up of the towns which Huram had given him, causing the children of Israel to make living-places for themselves there.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Solomon went to Hamath-zobah and overcame it.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And he put up the buildings of Tadmor in the waste land, and of all the store-towns in Hamath;</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And of Beth-horon the higher and the lower, walled towns with walls and doorways and locks;</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And of Baalath, and all the store-towns which Solomon had, and the towns where he kept his war-carriages and his horse men, and everything which it was his pleasure to put up in Jerusalem and in Lebanon and in all the land under his rule.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">As for all the rest of the Hittites and the Amorites and the Perizzites and the Hivites and the Jebusites, who were not of Israel:</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Their men who were still living in the land, and whom the children of Israel had not put an end to, these Solomon put to forced work, as is done to this day;</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But Solomon did not make use of the children of Israel as servants for his work; they were men of war, his chiefs and his captains, and captains of his war-carriages and his horsemen.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now these were the chief men in authority whom King Solomon had: two hundred and fifty of them, in authority over the people.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then Solomon made Pharaoh's daughter come up from the town of David to the house which he had made for her; for he said, I will not have my wife living in the house of David, king of Israel, because those places where the ark of the Lord has come are holy.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then Solomon made burned offerings to the Lord on the altar of the Lord which he had put up in front of the covered way,</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Offering every day what had been ordered by Moses, on the Sabbaths and at the new moon and at the regular feasts three times a year, that is at the feast of unleavened bread, the feast of weeks, and the feast of tents.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And he gave the divisions of the priests their places for their work, as ordered by his father David, and to the Levites he gave their work of praise and waiting on the priests, to do what was needed day by day; and he gave the door-keepers their places in turn at every door; for so David, the man of God, had given orders.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">All the orders given by the king to the priests and Levites, in connection with any business or stores, were done with care.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And all the work of Solomon was complete, from the day when he put the base of the Lord's house in position, till Solomon had come to the end of building the Lord's house.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Then Solomon went to Ezion-geber and to Eloth by the sea in the land of Edom.</span></div>
-<div class="v-row" data-ref="2 Chronicles 8:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Huram sent him, by his servants, ships and experienced seamen, who went with the servants of Solomon to Ophir and came back with four hundred and fifty talents of gold, which they took to King Solomon.</span></div>
+    <a class="v-row" href="/bible/bbe/2-chronicles/8/1/" data-ref="2 Chronicles 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/1/"><span class="v-num">1</span><span class="v-txt">Now at the end of twenty years, in which time Solomon had put up the house of the Lord and a house for himself,</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/2/" data-ref="2 Chronicles 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/2/"><span class="v-num">2</span><span class="v-txt">He took in hand the building up of the towns which Huram had given him, causing the children of Israel to make living-places for themselves there.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/3/" data-ref="2 Chronicles 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/3/"><span class="v-num">3</span><span class="v-txt">And Solomon went to Hamath-zobah and overcame it.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/4/" data-ref="2 Chronicles 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/4/"><span class="v-num">4</span><span class="v-txt">And he put up the buildings of Tadmor in the waste land, and of all the store-towns in Hamath;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/5/" data-ref="2 Chronicles 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/5/"><span class="v-num">5</span><span class="v-txt">And of Beth-horon the higher and the lower, walled towns with walls and doorways and locks;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/6/" data-ref="2 Chronicles 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/6/"><span class="v-num">6</span><span class="v-txt">And of Baalath, and all the store-towns which Solomon had, and the towns where he kept his war-carriages and his horse men, and everything which it was his pleasure to put up in Jerusalem and in Lebanon and in all the land under his rule.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/7/" data-ref="2 Chronicles 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/7/"><span class="v-num">7</span><span class="v-txt">As for all the rest of the Hittites and the Amorites and the Perizzites and the Hivites and the Jebusites, who were not of Israel:</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/8/" data-ref="2 Chronicles 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/8/"><span class="v-num">8</span><span class="v-txt">Their men who were still living in the land, and whom the children of Israel had not put an end to, these Solomon put to forced work, as is done to this day;</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/9/" data-ref="2 Chronicles 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/9/"><span class="v-num">9</span><span class="v-txt">But Solomon did not make use of the children of Israel as servants for his work; they were men of war, his chiefs and his captains, and captains of his war-carriages and his horsemen.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/10/" data-ref="2 Chronicles 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/10/"><span class="v-num">10</span><span class="v-txt">Now these were the chief men in authority whom King Solomon had: two hundred and fifty of them, in authority over the people.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/11/" data-ref="2 Chronicles 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/11/"><span class="v-num">11</span><span class="v-txt">Then Solomon made Pharaoh's daughter come up from the town of David to the house which he had made for her; for he said, I will not have my wife living in the house of David, king of Israel, because those places where the ark of the Lord has come are holy.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/12/" data-ref="2 Chronicles 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/12/"><span class="v-num">12</span><span class="v-txt">Then Solomon made burned offerings to the Lord on the altar of the Lord which he had put up in front of the covered way,</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/13/" data-ref="2 Chronicles 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/13/"><span class="v-num">13</span><span class="v-txt">Offering every day what had been ordered by Moses, on the Sabbaths and at the new moon and at the regular feasts three times a year, that is at the feast of unleavened bread, the feast of weeks, and the feast of tents.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/14/" data-ref="2 Chronicles 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/14/"><span class="v-num">14</span><span class="v-txt">And he gave the divisions of the priests their places for their work, as ordered by his father David, and to the Levites he gave their work of praise and waiting on the priests, to do what was needed day by day; and he gave the door-keepers their places in turn at every door; for so David, the man of God, had given orders.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/15/" data-ref="2 Chronicles 8:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/15/"><span class="v-num">15</span><span class="v-txt">All the orders given by the king to the priests and Levites, in connection with any business or stores, were done with care.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/16/" data-ref="2 Chronicles 8:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/16/"><span class="v-num">16</span><span class="v-txt">And all the work of Solomon was complete, from the day when he put the base of the Lord's house in position, till Solomon had come to the end of building the Lord's house.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/17/" data-ref="2 Chronicles 8:17 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/17/"><span class="v-num">17</span><span class="v-txt">Then Solomon went to Ezion-geber and to Eloth by the sea in the land of Edom.</span></a>
+<a class="v-row" href="/bible/bbe/2-chronicles/8/18/" data-ref="2 Chronicles 8:18 (Bible in Basic English)" data-verse-url="/bible/bbe/2-chronicles/8/18/"><span class="v-num">18</span><span class="v-txt">And Huram sent him, by his servants, ships and experienced seamen, who went with the servants of Solomon to Ophir and came back with four hundred and fifty talents of gold, which they took to King Solomon.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 51</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 51:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Have mercy upon me, O God, according to thy lovingkindness: According to the multitude of thy tender mercies blot out my transgressions.</span></div>
-<div class="v-row" data-ref="Psalm 51:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Wash me thoroughly from mine iniquity, And cleanse me from my sin.</span></div>
-<div class="v-row" data-ref="Psalm 51:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For I know my transgressions; And my sin is ever before me.</span></div>
-<div class="v-row" data-ref="Psalm 51:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Against thee, thee only, have I sinned, And done that which is evil in thy sight; That thou mayest be justified when thou speakest, And be clear when thou judgest.</span></div>
-<div class="v-row" data-ref="Psalm 51:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Behold, I was brought forth in iniquity; And in sin did my mother conceive me.</span></div>
-<div class="v-row" data-ref="Psalm 51:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Behold, thou desirest truth in the inward parts; And in the hidden part thou wilt make me to know wisdom.</span></div>
-<div class="v-row" data-ref="Psalm 51:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Purify me with hyssop, and I shall be clean: Wash me, and I shall be whiter than snow.</span></div>
-<div class="v-row" data-ref="Psalm 51:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Make me to hear joy and gladness, That the bones which thou hast broken may rejoice.</span></div>
-<div class="v-row" data-ref="Psalm 51:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Hide thy face from my sins, And blot out all mine iniquities.</span></div>
-<div class="v-row" data-ref="Psalm 51:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Create in me a clean heart, O God; And renew a right spirit within me.</span></div>
-<div class="v-row" data-ref="Psalm 51:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Cast me not away from thy presence; And take not thy holy Spirit from me.</span></div>
-<div class="v-row" data-ref="Psalm 51:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Restore unto me the joy of thy salvation; And uphold me with a willing spirit.</span></div>
-<div class="v-row" data-ref="Psalm 51:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then will I teach transgressors thy ways; And sinners shall be converted unto thee.</span></div>
-<div class="v-row" data-ref="Psalm 51:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Deliver me from bloodguiltiness, O God, thou God of my salvation; [And] my tongue shall sing aloud of thy righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 51:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">O Lord, open thou my lips; And my mouth shall show forth thy praise.</span></div>
-<div class="v-row" data-ref="Psalm 51:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For thou delightest not in sacrifice; Else would I give it: Thou hast no pleasure in burnt-offering.</span></div>
-<div class="v-row" data-ref="Psalm 51:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The sacrifices of God are a broken spirit: A broken and contrite heart, O God, thou wilt not despise.</span></div>
-<div class="v-row" data-ref="Psalm 51:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Do good in thy good pleasure unto Zion: Build thou the walls of Jerusalem.</span></div>
-<div class="v-row" data-ref="Psalm 51:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Then will thou delight in the sacrifices of righteousness, In burnt-offering and in whole burnt-offering: Then will they offer bullocks upon thine altar.</span></div>
+    <a class="v-row" href="/bible/asv/psalms/51/1/" data-ref="Psalm 51:1 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/1/"><span class="v-num">1</span><span class="v-txt">Have mercy upon me, O God, according to thy lovingkindness: According to the multitude of thy tender mercies blot out my transgressions.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/2/" data-ref="Psalm 51:2 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/2/"><span class="v-num">2</span><span class="v-txt">Wash me thoroughly from mine iniquity, And cleanse me from my sin.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/3/" data-ref="Psalm 51:3 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/3/"><span class="v-num">3</span><span class="v-txt">For I know my transgressions; And my sin is ever before me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/4/" data-ref="Psalm 51:4 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/4/"><span class="v-num">4</span><span class="v-txt">Against thee, thee only, have I sinned, And done that which is evil in thy sight; That thou mayest be justified when thou speakest, And be clear when thou judgest.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/5/" data-ref="Psalm 51:5 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/5/"><span class="v-num">5</span><span class="v-txt">Behold, I was brought forth in iniquity; And in sin did my mother conceive me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/6/" data-ref="Psalm 51:6 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/6/"><span class="v-num">6</span><span class="v-txt">Behold, thou desirest truth in the inward parts; And in the hidden part thou wilt make me to know wisdom.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/7/" data-ref="Psalm 51:7 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/7/"><span class="v-num">7</span><span class="v-txt">Purify me with hyssop, and I shall be clean: Wash me, and I shall be whiter than snow.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/8/" data-ref="Psalm 51:8 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/8/"><span class="v-num">8</span><span class="v-txt">Make me to hear joy and gladness, That the bones which thou hast broken may rejoice.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/9/" data-ref="Psalm 51:9 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/9/"><span class="v-num">9</span><span class="v-txt">Hide thy face from my sins, And blot out all mine iniquities.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/10/" data-ref="Psalm 51:10 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/10/"><span class="v-num">10</span><span class="v-txt">Create in me a clean heart, O God; And renew a right spirit within me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/11/" data-ref="Psalm 51:11 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/11/"><span class="v-num">11</span><span class="v-txt">Cast me not away from thy presence; And take not thy holy Spirit from me.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/12/" data-ref="Psalm 51:12 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/12/"><span class="v-num">12</span><span class="v-txt">Restore unto me the joy of thy salvation; And uphold me with a willing spirit.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/13/" data-ref="Psalm 51:13 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/13/"><span class="v-num">13</span><span class="v-txt">Then will I teach transgressors thy ways; And sinners shall be converted unto thee.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/14/" data-ref="Psalm 51:14 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/14/"><span class="v-num">14</span><span class="v-txt">Deliver me from bloodguiltiness, O God, thou God of my salvation; [And] my tongue shall sing aloud of thy righteousness.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/15/" data-ref="Psalm 51:15 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/15/"><span class="v-num">15</span><span class="v-txt">O Lord, open thou my lips; And my mouth shall show forth thy praise.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/16/" data-ref="Psalm 51:16 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/16/"><span class="v-num">16</span><span class="v-txt">For thou delightest not in sacrifice; Else would I give it: Thou hast no pleasure in burnt-offering.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/17/" data-ref="Psalm 51:17 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/17/"><span class="v-num">17</span><span class="v-txt">The sacrifices of God are a broken spirit: A broken and contrite heart, O God, thou wilt not despise.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/18/" data-ref="Psalm 51:18 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/18/"><span class="v-num">18</span><span class="v-txt">Do good in thy good pleasure unto Zion: Build thou the walls of Jerusalem.</span></a>
+<a class="v-row" href="/bible/asv/psalms/51/19/" data-ref="Psalm 51:19 (American Standard Version)" data-verse-url="/bible/asv/psalms/51/19/"><span class="v-num">19</span><span class="v-txt">Then will thou delight in the sacrifices of righteousness, In burnt-offering and in whole burnt-offering: Then will they offer bullocks upon thine altar.</span></a>
 
     
 <div class="app-cta">

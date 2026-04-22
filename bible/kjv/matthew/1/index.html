@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Matthew 1:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The book of the generation of Jesus Christ, the son of David, the son of Abraham.</span></div>
-<div class="v-row" data-ref="Matthew 1:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;</span></div>
-<div class="v-row" data-ref="Matthew 1:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;</span></div>
-<div class="v-row" data-ref="Matthew 1:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;</span></div>
-<div class="v-row" data-ref="Matthew 1:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;</span></div>
-<div class="v-row" data-ref="Matthew 1:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Jesse begat David the king; and David the king begat Solomon of her that had been the wife of Urias;</span></div>
-<div class="v-row" data-ref="Matthew 1:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;</span></div>
-<div class="v-row" data-ref="Matthew 1:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;</span></div>
-<div class="v-row" data-ref="Matthew 1:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;</span></div>
-<div class="v-row" data-ref="Matthew 1:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;</span></div>
-<div class="v-row" data-ref="Matthew 1:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:</span></div>
-<div class="v-row" data-ref="Matthew 1:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;</span></div>
-<div class="v-row" data-ref="Matthew 1:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Zorobabel begat Abiud; and Abiud begat Eliakim; and Eliakim begat Azor;</span></div>
-<div class="v-row" data-ref="Matthew 1:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Azor begat Sadoc; and Sadoc begat Achim; and Achim begat Eliud;</span></div>
-<div class="v-row" data-ref="Matthew 1:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Eliud begat Eleazar; and Eleazar begat Matthan; and Matthan begat Jacob;</span></div>
-<div class="v-row" data-ref="Matthew 1:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Jacob begat Joseph the husband of Mary, of whom was born Jesus, who is called Christ.</span></div>
-<div class="v-row" data-ref="Matthew 1:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So all the generations from Abraham to David are fourteen generations; and from David until the carrying away into Babylon are fourteen generations; and from the carrying away into Babylon unto Christ are fourteen generations.</span></div>
-<div class="v-row" data-ref="Matthew 1:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now the birth of Jesus Christ was on this wise: When as his mother Mary was espoused to Joseph, before they came together, she was found with child of the Holy Ghost.</span></div>
-<div class="v-row" data-ref="Matthew 1:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Then Joseph her husband, being a just man, and not willing to make her a publick example, was minded to put her away privily.</span></div>
-<div class="v-row" data-ref="Matthew 1:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But while he thought on these things, behold, the angel of the Lord appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost.</span></div>
-<div class="v-row" data-ref="Matthew 1:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And she shall bring forth a son, and thou shalt call his name JESUS: for he shall save his people from their sins.</span></div>
-<div class="v-row" data-ref="Matthew 1:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Now all this was done, that it might be fulfilled which was spoken of the Lord by the prophet, saying,</span></div>
-<div class="v-row" data-ref="Matthew 1:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Behold, a virgin shall be with child, and shall bring forth a son, and they shall call his name Emmanuel, which being interpreted is, God with us.</span></div>
-<div class="v-row" data-ref="Matthew 1:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Then Joseph being raised from sleep did as the angel of the Lord had bidden him, and took unto him his wife:</span></div>
-<div class="v-row" data-ref="Matthew 1:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And knew her not till she had brought forth her firstborn son: and he called his name JESUS.</span></div>
+    <a class="v-row" href="/bible/kjv/matthew/1/1/" data-ref="Matthew 1:1 (King James Version)" data-verse-url="/bible/kjv/matthew/1/1/"><span class="v-num">1</span><span class="v-txt">The book of the generation of Jesus Christ, the son of David, the son of Abraham.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/2/" data-ref="Matthew 1:2 (King James Version)" data-verse-url="/bible/kjv/matthew/1/2/"><span class="v-num">2</span><span class="v-txt">Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/3/" data-ref="Matthew 1:3 (King James Version)" data-verse-url="/bible/kjv/matthew/1/3/"><span class="v-num">3</span><span class="v-txt">And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/4/" data-ref="Matthew 1:4 (King James Version)" data-verse-url="/bible/kjv/matthew/1/4/"><span class="v-num">4</span><span class="v-txt">And Aram begat Aminadab; and Aminadab begat Naasson; and Naasson begat Salmon;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/5/" data-ref="Matthew 1:5 (King James Version)" data-verse-url="/bible/kjv/matthew/1/5/"><span class="v-num">5</span><span class="v-txt">And Salmon begat Booz of Rachab; and Booz begat Obed of Ruth; and Obed begat Jesse;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/6/" data-ref="Matthew 1:6 (King James Version)" data-verse-url="/bible/kjv/matthew/1/6/"><span class="v-num">6</span><span class="v-txt">And Jesse begat David the king; and David the king begat Solomon of her that had been the wife of Urias;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/7/" data-ref="Matthew 1:7 (King James Version)" data-verse-url="/bible/kjv/matthew/1/7/"><span class="v-num">7</span><span class="v-txt">And Solomon begat Roboam; and Roboam begat Abia; and Abia begat Asa;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/8/" data-ref="Matthew 1:8 (King James Version)" data-verse-url="/bible/kjv/matthew/1/8/"><span class="v-num">8</span><span class="v-txt">And Asa begat Josaphat; and Josaphat begat Joram; and Joram begat Ozias;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/9/" data-ref="Matthew 1:9 (King James Version)" data-verse-url="/bible/kjv/matthew/1/9/"><span class="v-num">9</span><span class="v-txt">And Ozias begat Joatham; and Joatham begat Achaz; and Achaz begat Ezekias;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/10/" data-ref="Matthew 1:10 (King James Version)" data-verse-url="/bible/kjv/matthew/1/10/"><span class="v-num">10</span><span class="v-txt">And Ezekias begat Manasses; and Manasses begat Amon; and Amon begat Josias;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/11/" data-ref="Matthew 1:11 (King James Version)" data-verse-url="/bible/kjv/matthew/1/11/"><span class="v-num">11</span><span class="v-txt">And Josias begat Jechonias and his brethren, about the time they were carried away to Babylon:</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/12/" data-ref="Matthew 1:12 (King James Version)" data-verse-url="/bible/kjv/matthew/1/12/"><span class="v-num">12</span><span class="v-txt">And after they were brought to Babylon, Jechonias begat Salathiel; and Salathiel begat Zorobabel;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/13/" data-ref="Matthew 1:13 (King James Version)" data-verse-url="/bible/kjv/matthew/1/13/"><span class="v-num">13</span><span class="v-txt">And Zorobabel begat Abiud; and Abiud begat Eliakim; and Eliakim begat Azor;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/14/" data-ref="Matthew 1:14 (King James Version)" data-verse-url="/bible/kjv/matthew/1/14/"><span class="v-num">14</span><span class="v-txt">And Azor begat Sadoc; and Sadoc begat Achim; and Achim begat Eliud;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/15/" data-ref="Matthew 1:15 (King James Version)" data-verse-url="/bible/kjv/matthew/1/15/"><span class="v-num">15</span><span class="v-txt">And Eliud begat Eleazar; and Eleazar begat Matthan; and Matthan begat Jacob;</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/16/" data-ref="Matthew 1:16 (King James Version)" data-verse-url="/bible/kjv/matthew/1/16/"><span class="v-num">16</span><span class="v-txt">And Jacob begat Joseph the husband of Mary, of whom was born Jesus, who is called Christ.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/17/" data-ref="Matthew 1:17 (King James Version)" data-verse-url="/bible/kjv/matthew/1/17/"><span class="v-num">17</span><span class="v-txt">So all the generations from Abraham to David are fourteen generations; and from David until the carrying away into Babylon are fourteen generations; and from the carrying away into Babylon unto Christ are fourteen generations.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/18/" data-ref="Matthew 1:18 (King James Version)" data-verse-url="/bible/kjv/matthew/1/18/"><span class="v-num">18</span><span class="v-txt">Now the birth of Jesus Christ was on this wise: When as his mother Mary was espoused to Joseph, before they came together, she was found with child of the Holy Ghost.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/19/" data-ref="Matthew 1:19 (King James Version)" data-verse-url="/bible/kjv/matthew/1/19/"><span class="v-num">19</span><span class="v-txt">Then Joseph her husband, being a just man, and not willing to make her a publick example, was minded to put her away privily.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/20/" data-ref="Matthew 1:20 (King James Version)" data-verse-url="/bible/kjv/matthew/1/20/"><span class="v-num">20</span><span class="v-txt">But while he thought on these things, behold, the angel of the Lord appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/21/" data-ref="Matthew 1:21 (King James Version)" data-verse-url="/bible/kjv/matthew/1/21/"><span class="v-num">21</span><span class="v-txt">And she shall bring forth a son, and thou shalt call his name JESUS: for he shall save his people from their sins.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/22/" data-ref="Matthew 1:22 (King James Version)" data-verse-url="/bible/kjv/matthew/1/22/"><span class="v-num">22</span><span class="v-txt">Now all this was done, that it might be fulfilled which was spoken of the Lord by the prophet, saying,</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/23/" data-ref="Matthew 1:23 (King James Version)" data-verse-url="/bible/kjv/matthew/1/23/"><span class="v-num">23</span><span class="v-txt">Behold, a virgin shall be with child, and shall bring forth a son, and they shall call his name Emmanuel, which being interpreted is, God with us.</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/24/" data-ref="Matthew 1:24 (King James Version)" data-verse-url="/bible/kjv/matthew/1/24/"><span class="v-num">24</span><span class="v-txt">Then Joseph being raised from sleep did as the angel of the Lord had bidden him, and took unto him his wife:</span></a>
+<a class="v-row" href="/bible/kjv/matthew/1/25/" data-ref="Matthew 1:25 (King James Version)" data-verse-url="/bible/kjv/matthew/1/25/"><span class="v-num">25</span><span class="v-txt">And knew her not till she had brought forth her firstborn son: and he called his name JESUS.</span></a>
 
     
 <div class="app-cta">

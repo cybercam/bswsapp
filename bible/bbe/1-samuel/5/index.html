@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the Philistines, having taken the ark of God, took it with them from Eben-ezer to Ashdod.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They took the ark of God into the house of Dagon and put it by the side of Dagon.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when the people of Ashdod got up early on the morning after, they saw that Dagon had come down to the earth on his face before the ark of the Lord. And they took Dagon up and put him in his place again.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And when they got up early on the morning after, Dagon had come down to the earth on his face before the ark of the Lord; and his head and his hands were broken off on the doorstep; only the base was in its place.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So to this day no priest of Dagon, or any who come into Dagon's house, will put his foot on the doorstep of the house of Dagon in Ashdod.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But the hand of the Lord was hard on the people of Ashdod and he sent disease on them through all the country of Ashdod.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And when the men of Ashdod saw how it was, they said, Let not the ark of the God of Israel be with us, for his hand is hard on us and on Dagon our god.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">So they sent for all the lords of the Philistines to come together there, and said, What are we to do with the ark of the God of Israel? And their answer was, Let the ark of the God of Israel be taken away to Gath. So they took the ark of the God of Israel away.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But after they had taken it away, the hand of the Lord was stretched out against the town for its destruction: and the signs of disease came out on all the men of the town, small and great.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So they sent the ark of God to Ekron. And when the ark of God came to Ekron, the people of the town made an outcry, saying, They have sent the ark of the God of Israel to us for the destruction of us and of our people.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So they sent and got together all the lords of the Philistines, and they said, Send away the ark of the God of Israel, and let it go back to its place, so that it may not be the cause of death to us and to our people: for there was a great fear of death through all the town; the hand of God was very hard on them there.</span></div>
-<div class="v-row" data-ref="1 Samuel 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And those men who were not overtaken by death were cruelly diseased: and the cry of the town went up to heaven.</span></div>
+    <a class="v-row" href="/bible/bbe/1-samuel/5/1/" data-ref="1 Samuel 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/1/"><span class="v-num">1</span><span class="v-txt">Now the Philistines, having taken the ark of God, took it with them from Eben-ezer to Ashdod.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/2/" data-ref="1 Samuel 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/2/"><span class="v-num">2</span><span class="v-txt">They took the ark of God into the house of Dagon and put it by the side of Dagon.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/3/" data-ref="1 Samuel 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/3/"><span class="v-num">3</span><span class="v-txt">And when the people of Ashdod got up early on the morning after, they saw that Dagon had come down to the earth on his face before the ark of the Lord. And they took Dagon up and put him in his place again.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/4/" data-ref="1 Samuel 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/4/"><span class="v-num">4</span><span class="v-txt">And when they got up early on the morning after, Dagon had come down to the earth on his face before the ark of the Lord; and his head and his hands were broken off on the doorstep; only the base was in its place.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/5/" data-ref="1 Samuel 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/5/"><span class="v-num">5</span><span class="v-txt">So to this day no priest of Dagon, or any who come into Dagon's house, will put his foot on the doorstep of the house of Dagon in Ashdod.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/6/" data-ref="1 Samuel 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/6/"><span class="v-num">6</span><span class="v-txt">But the hand of the Lord was hard on the people of Ashdod and he sent disease on them through all the country of Ashdod.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/7/" data-ref="1 Samuel 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/7/"><span class="v-num">7</span><span class="v-txt">And when the men of Ashdod saw how it was, they said, Let not the ark of the God of Israel be with us, for his hand is hard on us and on Dagon our god.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/8/" data-ref="1 Samuel 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/8/"><span class="v-num">8</span><span class="v-txt">So they sent for all the lords of the Philistines to come together there, and said, What are we to do with the ark of the God of Israel? And their answer was, Let the ark of the God of Israel be taken away to Gath. So they took the ark of the God of Israel away.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/9/" data-ref="1 Samuel 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/9/"><span class="v-num">9</span><span class="v-txt">But after they had taken it away, the hand of the Lord was stretched out against the town for its destruction: and the signs of disease came out on all the men of the town, small and great.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/10/" data-ref="1 Samuel 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/10/"><span class="v-num">10</span><span class="v-txt">So they sent the ark of God to Ekron. And when the ark of God came to Ekron, the people of the town made an outcry, saying, They have sent the ark of the God of Israel to us for the destruction of us and of our people.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/11/" data-ref="1 Samuel 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/11/"><span class="v-num">11</span><span class="v-txt">So they sent and got together all the lords of the Philistines, and they said, Send away the ark of the God of Israel, and let it go back to its place, so that it may not be the cause of death to us and to our people: for there was a great fear of death through all the town; the hand of God was very hard on them there.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/5/12/" data-ref="1 Samuel 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/5/12/"><span class="v-num">12</span><span class="v-txt">And those men who were not overtaken by death were cruelly diseased: and the cry of the town went up to heaven.</span></a>
 
     
 <div class="app-cta">

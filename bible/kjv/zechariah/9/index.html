@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 9:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The burden of the word of the LORD in the land of Hadrach, and Damascus shall be the rest thereof: when the eyes of man, as of all the tribes of Israel, shall be toward the LORD.</span></div>
-<div class="v-row" data-ref="Zechariah 9:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Hamath also shall border thereby; Tyrus, and Zidon, though it be very wise.</span></div>
-<div class="v-row" data-ref="Zechariah 9:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Tyrus did build herself a strong hold, and heaped up silver as the dust, and fine gold as the mire of the streets.</span></div>
-<div class="v-row" data-ref="Zechariah 9:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Behold, the Lord will cast her out, and he will smite her power in the sea; and she shall be devoured with fire.</span></div>
-<div class="v-row" data-ref="Zechariah 9:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Ashkelon shall see it, and fear; Gaza also shall see it, and be very sorrowful, and Ekron; for her expectation shall be ashamed; and the king shall perish from Gaza, and Ashkelon shall not be inhabited.</span></div>
-<div class="v-row" data-ref="Zechariah 9:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And a bastard shall dwell in Ashdod, and I will cut off the pride of the Philistines.</span></div>
-<div class="v-row" data-ref="Zechariah 9:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I will take away his blood out of his mouth, and his abominations from between his teeth: but he that remaineth, even he, shall be for our God, and he shall be as a governor in Judah, and Ekron as a Jebusite.</span></div>
-<div class="v-row" data-ref="Zechariah 9:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I will encamp about mine house because of the army, because of him that passeth by, and because of him that returneth: and no oppressor shall pass through them any more: for now have I seen with mine eyes.</span></div>
-<div class="v-row" data-ref="Zechariah 9:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Rejoice greatly, O daughter of Zion; shout, O daughter of Jerusalem: behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass, and upon a colt the foal of an ass.</span></div>
-<div class="v-row" data-ref="Zechariah 9:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And I will cut off the chariot from Ephraim, and the horse from Jerusalem, and the battle bow shall be cut off: and he shall speak peace unto the heathen: and his dominion shall be from sea even to sea, and from the river even to the ends of the earth.</span></div>
-<div class="v-row" data-ref="Zechariah 9:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">As for thee also, by the blood of thy covenant I have sent forth thy prisoners out of the pit wherein is no water.</span></div>
-<div class="v-row" data-ref="Zechariah 9:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Turn you to the strong hold, ye prisoners of hope: even to day do I declare that I will render double unto thee;</span></div>
-<div class="v-row" data-ref="Zechariah 9:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When I have bent Judah for me, filled the bow with Ephraim, and raised up thy sons, O Zion, against thy sons, O Greece, and made thee as the sword of a mighty man.</span></div>
-<div class="v-row" data-ref="Zechariah 9:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the LORD shall be seen over them, and his arrow shall go forth as the lightning: and the Lord GOD shall blow the trumpet, and shall go with whirlwinds of the south.</span></div>
-<div class="v-row" data-ref="Zechariah 9:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The LORD of hosts shall defend them; and they shall devour, and subdue with sling stones; and they shall drink, and make a noise as through wine; and they shall be filled like bowls, and as the corners of the altar.</span></div>
-<div class="v-row" data-ref="Zechariah 9:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the LORD their God shall save them in that day as the flock of his people: for they shall be as the stones of a crown, lifted up as an ensign upon his land.</span></div>
-<div class="v-row" data-ref="Zechariah 9:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For how great is his goodness, and how great is his beauty! corn shall make the young men cheerful, and new wine the maids.</span></div>
+    <a class="v-row" href="/bible/kjv/zechariah/9/1/" data-ref="Zechariah 9:1 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/1/"><span class="v-num">1</span><span class="v-txt">The burden of the word of the LORD in the land of Hadrach, and Damascus shall be the rest thereof: when the eyes of man, as of all the tribes of Israel, shall be toward the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/2/" data-ref="Zechariah 9:2 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/2/"><span class="v-num">2</span><span class="v-txt">And Hamath also shall border thereby; Tyrus, and Zidon, though it be very wise.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/3/" data-ref="Zechariah 9:3 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/3/"><span class="v-num">3</span><span class="v-txt">And Tyrus did build herself a strong hold, and heaped up silver as the dust, and fine gold as the mire of the streets.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/4/" data-ref="Zechariah 9:4 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/4/"><span class="v-num">4</span><span class="v-txt">Behold, the Lord will cast her out, and he will smite her power in the sea; and she shall be devoured with fire.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/5/" data-ref="Zechariah 9:5 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/5/"><span class="v-num">5</span><span class="v-txt">Ashkelon shall see it, and fear; Gaza also shall see it, and be very sorrowful, and Ekron; for her expectation shall be ashamed; and the king shall perish from Gaza, and Ashkelon shall not be inhabited.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/6/" data-ref="Zechariah 9:6 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/6/"><span class="v-num">6</span><span class="v-txt">And a bastard shall dwell in Ashdod, and I will cut off the pride of the Philistines.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/7/" data-ref="Zechariah 9:7 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/7/"><span class="v-num">7</span><span class="v-txt">And I will take away his blood out of his mouth, and his abominations from between his teeth: but he that remaineth, even he, shall be for our God, and he shall be as a governor in Judah, and Ekron as a Jebusite.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/8/" data-ref="Zechariah 9:8 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/8/"><span class="v-num">8</span><span class="v-txt">And I will encamp about mine house because of the army, because of him that passeth by, and because of him that returneth: and no oppressor shall pass through them any more: for now have I seen with mine eyes.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/9/" data-ref="Zechariah 9:9 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/9/"><span class="v-num">9</span><span class="v-txt">Rejoice greatly, O daughter of Zion; shout, O daughter of Jerusalem: behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass, and upon a colt the foal of an ass.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/10/" data-ref="Zechariah 9:10 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/10/"><span class="v-num">10</span><span class="v-txt">And I will cut off the chariot from Ephraim, and the horse from Jerusalem, and the battle bow shall be cut off: and he shall speak peace unto the heathen: and his dominion shall be from sea even to sea, and from the river even to the ends of the earth.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/11/" data-ref="Zechariah 9:11 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/11/"><span class="v-num">11</span><span class="v-txt">As for thee also, by the blood of thy covenant I have sent forth thy prisoners out of the pit wherein is no water.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/12/" data-ref="Zechariah 9:12 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/12/"><span class="v-num">12</span><span class="v-txt">Turn you to the strong hold, ye prisoners of hope: even to day do I declare that I will render double unto thee;</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/13/" data-ref="Zechariah 9:13 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/13/"><span class="v-num">13</span><span class="v-txt">When I have bent Judah for me, filled the bow with Ephraim, and raised up thy sons, O Zion, against thy sons, O Greece, and made thee as the sword of a mighty man.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/14/" data-ref="Zechariah 9:14 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/14/"><span class="v-num">14</span><span class="v-txt">And the LORD shall be seen over them, and his arrow shall go forth as the lightning: and the Lord GOD shall blow the trumpet, and shall go with whirlwinds of the south.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/15/" data-ref="Zechariah 9:15 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/15/"><span class="v-num">15</span><span class="v-txt">The LORD of hosts shall defend them; and they shall devour, and subdue with sling stones; and they shall drink, and make a noise as through wine; and they shall be filled like bowls, and as the corners of the altar.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/16/" data-ref="Zechariah 9:16 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/16/"><span class="v-num">16</span><span class="v-txt">And the LORD their God shall save them in that day as the flock of his people: for they shall be as the stones of a crown, lifted up as an ensign upon his land.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/9/17/" data-ref="Zechariah 9:17 (King James Version)" data-verse-url="/bible/kjv/zechariah/9/17/"><span class="v-num">17</span><span class="v-txt">For how great is his goodness, and how great is his beauty! corn shall make the young men cheerful, and new wine the maids.</span></a>
 
     
 <div class="app-cta">

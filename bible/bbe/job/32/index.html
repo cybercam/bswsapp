@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 32</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 32:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So these three men gave no more answers to Job, because he seemed to himself to be right.</span></div>
-<div class="v-row" data-ref="Job 32:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Elihu, the son of Barachel the Buzite, of the family of Ram, was angry, burning with wrath against Job, because he seemed to himself more right than God;</span></div>
-<div class="v-row" data-ref="Job 32:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And he was angry with his three friends, because they had been unable to give him an answer, and had not made Job's sin clear.</span></div>
-<div class="v-row" data-ref="Job 32:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now Elihu had kept quiet while Job was talking, because they were older than he;</span></div>
-<div class="v-row" data-ref="Job 32:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And when Elihu saw that there was no answer in the mouth of the three men, he was very angry.</span></div>
-<div class="v-row" data-ref="Job 32:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Elihu, the son of Barachel the Buzite, made answer and said, I am young, and you are very old, so I was in fear, and kept myself from putting my knowledge before you.</span></div>
-<div class="v-row" data-ref="Job 32:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I said to myself, It is right for the old to say what is in their minds, and for those who are far on in years to give out wisdom.</span></div>
-<div class="v-row" data-ref="Job 32:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But truly it is the spirit in man, even the breath of the Ruler of all, which gives them knowledge.</span></div>
-<div class="v-row" data-ref="Job 32:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">It is not the old who are wise, and those who are full of years have not the knowledge of what is right.</span></div>
-<div class="v-row" data-ref="Job 32:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So I say, Give ear to me, and I will put forward my knowledge.</span></div>
-<div class="v-row" data-ref="Job 32:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">I was waiting for your words, I was giving ear to your wise sayings; while you were searching out what to say,</span></div>
-<div class="v-row" data-ref="Job 32:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I was taking note; and truly not one of you was able to make clear Job's error, or to give an answer to his words.</span></div>
-<div class="v-row" data-ref="Job 32:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Take care that you do not say, Wisdom is here; God may overcome him, but not man.</span></div>
-<div class="v-row" data-ref="Job 32:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I will not put forward words like these, or make use of your sayings in answer to him.</span></div>
-<div class="v-row" data-ref="Job 32:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Fear has overcome them, they have no more answers to give; they have come to an end of words.</span></div>
-<div class="v-row" data-ref="Job 32:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And am I to go on waiting while they have nothing to say? while they keep quiet and give no more answers?</span></div>
-<div class="v-row" data-ref="Job 32:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I will give my answer; I will put forward my knowledge:</span></div>
-<div class="v-row" data-ref="Job 32:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For I am full of words, I am unable to keep in my breath any longer:</span></div>
-<div class="v-row" data-ref="Job 32:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">My stomach is like wine which is unable to get out; like skins full of new wine, it is almost burst.</span></div>
-<div class="v-row" data-ref="Job 32:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Let me say what is in my mind, so that I may get comfort; let me give answer with open mouth.</span></div>
-<div class="v-row" data-ref="Job 32:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Let me not give respect to any man, or give names of honour to any living.</span></div>
-<div class="v-row" data-ref="Job 32:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For I am not able to give names of honour to any man; and if I did, my Maker would quickly take me away.</span></div>
+    <a class="v-row" href="/bible/bbe/job/32/1/" data-ref="Job 32:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/1/"><span class="v-num">1</span><span class="v-txt">So these three men gave no more answers to Job, because he seemed to himself to be right.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/2/" data-ref="Job 32:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/2/"><span class="v-num">2</span><span class="v-txt">And Elihu, the son of Barachel the Buzite, of the family of Ram, was angry, burning with wrath against Job, because he seemed to himself more right than God;</span></a>
+<a class="v-row" href="/bible/bbe/job/32/3/" data-ref="Job 32:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/3/"><span class="v-num">3</span><span class="v-txt">And he was angry with his three friends, because they had been unable to give him an answer, and had not made Job's sin clear.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/4/" data-ref="Job 32:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/4/"><span class="v-num">4</span><span class="v-txt">Now Elihu had kept quiet while Job was talking, because they were older than he;</span></a>
+<a class="v-row" href="/bible/bbe/job/32/5/" data-ref="Job 32:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/5/"><span class="v-num">5</span><span class="v-txt">And when Elihu saw that there was no answer in the mouth of the three men, he was very angry.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/6/" data-ref="Job 32:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/6/"><span class="v-num">6</span><span class="v-txt">And Elihu, the son of Barachel the Buzite, made answer and said, I am young, and you are very old, so I was in fear, and kept myself from putting my knowledge before you.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/7/" data-ref="Job 32:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/7/"><span class="v-num">7</span><span class="v-txt">I said to myself, It is right for the old to say what is in their minds, and for those who are far on in years to give out wisdom.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/8/" data-ref="Job 32:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/8/"><span class="v-num">8</span><span class="v-txt">But truly it is the spirit in man, even the breath of the Ruler of all, which gives them knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/9/" data-ref="Job 32:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/9/"><span class="v-num">9</span><span class="v-txt">It is not the old who are wise, and those who are full of years have not the knowledge of what is right.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/10/" data-ref="Job 32:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/10/"><span class="v-num">10</span><span class="v-txt">So I say, Give ear to me, and I will put forward my knowledge.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/11/" data-ref="Job 32:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/11/"><span class="v-num">11</span><span class="v-txt">I was waiting for your words, I was giving ear to your wise sayings; while you were searching out what to say,</span></a>
+<a class="v-row" href="/bible/bbe/job/32/12/" data-ref="Job 32:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/12/"><span class="v-num">12</span><span class="v-txt">I was taking note; and truly not one of you was able to make clear Job's error, or to give an answer to his words.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/13/" data-ref="Job 32:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/13/"><span class="v-num">13</span><span class="v-txt">Take care that you do not say, Wisdom is here; God may overcome him, but not man.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/14/" data-ref="Job 32:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/14/"><span class="v-num">14</span><span class="v-txt">I will not put forward words like these, or make use of your sayings in answer to him.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/15/" data-ref="Job 32:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/15/"><span class="v-num">15</span><span class="v-txt">Fear has overcome them, they have no more answers to give; they have come to an end of words.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/16/" data-ref="Job 32:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/16/"><span class="v-num">16</span><span class="v-txt">And am I to go on waiting while they have nothing to say? while they keep quiet and give no more answers?</span></a>
+<a class="v-row" href="/bible/bbe/job/32/17/" data-ref="Job 32:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/17/"><span class="v-num">17</span><span class="v-txt">I will give my answer; I will put forward my knowledge:</span></a>
+<a class="v-row" href="/bible/bbe/job/32/18/" data-ref="Job 32:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/18/"><span class="v-num">18</span><span class="v-txt">For I am full of words, I am unable to keep in my breath any longer:</span></a>
+<a class="v-row" href="/bible/bbe/job/32/19/" data-ref="Job 32:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/19/"><span class="v-num">19</span><span class="v-txt">My stomach is like wine which is unable to get out; like skins full of new wine, it is almost burst.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/20/" data-ref="Job 32:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/20/"><span class="v-num">20</span><span class="v-txt">Let me say what is in my mind, so that I may get comfort; let me give answer with open mouth.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/21/" data-ref="Job 32:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/21/"><span class="v-num">21</span><span class="v-txt">Let me not give respect to any man, or give names of honour to any living.</span></a>
+<a class="v-row" href="/bible/bbe/job/32/22/" data-ref="Job 32:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/32/22/"><span class="v-num">22</span><span class="v-txt">For I am not able to give names of honour to any man; and if I did, my Maker would quickly take me away.</span></a>
 
     
 <div class="app-cta">

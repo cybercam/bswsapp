@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Judges 12:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The men of Ephraim were gathered together, and passed northward; and they said to Jephthah, Why did you pass over to fight against the children of Ammon, and didn't call us to go with you? we will burn your house on you with fire.</span></div>
-<div class="v-row" data-ref="Judges 12:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Jephthah said to them, I and my people were at great strife with the children of Ammon; and when I called you, you didn't save me out of their hand.</span></div>
-<div class="v-row" data-ref="Judges 12:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When I saw that you didn't save me, I put my life in my hand, and passed over against the children of Ammon, and Yahweh delivered them into my hand: why then are you come up to me this day, to fight against me?</span></div>
-<div class="v-row" data-ref="Judges 12:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then Jephthah gathered together all the men of Gilead, and fought with Ephraim; and the men of Gilead struck Ephraim, because they said, You are fugitives of Ephraim, you Gileadites, in the midst of Ephraim, and in the midst of Manasseh.</span></div>
-<div class="v-row" data-ref="Judges 12:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The Gileadites took the fords of the Jordan against the Ephraimites. It was so, that when any of the fugitives of Ephraim said, Let me go over, the men of Gilead said to him, Are you an Ephraimite? If he said, No;</span></div>
-<div class="v-row" data-ref="Judges 12:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">then said they to him, Say now Shibboleth; and he said Sibboleth; for he couldn't manage to pronounce it right: then they laid hold on him, and killed him at the fords of the Jordan. There fell at that time of Ephraim forty-two thousand.</span></div>
-<div class="v-row" data-ref="Judges 12:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Jephthah judged Israel six years. Then died Jephthah the Gileadite, and was buried in one of the cities of Gilead.</span></div>
-<div class="v-row" data-ref="Judges 12:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">After him Ibzan of Bethlehem judged Israel.</span></div>
-<div class="v-row" data-ref="Judges 12:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He had thirty sons; and thirty daughters he sent abroad, and thirty daughters he brought in from abroad for his sons. He judged Israel seven years.</span></div>
-<div class="v-row" data-ref="Judges 12:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Ibzan died, and was buried at Bethlehem.</span></div>
-<div class="v-row" data-ref="Judges 12:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">After him Elon the Zebulunite judged Israel; and he judged Israel ten years.</span></div>
-<div class="v-row" data-ref="Judges 12:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Elon the Zebulunite died, and was buried in Aijalon in the land of Zebulun.</span></div>
-<div class="v-row" data-ref="Judges 12:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">After him Abdon the son of Hillel the Pirathonite judged Israel.</span></div>
-<div class="v-row" data-ref="Judges 12:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He had forty sons and thirty sons' sons, who rode on seventy donkey colts: and he judged Israel eight years.</span></div>
-<div class="v-row" data-ref="Judges 12:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Abdon the son of Hillel the Pirathonite died, and was buried in Pirathon in the land of Ephraim, in the hill-country of the Amalekites.</span></div>
+    <a class="v-row" href="/bible/web/judges/12/1/" data-ref="Judges 12:1 (World English Bible)" data-verse-url="/bible/web/judges/12/1/"><span class="v-num">1</span><span class="v-txt">The men of Ephraim were gathered together, and passed northward; and they said to Jephthah, Why did you pass over to fight against the children of Ammon, and didn't call us to go with you? we will burn your house on you with fire.</span></a>
+<a class="v-row" href="/bible/web/judges/12/2/" data-ref="Judges 12:2 (World English Bible)" data-verse-url="/bible/web/judges/12/2/"><span class="v-num">2</span><span class="v-txt">Jephthah said to them, I and my people were at great strife with the children of Ammon; and when I called you, you didn't save me out of their hand.</span></a>
+<a class="v-row" href="/bible/web/judges/12/3/" data-ref="Judges 12:3 (World English Bible)" data-verse-url="/bible/web/judges/12/3/"><span class="v-num">3</span><span class="v-txt">When I saw that you didn't save me, I put my life in my hand, and passed over against the children of Ammon, and Yahweh delivered them into my hand: why then are you come up to me this day, to fight against me?</span></a>
+<a class="v-row" href="/bible/web/judges/12/4/" data-ref="Judges 12:4 (World English Bible)" data-verse-url="/bible/web/judges/12/4/"><span class="v-num">4</span><span class="v-txt">Then Jephthah gathered together all the men of Gilead, and fought with Ephraim; and the men of Gilead struck Ephraim, because they said, You are fugitives of Ephraim, you Gileadites, in the midst of Ephraim, and in the midst of Manasseh.</span></a>
+<a class="v-row" href="/bible/web/judges/12/5/" data-ref="Judges 12:5 (World English Bible)" data-verse-url="/bible/web/judges/12/5/"><span class="v-num">5</span><span class="v-txt">The Gileadites took the fords of the Jordan against the Ephraimites. It was so, that when any of the fugitives of Ephraim said, Let me go over, the men of Gilead said to him, Are you an Ephraimite? If he said, No;</span></a>
+<a class="v-row" href="/bible/web/judges/12/6/" data-ref="Judges 12:6 (World English Bible)" data-verse-url="/bible/web/judges/12/6/"><span class="v-num">6</span><span class="v-txt">then said they to him, Say now Shibboleth; and he said Sibboleth; for he couldn't manage to pronounce it right: then they laid hold on him, and killed him at the fords of the Jordan. There fell at that time of Ephraim forty-two thousand.</span></a>
+<a class="v-row" href="/bible/web/judges/12/7/" data-ref="Judges 12:7 (World English Bible)" data-verse-url="/bible/web/judges/12/7/"><span class="v-num">7</span><span class="v-txt">Jephthah judged Israel six years. Then died Jephthah the Gileadite, and was buried in one of the cities of Gilead.</span></a>
+<a class="v-row" href="/bible/web/judges/12/8/" data-ref="Judges 12:8 (World English Bible)" data-verse-url="/bible/web/judges/12/8/"><span class="v-num">8</span><span class="v-txt">After him Ibzan of Bethlehem judged Israel.</span></a>
+<a class="v-row" href="/bible/web/judges/12/9/" data-ref="Judges 12:9 (World English Bible)" data-verse-url="/bible/web/judges/12/9/"><span class="v-num">9</span><span class="v-txt">He had thirty sons; and thirty daughters he sent abroad, and thirty daughters he brought in from abroad for his sons. He judged Israel seven years.</span></a>
+<a class="v-row" href="/bible/web/judges/12/10/" data-ref="Judges 12:10 (World English Bible)" data-verse-url="/bible/web/judges/12/10/"><span class="v-num">10</span><span class="v-txt">Ibzan died, and was buried at Bethlehem.</span></a>
+<a class="v-row" href="/bible/web/judges/12/11/" data-ref="Judges 12:11 (World English Bible)" data-verse-url="/bible/web/judges/12/11/"><span class="v-num">11</span><span class="v-txt">After him Elon the Zebulunite judged Israel; and he judged Israel ten years.</span></a>
+<a class="v-row" href="/bible/web/judges/12/12/" data-ref="Judges 12:12 (World English Bible)" data-verse-url="/bible/web/judges/12/12/"><span class="v-num">12</span><span class="v-txt">Elon the Zebulunite died, and was buried in Aijalon in the land of Zebulun.</span></a>
+<a class="v-row" href="/bible/web/judges/12/13/" data-ref="Judges 12:13 (World English Bible)" data-verse-url="/bible/web/judges/12/13/"><span class="v-num">13</span><span class="v-txt">After him Abdon the son of Hillel the Pirathonite judged Israel.</span></a>
+<a class="v-row" href="/bible/web/judges/12/14/" data-ref="Judges 12:14 (World English Bible)" data-verse-url="/bible/web/judges/12/14/"><span class="v-num">14</span><span class="v-txt">He had forty sons and thirty sons' sons, who rode on seventy donkey colts: and he judged Israel eight years.</span></a>
+<a class="v-row" href="/bible/web/judges/12/15/" data-ref="Judges 12:15 (World English Bible)" data-verse-url="/bible/web/judges/12/15/"><span class="v-num">15</span><span class="v-txt">Abdon the son of Hillel the Pirathonite died, and was buried in Pirathon in the land of Ephraim, in the hill-country of the Amalekites.</span></a>
 
     
 <div class="app-cta">

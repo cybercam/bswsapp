@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Thessalonians 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul and Silvanus and Timothy, to the church of the Thessalonians in God our Father and the Lord Jesus Christ:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God the Father and the Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">It is right for us to give praise to God at all times for you, brothers, because of the great increase of your faith, and the wealth of your love for one another;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So that we ourselves take pride in you in the churches of God for your untroubled mind and your faith in all the troubles and sorrows which you are going through;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Which is a clear sign of the decision which God in his righteousness has made; to give you a part in his kingdom, for which you have undergone this pain;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For it is an act of righteousness on God's part to give trouble as their reward to those who are troubling you,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And to you who are troubled, rest with us, when the Lord Jesus comes from heaven with the angels of his power in flames of fire,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">To give punishment to those who have no knowledge of God, and to those who do not give ear to the good news of our Lord Jesus:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Whose reward will be eternal destruction from the face of the Lord and from the glory of his strength,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">At his coming, when he will have glory in his saints, and will be a cause of wonder in all those who had faith (because our witness among you had effect) in that day.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For this reason, you are ever in our prayers, that you may seem to our God such as may have a part in his purpose and that by his power he will make all his good purpose, and the work of faith, complete;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So that glory may be given to the name of our Lord Jesus through you, and you may have glory in him, by the grace of our God and the Lord Jesus Christ.</span></div>
+    <a class="v-row" href="/bible/bbe/2-thessalonians/1/1/" data-ref="2 Thessalonians 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/1/"><span class="v-num">1</span><span class="v-txt">Paul and Silvanus and Timothy, to the church of the Thessalonians in God our Father and the Lord Jesus Christ:</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/2/" data-ref="2 Thessalonians 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/2/"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God the Father and the Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/3/" data-ref="2 Thessalonians 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/3/"><span class="v-num">3</span><span class="v-txt">It is right for us to give praise to God at all times for you, brothers, because of the great increase of your faith, and the wealth of your love for one another;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/4/" data-ref="2 Thessalonians 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/4/"><span class="v-num">4</span><span class="v-txt">So that we ourselves take pride in you in the churches of God for your untroubled mind and your faith in all the troubles and sorrows which you are going through;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/5/" data-ref="2 Thessalonians 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/5/"><span class="v-num">5</span><span class="v-txt">Which is a clear sign of the decision which God in his righteousness has made; to give you a part in his kingdom, for which you have undergone this pain;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/6/" data-ref="2 Thessalonians 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/6/"><span class="v-num">6</span><span class="v-txt">For it is an act of righteousness on God's part to give trouble as their reward to those who are troubling you,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/7/" data-ref="2 Thessalonians 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/7/"><span class="v-num">7</span><span class="v-txt">And to you who are troubled, rest with us, when the Lord Jesus comes from heaven with the angels of his power in flames of fire,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/8/" data-ref="2 Thessalonians 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/8/"><span class="v-num">8</span><span class="v-txt">To give punishment to those who have no knowledge of God, and to those who do not give ear to the good news of our Lord Jesus:</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/9/" data-ref="2 Thessalonians 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/9/"><span class="v-num">9</span><span class="v-txt">Whose reward will be eternal destruction from the face of the Lord and from the glory of his strength,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/10/" data-ref="2 Thessalonians 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/10/"><span class="v-num">10</span><span class="v-txt">At his coming, when he will have glory in his saints, and will be a cause of wonder in all those who had faith (because our witness among you had effect) in that day.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/11/" data-ref="2 Thessalonians 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/11/"><span class="v-num">11</span><span class="v-txt">For this reason, you are ever in our prayers, that you may seem to our God such as may have a part in his purpose and that by his power he will make all his good purpose, and the work of faith, complete;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/1/12/" data-ref="2 Thessalonians 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/1/12/"><span class="v-num">12</span><span class="v-txt">So that glory may be given to the name of our Lord Jesus through you, and you may have glory in him, by the grace of our God and the Lord Jesus Christ.</span></a>
 
     
 <div class="app-cta">

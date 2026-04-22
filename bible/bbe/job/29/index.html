@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 29</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 29:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Job again took up the word and said,</span></div>
-<div class="v-row" data-ref="Job 29:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">If only I might again be as I was in the months which are past, in the days when God was watching over me!</span></div>
-<div class="v-row" data-ref="Job 29:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When his light was shining over my head, and when I went through the dark by his light.</span></div>
-<div class="v-row" data-ref="Job 29:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">As I was in my flowering years, when my tent was covered by the hand of God;</span></div>
-<div class="v-row" data-ref="Job 29:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">While the Ruler of all was still with me, and my children were round me;</span></div>
-<div class="v-row" data-ref="Job 29:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">When my steps were washed with milk, and rivers of oil were flowing out of the rock for me.</span></div>
-<div class="v-row" data-ref="Job 29:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">When I went out of my door to go up to the town, and took my seat in the public place,</span></div>
-<div class="v-row" data-ref="Job 29:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The young men saw me, and went away, and the old men got up from their seats;</span></div>
-<div class="v-row" data-ref="Job 29:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The rulers kept quiet, and put their hands on their mouths;</span></div>
-<div class="v-row" data-ref="Job 29:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The chiefs kept back their words, and their tongues were joined to the roofs of their mouths.</span></div>
-<div class="v-row" data-ref="Job 29:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For when it came to their ears, men said that I was truly happy; and when their eyes saw, they gave witness to me;</span></div>
-<div class="v-row" data-ref="Job 29:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For I was a saviour to the poor when he was crying for help, to the child with no father, and to him who had no supporter.</span></div>
-<div class="v-row" data-ref="Job 29:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The blessing of him who was near to destruction came on me, and I put a song of joy into the widow's heart.</span></div>
-<div class="v-row" data-ref="Job 29:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I put on righteousness as my clothing, and was full of it; right decisions were to me a robe and a head-dress.</span></div>
-<div class="v-row" data-ref="Job 29:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I was eyes to the blind, and feet to him who had no power of walking.</span></div>
-<div class="v-row" data-ref="Job 29:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">I was a father to the poor, searching out the cause of him who was strange to me.</span></div>
-<div class="v-row" data-ref="Job 29:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">By me the great teeth of the evil-doer were broken, and I made him give up what he had violently taken away.</span></div>
-<div class="v-row" data-ref="Job 29:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Then I said, I will come to my end with my children round me, my days will be as the sand in number;</span></div>
-<div class="v-row" data-ref="Job 29:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">My root will be open to the waters, and the night mist will be on my branches,</span></div>
-<div class="v-row" data-ref="Job 29:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">My glory will be ever new, and my bow will be readily bent in my hand.</span></div>
-<div class="v-row" data-ref="Job 29:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Men gave ear to me, waiting and keeping quiet for my suggestions.</span></div>
-<div class="v-row" data-ref="Job 29:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">After I had said what was in my mind, they were quiet and let my words go deep into their hearts;</span></div>
-<div class="v-row" data-ref="Job 29:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">They were waiting for me as for the rain, opening their mouths wide as for the spring rains.</span></div>
-<div class="v-row" data-ref="Job 29:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">I was laughing at them when they had no hope, and the light of my face was never clouded by their fear.</span></div>
-<div class="v-row" data-ref="Job 29:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">I took my place as a chief, guiding them on their way, and I was as a king among his army. ...</span></div>
+    <a class="v-row" href="/bible/bbe/job/29/1/" data-ref="Job 29:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/1/"><span class="v-num">1</span><span class="v-txt">And Job again took up the word and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/29/2/" data-ref="Job 29:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/2/"><span class="v-num">2</span><span class="v-txt">If only I might again be as I was in the months which are past, in the days when God was watching over me!</span></a>
+<a class="v-row" href="/bible/bbe/job/29/3/" data-ref="Job 29:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/3/"><span class="v-num">3</span><span class="v-txt">When his light was shining over my head, and when I went through the dark by his light.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/4/" data-ref="Job 29:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/4/"><span class="v-num">4</span><span class="v-txt">As I was in my flowering years, when my tent was covered by the hand of God;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/5/" data-ref="Job 29:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/5/"><span class="v-num">5</span><span class="v-txt">While the Ruler of all was still with me, and my children were round me;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/6/" data-ref="Job 29:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/6/"><span class="v-num">6</span><span class="v-txt">When my steps were washed with milk, and rivers of oil were flowing out of the rock for me.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/7/" data-ref="Job 29:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/7/"><span class="v-num">7</span><span class="v-txt">When I went out of my door to go up to the town, and took my seat in the public place,</span></a>
+<a class="v-row" href="/bible/bbe/job/29/8/" data-ref="Job 29:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/8/"><span class="v-num">8</span><span class="v-txt">The young men saw me, and went away, and the old men got up from their seats;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/9/" data-ref="Job 29:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/9/"><span class="v-num">9</span><span class="v-txt">The rulers kept quiet, and put their hands on their mouths;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/10/" data-ref="Job 29:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/10/"><span class="v-num">10</span><span class="v-txt">The chiefs kept back their words, and their tongues were joined to the roofs of their mouths.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/11/" data-ref="Job 29:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/11/"><span class="v-num">11</span><span class="v-txt">For when it came to their ears, men said that I was truly happy; and when their eyes saw, they gave witness to me;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/12/" data-ref="Job 29:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/12/"><span class="v-num">12</span><span class="v-txt">For I was a saviour to the poor when he was crying for help, to the child with no father, and to him who had no supporter.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/13/" data-ref="Job 29:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/13/"><span class="v-num">13</span><span class="v-txt">The blessing of him who was near to destruction came on me, and I put a song of joy into the widow's heart.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/14/" data-ref="Job 29:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/14/"><span class="v-num">14</span><span class="v-txt">I put on righteousness as my clothing, and was full of it; right decisions were to me a robe and a head-dress.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/15/" data-ref="Job 29:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/15/"><span class="v-num">15</span><span class="v-txt">I was eyes to the blind, and feet to him who had no power of walking.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/16/" data-ref="Job 29:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/16/"><span class="v-num">16</span><span class="v-txt">I was a father to the poor, searching out the cause of him who was strange to me.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/17/" data-ref="Job 29:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/17/"><span class="v-num">17</span><span class="v-txt">By me the great teeth of the evil-doer were broken, and I made him give up what he had violently taken away.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/18/" data-ref="Job 29:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/18/"><span class="v-num">18</span><span class="v-txt">Then I said, I will come to my end with my children round me, my days will be as the sand in number;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/19/" data-ref="Job 29:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/19/"><span class="v-num">19</span><span class="v-txt">My root will be open to the waters, and the night mist will be on my branches,</span></a>
+<a class="v-row" href="/bible/bbe/job/29/20/" data-ref="Job 29:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/20/"><span class="v-num">20</span><span class="v-txt">My glory will be ever new, and my bow will be readily bent in my hand.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/21/" data-ref="Job 29:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/21/"><span class="v-num">21</span><span class="v-txt">Men gave ear to me, waiting and keeping quiet for my suggestions.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/22/" data-ref="Job 29:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/22/"><span class="v-num">22</span><span class="v-txt">After I had said what was in my mind, they were quiet and let my words go deep into their hearts;</span></a>
+<a class="v-row" href="/bible/bbe/job/29/23/" data-ref="Job 29:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/23/"><span class="v-num">23</span><span class="v-txt">They were waiting for me as for the rain, opening their mouths wide as for the spring rains.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/24/" data-ref="Job 29:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/24/"><span class="v-num">24</span><span class="v-txt">I was laughing at them when they had no hope, and the light of my face was never clouded by their fear.</span></a>
+<a class="v-row" href="/bible/bbe/job/29/25/" data-ref="Job 29:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/29/25/"><span class="v-num">25</span><span class="v-txt">I took my place as a chief, guiding them on their way, and I was as a king among his army. ...</span></a>
 
     
 <div class="app-cta">

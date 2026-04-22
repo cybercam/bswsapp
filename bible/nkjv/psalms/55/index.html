@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 55</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 55:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. With stringed instruments. A Contemplation of David. Give ear to my prayer, O God, And do not hide Yourself from my supplication.</span></div>
-<div class="v-row" data-ref="Psalm 55:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Attend to me, and hear me; I am restless in my complaint, and moan noisily,</span></div>
-<div class="v-row" data-ref="Psalm 55:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Because of the voice of the enemy, Because of the oppression of the wicked; For they bring down trouble upon me, And in wrath they hate me.</span></div>
-<div class="v-row" data-ref="Psalm 55:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">My heart is severely pained within me, And the terrors of death have fallen upon me.</span></div>
-<div class="v-row" data-ref="Psalm 55:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Fearfulness and trembling have come upon me, And horror has overwhelmed me.</span></div>
-<div class="v-row" data-ref="Psalm 55:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So I said, "Oh, that I had wings like a dove! I would fly away and be at rest.</span></div>
-<div class="v-row" data-ref="Psalm 55:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Indeed, I would wander far off, [And] remain in the wilderness. Selah</span></div>
-<div class="v-row" data-ref="Psalm 55:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I would hasten my escape From the windy storm [and] tempest."</span></div>
-<div class="v-row" data-ref="Psalm 55:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Destroy, O Lord, [and] divide their tongues, For I have seen violence and strife in the city.</span></div>
-<div class="v-row" data-ref="Psalm 55:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Day and night they go around it on its walls; Iniquity and trouble [are] also in the midst of it.</span></div>
-<div class="v-row" data-ref="Psalm 55:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Destruction [is] in its midst; Oppression and deceit do not depart from its streets.</span></div>
-<div class="v-row" data-ref="Psalm 55:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For [it is] not an enemy [who] reproaches me; Then I could bear [it.] Nor [is it] one [who] hates me who has exalted [himself] against me; Then I could hide from him.</span></div>
-<div class="v-row" data-ref="Psalm 55:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But [it was] you, a man my equal, My companion and my acquaintance.</span></div>
-<div class="v-row" data-ref="Psalm 55:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">We took sweet counsel together, [And] walked to the house of God in the throng.</span></div>
-<div class="v-row" data-ref="Psalm 55:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Let death seize them; Let them go down alive into hell, For wickedness [is] in their dwellings [and] among them.</span></div>
-<div class="v-row" data-ref="Psalm 55:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">As for me, I will call upon God, And the LORD shall save me.</span></div>
-<div class="v-row" data-ref="Psalm 55:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Evening and morning and at noon I will pray, and cry aloud, And He shall hear my voice.</span></div>
-<div class="v-row" data-ref="Psalm 55:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He has redeemed my soul in peace from the battle [that was] against me, For there were many against me.</span></div>
-<div class="v-row" data-ref="Psalm 55:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">God will hear, and afflict them, Even He who abides from of old. Selah Because they do not change, Therefore they do not fear God.</span></div>
-<div class="v-row" data-ref="Psalm 55:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He has put forth his hands against those who were at peace with him; He has broken his covenant.</span></div>
-<div class="v-row" data-ref="Psalm 55:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">[The words] of his mouth were smoother than butter, But war [was] in his heart; His words were softer than oil, Yet they [were] drawn swords.</span></div>
-<div class="v-row" data-ref="Psalm 55:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Cast your burden on the LORD, And He shall sustain you; He shall never permit the righteous to be moved.</span></div>
-<div class="v-row" data-ref="Psalm 55:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">But You, O God, shall bring them down to the pit of destruction; Bloodthirsty and deceitful men shall not live out half their days; But I will trust in You.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/55/1/" data-ref="Psalm 55:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/1/"><span class="v-num">1</span><span class="v-txt">To the Chief Musician. With stringed instruments. A Contemplation of David. Give ear to my prayer, O God, And do not hide Yourself from my supplication.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/2/" data-ref="Psalm 55:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/2/"><span class="v-num">2</span><span class="v-txt">Attend to me, and hear me; I am restless in my complaint, and moan noisily,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/3/" data-ref="Psalm 55:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/3/"><span class="v-num">3</span><span class="v-txt">Because of the voice of the enemy, Because of the oppression of the wicked; For they bring down trouble upon me, And in wrath they hate me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/4/" data-ref="Psalm 55:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/4/"><span class="v-num">4</span><span class="v-txt">My heart is severely pained within me, And the terrors of death have fallen upon me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/5/" data-ref="Psalm 55:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/5/"><span class="v-num">5</span><span class="v-txt">Fearfulness and trembling have come upon me, And horror has overwhelmed me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/6/" data-ref="Psalm 55:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/6/"><span class="v-num">6</span><span class="v-txt">So I said, "Oh, that I had wings like a dove! I would fly away and be at rest.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/7/" data-ref="Psalm 55:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/7/"><span class="v-num">7</span><span class="v-txt">Indeed, I would wander far off, [And] remain in the wilderness. Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/8/" data-ref="Psalm 55:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/8/"><span class="v-num">8</span><span class="v-txt">I would hasten my escape From the windy storm [and] tempest."</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/9/" data-ref="Psalm 55:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/9/"><span class="v-num">9</span><span class="v-txt">Destroy, O Lord, [and] divide their tongues, For I have seen violence and strife in the city.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/10/" data-ref="Psalm 55:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/10/"><span class="v-num">10</span><span class="v-txt">Day and night they go around it on its walls; Iniquity and trouble [are] also in the midst of it.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/11/" data-ref="Psalm 55:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/11/"><span class="v-num">11</span><span class="v-txt">Destruction [is] in its midst; Oppression and deceit do not depart from its streets.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/12/" data-ref="Psalm 55:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/12/"><span class="v-num">12</span><span class="v-txt">For [it is] not an enemy [who] reproaches me; Then I could bear [it.] Nor [is it] one [who] hates me who has exalted [himself] against me; Then I could hide from him.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/13/" data-ref="Psalm 55:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/13/"><span class="v-num">13</span><span class="v-txt">But [it was] you, a man my equal, My companion and my acquaintance.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/14/" data-ref="Psalm 55:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/14/"><span class="v-num">14</span><span class="v-txt">We took sweet counsel together, [And] walked to the house of God in the throng.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/15/" data-ref="Psalm 55:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/15/"><span class="v-num">15</span><span class="v-txt">Let death seize them; Let them go down alive into hell, For wickedness [is] in their dwellings [and] among them.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/16/" data-ref="Psalm 55:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/16/"><span class="v-num">16</span><span class="v-txt">As for me, I will call upon God, And the LORD shall save me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/17/" data-ref="Psalm 55:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/17/"><span class="v-num">17</span><span class="v-txt">Evening and morning and at noon I will pray, and cry aloud, And He shall hear my voice.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/18/" data-ref="Psalm 55:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/18/"><span class="v-num">18</span><span class="v-txt">He has redeemed my soul in peace from the battle [that was] against me, For there were many against me.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/19/" data-ref="Psalm 55:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/19/"><span class="v-num">19</span><span class="v-txt">God will hear, and afflict them, Even He who abides from of old. Selah Because they do not change, Therefore they do not fear God.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/20/" data-ref="Psalm 55:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/20/"><span class="v-num">20</span><span class="v-txt">He has put forth his hands against those who were at peace with him; He has broken his covenant.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/21/" data-ref="Psalm 55:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/21/"><span class="v-num">21</span><span class="v-txt">[The words] of his mouth were smoother than butter, But war [was] in his heart; His words were softer than oil, Yet they [were] drawn swords.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/22/" data-ref="Psalm 55:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/22/"><span class="v-num">22</span><span class="v-txt">Cast your burden on the LORD, And He shall sustain you; He shall never permit the righteous to be moved.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/55/23/" data-ref="Psalm 55:23 (New King James Version)" data-verse-url="/bible/nkjv/psalms/55/23/"><span class="v-num">23</span><span class="v-txt">But You, O God, shall bring them down to the pit of destruction; Bloodthirsty and deceitful men shall not live out half their days; But I will trust in You.</span></a>
 
     
 <div class="app-cta">

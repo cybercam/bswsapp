@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let a man so consider us, as servants of Christ and stewards of the mysteries of God.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Moreover it is required in stewards that one be found faithful.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But with me it is a very small thing that I should be judged by you or by a human court. In fact, I do not even judge myself.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For I know nothing against myself, yet I am not justified by this; but He who judges me is the Lord.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Therefore judge nothing before the time, until the Lord comes, who will both bring to light the hidden things of darkness and reveal the counsels of the hearts. Then each one's praise will come from God.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now these things, brethren, I have figuratively transferred to myself and Apollos for your sakes, that you may learn in us not to think beyond what is written, that none of you may be puffed up on behalf of one against the other.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For who makes you differ [from another?] And what do you have that you did not receive? Now if you did indeed receive [it,] why do you boast as if you had not received [it?]</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You are already full! You are already rich! You have reigned as kings without us -- and indeed I could wish you did reign, that we also might reign with you!</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">For I think that God has displayed us, the apostles, last, as men condemned to death; for we have been made a spectacle to the world, both to angels and to men.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">We [are] fools for Christ's sake, but you [are] wise in Christ! We [are] weak, but you [are] strong! You [are] distinguished, but we [are] dishonored!</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">To the present hour we both hunger and thirst, and we are poorly clothed, and beaten, and homeless.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And we labor, working with our own hands. Being reviled, we bless; being persecuted, we endure;</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">being defamed, we entreat. We have been made as the filth of the world, the offscouring of all things until now.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I do not write these things to shame you, but as my beloved children I warn [you.]</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For though you might have ten thousand instructors in Christ, yet [you do] not [have] many fathers; for in Christ Jesus I have begotten you through the gospel.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Therefore I urge you, imitate me.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For this reason I have sent Timothy to you, who is my beloved and faithful son in the Lord, who will remind you of my ways in Christ, as I teach everywhere in every church.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now some are puffed up, as though I were not coming to you.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">But I will come to you shortly, if the Lord wills, and I will know, not the word of those who are puffed up, but the power.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For the kingdom of God [is] not in word but in power.</span></div>
-<div class="v-row" data-ref="1 Corinthians 4:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">What do you want? Shall I come to you with a rod, or in love and a spirit of gentleness?</span></div>
+    <a class="v-row" href="/bible/nkjv/1-corinthians/4/1/" data-ref="1 Corinthians 4:1 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/1/"><span class="v-num">1</span><span class="v-txt">Let a man so consider us, as servants of Christ and stewards of the mysteries of God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/2/" data-ref="1 Corinthians 4:2 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/2/"><span class="v-num">2</span><span class="v-txt">Moreover it is required in stewards that one be found faithful.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/3/" data-ref="1 Corinthians 4:3 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/3/"><span class="v-num">3</span><span class="v-txt">But with me it is a very small thing that I should be judged by you or by a human court. In fact, I do not even judge myself.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/4/" data-ref="1 Corinthians 4:4 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/4/"><span class="v-num">4</span><span class="v-txt">For I know nothing against myself, yet I am not justified by this; but He who judges me is the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/5/" data-ref="1 Corinthians 4:5 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/5/"><span class="v-num">5</span><span class="v-txt">Therefore judge nothing before the time, until the Lord comes, who will both bring to light the hidden things of darkness and reveal the counsels of the hearts. Then each one's praise will come from God.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/6/" data-ref="1 Corinthians 4:6 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/6/"><span class="v-num">6</span><span class="v-txt">Now these things, brethren, I have figuratively transferred to myself and Apollos for your sakes, that you may learn in us not to think beyond what is written, that none of you may be puffed up on behalf of one against the other.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/7/" data-ref="1 Corinthians 4:7 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/7/"><span class="v-num">7</span><span class="v-txt">For who makes you differ [from another?] And what do you have that you did not receive? Now if you did indeed receive [it,] why do you boast as if you had not received [it?]</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/8/" data-ref="1 Corinthians 4:8 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/8/"><span class="v-num">8</span><span class="v-txt">You are already full! You are already rich! You have reigned as kings without us -- and indeed I could wish you did reign, that we also might reign with you!</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/9/" data-ref="1 Corinthians 4:9 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/9/"><span class="v-num">9</span><span class="v-txt">For I think that God has displayed us, the apostles, last, as men condemned to death; for we have been made a spectacle to the world, both to angels and to men.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/10/" data-ref="1 Corinthians 4:10 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/10/"><span class="v-num">10</span><span class="v-txt">We [are] fools for Christ's sake, but you [are] wise in Christ! We [are] weak, but you [are] strong! You [are] distinguished, but we [are] dishonored!</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/11/" data-ref="1 Corinthians 4:11 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/11/"><span class="v-num">11</span><span class="v-txt">To the present hour we both hunger and thirst, and we are poorly clothed, and beaten, and homeless.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/12/" data-ref="1 Corinthians 4:12 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/12/"><span class="v-num">12</span><span class="v-txt">And we labor, working with our own hands. Being reviled, we bless; being persecuted, we endure;</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/13/" data-ref="1 Corinthians 4:13 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/13/"><span class="v-num">13</span><span class="v-txt">being defamed, we entreat. We have been made as the filth of the world, the offscouring of all things until now.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/14/" data-ref="1 Corinthians 4:14 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/14/"><span class="v-num">14</span><span class="v-txt">I do not write these things to shame you, but as my beloved children I warn [you.]</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/15/" data-ref="1 Corinthians 4:15 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/15/"><span class="v-num">15</span><span class="v-txt">For though you might have ten thousand instructors in Christ, yet [you do] not [have] many fathers; for in Christ Jesus I have begotten you through the gospel.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/16/" data-ref="1 Corinthians 4:16 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/16/"><span class="v-num">16</span><span class="v-txt">Therefore I urge you, imitate me.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/17/" data-ref="1 Corinthians 4:17 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/17/"><span class="v-num">17</span><span class="v-txt">For this reason I have sent Timothy to you, who is my beloved and faithful son in the Lord, who will remind you of my ways in Christ, as I teach everywhere in every church.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/18/" data-ref="1 Corinthians 4:18 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/18/"><span class="v-num">18</span><span class="v-txt">Now some are puffed up, as though I were not coming to you.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/19/" data-ref="1 Corinthians 4:19 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/19/"><span class="v-num">19</span><span class="v-txt">But I will come to you shortly, if the Lord wills, and I will know, not the word of those who are puffed up, but the power.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/20/" data-ref="1 Corinthians 4:20 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/20/"><span class="v-num">20</span><span class="v-txt">For the kingdom of God [is] not in word but in power.</span></a>
+<a class="v-row" href="/bible/nkjv/1-corinthians/4/21/" data-ref="1 Corinthians 4:21 (New King James Version)" data-verse-url="/bible/nkjv/1-corinthians/4/21/"><span class="v-num">21</span><span class="v-txt">What do you want? Shall I come to you with a rod, or in love and a spirit of gentleness?</span></a>
 
     
 <div class="app-cta">

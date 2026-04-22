@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Joshua 3:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Joshua rose up early in the morning; and they removed from Shittim, and came to the Jordan, he and all the children of Israel; and they lodged there before they passed over.</span></div>
-<div class="v-row" data-ref="Joshua 3:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it came to pass after three days, that the officers went through the midst of the camp;</span></div>
-<div class="v-row" data-ref="Joshua 3:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and they commanded the people, saying, When ye see the ark of the covenant of Jehovah your God, and the priests the Levites bearing it, then ye shall remove from your place, and go after it.</span></div>
-<div class="v-row" data-ref="Joshua 3:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Yet there shall be a space between you and it, about two thousand cubits by measure: come not near unto it, that ye may know the way by which ye must go; for ye have not passed this way heretofore.</span></div>
-<div class="v-row" data-ref="Joshua 3:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Joshua said unto the people, Sanctify yourselves; for tomorrow Jehovah will do wonders among you.</span></div>
-<div class="v-row" data-ref="Joshua 3:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And Joshua spake unto the priests, saying, Take up the ark of the covenant, and pass over before the people. And they took up the ark of the covenant, and went before the people.</span></div>
-<div class="v-row" data-ref="Joshua 3:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And Jehovah said unto Joshua, This day will I begin to magnify thee in the sight of all Israel, that they may know that, as I was with Moses, so I will be with thee.</span></div>
-<div class="v-row" data-ref="Joshua 3:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And thou shalt command the priests that bear the ark of the covenant, saying, When ye are come to the brink of the waters of the Jordan, ye shall stand still in the Jordan.</span></div>
-<div class="v-row" data-ref="Joshua 3:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Joshua said unto the children of Israel, Come hither, and hear the words of Jehovah your God.</span></div>
-<div class="v-row" data-ref="Joshua 3:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Joshua said, Hereby ye shall know that the living God is among you, and that he will without fail drive out from before you the Canaanite, and the Hittite, and the Hivite, and the Perizzite, and the Girgashite, and the Amorite, and the Jebusite.</span></div>
-<div class="v-row" data-ref="Joshua 3:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Behold, the ark of the covenant of the Lord of all the earth passeth over before you into the Jordan.</span></div>
-<div class="v-row" data-ref="Joshua 3:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Now therefore take you twelve men out of the tribes of Israel, for every tribe a man.</span></div>
-<div class="v-row" data-ref="Joshua 3:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And it shall come to pass, when the soles of the feet of the priests that bear the ark of Jehovah, the Lord of all the earth, shall rest in the waters of the Jordan, that the waters of the Jordan shall be cut off, even the waters that come down from above; and they shall stand in one heap.</span></div>
-<div class="v-row" data-ref="Joshua 3:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And it came to pass, when the people removed from their tents, to pass over the Jordan, the priests that bare the ark of the covenant being before the people;</span></div>
-<div class="v-row" data-ref="Joshua 3:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">and when they that bare the ark were come unto the Jordan, and the feet of the priests that bare the ark were dipped in the brink of the water (for the Jordan overfloweth all its banks all the time of harvest,)</span></div>
-<div class="v-row" data-ref="Joshua 3:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">that the waters which came down from above stood, and rose up in one heap, a great way off, at Adam, the city that is beside Zarethan; and those that went down toward the sea of the Arabah, even the Salt Sea, were wholly cut off: and the people passed over right against Jericho.</span></div>
-<div class="v-row" data-ref="Joshua 3:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the priests that bare the ark of the covenant of Jehovah stood firm on dry ground in the midst of the Jordan; and all Israel passed over on dry ground, until all the nation were passed clean over the Jordan.</span></div>
+    <a class="v-row" href="/bible/asv/joshua/3/1/" data-ref="Joshua 3:1 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/1/"><span class="v-num">1</span><span class="v-txt">And Joshua rose up early in the morning; and they removed from Shittim, and came to the Jordan, he and all the children of Israel; and they lodged there before they passed over.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/2/" data-ref="Joshua 3:2 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/2/"><span class="v-num">2</span><span class="v-txt">And it came to pass after three days, that the officers went through the midst of the camp;</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/3/" data-ref="Joshua 3:3 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/3/"><span class="v-num">3</span><span class="v-txt">and they commanded the people, saying, When ye see the ark of the covenant of Jehovah your God, and the priests the Levites bearing it, then ye shall remove from your place, and go after it.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/4/" data-ref="Joshua 3:4 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/4/"><span class="v-num">4</span><span class="v-txt">Yet there shall be a space between you and it, about two thousand cubits by measure: come not near unto it, that ye may know the way by which ye must go; for ye have not passed this way heretofore.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/5/" data-ref="Joshua 3:5 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/5/"><span class="v-num">5</span><span class="v-txt">And Joshua said unto the people, Sanctify yourselves; for tomorrow Jehovah will do wonders among you.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/6/" data-ref="Joshua 3:6 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/6/"><span class="v-num">6</span><span class="v-txt">And Joshua spake unto the priests, saying, Take up the ark of the covenant, and pass over before the people. And they took up the ark of the covenant, and went before the people.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/7/" data-ref="Joshua 3:7 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/7/"><span class="v-num">7</span><span class="v-txt">And Jehovah said unto Joshua, This day will I begin to magnify thee in the sight of all Israel, that they may know that, as I was with Moses, so I will be with thee.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/8/" data-ref="Joshua 3:8 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/8/"><span class="v-num">8</span><span class="v-txt">And thou shalt command the priests that bear the ark of the covenant, saying, When ye are come to the brink of the waters of the Jordan, ye shall stand still in the Jordan.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/9/" data-ref="Joshua 3:9 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/9/"><span class="v-num">9</span><span class="v-txt">And Joshua said unto the children of Israel, Come hither, and hear the words of Jehovah your God.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/10/" data-ref="Joshua 3:10 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/10/"><span class="v-num">10</span><span class="v-txt">And Joshua said, Hereby ye shall know that the living God is among you, and that he will without fail drive out from before you the Canaanite, and the Hittite, and the Hivite, and the Perizzite, and the Girgashite, and the Amorite, and the Jebusite.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/11/" data-ref="Joshua 3:11 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/11/"><span class="v-num">11</span><span class="v-txt">Behold, the ark of the covenant of the Lord of all the earth passeth over before you into the Jordan.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/12/" data-ref="Joshua 3:12 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/12/"><span class="v-num">12</span><span class="v-txt">Now therefore take you twelve men out of the tribes of Israel, for every tribe a man.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/13/" data-ref="Joshua 3:13 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/13/"><span class="v-num">13</span><span class="v-txt">And it shall come to pass, when the soles of the feet of the priests that bear the ark of Jehovah, the Lord of all the earth, shall rest in the waters of the Jordan, that the waters of the Jordan shall be cut off, even the waters that come down from above; and they shall stand in one heap.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/14/" data-ref="Joshua 3:14 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/14/"><span class="v-num">14</span><span class="v-txt">And it came to pass, when the people removed from their tents, to pass over the Jordan, the priests that bare the ark of the covenant being before the people;</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/15/" data-ref="Joshua 3:15 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/15/"><span class="v-num">15</span><span class="v-txt">and when they that bare the ark were come unto the Jordan, and the feet of the priests that bare the ark were dipped in the brink of the water (for the Jordan overfloweth all its banks all the time of harvest,)</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/16/" data-ref="Joshua 3:16 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/16/"><span class="v-num">16</span><span class="v-txt">that the waters which came down from above stood, and rose up in one heap, a great way off, at Adam, the city that is beside Zarethan; and those that went down toward the sea of the Arabah, even the Salt Sea, were wholly cut off: and the people passed over right against Jericho.</span></a>
+<a class="v-row" href="/bible/asv/joshua/3/17/" data-ref="Joshua 3:17 (American Standard Version)" data-verse-url="/bible/asv/joshua/3/17/"><span class="v-num">17</span><span class="v-txt">And the priests that bare the ark of the covenant of Jehovah stood firm on dry ground in the midst of the Jordan; and all Israel passed over on dry ground, until all the nation were passed clean over the Jordan.</span></a>
 
     
 <div class="app-cta">

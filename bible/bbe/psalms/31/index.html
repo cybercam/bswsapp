@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 31</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 31:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. A Psalm. Of David. In you, O Lord, have I put my hope; let me never be shamed; keep me safe in your righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 31:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let your ear be turned to me; take me quickly out of danger; be my strong Rock, my place of strength where I may be safe.</span></div>
-<div class="v-row" data-ref="Psalm 31:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For you are my Rock and my strong tower; go in front of me and be my guide, because of your name.</span></div>
-<div class="v-row" data-ref="Psalm 31:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Take me out of the net which they have put ready for me secretly; for you are my strength.</span></div>
-<div class="v-row" data-ref="Psalm 31:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Into your hands I give my spirit; you are my saviour, O Lord God for ever true.</span></div>
-<div class="v-row" data-ref="Psalm 31:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I am full of hate for those who go after false gods; but my hope is in the Lord.</span></div>
-<div class="v-row" data-ref="Psalm 31:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">I will be glad and have delight in your mercy; because you have seen my trouble; you have had pity on my soul in its sorrows;</span></div>
-<div class="v-row" data-ref="Psalm 31:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And you have not given me into the hand of my hater; you have put my feet in a wide place.</span></div>
-<div class="v-row" data-ref="Psalm 31:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Have mercy on me, O Lord, for I am in trouble; my eyes are wasted with grief, I am wasted in soul and body.</span></div>
-<div class="v-row" data-ref="Psalm 31:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">My life goes on in sorrow, and my years in weeping; my strength is almost gone because of my sin, and my bones are wasted away.</span></div>
-<div class="v-row" data-ref="Psalm 31:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Because of all those who are against me, I have become a word of shame to my neighbours; a cause of shaking the head and a fear to my friends: those who saw me in the street went in flight from me.</span></div>
-<div class="v-row" data-ref="Psalm 31:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I have gone from men's minds and memory like a dead man; I am like a broken vessel.</span></div>
-<div class="v-row" data-ref="Psalm 31:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">False statements against me have come to my ears; fear was on every side: they were talking together against me, designing to take away my life.</span></div>
-<div class="v-row" data-ref="Psalm 31:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I had faith in you, O Lord; I said, You are my God.</span></div>
-<div class="v-row" data-ref="Psalm 31:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The chances of my life are in your hand; take me out of the hands of my haters, and of those who go after me.</span></div>
-<div class="v-row" data-ref="Psalm 31:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let your servant see the light of your face; in your mercy be my saviour.</span></div>
-<div class="v-row" data-ref="Psalm 31:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let me not be shamed, O Lord, for I have made my prayer to you; let the sinners be shamed, and let their mouths be shut in the underworld.</span></div>
-<div class="v-row" data-ref="Psalm 31:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Let the false lips be shut, which say evil against the upright, looking down on him in their pride.</span></div>
-<div class="v-row" data-ref="Psalm 31:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">O how great is your grace, which you have put in store for your worshippers, and which you have made clear to those who had faith in you, before the sons of men!</span></div>
-<div class="v-row" data-ref="Psalm 31:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">You will keep them safe in your house from the designs of man; in the secret of your tent will you keep them from angry tongues.</span></div>
-<div class="v-row" data-ref="Psalm 31:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">May the Lord be praised, because he has made clear to me the wonder of his grace in a strong town.</span></div>
-<div class="v-row" data-ref="Psalm 31:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And as for me, I said in my fear, I am cut off from before your eyes; but you gave ear to the voice of my prayer, when my cry went up to you.</span></div>
-<div class="v-row" data-ref="Psalm 31:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">O have love for the Lord, all you his saints; for the Lord keeps safe from danger all those who are true to him, and gives the workers of pride their right reward.</span></div>
-<div class="v-row" data-ref="Psalm 31:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Put away fear and let your heart be strong, all you whose hope is in the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/31/1/" data-ref="Psalm 31:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/1/"><span class="v-num">1</span><span class="v-txt">To the chief music-maker. A Psalm. Of David. In you, O Lord, have I put my hope; let me never be shamed; keep me safe in your righteousness.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/2/" data-ref="Psalm 31:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/2/"><span class="v-num">2</span><span class="v-txt">Let your ear be turned to me; take me quickly out of danger; be my strong Rock, my place of strength where I may be safe.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/3/" data-ref="Psalm 31:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/3/"><span class="v-num">3</span><span class="v-txt">For you are my Rock and my strong tower; go in front of me and be my guide, because of your name.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/4/" data-ref="Psalm 31:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/4/"><span class="v-num">4</span><span class="v-txt">Take me out of the net which they have put ready for me secretly; for you are my strength.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/5/" data-ref="Psalm 31:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/5/"><span class="v-num">5</span><span class="v-txt">Into your hands I give my spirit; you are my saviour, O Lord God for ever true.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/6/" data-ref="Psalm 31:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/6/"><span class="v-num">6</span><span class="v-txt">I am full of hate for those who go after false gods; but my hope is in the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/7/" data-ref="Psalm 31:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/7/"><span class="v-num">7</span><span class="v-txt">I will be glad and have delight in your mercy; because you have seen my trouble; you have had pity on my soul in its sorrows;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/8/" data-ref="Psalm 31:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/8/"><span class="v-num">8</span><span class="v-txt">And you have not given me into the hand of my hater; you have put my feet in a wide place.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/9/" data-ref="Psalm 31:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/9/"><span class="v-num">9</span><span class="v-txt">Have mercy on me, O Lord, for I am in trouble; my eyes are wasted with grief, I am wasted in soul and body.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/10/" data-ref="Psalm 31:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/10/"><span class="v-num">10</span><span class="v-txt">My life goes on in sorrow, and my years in weeping; my strength is almost gone because of my sin, and my bones are wasted away.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/11/" data-ref="Psalm 31:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/11/"><span class="v-num">11</span><span class="v-txt">Because of all those who are against me, I have become a word of shame to my neighbours; a cause of shaking the head and a fear to my friends: those who saw me in the street went in flight from me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/12/" data-ref="Psalm 31:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/12/"><span class="v-num">12</span><span class="v-txt">I have gone from men's minds and memory like a dead man; I am like a broken vessel.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/13/" data-ref="Psalm 31:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/13/"><span class="v-num">13</span><span class="v-txt">False statements against me have come to my ears; fear was on every side: they were talking together against me, designing to take away my life.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/14/" data-ref="Psalm 31:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/14/"><span class="v-num">14</span><span class="v-txt">But I had faith in you, O Lord; I said, You are my God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/15/" data-ref="Psalm 31:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/15/"><span class="v-num">15</span><span class="v-txt">The chances of my life are in your hand; take me out of the hands of my haters, and of those who go after me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/16/" data-ref="Psalm 31:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/16/"><span class="v-num">16</span><span class="v-txt">Let your servant see the light of your face; in your mercy be my saviour.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/17/" data-ref="Psalm 31:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/17/"><span class="v-num">17</span><span class="v-txt">Let me not be shamed, O Lord, for I have made my prayer to you; let the sinners be shamed, and let their mouths be shut in the underworld.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/18/" data-ref="Psalm 31:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/18/"><span class="v-num">18</span><span class="v-txt">Let the false lips be shut, which say evil against the upright, looking down on him in their pride.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/19/" data-ref="Psalm 31:19 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/19/"><span class="v-num">19</span><span class="v-txt">O how great is your grace, which you have put in store for your worshippers, and which you have made clear to those who had faith in you, before the sons of men!</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/20/" data-ref="Psalm 31:20 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/20/"><span class="v-num">20</span><span class="v-txt">You will keep them safe in your house from the designs of man; in the secret of your tent will you keep them from angry tongues.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/21/" data-ref="Psalm 31:21 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/21/"><span class="v-num">21</span><span class="v-txt">May the Lord be praised, because he has made clear to me the wonder of his grace in a strong town.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/22/" data-ref="Psalm 31:22 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/22/"><span class="v-num">22</span><span class="v-txt">And as for me, I said in my fear, I am cut off from before your eyes; but you gave ear to the voice of my prayer, when my cry went up to you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/23/" data-ref="Psalm 31:23 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/23/"><span class="v-num">23</span><span class="v-txt">O have love for the Lord, all you his saints; for the Lord keeps safe from danger all those who are true to him, and gives the workers of pride their right reward.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/31/24/" data-ref="Psalm 31:24 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/31/24/"><span class="v-num">24</span><span class="v-txt">Put away fear and let your heart be strong, all you whose hope is in the Lord.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 17:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Better is a dry morsel, and quietness therewith, Than a house full of feasting with strife.</span></div>
-<div class="v-row" data-ref="Proverbs 17:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A servant that dealeth wisely shall have rule over a son that causeth shame, And shall have part in the inheritance among the brethren.</span></div>
-<div class="v-row" data-ref="Proverbs 17:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The refining pot is for silver, and the furnace for gold; But Jehovah trieth the hearts.</span></div>
-<div class="v-row" data-ref="Proverbs 17:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">An evil-doer giveth heed to wicked lips; [And] a liar giveth ear to a mischievous tongue.</span></div>
-<div class="v-row" data-ref="Proverbs 17:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Whoso mocketh the poor reproacheth his Maker; [And] he that is glad at calamity shall not be unpunished.</span></div>
-<div class="v-row" data-ref="Proverbs 17:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Children's children are the crown of old men; And the glory of children are their fathers.</span></div>
-<div class="v-row" data-ref="Proverbs 17:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Excellent speech becometh not a fool; Much less do lying lips a prince.</span></div>
-<div class="v-row" data-ref="Proverbs 17:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A bribe is [as] a precious stone in the eyes of him that hath it; Whithersoever it turneth, it prospereth.</span></div>
-<div class="v-row" data-ref="Proverbs 17:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He that covereth a transgression seeketh love; But he that harpeth on a matter separateth chief friends.</span></div>
-<div class="v-row" data-ref="Proverbs 17:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">A rebuke entereth deeper into one that hath understanding Than a hundred stripes into a fool.</span></div>
-<div class="v-row" data-ref="Proverbs 17:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">An evil man seeketh only rebellion; Therefore a cruel messenger shall be sent against him.</span></div>
-<div class="v-row" data-ref="Proverbs 17:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let a bear robbed of her whelps meet a man, Rather than a fool in his folly.</span></div>
-<div class="v-row" data-ref="Proverbs 17:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Whoso rewardeth evil for good, Evil shall not depart from his house.</span></div>
-<div class="v-row" data-ref="Proverbs 17:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The beginning of strife is [as] when one letteth out water: Therefore leave off contention, before there is quarrelling.</span></div>
-<div class="v-row" data-ref="Proverbs 17:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He that justifieth the wicked, and he that condemneth the righteous, Both of them alike are an abomination to Jehovah.</span></div>
-<div class="v-row" data-ref="Proverbs 17:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Wherefore is there a price in the hand of a fool to buy wisdom, Seeing he hath no understanding?</span></div>
-<div class="v-row" data-ref="Proverbs 17:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">A friend loveth at all times; And a brother is born for adversity.</span></div>
-<div class="v-row" data-ref="Proverbs 17:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">A man void of understanding striketh hands, And becometh surety in the presence of his neighbor.</span></div>
-<div class="v-row" data-ref="Proverbs 17:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He loveth transgression that loveth strife: He that raiseth high his gate seeketh destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 17:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He that hath a wayward heart findeth no good; And he that hath a perverse tongue falleth into mischief.</span></div>
-<div class="v-row" data-ref="Proverbs 17:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He that begetteth a fool [doeth it] to his sorrow; And the father of a fool hath no joy.</span></div>
-<div class="v-row" data-ref="Proverbs 17:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A cheerful heart is a good medicine; But a broken spirit drieth up the bones.</span></div>
-<div class="v-row" data-ref="Proverbs 17:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A wicked man receiveth a bribe out of the bosom, To pervert the ways of justice.</span></div>
-<div class="v-row" data-ref="Proverbs 17:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Wisdom is before the face of him that hath understanding; But the eyes of a fool are in the ends of the earth.</span></div>
-<div class="v-row" data-ref="Proverbs 17:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">A foolish son is a grief to his father, And bitterness to her that bare him.</span></div>
-<div class="v-row" data-ref="Proverbs 17:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Also to punish the righteous is not good, [Nor] to smite the noble for [their] uprightness.</span></div>
-<div class="v-row" data-ref="Proverbs 17:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He that spareth his words hath knowledge; And he that is of a cool spirit is a man of understanding.</span></div>
-<div class="v-row" data-ref="Proverbs 17:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Even a fool, when he holdeth his peace, is counted wise; When he shutteth his lips, he is [esteemed as] prudent.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/17/1/" data-ref="Proverbs 17:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/1/"><span class="v-num">1</span><span class="v-txt">Better is a dry morsel, and quietness therewith, Than a house full of feasting with strife.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/2/" data-ref="Proverbs 17:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/2/"><span class="v-num">2</span><span class="v-txt">A servant that dealeth wisely shall have rule over a son that causeth shame, And shall have part in the inheritance among the brethren.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/3/" data-ref="Proverbs 17:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/3/"><span class="v-num">3</span><span class="v-txt">The refining pot is for silver, and the furnace for gold; But Jehovah trieth the hearts.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/4/" data-ref="Proverbs 17:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/4/"><span class="v-num">4</span><span class="v-txt">An evil-doer giveth heed to wicked lips; [And] a liar giveth ear to a mischievous tongue.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/5/" data-ref="Proverbs 17:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/5/"><span class="v-num">5</span><span class="v-txt">Whoso mocketh the poor reproacheth his Maker; [And] he that is glad at calamity shall not be unpunished.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/6/" data-ref="Proverbs 17:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/6/"><span class="v-num">6</span><span class="v-txt">Children's children are the crown of old men; And the glory of children are their fathers.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/7/" data-ref="Proverbs 17:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/7/"><span class="v-num">7</span><span class="v-txt">Excellent speech becometh not a fool; Much less do lying lips a prince.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/8/" data-ref="Proverbs 17:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/8/"><span class="v-num">8</span><span class="v-txt">A bribe is [as] a precious stone in the eyes of him that hath it; Whithersoever it turneth, it prospereth.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/9/" data-ref="Proverbs 17:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/9/"><span class="v-num">9</span><span class="v-txt">He that covereth a transgression seeketh love; But he that harpeth on a matter separateth chief friends.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/10/" data-ref="Proverbs 17:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/10/"><span class="v-num">10</span><span class="v-txt">A rebuke entereth deeper into one that hath understanding Than a hundred stripes into a fool.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/11/" data-ref="Proverbs 17:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/11/"><span class="v-num">11</span><span class="v-txt">An evil man seeketh only rebellion; Therefore a cruel messenger shall be sent against him.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/12/" data-ref="Proverbs 17:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/12/"><span class="v-num">12</span><span class="v-txt">Let a bear robbed of her whelps meet a man, Rather than a fool in his folly.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/13/" data-ref="Proverbs 17:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/13/"><span class="v-num">13</span><span class="v-txt">Whoso rewardeth evil for good, Evil shall not depart from his house.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/14/" data-ref="Proverbs 17:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/14/"><span class="v-num">14</span><span class="v-txt">The beginning of strife is [as] when one letteth out water: Therefore leave off contention, before there is quarrelling.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/15/" data-ref="Proverbs 17:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/15/"><span class="v-num">15</span><span class="v-txt">He that justifieth the wicked, and he that condemneth the righteous, Both of them alike are an abomination to Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/16/" data-ref="Proverbs 17:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/16/"><span class="v-num">16</span><span class="v-txt">Wherefore is there a price in the hand of a fool to buy wisdom, Seeing he hath no understanding?</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/17/" data-ref="Proverbs 17:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/17/"><span class="v-num">17</span><span class="v-txt">A friend loveth at all times; And a brother is born for adversity.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/18/" data-ref="Proverbs 17:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/18/"><span class="v-num">18</span><span class="v-txt">A man void of understanding striketh hands, And becometh surety in the presence of his neighbor.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/19/" data-ref="Proverbs 17:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/19/"><span class="v-num">19</span><span class="v-txt">He loveth transgression that loveth strife: He that raiseth high his gate seeketh destruction.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/20/" data-ref="Proverbs 17:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/20/"><span class="v-num">20</span><span class="v-txt">He that hath a wayward heart findeth no good; And he that hath a perverse tongue falleth into mischief.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/21/" data-ref="Proverbs 17:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/21/"><span class="v-num">21</span><span class="v-txt">He that begetteth a fool [doeth it] to his sorrow; And the father of a fool hath no joy.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/22/" data-ref="Proverbs 17:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/22/"><span class="v-num">22</span><span class="v-txt">A cheerful heart is a good medicine; But a broken spirit drieth up the bones.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/23/" data-ref="Proverbs 17:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/23/"><span class="v-num">23</span><span class="v-txt">A wicked man receiveth a bribe out of the bosom, To pervert the ways of justice.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/24/" data-ref="Proverbs 17:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/24/"><span class="v-num">24</span><span class="v-txt">Wisdom is before the face of him that hath understanding; But the eyes of a fool are in the ends of the earth.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/25/" data-ref="Proverbs 17:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/25/"><span class="v-num">25</span><span class="v-txt">A foolish son is a grief to his father, And bitterness to her that bare him.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/26/" data-ref="Proverbs 17:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/26/"><span class="v-num">26</span><span class="v-txt">Also to punish the righteous is not good, [Nor] to smite the noble for [their] uprightness.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/27/" data-ref="Proverbs 17:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/27/"><span class="v-num">27</span><span class="v-txt">He that spareth his words hath knowledge; And he that is of a cool spirit is a man of understanding.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/17/28/" data-ref="Proverbs 17:28 (American Standard Version)" data-verse-url="/bible/asv/proverbs/17/28/"><span class="v-num">28</span><span class="v-txt">Even a fool, when he holdeth his peace, is counted wise; When he shutteth his lips, he is [esteemed as] prudent.</span></a>
 
     
 <div class="app-cta">

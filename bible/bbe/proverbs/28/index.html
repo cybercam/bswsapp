@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 28:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The evil man goes running away when no man is after him, but the upright are without fear, like the lion.</span></div>
-<div class="v-row" data-ref="Proverbs 28:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Because of the sin of the land, its troubles are increased; but by a man of wisdom and knowledge they will be put out like a fire.</span></div>
-<div class="v-row" data-ref="Proverbs 28:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A man of wealth who is cruel to the poor is like a violent rain causing destruction of food.</span></div>
-<div class="v-row" data-ref="Proverbs 28:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Those who have no respect for the law give praise to the evil-doer; but such as keep the law are against him.</span></div>
-<div class="v-row" data-ref="Proverbs 28:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Evil men have no knowledge of what is right; but those who go after the Lord have knowledge of all things.</span></div>
-<div class="v-row" data-ref="Proverbs 28:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Better is the poor man whose ways are upright, than the man of wealth whose ways are not straight.</span></div>
-<div class="v-row" data-ref="Proverbs 28:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He who keeps the law is a wise son, but he who keeps company with feasters puts shame on his father.</span></div>
-<div class="v-row" data-ref="Proverbs 28:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He who makes his wealth greater by taking interest, only gets it together for him who has pity on the poor.</span></div>
-<div class="v-row" data-ref="Proverbs 28:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">As for the man whose ear is turned away from hearing the law, even his prayer is disgusting.</span></div>
-<div class="v-row" data-ref="Proverbs 28:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Anyone causing the upright to go wandering in an evil way, will himself go down into the hole he has made; but the upright will have good things for their heritage.</span></div>
-<div class="v-row" data-ref="Proverbs 28:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The man of wealth seems to himself to be wise, but the poor man who has sense has a low opinion of him.</span></div>
-<div class="v-row" data-ref="Proverbs 28:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When the upright do well, there is great glory; but when evil-doers are lifted up, men do not let themselves be seen.</span></div>
-<div class="v-row" data-ref="Proverbs 28:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He who keeps his sins secret will not do well; but one who is open about them, and gives them up, will get mercy.</span></div>
-<div class="v-row" data-ref="Proverbs 28:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Happy is the man in whom is the fear of the Lord at all times; but he whose heart is hard will come into trouble.</span></div>
-<div class="v-row" data-ref="Proverbs 28:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Like a loud-voiced lion and a wandering bear, is an evil ruler over a poor people.</span></div>
-<div class="v-row" data-ref="Proverbs 28:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The prince who has no sense is a cruel ruler; but he who has no desire to get profit for himself will have long life.</span></div>
-<div class="v-row" data-ref="Proverbs 28:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">One who has been the cause of a man's death will go in flight to the underworld: let no man give him help.</span></div>
-<div class="v-row" data-ref="Proverbs 28:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He whose ways are upright will be safe, but sudden will be the fall of him whose ways are twisted.</span></div>
-<div class="v-row" data-ref="Proverbs 28:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">By ploughing his land a man will have bread in full measure; but he who goes after good-for-nothing persons will be poor enough.</span></div>
-<div class="v-row" data-ref="Proverbs 28:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">A man of good faith will have great blessing, but one attempting to get wealth quickly will not go free from punishment.</span></div>
-<div class="v-row" data-ref="Proverbs 28:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">It is not good to have respect for a man's position: for a man will do wrong for a bit of bread.</span></div>
-<div class="v-row" data-ref="Proverbs 28:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">He who is ever desiring wealth goes running after money, and does not see that need will come on him.</span></div>
-<div class="v-row" data-ref="Proverbs 28:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He who says words of protest to a man will later have more approval than one who says smooth words with his tongue.</span></div>
-<div class="v-row" data-ref="Proverbs 28:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">He who takes from his father or his mother what is theirs by right, and says, It is no sin; is the same as a taker of life.</span></div>
-<div class="v-row" data-ref="Proverbs 28:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">He who is ever desiring profit is a cause of fighting; but he who puts his faith in the Lord will be made fat.</span></div>
-<div class="v-row" data-ref="Proverbs 28:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">He whose faith is in himself is foolish; but everyone walking wisely will be kept safe.</span></div>
-<div class="v-row" data-ref="Proverbs 28:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He who gives to the poor will never be in need, but great curses will be on him who gives no attention to them.</span></div>
-<div class="v-row" data-ref="Proverbs 28:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">When evil-doers are lifted up, men take cover; but when destruction overtakes them, the upright are increased.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/28/1/" data-ref="Proverbs 28:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/1/"><span class="v-num">1</span><span class="v-txt">The evil man goes running away when no man is after him, but the upright are without fear, like the lion.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/2/" data-ref="Proverbs 28:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/2/"><span class="v-num">2</span><span class="v-txt">Because of the sin of the land, its troubles are increased; but by a man of wisdom and knowledge they will be put out like a fire.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/3/" data-ref="Proverbs 28:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/3/"><span class="v-num">3</span><span class="v-txt">A man of wealth who is cruel to the poor is like a violent rain causing destruction of food.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/4/" data-ref="Proverbs 28:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/4/"><span class="v-num">4</span><span class="v-txt">Those who have no respect for the law give praise to the evil-doer; but such as keep the law are against him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/5/" data-ref="Proverbs 28:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/5/"><span class="v-num">5</span><span class="v-txt">Evil men have no knowledge of what is right; but those who go after the Lord have knowledge of all things.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/6/" data-ref="Proverbs 28:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/6/"><span class="v-num">6</span><span class="v-txt">Better is the poor man whose ways are upright, than the man of wealth whose ways are not straight.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/7/" data-ref="Proverbs 28:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/7/"><span class="v-num">7</span><span class="v-txt">He who keeps the law is a wise son, but he who keeps company with feasters puts shame on his father.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/8/" data-ref="Proverbs 28:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/8/"><span class="v-num">8</span><span class="v-txt">He who makes his wealth greater by taking interest, only gets it together for him who has pity on the poor.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/9/" data-ref="Proverbs 28:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/9/"><span class="v-num">9</span><span class="v-txt">As for the man whose ear is turned away from hearing the law, even his prayer is disgusting.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/10/" data-ref="Proverbs 28:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/10/"><span class="v-num">10</span><span class="v-txt">Anyone causing the upright to go wandering in an evil way, will himself go down into the hole he has made; but the upright will have good things for their heritage.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/11/" data-ref="Proverbs 28:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/11/"><span class="v-num">11</span><span class="v-txt">The man of wealth seems to himself to be wise, but the poor man who has sense has a low opinion of him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/12/" data-ref="Proverbs 28:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/12/"><span class="v-num">12</span><span class="v-txt">When the upright do well, there is great glory; but when evil-doers are lifted up, men do not let themselves be seen.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/13/" data-ref="Proverbs 28:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/13/"><span class="v-num">13</span><span class="v-txt">He who keeps his sins secret will not do well; but one who is open about them, and gives them up, will get mercy.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/14/" data-ref="Proverbs 28:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/14/"><span class="v-num">14</span><span class="v-txt">Happy is the man in whom is the fear of the Lord at all times; but he whose heart is hard will come into trouble.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/15/" data-ref="Proverbs 28:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/15/"><span class="v-num">15</span><span class="v-txt">Like a loud-voiced lion and a wandering bear, is an evil ruler over a poor people.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/16/" data-ref="Proverbs 28:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/16/"><span class="v-num">16</span><span class="v-txt">The prince who has no sense is a cruel ruler; but he who has no desire to get profit for himself will have long life.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/17/" data-ref="Proverbs 28:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/17/"><span class="v-num">17</span><span class="v-txt">One who has been the cause of a man's death will go in flight to the underworld: let no man give him help.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/18/" data-ref="Proverbs 28:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/18/"><span class="v-num">18</span><span class="v-txt">He whose ways are upright will be safe, but sudden will be the fall of him whose ways are twisted.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/19/" data-ref="Proverbs 28:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/19/"><span class="v-num">19</span><span class="v-txt">By ploughing his land a man will have bread in full measure; but he who goes after good-for-nothing persons will be poor enough.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/20/" data-ref="Proverbs 28:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/20/"><span class="v-num">20</span><span class="v-txt">A man of good faith will have great blessing, but one attempting to get wealth quickly will not go free from punishment.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/21/" data-ref="Proverbs 28:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/21/"><span class="v-num">21</span><span class="v-txt">It is not good to have respect for a man's position: for a man will do wrong for a bit of bread.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/22/" data-ref="Proverbs 28:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/22/"><span class="v-num">22</span><span class="v-txt">He who is ever desiring wealth goes running after money, and does not see that need will come on him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/23/" data-ref="Proverbs 28:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/23/"><span class="v-num">23</span><span class="v-txt">He who says words of protest to a man will later have more approval than one who says smooth words with his tongue.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/24/" data-ref="Proverbs 28:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/24/"><span class="v-num">24</span><span class="v-txt">He who takes from his father or his mother what is theirs by right, and says, It is no sin; is the same as a taker of life.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/25/" data-ref="Proverbs 28:25 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/25/"><span class="v-num">25</span><span class="v-txt">He who is ever desiring profit is a cause of fighting; but he who puts his faith in the Lord will be made fat.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/26/" data-ref="Proverbs 28:26 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/26/"><span class="v-num">26</span><span class="v-txt">He whose faith is in himself is foolish; but everyone walking wisely will be kept safe.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/27/" data-ref="Proverbs 28:27 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/27/"><span class="v-num">27</span><span class="v-txt">He who gives to the poor will never be in need, but great curses will be on him who gives no attention to them.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/28/28/" data-ref="Proverbs 28:28 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/28/28/"><span class="v-num">28</span><span class="v-txt">When evil-doers are lifted up, men take cover; but when destruction overtakes them, the upright are increased.</span></a>
 
     
 <div class="app-cta">

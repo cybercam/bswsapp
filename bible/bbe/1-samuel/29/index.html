@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 29</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 29:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the Philistines got all their army together at Aphek: and the Israelites put their forces in position by the fountain in Jezreel.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the lords of the Philistines went on with their hundreds and their thousands, and David and his men came after with Achish.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then the rulers of the Philistines said, What are these Hebrews doing here? And Achish said to the rulers of the Philistines, Is this not David, the servant of Saul the king of Israel, who has been with me for a year or two, and I have never seen any wrong in him from the time when he came to me till now?</span></div>
-<div class="v-row" data-ref="1 Samuel 29:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But the rulers of the Philistines were angry with him, and said to him, Make the man go back to the place you have given him; do not let him go down with us to the fight, or he may be turned against us and be false to us: for how will this man make peace with his lord? will it not be with the heads of these men?</span></div>
-<div class="v-row" data-ref="1 Samuel 29:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Is this not David, who was named in their songs, when in the dance they said to one another, Saul has put to death thousands, and David tens of thousands?</span></div>
-<div class="v-row" data-ref="1 Samuel 29:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then Achish sent for David and said to him, By the living Lord, you are upright, and everything you have done with me in the army has been pleasing to me: I have seen no evil in you from the day when you came to me till now: but still, the lords are not pleased with you.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">So now go back, and go in peace, so that you do not make the lords of the Philistines angry.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And David said to Achish, But what have I done? what have you seen in your servant while I have been with you till this day, that I may not go and take up arms against those who are now making war on my lord the king?</span></div>
-<div class="v-row" data-ref="1 Samuel 29:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Achish in answer said, It is true that in my eyes you are good, like an angel of God: but still, the rulers of the Philistines have said, He is not to go up with us to the fight.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So get up early in the morning, with the servants of your lord who are with you, and go to the place I have given you, and have no evil design in your heart, for you are good in my eyes; but when there is light enough in the morning, go away.</span></div>
-<div class="v-row" data-ref="1 Samuel 29:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So David and his men got up early in the morning to go back to the land of the Philistines. And the Philistines went up to Jezreel.</span></div>
+    <a class="v-row" href="/bible/bbe/1-samuel/29/1/" data-ref="1 Samuel 29:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/1/"><span class="v-num">1</span><span class="v-txt">Now the Philistines got all their army together at Aphek: and the Israelites put their forces in position by the fountain in Jezreel.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/2/" data-ref="1 Samuel 29:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/2/"><span class="v-num">2</span><span class="v-txt">And the lords of the Philistines went on with their hundreds and their thousands, and David and his men came after with Achish.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/3/" data-ref="1 Samuel 29:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/3/"><span class="v-num">3</span><span class="v-txt">Then the rulers of the Philistines said, What are these Hebrews doing here? And Achish said to the rulers of the Philistines, Is this not David, the servant of Saul the king of Israel, who has been with me for a year or two, and I have never seen any wrong in him from the time when he came to me till now?</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/4/" data-ref="1 Samuel 29:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/4/"><span class="v-num">4</span><span class="v-txt">But the rulers of the Philistines were angry with him, and said to him, Make the man go back to the place you have given him; do not let him go down with us to the fight, or he may be turned against us and be false to us: for how will this man make peace with his lord? will it not be with the heads of these men?</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/5/" data-ref="1 Samuel 29:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/5/"><span class="v-num">5</span><span class="v-txt">Is this not David, who was named in their songs, when in the dance they said to one another, Saul has put to death thousands, and David tens of thousands?</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/6/" data-ref="1 Samuel 29:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/6/"><span class="v-num">6</span><span class="v-txt">Then Achish sent for David and said to him, By the living Lord, you are upright, and everything you have done with me in the army has been pleasing to me: I have seen no evil in you from the day when you came to me till now: but still, the lords are not pleased with you.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/7/" data-ref="1 Samuel 29:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/7/"><span class="v-num">7</span><span class="v-txt">So now go back, and go in peace, so that you do not make the lords of the Philistines angry.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/8/" data-ref="1 Samuel 29:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/8/"><span class="v-num">8</span><span class="v-txt">And David said to Achish, But what have I done? what have you seen in your servant while I have been with you till this day, that I may not go and take up arms against those who are now making war on my lord the king?</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/9/" data-ref="1 Samuel 29:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/9/"><span class="v-num">9</span><span class="v-txt">And Achish in answer said, It is true that in my eyes you are good, like an angel of God: but still, the rulers of the Philistines have said, He is not to go up with us to the fight.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/10/" data-ref="1 Samuel 29:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/10/"><span class="v-num">10</span><span class="v-txt">So get up early in the morning, with the servants of your lord who are with you, and go to the place I have given you, and have no evil design in your heart, for you are good in my eyes; but when there is light enough in the morning, go away.</span></a>
+<a class="v-row" href="/bible/bbe/1-samuel/29/11/" data-ref="1 Samuel 29:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-samuel/29/11/"><span class="v-num">11</span><span class="v-txt">So David and his men got up early in the morning to go back to the land of the Philistines. And the Philistines went up to Jezreel.</span></a>
 
     
 <div class="app-cta">

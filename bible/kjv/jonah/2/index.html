@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Jonah 2:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Jonah prayed unto the LORD his God out of the fish's belly,</span></div>
-<div class="v-row" data-ref="Jonah 2:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And said, I cried by reason of mine affliction unto the LORD, and he heard me; out of the belly of hell cried I, and thou heardest my voice.</span></div>
-<div class="v-row" data-ref="Jonah 2:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For thou hadst cast me into the deep, in the midst of the seas; and the floods compassed me about: all thy billows and thy waves passed over me.</span></div>
-<div class="v-row" data-ref="Jonah 2:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then I said, I am cast out of thy sight; yet I will look again toward thy holy temple.</span></div>
-<div class="v-row" data-ref="Jonah 2:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The waters compassed me about, even to the soul: the depth closed me round about, the weeds were wrapped about my head.</span></div>
-<div class="v-row" data-ref="Jonah 2:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I went down to the bottoms of the mountains; the earth with her bars was about me for ever: yet hast thou brought up my life from corruption, O LORD my God.</span></div>
-<div class="v-row" data-ref="Jonah 2:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">When my soul fainted within me I remembered the LORD: and my prayer came in unto thee, into thine holy temple.</span></div>
-<div class="v-row" data-ref="Jonah 2:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They that observe lying vanities forsake their own mercy.</span></div>
-<div class="v-row" data-ref="Jonah 2:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But I will sacrifice unto thee with the voice of thanksgiving; I will pay that that I have vowed. Salvation is of the LORD.</span></div>
-<div class="v-row" data-ref="Jonah 2:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And the LORD spake unto the fish, and it vomited out Jonah upon the dry land.</span></div>
+    <a class="v-row" href="/bible/kjv/jonah/2/1/" data-ref="Jonah 2:1 (King James Version)" data-verse-url="/bible/kjv/jonah/2/1/"><span class="v-num">1</span><span class="v-txt">Then Jonah prayed unto the LORD his God out of the fish's belly,</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/2/" data-ref="Jonah 2:2 (King James Version)" data-verse-url="/bible/kjv/jonah/2/2/"><span class="v-num">2</span><span class="v-txt">And said, I cried by reason of mine affliction unto the LORD, and he heard me; out of the belly of hell cried I, and thou heardest my voice.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/3/" data-ref="Jonah 2:3 (King James Version)" data-verse-url="/bible/kjv/jonah/2/3/"><span class="v-num">3</span><span class="v-txt">For thou hadst cast me into the deep, in the midst of the seas; and the floods compassed me about: all thy billows and thy waves passed over me.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/4/" data-ref="Jonah 2:4 (King James Version)" data-verse-url="/bible/kjv/jonah/2/4/"><span class="v-num">4</span><span class="v-txt">Then I said, I am cast out of thy sight; yet I will look again toward thy holy temple.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/5/" data-ref="Jonah 2:5 (King James Version)" data-verse-url="/bible/kjv/jonah/2/5/"><span class="v-num">5</span><span class="v-txt">The waters compassed me about, even to the soul: the depth closed me round about, the weeds were wrapped about my head.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/6/" data-ref="Jonah 2:6 (King James Version)" data-verse-url="/bible/kjv/jonah/2/6/"><span class="v-num">6</span><span class="v-txt">I went down to the bottoms of the mountains; the earth with her bars was about me for ever: yet hast thou brought up my life from corruption, O LORD my God.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/7/" data-ref="Jonah 2:7 (King James Version)" data-verse-url="/bible/kjv/jonah/2/7/"><span class="v-num">7</span><span class="v-txt">When my soul fainted within me I remembered the LORD: and my prayer came in unto thee, into thine holy temple.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/8/" data-ref="Jonah 2:8 (King James Version)" data-verse-url="/bible/kjv/jonah/2/8/"><span class="v-num">8</span><span class="v-txt">They that observe lying vanities forsake their own mercy.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/9/" data-ref="Jonah 2:9 (King James Version)" data-verse-url="/bible/kjv/jonah/2/9/"><span class="v-num">9</span><span class="v-txt">But I will sacrifice unto thee with the voice of thanksgiving; I will pay that that I have vowed. Salvation is of the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/jonah/2/10/" data-ref="Jonah 2:10 (King James Version)" data-verse-url="/bible/kjv/jonah/2/10/"><span class="v-num">10</span><span class="v-txt">And the LORD spake unto the fish, and it vomited out Jonah upon the dry land.</span></a>
 
     
 <div class="app-cta">

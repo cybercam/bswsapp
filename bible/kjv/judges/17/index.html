@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Judges 17:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And there was a man of mount Ephraim, whose name was Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And he said unto his mother, The eleven hundred shekels of silver that were taken from thee, about which thou cursedst, and spakest of also in mine ears, behold, the silver is with me; I took it. And his mother said, Blessed be thou of the LORD, my son.</span></div>
-<div class="v-row" data-ref="Judges 17:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And when he had restored the eleven hundred shekels of silver to his mother, his mother said, I had wholly dedicated the silver unto the LORD from my hand for my son, to make a graven image and a molten image: now therefore I will restore it unto thee.</span></div>
-<div class="v-row" data-ref="Judges 17:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Yet he restored the money unto his mother; and his mother took two hundred shekels of silver, and gave them to the founder, who made thereof a graven image and a molten image: and they were in the house of Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the man Micah had an house of gods, and made an ephod, and teraphim, and consecrated one of his sons, who became his priest.</span></div>
-<div class="v-row" data-ref="Judges 17:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In those days there was no king in Israel, but every man did that which was right in his own eyes.</span></div>
-<div class="v-row" data-ref="Judges 17:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And there was a young man out of Bethlehemjudah of the family of Judah, who was a Levite, and he sojourned there.</span></div>
-<div class="v-row" data-ref="Judges 17:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the man departed out of the city from Bethlehemjudah to sojourn where he could find a place: and he came to mount Ephraim to the house of Micah, as he journeyed.</span></div>
-<div class="v-row" data-ref="Judges 17:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And Micah said unto him, Whence comest thou? And he said unto him, I am a Levite of Bethlehemjudah, and I go to sojourn where I may find a place.</span></div>
-<div class="v-row" data-ref="Judges 17:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Micah said unto him, Dwell with me, and be unto me a father and a priest, and I will give thee ten shekels of silver by the year, and a suit of apparel, and thy victuals. So the Levite went in.</span></div>
-<div class="v-row" data-ref="Judges 17:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the Levite was content to dwell with the man; and the young man was unto him as one of his sons.</span></div>
-<div class="v-row" data-ref="Judges 17:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Micah consecrated the Levite; and the young man became his priest, and was in the house of Micah.</span></div>
-<div class="v-row" data-ref="Judges 17:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Then said Micah, Now know I that the LORD will do me good, seeing I have a Levite to my priest.</span></div>
+    <a class="v-row" href="/bible/kjv/judges/17/1/" data-ref="Judges 17:1 (King James Version)" data-verse-url="/bible/kjv/judges/17/1/"><span class="v-num">1</span><span class="v-txt">And there was a man of mount Ephraim, whose name was Micah.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/2/" data-ref="Judges 17:2 (King James Version)" data-verse-url="/bible/kjv/judges/17/2/"><span class="v-num">2</span><span class="v-txt">And he said unto his mother, The eleven hundred shekels of silver that were taken from thee, about which thou cursedst, and spakest of also in mine ears, behold, the silver is with me; I took it. And his mother said, Blessed be thou of the LORD, my son.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/3/" data-ref="Judges 17:3 (King James Version)" data-verse-url="/bible/kjv/judges/17/3/"><span class="v-num">3</span><span class="v-txt">And when he had restored the eleven hundred shekels of silver to his mother, his mother said, I had wholly dedicated the silver unto the LORD from my hand for my son, to make a graven image and a molten image: now therefore I will restore it unto thee.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/4/" data-ref="Judges 17:4 (King James Version)" data-verse-url="/bible/kjv/judges/17/4/"><span class="v-num">4</span><span class="v-txt">Yet he restored the money unto his mother; and his mother took two hundred shekels of silver, and gave them to the founder, who made thereof a graven image and a molten image: and they were in the house of Micah.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/5/" data-ref="Judges 17:5 (King James Version)" data-verse-url="/bible/kjv/judges/17/5/"><span class="v-num">5</span><span class="v-txt">And the man Micah had an house of gods, and made an ephod, and teraphim, and consecrated one of his sons, who became his priest.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/6/" data-ref="Judges 17:6 (King James Version)" data-verse-url="/bible/kjv/judges/17/6/"><span class="v-num">6</span><span class="v-txt">In those days there was no king in Israel, but every man did that which was right in his own eyes.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/7/" data-ref="Judges 17:7 (King James Version)" data-verse-url="/bible/kjv/judges/17/7/"><span class="v-num">7</span><span class="v-txt">And there was a young man out of Bethlehemjudah of the family of Judah, who was a Levite, and he sojourned there.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/8/" data-ref="Judges 17:8 (King James Version)" data-verse-url="/bible/kjv/judges/17/8/"><span class="v-num">8</span><span class="v-txt">And the man departed out of the city from Bethlehemjudah to sojourn where he could find a place: and he came to mount Ephraim to the house of Micah, as he journeyed.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/9/" data-ref="Judges 17:9 (King James Version)" data-verse-url="/bible/kjv/judges/17/9/"><span class="v-num">9</span><span class="v-txt">And Micah said unto him, Whence comest thou? And he said unto him, I am a Levite of Bethlehemjudah, and I go to sojourn where I may find a place.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/10/" data-ref="Judges 17:10 (King James Version)" data-verse-url="/bible/kjv/judges/17/10/"><span class="v-num">10</span><span class="v-txt">And Micah said unto him, Dwell with me, and be unto me a father and a priest, and I will give thee ten shekels of silver by the year, and a suit of apparel, and thy victuals. So the Levite went in.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/11/" data-ref="Judges 17:11 (King James Version)" data-verse-url="/bible/kjv/judges/17/11/"><span class="v-num">11</span><span class="v-txt">And the Levite was content to dwell with the man; and the young man was unto him as one of his sons.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/12/" data-ref="Judges 17:12 (King James Version)" data-verse-url="/bible/kjv/judges/17/12/"><span class="v-num">12</span><span class="v-txt">And Micah consecrated the Levite; and the young man became his priest, and was in the house of Micah.</span></a>
+<a class="v-row" href="/bible/kjv/judges/17/13/" data-ref="Judges 17:13 (King James Version)" data-verse-url="/bible/kjv/judges/17/13/"><span class="v-num">13</span><span class="v-txt">Then said Micah, Now know I that the LORD will do me good, seeing I have a Levite to my priest.</span></a>
 
     
 <div class="app-cta">

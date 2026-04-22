@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Daniel 12:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And at that time shall Michael stand up, the great prince who standeth for the children of thy people; and there shall be a time of trouble, such as never was since there was a nation even to that same time: and at that time thy people shall be delivered, every one that shall be found written in the book.</span></div>
-<div class="v-row" data-ref="Daniel 12:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And many of them that sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt.</span></div>
-<div class="v-row" data-ref="Daniel 12:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And they that are wise shall shine as the brightness of the firmament; and they that turn many to righteousness as the stars for ever and ever.</span></div>
-<div class="v-row" data-ref="Daniel 12:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But thou, O Daniel, shut up the words, and seal the book, even to the time of the end: many shall run to and fro, and knowledge shall be increased.</span></div>
-<div class="v-row" data-ref="Daniel 12:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then I, Daniel, looked, and, behold, there stood other two, the one on the brink of the river on this side, and the other on the brink of the river on that side.</span></div>
-<div class="v-row" data-ref="Daniel 12:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And one said to the man clothed in linen, who was above the waters of the river, How long shall it be to the end of these wonders?</span></div>
-<div class="v-row" data-ref="Daniel 12:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I heard the man clothed in linen, who was above the waters of the river, when he held up his right hand and his left hand unto heaven, and sware by him that liveth for ever that it shall be for a time, times, and a half; and when they have made an end of breaking in pieces the power of the holy people, all these things shall be finished.</span></div>
-<div class="v-row" data-ref="Daniel 12:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I heard, but I understood not: then said I, O my lord, what shall be the issue of these things?</span></div>
-<div class="v-row" data-ref="Daniel 12:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he said, Go thy way, Daniel; for the words are shut up and sealed till the time of the end.</span></div>
-<div class="v-row" data-ref="Daniel 12:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Many shall purify themselves, and make themselves white, and be refined; but the wicked shall do wickedly; and none of the wicked shall understand; but they that are wise shall understand.</span></div>
-<div class="v-row" data-ref="Daniel 12:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And from the time that the continual [burnt-offering] shall be taken away, and the abomination that maketh desolate set up, there shall be a thousand and two hundred and ninety days.</span></div>
-<div class="v-row" data-ref="Daniel 12:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Blessed is he that waiteth, and cometh to the thousand three hundred and five and thirty days.</span></div>
-<div class="v-row" data-ref="Daniel 12:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But go thou thy way till the end be; for thou shalt rest, and shalt stand in thy lot, at the end of the days.</span></div>
+    <a class="v-row" href="/bible/asv/daniel/12/1/" data-ref="Daniel 12:1 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/1/"><span class="v-num">1</span><span class="v-txt">And at that time shall Michael stand up, the great prince who standeth for the children of thy people; and there shall be a time of trouble, such as never was since there was a nation even to that same time: and at that time thy people shall be delivered, every one that shall be found written in the book.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/2/" data-ref="Daniel 12:2 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/2/"><span class="v-num">2</span><span class="v-txt">And many of them that sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/3/" data-ref="Daniel 12:3 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/3/"><span class="v-num">3</span><span class="v-txt">And they that are wise shall shine as the brightness of the firmament; and they that turn many to righteousness as the stars for ever and ever.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/4/" data-ref="Daniel 12:4 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/4/"><span class="v-num">4</span><span class="v-txt">But thou, O Daniel, shut up the words, and seal the book, even to the time of the end: many shall run to and fro, and knowledge shall be increased.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/5/" data-ref="Daniel 12:5 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/5/"><span class="v-num">5</span><span class="v-txt">Then I, Daniel, looked, and, behold, there stood other two, the one on the brink of the river on this side, and the other on the brink of the river on that side.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/6/" data-ref="Daniel 12:6 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/6/"><span class="v-num">6</span><span class="v-txt">And one said to the man clothed in linen, who was above the waters of the river, How long shall it be to the end of these wonders?</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/7/" data-ref="Daniel 12:7 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/7/"><span class="v-num">7</span><span class="v-txt">And I heard the man clothed in linen, who was above the waters of the river, when he held up his right hand and his left hand unto heaven, and sware by him that liveth for ever that it shall be for a time, times, and a half; and when they have made an end of breaking in pieces the power of the holy people, all these things shall be finished.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/8/" data-ref="Daniel 12:8 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/8/"><span class="v-num">8</span><span class="v-txt">And I heard, but I understood not: then said I, O my lord, what shall be the issue of these things?</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/9/" data-ref="Daniel 12:9 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/9/"><span class="v-num">9</span><span class="v-txt">And he said, Go thy way, Daniel; for the words are shut up and sealed till the time of the end.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/10/" data-ref="Daniel 12:10 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/10/"><span class="v-num">10</span><span class="v-txt">Many shall purify themselves, and make themselves white, and be refined; but the wicked shall do wickedly; and none of the wicked shall understand; but they that are wise shall understand.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/11/" data-ref="Daniel 12:11 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/11/"><span class="v-num">11</span><span class="v-txt">And from the time that the continual [burnt-offering] shall be taken away, and the abomination that maketh desolate set up, there shall be a thousand and two hundred and ninety days.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/12/" data-ref="Daniel 12:12 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/12/"><span class="v-num">12</span><span class="v-txt">Blessed is he that waiteth, and cometh to the thousand three hundred and five and thirty days.</span></a>
+<a class="v-row" href="/bible/asv/daniel/12/13/" data-ref="Daniel 12:13 (American Standard Version)" data-verse-url="/bible/asv/daniel/12/13/"><span class="v-num">13</span><span class="v-txt">But go thou thy way till the end be; for thou shalt rest, and shalt stand in thy lot, at the end of the days.</span></a>
 
     
 <div class="app-cta">

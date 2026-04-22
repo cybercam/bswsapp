@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Romans 6:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">What shall we say then? Shall we continue in sin that grace may abound?</span></div>
-<div class="v-row" data-ref="Romans 6:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Certainly not! How shall we who died to sin live any longer in it?</span></div>
-<div class="v-row" data-ref="Romans 6:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Or do you not know that as many of us as were baptized into Christ Jesus were baptized into His death?</span></div>
-<div class="v-row" data-ref="Romans 6:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Therefore we were buried with Him through baptism into death, that just as Christ was raised from the dead by the glory of the Father, even so we also should walk in newness of life.</span></div>
-<div class="v-row" data-ref="Romans 6:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For if we have been united together in the likeness of His death, certainly we also shall be [in the likeness] of [His] resurrection,</span></div>
-<div class="v-row" data-ref="Romans 6:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">knowing this, that our old man was crucified with [Him,] that the body of sin might be done away with, that we should no longer be slaves of sin.</span></div>
-<div class="v-row" data-ref="Romans 6:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For he who has died has been freed from sin.</span></div>
-<div class="v-row" data-ref="Romans 6:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now if we died with Christ, we believe that we shall also live with Him,</span></div>
-<div class="v-row" data-ref="Romans 6:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">knowing that Christ, having been raised from the dead, dies no more. Death no longer has dominion over Him.</span></div>
-<div class="v-row" data-ref="Romans 6:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For [the death] that He died, He died to sin once for all; but [the life] that He lives, He lives to God.</span></div>
-<div class="v-row" data-ref="Romans 6:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Likewise you also, reckon yourselves to be dead indeed to sin, but alive to God in Christ Jesus our Lord.</span></div>
-<div class="v-row" data-ref="Romans 6:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore do not let sin reign in your mortal body, that you should obey it in its lusts.</span></div>
-<div class="v-row" data-ref="Romans 6:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And do not present your members [as] instruments of unrighteousness to sin, but present yourselves to God as being alive from the dead, and your members [as] instruments of righteousness to God.</span></div>
-<div class="v-row" data-ref="Romans 6:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For sin shall not have dominion over you, for you are not under law but under grace.</span></div>
-<div class="v-row" data-ref="Romans 6:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">What then? Shall we sin because we are not under law but under grace? Certainly not!</span></div>
-<div class="v-row" data-ref="Romans 6:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Do you not know that to whom you present yourselves slaves to obey, you are that one's slaves whom you obey, whether of sin [leading] to death, or of obedience [leading] to righteousness?</span></div>
-<div class="v-row" data-ref="Romans 6:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But God be thanked that [though] you were slaves of sin, yet you obeyed from the heart that form of doctrine to which you were delivered.</span></div>
-<div class="v-row" data-ref="Romans 6:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And having been set free from sin, you became slaves of righteousness.</span></div>
-<div class="v-row" data-ref="Romans 6:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">I speak in human [terms] because of the weakness of your flesh. For just as you presented your members [as] slaves of uncleanness, and of lawlessness [leading] to [more] lawlessness, so now present your members [as] slaves [of] righteousness for holiness.</span></div>
-<div class="v-row" data-ref="Romans 6:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For when you were slaves of sin, you were free in regard to righteousness.</span></div>
-<div class="v-row" data-ref="Romans 6:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">What fruit did you have then in the things of which you are now ashamed? For the end of those things [is] death.</span></div>
-<div class="v-row" data-ref="Romans 6:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But now having been set free from sin, and having become slaves of God, you have your fruit to holiness, and the end, everlasting life.</span></div>
-<div class="v-row" data-ref="Romans 6:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For the wages of sin [is] death, but the gift of God [is] eternal life in Christ Jesus our Lord.</span></div>
+    <a class="v-row" href="/bible/nkjv/romans/6/1/" data-ref="Romans 6:1 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/1/"><span class="v-num">1</span><span class="v-txt">What shall we say then? Shall we continue in sin that grace may abound?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/2/" data-ref="Romans 6:2 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/2/"><span class="v-num">2</span><span class="v-txt">Certainly not! How shall we who died to sin live any longer in it?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/3/" data-ref="Romans 6:3 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/3/"><span class="v-num">3</span><span class="v-txt">Or do you not know that as many of us as were baptized into Christ Jesus were baptized into His death?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/4/" data-ref="Romans 6:4 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/4/"><span class="v-num">4</span><span class="v-txt">Therefore we were buried with Him through baptism into death, that just as Christ was raised from the dead by the glory of the Father, even so we also should walk in newness of life.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/5/" data-ref="Romans 6:5 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/5/"><span class="v-num">5</span><span class="v-txt">For if we have been united together in the likeness of His death, certainly we also shall be [in the likeness] of [His] resurrection,</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/6/" data-ref="Romans 6:6 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/6/"><span class="v-num">6</span><span class="v-txt">knowing this, that our old man was crucified with [Him,] that the body of sin might be done away with, that we should no longer be slaves of sin.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/7/" data-ref="Romans 6:7 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/7/"><span class="v-num">7</span><span class="v-txt">For he who has died has been freed from sin.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/8/" data-ref="Romans 6:8 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/8/"><span class="v-num">8</span><span class="v-txt">Now if we died with Christ, we believe that we shall also live with Him,</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/9/" data-ref="Romans 6:9 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/9/"><span class="v-num">9</span><span class="v-txt">knowing that Christ, having been raised from the dead, dies no more. Death no longer has dominion over Him.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/10/" data-ref="Romans 6:10 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/10/"><span class="v-num">10</span><span class="v-txt">For [the death] that He died, He died to sin once for all; but [the life] that He lives, He lives to God.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/11/" data-ref="Romans 6:11 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/11/"><span class="v-num">11</span><span class="v-txt">Likewise you also, reckon yourselves to be dead indeed to sin, but alive to God in Christ Jesus our Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/12/" data-ref="Romans 6:12 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/12/"><span class="v-num">12</span><span class="v-txt">Therefore do not let sin reign in your mortal body, that you should obey it in its lusts.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/13/" data-ref="Romans 6:13 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/13/"><span class="v-num">13</span><span class="v-txt">And do not present your members [as] instruments of unrighteousness to sin, but present yourselves to God as being alive from the dead, and your members [as] instruments of righteousness to God.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/14/" data-ref="Romans 6:14 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/14/"><span class="v-num">14</span><span class="v-txt">For sin shall not have dominion over you, for you are not under law but under grace.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/15/" data-ref="Romans 6:15 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/15/"><span class="v-num">15</span><span class="v-txt">What then? Shall we sin because we are not under law but under grace? Certainly not!</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/16/" data-ref="Romans 6:16 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/16/"><span class="v-num">16</span><span class="v-txt">Do you not know that to whom you present yourselves slaves to obey, you are that one's slaves whom you obey, whether of sin [leading] to death, or of obedience [leading] to righteousness?</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/17/" data-ref="Romans 6:17 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/17/"><span class="v-num">17</span><span class="v-txt">But God be thanked that [though] you were slaves of sin, yet you obeyed from the heart that form of doctrine to which you were delivered.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/18/" data-ref="Romans 6:18 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/18/"><span class="v-num">18</span><span class="v-txt">And having been set free from sin, you became slaves of righteousness.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/19/" data-ref="Romans 6:19 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/19/"><span class="v-num">19</span><span class="v-txt">I speak in human [terms] because of the weakness of your flesh. For just as you presented your members [as] slaves of uncleanness, and of lawlessness [leading] to [more] lawlessness, so now present your members [as] slaves [of] righteousness for holiness.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/20/" data-ref="Romans 6:20 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/20/"><span class="v-num">20</span><span class="v-txt">For when you were slaves of sin, you were free in regard to righteousness.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/21/" data-ref="Romans 6:21 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/21/"><span class="v-num">21</span><span class="v-txt">What fruit did you have then in the things of which you are now ashamed? For the end of those things [is] death.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/22/" data-ref="Romans 6:22 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/22/"><span class="v-num">22</span><span class="v-txt">But now having been set free from sin, and having become slaves of God, you have your fruit to holiness, and the end, everlasting life.</span></a>
+<a class="v-row" href="/bible/nkjv/romans/6/23/" data-ref="Romans 6:23 (New King James Version)" data-verse-url="/bible/nkjv/romans/6/23/"><span class="v-num">23</span><span class="v-txt">For the wages of sin [is] death, but the gift of God [is] eternal life in Christ Jesus our Lord.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,51 +204,51 @@ a:hover{text-decoration:underline}
       <h2>Chapter 105</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 105:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">O give thanks unto the LORD; call upon his name: make known his deeds among the people.</span></div>
-<div class="v-row" data-ref="Psalm 105:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Sing unto him, sing psalms unto him: talk ye of all his wondrous works.</span></div>
-<div class="v-row" data-ref="Psalm 105:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Glory ye in his holy name: let the heart of them rejoice that seek the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 105:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Seek the LORD, and his strength: seek his face evermore.</span></div>
-<div class="v-row" data-ref="Psalm 105:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Remember his marvellous works that he hath done; his wonders, and the judgments of his mouth;</span></div>
-<div class="v-row" data-ref="Psalm 105:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">O ye seed of Abraham his servant, ye children of Jacob his chosen.</span></div>
-<div class="v-row" data-ref="Psalm 105:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He is the LORD our God: his judgments are in all the earth.</span></div>
-<div class="v-row" data-ref="Psalm 105:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He hath remembered his covenant for ever, the word which he commanded to a thousand generations.</span></div>
-<div class="v-row" data-ref="Psalm 105:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Which covenant he made with Abraham, and his oath unto Isaac;</span></div>
-<div class="v-row" data-ref="Psalm 105:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And confirmed the same unto Jacob for a law, and to Israel for an everlasting covenant:</span></div>
-<div class="v-row" data-ref="Psalm 105:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Saying, Unto thee will I give the land of Canaan, the lot of your inheritance:</span></div>
-<div class="v-row" data-ref="Psalm 105:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When they were but a few men in number; yea, very few, and strangers in it.</span></div>
-<div class="v-row" data-ref="Psalm 105:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When they went from one nation to another, from one kingdom to another people;</span></div>
-<div class="v-row" data-ref="Psalm 105:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He suffered no man to do them wrong: yea, he reproved kings for their sakes;</span></div>
-<div class="v-row" data-ref="Psalm 105:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Saying, Touch not mine anointed, and do my prophets no harm.</span></div>
-<div class="v-row" data-ref="Psalm 105:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Moreover he called for a famine upon the land: he brake the whole staff of bread.</span></div>
-<div class="v-row" data-ref="Psalm 105:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He sent a man before them, even Joseph, who was sold for a servant:</span></div>
-<div class="v-row" data-ref="Psalm 105:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Whose feet they hurt with fetters: he was laid in iron:</span></div>
-<div class="v-row" data-ref="Psalm 105:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Until the time that his word came: the word of the LORD tried him.</span></div>
-<div class="v-row" data-ref="Psalm 105:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The king sent and loosed him; even the ruler of the people, and let him go free.</span></div>
-<div class="v-row" data-ref="Psalm 105:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He made him lord of his house, and ruler of all his substance:</span></div>
-<div class="v-row" data-ref="Psalm 105:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">To bind his princes at his pleasure; and teach his senators wisdom.</span></div>
-<div class="v-row" data-ref="Psalm 105:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Israel also came into Egypt; and Jacob sojourned in the land of Ham.</span></div>
-<div class="v-row" data-ref="Psalm 105:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And he increased his people greatly; and made them stronger than their enemies.</span></div>
-<div class="v-row" data-ref="Psalm 105:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">He turned their heart to hate his people, to deal subtilly with his servants.</span></div>
-<div class="v-row" data-ref="Psalm 105:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">He sent Moses his servant; and Aaron whom he had chosen.</span></div>
-<div class="v-row" data-ref="Psalm 105:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">They shewed his signs among them, and wonders in the land of Ham.</span></div>
-<div class="v-row" data-ref="Psalm 105:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">He sent darkness, and made it dark; and they rebelled not against his word.</span></div>
-<div class="v-row" data-ref="Psalm 105:29 (King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">He turned their waters into blood, and slew their fish.</span></div>
-<div class="v-row" data-ref="Psalm 105:30 (King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">Their land brought forth frogs in abundance, in the chambers of their kings.</span></div>
-<div class="v-row" data-ref="Psalm 105:31 (King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">He spake, and there came divers sorts of flies, and lice in all their coasts.</span></div>
-<div class="v-row" data-ref="Psalm 105:32 (King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">He gave them hail for rain, and flaming fire in their land.</span></div>
-<div class="v-row" data-ref="Psalm 105:33 (King James Version)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">He smote their vines also and their fig trees; and brake the trees of their coasts.</span></div>
-<div class="v-row" data-ref="Psalm 105:34 (King James Version)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">He spake, and the locusts came, and caterpillers, and that without number,</span></div>
-<div class="v-row" data-ref="Psalm 105:35 (King James Version)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">And did eat up all the herbs in their land, and devoured the fruit of their ground.</span></div>
-<div class="v-row" data-ref="Psalm 105:36 (King James Version)" onclick="selectVerse(this)"><span class="v-num">36</span><span class="v-txt">He smote also all the firstborn in their land, the chief of all their strength.</span></div>
-<div class="v-row" data-ref="Psalm 105:37 (King James Version)" onclick="selectVerse(this)"><span class="v-num">37</span><span class="v-txt">He brought them forth also with silver and gold: and there was not one feeble person among their tribes.</span></div>
-<div class="v-row" data-ref="Psalm 105:38 (King James Version)" onclick="selectVerse(this)"><span class="v-num">38</span><span class="v-txt">Egypt was glad when they departed: for the fear of them fell upon them.</span></div>
-<div class="v-row" data-ref="Psalm 105:39 (King James Version)" onclick="selectVerse(this)"><span class="v-num">39</span><span class="v-txt">He spread a cloud for a covering; and fire to give light in the night.</span></div>
-<div class="v-row" data-ref="Psalm 105:40 (King James Version)" onclick="selectVerse(this)"><span class="v-num">40</span><span class="v-txt">The people asked, and he brought quails, and satisfied them with the bread of heaven.</span></div>
-<div class="v-row" data-ref="Psalm 105:41 (King James Version)" onclick="selectVerse(this)"><span class="v-num">41</span><span class="v-txt">He opened the rock, and the waters gushed out; they ran in the dry places like a river.</span></div>
-<div class="v-row" data-ref="Psalm 105:42 (King James Version)" onclick="selectVerse(this)"><span class="v-num">42</span><span class="v-txt">For he remembered his holy promise, and Abraham his servant.</span></div>
-<div class="v-row" data-ref="Psalm 105:43 (King James Version)" onclick="selectVerse(this)"><span class="v-num">43</span><span class="v-txt">And he brought forth his people with joy, and his chosen with gladness:</span></div>
-<div class="v-row" data-ref="Psalm 105:44 (King James Version)" onclick="selectVerse(this)"><span class="v-num">44</span><span class="v-txt">And gave them the lands of the heathen: and they inherited the labour of the people;</span></div>
-<div class="v-row" data-ref="Psalm 105:45 (King James Version)" onclick="selectVerse(this)"><span class="v-num">45</span><span class="v-txt">That they might observe his statutes, and keep his laws. Praise ye the LORD.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/105/1/" data-ref="Psalm 105:1 (King James Version)" data-verse-url="/bible/kjv/psalms/105/1/"><span class="v-num">1</span><span class="v-txt">O give thanks unto the LORD; call upon his name: make known his deeds among the people.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/2/" data-ref="Psalm 105:2 (King James Version)" data-verse-url="/bible/kjv/psalms/105/2/"><span class="v-num">2</span><span class="v-txt">Sing unto him, sing psalms unto him: talk ye of all his wondrous works.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/3/" data-ref="Psalm 105:3 (King James Version)" data-verse-url="/bible/kjv/psalms/105/3/"><span class="v-num">3</span><span class="v-txt">Glory ye in his holy name: let the heart of them rejoice that seek the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/4/" data-ref="Psalm 105:4 (King James Version)" data-verse-url="/bible/kjv/psalms/105/4/"><span class="v-num">4</span><span class="v-txt">Seek the LORD, and his strength: seek his face evermore.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/5/" data-ref="Psalm 105:5 (King James Version)" data-verse-url="/bible/kjv/psalms/105/5/"><span class="v-num">5</span><span class="v-txt">Remember his marvellous works that he hath done; his wonders, and the judgments of his mouth;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/6/" data-ref="Psalm 105:6 (King James Version)" data-verse-url="/bible/kjv/psalms/105/6/"><span class="v-num">6</span><span class="v-txt">O ye seed of Abraham his servant, ye children of Jacob his chosen.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/7/" data-ref="Psalm 105:7 (King James Version)" data-verse-url="/bible/kjv/psalms/105/7/"><span class="v-num">7</span><span class="v-txt">He is the LORD our God: his judgments are in all the earth.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/8/" data-ref="Psalm 105:8 (King James Version)" data-verse-url="/bible/kjv/psalms/105/8/"><span class="v-num">8</span><span class="v-txt">He hath remembered his covenant for ever, the word which he commanded to a thousand generations.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/9/" data-ref="Psalm 105:9 (King James Version)" data-verse-url="/bible/kjv/psalms/105/9/"><span class="v-num">9</span><span class="v-txt">Which covenant he made with Abraham, and his oath unto Isaac;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/10/" data-ref="Psalm 105:10 (King James Version)" data-verse-url="/bible/kjv/psalms/105/10/"><span class="v-num">10</span><span class="v-txt">And confirmed the same unto Jacob for a law, and to Israel for an everlasting covenant:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/11/" data-ref="Psalm 105:11 (King James Version)" data-verse-url="/bible/kjv/psalms/105/11/"><span class="v-num">11</span><span class="v-txt">Saying, Unto thee will I give the land of Canaan, the lot of your inheritance:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/12/" data-ref="Psalm 105:12 (King James Version)" data-verse-url="/bible/kjv/psalms/105/12/"><span class="v-num">12</span><span class="v-txt">When they were but a few men in number; yea, very few, and strangers in it.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/13/" data-ref="Psalm 105:13 (King James Version)" data-verse-url="/bible/kjv/psalms/105/13/"><span class="v-num">13</span><span class="v-txt">When they went from one nation to another, from one kingdom to another people;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/14/" data-ref="Psalm 105:14 (King James Version)" data-verse-url="/bible/kjv/psalms/105/14/"><span class="v-num">14</span><span class="v-txt">He suffered no man to do them wrong: yea, he reproved kings for their sakes;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/15/" data-ref="Psalm 105:15 (King James Version)" data-verse-url="/bible/kjv/psalms/105/15/"><span class="v-num">15</span><span class="v-txt">Saying, Touch not mine anointed, and do my prophets no harm.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/16/" data-ref="Psalm 105:16 (King James Version)" data-verse-url="/bible/kjv/psalms/105/16/"><span class="v-num">16</span><span class="v-txt">Moreover he called for a famine upon the land: he brake the whole staff of bread.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/17/" data-ref="Psalm 105:17 (King James Version)" data-verse-url="/bible/kjv/psalms/105/17/"><span class="v-num">17</span><span class="v-txt">He sent a man before them, even Joseph, who was sold for a servant:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/18/" data-ref="Psalm 105:18 (King James Version)" data-verse-url="/bible/kjv/psalms/105/18/"><span class="v-num">18</span><span class="v-txt">Whose feet they hurt with fetters: he was laid in iron:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/19/" data-ref="Psalm 105:19 (King James Version)" data-verse-url="/bible/kjv/psalms/105/19/"><span class="v-num">19</span><span class="v-txt">Until the time that his word came: the word of the LORD tried him.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/20/" data-ref="Psalm 105:20 (King James Version)" data-verse-url="/bible/kjv/psalms/105/20/"><span class="v-num">20</span><span class="v-txt">The king sent and loosed him; even the ruler of the people, and let him go free.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/21/" data-ref="Psalm 105:21 (King James Version)" data-verse-url="/bible/kjv/psalms/105/21/"><span class="v-num">21</span><span class="v-txt">He made him lord of his house, and ruler of all his substance:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/22/" data-ref="Psalm 105:22 (King James Version)" data-verse-url="/bible/kjv/psalms/105/22/"><span class="v-num">22</span><span class="v-txt">To bind his princes at his pleasure; and teach his senators wisdom.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/23/" data-ref="Psalm 105:23 (King James Version)" data-verse-url="/bible/kjv/psalms/105/23/"><span class="v-num">23</span><span class="v-txt">Israel also came into Egypt; and Jacob sojourned in the land of Ham.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/24/" data-ref="Psalm 105:24 (King James Version)" data-verse-url="/bible/kjv/psalms/105/24/"><span class="v-num">24</span><span class="v-txt">And he increased his people greatly; and made them stronger than their enemies.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/25/" data-ref="Psalm 105:25 (King James Version)" data-verse-url="/bible/kjv/psalms/105/25/"><span class="v-num">25</span><span class="v-txt">He turned their heart to hate his people, to deal subtilly with his servants.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/26/" data-ref="Psalm 105:26 (King James Version)" data-verse-url="/bible/kjv/psalms/105/26/"><span class="v-num">26</span><span class="v-txt">He sent Moses his servant; and Aaron whom he had chosen.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/27/" data-ref="Psalm 105:27 (King James Version)" data-verse-url="/bible/kjv/psalms/105/27/"><span class="v-num">27</span><span class="v-txt">They shewed his signs among them, and wonders in the land of Ham.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/28/" data-ref="Psalm 105:28 (King James Version)" data-verse-url="/bible/kjv/psalms/105/28/"><span class="v-num">28</span><span class="v-txt">He sent darkness, and made it dark; and they rebelled not against his word.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/29/" data-ref="Psalm 105:29 (King James Version)" data-verse-url="/bible/kjv/psalms/105/29/"><span class="v-num">29</span><span class="v-txt">He turned their waters into blood, and slew their fish.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/30/" data-ref="Psalm 105:30 (King James Version)" data-verse-url="/bible/kjv/psalms/105/30/"><span class="v-num">30</span><span class="v-txt">Their land brought forth frogs in abundance, in the chambers of their kings.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/31/" data-ref="Psalm 105:31 (King James Version)" data-verse-url="/bible/kjv/psalms/105/31/"><span class="v-num">31</span><span class="v-txt">He spake, and there came divers sorts of flies, and lice in all their coasts.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/32/" data-ref="Psalm 105:32 (King James Version)" data-verse-url="/bible/kjv/psalms/105/32/"><span class="v-num">32</span><span class="v-txt">He gave them hail for rain, and flaming fire in their land.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/33/" data-ref="Psalm 105:33 (King James Version)" data-verse-url="/bible/kjv/psalms/105/33/"><span class="v-num">33</span><span class="v-txt">He smote their vines also and their fig trees; and brake the trees of their coasts.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/34/" data-ref="Psalm 105:34 (King James Version)" data-verse-url="/bible/kjv/psalms/105/34/"><span class="v-num">34</span><span class="v-txt">He spake, and the locusts came, and caterpillers, and that without number,</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/35/" data-ref="Psalm 105:35 (King James Version)" data-verse-url="/bible/kjv/psalms/105/35/"><span class="v-num">35</span><span class="v-txt">And did eat up all the herbs in their land, and devoured the fruit of their ground.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/36/" data-ref="Psalm 105:36 (King James Version)" data-verse-url="/bible/kjv/psalms/105/36/"><span class="v-num">36</span><span class="v-txt">He smote also all the firstborn in their land, the chief of all their strength.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/37/" data-ref="Psalm 105:37 (King James Version)" data-verse-url="/bible/kjv/psalms/105/37/"><span class="v-num">37</span><span class="v-txt">He brought them forth also with silver and gold: and there was not one feeble person among their tribes.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/38/" data-ref="Psalm 105:38 (King James Version)" data-verse-url="/bible/kjv/psalms/105/38/"><span class="v-num">38</span><span class="v-txt">Egypt was glad when they departed: for the fear of them fell upon them.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/39/" data-ref="Psalm 105:39 (King James Version)" data-verse-url="/bible/kjv/psalms/105/39/"><span class="v-num">39</span><span class="v-txt">He spread a cloud for a covering; and fire to give light in the night.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/40/" data-ref="Psalm 105:40 (King James Version)" data-verse-url="/bible/kjv/psalms/105/40/"><span class="v-num">40</span><span class="v-txt">The people asked, and he brought quails, and satisfied them with the bread of heaven.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/41/" data-ref="Psalm 105:41 (King James Version)" data-verse-url="/bible/kjv/psalms/105/41/"><span class="v-num">41</span><span class="v-txt">He opened the rock, and the waters gushed out; they ran in the dry places like a river.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/42/" data-ref="Psalm 105:42 (King James Version)" data-verse-url="/bible/kjv/psalms/105/42/"><span class="v-num">42</span><span class="v-txt">For he remembered his holy promise, and Abraham his servant.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/43/" data-ref="Psalm 105:43 (King James Version)" data-verse-url="/bible/kjv/psalms/105/43/"><span class="v-num">43</span><span class="v-txt">And he brought forth his people with joy, and his chosen with gladness:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/44/" data-ref="Psalm 105:44 (King James Version)" data-verse-url="/bible/kjv/psalms/105/44/"><span class="v-num">44</span><span class="v-txt">And gave them the lands of the heathen: and they inherited the labour of the people;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/105/45/" data-ref="Psalm 105:45 (King James Version)" data-verse-url="/bible/kjv/psalms/105/45/"><span class="v-num">45</span><span class="v-txt">That they might observe his statutes, and keep his laws. Praise ye the LORD.</span></a>
 
     
 <div class="app-cta">

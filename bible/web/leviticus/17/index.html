@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,22 +204,22 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Leviticus 17:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></div>
-<div class="v-row" data-ref="Leviticus 17:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Speak to Aaron, and to his sons, and to all the children of Israel, and say to them: 'This is the thing which Yahweh has commanded,</span></div>
-<div class="v-row" data-ref="Leviticus 17:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Whatever man there is of the house of Israel, who kills an ox, or lamb, or goat, in the camp, or who kills it outside the camp,</span></div>
-<div class="v-row" data-ref="Leviticus 17:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">and hasn't brought it to the door of the Tent of Meeting, to offer it as an offering to Yahweh before the tabernacle of Yahweh: blood shall be imputed to that man. He has shed blood; and that man shall be cut off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">This is to the end that the children of Israel may bring their sacrifices, which they sacrifice in the open field, that they may bring them to Yahweh, to the door of the Tent of Meeting, to the priest, and sacrifice them for sacrifices of peace offerings to Yahweh.</span></div>
-<div class="v-row" data-ref="Leviticus 17:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The priest shall sprinkle the blood on the altar of Yahweh at the door of the Tent of Meeting, and burn the fat for a sweet savor to Yahweh.</span></div>
-<div class="v-row" data-ref="Leviticus 17:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They shall no more sacrifice their sacrifices to the goat idols, after which they play the prostitute. This shall be a statute forever to them throughout their generations.'</span></div>
-<div class="v-row" data-ref="Leviticus 17:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"You shall say to them, 'Any man there is of the house of Israel, or of the strangers who live as foreigners among them, who offers a burnt offering or sacrifice,</span></div>
-<div class="v-row" data-ref="Leviticus 17:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">and doesn't bring it to the door of the Tent of Meeting, to sacrifice it to Yahweh; that man shall be cut off from his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"'Any man of the house of Israel, or of the strangers who live as foreigners among them, who eats any kind of blood, I will set my face against that soul who eats blood, and will cut him off from among his people.</span></div>
-<div class="v-row" data-ref="Leviticus 17:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For the life of the flesh is in the blood; and I have given it to you on the altar to make atonement for your souls: for it is the blood that makes atonement by reason of the life.</span></div>
-<div class="v-row" data-ref="Leviticus 17:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Therefore I have said to the children of Israel, "No person among you shall eat blood, neither shall any stranger who lives as a foreigner among you eat blood."</span></div>
-<div class="v-row" data-ref="Leviticus 17:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">"'Whatever man there is of the children of Israel, or of the strangers who live as foreigners among them, who takes in hunting any animal or bird that may be eaten; he shall pour out its blood, and cover it with dust.</span></div>
-<div class="v-row" data-ref="Leviticus 17:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For as to the life of all flesh, its blood is with its life: therefore I said to the children of Israel, "You shall not eat the blood of any kind of flesh; for the life of all flesh is its blood. Whoever eats it shall be cut off."</span></div>
-<div class="v-row" data-ref="Leviticus 17:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"'Every person that eats what dies of itself, or that which is torn by animals, whether he is native-born or a foreigner, he shall wash his clothes, and bathe himself in water, and be unclean until the evening: then he shall be clean.</span></div>
-<div class="v-row" data-ref="Leviticus 17:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But if he doesn't wash them, or bathe his flesh, then he shall bear his iniquity.'"</span></div>
+    <a class="v-row" href="/bible/web/leviticus/17/1/" data-ref="Leviticus 17:1 (World English Bible)" data-verse-url="/bible/web/leviticus/17/1/"><span class="v-num">1</span><span class="v-txt">Yahweh spoke to Moses, saying,</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/2/" data-ref="Leviticus 17:2 (World English Bible)" data-verse-url="/bible/web/leviticus/17/2/"><span class="v-num">2</span><span class="v-txt">"Speak to Aaron, and to his sons, and to all the children of Israel, and say to them: 'This is the thing which Yahweh has commanded,</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/3/" data-ref="Leviticus 17:3 (World English Bible)" data-verse-url="/bible/web/leviticus/17/3/"><span class="v-num">3</span><span class="v-txt">Whatever man there is of the house of Israel, who kills an ox, or lamb, or goat, in the camp, or who kills it outside the camp,</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/4/" data-ref="Leviticus 17:4 (World English Bible)" data-verse-url="/bible/web/leviticus/17/4/"><span class="v-num">4</span><span class="v-txt">and hasn't brought it to the door of the Tent of Meeting, to offer it as an offering to Yahweh before the tabernacle of Yahweh: blood shall be imputed to that man. He has shed blood; and that man shall be cut off from among his people.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/5/" data-ref="Leviticus 17:5 (World English Bible)" data-verse-url="/bible/web/leviticus/17/5/"><span class="v-num">5</span><span class="v-txt">This is to the end that the children of Israel may bring their sacrifices, which they sacrifice in the open field, that they may bring them to Yahweh, to the door of the Tent of Meeting, to the priest, and sacrifice them for sacrifices of peace offerings to Yahweh.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/6/" data-ref="Leviticus 17:6 (World English Bible)" data-verse-url="/bible/web/leviticus/17/6/"><span class="v-num">6</span><span class="v-txt">The priest shall sprinkle the blood on the altar of Yahweh at the door of the Tent of Meeting, and burn the fat for a sweet savor to Yahweh.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/7/" data-ref="Leviticus 17:7 (World English Bible)" data-verse-url="/bible/web/leviticus/17/7/"><span class="v-num">7</span><span class="v-txt">They shall no more sacrifice their sacrifices to the goat idols, after which they play the prostitute. This shall be a statute forever to them throughout their generations.'</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/8/" data-ref="Leviticus 17:8 (World English Bible)" data-verse-url="/bible/web/leviticus/17/8/"><span class="v-num">8</span><span class="v-txt">"You shall say to them, 'Any man there is of the house of Israel, or of the strangers who live as foreigners among them, who offers a burnt offering or sacrifice,</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/9/" data-ref="Leviticus 17:9 (World English Bible)" data-verse-url="/bible/web/leviticus/17/9/"><span class="v-num">9</span><span class="v-txt">and doesn't bring it to the door of the Tent of Meeting, to sacrifice it to Yahweh; that man shall be cut off from his people.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/10/" data-ref="Leviticus 17:10 (World English Bible)" data-verse-url="/bible/web/leviticus/17/10/"><span class="v-num">10</span><span class="v-txt">"'Any man of the house of Israel, or of the strangers who live as foreigners among them, who eats any kind of blood, I will set my face against that soul who eats blood, and will cut him off from among his people.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/11/" data-ref="Leviticus 17:11 (World English Bible)" data-verse-url="/bible/web/leviticus/17/11/"><span class="v-num">11</span><span class="v-txt">For the life of the flesh is in the blood; and I have given it to you on the altar to make atonement for your souls: for it is the blood that makes atonement by reason of the life.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/12/" data-ref="Leviticus 17:12 (World English Bible)" data-verse-url="/bible/web/leviticus/17/12/"><span class="v-num">12</span><span class="v-txt">Therefore I have said to the children of Israel, "No person among you shall eat blood, neither shall any stranger who lives as a foreigner among you eat blood."</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/13/" data-ref="Leviticus 17:13 (World English Bible)" data-verse-url="/bible/web/leviticus/17/13/"><span class="v-num">13</span><span class="v-txt">"'Whatever man there is of the children of Israel, or of the strangers who live as foreigners among them, who takes in hunting any animal or bird that may be eaten; he shall pour out its blood, and cover it with dust.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/14/" data-ref="Leviticus 17:14 (World English Bible)" data-verse-url="/bible/web/leviticus/17/14/"><span class="v-num">14</span><span class="v-txt">For as to the life of all flesh, its blood is with its life: therefore I said to the children of Israel, "You shall not eat the blood of any kind of flesh; for the life of all flesh is its blood. Whoever eats it shall be cut off."</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/15/" data-ref="Leviticus 17:15 (World English Bible)" data-verse-url="/bible/web/leviticus/17/15/"><span class="v-num">15</span><span class="v-txt">"'Every person that eats what dies of itself, or that which is torn by animals, whether he is native-born or a foreigner, he shall wash his clothes, and bathe himself in water, and be unclean until the evening: then he shall be clean.</span></a>
+<a class="v-row" href="/bible/web/leviticus/17/16/" data-ref="Leviticus 17:16 (World English Bible)" data-verse-url="/bible/web/leviticus/17/16/"><span class="v-num">16</span><span class="v-txt">But if he doesn't wash them, or bathe his flesh, then he shall bear his iniquity.'"</span></a>
 
     
 <div class="app-cta">

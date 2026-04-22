@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 15:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After these things the word of the LORD came unto Abram in a vision, saying, Fear not, Abram: I am thy shield, and thy exceeding great reward.</span></div>
-<div class="v-row" data-ref="Genesis 15:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Abram said, Lord GOD, what wilt thou give me, seeing I go childless, and the steward of my house is this Eliezer of Damascus?</span></div>
-<div class="v-row" data-ref="Genesis 15:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Abram said, Behold, to me thou hast given no seed: and, lo, one born in my house is mine heir.</span></div>
-<div class="v-row" data-ref="Genesis 15:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And, behold, the word of the LORD came unto him, saying, This shall not be thine heir; but he that shall come forth out of thine own bowels shall be thine heir.</span></div>
-<div class="v-row" data-ref="Genesis 15:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And he brought him forth abroad, and said, Look now toward heaven, and tell the stars, if thou be able to number them: and he said unto him, So shall thy seed be.</span></div>
-<div class="v-row" data-ref="Genesis 15:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he believed in the LORD; and he counted it to him for righteousness.</span></div>
-<div class="v-row" data-ref="Genesis 15:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he said unto him, I am the LORD that brought thee out of Ur of the Chaldees, to give thee this land to inherit it.</span></div>
-<div class="v-row" data-ref="Genesis 15:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he said, Lord GOD, whereby shall I know that I shall inherit it?</span></div>
-<div class="v-row" data-ref="Genesis 15:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he said unto him, Take me an heifer of three years old, and a she goat of three years old, and a ram of three years old, and a turtledove, and a young pigeon.</span></div>
-<div class="v-row" data-ref="Genesis 15:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he took unto him all these, and divided them in the midst, and laid each piece one against another: but the birds divided he not.</span></div>
-<div class="v-row" data-ref="Genesis 15:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And when the fowls came down upon the carcases, Abram drove them away.</span></div>
-<div class="v-row" data-ref="Genesis 15:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And when the sun was going down, a deep sleep fell upon Abram; and, lo, an horror of great darkness fell upon him.</span></div>
-<div class="v-row" data-ref="Genesis 15:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And he said unto Abram, Know of a surety that thy seed shall be a stranger in a land that is not theirs, and shall serve them; and they shall afflict them four hundred years;</span></div>
-<div class="v-row" data-ref="Genesis 15:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And also that nation, whom they shall serve, will I judge: and afterward shall they come out with great substance.</span></div>
-<div class="v-row" data-ref="Genesis 15:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age.</span></div>
-<div class="v-row" data-ref="Genesis 15:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But in the fourth generation they shall come hither again: for the iniquity of the Amorites is not yet full.</span></div>
-<div class="v-row" data-ref="Genesis 15:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And it came to pass, that, when the sun went down, and it was dark, behold a smoking furnace, and a burning lamp that passed between those pieces.</span></div>
-<div class="v-row" data-ref="Genesis 15:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">In the same day the LORD made a covenant with Abram, saying, Unto thy seed have I given this land, from the river of Egypt unto the great river, the river Euphrates:</span></div>
-<div class="v-row" data-ref="Genesis 15:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The Kenites, and the Kenizzites, and the Kadmonites,</span></div>
-<div class="v-row" data-ref="Genesis 15:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And the Hittites, and the Perizzites, and the Rephaims,</span></div>
-<div class="v-row" data-ref="Genesis 15:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And the Amorites, and the Canaanites, and the Girgashites, and the Jebusites.</span></div>
+    <a class="v-row" href="/bible/kjv/genesis/15/1/" data-ref="Genesis 15:1 (King James Version)" data-verse-url="/bible/kjv/genesis/15/1/"><span class="v-num">1</span><span class="v-txt">After these things the word of the LORD came unto Abram in a vision, saying, Fear not, Abram: I am thy shield, and thy exceeding great reward.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/2/" data-ref="Genesis 15:2 (King James Version)" data-verse-url="/bible/kjv/genesis/15/2/"><span class="v-num">2</span><span class="v-txt">And Abram said, Lord GOD, what wilt thou give me, seeing I go childless, and the steward of my house is this Eliezer of Damascus?</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/3/" data-ref="Genesis 15:3 (King James Version)" data-verse-url="/bible/kjv/genesis/15/3/"><span class="v-num">3</span><span class="v-txt">And Abram said, Behold, to me thou hast given no seed: and, lo, one born in my house is mine heir.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/4/" data-ref="Genesis 15:4 (King James Version)" data-verse-url="/bible/kjv/genesis/15/4/"><span class="v-num">4</span><span class="v-txt">And, behold, the word of the LORD came unto him, saying, This shall not be thine heir; but he that shall come forth out of thine own bowels shall be thine heir.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/5/" data-ref="Genesis 15:5 (King James Version)" data-verse-url="/bible/kjv/genesis/15/5/"><span class="v-num">5</span><span class="v-txt">And he brought him forth abroad, and said, Look now toward heaven, and tell the stars, if thou be able to number them: and he said unto him, So shall thy seed be.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/6/" data-ref="Genesis 15:6 (King James Version)" data-verse-url="/bible/kjv/genesis/15/6/"><span class="v-num">6</span><span class="v-txt">And he believed in the LORD; and he counted it to him for righteousness.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/7/" data-ref="Genesis 15:7 (King James Version)" data-verse-url="/bible/kjv/genesis/15/7/"><span class="v-num">7</span><span class="v-txt">And he said unto him, I am the LORD that brought thee out of Ur of the Chaldees, to give thee this land to inherit it.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/8/" data-ref="Genesis 15:8 (King James Version)" data-verse-url="/bible/kjv/genesis/15/8/"><span class="v-num">8</span><span class="v-txt">And he said, Lord GOD, whereby shall I know that I shall inherit it?</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/9/" data-ref="Genesis 15:9 (King James Version)" data-verse-url="/bible/kjv/genesis/15/9/"><span class="v-num">9</span><span class="v-txt">And he said unto him, Take me an heifer of three years old, and a she goat of three years old, and a ram of three years old, and a turtledove, and a young pigeon.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/10/" data-ref="Genesis 15:10 (King James Version)" data-verse-url="/bible/kjv/genesis/15/10/"><span class="v-num">10</span><span class="v-txt">And he took unto him all these, and divided them in the midst, and laid each piece one against another: but the birds divided he not.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/11/" data-ref="Genesis 15:11 (King James Version)" data-verse-url="/bible/kjv/genesis/15/11/"><span class="v-num">11</span><span class="v-txt">And when the fowls came down upon the carcases, Abram drove them away.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/12/" data-ref="Genesis 15:12 (King James Version)" data-verse-url="/bible/kjv/genesis/15/12/"><span class="v-num">12</span><span class="v-txt">And when the sun was going down, a deep sleep fell upon Abram; and, lo, an horror of great darkness fell upon him.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/13/" data-ref="Genesis 15:13 (King James Version)" data-verse-url="/bible/kjv/genesis/15/13/"><span class="v-num">13</span><span class="v-txt">And he said unto Abram, Know of a surety that thy seed shall be a stranger in a land that is not theirs, and shall serve them; and they shall afflict them four hundred years;</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/14/" data-ref="Genesis 15:14 (King James Version)" data-verse-url="/bible/kjv/genesis/15/14/"><span class="v-num">14</span><span class="v-txt">And also that nation, whom they shall serve, will I judge: and afterward shall they come out with great substance.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/15/" data-ref="Genesis 15:15 (King James Version)" data-verse-url="/bible/kjv/genesis/15/15/"><span class="v-num">15</span><span class="v-txt">And thou shalt go to thy fathers in peace; thou shalt be buried in a good old age.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/16/" data-ref="Genesis 15:16 (King James Version)" data-verse-url="/bible/kjv/genesis/15/16/"><span class="v-num">16</span><span class="v-txt">But in the fourth generation they shall come hither again: for the iniquity of the Amorites is not yet full.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/17/" data-ref="Genesis 15:17 (King James Version)" data-verse-url="/bible/kjv/genesis/15/17/"><span class="v-num">17</span><span class="v-txt">And it came to pass, that, when the sun went down, and it was dark, behold a smoking furnace, and a burning lamp that passed between those pieces.</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/18/" data-ref="Genesis 15:18 (King James Version)" data-verse-url="/bible/kjv/genesis/15/18/"><span class="v-num">18</span><span class="v-txt">In the same day the LORD made a covenant with Abram, saying, Unto thy seed have I given this land, from the river of Egypt unto the great river, the river Euphrates:</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/19/" data-ref="Genesis 15:19 (King James Version)" data-verse-url="/bible/kjv/genesis/15/19/"><span class="v-num">19</span><span class="v-txt">The Kenites, and the Kenizzites, and the Kadmonites,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/20/" data-ref="Genesis 15:20 (King James Version)" data-verse-url="/bible/kjv/genesis/15/20/"><span class="v-num">20</span><span class="v-txt">And the Hittites, and the Perizzites, and the Rephaims,</span></a>
+<a class="v-row" href="/bible/kjv/genesis/15/21/" data-ref="Genesis 15:21 (King James Version)" data-verse-url="/bible/kjv/genesis/15/21/"><span class="v-num">21</span><span class="v-txt">And the Amorites, and the Canaanites, and the Girgashites, and the Jebusites.</span></a>
 
     
 <div class="app-cta">

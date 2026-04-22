@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="1 Samuel 3:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The child Samuel ministered to Yahweh before Eli. The word of Yahweh was precious in those days; there was no frequent vision.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">It happened at that time, when Eli was laid down in his place (now his eyes had begun to grow dim, so that he could not see),</span></div>
-<div class="v-row" data-ref="1 Samuel 3:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and the lamp of God hadn't yet gone out, and Samuel had laid down to sleep, in the temple of Yahweh, where the ark of God was;</span></div>
-<div class="v-row" data-ref="1 Samuel 3:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">that Yahweh called Samuel; and he said, Here am I.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He ran to Eli, and said, Here am I; for you called me. He said, I didn't call; lie down again. He went and lay down.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Yahweh called yet again, Samuel. Samuel arose and went to Eli, and said, Here am I; for you called me. He answered, I didn't call, my son; lie down again.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now Samuel didn't yet know Yahweh, neither was the word of Yahweh yet revealed to him.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Yahweh called Samuel again the third time. He arose and went to Eli, and said, Here am I; for you called me. Eli perceived that Yahweh had called the child.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Therefore Eli said to Samuel, Go, lie down: and it shall be, if he call you, that you shall say, Speak, Yahweh; for your servant hears. So Samuel went and lay down in his place.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Yahweh came, and stood, and called as at other times, Samuel, Samuel. Then Samuel said, Speak; for your servant hears.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Yahweh said to Samuel, Behold, I will do a thing in Israel, at which both the ears of everyone who hears it shall tingle.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">In that day I will perform against Eli all that I have spoken concerning his house, from the beginning even to the end.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For I have told him that I will judge his house forever, for the iniquity which he knew, because his sons did bring a curse on themselves, and he didn't restrain them.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Therefore I have sworn to the house of Eli, that the iniquity of Eli's house shall not be expiated with sacrifice nor offering forever.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Samuel lay until the morning, and opened the doors of the house of Yahweh. Samuel feared to show Eli the vision.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Then Eli called Samuel, and said, Samuel, my son. He said, Here am I.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He said, "What is the thing that Yahweh has spoken to you? Please don't hide it from me. God do so to you, and more also, if you hide anything from me of all the things that he spoke to you."</span></div>
-<div class="v-row" data-ref="1 Samuel 3:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Samuel told him every whit, and hid nothing from him. He said, It is Yahweh: let him do what seems him good.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Samuel grew, and Yahweh was with him, and did let none of his words fall to the ground.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">All Israel from Dan even to Beersheba knew that Samuel was established to be a prophet of Yahweh.</span></div>
-<div class="v-row" data-ref="1 Samuel 3:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Yahweh appeared again in Shiloh; for Yahweh revealed himself to Samuel in Shiloh by the word of Yahweh.</span></div>
+    <a class="v-row" href="/bible/web/1-samuel/3/1/" data-ref="1 Samuel 3:1 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/1/"><span class="v-num">1</span><span class="v-txt">The child Samuel ministered to Yahweh before Eli. The word of Yahweh was precious in those days; there was no frequent vision.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/2/" data-ref="1 Samuel 3:2 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/2/"><span class="v-num">2</span><span class="v-txt">It happened at that time, when Eli was laid down in his place (now his eyes had begun to grow dim, so that he could not see),</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/3/" data-ref="1 Samuel 3:3 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/3/"><span class="v-num">3</span><span class="v-txt">and the lamp of God hadn't yet gone out, and Samuel had laid down to sleep, in the temple of Yahweh, where the ark of God was;</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/4/" data-ref="1 Samuel 3:4 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/4/"><span class="v-num">4</span><span class="v-txt">that Yahweh called Samuel; and he said, Here am I.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/5/" data-ref="1 Samuel 3:5 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/5/"><span class="v-num">5</span><span class="v-txt">He ran to Eli, and said, Here am I; for you called me. He said, I didn't call; lie down again. He went and lay down.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/6/" data-ref="1 Samuel 3:6 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/6/"><span class="v-num">6</span><span class="v-txt">Yahweh called yet again, Samuel. Samuel arose and went to Eli, and said, Here am I; for you called me. He answered, I didn't call, my son; lie down again.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/7/" data-ref="1 Samuel 3:7 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/7/"><span class="v-num">7</span><span class="v-txt">Now Samuel didn't yet know Yahweh, neither was the word of Yahweh yet revealed to him.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/8/" data-ref="1 Samuel 3:8 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/8/"><span class="v-num">8</span><span class="v-txt">Yahweh called Samuel again the third time. He arose and went to Eli, and said, Here am I; for you called me. Eli perceived that Yahweh had called the child.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/9/" data-ref="1 Samuel 3:9 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/9/"><span class="v-num">9</span><span class="v-txt">Therefore Eli said to Samuel, Go, lie down: and it shall be, if he call you, that you shall say, Speak, Yahweh; for your servant hears. So Samuel went and lay down in his place.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/10/" data-ref="1 Samuel 3:10 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/10/"><span class="v-num">10</span><span class="v-txt">Yahweh came, and stood, and called as at other times, Samuel, Samuel. Then Samuel said, Speak; for your servant hears.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/11/" data-ref="1 Samuel 3:11 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/11/"><span class="v-num">11</span><span class="v-txt">Yahweh said to Samuel, Behold, I will do a thing in Israel, at which both the ears of everyone who hears it shall tingle.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/12/" data-ref="1 Samuel 3:12 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/12/"><span class="v-num">12</span><span class="v-txt">In that day I will perform against Eli all that I have spoken concerning his house, from the beginning even to the end.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/13/" data-ref="1 Samuel 3:13 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/13/"><span class="v-num">13</span><span class="v-txt">For I have told him that I will judge his house forever, for the iniquity which he knew, because his sons did bring a curse on themselves, and he didn't restrain them.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/14/" data-ref="1 Samuel 3:14 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/14/"><span class="v-num">14</span><span class="v-txt">Therefore I have sworn to the house of Eli, that the iniquity of Eli's house shall not be expiated with sacrifice nor offering forever.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/15/" data-ref="1 Samuel 3:15 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/15/"><span class="v-num">15</span><span class="v-txt">Samuel lay until the morning, and opened the doors of the house of Yahweh. Samuel feared to show Eli the vision.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/16/" data-ref="1 Samuel 3:16 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/16/"><span class="v-num">16</span><span class="v-txt">Then Eli called Samuel, and said, Samuel, my son. He said, Here am I.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/17/" data-ref="1 Samuel 3:17 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/17/"><span class="v-num">17</span><span class="v-txt">He said, "What is the thing that Yahweh has spoken to you? Please don't hide it from me. God do so to you, and more also, if you hide anything from me of all the things that he spoke to you."</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/18/" data-ref="1 Samuel 3:18 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/18/"><span class="v-num">18</span><span class="v-txt">Samuel told him every whit, and hid nothing from him. He said, It is Yahweh: let him do what seems him good.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/19/" data-ref="1 Samuel 3:19 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/19/"><span class="v-num">19</span><span class="v-txt">Samuel grew, and Yahweh was with him, and did let none of his words fall to the ground.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/20/" data-ref="1 Samuel 3:20 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/20/"><span class="v-num">20</span><span class="v-txt">All Israel from Dan even to Beersheba knew that Samuel was established to be a prophet of Yahweh.</span></a>
+<a class="v-row" href="/bible/web/1-samuel/3/21/" data-ref="1 Samuel 3:21 (World English Bible)" data-verse-url="/bible/web/1-samuel/3/21/"><span class="v-num">21</span><span class="v-txt">Yahweh appeared again in Shiloh; for Yahweh revealed himself to Samuel in Shiloh by the word of Yahweh.</span></a>
 
     
 <div class="app-cta">

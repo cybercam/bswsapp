@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear the word of the LORD, You children of Israel, For the LORD [brings] a charge against the inhabitants of the land: "There is no truth or mercy Or knowledge of God in the land.</span></div>
-<div class="v-row" data-ref="Hosea 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">[By] swearing and lying, Killing and stealing and committing adultery, They break all restraint, With bloodshed upon bloodshed.</span></div>
-<div class="v-row" data-ref="Hosea 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Therefore the land will mourn; And everyone who dwells there will waste away With the beasts of the field And the birds of the air; Even the fish of the sea will be taken away.</span></div>
-<div class="v-row" data-ref="Hosea 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"Now let no man contend, or rebuke another; For your people [are] like those who contend with the priest.</span></div>
-<div class="v-row" data-ref="Hosea 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Therefore you shall stumble in the day; The prophet also shall stumble with you in the night; And I will destroy your mother.</span></div>
-<div class="v-row" data-ref="Hosea 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">My people are destroyed for lack of knowledge. Because you have rejected knowledge, I also will reject you from being priest for Me; Because you have forgotten the law of your God, I also will forget your children.</span></div>
-<div class="v-row" data-ref="Hosea 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">" The more they increased, The more they sinned against Me; I will change their glory into shame.</span></div>
-<div class="v-row" data-ref="Hosea 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">They eat up the sin of My people; They set their heart on their iniquity.</span></div>
-<div class="v-row" data-ref="Hosea 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And it shall be: like people, like priest. So I will punish them for their ways, And reward them for their deeds.</span></div>
-<div class="v-row" data-ref="Hosea 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For they shall eat, but not have enough; They shall commit harlotry, but not increase; Because they have ceased obeying the LORD.</span></div>
-<div class="v-row" data-ref="Hosea 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">" Harlotry, wine, and new wine enslave the heart.</span></div>
-<div class="v-row" data-ref="Hosea 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">My people ask counsel from their wooden [idols,] And their staff informs them. For the spirit of harlotry has caused [them] to stray, And they have played the harlot against their God.</span></div>
-<div class="v-row" data-ref="Hosea 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">They offer sacrifices on the mountaintops, And burn incense on the hills, Under oaks, poplars, and terebinths, Because their shade [is] good. Therefore your daughters commit harlotry, And your brides commit adultery.</span></div>
-<div class="v-row" data-ref="Hosea 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"I will not punish your daughters when they commit harlotry, Nor your brides when they commit adultery; For [the men] themselves go apart with harlots, And offer sacrifices with a ritual harlot. Therefore people [who] do not understand will be trampled.</span></div>
-<div class="v-row" data-ref="Hosea 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">" Though you, Israel, play the harlot, Let not Judah offend. Do not come up to Gilgal, Nor go up to Beth Aven, Nor swear an oath, [saying,] 'As the LORD lives' --</span></div>
-<div class="v-row" data-ref="Hosea 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">"For Israel is stubborn Like a stubborn calf; Now the LORD will let them forage Like a lamb in open country.</span></div>
-<div class="v-row" data-ref="Hosea 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Ephraim [is] joined to idols, Let him alone.</span></div>
-<div class="v-row" data-ref="Hosea 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Their drink is rebellion, They commit harlotry continually. Her rulers dearly love dishonor.</span></div>
-<div class="v-row" data-ref="Hosea 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The wind has wrapped her up in its wings, And they shall be ashamed because of their sacrifices.</span></div>
+    <a class="v-row" href="/bible/nkjv/hosea/4/1/" data-ref="Hosea 4:1 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/1/"><span class="v-num">1</span><span class="v-txt">Hear the word of the LORD, You children of Israel, For the LORD [brings] a charge against the inhabitants of the land: "There is no truth or mercy Or knowledge of God in the land.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/2/" data-ref="Hosea 4:2 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/2/"><span class="v-num">2</span><span class="v-txt">[By] swearing and lying, Killing and stealing and committing adultery, They break all restraint, With bloodshed upon bloodshed.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/3/" data-ref="Hosea 4:3 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/3/"><span class="v-num">3</span><span class="v-txt">Therefore the land will mourn; And everyone who dwells there will waste away With the beasts of the field And the birds of the air; Even the fish of the sea will be taken away.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/4/" data-ref="Hosea 4:4 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/4/"><span class="v-num">4</span><span class="v-txt">"Now let no man contend, or rebuke another; For your people [are] like those who contend with the priest.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/5/" data-ref="Hosea 4:5 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/5/"><span class="v-num">5</span><span class="v-txt">Therefore you shall stumble in the day; The prophet also shall stumble with you in the night; And I will destroy your mother.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/6/" data-ref="Hosea 4:6 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/6/"><span class="v-num">6</span><span class="v-txt">My people are destroyed for lack of knowledge. Because you have rejected knowledge, I also will reject you from being priest for Me; Because you have forgotten the law of your God, I also will forget your children.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/7/" data-ref="Hosea 4:7 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/7/"><span class="v-num">7</span><span class="v-txt">" The more they increased, The more they sinned against Me; I will change their glory into shame.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/8/" data-ref="Hosea 4:8 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/8/"><span class="v-num">8</span><span class="v-txt">They eat up the sin of My people; They set their heart on their iniquity.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/9/" data-ref="Hosea 4:9 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/9/"><span class="v-num">9</span><span class="v-txt">And it shall be: like people, like priest. So I will punish them for their ways, And reward them for their deeds.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/10/" data-ref="Hosea 4:10 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/10/"><span class="v-num">10</span><span class="v-txt">For they shall eat, but not have enough; They shall commit harlotry, but not increase; Because they have ceased obeying the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/11/" data-ref="Hosea 4:11 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/11/"><span class="v-num">11</span><span class="v-txt">" Harlotry, wine, and new wine enslave the heart.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/12/" data-ref="Hosea 4:12 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/12/"><span class="v-num">12</span><span class="v-txt">My people ask counsel from their wooden [idols,] And their staff informs them. For the spirit of harlotry has caused [them] to stray, And they have played the harlot against their God.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/13/" data-ref="Hosea 4:13 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/13/"><span class="v-num">13</span><span class="v-txt">They offer sacrifices on the mountaintops, And burn incense on the hills, Under oaks, poplars, and terebinths, Because their shade [is] good. Therefore your daughters commit harlotry, And your brides commit adultery.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/14/" data-ref="Hosea 4:14 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/14/"><span class="v-num">14</span><span class="v-txt">"I will not punish your daughters when they commit harlotry, Nor your brides when they commit adultery; For [the men] themselves go apart with harlots, And offer sacrifices with a ritual harlot. Therefore people [who] do not understand will be trampled.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/15/" data-ref="Hosea 4:15 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/15/"><span class="v-num">15</span><span class="v-txt">" Though you, Israel, play the harlot, Let not Judah offend. Do not come up to Gilgal, Nor go up to Beth Aven, Nor swear an oath, [saying,] 'As the LORD lives' --</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/16/" data-ref="Hosea 4:16 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/16/"><span class="v-num">16</span><span class="v-txt">"For Israel is stubborn Like a stubborn calf; Now the LORD will let them forage Like a lamb in open country.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/17/" data-ref="Hosea 4:17 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/17/"><span class="v-num">17</span><span class="v-txt">"Ephraim [is] joined to idols, Let him alone.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/18/" data-ref="Hosea 4:18 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/18/"><span class="v-num">18</span><span class="v-txt">Their drink is rebellion, They commit harlotry continually. Her rulers dearly love dishonor.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/4/19/" data-ref="Hosea 4:19 (New King James Version)" data-verse-url="/bible/nkjv/hosea/4/19/"><span class="v-num">19</span><span class="v-txt">The wind has wrapped her up in its wings, And they shall be ashamed because of their sacrifices.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Matthew 28:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now late on the Sabbath, when the dawn of the first day of the week was near, Mary Magdalene and the other Mary came to see the place where his body was.</span></div>
-<div class="v-row" data-ref="Matthew 28:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And there was a great earth-shock; for an angel of the Lord came down from heaven and, rolling back the stone, took his seat on it.</span></div>
-<div class="v-row" data-ref="Matthew 28:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">His form was shining like the light, and his clothing was white as snow:</span></div>
-<div class="v-row" data-ref="Matthew 28:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And for fear of him the watchmen were shaking, and became as dead men.</span></div>
-<div class="v-row" data-ref="Matthew 28:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the angel said to the women, Have no fear: for I see that you are searching for Jesus, who was put to death on the cross.</span></div>
-<div class="v-row" data-ref="Matthew 28:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He is not here, for he has come to life again, even as he said. Come, see the Lord's resting-place.</span></div>
-<div class="v-row" data-ref="Matthew 28:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And go quickly and give his disciples the news that he has come back from the dead, and is going before you into Galilee; there you will see him, as I have said to you.</span></div>
-<div class="v-row" data-ref="Matthew 28:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And they went away quickly, with fear and great joy, to give his disciples the news.</span></div>
-<div class="v-row" data-ref="Matthew 28:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And on the way, Jesus came to them, saying, Be glad. And they came and put their hands on his feet, and gave him worship.</span></div>
-<div class="v-row" data-ref="Matthew 28:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then said Jesus to them, Have no fear: go and give word to my brothers to go into Galilee, and there they will see me.</span></div>
-<div class="v-row" data-ref="Matthew 28:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now, while they were going, some of the watchmen came into the town and gave news to the chief priests of all the things which had taken place.</span></div>
-<div class="v-row" data-ref="Matthew 28:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And when they had come together with those in authority, and had made their decision, they gave much money to the watchmen, saying,</span></div>
-<div class="v-row" data-ref="Matthew 28:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Say, His disciples came by night and took him away secretly while we were sleeping.</span></div>
-<div class="v-row" data-ref="Matthew 28:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And if this comes to the ruler's ears, we will see that he does not make you responsible.</span></div>
-<div class="v-row" data-ref="Matthew 28:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So they took the money, and did as they had been ordered: and this account has been current among the Jews till the present time.</span></div>
-<div class="v-row" data-ref="Matthew 28:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But the eleven disciples went into Galilee, to the mountain where Jesus had given them orders to go.</span></div>
-<div class="v-row" data-ref="Matthew 28:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And when they saw him they gave him worship: but some were in doubt.</span></div>
-<div class="v-row" data-ref="Matthew 28:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Jesus came to them and said, All authority has been given to me in heaven and on earth.</span></div>
-<div class="v-row" data-ref="Matthew 28:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Go then, and make disciples of all the nations, giving them baptism in the name of the Father and of the Son and of the Holy Spirit:</span></div>
-<div class="v-row" data-ref="Matthew 28:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Teaching them to keep all the rules which I have given you: and see, I am ever with you, even to the end of the world.</span></div>
+    <a class="v-row" href="/bible/bbe/matthew/28/1/" data-ref="Matthew 28:1 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/1/"><span class="v-num">1</span><span class="v-txt">Now late on the Sabbath, when the dawn of the first day of the week was near, Mary Magdalene and the other Mary came to see the place where his body was.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/2/" data-ref="Matthew 28:2 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/2/"><span class="v-num">2</span><span class="v-txt">And there was a great earth-shock; for an angel of the Lord came down from heaven and, rolling back the stone, took his seat on it.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/3/" data-ref="Matthew 28:3 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/3/"><span class="v-num">3</span><span class="v-txt">His form was shining like the light, and his clothing was white as snow:</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/4/" data-ref="Matthew 28:4 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/4/"><span class="v-num">4</span><span class="v-txt">And for fear of him the watchmen were shaking, and became as dead men.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/5/" data-ref="Matthew 28:5 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/5/"><span class="v-num">5</span><span class="v-txt">And the angel said to the women, Have no fear: for I see that you are searching for Jesus, who was put to death on the cross.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/6/" data-ref="Matthew 28:6 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/6/"><span class="v-num">6</span><span class="v-txt">He is not here, for he has come to life again, even as he said. Come, see the Lord's resting-place.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/7/" data-ref="Matthew 28:7 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/7/"><span class="v-num">7</span><span class="v-txt">And go quickly and give his disciples the news that he has come back from the dead, and is going before you into Galilee; there you will see him, as I have said to you.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/8/" data-ref="Matthew 28:8 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/8/"><span class="v-num">8</span><span class="v-txt">And they went away quickly, with fear and great joy, to give his disciples the news.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/9/" data-ref="Matthew 28:9 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/9/"><span class="v-num">9</span><span class="v-txt">And on the way, Jesus came to them, saying, Be glad. And they came and put their hands on his feet, and gave him worship.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/10/" data-ref="Matthew 28:10 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/10/"><span class="v-num">10</span><span class="v-txt">Then said Jesus to them, Have no fear: go and give word to my brothers to go into Galilee, and there they will see me.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/11/" data-ref="Matthew 28:11 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/11/"><span class="v-num">11</span><span class="v-txt">Now, while they were going, some of the watchmen came into the town and gave news to the chief priests of all the things which had taken place.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/12/" data-ref="Matthew 28:12 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/12/"><span class="v-num">12</span><span class="v-txt">And when they had come together with those in authority, and had made their decision, they gave much money to the watchmen, saying,</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/13/" data-ref="Matthew 28:13 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/13/"><span class="v-num">13</span><span class="v-txt">Say, His disciples came by night and took him away secretly while we were sleeping.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/14/" data-ref="Matthew 28:14 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/14/"><span class="v-num">14</span><span class="v-txt">And if this comes to the ruler's ears, we will see that he does not make you responsible.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/15/" data-ref="Matthew 28:15 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/15/"><span class="v-num">15</span><span class="v-txt">So they took the money, and did as they had been ordered: and this account has been current among the Jews till the present time.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/16/" data-ref="Matthew 28:16 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/16/"><span class="v-num">16</span><span class="v-txt">But the eleven disciples went into Galilee, to the mountain where Jesus had given them orders to go.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/17/" data-ref="Matthew 28:17 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/17/"><span class="v-num">17</span><span class="v-txt">And when they saw him they gave him worship: but some were in doubt.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/18/" data-ref="Matthew 28:18 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/18/"><span class="v-num">18</span><span class="v-txt">And Jesus came to them and said, All authority has been given to me in heaven and on earth.</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/19/" data-ref="Matthew 28:19 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/19/"><span class="v-num">19</span><span class="v-txt">Go then, and make disciples of all the nations, giving them baptism in the name of the Father and of the Son and of the Holy Spirit:</span></a>
+<a class="v-row" href="/bible/bbe/matthew/28/20/" data-ref="Matthew 28:20 (Bible in Basic English)" data-verse-url="/bible/bbe/matthew/28/20/"><span class="v-num">20</span><span class="v-txt">Teaching them to keep all the rules which I have given you: and see, I am ever with you, even to the end of the world.</span></a>
 
     
 <div class="app-cta">

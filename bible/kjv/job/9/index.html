@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,41 +204,41 @@ a:hover{text-decoration:underline}
       <h2>Chapter 9</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 9:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></div>
-<div class="v-row" data-ref="Job 9:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I know it is so of a truth: but how should man be just with God?</span></div>
-<div class="v-row" data-ref="Job 9:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If he will contend with him, he cannot answer him one of a thousand.</span></div>
-<div class="v-row" data-ref="Job 9:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He is wise in heart, and mighty in strength: who hath hardened himself against him, and hath prospered?</span></div>
-<div class="v-row" data-ref="Job 9:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Which removeth the mountains, and they know not: which overturneth them in his anger.</span></div>
-<div class="v-row" data-ref="Job 9:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Which shaketh the earth out of her place, and the pillars thereof tremble.</span></div>
-<div class="v-row" data-ref="Job 9:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Which commandeth the sun, and it riseth not; and sealeth up the stars.</span></div>
-<div class="v-row" data-ref="Job 9:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Which alone spreadeth out the heavens, and treadeth upon the waves of the sea.</span></div>
-<div class="v-row" data-ref="Job 9:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Which maketh Arcturus, Orion, and Pleiades, and the chambers of the south.</span></div>
-<div class="v-row" data-ref="Job 9:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Which doeth great things past finding out; yea, and wonders without number.</span></div>
-<div class="v-row" data-ref="Job 9:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Lo, he goeth by me, and I see him not: he passeth on also, but I perceive him not.</span></div>
-<div class="v-row" data-ref="Job 9:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Behold, he taketh away, who can hinder him? who will say unto him, What doest thou?</span></div>
-<div class="v-row" data-ref="Job 9:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">If God will not withdraw his anger, the proud helpers do stoop under him.</span></div>
-<div class="v-row" data-ref="Job 9:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">How much less shall I answer him, and choose out my words to reason with him?</span></div>
-<div class="v-row" data-ref="Job 9:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Whom, though I were righteous, yet would I not answer, but I would make supplication to my judge.</span></div>
-<div class="v-row" data-ref="Job 9:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">If I had called, and he had answered me; yet would I not believe that he had hearkened unto my voice.</span></div>
-<div class="v-row" data-ref="Job 9:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For he breaketh me with a tempest, and multiplieth my wounds without cause.</span></div>
-<div class="v-row" data-ref="Job 9:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">He will not suffer me to take my breath, but filleth me with bitterness.</span></div>
-<div class="v-row" data-ref="Job 9:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">If I speak of strength, lo, he is strong: and if of judgment, who shall set me a time to plead?</span></div>
-<div class="v-row" data-ref="Job 9:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">If I justify myself, mine own mouth shall condemn me: if I say, I am perfect, it shall also prove me perverse.</span></div>
-<div class="v-row" data-ref="Job 9:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Though I were perfect, yet would I not know my soul: I would despise my life.</span></div>
-<div class="v-row" data-ref="Job 9:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">This is one thing, therefore I said it, He destroyeth the perfect and the wicked.</span></div>
-<div class="v-row" data-ref="Job 9:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">If the scourge slay suddenly, he will laugh at the trial of the innocent.</span></div>
-<div class="v-row" data-ref="Job 9:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The earth is given into the hand of the wicked: he covereth the faces of the judges thereof; if not, where, and who is he?</span></div>
-<div class="v-row" data-ref="Job 9:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Now my days are swifter than a post: they flee away, they see no good.</span></div>
-<div class="v-row" data-ref="Job 9:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">They are passed away as the swift ships: as the eagle that hasteth to the prey.</span></div>
-<div class="v-row" data-ref="Job 9:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">If I say, I will forget my complaint, I will leave off my heaviness, and comfort myself:</span></div>
-<div class="v-row" data-ref="Job 9:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">I am afraid of all my sorrows, I know that thou wilt not hold me innocent.</span></div>
-<div class="v-row" data-ref="Job 9:29 (King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">If I be wicked, why then labour I in vain?</span></div>
-<div class="v-row" data-ref="Job 9:30 (King James Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">If I wash myself with snow water, and make my hands never so clean;</span></div>
-<div class="v-row" data-ref="Job 9:31 (King James Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">Yet shalt thou plunge me in the ditch, and mine own clothes shall abhor me.</span></div>
-<div class="v-row" data-ref="Job 9:32 (King James Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">For he is not a man, as I am, that I should answer him, and we should come together in judgment.</span></div>
-<div class="v-row" data-ref="Job 9:33 (King James Version)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">Neither is there any daysman betwixt us, that might lay his hand upon us both.</span></div>
-<div class="v-row" data-ref="Job 9:34 (King James Version)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">Let him take his rod away from me, and let not his fear terrify me:</span></div>
-<div class="v-row" data-ref="Job 9:35 (King James Version)" onclick="selectVerse(this)"><span class="v-num">35</span><span class="v-txt">Then would I speak, and not fear him; but it is not so with me.</span></div>
+    <a class="v-row" href="/bible/kjv/job/9/1/" data-ref="Job 9:1 (King James Version)" data-verse-url="/bible/kjv/job/9/1/"><span class="v-num">1</span><span class="v-txt">Then Job answered and said,</span></a>
+<a class="v-row" href="/bible/kjv/job/9/2/" data-ref="Job 9:2 (King James Version)" data-verse-url="/bible/kjv/job/9/2/"><span class="v-num">2</span><span class="v-txt">I know it is so of a truth: but how should man be just with God?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/3/" data-ref="Job 9:3 (King James Version)" data-verse-url="/bible/kjv/job/9/3/"><span class="v-num">3</span><span class="v-txt">If he will contend with him, he cannot answer him one of a thousand.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/4/" data-ref="Job 9:4 (King James Version)" data-verse-url="/bible/kjv/job/9/4/"><span class="v-num">4</span><span class="v-txt">He is wise in heart, and mighty in strength: who hath hardened himself against him, and hath prospered?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/5/" data-ref="Job 9:5 (King James Version)" data-verse-url="/bible/kjv/job/9/5/"><span class="v-num">5</span><span class="v-txt">Which removeth the mountains, and they know not: which overturneth them in his anger.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/6/" data-ref="Job 9:6 (King James Version)" data-verse-url="/bible/kjv/job/9/6/"><span class="v-num">6</span><span class="v-txt">Which shaketh the earth out of her place, and the pillars thereof tremble.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/7/" data-ref="Job 9:7 (King James Version)" data-verse-url="/bible/kjv/job/9/7/"><span class="v-num">7</span><span class="v-txt">Which commandeth the sun, and it riseth not; and sealeth up the stars.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/8/" data-ref="Job 9:8 (King James Version)" data-verse-url="/bible/kjv/job/9/8/"><span class="v-num">8</span><span class="v-txt">Which alone spreadeth out the heavens, and treadeth upon the waves of the sea.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/9/" data-ref="Job 9:9 (King James Version)" data-verse-url="/bible/kjv/job/9/9/"><span class="v-num">9</span><span class="v-txt">Which maketh Arcturus, Orion, and Pleiades, and the chambers of the south.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/10/" data-ref="Job 9:10 (King James Version)" data-verse-url="/bible/kjv/job/9/10/"><span class="v-num">10</span><span class="v-txt">Which doeth great things past finding out; yea, and wonders without number.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/11/" data-ref="Job 9:11 (King James Version)" data-verse-url="/bible/kjv/job/9/11/"><span class="v-num">11</span><span class="v-txt">Lo, he goeth by me, and I see him not: he passeth on also, but I perceive him not.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/12/" data-ref="Job 9:12 (King James Version)" data-verse-url="/bible/kjv/job/9/12/"><span class="v-num">12</span><span class="v-txt">Behold, he taketh away, who can hinder him? who will say unto him, What doest thou?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/13/" data-ref="Job 9:13 (King James Version)" data-verse-url="/bible/kjv/job/9/13/"><span class="v-num">13</span><span class="v-txt">If God will not withdraw his anger, the proud helpers do stoop under him.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/14/" data-ref="Job 9:14 (King James Version)" data-verse-url="/bible/kjv/job/9/14/"><span class="v-num">14</span><span class="v-txt">How much less shall I answer him, and choose out my words to reason with him?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/15/" data-ref="Job 9:15 (King James Version)" data-verse-url="/bible/kjv/job/9/15/"><span class="v-num">15</span><span class="v-txt">Whom, though I were righteous, yet would I not answer, but I would make supplication to my judge.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/16/" data-ref="Job 9:16 (King James Version)" data-verse-url="/bible/kjv/job/9/16/"><span class="v-num">16</span><span class="v-txt">If I had called, and he had answered me; yet would I not believe that he had hearkened unto my voice.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/17/" data-ref="Job 9:17 (King James Version)" data-verse-url="/bible/kjv/job/9/17/"><span class="v-num">17</span><span class="v-txt">For he breaketh me with a tempest, and multiplieth my wounds without cause.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/18/" data-ref="Job 9:18 (King James Version)" data-verse-url="/bible/kjv/job/9/18/"><span class="v-num">18</span><span class="v-txt">He will not suffer me to take my breath, but filleth me with bitterness.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/19/" data-ref="Job 9:19 (King James Version)" data-verse-url="/bible/kjv/job/9/19/"><span class="v-num">19</span><span class="v-txt">If I speak of strength, lo, he is strong: and if of judgment, who shall set me a time to plead?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/20/" data-ref="Job 9:20 (King James Version)" data-verse-url="/bible/kjv/job/9/20/"><span class="v-num">20</span><span class="v-txt">If I justify myself, mine own mouth shall condemn me: if I say, I am perfect, it shall also prove me perverse.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/21/" data-ref="Job 9:21 (King James Version)" data-verse-url="/bible/kjv/job/9/21/"><span class="v-num">21</span><span class="v-txt">Though I were perfect, yet would I not know my soul: I would despise my life.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/22/" data-ref="Job 9:22 (King James Version)" data-verse-url="/bible/kjv/job/9/22/"><span class="v-num">22</span><span class="v-txt">This is one thing, therefore I said it, He destroyeth the perfect and the wicked.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/23/" data-ref="Job 9:23 (King James Version)" data-verse-url="/bible/kjv/job/9/23/"><span class="v-num">23</span><span class="v-txt">If the scourge slay suddenly, he will laugh at the trial of the innocent.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/24/" data-ref="Job 9:24 (King James Version)" data-verse-url="/bible/kjv/job/9/24/"><span class="v-num">24</span><span class="v-txt">The earth is given into the hand of the wicked: he covereth the faces of the judges thereof; if not, where, and who is he?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/25/" data-ref="Job 9:25 (King James Version)" data-verse-url="/bible/kjv/job/9/25/"><span class="v-num">25</span><span class="v-txt">Now my days are swifter than a post: they flee away, they see no good.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/26/" data-ref="Job 9:26 (King James Version)" data-verse-url="/bible/kjv/job/9/26/"><span class="v-num">26</span><span class="v-txt">They are passed away as the swift ships: as the eagle that hasteth to the prey.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/27/" data-ref="Job 9:27 (King James Version)" data-verse-url="/bible/kjv/job/9/27/"><span class="v-num">27</span><span class="v-txt">If I say, I will forget my complaint, I will leave off my heaviness, and comfort myself:</span></a>
+<a class="v-row" href="/bible/kjv/job/9/28/" data-ref="Job 9:28 (King James Version)" data-verse-url="/bible/kjv/job/9/28/"><span class="v-num">28</span><span class="v-txt">I am afraid of all my sorrows, I know that thou wilt not hold me innocent.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/29/" data-ref="Job 9:29 (King James Version)" data-verse-url="/bible/kjv/job/9/29/"><span class="v-num">29</span><span class="v-txt">If I be wicked, why then labour I in vain?</span></a>
+<a class="v-row" href="/bible/kjv/job/9/30/" data-ref="Job 9:30 (King James Version)" data-verse-url="/bible/kjv/job/9/30/"><span class="v-num">30</span><span class="v-txt">If I wash myself with snow water, and make my hands never so clean;</span></a>
+<a class="v-row" href="/bible/kjv/job/9/31/" data-ref="Job 9:31 (King James Version)" data-verse-url="/bible/kjv/job/9/31/"><span class="v-num">31</span><span class="v-txt">Yet shalt thou plunge me in the ditch, and mine own clothes shall abhor me.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/32/" data-ref="Job 9:32 (King James Version)" data-verse-url="/bible/kjv/job/9/32/"><span class="v-num">32</span><span class="v-txt">For he is not a man, as I am, that I should answer him, and we should come together in judgment.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/33/" data-ref="Job 9:33 (King James Version)" data-verse-url="/bible/kjv/job/9/33/"><span class="v-num">33</span><span class="v-txt">Neither is there any daysman betwixt us, that might lay his hand upon us both.</span></a>
+<a class="v-row" href="/bible/kjv/job/9/34/" data-ref="Job 9:34 (King James Version)" data-verse-url="/bible/kjv/job/9/34/"><span class="v-num">34</span><span class="v-txt">Let him take his rod away from me, and let not his fear terrify me:</span></a>
+<a class="v-row" href="/bible/kjv/job/9/35/" data-ref="Job 9:35 (King James Version)" data-verse-url="/bible/kjv/job/9/35/"><span class="v-num">35</span><span class="v-txt">Then would I speak, and not fear him; but it is not so with me.</span></a>
 
     
 <div class="app-cta">

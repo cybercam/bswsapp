@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 5:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For every high priest taken from among men is appointed for men in things [pertaining] to God, that he may offer both gifts and sacrifices for sins.</span></div>
-<div class="v-row" data-ref="Hebrews 5:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He can have compassion on those who are ignorant and going astray, since he himself is also subject to weakness.</span></div>
-<div class="v-row" data-ref="Hebrews 5:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Because of this he is required as for the people, so also for himself, to offer [sacrifices] for sins.</span></div>
-<div class="v-row" data-ref="Hebrews 5:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And no man takes this honor to himself, but he who is called by God, just as Aaron [was.]</span></div>
-<div class="v-row" data-ref="Hebrews 5:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So also Christ did not glorify Himself to become High Priest, [but it] was He who said to Him: "You are My Son, Today I have begotten You."</span></div>
-<div class="v-row" data-ref="Hebrews 5:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">As [He] also [says] in another [place:] "You [are] a priest forever According to the order of Melchizedek";</span></div>
-<div class="v-row" data-ref="Hebrews 5:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">who, in the days of His flesh, when He had offered up prayers and supplications, with vehement cries and tears to Him who was able to save Him from death, and was heard because of His godly fear,</span></div>
-<div class="v-row" data-ref="Hebrews 5:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">though He was a Son, [yet] He learned obedience by the things which He suffered.</span></div>
-<div class="v-row" data-ref="Hebrews 5:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And having been perfected, He became the author of eternal salvation to all who obey Him,</span></div>
-<div class="v-row" data-ref="Hebrews 5:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">called by God as High Priest "according to the order of Melchizedek,"</span></div>
-<div class="v-row" data-ref="Hebrews 5:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">of whom we have much to say, and hard to explain, since you have become dull of hearing.</span></div>
-<div class="v-row" data-ref="Hebrews 5:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For though by this time you ought to be teachers, you need [someone] to teach you again the first principles of the oracles of God; and you have come to need milk and not solid food.</span></div>
-<div class="v-row" data-ref="Hebrews 5:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For everyone who partakes [only] of milk [is] unskilled in the word of righteousness, for he is a babe.</span></div>
-<div class="v-row" data-ref="Hebrews 5:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But solid food belongs to those who are of full age, [that is,] those who by reason of use have their senses exercised to discern both good and evil.</span></div>
+    <a class="v-row" href="/bible/nkjv/hebrews/5/1/" data-ref="Hebrews 5:1 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/1/"><span class="v-num">1</span><span class="v-txt">For every high priest taken from among men is appointed for men in things [pertaining] to God, that he may offer both gifts and sacrifices for sins.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/2/" data-ref="Hebrews 5:2 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/2/"><span class="v-num">2</span><span class="v-txt">He can have compassion on those who are ignorant and going astray, since he himself is also subject to weakness.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/3/" data-ref="Hebrews 5:3 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/3/"><span class="v-num">3</span><span class="v-txt">Because of this he is required as for the people, so also for himself, to offer [sacrifices] for sins.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/4/" data-ref="Hebrews 5:4 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/4/"><span class="v-num">4</span><span class="v-txt">And no man takes this honor to himself, but he who is called by God, just as Aaron [was.]</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/5/" data-ref="Hebrews 5:5 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/5/"><span class="v-num">5</span><span class="v-txt">So also Christ did not glorify Himself to become High Priest, [but it] was He who said to Him: "You are My Son, Today I have begotten You."</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/6/" data-ref="Hebrews 5:6 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/6/"><span class="v-num">6</span><span class="v-txt">As [He] also [says] in another [place:] "You [are] a priest forever According to the order of Melchizedek";</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/7/" data-ref="Hebrews 5:7 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/7/"><span class="v-num">7</span><span class="v-txt">who, in the days of His flesh, when He had offered up prayers and supplications, with vehement cries and tears to Him who was able to save Him from death, and was heard because of His godly fear,</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/8/" data-ref="Hebrews 5:8 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/8/"><span class="v-num">8</span><span class="v-txt">though He was a Son, [yet] He learned obedience by the things which He suffered.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/9/" data-ref="Hebrews 5:9 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/9/"><span class="v-num">9</span><span class="v-txt">And having been perfected, He became the author of eternal salvation to all who obey Him,</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/10/" data-ref="Hebrews 5:10 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/10/"><span class="v-num">10</span><span class="v-txt">called by God as High Priest "according to the order of Melchizedek,"</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/11/" data-ref="Hebrews 5:11 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/11/"><span class="v-num">11</span><span class="v-txt">of whom we have much to say, and hard to explain, since you have become dull of hearing.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/12/" data-ref="Hebrews 5:12 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/12/"><span class="v-num">12</span><span class="v-txt">For though by this time you ought to be teachers, you need [someone] to teach you again the first principles of the oracles of God; and you have come to need milk and not solid food.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/13/" data-ref="Hebrews 5:13 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/13/"><span class="v-num">13</span><span class="v-txt">For everyone who partakes [only] of milk [is] unskilled in the word of righteousness, for he is a babe.</span></a>
+<a class="v-row" href="/bible/nkjv/hebrews/5/14/" data-ref="Hebrews 5:14 (New King James Version)" data-verse-url="/bible/nkjv/hebrews/5/14/"><span class="v-num">14</span><span class="v-txt">But solid food belongs to those who are of full age, [that is,] those who by reason of use have their senses exercised to discern both good and evil.</span></a>
 
     
 <div class="app-cta">

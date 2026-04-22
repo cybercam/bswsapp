@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Revelation 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And I saw in the right hand of him who was seated on the high seat, a book with writing inside it and on the back, shut with seven stamps of wax.</span></div>
-<div class="v-row" data-ref="Revelation 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And I saw a strong angel saying in a loud voice, Who is able to make the book open, and to undo its stamps?</span></div>
-<div class="v-row" data-ref="Revelation 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And no one in heaven, or on the earth, or under the earth, was able to get the book open, or to see what was in it.</span></div>
-<div class="v-row" data-ref="Revelation 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I was very sad, because there was no one able to get the book open or to see what was in it.</span></div>
-<div class="v-row" data-ref="Revelation 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And one of the rulers said to me, Do not be sad: see, the Lion of the tribe of Judah, the Root of David, has overcome, and has power to undo the book and its seven stamps.</span></div>
-<div class="v-row" data-ref="Revelation 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And I saw in the middle of the high seat and of the four beasts, and in the middle of the rulers, a Lamb in his place, which seemed as if it had been put to death, having seven horns and seven eyes, which are the seven Spirits of God, sent out into all the earth.</span></div>
-<div class="v-row" data-ref="Revelation 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And he came and took it out of the right hand of him who was seated on the high seat.</span></div>
-<div class="v-row" data-ref="Revelation 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when he had taken the book, the four beasts and the four and twenty rulers went down on their faces before the Lamb, having every one an instrument of music, and gold vessels full of perfumes, which are the prayers of the saints.</span></div>
-<div class="v-row" data-ref="Revelation 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And their voices are sounding in a new song, saying, It is right for you to take the book and to make it open: for you were put to death and have made an offering to God of your blood for men of every tribe, and language, and people, and nation,</span></div>
-<div class="v-row" data-ref="Revelation 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And have made them a kingdom and priests to our God, and they are ruling on the earth.</span></div>
-<div class="v-row" data-ref="Revelation 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And I saw, and there came to my ears the sound of a great number of angels round about the high seat and the beasts and the rulers; and the number of them was ten thousand times ten thousand, and thousands of thousands;</span></div>
-<div class="v-row" data-ref="Revelation 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Saying with a great voice, It is right to give to the Lamb who was put to death, power and wealth and wisdom and strength and honour and glory and blessing.</span></div>
-<div class="v-row" data-ref="Revelation 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And to my ears came the voice of everything in heaven and on earth and under the earth and in the sea, and of all things which are in them, saying, To him who is seated on the high seat, and to the Lamb, may blessing and honour and glory and power be given for ever and ever.</span></div>
-<div class="v-row" data-ref="Revelation 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And the four beasts said, So be it. And the rulers went down on their faces and gave worship.</span></div>
+    <a class="v-row" href="/bible/bbe/revelation/5/1/" data-ref="Revelation 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/1/"><span class="v-num">1</span><span class="v-txt">And I saw in the right hand of him who was seated on the high seat, a book with writing inside it and on the back, shut with seven stamps of wax.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/2/" data-ref="Revelation 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/2/"><span class="v-num">2</span><span class="v-txt">And I saw a strong angel saying in a loud voice, Who is able to make the book open, and to undo its stamps?</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/3/" data-ref="Revelation 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/3/"><span class="v-num">3</span><span class="v-txt">And no one in heaven, or on the earth, or under the earth, was able to get the book open, or to see what was in it.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/4/" data-ref="Revelation 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/4/"><span class="v-num">4</span><span class="v-txt">And I was very sad, because there was no one able to get the book open or to see what was in it.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/5/" data-ref="Revelation 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/5/"><span class="v-num">5</span><span class="v-txt">And one of the rulers said to me, Do not be sad: see, the Lion of the tribe of Judah, the Root of David, has overcome, and has power to undo the book and its seven stamps.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/6/" data-ref="Revelation 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/6/"><span class="v-num">6</span><span class="v-txt">And I saw in the middle of the high seat and of the four beasts, and in the middle of the rulers, a Lamb in his place, which seemed as if it had been put to death, having seven horns and seven eyes, which are the seven Spirits of God, sent out into all the earth.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/7/" data-ref="Revelation 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/7/"><span class="v-num">7</span><span class="v-txt">And he came and took it out of the right hand of him who was seated on the high seat.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/8/" data-ref="Revelation 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/8/"><span class="v-num">8</span><span class="v-txt">And when he had taken the book, the four beasts and the four and twenty rulers went down on their faces before the Lamb, having every one an instrument of music, and gold vessels full of perfumes, which are the prayers of the saints.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/9/" data-ref="Revelation 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/9/"><span class="v-num">9</span><span class="v-txt">And their voices are sounding in a new song, saying, It is right for you to take the book and to make it open: for you were put to death and have made an offering to God of your blood for men of every tribe, and language, and people, and nation,</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/10/" data-ref="Revelation 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/10/"><span class="v-num">10</span><span class="v-txt">And have made them a kingdom and priests to our God, and they are ruling on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/11/" data-ref="Revelation 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/11/"><span class="v-num">11</span><span class="v-txt">And I saw, and there came to my ears the sound of a great number of angels round about the high seat and the beasts and the rulers; and the number of them was ten thousand times ten thousand, and thousands of thousands;</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/12/" data-ref="Revelation 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/12/"><span class="v-num">12</span><span class="v-txt">Saying with a great voice, It is right to give to the Lamb who was put to death, power and wealth and wisdom and strength and honour and glory and blessing.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/13/" data-ref="Revelation 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/13/"><span class="v-num">13</span><span class="v-txt">And to my ears came the voice of everything in heaven and on earth and under the earth and in the sea, and of all things which are in them, saying, To him who is seated on the high seat, and to the Lamb, may blessing and honour and glory and power be given for ever and ever.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/5/14/" data-ref="Revelation 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/5/14/"><span class="v-num">14</span><span class="v-txt">And the four beasts said, So be it. And the rulers went down on their faces and gave worship.</span></a>
 
     
 <div class="app-cta">

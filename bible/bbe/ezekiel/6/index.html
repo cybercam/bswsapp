@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 6:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the word of the Lord came to me, saying,</span></div>
-<div class="v-row" data-ref="Ezekiel 6:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Son of man, let your face be turned to the mountains of Israel, and be a prophet to them, and say,</span></div>
-<div class="v-row" data-ref="Ezekiel 6:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">You mountains of Israel, give ear to the words of the Lord: this is what the Lord has said to the mountains and the hills, to the waterways and the valleys: See, I, even I, am sending on you a sword for the destruction of your high places.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And your altars will be made waste, and your sun-images will be broken: and I will have your dead men placed before your images.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And I will put the dead bodies of the children of Israel in front of their images, sending your bones in all directions about your altars.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">In all your living-places the towns will become broken walls, and the high places made waste; so that your altars may be broken down and made waste, and your images broken and ended, and so that your sun-images may be cut down and your works rubbed out.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And the dead will be falling down among you, and you will be certain that I am the Lord.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But still, I will keep a small band safe from the sword among the nations, when you are sent wandering among the countries.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And those of you who are kept safe will have me in mind among the nations where they have been taken away as prisoners, how I sent punishment on their hearts which were untrue to me, and on their eyes which were turned to their false gods: and they will be full of hate for themselves because of the evil things which they have done in all their disgusting ways.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And they will be certain that I am the Lord: not for nothing did I say that I would do this evil to them.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">This is what the Lord has said: Give blows with your hand, stamping with your foot, and say, O sorrow! because of all the evil and disgusting ways of the children of Israel: for death will overtake them by the sword and through need of food and by disease.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He who is far away will come to his death by disease; he who is near will be put to the sword; he who is shut up will come to his death through need of food; and I will give full effect to my passion against them.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And you will be certain that I am the Lord, when their dead men are stretched among their images round about their altars on every high hill, on all the tops of the mountains, and under every branching tree, and under every thick oak-tree, the places where they made sweet smells to all their images.</span></div>
-<div class="v-row" data-ref="Ezekiel 6:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And my hand will be stretched out against them, making the land waste and unpeopled, from the waste land to Riblah, through all their living-places: and they will be certain that I am the Lord.</span></div>
+    <a class="v-row" href="/bible/bbe/ezekiel/6/1/" data-ref="Ezekiel 6:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/1/"><span class="v-num">1</span><span class="v-txt">And the word of the Lord came to me, saying,</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/2/" data-ref="Ezekiel 6:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/2/"><span class="v-num">2</span><span class="v-txt">Son of man, let your face be turned to the mountains of Israel, and be a prophet to them, and say,</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/3/" data-ref="Ezekiel 6:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/3/"><span class="v-num">3</span><span class="v-txt">You mountains of Israel, give ear to the words of the Lord: this is what the Lord has said to the mountains and the hills, to the waterways and the valleys: See, I, even I, am sending on you a sword for the destruction of your high places.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/4/" data-ref="Ezekiel 6:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/4/"><span class="v-num">4</span><span class="v-txt">And your altars will be made waste, and your sun-images will be broken: and I will have your dead men placed before your images.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/5/" data-ref="Ezekiel 6:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/5/"><span class="v-num">5</span><span class="v-txt">And I will put the dead bodies of the children of Israel in front of their images, sending your bones in all directions about your altars.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/6/" data-ref="Ezekiel 6:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/6/"><span class="v-num">6</span><span class="v-txt">In all your living-places the towns will become broken walls, and the high places made waste; so that your altars may be broken down and made waste, and your images broken and ended, and so that your sun-images may be cut down and your works rubbed out.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/7/" data-ref="Ezekiel 6:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/7/"><span class="v-num">7</span><span class="v-txt">And the dead will be falling down among you, and you will be certain that I am the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/8/" data-ref="Ezekiel 6:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/8/"><span class="v-num">8</span><span class="v-txt">But still, I will keep a small band safe from the sword among the nations, when you are sent wandering among the countries.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/9/" data-ref="Ezekiel 6:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/9/"><span class="v-num">9</span><span class="v-txt">And those of you who are kept safe will have me in mind among the nations where they have been taken away as prisoners, how I sent punishment on their hearts which were untrue to me, and on their eyes which were turned to their false gods: and they will be full of hate for themselves because of the evil things which they have done in all their disgusting ways.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/10/" data-ref="Ezekiel 6:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/10/"><span class="v-num">10</span><span class="v-txt">And they will be certain that I am the Lord: not for nothing did I say that I would do this evil to them.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/11/" data-ref="Ezekiel 6:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/11/"><span class="v-num">11</span><span class="v-txt">This is what the Lord has said: Give blows with your hand, stamping with your foot, and say, O sorrow! because of all the evil and disgusting ways of the children of Israel: for death will overtake them by the sword and through need of food and by disease.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/12/" data-ref="Ezekiel 6:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/12/"><span class="v-num">12</span><span class="v-txt">He who is far away will come to his death by disease; he who is near will be put to the sword; he who is shut up will come to his death through need of food; and I will give full effect to my passion against them.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/13/" data-ref="Ezekiel 6:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/13/"><span class="v-num">13</span><span class="v-txt">And you will be certain that I am the Lord, when their dead men are stretched among their images round about their altars on every high hill, on all the tops of the mountains, and under every branching tree, and under every thick oak-tree, the places where they made sweet smells to all their images.</span></a>
+<a class="v-row" href="/bible/bbe/ezekiel/6/14/" data-ref="Ezekiel 6:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ezekiel/6/14/"><span class="v-num">14</span><span class="v-txt">And my hand will be stretched out against them, making the land waste and unpeopled, from the waste land to Riblah, through all their living-places: and they will be certain that I am the Lord.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 12:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now Yahweh said to Abram, "Get out of your country, and from your relatives, and from your father's house, to the land that I will show you.</span></div>
-<div class="v-row" data-ref="Genesis 12:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will make of you a great nation. I will bless you, and make your name great. You will be a blessing.</span></div>
-<div class="v-row" data-ref="Genesis 12:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I will bless those who bless you, and I will curse him who curses you. In you will all of the families of the earth be blessed."</span></div>
-<div class="v-row" data-ref="Genesis 12:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So Abram went, as Yahweh had spoken to him. Lot went with him. Abram was seventy-five years old when he departed out of Haran.</span></div>
-<div class="v-row" data-ref="Genesis 12:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Abram took Sarai his wife, Lot his brother's son, all their substance that they had gathered, and the souls who they had gotten in Haran; and they went forth to go into the land of Canaan. Into the land of Canaan they came.</span></div>
-<div class="v-row" data-ref="Genesis 12:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Abram passed through the land to the place of Shechem, to the oak of Moreh. The Canaanite was then in the land.</span></div>
-<div class="v-row" data-ref="Genesis 12:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Yahweh appeared to Abram, and said, "I will give this land to your seed." He built an altar there to Yahweh, who appeared to him.</span></div>
-<div class="v-row" data-ref="Genesis 12:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He left from there to the mountain on the east of Bethel, and pitched his tent, having Bethel on the west, and Ai on the east. There he built an altar to Yahweh, and called on the name of Yahweh.</span></div>
-<div class="v-row" data-ref="Genesis 12:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Abram traveled, going on still toward the South.</span></div>
-<div class="v-row" data-ref="Genesis 12:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">There was a famine in the land. Abram went down into Egypt to live as a foreigner there, for the famine was sore in the land.</span></div>
-<div class="v-row" data-ref="Genesis 12:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">It happened, when he was come near to enter into Egypt, that he said to Sarai his wife, "See now, I know that you are a beautiful woman to look on.</span></div>
-<div class="v-row" data-ref="Genesis 12:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">It will happen, when the Egyptians will see you, that they will say, 'This is his wife.' They will kill me, but they will save you alive.</span></div>
-<div class="v-row" data-ref="Genesis 12:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Please say that you are my sister, that it may be well with me for your sake, and that my soul may live because of you."</span></div>
-<div class="v-row" data-ref="Genesis 12:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">It happened that when Abram had come into Egypt, the Egyptians saw that the woman was very beautiful.</span></div>
-<div class="v-row" data-ref="Genesis 12:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The princes of Pharaoh saw her, and praised her to Pharaoh; and the woman was taken into Pharaoh's house.</span></div>
-<div class="v-row" data-ref="Genesis 12:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">He dealt well with Abram for her sake. He had sheep, and oxen, and male donkeys, and men-servants, and maid-servants, and female donkeys, and camels.</span></div>
-<div class="v-row" data-ref="Genesis 12:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Yahweh plagued Pharaoh and his house with great plagues because of Sarai, Abram's wife.</span></div>
-<div class="v-row" data-ref="Genesis 12:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Pharaoh called Abram, and said, "What is this that you have done to me? Why didn't you tell me that she was your wife?</span></div>
-<div class="v-row" data-ref="Genesis 12:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Why did you say, 'She is my sister,' so that I took her to be my wife? Now therefore, see your wife, take her, and go your way."</span></div>
-<div class="v-row" data-ref="Genesis 12:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Pharaoh gave men charge concerning him: and they brought him on the way, and his wife, and all that he had.</span></div>
+    <a class="v-row" href="/bible/web/genesis/12/1/" data-ref="Genesis 12:1 (World English Bible)" data-verse-url="/bible/web/genesis/12/1/"><span class="v-num">1</span><span class="v-txt">Now Yahweh said to Abram, "Get out of your country, and from your relatives, and from your father's house, to the land that I will show you.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/2/" data-ref="Genesis 12:2 (World English Bible)" data-verse-url="/bible/web/genesis/12/2/"><span class="v-num">2</span><span class="v-txt">I will make of you a great nation. I will bless you, and make your name great. You will be a blessing.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/3/" data-ref="Genesis 12:3 (World English Bible)" data-verse-url="/bible/web/genesis/12/3/"><span class="v-num">3</span><span class="v-txt">I will bless those who bless you, and I will curse him who curses you. In you will all of the families of the earth be blessed."</span></a>
+<a class="v-row" href="/bible/web/genesis/12/4/" data-ref="Genesis 12:4 (World English Bible)" data-verse-url="/bible/web/genesis/12/4/"><span class="v-num">4</span><span class="v-txt">So Abram went, as Yahweh had spoken to him. Lot went with him. Abram was seventy-five years old when he departed out of Haran.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/5/" data-ref="Genesis 12:5 (World English Bible)" data-verse-url="/bible/web/genesis/12/5/"><span class="v-num">5</span><span class="v-txt">Abram took Sarai his wife, Lot his brother's son, all their substance that they had gathered, and the souls who they had gotten in Haran; and they went forth to go into the land of Canaan. Into the land of Canaan they came.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/6/" data-ref="Genesis 12:6 (World English Bible)" data-verse-url="/bible/web/genesis/12/6/"><span class="v-num">6</span><span class="v-txt">Abram passed through the land to the place of Shechem, to the oak of Moreh. The Canaanite was then in the land.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/7/" data-ref="Genesis 12:7 (World English Bible)" data-verse-url="/bible/web/genesis/12/7/"><span class="v-num">7</span><span class="v-txt">Yahweh appeared to Abram, and said, "I will give this land to your seed." He built an altar there to Yahweh, who appeared to him.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/8/" data-ref="Genesis 12:8 (World English Bible)" data-verse-url="/bible/web/genesis/12/8/"><span class="v-num">8</span><span class="v-txt">He left from there to the mountain on the east of Bethel, and pitched his tent, having Bethel on the west, and Ai on the east. There he built an altar to Yahweh, and called on the name of Yahweh.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/9/" data-ref="Genesis 12:9 (World English Bible)" data-verse-url="/bible/web/genesis/12/9/"><span class="v-num">9</span><span class="v-txt">Abram traveled, going on still toward the South.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/10/" data-ref="Genesis 12:10 (World English Bible)" data-verse-url="/bible/web/genesis/12/10/"><span class="v-num">10</span><span class="v-txt">There was a famine in the land. Abram went down into Egypt to live as a foreigner there, for the famine was sore in the land.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/11/" data-ref="Genesis 12:11 (World English Bible)" data-verse-url="/bible/web/genesis/12/11/"><span class="v-num">11</span><span class="v-txt">It happened, when he was come near to enter into Egypt, that he said to Sarai his wife, "See now, I know that you are a beautiful woman to look on.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/12/" data-ref="Genesis 12:12 (World English Bible)" data-verse-url="/bible/web/genesis/12/12/"><span class="v-num">12</span><span class="v-txt">It will happen, when the Egyptians will see you, that they will say, 'This is his wife.' They will kill me, but they will save you alive.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/13/" data-ref="Genesis 12:13 (World English Bible)" data-verse-url="/bible/web/genesis/12/13/"><span class="v-num">13</span><span class="v-txt">Please say that you are my sister, that it may be well with me for your sake, and that my soul may live because of you."</span></a>
+<a class="v-row" href="/bible/web/genesis/12/14/" data-ref="Genesis 12:14 (World English Bible)" data-verse-url="/bible/web/genesis/12/14/"><span class="v-num">14</span><span class="v-txt">It happened that when Abram had come into Egypt, the Egyptians saw that the woman was very beautiful.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/15/" data-ref="Genesis 12:15 (World English Bible)" data-verse-url="/bible/web/genesis/12/15/"><span class="v-num">15</span><span class="v-txt">The princes of Pharaoh saw her, and praised her to Pharaoh; and the woman was taken into Pharaoh's house.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/16/" data-ref="Genesis 12:16 (World English Bible)" data-verse-url="/bible/web/genesis/12/16/"><span class="v-num">16</span><span class="v-txt">He dealt well with Abram for her sake. He had sheep, and oxen, and male donkeys, and men-servants, and maid-servants, and female donkeys, and camels.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/17/" data-ref="Genesis 12:17 (World English Bible)" data-verse-url="/bible/web/genesis/12/17/"><span class="v-num">17</span><span class="v-txt">Yahweh plagued Pharaoh and his house with great plagues because of Sarai, Abram's wife.</span></a>
+<a class="v-row" href="/bible/web/genesis/12/18/" data-ref="Genesis 12:18 (World English Bible)" data-verse-url="/bible/web/genesis/12/18/"><span class="v-num">18</span><span class="v-txt">Pharaoh called Abram, and said, "What is this that you have done to me? Why didn't you tell me that she was your wife?</span></a>
+<a class="v-row" href="/bible/web/genesis/12/19/" data-ref="Genesis 12:19 (World English Bible)" data-verse-url="/bible/web/genesis/12/19/"><span class="v-num">19</span><span class="v-txt">Why did you say, 'She is my sister,' so that I took her to be my wife? Now therefore, see your wife, take her, and go your way."</span></a>
+<a class="v-row" href="/bible/web/genesis/12/20/" data-ref="Genesis 12:20 (World English Bible)" data-verse-url="/bible/web/genesis/12/20/"><span class="v-num">20</span><span class="v-txt">Pharaoh gave men charge concerning him: and they brought him on the way, and his wife, and all that he had.</span></a>
 
     
 <div class="app-cta">

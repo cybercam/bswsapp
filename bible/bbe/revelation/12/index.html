@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Revelation 12:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And a great sign was seen in heaven: a A woman clothed with the sun, and with the moon under her feet, and on her head a crown of twelve stars.</span></div>
-<div class="v-row" data-ref="Revelation 12:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And she was with child; and she gave a cry, in the pains of childbirth.</span></div>
-<div class="v-row" data-ref="Revelation 12:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And there was seen another sign in heaven; a great red dragon, having seven heads and ten horns, and on his heads seven crowns.</span></div>
-<div class="v-row" data-ref="Revelation 12:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And his tail was pulling a third part of the stars of heaven down to the earth, and the dragon took his place before the woman who was about to give birth, so that when the birth had taken place he might put an end to her child.</span></div>
-<div class="v-row" data-ref="Revelation 12:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And she gave birth to a son, a male child, who was to have rule over all the nations with a rod of iron: and her child was taken up to God and to his high seat.</span></div>
-<div class="v-row" data-ref="Revelation 12:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the woman went in flight to the waste land, where she has a place made ready by God, so that there they may give her food a thousand, two hundred and sixty days.</span></div>
-<div class="v-row" data-ref="Revelation 12:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And there was war in heaven: Michael and his angels going out to the fight with the dragon; and the dragon and his angels made war,</span></div>
-<div class="v-row" data-ref="Revelation 12:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And they were overcome, and there was no more place for them in heaven.</span></div>
-<div class="v-row" data-ref="Revelation 12:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the great dragon was forced down, the old snake, who is named the Evil One and Satan, by whom all the earth is turned from the right way; he was forced down to the earth, and his angels were forced down with him.</span></div>
-<div class="v-row" data-ref="Revelation 12:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And a great voice in heaven came to my ears, saying, Now is come the salvation, and the power, and the kingdom of our God, and the authority of his Christ: because he who says evil against our brothers before our God day and night is forced down.</span></div>
-<div class="v-row" data-ref="Revelation 12:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And they overcame him through the blood of the Lamb and the word of their witness; and loving not their lives they freely gave themselves up to death.</span></div>
-<div class="v-row" data-ref="Revelation 12:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Be glad then, O heavens, and you who are in them. But there is trouble for the earth and the sea: because the Evil One has come down to you, being very angry, having the knowledge that he has but a short time.</span></div>
-<div class="v-row" data-ref="Revelation 12:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And when the dragon saw that he was forced down to the earth, he made cruel attacks on the woman who gave birth to the male child.</span></div>
-<div class="v-row" data-ref="Revelation 12:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And there were given to the woman two wings of a great eagle, so that she might go in flight into the waste land, to her place, where she is given food for a time, and times, and half a time, from the face of the snake.</span></div>
-<div class="v-row" data-ref="Revelation 12:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the snake sent out of his mouth after the woman a river of water, so that she might be taken away by the stream.</span></div>
-<div class="v-row" data-ref="Revelation 12:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And the earth gave help to the woman, and with open mouth took up the river which the dragon sent out of his mouth.</span></div>
-<div class="v-row" data-ref="Revelation 12:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And the dragon was angry with the woman and went away to make war on the rest of her seed, who keep the orders of God, and the witness of Jesus:</span></div>
+    <a class="v-row" href="/bible/bbe/revelation/12/1/" data-ref="Revelation 12:1 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/1/"><span class="v-num">1</span><span class="v-txt">And a great sign was seen in heaven: a A woman clothed with the sun, and with the moon under her feet, and on her head a crown of twelve stars.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/2/" data-ref="Revelation 12:2 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/2/"><span class="v-num">2</span><span class="v-txt">And she was with child; and she gave a cry, in the pains of childbirth.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/3/" data-ref="Revelation 12:3 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/3/"><span class="v-num">3</span><span class="v-txt">And there was seen another sign in heaven; a great red dragon, having seven heads and ten horns, and on his heads seven crowns.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/4/" data-ref="Revelation 12:4 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/4/"><span class="v-num">4</span><span class="v-txt">And his tail was pulling a third part of the stars of heaven down to the earth, and the dragon took his place before the woman who was about to give birth, so that when the birth had taken place he might put an end to her child.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/5/" data-ref="Revelation 12:5 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/5/"><span class="v-num">5</span><span class="v-txt">And she gave birth to a son, a male child, who was to have rule over all the nations with a rod of iron: and her child was taken up to God and to his high seat.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/6/" data-ref="Revelation 12:6 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/6/"><span class="v-num">6</span><span class="v-txt">And the woman went in flight to the waste land, where she has a place made ready by God, so that there they may give her food a thousand, two hundred and sixty days.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/7/" data-ref="Revelation 12:7 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/7/"><span class="v-num">7</span><span class="v-txt">And there was war in heaven: Michael and his angels going out to the fight with the dragon; and the dragon and his angels made war,</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/8/" data-ref="Revelation 12:8 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/8/"><span class="v-num">8</span><span class="v-txt">And they were overcome, and there was no more place for them in heaven.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/9/" data-ref="Revelation 12:9 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/9/"><span class="v-num">9</span><span class="v-txt">And the great dragon was forced down, the old snake, who is named the Evil One and Satan, by whom all the earth is turned from the right way; he was forced down to the earth, and his angels were forced down with him.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/10/" data-ref="Revelation 12:10 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/10/"><span class="v-num">10</span><span class="v-txt">And a great voice in heaven came to my ears, saying, Now is come the salvation, and the power, and the kingdom of our God, and the authority of his Christ: because he who says evil against our brothers before our God day and night is forced down.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/11/" data-ref="Revelation 12:11 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/11/"><span class="v-num">11</span><span class="v-txt">And they overcame him through the blood of the Lamb and the word of their witness; and loving not their lives they freely gave themselves up to death.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/12/" data-ref="Revelation 12:12 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/12/"><span class="v-num">12</span><span class="v-txt">Be glad then, O heavens, and you who are in them. But there is trouble for the earth and the sea: because the Evil One has come down to you, being very angry, having the knowledge that he has but a short time.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/13/" data-ref="Revelation 12:13 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/13/"><span class="v-num">13</span><span class="v-txt">And when the dragon saw that he was forced down to the earth, he made cruel attacks on the woman who gave birth to the male child.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/14/" data-ref="Revelation 12:14 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/14/"><span class="v-num">14</span><span class="v-txt">And there were given to the woman two wings of a great eagle, so that she might go in flight into the waste land, to her place, where she is given food for a time, and times, and half a time, from the face of the snake.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/15/" data-ref="Revelation 12:15 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/15/"><span class="v-num">15</span><span class="v-txt">And the snake sent out of his mouth after the woman a river of water, so that she might be taken away by the stream.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/16/" data-ref="Revelation 12:16 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/16/"><span class="v-num">16</span><span class="v-txt">And the earth gave help to the woman, and with open mouth took up the river which the dragon sent out of his mouth.</span></a>
+<a class="v-row" href="/bible/bbe/revelation/12/17/" data-ref="Revelation 12:17 (Bible in Basic English)" data-verse-url="/bible/bbe/revelation/12/17/"><span class="v-num">17</span><span class="v-txt">And the dragon was angry with the woman and went away to make war on the rest of her seed, who keep the orders of God, and the witness of Jesus:</span></a>
 
     
 <div class="app-cta">

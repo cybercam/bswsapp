@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 37</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 37:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">At this my heart is shaking; it is moved out of its place.</span></div>
-<div class="v-row" data-ref="Job 37:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Give ear to the rolling noise of his voice; to the hollow sound which goes out of his mouth.</span></div>
-<div class="v-row" data-ref="Job 37:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">He sends it out through all the heaven, and his thunder-flame to the ends of the earth.</span></div>
-<div class="v-row" data-ref="Job 37:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">After it a voice is sounding, thundering out the word of his power; he does not keep back his thunder-flames; from his mouth his voice is sounding.</span></div>
-<div class="v-row" data-ref="Job 37:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He does wonders, more than may be searched out; great things of which we have no knowledge;</span></div>
-<div class="v-row" data-ref="Job 37:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For he says to the snow, Make the earth wet; and to the rain-storm, Come down.</span></div>
-<div class="v-row" data-ref="Job 37:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He puts an end to the work of every man, so that all may see his work.</span></div>
-<div class="v-row" data-ref="Job 37:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the beasts go into their holes, and take their rest.</span></div>
-<div class="v-row" data-ref="Job 37:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Out of its place comes the storm-wind, and the cold out of its store-houses.</span></div>
-<div class="v-row" data-ref="Job 37:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">By the breath of God ice is made, and the wide waters are shut in.</span></div>
-<div class="v-row" data-ref="Job 37:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The thick cloud is weighted with thunder-flame, and the cloud sends out its light;</span></div>
-<div class="v-row" data-ref="Job 37:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And it goes this way and that, round about, turning itself by his guiding, to do whatever he gives orders to be done, on the face of his world of men,</span></div>
-<div class="v-row" data-ref="Job 37:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For a rod, or for a curse, or for mercy, causing it to come on the mark.</span></div>
-<div class="v-row" data-ref="Job 37:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Give ear to this, O Job, and keep quiet in your place; and take note of the wonders worked by God.</span></div>
-<div class="v-row" data-ref="Job 37:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Have you knowledge of God's ordering of his works, how he makes the light of his cloud to be seen?</span></div>
-<div class="v-row" data-ref="Job 37:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Have you knowledge of the balancings of the clouds, the wonders of him who has all wisdom?</span></div>
-<div class="v-row" data-ref="Job 37:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">You, whose clothing is warm, when the earth is quiet because of the south wind,</span></div>
-<div class="v-row" data-ref="Job 37:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Will you, with him, make the skies smooth, and strong as a polished looking-glass?</span></div>
-<div class="v-row" data-ref="Job 37:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Make clear to me what we are to say to him; we are unable to put our cause before him, because of the dark.</span></div>
-<div class="v-row" data-ref="Job 37:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">How may he have knowledge of my desire for talk with him? or did any man ever say, May destruction come on me?</span></div>
-<div class="v-row" data-ref="Job 37:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And now the light is not seen, for it is dark because of the clouds; but a wind comes, clearing them away.</span></div>
-<div class="v-row" data-ref="Job 37:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A bright light comes out of the north; God's glory is greatly to be feared.</span></div>
-<div class="v-row" data-ref="Job 37:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">There is no searching out of the Ruler of all: his strength and his judging are great; he is full of righteousness, doing no wrong.</span></div>
-<div class="v-row" data-ref="Job 37:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For this cause men go in fear of him; he has no respect for any who are wise in heart.</span></div>
+    <a class="v-row" href="/bible/bbe/job/37/1/" data-ref="Job 37:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/1/"><span class="v-num">1</span><span class="v-txt">At this my heart is shaking; it is moved out of its place.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/2/" data-ref="Job 37:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/2/"><span class="v-num">2</span><span class="v-txt">Give ear to the rolling noise of his voice; to the hollow sound which goes out of his mouth.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/3/" data-ref="Job 37:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/3/"><span class="v-num">3</span><span class="v-txt">He sends it out through all the heaven, and his thunder-flame to the ends of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/4/" data-ref="Job 37:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/4/"><span class="v-num">4</span><span class="v-txt">After it a voice is sounding, thundering out the word of his power; he does not keep back his thunder-flames; from his mouth his voice is sounding.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/5/" data-ref="Job 37:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/5/"><span class="v-num">5</span><span class="v-txt">He does wonders, more than may be searched out; great things of which we have no knowledge;</span></a>
+<a class="v-row" href="/bible/bbe/job/37/6/" data-ref="Job 37:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/6/"><span class="v-num">6</span><span class="v-txt">For he says to the snow, Make the earth wet; and to the rain-storm, Come down.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/7/" data-ref="Job 37:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/7/"><span class="v-num">7</span><span class="v-txt">He puts an end to the work of every man, so that all may see his work.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/8/" data-ref="Job 37:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/8/"><span class="v-num">8</span><span class="v-txt">Then the beasts go into their holes, and take their rest.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/9/" data-ref="Job 37:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/9/"><span class="v-num">9</span><span class="v-txt">Out of its place comes the storm-wind, and the cold out of its store-houses.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/10/" data-ref="Job 37:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/10/"><span class="v-num">10</span><span class="v-txt">By the breath of God ice is made, and the wide waters are shut in.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/11/" data-ref="Job 37:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/11/"><span class="v-num">11</span><span class="v-txt">The thick cloud is weighted with thunder-flame, and the cloud sends out its light;</span></a>
+<a class="v-row" href="/bible/bbe/job/37/12/" data-ref="Job 37:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/12/"><span class="v-num">12</span><span class="v-txt">And it goes this way and that, round about, turning itself by his guiding, to do whatever he gives orders to be done, on the face of his world of men,</span></a>
+<a class="v-row" href="/bible/bbe/job/37/13/" data-ref="Job 37:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/13/"><span class="v-num">13</span><span class="v-txt">For a rod, or for a curse, or for mercy, causing it to come on the mark.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/14/" data-ref="Job 37:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/14/"><span class="v-num">14</span><span class="v-txt">Give ear to this, O Job, and keep quiet in your place; and take note of the wonders worked by God.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/15/" data-ref="Job 37:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/15/"><span class="v-num">15</span><span class="v-txt">Have you knowledge of God's ordering of his works, how he makes the light of his cloud to be seen?</span></a>
+<a class="v-row" href="/bible/bbe/job/37/16/" data-ref="Job 37:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/16/"><span class="v-num">16</span><span class="v-txt">Have you knowledge of the balancings of the clouds, the wonders of him who has all wisdom?</span></a>
+<a class="v-row" href="/bible/bbe/job/37/17/" data-ref="Job 37:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/17/"><span class="v-num">17</span><span class="v-txt">You, whose clothing is warm, when the earth is quiet because of the south wind,</span></a>
+<a class="v-row" href="/bible/bbe/job/37/18/" data-ref="Job 37:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/18/"><span class="v-num">18</span><span class="v-txt">Will you, with him, make the skies smooth, and strong as a polished looking-glass?</span></a>
+<a class="v-row" href="/bible/bbe/job/37/19/" data-ref="Job 37:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/19/"><span class="v-num">19</span><span class="v-txt">Make clear to me what we are to say to him; we are unable to put our cause before him, because of the dark.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/20/" data-ref="Job 37:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/20/"><span class="v-num">20</span><span class="v-txt">How may he have knowledge of my desire for talk with him? or did any man ever say, May destruction come on me?</span></a>
+<a class="v-row" href="/bible/bbe/job/37/21/" data-ref="Job 37:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/21/"><span class="v-num">21</span><span class="v-txt">And now the light is not seen, for it is dark because of the clouds; but a wind comes, clearing them away.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/22/" data-ref="Job 37:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/22/"><span class="v-num">22</span><span class="v-txt">A bright light comes out of the north; God's glory is greatly to be feared.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/23/" data-ref="Job 37:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/23/"><span class="v-num">23</span><span class="v-txt">There is no searching out of the Ruler of all: his strength and his judging are great; he is full of righteousness, doing no wrong.</span></a>
+<a class="v-row" href="/bible/bbe/job/37/24/" data-ref="Job 37:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/37/24/"><span class="v-num">24</span><span class="v-txt">For this cause men go in fear of him; he has no respect for any who are wise in heart.</span></a>
 
     
 <div class="app-cta">

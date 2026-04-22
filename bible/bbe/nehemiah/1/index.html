@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Nehemiah 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The history of Nehemiah, the son of Hacaliah. Now it came about, in the month Chislev, in the twentieth year, when I was in Shushan, the king's town,</span></div>
-<div class="v-row" data-ref="Nehemiah 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">That Hanani, one of my brothers, came with certain men from Judah; and in answer to my request for news of the Jews who had been prisoners and had got away, and of Jerusalem,</span></div>
-<div class="v-row" data-ref="Nehemiah 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They said to me, The small band of Jews now living there in the land are in great trouble and shame: the wall of Jerusalem has been broken down, and its doorways burned with fire.</span></div>
-<div class="v-row" data-ref="Nehemiah 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then, after hearing these words, for some days I gave myself up to weeping and sorrow, seated on the earth; and taking no food I made prayer to the God of heaven,</span></div>
-<div class="v-row" data-ref="Nehemiah 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And said, O Lord, the God of heaven, the great God, greatly to be feared, keeping faith and mercy with those who have love for him and are true to his laws:</span></div>
-<div class="v-row" data-ref="Nehemiah 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let your ear now take note and let your eyes be open, so that you may give ear to the prayer of your servant, which I make before you at this time, day and night, for the children of Israel, your servants, while I put before you the sins of the children of Israel, which we have done against you: truly, I and my father's people are sinners.</span></div>
-<div class="v-row" data-ref="Nehemiah 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">We have done great wrong against you, and have not kept the orders, the rules, and the decisions, which you gave to your servant Moses.</span></div>
-<div class="v-row" data-ref="Nehemiah 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Keep in mind, O Lord, the order you gave your servant Moses, saying, If you do wrong I will send you wandering among the peoples:</span></div>
-<div class="v-row" data-ref="Nehemiah 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But if you come back to me and keep my orders and do them, even if those of you who have been forced out are living in the farthest parts of heaven, I will get them from there, and take them back to the place marked out by me for the resting-place of my name.</span></div>
-<div class="v-row" data-ref="Nehemiah 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Now these are your servants and your people, whom you have made yours by your great power and by your strong hand.</span></div>
-<div class="v-row" data-ref="Nehemiah 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">O Lord, let your ear take note of the prayer of your servant, and of the prayers of your servants, who take delight in worshipping your name: give help, O Lord, to your servant this day, and let him have mercy in the eyes of this man. (Now I was the king's wine-servant.)</span></div>
+    <a class="v-row" href="/bible/bbe/nehemiah/1/1/" data-ref="Nehemiah 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/1/"><span class="v-num">1</span><span class="v-txt">The history of Nehemiah, the son of Hacaliah. Now it came about, in the month Chislev, in the twentieth year, when I was in Shushan, the king's town,</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/2/" data-ref="Nehemiah 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/2/"><span class="v-num">2</span><span class="v-txt">That Hanani, one of my brothers, came with certain men from Judah; and in answer to my request for news of the Jews who had been prisoners and had got away, and of Jerusalem,</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/3/" data-ref="Nehemiah 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/3/"><span class="v-num">3</span><span class="v-txt">They said to me, The small band of Jews now living there in the land are in great trouble and shame: the wall of Jerusalem has been broken down, and its doorways burned with fire.</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/4/" data-ref="Nehemiah 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/4/"><span class="v-num">4</span><span class="v-txt">Then, after hearing these words, for some days I gave myself up to weeping and sorrow, seated on the earth; and taking no food I made prayer to the God of heaven,</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/5/" data-ref="Nehemiah 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/5/"><span class="v-num">5</span><span class="v-txt">And said, O Lord, the God of heaven, the great God, greatly to be feared, keeping faith and mercy with those who have love for him and are true to his laws:</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/6/" data-ref="Nehemiah 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/6/"><span class="v-num">6</span><span class="v-txt">Let your ear now take note and let your eyes be open, so that you may give ear to the prayer of your servant, which I make before you at this time, day and night, for the children of Israel, your servants, while I put before you the sins of the children of Israel, which we have done against you: truly, I and my father's people are sinners.</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/7/" data-ref="Nehemiah 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/7/"><span class="v-num">7</span><span class="v-txt">We have done great wrong against you, and have not kept the orders, the rules, and the decisions, which you gave to your servant Moses.</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/8/" data-ref="Nehemiah 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/8/"><span class="v-num">8</span><span class="v-txt">Keep in mind, O Lord, the order you gave your servant Moses, saying, If you do wrong I will send you wandering among the peoples:</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/9/" data-ref="Nehemiah 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/9/"><span class="v-num">9</span><span class="v-txt">But if you come back to me and keep my orders and do them, even if those of you who have been forced out are living in the farthest parts of heaven, I will get them from there, and take them back to the place marked out by me for the resting-place of my name.</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/10/" data-ref="Nehemiah 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/10/"><span class="v-num">10</span><span class="v-txt">Now these are your servants and your people, whom you have made yours by your great power and by your strong hand.</span></a>
+<a class="v-row" href="/bible/bbe/nehemiah/1/11/" data-ref="Nehemiah 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/nehemiah/1/11/"><span class="v-num">11</span><span class="v-txt">O Lord, let your ear take note of the prayer of your servant, and of the prayers of your servants, who take delight in worshipping your name: give help, O Lord, to your servant this day, and let him have mercy in the eyes of this man. (Now I was the king's wine-servant.)</span></a>
 
     
 <div class="app-cta">

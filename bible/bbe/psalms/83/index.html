@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 83</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 83:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm. Of Asaph. O God, do not keep quiet: let your lips be open and take no rest, O God.</span></div>
-<div class="v-row" data-ref="Psalm 83:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For see! those who make war on you are out of control; your haters are lifting up their heads.</span></div>
-<div class="v-row" data-ref="Psalm 83:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">They have made wise designs against your people, talking together against those whom you keep in a secret place.</span></div>
-<div class="v-row" data-ref="Psalm 83:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They have said, Come, let us put an end to them as a nation; so that the name of Israel may go out of man's memory.</span></div>
-<div class="v-row" data-ref="Psalm 83:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For they have all come to an agreement; they are all joined together against you:</span></div>
-<div class="v-row" data-ref="Psalm 83:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The tents of Edom and the Ishmaelites; Moab and the Hagarites;</span></div>
-<div class="v-row" data-ref="Psalm 83:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Gebal and Ammon and Amalek; the Philistines and the people of Tyre;</span></div>
-<div class="v-row" data-ref="Psalm 83:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Assur is joined with them; they have become the support of the children of Lot. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 83:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Do to them what you did to the Midianites; what you did to Sisera and Jabin, at the stream of Kishon:</span></div>
-<div class="v-row" data-ref="Psalm 83:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who came to destruction at En-dor; their bodies became dust and waste.</span></div>
-<div class="v-row" data-ref="Psalm 83:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Make their chiefs like Oreb and Zeeb; and all their rulers like Zebah and Zalmunna:</span></div>
-<div class="v-row" data-ref="Psalm 83:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who have said, Let us take for our heritage the resting-place of God.</span></div>
-<div class="v-row" data-ref="Psalm 83:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">O my God, make them like the rolling dust; like dry stems before the wind.</span></div>
-<div class="v-row" data-ref="Psalm 83:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">As fire burning a wood, and as a flame causing fire on the mountains,</span></div>
-<div class="v-row" data-ref="Psalm 83:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So go after them with your strong wind, and let them be full of fear because of your storm.</span></div>
-<div class="v-row" data-ref="Psalm 83:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Let their faces be full of shame; so that they may give honour to your name, O Lord.</span></div>
-<div class="v-row" data-ref="Psalm 83:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Let them be overcome and troubled for ever; let them be put to shame and come to destruction;</span></div>
-<div class="v-row" data-ref="Psalm 83:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">So that men may see that you only, whose name is Yahweh, are Most High over all the earth.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/83/1/" data-ref="Psalm 83:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/1/"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm. Of Asaph. O God, do not keep quiet: let your lips be open and take no rest, O God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/2/" data-ref="Psalm 83:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/2/"><span class="v-num">2</span><span class="v-txt">For see! those who make war on you are out of control; your haters are lifting up their heads.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/3/" data-ref="Psalm 83:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/3/"><span class="v-num">3</span><span class="v-txt">They have made wise designs against your people, talking together against those whom you keep in a secret place.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/4/" data-ref="Psalm 83:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/4/"><span class="v-num">4</span><span class="v-txt">They have said, Come, let us put an end to them as a nation; so that the name of Israel may go out of man's memory.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/5/" data-ref="Psalm 83:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/5/"><span class="v-num">5</span><span class="v-txt">For they have all come to an agreement; they are all joined together against you:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/6/" data-ref="Psalm 83:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/6/"><span class="v-num">6</span><span class="v-txt">The tents of Edom and the Ishmaelites; Moab and the Hagarites;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/7/" data-ref="Psalm 83:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/7/"><span class="v-num">7</span><span class="v-txt">Gebal and Ammon and Amalek; the Philistines and the people of Tyre;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/8/" data-ref="Psalm 83:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/8/"><span class="v-num">8</span><span class="v-txt">Assur is joined with them; they have become the support of the children of Lot. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/9/" data-ref="Psalm 83:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/9/"><span class="v-num">9</span><span class="v-txt">Do to them what you did to the Midianites; what you did to Sisera and Jabin, at the stream of Kishon:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/10/" data-ref="Psalm 83:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/10/"><span class="v-num">10</span><span class="v-txt">Who came to destruction at En-dor; their bodies became dust and waste.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/11/" data-ref="Psalm 83:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/11/"><span class="v-num">11</span><span class="v-txt">Make their chiefs like Oreb and Zeeb; and all their rulers like Zebah and Zalmunna:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/12/" data-ref="Psalm 83:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/12/"><span class="v-num">12</span><span class="v-txt">Who have said, Let us take for our heritage the resting-place of God.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/13/" data-ref="Psalm 83:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/13/"><span class="v-num">13</span><span class="v-txt">O my God, make them like the rolling dust; like dry stems before the wind.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/14/" data-ref="Psalm 83:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/14/"><span class="v-num">14</span><span class="v-txt">As fire burning a wood, and as a flame causing fire on the mountains,</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/15/" data-ref="Psalm 83:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/15/"><span class="v-num">15</span><span class="v-txt">So go after them with your strong wind, and let them be full of fear because of your storm.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/16/" data-ref="Psalm 83:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/16/"><span class="v-num">16</span><span class="v-txt">Let their faces be full of shame; so that they may give honour to your name, O Lord.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/17/" data-ref="Psalm 83:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/17/"><span class="v-num">17</span><span class="v-txt">Let them be overcome and troubled for ever; let them be put to shame and come to destruction;</span></a>
+<a class="v-row" href="/bible/bbe/psalms/83/18/" data-ref="Psalm 83:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/83/18/"><span class="v-num">18</span><span class="v-txt">So that men may see that you only, whose name is Yahweh, are Most High over all the earth.</span></a>
 
     
 <div class="app-cta">

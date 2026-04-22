@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 25</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 25:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">These are also proverbs of Solomon, which the men of Hezekiah king of Judah copied out.</span></div>
-<div class="v-row" data-ref="Proverbs 25:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">It is the glory of God to conceal a thing: but the honour of kings is to search out a matter.</span></div>
-<div class="v-row" data-ref="Proverbs 25:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The heaven for height, and the earth for depth, and the heart of kings is unsearchable.</span></div>
-<div class="v-row" data-ref="Proverbs 25:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Take away the dross from the silver, and there shall come forth a vessel for the finer.</span></div>
-<div class="v-row" data-ref="Proverbs 25:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Take away the wicked from before the king, and his throne shall be established in righteousness.</span></div>
-<div class="v-row" data-ref="Proverbs 25:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Put not forth thyself in the presence of the king, and stand not in the place of great men:</span></div>
-<div class="v-row" data-ref="Proverbs 25:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For better it is that it be said unto thee, Come up hither; than that thou shouldest be put lower in the presence of the prince whom thine eyes have seen.</span></div>
-<div class="v-row" data-ref="Proverbs 25:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.</span></div>
-<div class="v-row" data-ref="Proverbs 25:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Debate thy cause with thy neighbour himself; and discover not a secret to another:</span></div>
-<div class="v-row" data-ref="Proverbs 25:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Lest he that heareth it put thee to shame, and thine infamy turn not away.</span></div>
-<div class="v-row" data-ref="Proverbs 25:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">A word fitly spoken is like apples of gold in pictures of silver.</span></div>
-<div class="v-row" data-ref="Proverbs 25:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">As an earring of gold, and an ornament of fine gold, so is a wise reprover upon an obedient ear.</span></div>
-<div class="v-row" data-ref="Proverbs 25:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">As the cold of snow in the time of harvest, so is a faithful messenger to them that send him: for he refresheth the soul of his masters.</span></div>
-<div class="v-row" data-ref="Proverbs 25:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Whoso boasteth himself of a false gift is like clouds and wind without rain.</span></div>
-<div class="v-row" data-ref="Proverbs 25:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">By long forbearing is a prince persuaded, and a soft tongue breaketh the bone.</span></div>
-<div class="v-row" data-ref="Proverbs 25:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.</span></div>
-<div class="v-row" data-ref="Proverbs 25:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Withdraw thy foot from thy neighbour's house; lest he be weary of thee, and so hate thee.</span></div>
-<div class="v-row" data-ref="Proverbs 25:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">A man that beareth false witness against his neighbour is a maul, and a sword, and a sharp arrow.</span></div>
-<div class="v-row" data-ref="Proverbs 25:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Confidence in an unfaithful man in time of trouble is like a broken tooth, and a foot out of joint.</span></div>
-<div class="v-row" data-ref="Proverbs 25:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">As he that taketh away a garment in cold weather, and as vinegar upon nitre, so is he that singeth songs to an heavy heart.</span></div>
-<div class="v-row" data-ref="Proverbs 25:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">If thine enemy be hungry, give him bread to eat; and if he be thirsty, give him water to drink:</span></div>
-<div class="v-row" data-ref="Proverbs 25:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">For thou shalt heap coals of fire upon his head, and the LORD shall reward thee.</span></div>
-<div class="v-row" data-ref="Proverbs 25:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The north wind driveth away rain: so doth an angry countenance a backbiting tongue.</span></div>
-<div class="v-row" data-ref="Proverbs 25:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">It is better to dwell in the corner of the housetop, than with a brawling woman and in a wide house.</span></div>
-<div class="v-row" data-ref="Proverbs 25:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">As cold waters to a thirsty soul, so is good news from a far country.</span></div>
-<div class="v-row" data-ref="Proverbs 25:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">A righteous man falling down before the wicked is as a troubled fountain, and a corrupt spring.</span></div>
-<div class="v-row" data-ref="Proverbs 25:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">It is not good to eat much honey: so for men to search their own glory is not glory.</span></div>
-<div class="v-row" data-ref="Proverbs 25:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">He that hath no rule over his own spirit is like a city that is broken down, and without walls.</span></div>
+    <a class="v-row" href="/bible/kjv/proverbs/25/1/" data-ref="Proverbs 25:1 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/1/"><span class="v-num">1</span><span class="v-txt">These are also proverbs of Solomon, which the men of Hezekiah king of Judah copied out.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/2/" data-ref="Proverbs 25:2 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/2/"><span class="v-num">2</span><span class="v-txt">It is the glory of God to conceal a thing: but the honour of kings is to search out a matter.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/3/" data-ref="Proverbs 25:3 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/3/"><span class="v-num">3</span><span class="v-txt">The heaven for height, and the earth for depth, and the heart of kings is unsearchable.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/4/" data-ref="Proverbs 25:4 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/4/"><span class="v-num">4</span><span class="v-txt">Take away the dross from the silver, and there shall come forth a vessel for the finer.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/5/" data-ref="Proverbs 25:5 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/5/"><span class="v-num">5</span><span class="v-txt">Take away the wicked from before the king, and his throne shall be established in righteousness.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/6/" data-ref="Proverbs 25:6 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/6/"><span class="v-num">6</span><span class="v-txt">Put not forth thyself in the presence of the king, and stand not in the place of great men:</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/7/" data-ref="Proverbs 25:7 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/7/"><span class="v-num">7</span><span class="v-txt">For better it is that it be said unto thee, Come up hither; than that thou shouldest be put lower in the presence of the prince whom thine eyes have seen.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/8/" data-ref="Proverbs 25:8 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/8/"><span class="v-num">8</span><span class="v-txt">Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/9/" data-ref="Proverbs 25:9 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/9/"><span class="v-num">9</span><span class="v-txt">Debate thy cause with thy neighbour himself; and discover not a secret to another:</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/10/" data-ref="Proverbs 25:10 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/10/"><span class="v-num">10</span><span class="v-txt">Lest he that heareth it put thee to shame, and thine infamy turn not away.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/11/" data-ref="Proverbs 25:11 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/11/"><span class="v-num">11</span><span class="v-txt">A word fitly spoken is like apples of gold in pictures of silver.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/12/" data-ref="Proverbs 25:12 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/12/"><span class="v-num">12</span><span class="v-txt">As an earring of gold, and an ornament of fine gold, so is a wise reprover upon an obedient ear.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/13/" data-ref="Proverbs 25:13 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/13/"><span class="v-num">13</span><span class="v-txt">As the cold of snow in the time of harvest, so is a faithful messenger to them that send him: for he refresheth the soul of his masters.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/14/" data-ref="Proverbs 25:14 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/14/"><span class="v-num">14</span><span class="v-txt">Whoso boasteth himself of a false gift is like clouds and wind without rain.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/15/" data-ref="Proverbs 25:15 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/15/"><span class="v-num">15</span><span class="v-txt">By long forbearing is a prince persuaded, and a soft tongue breaketh the bone.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/16/" data-ref="Proverbs 25:16 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/16/"><span class="v-num">16</span><span class="v-txt">Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/17/" data-ref="Proverbs 25:17 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/17/"><span class="v-num">17</span><span class="v-txt">Withdraw thy foot from thy neighbour's house; lest he be weary of thee, and so hate thee.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/18/" data-ref="Proverbs 25:18 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/18/"><span class="v-num">18</span><span class="v-txt">A man that beareth false witness against his neighbour is a maul, and a sword, and a sharp arrow.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/19/" data-ref="Proverbs 25:19 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/19/"><span class="v-num">19</span><span class="v-txt">Confidence in an unfaithful man in time of trouble is like a broken tooth, and a foot out of joint.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/20/" data-ref="Proverbs 25:20 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/20/"><span class="v-num">20</span><span class="v-txt">As he that taketh away a garment in cold weather, and as vinegar upon nitre, so is he that singeth songs to an heavy heart.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/21/" data-ref="Proverbs 25:21 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/21/"><span class="v-num">21</span><span class="v-txt">If thine enemy be hungry, give him bread to eat; and if he be thirsty, give him water to drink:</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/22/" data-ref="Proverbs 25:22 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/22/"><span class="v-num">22</span><span class="v-txt">For thou shalt heap coals of fire upon his head, and the LORD shall reward thee.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/23/" data-ref="Proverbs 25:23 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/23/"><span class="v-num">23</span><span class="v-txt">The north wind driveth away rain: so doth an angry countenance a backbiting tongue.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/24/" data-ref="Proverbs 25:24 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/24/"><span class="v-num">24</span><span class="v-txt">It is better to dwell in the corner of the housetop, than with a brawling woman and in a wide house.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/25/" data-ref="Proverbs 25:25 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/25/"><span class="v-num">25</span><span class="v-txt">As cold waters to a thirsty soul, so is good news from a far country.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/26/" data-ref="Proverbs 25:26 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/26/"><span class="v-num">26</span><span class="v-txt">A righteous man falling down before the wicked is as a troubled fountain, and a corrupt spring.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/27/" data-ref="Proverbs 25:27 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/27/"><span class="v-num">27</span><span class="v-txt">It is not good to eat much honey: so for men to search their own glory is not glory.</span></a>
+<a class="v-row" href="/bible/kjv/proverbs/25/28/" data-ref="Proverbs 25:28 (King James Version)" data-verse-url="/bible/kjv/proverbs/25/28/"><span class="v-num">28</span><span class="v-txt">He that hath no rule over his own spirit is like a city that is broken down, and without walls.</span></a>
 
     
 <div class="app-cta">

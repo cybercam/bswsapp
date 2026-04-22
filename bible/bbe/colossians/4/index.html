@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Colossians 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Masters, give your servants what is right and equal, conscious that you have a Master in heaven.</span></div>
-<div class="v-row" data-ref="Colossians 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Give yourselves to prayer at all times, keeping watch with praise;</span></div>
-<div class="v-row" data-ref="Colossians 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And making prayer for us, that God may give us an open door for the preaching of the word, the secret of Christ, for which I am now in chains;</span></div>
-<div class="v-row" data-ref="Colossians 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So that I may make it clear, as it is right for me to do.</span></div>
-<div class="v-row" data-ref="Colossians 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Be wise in your behaviour to those who are outside, making good use of the time.</span></div>
-<div class="v-row" data-ref="Colossians 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let your talk be with grace, mixed with salt, so that you may be able to give an answer to everyone.</span></div>
-<div class="v-row" data-ref="Colossians 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Tychicus will give you news of all my business: he is a dear brother and true servant and helper in the word;</span></div>
-<div class="v-row" data-ref="Colossians 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And I have sent him to you for this very purpose, so that you may have news of how we are, and so that he may give your hearts comfort;</span></div>
-<div class="v-row" data-ref="Colossians 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And with him I have sent Onesimus, the true and well-loved brother, who is one of you. They will give you word of everything which is taking place here.</span></div>
-<div class="v-row" data-ref="Colossians 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Aristarchus, my brother-prisoner, sends his love to you, and Mark, a relation of Barnabas (about whom you have been given orders: if he comes to you, be kind to him),</span></div>
-<div class="v-row" data-ref="Colossians 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Jesus, whose other name is Justus; these are of the circumcision: they are my only brother-workers for the kingdom of God, who have been a comfort to me.</span></div>
-<div class="v-row" data-ref="Colossians 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Epaphras, who is one of you, a servant of Christ Jesus, sends you his love, ever taking thought for you in his prayers, that you may be complete and fully certain of all the purpose of God.</span></div>
-<div class="v-row" data-ref="Colossians 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For I give witness of him that he has undergone much trouble for you and for those in Laodicea and in Hierapolis.</span></div>
-<div class="v-row" data-ref="Colossians 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Luke, our well-loved medical friend, and Demas, send you their love.</span></div>
-<div class="v-row" data-ref="Colossians 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Give my love to the brothers in Laodicea and to Nymphas and the church in their house.</span></div>
-<div class="v-row" data-ref="Colossians 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And when this letter has been made public among you, let the same be done in the church of Laodicea; and see that you have the letter from Laodicea.</span></div>
-<div class="v-row" data-ref="Colossians 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Say to Archippus, See that you do the work which the Lord has given you to do.</span></div>
-<div class="v-row" data-ref="Colossians 4:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I, Paul, give you this word of love in my handwriting. Keep in memory that I am a prisoner. Grace be with you.</span></div>
+    <a class="v-row" href="/bible/bbe/colossians/4/1/" data-ref="Colossians 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/1/"><span class="v-num">1</span><span class="v-txt">Masters, give your servants what is right and equal, conscious that you have a Master in heaven.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/2/" data-ref="Colossians 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/2/"><span class="v-num">2</span><span class="v-txt">Give yourselves to prayer at all times, keeping watch with praise;</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/3/" data-ref="Colossians 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/3/"><span class="v-num">3</span><span class="v-txt">And making prayer for us, that God may give us an open door for the preaching of the word, the secret of Christ, for which I am now in chains;</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/4/" data-ref="Colossians 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/4/"><span class="v-num">4</span><span class="v-txt">So that I may make it clear, as it is right for me to do.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/5/" data-ref="Colossians 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/5/"><span class="v-num">5</span><span class="v-txt">Be wise in your behaviour to those who are outside, making good use of the time.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/6/" data-ref="Colossians 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/6/"><span class="v-num">6</span><span class="v-txt">Let your talk be with grace, mixed with salt, so that you may be able to give an answer to everyone.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/7/" data-ref="Colossians 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/7/"><span class="v-num">7</span><span class="v-txt">Tychicus will give you news of all my business: he is a dear brother and true servant and helper in the word;</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/8/" data-ref="Colossians 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/8/"><span class="v-num">8</span><span class="v-txt">And I have sent him to you for this very purpose, so that you may have news of how we are, and so that he may give your hearts comfort;</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/9/" data-ref="Colossians 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/9/"><span class="v-num">9</span><span class="v-txt">And with him I have sent Onesimus, the true and well-loved brother, who is one of you. They will give you word of everything which is taking place here.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/10/" data-ref="Colossians 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/10/"><span class="v-num">10</span><span class="v-txt">Aristarchus, my brother-prisoner, sends his love to you, and Mark, a relation of Barnabas (about whom you have been given orders: if he comes to you, be kind to him),</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/11/" data-ref="Colossians 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/11/"><span class="v-num">11</span><span class="v-txt">And Jesus, whose other name is Justus; these are of the circumcision: they are my only brother-workers for the kingdom of God, who have been a comfort to me.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/12/" data-ref="Colossians 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/12/"><span class="v-num">12</span><span class="v-txt">Epaphras, who is one of you, a servant of Christ Jesus, sends you his love, ever taking thought for you in his prayers, that you may be complete and fully certain of all the purpose of God.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/13/" data-ref="Colossians 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/13/"><span class="v-num">13</span><span class="v-txt">For I give witness of him that he has undergone much trouble for you and for those in Laodicea and in Hierapolis.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/14/" data-ref="Colossians 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/14/"><span class="v-num">14</span><span class="v-txt">Luke, our well-loved medical friend, and Demas, send you their love.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/15/" data-ref="Colossians 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/15/"><span class="v-num">15</span><span class="v-txt">Give my love to the brothers in Laodicea and to Nymphas and the church in their house.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/16/" data-ref="Colossians 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/16/"><span class="v-num">16</span><span class="v-txt">And when this letter has been made public among you, let the same be done in the church of Laodicea; and see that you have the letter from Laodicea.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/17/" data-ref="Colossians 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/17/"><span class="v-num">17</span><span class="v-txt">Say to Archippus, See that you do the work which the Lord has given you to do.</span></a>
+<a class="v-row" href="/bible/bbe/colossians/4/18/" data-ref="Colossians 4:18 (Bible in Basic English)" data-verse-url="/bible/bbe/colossians/4/18/"><span class="v-num">18</span><span class="v-txt">I, Paul, give you this word of love in my handwriting. Keep in memory that I am a prisoner. Grace be with you.</span></a>
 
     
 <div class="app-cta">

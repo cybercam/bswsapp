@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 35</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 35:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Contend, Yahweh, with those who contend with me. Fight against those who fight against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Take hold of shield and buckler, And stand up for my help.</span></div>
-<div class="v-row" data-ref="Psalm 35:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Brandish the spear and block those who pursue me. Tell my soul, "I am your salvation."</span></div>
-<div class="v-row" data-ref="Psalm 35:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Let those who seek after my soul be disappointed and brought to dishonor. Let those who plot my ruin be turned back and confounded.</span></div>
-<div class="v-row" data-ref="Psalm 35:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let them be as chaff before the wind, Yahweh's angel driving them on.</span></div>
-<div class="v-row" data-ref="Psalm 35:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let their way be dark and slippery, Yahweh's angel pursuing them.</span></div>
-<div class="v-row" data-ref="Psalm 35:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For without cause they have hidden their net in a pit for me. Without cause they have dug a pit for my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let destruction come on him unawares. Let his net that he has hidden catch himself. Let him fall into that destruction.</span></div>
-<div class="v-row" data-ref="Psalm 35:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My soul shall be joyful in Yahweh. It shall rejoice in his salvation.</span></div>
-<div class="v-row" data-ref="Psalm 35:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All my bones shall say, "Yahweh, who is like you, Who delivers the poor from him who is too strong for him, Yes, the poor and the needy from him who robs him?"</span></div>
-<div class="v-row" data-ref="Psalm 35:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Unrighteous witnesses rise up. They ask me about things that I don't know about.</span></div>
-<div class="v-row" data-ref="Psalm 35:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">They reward me evil for good, To the bereaving of my soul.</span></div>
-<div class="v-row" data-ref="Psalm 35:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But as for me, when they were sick, my clothing was sackcloth. I afflicted my soul with fasting. My prayer returned into my own bosom.</span></div>
-<div class="v-row" data-ref="Psalm 35:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I behaved myself as though it had been my friend or my brother. I bowed down mourning, as one who mourns his mother.</span></div>
-<div class="v-row" data-ref="Psalm 35:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But in my adversity, they rejoiced, and gathered themselves together. The attackers gathered themselves together against me, and I didn't know it. They tore at me, and didn't cease.</span></div>
-<div class="v-row" data-ref="Psalm 35:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Like the profane mockers in feasts, They gnashed their teeth at me.</span></div>
-<div class="v-row" data-ref="Psalm 35:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Lord, how long will you look on? Rescue my soul from their destruction, My precious life from the lions.</span></div>
-<div class="v-row" data-ref="Psalm 35:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I will give you thanks in the great assembly. I will praise you among many people.</span></div>
-<div class="v-row" data-ref="Psalm 35:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Don't let those who are my enemies wrongfully rejoice over me; Neither let them wink with the eye who hate me without a cause.</span></div>
-<div class="v-row" data-ref="Psalm 35:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For they don't speak peace, But they devise deceitful words against those who are quiet in the land.</span></div>
-<div class="v-row" data-ref="Psalm 35:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Yes, they opened their mouth wide against me. They said, "Aha! Aha! Our eye has seen it!"</span></div>
-<div class="v-row" data-ref="Psalm 35:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">You have seen it, Yahweh. Don't keep silent. Lord, don't be far from me.</span></div>
-<div class="v-row" data-ref="Psalm 35:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Wake up! Rise up to defend me, my God! My Lord, contend for me!</span></div>
-<div class="v-row" data-ref="Psalm 35:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Vindicate me, Yahweh my God, according to your righteousness; Don't let them gloat over me.</span></div>
-<div class="v-row" data-ref="Psalm 35:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Don't let them say in their heart, "Aha! That's the way we want it!" Don't let them say, "We have swallowed him up!"</span></div>
-<div class="v-row" data-ref="Psalm 35:26 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Let them be disappointed and confounded together who rejoice at my calamity. Let them be clothed with shame and dishonor who magnify themselves against me.</span></div>
-<div class="v-row" data-ref="Psalm 35:27 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Let them shout for joy and be glad, who favor my righteous cause. Yes, let them say continually, "Yahweh be magnified, Who has pleasure in the prosperity of his servant!"</span></div>
-<div class="v-row" data-ref="Psalm 35:28 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">My tongue shall talk about your righteousness and about your praise all day long.</span></div>
+    <a class="v-row" href="/bible/web/psalms/35/1/" data-ref="Psalm 35:1 (World English Bible)" data-verse-url="/bible/web/psalms/35/1/"><span class="v-num">1</span><span class="v-txt">Contend, Yahweh, with those who contend with me. Fight against those who fight against me.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/2/" data-ref="Psalm 35:2 (World English Bible)" data-verse-url="/bible/web/psalms/35/2/"><span class="v-num">2</span><span class="v-txt">Take hold of shield and buckler, And stand up for my help.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/3/" data-ref="Psalm 35:3 (World English Bible)" data-verse-url="/bible/web/psalms/35/3/"><span class="v-num">3</span><span class="v-txt">Brandish the spear and block those who pursue me. Tell my soul, "I am your salvation."</span></a>
+<a class="v-row" href="/bible/web/psalms/35/4/" data-ref="Psalm 35:4 (World English Bible)" data-verse-url="/bible/web/psalms/35/4/"><span class="v-num">4</span><span class="v-txt">Let those who seek after my soul be disappointed and brought to dishonor. Let those who plot my ruin be turned back and confounded.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/5/" data-ref="Psalm 35:5 (World English Bible)" data-verse-url="/bible/web/psalms/35/5/"><span class="v-num">5</span><span class="v-txt">Let them be as chaff before the wind, Yahweh's angel driving them on.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/6/" data-ref="Psalm 35:6 (World English Bible)" data-verse-url="/bible/web/psalms/35/6/"><span class="v-num">6</span><span class="v-txt">Let their way be dark and slippery, Yahweh's angel pursuing them.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/7/" data-ref="Psalm 35:7 (World English Bible)" data-verse-url="/bible/web/psalms/35/7/"><span class="v-num">7</span><span class="v-txt">For without cause they have hidden their net in a pit for me. Without cause they have dug a pit for my soul.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/8/" data-ref="Psalm 35:8 (World English Bible)" data-verse-url="/bible/web/psalms/35/8/"><span class="v-num">8</span><span class="v-txt">Let destruction come on him unawares. Let his net that he has hidden catch himself. Let him fall into that destruction.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/9/" data-ref="Psalm 35:9 (World English Bible)" data-verse-url="/bible/web/psalms/35/9/"><span class="v-num">9</span><span class="v-txt">My soul shall be joyful in Yahweh. It shall rejoice in his salvation.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/10/" data-ref="Psalm 35:10 (World English Bible)" data-verse-url="/bible/web/psalms/35/10/"><span class="v-num">10</span><span class="v-txt">All my bones shall say, "Yahweh, who is like you, Who delivers the poor from him who is too strong for him, Yes, the poor and the needy from him who robs him?"</span></a>
+<a class="v-row" href="/bible/web/psalms/35/11/" data-ref="Psalm 35:11 (World English Bible)" data-verse-url="/bible/web/psalms/35/11/"><span class="v-num">11</span><span class="v-txt">Unrighteous witnesses rise up. They ask me about things that I don't know about.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/12/" data-ref="Psalm 35:12 (World English Bible)" data-verse-url="/bible/web/psalms/35/12/"><span class="v-num">12</span><span class="v-txt">They reward me evil for good, To the bereaving of my soul.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/13/" data-ref="Psalm 35:13 (World English Bible)" data-verse-url="/bible/web/psalms/35/13/"><span class="v-num">13</span><span class="v-txt">But as for me, when they were sick, my clothing was sackcloth. I afflicted my soul with fasting. My prayer returned into my own bosom.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/14/" data-ref="Psalm 35:14 (World English Bible)" data-verse-url="/bible/web/psalms/35/14/"><span class="v-num">14</span><span class="v-txt">I behaved myself as though it had been my friend or my brother. I bowed down mourning, as one who mourns his mother.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/15/" data-ref="Psalm 35:15 (World English Bible)" data-verse-url="/bible/web/psalms/35/15/"><span class="v-num">15</span><span class="v-txt">But in my adversity, they rejoiced, and gathered themselves together. The attackers gathered themselves together against me, and I didn't know it. They tore at me, and didn't cease.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/16/" data-ref="Psalm 35:16 (World English Bible)" data-verse-url="/bible/web/psalms/35/16/"><span class="v-num">16</span><span class="v-txt">Like the profane mockers in feasts, They gnashed their teeth at me.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/17/" data-ref="Psalm 35:17 (World English Bible)" data-verse-url="/bible/web/psalms/35/17/"><span class="v-num">17</span><span class="v-txt">Lord, how long will you look on? Rescue my soul from their destruction, My precious life from the lions.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/18/" data-ref="Psalm 35:18 (World English Bible)" data-verse-url="/bible/web/psalms/35/18/"><span class="v-num">18</span><span class="v-txt">I will give you thanks in the great assembly. I will praise you among many people.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/19/" data-ref="Psalm 35:19 (World English Bible)" data-verse-url="/bible/web/psalms/35/19/"><span class="v-num">19</span><span class="v-txt">Don't let those who are my enemies wrongfully rejoice over me; Neither let them wink with the eye who hate me without a cause.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/20/" data-ref="Psalm 35:20 (World English Bible)" data-verse-url="/bible/web/psalms/35/20/"><span class="v-num">20</span><span class="v-txt">For they don't speak peace, But they devise deceitful words against those who are quiet in the land.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/21/" data-ref="Psalm 35:21 (World English Bible)" data-verse-url="/bible/web/psalms/35/21/"><span class="v-num">21</span><span class="v-txt">Yes, they opened their mouth wide against me. They said, "Aha! Aha! Our eye has seen it!"</span></a>
+<a class="v-row" href="/bible/web/psalms/35/22/" data-ref="Psalm 35:22 (World English Bible)" data-verse-url="/bible/web/psalms/35/22/"><span class="v-num">22</span><span class="v-txt">You have seen it, Yahweh. Don't keep silent. Lord, don't be far from me.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/23/" data-ref="Psalm 35:23 (World English Bible)" data-verse-url="/bible/web/psalms/35/23/"><span class="v-num">23</span><span class="v-txt">Wake up! Rise up to defend me, my God! My Lord, contend for me!</span></a>
+<a class="v-row" href="/bible/web/psalms/35/24/" data-ref="Psalm 35:24 (World English Bible)" data-verse-url="/bible/web/psalms/35/24/"><span class="v-num">24</span><span class="v-txt">Vindicate me, Yahweh my God, according to your righteousness; Don't let them gloat over me.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/25/" data-ref="Psalm 35:25 (World English Bible)" data-verse-url="/bible/web/psalms/35/25/"><span class="v-num">25</span><span class="v-txt">Don't let them say in their heart, "Aha! That's the way we want it!" Don't let them say, "We have swallowed him up!"</span></a>
+<a class="v-row" href="/bible/web/psalms/35/26/" data-ref="Psalm 35:26 (World English Bible)" data-verse-url="/bible/web/psalms/35/26/"><span class="v-num">26</span><span class="v-txt">Let them be disappointed and confounded together who rejoice at my calamity. Let them be clothed with shame and dishonor who magnify themselves against me.</span></a>
+<a class="v-row" href="/bible/web/psalms/35/27/" data-ref="Psalm 35:27 (World English Bible)" data-verse-url="/bible/web/psalms/35/27/"><span class="v-num">27</span><span class="v-txt">Let them shout for joy and be glad, who favor my righteous cause. Yes, let them say continually, "Yahweh be magnified, Who has pleasure in the prosperity of his servant!"</span></a>
+<a class="v-row" href="/bible/web/psalms/35/28/" data-ref="Psalm 35:28 (World English Bible)" data-verse-url="/bible/web/psalms/35/28/"><span class="v-num">28</span><span class="v-txt">My tongue shall talk about your righteousness and about your praise all day long.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 10</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 10:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Why do you stand far off, Yahweh? Why do you hide yourself in times of trouble?</span></div>
-<div class="v-row" data-ref="Psalm 10:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">In arrogance, the wicked hunt down the weak; They are caught in the schemes that they devise.</span></div>
-<div class="v-row" data-ref="Psalm 10:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the wicked boasts of his heart's cravings, He blesses the greedy, and condemns Yahweh.</span></div>
-<div class="v-row" data-ref="Psalm 10:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The wicked, in the pride of his face, Has no room in his thoughts for God.</span></div>
-<div class="v-row" data-ref="Psalm 10:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">His ways are prosperous at all times; He is haughty, and your laws are far from his sight: As for all his adversaries, he sneers at them.</span></div>
-<div class="v-row" data-ref="Psalm 10:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">He says in his heart, "I shall not be shaken; For generations I shall have no trouble."</span></div>
-<div class="v-row" data-ref="Psalm 10:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing, deceit, and oppression. Under his tongue is mischief and iniquity.</span></div>
-<div class="v-row" data-ref="Psalm 10:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He lies in wait near the villages. From ambushes, he murders the innocent. His eyes are secretly set against the helpless.</span></div>
-<div class="v-row" data-ref="Psalm 10:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He lurks in secret as a lion in his ambush. He lies in wait to catch the helpless. He catches the helpless, when he draws him in his net.</span></div>
-<div class="v-row" data-ref="Psalm 10:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The helpless are crushed, they collapse, They fall under his strength.</span></div>
-<div class="v-row" data-ref="Psalm 10:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He says in his heart, "God has forgotten. He hides his face. He will never see it."</span></div>
-<div class="v-row" data-ref="Psalm 10:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Arise, Yahweh! God, lift up your hand! Don't forget the helpless.</span></div>
-<div class="v-row" data-ref="Psalm 10:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Why does the wicked person condemn God, And say in his heart, "God won't call me into account?"</span></div>
-<div class="v-row" data-ref="Psalm 10:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But you do see trouble and grief; You consider it to take it into your hand. You help the victim and the fatherless.</span></div>
-<div class="v-row" data-ref="Psalm 10:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Break the arm of the wicked. As for the evil man, seek out his wickedness until you find none.</span></div>
-<div class="v-row" data-ref="Psalm 10:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Yahweh is King forever and ever! The nations will perish out of his land.</span></div>
-<div class="v-row" data-ref="Psalm 10:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Yahweh, you have heard the desire of the humble. You will prepare their heart. You will cause your ear to hear,</span></div>
-<div class="v-row" data-ref="Psalm 10:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To judge the fatherless and the oppressed, That man who is of the earth may terrify no more.</span></div>
+    <a class="v-row" href="/bible/web/psalms/10/1/" data-ref="Psalm 10:1 (World English Bible)" data-verse-url="/bible/web/psalms/10/1/"><span class="v-num">1</span><span class="v-txt">Why do you stand far off, Yahweh? Why do you hide yourself in times of trouble?</span></a>
+<a class="v-row" href="/bible/web/psalms/10/2/" data-ref="Psalm 10:2 (World English Bible)" data-verse-url="/bible/web/psalms/10/2/"><span class="v-num">2</span><span class="v-txt">In arrogance, the wicked hunt down the weak; They are caught in the schemes that they devise.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/3/" data-ref="Psalm 10:3 (World English Bible)" data-verse-url="/bible/web/psalms/10/3/"><span class="v-num">3</span><span class="v-txt">For the wicked boasts of his heart's cravings, He blesses the greedy, and condemns Yahweh.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/4/" data-ref="Psalm 10:4 (World English Bible)" data-verse-url="/bible/web/psalms/10/4/"><span class="v-num">4</span><span class="v-txt">The wicked, in the pride of his face, Has no room in his thoughts for God.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/5/" data-ref="Psalm 10:5 (World English Bible)" data-verse-url="/bible/web/psalms/10/5/"><span class="v-num">5</span><span class="v-txt">His ways are prosperous at all times; He is haughty, and your laws are far from his sight: As for all his adversaries, he sneers at them.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/6/" data-ref="Psalm 10:6 (World English Bible)" data-verse-url="/bible/web/psalms/10/6/"><span class="v-num">6</span><span class="v-txt">He says in his heart, "I shall not be shaken; For generations I shall have no trouble."</span></a>
+<a class="v-row" href="/bible/web/psalms/10/7/" data-ref="Psalm 10:7 (World English Bible)" data-verse-url="/bible/web/psalms/10/7/"><span class="v-num">7</span><span class="v-txt">His mouth is full of cursing, deceit, and oppression. Under his tongue is mischief and iniquity.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/8/" data-ref="Psalm 10:8 (World English Bible)" data-verse-url="/bible/web/psalms/10/8/"><span class="v-num">8</span><span class="v-txt">He lies in wait near the villages. From ambushes, he murders the innocent. His eyes are secretly set against the helpless.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/9/" data-ref="Psalm 10:9 (World English Bible)" data-verse-url="/bible/web/psalms/10/9/"><span class="v-num">9</span><span class="v-txt">He lurks in secret as a lion in his ambush. He lies in wait to catch the helpless. He catches the helpless, when he draws him in his net.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/10/" data-ref="Psalm 10:10 (World English Bible)" data-verse-url="/bible/web/psalms/10/10/"><span class="v-num">10</span><span class="v-txt">The helpless are crushed, they collapse, They fall under his strength.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/11/" data-ref="Psalm 10:11 (World English Bible)" data-verse-url="/bible/web/psalms/10/11/"><span class="v-num">11</span><span class="v-txt">He says in his heart, "God has forgotten. He hides his face. He will never see it."</span></a>
+<a class="v-row" href="/bible/web/psalms/10/12/" data-ref="Psalm 10:12 (World English Bible)" data-verse-url="/bible/web/psalms/10/12/"><span class="v-num">12</span><span class="v-txt">Arise, Yahweh! God, lift up your hand! Don't forget the helpless.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/13/" data-ref="Psalm 10:13 (World English Bible)" data-verse-url="/bible/web/psalms/10/13/"><span class="v-num">13</span><span class="v-txt">Why does the wicked person condemn God, And say in his heart, "God won't call me into account?"</span></a>
+<a class="v-row" href="/bible/web/psalms/10/14/" data-ref="Psalm 10:14 (World English Bible)" data-verse-url="/bible/web/psalms/10/14/"><span class="v-num">14</span><span class="v-txt">But you do see trouble and grief; You consider it to take it into your hand. You help the victim and the fatherless.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/15/" data-ref="Psalm 10:15 (World English Bible)" data-verse-url="/bible/web/psalms/10/15/"><span class="v-num">15</span><span class="v-txt">Break the arm of the wicked. As for the evil man, seek out his wickedness until you find none.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/16/" data-ref="Psalm 10:16 (World English Bible)" data-verse-url="/bible/web/psalms/10/16/"><span class="v-num">16</span><span class="v-txt">Yahweh is King forever and ever! The nations will perish out of his land.</span></a>
+<a class="v-row" href="/bible/web/psalms/10/17/" data-ref="Psalm 10:17 (World English Bible)" data-verse-url="/bible/web/psalms/10/17/"><span class="v-num">17</span><span class="v-txt">Yahweh, you have heard the desire of the humble. You will prepare their heart. You will cause your ear to hear,</span></a>
+<a class="v-row" href="/bible/web/psalms/10/18/" data-ref="Psalm 10:18 (World English Bible)" data-verse-url="/bible/web/psalms/10/18/"><span class="v-num">18</span><span class="v-txt">To judge the fatherless and the oppressed, That man who is of the earth may terrify no more.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 57</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 57:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The upright man goes to his death, and no one gives a thought to it; and god-fearing men are taken away, and no one is troubled by it; for the upright man is taken away because of evil-doing, and goes into peace.</span></div>
-<div class="v-row" data-ref="Isaiah 57:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They are at rest in their last resting-places, every one going straight before him.</span></div>
-<div class="v-row" data-ref="Isaiah 57:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But come near, you sons of her who is wise in secret arts, the seed of her who is false to her husband, and of the loose woman.</span></div>
-<div class="v-row" data-ref="Isaiah 57:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Of whom do you make sport? against whom is your mouth open wide and your tongue put out? are you not uncontrolled children, a false seed,</span></div>
-<div class="v-row" data-ref="Isaiah 57:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">You who are burning with evil desire among the oaks, under every green tree; putting children to death in the valleys, under the cracks of the rocks?</span></div>
-<div class="v-row" data-ref="Isaiah 57:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Among the smooth stones of the valley is your heritage; they, even they, are your part: even to them have you made a drink offering and a meal offering. Is it possible for such things to be overlooked by me?</span></div>
-<div class="v-row" data-ref="Isaiah 57:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You have put your bed on a high mountain: there you went up to make your offering.</span></div>
-<div class="v-row" data-ref="Isaiah 57:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And on the back of the doors and on the pillars you have put your sign: for you have been false to me with another; you have made your bed wide, and made an agreement with them; you had a desire for their bed where you saw it</span></div>
-<div class="v-row" data-ref="Isaiah 57:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And you went to Melech with oil and much perfume, and you sent your representatives far off, and went as low as the underworld.</span></div>
-<div class="v-row" data-ref="Isaiah 57:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">You were tired with your long journeys; but you did not say, There is no hope: you got new strength, and so you were not feeble.</span></div>
-<div class="v-row" data-ref="Isaiah 57:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And of whom were you in fear, so that you were false, and did not keep me in mind, or give thought to it? Have I not been quiet, keeping myself secret, and so you were not in fear of me?</span></div>
-<div class="v-row" data-ref="Isaiah 57:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I will make clear what your righteousness is like and your works; you will have no profit in them.</span></div>
-<div class="v-row" data-ref="Isaiah 57:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Your false gods will not keep you safe in answer to your cry; but the wind will take them, they will be gone like a breath: but he who puts his hope in me will take the land, and will have my holy mountain as his heritage.</span></div>
-<div class="v-row" data-ref="Isaiah 57:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And I will say, Make it high, make it high, get ready the way, take the stones out of the way of my people.</span></div>
-<div class="v-row" data-ref="Isaiah 57:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For this is the word of him who is high and lifted up, whose resting-place is eternal, whose name is Holy: my resting-place is in the high and holy place, and with him who is crushed and poor in spirit, to give life to the spirit of the poor, and to make strong the heart of the crushed.</span></div>
-<div class="v-row" data-ref="Isaiah 57:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For I will not give punishment for ever, or be angry without end: for from me breath goes out; and I it was who made the souls.</span></div>
-<div class="v-row" data-ref="Isaiah 57:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I was quickly angry with his evil ways, and sent punishment on him, veiling my face in wrath: and he went on, turning his heart from me.</span></div>
-<div class="v-row" data-ref="Isaiah 57:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">I have seen his ways, and I will make him well: I will give him rest, comforting him and his people who are sad.</span></div>
-<div class="v-row" data-ref="Isaiah 57:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">I will give the fruit of the lips: Peace, peace, to him who is near and to him who is far off, says the Lord; and I will make him well.</span></div>
-<div class="v-row" data-ref="Isaiah 57:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But the evil-doers are like the troubled sea, for which there is no rest, and its waters send up earth and waste.</span></div>
-<div class="v-row" data-ref="Isaiah 57:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">There is no peace, says my God, for the evil-doers.</span></div>
+    <a class="v-row" href="/bible/bbe/isaiah/57/1/" data-ref="Isaiah 57:1 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/1/"><span class="v-num">1</span><span class="v-txt">The upright man goes to his death, and no one gives a thought to it; and god-fearing men are taken away, and no one is troubled by it; for the upright man is taken away because of evil-doing, and goes into peace.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/2/" data-ref="Isaiah 57:2 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/2/"><span class="v-num">2</span><span class="v-txt">They are at rest in their last resting-places, every one going straight before him.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/3/" data-ref="Isaiah 57:3 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/3/"><span class="v-num">3</span><span class="v-txt">But come near, you sons of her who is wise in secret arts, the seed of her who is false to her husband, and of the loose woman.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/4/" data-ref="Isaiah 57:4 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/4/"><span class="v-num">4</span><span class="v-txt">Of whom do you make sport? against whom is your mouth open wide and your tongue put out? are you not uncontrolled children, a false seed,</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/5/" data-ref="Isaiah 57:5 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/5/"><span class="v-num">5</span><span class="v-txt">You who are burning with evil desire among the oaks, under every green tree; putting children to death in the valleys, under the cracks of the rocks?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/6/" data-ref="Isaiah 57:6 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/6/"><span class="v-num">6</span><span class="v-txt">Among the smooth stones of the valley is your heritage; they, even they, are your part: even to them have you made a drink offering and a meal offering. Is it possible for such things to be overlooked by me?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/7/" data-ref="Isaiah 57:7 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/7/"><span class="v-num">7</span><span class="v-txt">You have put your bed on a high mountain: there you went up to make your offering.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/8/" data-ref="Isaiah 57:8 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/8/"><span class="v-num">8</span><span class="v-txt">And on the back of the doors and on the pillars you have put your sign: for you have been false to me with another; you have made your bed wide, and made an agreement with them; you had a desire for their bed where you saw it</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/9/" data-ref="Isaiah 57:9 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/9/"><span class="v-num">9</span><span class="v-txt">And you went to Melech with oil and much perfume, and you sent your representatives far off, and went as low as the underworld.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/10/" data-ref="Isaiah 57:10 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/10/"><span class="v-num">10</span><span class="v-txt">You were tired with your long journeys; but you did not say, There is no hope: you got new strength, and so you were not feeble.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/11/" data-ref="Isaiah 57:11 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/11/"><span class="v-num">11</span><span class="v-txt">And of whom were you in fear, so that you were false, and did not keep me in mind, or give thought to it? Have I not been quiet, keeping myself secret, and so you were not in fear of me?</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/12/" data-ref="Isaiah 57:12 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/12/"><span class="v-num">12</span><span class="v-txt">I will make clear what your righteousness is like and your works; you will have no profit in them.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/13/" data-ref="Isaiah 57:13 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/13/"><span class="v-num">13</span><span class="v-txt">Your false gods will not keep you safe in answer to your cry; but the wind will take them, they will be gone like a breath: but he who puts his hope in me will take the land, and will have my holy mountain as his heritage.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/14/" data-ref="Isaiah 57:14 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/14/"><span class="v-num">14</span><span class="v-txt">And I will say, Make it high, make it high, get ready the way, take the stones out of the way of my people.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/15/" data-ref="Isaiah 57:15 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/15/"><span class="v-num">15</span><span class="v-txt">For this is the word of him who is high and lifted up, whose resting-place is eternal, whose name is Holy: my resting-place is in the high and holy place, and with him who is crushed and poor in spirit, to give life to the spirit of the poor, and to make strong the heart of the crushed.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/16/" data-ref="Isaiah 57:16 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/16/"><span class="v-num">16</span><span class="v-txt">For I will not give punishment for ever, or be angry without end: for from me breath goes out; and I it was who made the souls.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/17/" data-ref="Isaiah 57:17 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/17/"><span class="v-num">17</span><span class="v-txt">I was quickly angry with his evil ways, and sent punishment on him, veiling my face in wrath: and he went on, turning his heart from me.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/18/" data-ref="Isaiah 57:18 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/18/"><span class="v-num">18</span><span class="v-txt">I have seen his ways, and I will make him well: I will give him rest, comforting him and his people who are sad.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/19/" data-ref="Isaiah 57:19 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/19/"><span class="v-num">19</span><span class="v-txt">I will give the fruit of the lips: Peace, peace, to him who is near and to him who is far off, says the Lord; and I will make him well.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/20/" data-ref="Isaiah 57:20 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/20/"><span class="v-num">20</span><span class="v-txt">But the evil-doers are like the troubled sea, for which there is no rest, and its waters send up earth and waste.</span></a>
+<a class="v-row" href="/bible/bbe/isaiah/57/21/" data-ref="Isaiah 57:21 (Bible in Basic English)" data-verse-url="/bible/bbe/isaiah/57/21/"><span class="v-num">21</span><span class="v-txt">There is no peace, says my God, for the evil-doers.</span></a>
 
     
 <div class="app-cta">

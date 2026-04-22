@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 4:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Thou also, son of man, take thee a tile, and lay it before thee, and portray upon it a city, even Jerusalem:</span></div>
-<div class="v-row" data-ref="Ezekiel 4:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">and lay siege against it, and build forts against it, and cast up a mound against it; set camps also against it, and plant battering rams against it round about.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And take thou unto thee an iron pan, and set it for a wall of iron between thee and the city: and set thy face toward it, and it shall be besieged, and thou shalt lay siege against it. This shall be a sign to the house of Israel.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Moreover lie thou upon thy left side, and lay the iniquity of the house of Israel upon it; [according to] the number of the days that thou shalt lie upon it, thou shalt bear their iniquity.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For I have appointed the years of their iniquity to be unto thee a number of days, even three hundred and ninety days: so shalt thou bear the iniquity of the house of Israel.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And again, when thou hast accomplished these, thou shalt lie on thy right side, and shalt bear the iniquity of the house of Judah: forty days, each day for a year, have I appointed it unto thee.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And thou shalt set thy face toward the siege of Jerusalem, with thine arm uncovered; and thou shalt prophesy against it.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And, behold, I lay bands upon thee, and thou shalt not turn thee from one side to the other, till thou hast accomplished the days of thy siege.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Take thou also unto thee wheat, and barley, and beans, and lentils, and millet, and spelt, and put them in one vessel, and make thee bread thereof; [according to] the number of the days that thou shalt lie upon thy side, even three hundred and ninety days, shalt thou eat thereof.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And thy food which thou shalt eat shall be by weight, twenty shekels a day: from time to time shalt thou eat it.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And thou shalt drink water by measure, the sixth part of a hin: from time to time shalt thou drink.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And thou shalt eat it as barley cakes, and thou shalt bake it in their sight with dung that cometh out of man.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Jehovah said, Even thus shall the children of Israel eat their bread unclean, among the nations whither I will drive them.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then said I, Ah Lord Jehovah! behold, my soul hath not been polluted; for from my youth up even till now have I not eaten of that which dieth of itself, or is torn of beasts; neither came there abominable flesh into my mouth.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then he said unto me, See, I have given thee cow's dung for man's dung, and thou shalt prepare thy bread thereon.</span></div>
-<div class="v-row" data-ref="Ezekiel 4:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Moreover he said unto me, Son of man, behold, I will break the staff of bread in Jerusalem: and they shall eat bread by weight, and with fearfulness; and they shall drink water by measure, and in dismay:</span></div>
-<div class="v-row" data-ref="Ezekiel 4:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">that they may want bread and water, and be dismayed one with another, and pine away in their iniquity.</span></div>
+    <a class="v-row" href="/bible/asv/ezekiel/4/1/" data-ref="Ezekiel 4:1 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/1/"><span class="v-num">1</span><span class="v-txt">Thou also, son of man, take thee a tile, and lay it before thee, and portray upon it a city, even Jerusalem:</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/2/" data-ref="Ezekiel 4:2 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/2/"><span class="v-num">2</span><span class="v-txt">and lay siege against it, and build forts against it, and cast up a mound against it; set camps also against it, and plant battering rams against it round about.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/3/" data-ref="Ezekiel 4:3 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/3/"><span class="v-num">3</span><span class="v-txt">And take thou unto thee an iron pan, and set it for a wall of iron between thee and the city: and set thy face toward it, and it shall be besieged, and thou shalt lay siege against it. This shall be a sign to the house of Israel.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/4/" data-ref="Ezekiel 4:4 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/4/"><span class="v-num">4</span><span class="v-txt">Moreover lie thou upon thy left side, and lay the iniquity of the house of Israel upon it; [according to] the number of the days that thou shalt lie upon it, thou shalt bear their iniquity.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/5/" data-ref="Ezekiel 4:5 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/5/"><span class="v-num">5</span><span class="v-txt">For I have appointed the years of their iniquity to be unto thee a number of days, even three hundred and ninety days: so shalt thou bear the iniquity of the house of Israel.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/6/" data-ref="Ezekiel 4:6 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/6/"><span class="v-num">6</span><span class="v-txt">And again, when thou hast accomplished these, thou shalt lie on thy right side, and shalt bear the iniquity of the house of Judah: forty days, each day for a year, have I appointed it unto thee.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/7/" data-ref="Ezekiel 4:7 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/7/"><span class="v-num">7</span><span class="v-txt">And thou shalt set thy face toward the siege of Jerusalem, with thine arm uncovered; and thou shalt prophesy against it.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/8/" data-ref="Ezekiel 4:8 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/8/"><span class="v-num">8</span><span class="v-txt">And, behold, I lay bands upon thee, and thou shalt not turn thee from one side to the other, till thou hast accomplished the days of thy siege.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/9/" data-ref="Ezekiel 4:9 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/9/"><span class="v-num">9</span><span class="v-txt">Take thou also unto thee wheat, and barley, and beans, and lentils, and millet, and spelt, and put them in one vessel, and make thee bread thereof; [according to] the number of the days that thou shalt lie upon thy side, even three hundred and ninety days, shalt thou eat thereof.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/10/" data-ref="Ezekiel 4:10 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/10/"><span class="v-num">10</span><span class="v-txt">And thy food which thou shalt eat shall be by weight, twenty shekels a day: from time to time shalt thou eat it.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/11/" data-ref="Ezekiel 4:11 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/11/"><span class="v-num">11</span><span class="v-txt">And thou shalt drink water by measure, the sixth part of a hin: from time to time shalt thou drink.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/12/" data-ref="Ezekiel 4:12 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/12/"><span class="v-num">12</span><span class="v-txt">And thou shalt eat it as barley cakes, and thou shalt bake it in their sight with dung that cometh out of man.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/13/" data-ref="Ezekiel 4:13 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/13/"><span class="v-num">13</span><span class="v-txt">And Jehovah said, Even thus shall the children of Israel eat their bread unclean, among the nations whither I will drive them.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/14/" data-ref="Ezekiel 4:14 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/14/"><span class="v-num">14</span><span class="v-txt">Then said I, Ah Lord Jehovah! behold, my soul hath not been polluted; for from my youth up even till now have I not eaten of that which dieth of itself, or is torn of beasts; neither came there abominable flesh into my mouth.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/15/" data-ref="Ezekiel 4:15 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/15/"><span class="v-num">15</span><span class="v-txt">Then he said unto me, See, I have given thee cow's dung for man's dung, and thou shalt prepare thy bread thereon.</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/16/" data-ref="Ezekiel 4:16 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/16/"><span class="v-num">16</span><span class="v-txt">Moreover he said unto me, Son of man, behold, I will break the staff of bread in Jerusalem: and they shall eat bread by weight, and with fearfulness; and they shall drink water by measure, and in dismay:</span></a>
+<a class="v-row" href="/bible/asv/ezekiel/4/17/" data-ref="Ezekiel 4:17 (American Standard Version)" data-verse-url="/bible/asv/ezekiel/4/17/"><span class="v-num">17</span><span class="v-txt">that they may want bread and water, and be dismayed one with another, and pine away in their iniquity.</span></a>
 
     
 <div class="app-cta">

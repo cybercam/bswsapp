@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 5:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Call now, if there be any that will answer thee; and to which of the saints wilt thou turn?</span></div>
-<div class="v-row" data-ref="Job 5:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For wrath killeth the foolish man, and envy slayeth the silly one.</span></div>
-<div class="v-row" data-ref="Job 5:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root: but suddenly I cursed his habitation.</span></div>
-<div class="v-row" data-ref="Job 5:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">His children are far from safety, and they are crushed in the gate, neither is there any to deliver them.</span></div>
-<div class="v-row" data-ref="Job 5:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Whose harvest the hungry eateth up, and taketh it even out of the thorns, and the robber swalloweth up their substance.</span></div>
-<div class="v-row" data-ref="Job 5:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Although affliction cometh not forth of the dust, neither doth trouble spring out of the ground;</span></div>
-<div class="v-row" data-ref="Job 5:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Yet man is born unto trouble, as the sparks fly upward.</span></div>
-<div class="v-row" data-ref="Job 5:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">I would seek unto God, and unto God would I commit my cause:</span></div>
-<div class="v-row" data-ref="Job 5:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Which doeth great things and unsearchable; marvellous things without number:</span></div>
-<div class="v-row" data-ref="Job 5:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who giveth rain upon the earth, and sendeth waters upon the fields:</span></div>
-<div class="v-row" data-ref="Job 5:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">To set up on high those that be low; that those which mourn may be exalted to safety.</span></div>
-<div class="v-row" data-ref="Job 5:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He disappointeth the devices of the crafty, so that their hands cannot perform their enterprise.</span></div>
-<div class="v-row" data-ref="Job 5:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He taketh the wise in their own craftiness: and the counsel of the froward is carried headlong.</span></div>
-<div class="v-row" data-ref="Job 5:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">They meet with darkness in the daytime, and grope in the noonday as in the night.</span></div>
-<div class="v-row" data-ref="Job 5:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But he saveth the poor from the sword, from their mouth, and from the hand of the mighty.</span></div>
-<div class="v-row" data-ref="Job 5:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">So the poor hath hope, and iniquity stoppeth her mouth.</span></div>
-<div class="v-row" data-ref="Job 5:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Behold, happy is the man whom God correcteth: therefore despise not thou the chastening of the Almighty:</span></div>
-<div class="v-row" data-ref="Job 5:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For he maketh sore, and bindeth up: he woundeth, and his hands make whole.</span></div>
-<div class="v-row" data-ref="Job 5:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He shall deliver thee in six troubles: yea, in seven there shall no evil touch thee.</span></div>
-<div class="v-row" data-ref="Job 5:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">In famine he shall redeem thee from death: and in war from the power of the sword.</span></div>
-<div class="v-row" data-ref="Job 5:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Thou shalt be hid from the scourge of the tongue: neither shalt thou be afraid of destruction when it cometh.</span></div>
-<div class="v-row" data-ref="Job 5:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">At destruction and famine thou shalt laugh: neither shalt thou be afraid of the beasts of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For thou shalt be in league with the stones of the field: and the beasts of the field shall be at peace with thee.</span></div>
-<div class="v-row" data-ref="Job 5:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And thou shalt know that thy tabernacle shall be in peace; and thou shalt visit thy habitation, and shalt not sin.</span></div>
-<div class="v-row" data-ref="Job 5:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Thou shalt know also that thy seed shall be great, and thine offspring as the grass of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Thou shalt come to thy grave in a full age, like as a shock of corn cometh in in his season.</span></div>
-<div class="v-row" data-ref="Job 5:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Lo this, we have searched it, so it is; hear it, and know thou it for thy good.</span></div>
+    <a class="v-row" href="/bible/kjv/job/5/1/" data-ref="Job 5:1 (King James Version)" data-verse-url="/bible/kjv/job/5/1/"><span class="v-num">1</span><span class="v-txt">Call now, if there be any that will answer thee; and to which of the saints wilt thou turn?</span></a>
+<a class="v-row" href="/bible/kjv/job/5/2/" data-ref="Job 5:2 (King James Version)" data-verse-url="/bible/kjv/job/5/2/"><span class="v-num">2</span><span class="v-txt">For wrath killeth the foolish man, and envy slayeth the silly one.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/3/" data-ref="Job 5:3 (King James Version)" data-verse-url="/bible/kjv/job/5/3/"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root: but suddenly I cursed his habitation.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/4/" data-ref="Job 5:4 (King James Version)" data-verse-url="/bible/kjv/job/5/4/"><span class="v-num">4</span><span class="v-txt">His children are far from safety, and they are crushed in the gate, neither is there any to deliver them.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/5/" data-ref="Job 5:5 (King James Version)" data-verse-url="/bible/kjv/job/5/5/"><span class="v-num">5</span><span class="v-txt">Whose harvest the hungry eateth up, and taketh it even out of the thorns, and the robber swalloweth up their substance.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/6/" data-ref="Job 5:6 (King James Version)" data-verse-url="/bible/kjv/job/5/6/"><span class="v-num">6</span><span class="v-txt">Although affliction cometh not forth of the dust, neither doth trouble spring out of the ground;</span></a>
+<a class="v-row" href="/bible/kjv/job/5/7/" data-ref="Job 5:7 (King James Version)" data-verse-url="/bible/kjv/job/5/7/"><span class="v-num">7</span><span class="v-txt">Yet man is born unto trouble, as the sparks fly upward.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/8/" data-ref="Job 5:8 (King James Version)" data-verse-url="/bible/kjv/job/5/8/"><span class="v-num">8</span><span class="v-txt">I would seek unto God, and unto God would I commit my cause:</span></a>
+<a class="v-row" href="/bible/kjv/job/5/9/" data-ref="Job 5:9 (King James Version)" data-verse-url="/bible/kjv/job/5/9/"><span class="v-num">9</span><span class="v-txt">Which doeth great things and unsearchable; marvellous things without number:</span></a>
+<a class="v-row" href="/bible/kjv/job/5/10/" data-ref="Job 5:10 (King James Version)" data-verse-url="/bible/kjv/job/5/10/"><span class="v-num">10</span><span class="v-txt">Who giveth rain upon the earth, and sendeth waters upon the fields:</span></a>
+<a class="v-row" href="/bible/kjv/job/5/11/" data-ref="Job 5:11 (King James Version)" data-verse-url="/bible/kjv/job/5/11/"><span class="v-num">11</span><span class="v-txt">To set up on high those that be low; that those which mourn may be exalted to safety.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/12/" data-ref="Job 5:12 (King James Version)" data-verse-url="/bible/kjv/job/5/12/"><span class="v-num">12</span><span class="v-txt">He disappointeth the devices of the crafty, so that their hands cannot perform their enterprise.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/13/" data-ref="Job 5:13 (King James Version)" data-verse-url="/bible/kjv/job/5/13/"><span class="v-num">13</span><span class="v-txt">He taketh the wise in their own craftiness: and the counsel of the froward is carried headlong.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/14/" data-ref="Job 5:14 (King James Version)" data-verse-url="/bible/kjv/job/5/14/"><span class="v-num">14</span><span class="v-txt">They meet with darkness in the daytime, and grope in the noonday as in the night.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/15/" data-ref="Job 5:15 (King James Version)" data-verse-url="/bible/kjv/job/5/15/"><span class="v-num">15</span><span class="v-txt">But he saveth the poor from the sword, from their mouth, and from the hand of the mighty.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/16/" data-ref="Job 5:16 (King James Version)" data-verse-url="/bible/kjv/job/5/16/"><span class="v-num">16</span><span class="v-txt">So the poor hath hope, and iniquity stoppeth her mouth.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/17/" data-ref="Job 5:17 (King James Version)" data-verse-url="/bible/kjv/job/5/17/"><span class="v-num">17</span><span class="v-txt">Behold, happy is the man whom God correcteth: therefore despise not thou the chastening of the Almighty:</span></a>
+<a class="v-row" href="/bible/kjv/job/5/18/" data-ref="Job 5:18 (King James Version)" data-verse-url="/bible/kjv/job/5/18/"><span class="v-num">18</span><span class="v-txt">For he maketh sore, and bindeth up: he woundeth, and his hands make whole.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/19/" data-ref="Job 5:19 (King James Version)" data-verse-url="/bible/kjv/job/5/19/"><span class="v-num">19</span><span class="v-txt">He shall deliver thee in six troubles: yea, in seven there shall no evil touch thee.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/20/" data-ref="Job 5:20 (King James Version)" data-verse-url="/bible/kjv/job/5/20/"><span class="v-num">20</span><span class="v-txt">In famine he shall redeem thee from death: and in war from the power of the sword.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/21/" data-ref="Job 5:21 (King James Version)" data-verse-url="/bible/kjv/job/5/21/"><span class="v-num">21</span><span class="v-txt">Thou shalt be hid from the scourge of the tongue: neither shalt thou be afraid of destruction when it cometh.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/22/" data-ref="Job 5:22 (King James Version)" data-verse-url="/bible/kjv/job/5/22/"><span class="v-num">22</span><span class="v-txt">At destruction and famine thou shalt laugh: neither shalt thou be afraid of the beasts of the earth.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/23/" data-ref="Job 5:23 (King James Version)" data-verse-url="/bible/kjv/job/5/23/"><span class="v-num">23</span><span class="v-txt">For thou shalt be in league with the stones of the field: and the beasts of the field shall be at peace with thee.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/24/" data-ref="Job 5:24 (King James Version)" data-verse-url="/bible/kjv/job/5/24/"><span class="v-num">24</span><span class="v-txt">And thou shalt know that thy tabernacle shall be in peace; and thou shalt visit thy habitation, and shalt not sin.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/25/" data-ref="Job 5:25 (King James Version)" data-verse-url="/bible/kjv/job/5/25/"><span class="v-num">25</span><span class="v-txt">Thou shalt know also that thy seed shall be great, and thine offspring as the grass of the earth.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/26/" data-ref="Job 5:26 (King James Version)" data-verse-url="/bible/kjv/job/5/26/"><span class="v-num">26</span><span class="v-txt">Thou shalt come to thy grave in a full age, like as a shock of corn cometh in in his season.</span></a>
+<a class="v-row" href="/bible/kjv/job/5/27/" data-ref="Job 5:27 (King James Version)" data-verse-url="/bible/kjv/job/5/27/"><span class="v-num">27</span><span class="v-txt">Lo this, we have searched it, so it is; hear it, and know thou it for thy good.</span></a>
 
     
 <div class="app-cta">

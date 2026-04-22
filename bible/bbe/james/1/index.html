@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="James 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">James, a servant of God and of the Lord Jesus Christ, sends words of love to the twelve tribes of the Jews living in all parts of the earth.</span></div>
-<div class="v-row" data-ref="James 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let it be all joy to you, my brothers, when you undergo tests of every sort;</span></div>
-<div class="v-row" data-ref="James 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Because you have the knowledge that the testing of your faith gives you the power of going on in hope;</span></div>
-<div class="v-row" data-ref="James 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But let this power have its full effect, so that you may be made complete, needing nothing.</span></div>
-<div class="v-row" data-ref="James 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But if any man among you is without wisdom, let him make his request to God, who gives freely to all without an unkind word, and it will be given to him.</span></div>
-<div class="v-row" data-ref="James 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Let him make his request in faith, doubting nothing; for he who has doubt in his heart is like the waves of the sea, which are troubled by the driving of the wind.</span></div>
-<div class="v-row" data-ref="James 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Let it not seem to such a man that he will get anything from the Lord;</span></div>
-<div class="v-row" data-ref="James 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For there is a division in his mind, and he is uncertain in all his ways.</span></div>
-<div class="v-row" data-ref="James 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But let the brother of low position be glad that he is lifted up;</span></div>
-<div class="v-row" data-ref="James 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But the man of wealth, that he is made low; because like the flower of the grass he will come to his end.</span></div>
-<div class="v-row" data-ref="James 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For when the sun comes up with its burning heat, the grass gets dry and the grace of its form is gone with the falling flower; so the man of wealth comes to nothing in his ways.</span></div>
-<div class="v-row" data-ref="James 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">There is a blessing on the man who undergoes testing; because, if he has God's approval, he will be given the crown of life, which the Lord has said he will give to those who have love for him.</span></div>
-<div class="v-row" data-ref="James 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Let no man say when he is tested, I am tested by God; for it is not possible for God to be tested by evil, and he himself puts no man to such a test:</span></div>
-<div class="v-row" data-ref="James 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But every man is tested when he is turned out of the right way by the attraction of his desire.</span></div>
-<div class="v-row" data-ref="James 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Then when its time comes, desire gives birth to sin; and sin, when it is of full growth, gives birth to death.</span></div>
-<div class="v-row" data-ref="James 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Do not be turned from the right way, dear brothers.</span></div>
-<div class="v-row" data-ref="James 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Every good and true thing is given to us from heaven, coming from the Father of lights, with whom there is no change or any shade made by turning.</span></div>
-<div class="v-row" data-ref="James 1:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Of his purpose he gave us being, by his true word, so that we might be, in a sense, the first-fruits of all the things which he had made.</span></div>
-<div class="v-row" data-ref="James 1:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">You have knowledge of this, dear brothers. But let every man be quick in hearing, slow in words, slow to get angry;</span></div>
-<div class="v-row" data-ref="James 1:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">For the righteousness of God does not come about by the wrath of man.</span></div>
-<div class="v-row" data-ref="James 1:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For this reason, putting away all dirty behaviour and the overweight of evil, take into your souls without pride the word which, being planted there, is able to give you salvation.</span></div>
-<div class="v-row" data-ref="James 1:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But be doers of the word, and not only hearers of it, blinding yourselves with false ideas.</span></div>
-<div class="v-row" data-ref="James 1:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Because if any man is a hearer of the word and not a doer, he is like a man looking at his natural face in a glass;</span></div>
-<div class="v-row" data-ref="James 1:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For after looking at himself he goes away, and in a short time he has no memory of what he was like.</span></div>
-<div class="v-row" data-ref="James 1:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">But he who goes on looking into the true law which makes him free, being not a hearer without memory but a doer putting it into effect, this man will have a blessing on his acts.</span></div>
-<div class="v-row" data-ref="James 1:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">If a man seems to have religion and has no control over his tongue but lets himself be tricked by what is false, this man's religion is of no value.</span></div>
-<div class="v-row" data-ref="James 1:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">The religion which is holy and free from evil in the eyes of our God and Father is this: to take care of children who have no fathers and of widows who are in trouble, and to keep oneself untouched by the world.</span></div>
+    <a class="v-row" href="/bible/bbe/james/1/1/" data-ref="James 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/1/"><span class="v-num">1</span><span class="v-txt">James, a servant of God and of the Lord Jesus Christ, sends words of love to the twelve tribes of the Jews living in all parts of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/2/" data-ref="James 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/2/"><span class="v-num">2</span><span class="v-txt">Let it be all joy to you, my brothers, when you undergo tests of every sort;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/3/" data-ref="James 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/3/"><span class="v-num">3</span><span class="v-txt">Because you have the knowledge that the testing of your faith gives you the power of going on in hope;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/4/" data-ref="James 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/4/"><span class="v-num">4</span><span class="v-txt">But let this power have its full effect, so that you may be made complete, needing nothing.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/5/" data-ref="James 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/5/"><span class="v-num">5</span><span class="v-txt">But if any man among you is without wisdom, let him make his request to God, who gives freely to all without an unkind word, and it will be given to him.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/6/" data-ref="James 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/6/"><span class="v-num">6</span><span class="v-txt">Let him make his request in faith, doubting nothing; for he who has doubt in his heart is like the waves of the sea, which are troubled by the driving of the wind.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/7/" data-ref="James 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/7/"><span class="v-num">7</span><span class="v-txt">Let it not seem to such a man that he will get anything from the Lord;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/8/" data-ref="James 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/8/"><span class="v-num">8</span><span class="v-txt">For there is a division in his mind, and he is uncertain in all his ways.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/9/" data-ref="James 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/9/"><span class="v-num">9</span><span class="v-txt">But let the brother of low position be glad that he is lifted up;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/10/" data-ref="James 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/10/"><span class="v-num">10</span><span class="v-txt">But the man of wealth, that he is made low; because like the flower of the grass he will come to his end.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/11/" data-ref="James 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/11/"><span class="v-num">11</span><span class="v-txt">For when the sun comes up with its burning heat, the grass gets dry and the grace of its form is gone with the falling flower; so the man of wealth comes to nothing in his ways.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/12/" data-ref="James 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/12/"><span class="v-num">12</span><span class="v-txt">There is a blessing on the man who undergoes testing; because, if he has God's approval, he will be given the crown of life, which the Lord has said he will give to those who have love for him.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/13/" data-ref="James 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/13/"><span class="v-num">13</span><span class="v-txt">Let no man say when he is tested, I am tested by God; for it is not possible for God to be tested by evil, and he himself puts no man to such a test:</span></a>
+<a class="v-row" href="/bible/bbe/james/1/14/" data-ref="James 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/14/"><span class="v-num">14</span><span class="v-txt">But every man is tested when he is turned out of the right way by the attraction of his desire.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/15/" data-ref="James 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/15/"><span class="v-num">15</span><span class="v-txt">Then when its time comes, desire gives birth to sin; and sin, when it is of full growth, gives birth to death.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/16/" data-ref="James 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/16/"><span class="v-num">16</span><span class="v-txt">Do not be turned from the right way, dear brothers.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/17/" data-ref="James 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/17/"><span class="v-num">17</span><span class="v-txt">Every good and true thing is given to us from heaven, coming from the Father of lights, with whom there is no change or any shade made by turning.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/18/" data-ref="James 1:18 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/18/"><span class="v-num">18</span><span class="v-txt">Of his purpose he gave us being, by his true word, so that we might be, in a sense, the first-fruits of all the things which he had made.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/19/" data-ref="James 1:19 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/19/"><span class="v-num">19</span><span class="v-txt">You have knowledge of this, dear brothers. But let every man be quick in hearing, slow in words, slow to get angry;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/20/" data-ref="James 1:20 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/20/"><span class="v-num">20</span><span class="v-txt">For the righteousness of God does not come about by the wrath of man.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/21/" data-ref="James 1:21 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/21/"><span class="v-num">21</span><span class="v-txt">For this reason, putting away all dirty behaviour and the overweight of evil, take into your souls without pride the word which, being planted there, is able to give you salvation.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/22/" data-ref="James 1:22 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/22/"><span class="v-num">22</span><span class="v-txt">But be doers of the word, and not only hearers of it, blinding yourselves with false ideas.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/23/" data-ref="James 1:23 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/23/"><span class="v-num">23</span><span class="v-txt">Because if any man is a hearer of the word and not a doer, he is like a man looking at his natural face in a glass;</span></a>
+<a class="v-row" href="/bible/bbe/james/1/24/" data-ref="James 1:24 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/24/"><span class="v-num">24</span><span class="v-txt">For after looking at himself he goes away, and in a short time he has no memory of what he was like.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/25/" data-ref="James 1:25 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/25/"><span class="v-num">25</span><span class="v-txt">But he who goes on looking into the true law which makes him free, being not a hearer without memory but a doer putting it into effect, this man will have a blessing on his acts.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/26/" data-ref="James 1:26 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/26/"><span class="v-num">26</span><span class="v-txt">If a man seems to have religion and has no control over his tongue but lets himself be tricked by what is false, this man's religion is of no value.</span></a>
+<a class="v-row" href="/bible/bbe/james/1/27/" data-ref="James 1:27 (Bible in Basic English)" data-verse-url="/bible/bbe/james/1/27/"><span class="v-num">27</span><span class="v-txt">The religion which is holy and free from evil in the eyes of our God and Father is this: to take care of children who have no fathers and of widows who are in trouble, and to keep oneself untouched by the world.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="James 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My brethren, let not many of you become teachers, knowing that we shall receive a stricter judgment.</span></div>
-<div class="v-row" data-ref="James 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For we all stumble in many things. If anyone does not stumble in word, he [is] a perfect man, able also to bridle the whole body.</span></div>
-<div class="v-row" data-ref="James 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Indeed, we put bits in horses' mouths that they may obey us, and we turn their whole body.</span></div>
-<div class="v-row" data-ref="James 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Look also at ships: although they are so large and are driven by fierce winds, they are turned by a very small rudder wherever the pilot desires.</span></div>
-<div class="v-row" data-ref="James 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Even so the tongue is a little member and boasts great things. See how great a forest a little fire kindles!</span></div>
-<div class="v-row" data-ref="James 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the tongue [is] a fire, a world of iniquity. The tongue is so set among our members that it defiles the whole body, and sets on fire the course of nature; and it is set on fire by hell.</span></div>
-<div class="v-row" data-ref="James 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For every kind of beast and bird, of reptile and creature of the sea, is tamed and has been tamed by mankind.</span></div>
-<div class="v-row" data-ref="James 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But no man can tame the tongue. [It is] an unruly evil, full of deadly poison.</span></div>
-<div class="v-row" data-ref="James 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">With it we bless our God and Father, and with it we curse men, who have been made in the similitude of God.</span></div>
-<div class="v-row" data-ref="James 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Out of the same mouth proceed blessing and cursing. My brethren, these things ought not to be so.</span></div>
-<div class="v-row" data-ref="James 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Does a spring send forth fresh [water] and bitter from the same opening?</span></div>
-<div class="v-row" data-ref="James 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Can a fig tree, my brethren, bear olives, or a grapevine bear figs? Thus no spring yields both salt water and fresh.</span></div>
-<div class="v-row" data-ref="James 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Who [is] wise and understanding among you? Let him show by good conduct [that] his works [are done] in the meekness of wisdom.</span></div>
-<div class="v-row" data-ref="James 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But if you have bitter envy and self-seeking in your hearts, do not boast and lie against the truth.</span></div>
-<div class="v-row" data-ref="James 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">This wisdom does not descend from above, but [is] earthly, sensual, demonic.</span></div>
-<div class="v-row" data-ref="James 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For where envy and self-seeking [exist,] confusion and every evil thing [are] there.</span></div>
-<div class="v-row" data-ref="James 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the wisdom that is from above is first pure, then peaceable, gentle, willing to yield, full of mercy and good fruits, without partiality and without hypocrisy.</span></div>
-<div class="v-row" data-ref="James 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Now the fruit of righteousness is sown in peace by those who make peace.</span></div>
+    <a class="v-row" href="/bible/nkjv/james/3/1/" data-ref="James 3:1 (New King James Version)" data-verse-url="/bible/nkjv/james/3/1/"><span class="v-num">1</span><span class="v-txt">My brethren, let not many of you become teachers, knowing that we shall receive a stricter judgment.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/2/" data-ref="James 3:2 (New King James Version)" data-verse-url="/bible/nkjv/james/3/2/"><span class="v-num">2</span><span class="v-txt">For we all stumble in many things. If anyone does not stumble in word, he [is] a perfect man, able also to bridle the whole body.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/3/" data-ref="James 3:3 (New King James Version)" data-verse-url="/bible/nkjv/james/3/3/"><span class="v-num">3</span><span class="v-txt">Indeed, we put bits in horses' mouths that they may obey us, and we turn their whole body.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/4/" data-ref="James 3:4 (New King James Version)" data-verse-url="/bible/nkjv/james/3/4/"><span class="v-num">4</span><span class="v-txt">Look also at ships: although they are so large and are driven by fierce winds, they are turned by a very small rudder wherever the pilot desires.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/5/" data-ref="James 3:5 (New King James Version)" data-verse-url="/bible/nkjv/james/3/5/"><span class="v-num">5</span><span class="v-txt">Even so the tongue is a little member and boasts great things. See how great a forest a little fire kindles!</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/6/" data-ref="James 3:6 (New King James Version)" data-verse-url="/bible/nkjv/james/3/6/"><span class="v-num">6</span><span class="v-txt">And the tongue [is] a fire, a world of iniquity. The tongue is so set among our members that it defiles the whole body, and sets on fire the course of nature; and it is set on fire by hell.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/7/" data-ref="James 3:7 (New King James Version)" data-verse-url="/bible/nkjv/james/3/7/"><span class="v-num">7</span><span class="v-txt">For every kind of beast and bird, of reptile and creature of the sea, is tamed and has been tamed by mankind.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/8/" data-ref="James 3:8 (New King James Version)" data-verse-url="/bible/nkjv/james/3/8/"><span class="v-num">8</span><span class="v-txt">But no man can tame the tongue. [It is] an unruly evil, full of deadly poison.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/9/" data-ref="James 3:9 (New King James Version)" data-verse-url="/bible/nkjv/james/3/9/"><span class="v-num">9</span><span class="v-txt">With it we bless our God and Father, and with it we curse men, who have been made in the similitude of God.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/10/" data-ref="James 3:10 (New King James Version)" data-verse-url="/bible/nkjv/james/3/10/"><span class="v-num">10</span><span class="v-txt">Out of the same mouth proceed blessing and cursing. My brethren, these things ought not to be so.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/11/" data-ref="James 3:11 (New King James Version)" data-verse-url="/bible/nkjv/james/3/11/"><span class="v-num">11</span><span class="v-txt">Does a spring send forth fresh [water] and bitter from the same opening?</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/12/" data-ref="James 3:12 (New King James Version)" data-verse-url="/bible/nkjv/james/3/12/"><span class="v-num">12</span><span class="v-txt">Can a fig tree, my brethren, bear olives, or a grapevine bear figs? Thus no spring yields both salt water and fresh.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/13/" data-ref="James 3:13 (New King James Version)" data-verse-url="/bible/nkjv/james/3/13/"><span class="v-num">13</span><span class="v-txt">Who [is] wise and understanding among you? Let him show by good conduct [that] his works [are done] in the meekness of wisdom.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/14/" data-ref="James 3:14 (New King James Version)" data-verse-url="/bible/nkjv/james/3/14/"><span class="v-num">14</span><span class="v-txt">But if you have bitter envy and self-seeking in your hearts, do not boast and lie against the truth.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/15/" data-ref="James 3:15 (New King James Version)" data-verse-url="/bible/nkjv/james/3/15/"><span class="v-num">15</span><span class="v-txt">This wisdom does not descend from above, but [is] earthly, sensual, demonic.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/16/" data-ref="James 3:16 (New King James Version)" data-verse-url="/bible/nkjv/james/3/16/"><span class="v-num">16</span><span class="v-txt">For where envy and self-seeking [exist,] confusion and every evil thing [are] there.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/17/" data-ref="James 3:17 (New King James Version)" data-verse-url="/bible/nkjv/james/3/17/"><span class="v-num">17</span><span class="v-txt">But the wisdom that is from above is first pure, then peaceable, gentle, willing to yield, full of mercy and good fruits, without partiality and without hypocrisy.</span></a>
+<a class="v-row" href="/bible/nkjv/james/3/18/" data-ref="James 3:18 (New King James Version)" data-verse-url="/bible/nkjv/james/3/18/"><span class="v-num">18</span><span class="v-txt">Now the fruit of righteousness is sown in peace by those who make peace.</span></a>
 
     
 <div class="app-cta">

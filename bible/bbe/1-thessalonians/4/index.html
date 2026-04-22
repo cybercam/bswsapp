@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Thessalonians 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And last of all, the prayer which we make to you from our heart and in the name of the Lord Jesus, is this: that as we made clear to you what sort of behaviour is pleasing to God, as in fact you are doing now, so you will go on in these ways, but more and more.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Because you have in mind the orders we gave you through the Lord Jesus.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the purpose of God for you is this: that you may be holy, and may keep yourselves from the desires of the flesh;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">So that every one of you may keep his body holy and in honour;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Not in the passion of evil desires, like the Gentiles, who have no knowledge of God;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And that no man may make attempts to get the better of his brother in business: for the Lord is the judge in all these things, as we said to you before and gave witness.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Because it is God's purpose that our way of life may be not unclean but holy.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Whoever, then, goes against this word, goes against not man but God, who gives his Holy Spirit to you.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But about loving the brothers, there is no need for me to say anything to you in this letter: for you have the teaching of God that love for one another is right and necessary;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And, truly, you are lovers of all the brothers in Macedonia; but it is our desire that your love may be increased still more;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And that you may take pride in being quiet and doing your business, working with your hands as we gave you orders;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">That you may be respected by those who are outside, and may have need of nothing.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But it is our desire, brothers, that you may be certain about those who are sleeping; so that you may have no need for sorrow, as others have who are without hope.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For if we have faith that Jesus underwent death and came back again, even so those who are sleeping will come again with him by God's power.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For this we say to you by the word of the Lord, that we who are still living at the coming of the Lord, will not go before those who are sleeping.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Because the Lord himself will come down from heaven with a word of authority, with the voice of the chief angel, with the sound of a horn: and the dead in Christ will come to life first;</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Then we who are still living will be taken up together with them into the clouds to see the Lord in the air: and so will we be for ever with the Lord.</span></div>
-<div class="v-row" data-ref="1 Thessalonians 4:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">So then, give comfort to one another with these words.</span></div>
+    <a class="v-row" href="/bible/bbe/1-thessalonians/4/1/" data-ref="1 Thessalonians 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/1/"><span class="v-num">1</span><span class="v-txt">And last of all, the prayer which we make to you from our heart and in the name of the Lord Jesus, is this: that as we made clear to you what sort of behaviour is pleasing to God, as in fact you are doing now, so you will go on in these ways, but more and more.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/2/" data-ref="1 Thessalonians 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/2/"><span class="v-num">2</span><span class="v-txt">Because you have in mind the orders we gave you through the Lord Jesus.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/3/" data-ref="1 Thessalonians 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/3/"><span class="v-num">3</span><span class="v-txt">For the purpose of God for you is this: that you may be holy, and may keep yourselves from the desires of the flesh;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/4/" data-ref="1 Thessalonians 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/4/"><span class="v-num">4</span><span class="v-txt">So that every one of you may keep his body holy and in honour;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/5/" data-ref="1 Thessalonians 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/5/"><span class="v-num">5</span><span class="v-txt">Not in the passion of evil desires, like the Gentiles, who have no knowledge of God;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/6/" data-ref="1 Thessalonians 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/6/"><span class="v-num">6</span><span class="v-txt">And that no man may make attempts to get the better of his brother in business: for the Lord is the judge in all these things, as we said to you before and gave witness.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/7/" data-ref="1 Thessalonians 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/7/"><span class="v-num">7</span><span class="v-txt">Because it is God's purpose that our way of life may be not unclean but holy.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/8/" data-ref="1 Thessalonians 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/8/"><span class="v-num">8</span><span class="v-txt">Whoever, then, goes against this word, goes against not man but God, who gives his Holy Spirit to you.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/9/" data-ref="1 Thessalonians 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/9/"><span class="v-num">9</span><span class="v-txt">But about loving the brothers, there is no need for me to say anything to you in this letter: for you have the teaching of God that love for one another is right and necessary;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/10/" data-ref="1 Thessalonians 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/10/"><span class="v-num">10</span><span class="v-txt">And, truly, you are lovers of all the brothers in Macedonia; but it is our desire that your love may be increased still more;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/11/" data-ref="1 Thessalonians 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/11/"><span class="v-num">11</span><span class="v-txt">And that you may take pride in being quiet and doing your business, working with your hands as we gave you orders;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/12/" data-ref="1 Thessalonians 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/12/"><span class="v-num">12</span><span class="v-txt">That you may be respected by those who are outside, and may have need of nothing.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/13/" data-ref="1 Thessalonians 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/13/"><span class="v-num">13</span><span class="v-txt">But it is our desire, brothers, that you may be certain about those who are sleeping; so that you may have no need for sorrow, as others have who are without hope.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/14/" data-ref="1 Thessalonians 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/14/"><span class="v-num">14</span><span class="v-txt">For if we have faith that Jesus underwent death and came back again, even so those who are sleeping will come again with him by God's power.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/15/" data-ref="1 Thessalonians 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/15/"><span class="v-num">15</span><span class="v-txt">For this we say to you by the word of the Lord, that we who are still living at the coming of the Lord, will not go before those who are sleeping.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/16/" data-ref="1 Thessalonians 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/16/"><span class="v-num">16</span><span class="v-txt">Because the Lord himself will come down from heaven with a word of authority, with the voice of the chief angel, with the sound of a horn: and the dead in Christ will come to life first;</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/17/" data-ref="1 Thessalonians 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/17/"><span class="v-num">17</span><span class="v-txt">Then we who are still living will be taken up together with them into the clouds to see the Lord in the air: and so will we be for ever with the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/1-thessalonians/4/18/" data-ref="1 Thessalonians 4:18 (Bible in Basic English)" data-verse-url="/bible/bbe/1-thessalonians/4/18/"><span class="v-num">18</span><span class="v-txt">So then, give comfort to one another with these words.</span></a>
 
     
 <div class="app-cta">

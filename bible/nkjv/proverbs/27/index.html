@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 27</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 27:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Do not boast about tomorrow, For you do not know what a day may bring forth.</span></div>
-<div class="v-row" data-ref="Proverbs 27:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let another man praise you, and not your own mouth; A stranger, and not your own lips.</span></div>
-<div class="v-row" data-ref="Proverbs 27:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A stone [is] heavy and sand [is] weighty, But a fool's wrath [is] heavier than both of them.</span></div>
-<div class="v-row" data-ref="Proverbs 27:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Wrath [is] cruel and anger a torrent, But who [is] able to stand before jealousy?</span></div>
-<div class="v-row" data-ref="Proverbs 27:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Open rebuke [is] better Than love carefully concealed.</span></div>
-<div class="v-row" data-ref="Proverbs 27:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Faithful [are] the wounds of a friend, But the kisses of an enemy [are] deceitful.</span></div>
-<div class="v-row" data-ref="Proverbs 27:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">A satisfied soul loathes the honeycomb, But to a hungry soul every bitter thing [is] sweet.</span></div>
-<div class="v-row" data-ref="Proverbs 27:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Like a bird that wanders from its nest [Is] a man who wanders from his place.</span></div>
-<div class="v-row" data-ref="Proverbs 27:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Ointment and perfume delight the heart, And the sweetness of a man's friend [gives delight] by hearty counsel.</span></div>
-<div class="v-row" data-ref="Proverbs 27:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Do not forsake your own friend or your father's friend, Nor go to your brother's house in the day of your calamity; Better [is] a neighbor nearby than a brother far away.</span></div>
-<div class="v-row" data-ref="Proverbs 27:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">My son, be wise, and make my heart glad, That I may answer him who reproaches me.</span></div>
-<div class="v-row" data-ref="Proverbs 27:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">A prudent [man] foresees evil [and] hides himself; The simple pass on [and] are punished.</span></div>
-<div class="v-row" data-ref="Proverbs 27:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Take the garment of him who is surety for a stranger, And hold it in pledge [when] he is surety for a seductress.</span></div>
-<div class="v-row" data-ref="Proverbs 27:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He who blesses his friend with a loud voice, rising early in the morning, It will be counted a curse to him.</span></div>
-<div class="v-row" data-ref="Proverbs 27:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">A continual dripping on a very rainy day And a contentious woman are alike;</span></div>
-<div class="v-row" data-ref="Proverbs 27:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Whoever restrains her restrains the wind, And grasps oil with his right hand.</span></div>
-<div class="v-row" data-ref="Proverbs 27:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">[As] iron sharpens iron, So a man sharpens the countenance of his friend.</span></div>
-<div class="v-row" data-ref="Proverbs 27:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Whoever keeps the fig tree will eat its fruit; So he who waits on his master will be honored.</span></div>
-<div class="v-row" data-ref="Proverbs 27:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">As in water face [reflects] face, So a man's heart [reveals] the man.</span></div>
-<div class="v-row" data-ref="Proverbs 27:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Hell and Destruction are never full; So the eyes of man are never satisfied.</span></div>
-<div class="v-row" data-ref="Proverbs 27:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">The refining pot [is] for silver and the furnace for gold, And a man [is valued] by what others say of him.</span></div>
-<div class="v-row" data-ref="Proverbs 27:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Though you grind a fool in a mortar with a pestle along with crushed grain, [Yet] his foolishness will not depart from him.</span></div>
-<div class="v-row" data-ref="Proverbs 27:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Be diligent to know the state of your flocks, [And] attend to your herds;</span></div>
-<div class="v-row" data-ref="Proverbs 27:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For riches [are] not forever, Nor does a crown [endure] to all generations.</span></div>
-<div class="v-row" data-ref="Proverbs 27:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">[When] the hay is removed, and the tender grass shows itself, And the herbs of the mountains are gathered in,</span></div>
-<div class="v-row" data-ref="Proverbs 27:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">The lambs [will provide] your clothing, And the goats the price of a field;</span></div>
-<div class="v-row" data-ref="Proverbs 27:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">[You shall have] enough goats' milk for your food, For the food of your household, And the nourishment of your maidservants.</span></div>
+    <a class="v-row" href="/bible/nkjv/proverbs/27/1/" data-ref="Proverbs 27:1 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/1/"><span class="v-num">1</span><span class="v-txt">Do not boast about tomorrow, For you do not know what a day may bring forth.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/2/" data-ref="Proverbs 27:2 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/2/"><span class="v-num">2</span><span class="v-txt">Let another man praise you, and not your own mouth; A stranger, and not your own lips.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/3/" data-ref="Proverbs 27:3 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/3/"><span class="v-num">3</span><span class="v-txt">A stone [is] heavy and sand [is] weighty, But a fool's wrath [is] heavier than both of them.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/4/" data-ref="Proverbs 27:4 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/4/"><span class="v-num">4</span><span class="v-txt">Wrath [is] cruel and anger a torrent, But who [is] able to stand before jealousy?</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/5/" data-ref="Proverbs 27:5 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/5/"><span class="v-num">5</span><span class="v-txt">Open rebuke [is] better Than love carefully concealed.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/6/" data-ref="Proverbs 27:6 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/6/"><span class="v-num">6</span><span class="v-txt">Faithful [are] the wounds of a friend, But the kisses of an enemy [are] deceitful.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/7/" data-ref="Proverbs 27:7 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/7/"><span class="v-num">7</span><span class="v-txt">A satisfied soul loathes the honeycomb, But to a hungry soul every bitter thing [is] sweet.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/8/" data-ref="Proverbs 27:8 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/8/"><span class="v-num">8</span><span class="v-txt">Like a bird that wanders from its nest [Is] a man who wanders from his place.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/9/" data-ref="Proverbs 27:9 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/9/"><span class="v-num">9</span><span class="v-txt">Ointment and perfume delight the heart, And the sweetness of a man's friend [gives delight] by hearty counsel.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/10/" data-ref="Proverbs 27:10 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/10/"><span class="v-num">10</span><span class="v-txt">Do not forsake your own friend or your father's friend, Nor go to your brother's house in the day of your calamity; Better [is] a neighbor nearby than a brother far away.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/11/" data-ref="Proverbs 27:11 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/11/"><span class="v-num">11</span><span class="v-txt">My son, be wise, and make my heart glad, That I may answer him who reproaches me.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/12/" data-ref="Proverbs 27:12 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/12/"><span class="v-num">12</span><span class="v-txt">A prudent [man] foresees evil [and] hides himself; The simple pass on [and] are punished.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/13/" data-ref="Proverbs 27:13 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/13/"><span class="v-num">13</span><span class="v-txt">Take the garment of him who is surety for a stranger, And hold it in pledge [when] he is surety for a seductress.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/14/" data-ref="Proverbs 27:14 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/14/"><span class="v-num">14</span><span class="v-txt">He who blesses his friend with a loud voice, rising early in the morning, It will be counted a curse to him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/15/" data-ref="Proverbs 27:15 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/15/"><span class="v-num">15</span><span class="v-txt">A continual dripping on a very rainy day And a contentious woman are alike;</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/16/" data-ref="Proverbs 27:16 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/16/"><span class="v-num">16</span><span class="v-txt">Whoever restrains her restrains the wind, And grasps oil with his right hand.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/17/" data-ref="Proverbs 27:17 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/17/"><span class="v-num">17</span><span class="v-txt">[As] iron sharpens iron, So a man sharpens the countenance of his friend.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/18/" data-ref="Proverbs 27:18 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/18/"><span class="v-num">18</span><span class="v-txt">Whoever keeps the fig tree will eat its fruit; So he who waits on his master will be honored.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/19/" data-ref="Proverbs 27:19 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/19/"><span class="v-num">19</span><span class="v-txt">As in water face [reflects] face, So a man's heart [reveals] the man.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/20/" data-ref="Proverbs 27:20 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/20/"><span class="v-num">20</span><span class="v-txt">Hell and Destruction are never full; So the eyes of man are never satisfied.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/21/" data-ref="Proverbs 27:21 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/21/"><span class="v-num">21</span><span class="v-txt">The refining pot [is] for silver and the furnace for gold, And a man [is valued] by what others say of him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/22/" data-ref="Proverbs 27:22 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/22/"><span class="v-num">22</span><span class="v-txt">Though you grind a fool in a mortar with a pestle along with crushed grain, [Yet] his foolishness will not depart from him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/23/" data-ref="Proverbs 27:23 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/23/"><span class="v-num">23</span><span class="v-txt">Be diligent to know the state of your flocks, [And] attend to your herds;</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/24/" data-ref="Proverbs 27:24 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/24/"><span class="v-num">24</span><span class="v-txt">For riches [are] not forever, Nor does a crown [endure] to all generations.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/25/" data-ref="Proverbs 27:25 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/25/"><span class="v-num">25</span><span class="v-txt">[When] the hay is removed, and the tender grass shows itself, And the herbs of the mountains are gathered in,</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/26/" data-ref="Proverbs 27:26 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/26/"><span class="v-num">26</span><span class="v-txt">The lambs [will provide] your clothing, And the goats the price of a field;</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/27/27/" data-ref="Proverbs 27:27 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/27/27/"><span class="v-num">27</span><span class="v-txt">[You shall have] enough goats' milk for your food, For the food of your household, And the nourishment of your maidservants.</span></a>
 
     
 <div class="app-cta">

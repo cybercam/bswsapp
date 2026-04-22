@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 15</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="John 15:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">I am the true vine, and my Father is the husbandman.</span></div>
-<div class="v-row" data-ref="John 15:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Every branch in me that beareth not fruit, he taketh it away: and every [branch] that beareth fruit, he cleanseth it, that it may bear more fruit.</span></div>
-<div class="v-row" data-ref="John 15:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Already ye are clean because of the word which I have spoken unto you.</span></div>
-<div class="v-row" data-ref="John 15:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; so neither can ye, except ye abide in me.</span></div>
-<div class="v-row" data-ref="John 15:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I am the vine, ye are the branches: He that abideth in me, and I in him, the same beareth much fruit: for apart from me ye can do nothing.</span></div>
-<div class="v-row" data-ref="John 15:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">If a man abide not in me, he is cast forth as a branch, and is withered; and they gather them, and cast them into the fire, and they are burned.</span></div>
-<div class="v-row" data-ref="John 15:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If ye abide in me, and my words abide in you, ask whatsoever ye will, and it shall be done unto you.</span></div>
-<div class="v-row" data-ref="John 15:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Herein is my Father glorified, that ye bear much fruit; and [so] shall ye be my disciples.</span></div>
-<div class="v-row" data-ref="John 15:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Even as the Father hath loved me, I also have loved you: abide ye in my love.</span></div>
-<div class="v-row" data-ref="John 15:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If ye keep my commandments, ye shall abide in my love; even as I have kept my Father's commandments, and abide in his love.</span></div>
-<div class="v-row" data-ref="John 15:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">These things have I spoken unto you, that my joy may be in you, and [that] your joy may be made full.</span></div>
-<div class="v-row" data-ref="John 15:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">This is my commandment, that ye love one another, even as I have loved you.</span></div>
-<div class="v-row" data-ref="John 15:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Greater love hath no man than this, that a man lay down his life for his friends.</span></div>
-<div class="v-row" data-ref="John 15:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Ye are my friends, if ye do the things which I command you.</span></div>
-<div class="v-row" data-ref="John 15:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">No longer do I call you servants; for the servant knoweth not what his lord doeth: but I have called you friends; for all things that I heard from my Father, I have made known unto you.</span></div>
-<div class="v-row" data-ref="John 15:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Ye did not choose me, but I chose you, and appointed you, that ye should go and bear fruit, and [that] your fruit should abide: that whatsoever ye shall ask of the Father in my name, he may give it you.</span></div>
-<div class="v-row" data-ref="John 15:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">These things I command you, that ye may love one another.</span></div>
-<div class="v-row" data-ref="John 15:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">If the world hateth you, ye know that it hath hated me before [it hated] you.</span></div>
-<div class="v-row" data-ref="John 15:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">If ye were of the world, the world would love its own: but because ye are not of the world, but I chose you out of the world, therefore the world hateth you.</span></div>
-<div class="v-row" data-ref="John 15:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Remember the word that I said unto you, A servant is not greater than his lord. If they persecuted me, they will also persecute you; if they kept my word, they will keep yours also.</span></div>
-<div class="v-row" data-ref="John 15:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">But all these things will they do unto you for my name's sake, because they know not him that sent me.</span></div>
-<div class="v-row" data-ref="John 15:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">If I had not come and spoken unto them, they had not had sin: but now they have no excuse for their sin.</span></div>
-<div class="v-row" data-ref="John 15:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He that hateth me hateth my Father also.</span></div>
-<div class="v-row" data-ref="John 15:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If I had not done among them the works which none other did, they had not had sin: but now have they both seen and hated both me and my Father.</span></div>
-<div class="v-row" data-ref="John 15:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">But [this cometh to pass], that the word may be fulfilled that is written in their law, They hated me without a cause.</span></div>
-<div class="v-row" data-ref="John 15:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">But when the Comforter is come, whom I will send unto you from the Father, [even] the Spirit of truth, which proceedeth from the Father, he shall bear witness of me:</span></div>
-<div class="v-row" data-ref="John 15:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">and ye also bear witness, because ye have been with me from the beginning.</span></div>
+    <a class="v-row" href="/bible/asv/john/15/1/" data-ref="John 15:1 (American Standard Version)" data-verse-url="/bible/asv/john/15/1/"><span class="v-num">1</span><span class="v-txt">I am the true vine, and my Father is the husbandman.</span></a>
+<a class="v-row" href="/bible/asv/john/15/2/" data-ref="John 15:2 (American Standard Version)" data-verse-url="/bible/asv/john/15/2/"><span class="v-num">2</span><span class="v-txt">Every branch in me that beareth not fruit, he taketh it away: and every [branch] that beareth fruit, he cleanseth it, that it may bear more fruit.</span></a>
+<a class="v-row" href="/bible/asv/john/15/3/" data-ref="John 15:3 (American Standard Version)" data-verse-url="/bible/asv/john/15/3/"><span class="v-num">3</span><span class="v-txt">Already ye are clean because of the word which I have spoken unto you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/4/" data-ref="John 15:4 (American Standard Version)" data-verse-url="/bible/asv/john/15/4/"><span class="v-num">4</span><span class="v-txt">Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; so neither can ye, except ye abide in me.</span></a>
+<a class="v-row" href="/bible/asv/john/15/5/" data-ref="John 15:5 (American Standard Version)" data-verse-url="/bible/asv/john/15/5/"><span class="v-num">5</span><span class="v-txt">I am the vine, ye are the branches: He that abideth in me, and I in him, the same beareth much fruit: for apart from me ye can do nothing.</span></a>
+<a class="v-row" href="/bible/asv/john/15/6/" data-ref="John 15:6 (American Standard Version)" data-verse-url="/bible/asv/john/15/6/"><span class="v-num">6</span><span class="v-txt">If a man abide not in me, he is cast forth as a branch, and is withered; and they gather them, and cast them into the fire, and they are burned.</span></a>
+<a class="v-row" href="/bible/asv/john/15/7/" data-ref="John 15:7 (American Standard Version)" data-verse-url="/bible/asv/john/15/7/"><span class="v-num">7</span><span class="v-txt">If ye abide in me, and my words abide in you, ask whatsoever ye will, and it shall be done unto you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/8/" data-ref="John 15:8 (American Standard Version)" data-verse-url="/bible/asv/john/15/8/"><span class="v-num">8</span><span class="v-txt">Herein is my Father glorified, that ye bear much fruit; and [so] shall ye be my disciples.</span></a>
+<a class="v-row" href="/bible/asv/john/15/9/" data-ref="John 15:9 (American Standard Version)" data-verse-url="/bible/asv/john/15/9/"><span class="v-num">9</span><span class="v-txt">Even as the Father hath loved me, I also have loved you: abide ye in my love.</span></a>
+<a class="v-row" href="/bible/asv/john/15/10/" data-ref="John 15:10 (American Standard Version)" data-verse-url="/bible/asv/john/15/10/"><span class="v-num">10</span><span class="v-txt">If ye keep my commandments, ye shall abide in my love; even as I have kept my Father's commandments, and abide in his love.</span></a>
+<a class="v-row" href="/bible/asv/john/15/11/" data-ref="John 15:11 (American Standard Version)" data-verse-url="/bible/asv/john/15/11/"><span class="v-num">11</span><span class="v-txt">These things have I spoken unto you, that my joy may be in you, and [that] your joy may be made full.</span></a>
+<a class="v-row" href="/bible/asv/john/15/12/" data-ref="John 15:12 (American Standard Version)" data-verse-url="/bible/asv/john/15/12/"><span class="v-num">12</span><span class="v-txt">This is my commandment, that ye love one another, even as I have loved you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/13/" data-ref="John 15:13 (American Standard Version)" data-verse-url="/bible/asv/john/15/13/"><span class="v-num">13</span><span class="v-txt">Greater love hath no man than this, that a man lay down his life for his friends.</span></a>
+<a class="v-row" href="/bible/asv/john/15/14/" data-ref="John 15:14 (American Standard Version)" data-verse-url="/bible/asv/john/15/14/"><span class="v-num">14</span><span class="v-txt">Ye are my friends, if ye do the things which I command you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/15/" data-ref="John 15:15 (American Standard Version)" data-verse-url="/bible/asv/john/15/15/"><span class="v-num">15</span><span class="v-txt">No longer do I call you servants; for the servant knoweth not what his lord doeth: but I have called you friends; for all things that I heard from my Father, I have made known unto you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/16/" data-ref="John 15:16 (American Standard Version)" data-verse-url="/bible/asv/john/15/16/"><span class="v-num">16</span><span class="v-txt">Ye did not choose me, but I chose you, and appointed you, that ye should go and bear fruit, and [that] your fruit should abide: that whatsoever ye shall ask of the Father in my name, he may give it you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/17/" data-ref="John 15:17 (American Standard Version)" data-verse-url="/bible/asv/john/15/17/"><span class="v-num">17</span><span class="v-txt">These things I command you, that ye may love one another.</span></a>
+<a class="v-row" href="/bible/asv/john/15/18/" data-ref="John 15:18 (American Standard Version)" data-verse-url="/bible/asv/john/15/18/"><span class="v-num">18</span><span class="v-txt">If the world hateth you, ye know that it hath hated me before [it hated] you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/19/" data-ref="John 15:19 (American Standard Version)" data-verse-url="/bible/asv/john/15/19/"><span class="v-num">19</span><span class="v-txt">If ye were of the world, the world would love its own: but because ye are not of the world, but I chose you out of the world, therefore the world hateth you.</span></a>
+<a class="v-row" href="/bible/asv/john/15/20/" data-ref="John 15:20 (American Standard Version)" data-verse-url="/bible/asv/john/15/20/"><span class="v-num">20</span><span class="v-txt">Remember the word that I said unto you, A servant is not greater than his lord. If they persecuted me, they will also persecute you; if they kept my word, they will keep yours also.</span></a>
+<a class="v-row" href="/bible/asv/john/15/21/" data-ref="John 15:21 (American Standard Version)" data-verse-url="/bible/asv/john/15/21/"><span class="v-num">21</span><span class="v-txt">But all these things will they do unto you for my name's sake, because they know not him that sent me.</span></a>
+<a class="v-row" href="/bible/asv/john/15/22/" data-ref="John 15:22 (American Standard Version)" data-verse-url="/bible/asv/john/15/22/"><span class="v-num">22</span><span class="v-txt">If I had not come and spoken unto them, they had not had sin: but now they have no excuse for their sin.</span></a>
+<a class="v-row" href="/bible/asv/john/15/23/" data-ref="John 15:23 (American Standard Version)" data-verse-url="/bible/asv/john/15/23/"><span class="v-num">23</span><span class="v-txt">He that hateth me hateth my Father also.</span></a>
+<a class="v-row" href="/bible/asv/john/15/24/" data-ref="John 15:24 (American Standard Version)" data-verse-url="/bible/asv/john/15/24/"><span class="v-num">24</span><span class="v-txt">If I had not done among them the works which none other did, they had not had sin: but now have they both seen and hated both me and my Father.</span></a>
+<a class="v-row" href="/bible/asv/john/15/25/" data-ref="John 15:25 (American Standard Version)" data-verse-url="/bible/asv/john/15/25/"><span class="v-num">25</span><span class="v-txt">But [this cometh to pass], that the word may be fulfilled that is written in their law, They hated me without a cause.</span></a>
+<a class="v-row" href="/bible/asv/john/15/26/" data-ref="John 15:26 (American Standard Version)" data-verse-url="/bible/asv/john/15/26/"><span class="v-num">26</span><span class="v-txt">But when the Comforter is come, whom I will send unto you from the Father, [even] the Spirit of truth, which proceedeth from the Father, he shall bear witness of me:</span></a>
+<a class="v-row" href="/bible/asv/john/15/27/" data-ref="John 15:27 (American Standard Version)" data-verse-url="/bible/asv/john/15/27/"><span class="v-num">27</span><span class="v-txt">and ye also bear witness, because ye have been with me from the beginning.</span></a>
 
     
 <div class="app-cta">

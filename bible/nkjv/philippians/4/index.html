@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Philippians 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Therefore, my beloved and longed-for brethren, my joy and crown, so stand fast in the Lord, beloved.</span></div>
-<div class="v-row" data-ref="Philippians 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I implore Euodia and I implore Syntyche to be of the same mind in the Lord.</span></div>
-<div class="v-row" data-ref="Philippians 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And I urge you also, true companion, help these women who labored with me in the gospel, with Clement also, and the rest of my fellow workers, whose names [are] in the Book of Life.</span></div>
-<div class="v-row" data-ref="Philippians 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Rejoice in the Lord always. Again I will say, rejoice!</span></div>
-<div class="v-row" data-ref="Philippians 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Let your gentleness be known to all men. The Lord [is] at hand.</span></div>
-<div class="v-row" data-ref="Philippians 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving, let your requests be made known to God;</span></div>
-<div class="v-row" data-ref="Philippians 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">and the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus.</span></div>
-<div class="v-row" data-ref="Philippians 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Finally, brethren, whatever things are true, whatever things [are] noble, whatever things [are] just, whatever things [are] pure, whatever things [are] lovely, whatever things [are] of good report, if [there is] any virtue and if [there is] anything praiseworthy -- meditate on these things.</span></div>
-<div class="v-row" data-ref="Philippians 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The things which you learned and received and heard and saw in me, these do, and the God of peace will be with you.</span></div>
-<div class="v-row" data-ref="Philippians 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But I rejoiced in the Lord greatly that now at last your care for me has flourished again; though you surely did care, but you lacked opportunity.</span></div>
-<div class="v-row" data-ref="Philippians 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Not that I speak in regard to need, for I have learned in whatever state I am, to be content:</span></div>
-<div class="v-row" data-ref="Philippians 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I know how to be abased, and I know how to abound. Everywhere and in all things I have learned both to be full and to be hungry, both to abound and to suffer need.</span></div>
-<div class="v-row" data-ref="Philippians 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I can do all things through Christ who strengthens me.</span></div>
-<div class="v-row" data-ref="Philippians 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Nevertheless you have done well that you shared in my distress.</span></div>
-<div class="v-row" data-ref="Philippians 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Now you Philippians know also that in the beginning of the gospel, when I departed from Macedonia, no church shared with me concerning giving and receiving but you only.</span></div>
-<div class="v-row" data-ref="Philippians 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For even in Thessalonica you sent [aid] once and again for my necessities.</span></div>
-<div class="v-row" data-ref="Philippians 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Not that I seek the gift, but I seek the fruit that abounds to your account.</span></div>
-<div class="v-row" data-ref="Philippians 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Indeed I have all and abound. I am full, having received from Epaphroditus the things [sent] from you, a sweet-smelling aroma, an acceptable sacrifice, well pleasing to God.</span></div>
-<div class="v-row" data-ref="Philippians 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And my God shall supply all your need according to His riches in glory by Christ Jesus.</span></div>
-<div class="v-row" data-ref="Philippians 4:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Now to our God and Father [be] glory forever and ever. Amen.</span></div>
-<div class="v-row" data-ref="Philippians 4:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Greet every saint in Christ Jesus. The brethren who are with me greet you.</span></div>
-<div class="v-row" data-ref="Philippians 4:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">All the saints greet you, but especially those who are of Caesar's household.</span></div>
-<div class="v-row" data-ref="Philippians 4:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The grace of our Lord Jesus Christ be with you all. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/philippians/4/1/" data-ref="Philippians 4:1 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/1/"><span class="v-num">1</span><span class="v-txt">Therefore, my beloved and longed-for brethren, my joy and crown, so stand fast in the Lord, beloved.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/2/" data-ref="Philippians 4:2 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/2/"><span class="v-num">2</span><span class="v-txt">I implore Euodia and I implore Syntyche to be of the same mind in the Lord.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/3/" data-ref="Philippians 4:3 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/3/"><span class="v-num">3</span><span class="v-txt">And I urge you also, true companion, help these women who labored with me in the gospel, with Clement also, and the rest of my fellow workers, whose names [are] in the Book of Life.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/4/" data-ref="Philippians 4:4 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/4/"><span class="v-num">4</span><span class="v-txt">Rejoice in the Lord always. Again I will say, rejoice!</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/5/" data-ref="Philippians 4:5 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/5/"><span class="v-num">5</span><span class="v-txt">Let your gentleness be known to all men. The Lord [is] at hand.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/6/" data-ref="Philippians 4:6 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/6/"><span class="v-num">6</span><span class="v-txt">Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving, let your requests be made known to God;</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/7/" data-ref="Philippians 4:7 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/7/"><span class="v-num">7</span><span class="v-txt">and the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/8/" data-ref="Philippians 4:8 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/8/"><span class="v-num">8</span><span class="v-txt">Finally, brethren, whatever things are true, whatever things [are] noble, whatever things [are] just, whatever things [are] pure, whatever things [are] lovely, whatever things [are] of good report, if [there is] any virtue and if [there is] anything praiseworthy -- meditate on these things.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/9/" data-ref="Philippians 4:9 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/9/"><span class="v-num">9</span><span class="v-txt">The things which you learned and received and heard and saw in me, these do, and the God of peace will be with you.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/10/" data-ref="Philippians 4:10 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/10/"><span class="v-num">10</span><span class="v-txt">But I rejoiced in the Lord greatly that now at last your care for me has flourished again; though you surely did care, but you lacked opportunity.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/11/" data-ref="Philippians 4:11 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/11/"><span class="v-num">11</span><span class="v-txt">Not that I speak in regard to need, for I have learned in whatever state I am, to be content:</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/12/" data-ref="Philippians 4:12 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/12/"><span class="v-num">12</span><span class="v-txt">I know how to be abased, and I know how to abound. Everywhere and in all things I have learned both to be full and to be hungry, both to abound and to suffer need.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/13/" data-ref="Philippians 4:13 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/13/"><span class="v-num">13</span><span class="v-txt">I can do all things through Christ who strengthens me.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/14/" data-ref="Philippians 4:14 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/14/"><span class="v-num">14</span><span class="v-txt">Nevertheless you have done well that you shared in my distress.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/15/" data-ref="Philippians 4:15 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/15/"><span class="v-num">15</span><span class="v-txt">Now you Philippians know also that in the beginning of the gospel, when I departed from Macedonia, no church shared with me concerning giving and receiving but you only.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/16/" data-ref="Philippians 4:16 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/16/"><span class="v-num">16</span><span class="v-txt">For even in Thessalonica you sent [aid] once and again for my necessities.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/17/" data-ref="Philippians 4:17 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/17/"><span class="v-num">17</span><span class="v-txt">Not that I seek the gift, but I seek the fruit that abounds to your account.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/18/" data-ref="Philippians 4:18 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/18/"><span class="v-num">18</span><span class="v-txt">Indeed I have all and abound. I am full, having received from Epaphroditus the things [sent] from you, a sweet-smelling aroma, an acceptable sacrifice, well pleasing to God.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/19/" data-ref="Philippians 4:19 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/19/"><span class="v-num">19</span><span class="v-txt">And my God shall supply all your need according to His riches in glory by Christ Jesus.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/20/" data-ref="Philippians 4:20 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/20/"><span class="v-num">20</span><span class="v-txt">Now to our God and Father [be] glory forever and ever. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/21/" data-ref="Philippians 4:21 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/21/"><span class="v-num">21</span><span class="v-txt">Greet every saint in Christ Jesus. The brethren who are with me greet you.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/22/" data-ref="Philippians 4:22 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/22/"><span class="v-num">22</span><span class="v-txt">All the saints greet you, but especially those who are of Caesar's household.</span></a>
+<a class="v-row" href="/bible/nkjv/philippians/4/23/" data-ref="Philippians 4:23 (New King James Version)" data-verse-url="/bible/nkjv/philippians/4/23/"><span class="v-num">23</span><span class="v-txt">The grace of our Lord Jesus Christ be with you all. Amen.</span></a>
 
     
 <div class="app-cta">

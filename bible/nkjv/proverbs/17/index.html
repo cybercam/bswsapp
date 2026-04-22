@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 17:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Better [is] a dry morsel with quietness, Than a house full of feasting [with] strife.</span></div>
-<div class="v-row" data-ref="Proverbs 17:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A wise servant will rule over a son who causes shame, And will share an inheritance among the brothers.</span></div>
-<div class="v-row" data-ref="Proverbs 17:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The refining pot [is] for silver and the furnace for gold, But the LORD tests the hearts.</span></div>
-<div class="v-row" data-ref="Proverbs 17:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">An evildoer gives heed to false lips; A liar listens eagerly to a spiteful tongue.</span></div>
-<div class="v-row" data-ref="Proverbs 17:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He who mocks the poor reproaches his Maker; He who is glad at calamity will not go unpunished.</span></div>
-<div class="v-row" data-ref="Proverbs 17:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Children's children [are] the crown of old men, And the glory of children [is] their father.</span></div>
-<div class="v-row" data-ref="Proverbs 17:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Excellent speech is not becoming to a fool, Much less lying lips to a prince.</span></div>
-<div class="v-row" data-ref="Proverbs 17:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A present [is] a precious stone in the eyes of its possessor; Wherever he turns, he prospers.</span></div>
-<div class="v-row" data-ref="Proverbs 17:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He who covers a transgression seeks love, But he who repeats a matter separates friends.</span></div>
-<div class="v-row" data-ref="Proverbs 17:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Rebuke is more effective for a wise [man] Than a hundred blows on a fool.</span></div>
-<div class="v-row" data-ref="Proverbs 17:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">An evil [man] seeks only rebellion; Therefore a cruel messenger will be sent against him.</span></div>
-<div class="v-row" data-ref="Proverbs 17:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let a man meet a bear robbed of her cubs, Rather than a fool in his folly.</span></div>
-<div class="v-row" data-ref="Proverbs 17:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Whoever rewards evil for good, Evil will not depart from his house.</span></div>
-<div class="v-row" data-ref="Proverbs 17:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The beginning of strife [is like] releasing water; Therefore stop contention before a quarrel starts.</span></div>
-<div class="v-row" data-ref="Proverbs 17:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">He who justifies the wicked, and he who condemns the just, Both of them alike [are] an abomination to the LORD.</span></div>
-<div class="v-row" data-ref="Proverbs 17:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Why [is there] in the hand of a fool the purchase price of wisdom, Since [he has] no heart [for it?]</span></div>
-<div class="v-row" data-ref="Proverbs 17:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">A friend loves at all times, And a brother is born for adversity.</span></div>
-<div class="v-row" data-ref="Proverbs 17:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">A man devoid of understanding shakes hands in a pledge, [And] becomes surety for his friend.</span></div>
-<div class="v-row" data-ref="Proverbs 17:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He who loves transgression loves strife, And he who exalts his gate seeks destruction.</span></div>
-<div class="v-row" data-ref="Proverbs 17:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He who has a deceitful heart finds no good, And he who has a perverse tongue falls into evil.</span></div>
-<div class="v-row" data-ref="Proverbs 17:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He who begets a scoffer [does so] to his sorrow, And the father of a fool has no joy.</span></div>
-<div class="v-row" data-ref="Proverbs 17:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A merry heart does good, [like] medicine, But a broken spirit dries the bones.</span></div>
-<div class="v-row" data-ref="Proverbs 17:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A wicked [man] accepts a bribe behind the back To pervert the ways of justice.</span></div>
-<div class="v-row" data-ref="Proverbs 17:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Wisdom [is] in the sight of him who has understanding, But the eyes of a fool [are] on the ends of the earth.</span></div>
-<div class="v-row" data-ref="Proverbs 17:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">A foolish son [is] a grief to his father, And bitterness to her who bore him.</span></div>
-<div class="v-row" data-ref="Proverbs 17:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Also, to punish the righteous [is] not good, [Nor] to strike princes for [their] uprightness.</span></div>
-<div class="v-row" data-ref="Proverbs 17:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He who has knowledge spares his words, [And] a man of understanding is of a calm spirit.</span></div>
-<div class="v-row" data-ref="Proverbs 17:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Even a fool is counted wise when he holds his peace; [When] he shuts his lips, [he is considered] perceptive.</span></div>
+    <a class="v-row" href="/bible/nkjv/proverbs/17/1/" data-ref="Proverbs 17:1 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/1/"><span class="v-num">1</span><span class="v-txt">Better [is] a dry morsel with quietness, Than a house full of feasting [with] strife.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/2/" data-ref="Proverbs 17:2 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/2/"><span class="v-num">2</span><span class="v-txt">A wise servant will rule over a son who causes shame, And will share an inheritance among the brothers.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/3/" data-ref="Proverbs 17:3 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/3/"><span class="v-num">3</span><span class="v-txt">The refining pot [is] for silver and the furnace for gold, But the LORD tests the hearts.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/4/" data-ref="Proverbs 17:4 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/4/"><span class="v-num">4</span><span class="v-txt">An evildoer gives heed to false lips; A liar listens eagerly to a spiteful tongue.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/5/" data-ref="Proverbs 17:5 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/5/"><span class="v-num">5</span><span class="v-txt">He who mocks the poor reproaches his Maker; He who is glad at calamity will not go unpunished.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/6/" data-ref="Proverbs 17:6 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/6/"><span class="v-num">6</span><span class="v-txt">Children's children [are] the crown of old men, And the glory of children [is] their father.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/7/" data-ref="Proverbs 17:7 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/7/"><span class="v-num">7</span><span class="v-txt">Excellent speech is not becoming to a fool, Much less lying lips to a prince.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/8/" data-ref="Proverbs 17:8 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/8/"><span class="v-num">8</span><span class="v-txt">A present [is] a precious stone in the eyes of its possessor; Wherever he turns, he prospers.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/9/" data-ref="Proverbs 17:9 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/9/"><span class="v-num">9</span><span class="v-txt">He who covers a transgression seeks love, But he who repeats a matter separates friends.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/10/" data-ref="Proverbs 17:10 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/10/"><span class="v-num">10</span><span class="v-txt">Rebuke is more effective for a wise [man] Than a hundred blows on a fool.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/11/" data-ref="Proverbs 17:11 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/11/"><span class="v-num">11</span><span class="v-txt">An evil [man] seeks only rebellion; Therefore a cruel messenger will be sent against him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/12/" data-ref="Proverbs 17:12 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/12/"><span class="v-num">12</span><span class="v-txt">Let a man meet a bear robbed of her cubs, Rather than a fool in his folly.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/13/" data-ref="Proverbs 17:13 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/13/"><span class="v-num">13</span><span class="v-txt">Whoever rewards evil for good, Evil will not depart from his house.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/14/" data-ref="Proverbs 17:14 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/14/"><span class="v-num">14</span><span class="v-txt">The beginning of strife [is like] releasing water; Therefore stop contention before a quarrel starts.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/15/" data-ref="Proverbs 17:15 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/15/"><span class="v-num">15</span><span class="v-txt">He who justifies the wicked, and he who condemns the just, Both of them alike [are] an abomination to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/16/" data-ref="Proverbs 17:16 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/16/"><span class="v-num">16</span><span class="v-txt">Why [is there] in the hand of a fool the purchase price of wisdom, Since [he has] no heart [for it?]</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/17/" data-ref="Proverbs 17:17 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/17/"><span class="v-num">17</span><span class="v-txt">A friend loves at all times, And a brother is born for adversity.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/18/" data-ref="Proverbs 17:18 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/18/"><span class="v-num">18</span><span class="v-txt">A man devoid of understanding shakes hands in a pledge, [And] becomes surety for his friend.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/19/" data-ref="Proverbs 17:19 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/19/"><span class="v-num">19</span><span class="v-txt">He who loves transgression loves strife, And he who exalts his gate seeks destruction.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/20/" data-ref="Proverbs 17:20 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/20/"><span class="v-num">20</span><span class="v-txt">He who has a deceitful heart finds no good, And he who has a perverse tongue falls into evil.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/21/" data-ref="Proverbs 17:21 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/21/"><span class="v-num">21</span><span class="v-txt">He who begets a scoffer [does so] to his sorrow, And the father of a fool has no joy.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/22/" data-ref="Proverbs 17:22 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/22/"><span class="v-num">22</span><span class="v-txt">A merry heart does good, [like] medicine, But a broken spirit dries the bones.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/23/" data-ref="Proverbs 17:23 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/23/"><span class="v-num">23</span><span class="v-txt">A wicked [man] accepts a bribe behind the back To pervert the ways of justice.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/24/" data-ref="Proverbs 17:24 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/24/"><span class="v-num">24</span><span class="v-txt">Wisdom [is] in the sight of him who has understanding, But the eyes of a fool [are] on the ends of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/25/" data-ref="Proverbs 17:25 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/25/"><span class="v-num">25</span><span class="v-txt">A foolish son [is] a grief to his father, And bitterness to her who bore him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/26/" data-ref="Proverbs 17:26 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/26/"><span class="v-num">26</span><span class="v-txt">Also, to punish the righteous [is] not good, [Nor] to strike princes for [their] uprightness.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/27/" data-ref="Proverbs 17:27 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/27/"><span class="v-num">27</span><span class="v-txt">He who has knowledge spares his words, [And] a man of understanding is of a calm spirit.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/17/28/" data-ref="Proverbs 17:28 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/17/28/"><span class="v-num">28</span><span class="v-txt">Even a fool is counted wise when he holds his peace; [When] he shuts his lips, [he is considered] perceptive.</span></a>
 
     
 <div class="app-cta">

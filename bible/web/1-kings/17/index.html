@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,30 +204,30 @@ a:hover{text-decoration:underline}
       <h2>Chapter 17</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="1 Kings 17:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Elijah the Tishbite, who was of the foreigners of Gilead, said to Ahab, As Yahweh, the God of Israel, lives, before whom I stand, there shall not be dew nor rain these years, but according to my word.</span></div>
-<div class="v-row" data-ref="1 Kings 17:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The word of Yahweh came to him, saying,</span></div>
-<div class="v-row" data-ref="1 Kings 17:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Get you hence, and turn you eastward, and hide yourself by the brook Cherith, that is before the Jordan.</span></div>
-<div class="v-row" data-ref="1 Kings 17:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">It shall be, that you shall drink of the brook; and I have commanded the ravens to feed you there.</span></div>
-<div class="v-row" data-ref="1 Kings 17:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">So he went and did according to the word of Yahweh; for he went and lived by the brook Cherith, that is before the Jordan.</span></div>
-<div class="v-row" data-ref="1 Kings 17:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The ravens brought him bread and flesh in the morning, and bread and flesh in the evening; and he drank of the brook.</span></div>
-<div class="v-row" data-ref="1 Kings 17:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">It happened after a while, that the brook dried up, because there was no rain in the land.</span></div>
-<div class="v-row" data-ref="1 Kings 17:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The word of Yahweh came to him, saying,</span></div>
-<div class="v-row" data-ref="1 Kings 17:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Arise, get you to Zarephath, which belongs to Sidon, and dwell there: behold, I have commanded a widow there to sustain you.</span></div>
-<div class="v-row" data-ref="1 Kings 17:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So he arose and went to Zarephath; and when he came to the gate of the city, behold, a widow was there gathering sticks: and he called to her, and said, Please get me a little water in a vessel, that I may drink.</span></div>
-<div class="v-row" data-ref="1 Kings 17:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">As she was going to get it, he called to her, and said, Please bring me a morsel of bread in your hand.</span></div>
-<div class="v-row" data-ref="1 Kings 17:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">She said, As Yahweh your God lives, I don't have a cake, but a handful of meal in the jar, and a little oil in the jar: and, behold, I am gathering two sticks, that I may go in and bake it for me and my son, that we may eat it, and die.</span></div>
-<div class="v-row" data-ref="1 Kings 17:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Elijah said to her, Don't be afraid; go and do as you have said; but make me of it a little cake first, and bring it forth to me, and afterward make for you and for your son.</span></div>
-<div class="v-row" data-ref="1 Kings 17:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For thus says Yahweh, the God of Israel, The jar of meal shall not empty, neither shall the jar of oil fail, until the day that Yahweh sends rain on the earth.</span></div>
-<div class="v-row" data-ref="1 Kings 17:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">She went and did according to the saying of Elijah: and she, and he, and her house, ate many days.</span></div>
-<div class="v-row" data-ref="1 Kings 17:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The jar of meal didn't empty, neither did the jar of oil fail, according to the word of Yahweh, which he spoke by Elijah.</span></div>
-<div class="v-row" data-ref="1 Kings 17:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">It happened after these things, that the son of the woman, the mistress of the house, fell sick; and his sickness was so sore, that there was no breath left in him.</span></div>
-<div class="v-row" data-ref="1 Kings 17:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">She said to Elijah, What have I to do with you, you man of God? You have come to me to bring my sin to memory, and to kill my son!</span></div>
-<div class="v-row" data-ref="1 Kings 17:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He said to her, Give me your son. He took him out of her bosom, and carried him up into the chamber, where he abode, and laid him on his own bed.</span></div>
-<div class="v-row" data-ref="1 Kings 17:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He cried to Yahweh, and said, Yahweh my God, have you also brought evil on the widow with whom I sojourn, by killing her son?</span></div>
-<div class="v-row" data-ref="1 Kings 17:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">He stretched himself on the child three times, and cried to Yahweh, and said, Yahweh my God, please let this child's soul come into him again.</span></div>
-<div class="v-row" data-ref="1 Kings 17:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Yahweh listened to the voice of Elijah; and the soul of the child came into him again, and he revived.</span></div>
-<div class="v-row" data-ref="1 Kings 17:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Elijah took the child, and brought him down out of the chamber into the house, and delivered him to his mother; and Elijah said, Behold, your son lives.</span></div>
-<div class="v-row" data-ref="1 Kings 17:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The woman said to Elijah, Now I know that you are a man of God, and that the word of Yahweh in your mouth is truth.</span></div>
+    <a class="v-row" href="/bible/web/1-kings/17/1/" data-ref="1 Kings 17:1 (World English Bible)" data-verse-url="/bible/web/1-kings/17/1/"><span class="v-num">1</span><span class="v-txt">Elijah the Tishbite, who was of the foreigners of Gilead, said to Ahab, As Yahweh, the God of Israel, lives, before whom I stand, there shall not be dew nor rain these years, but according to my word.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/2/" data-ref="1 Kings 17:2 (World English Bible)" data-verse-url="/bible/web/1-kings/17/2/"><span class="v-num">2</span><span class="v-txt">The word of Yahweh came to him, saying,</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/3/" data-ref="1 Kings 17:3 (World English Bible)" data-verse-url="/bible/web/1-kings/17/3/"><span class="v-num">3</span><span class="v-txt">Get you hence, and turn you eastward, and hide yourself by the brook Cherith, that is before the Jordan.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/4/" data-ref="1 Kings 17:4 (World English Bible)" data-verse-url="/bible/web/1-kings/17/4/"><span class="v-num">4</span><span class="v-txt">It shall be, that you shall drink of the brook; and I have commanded the ravens to feed you there.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/5/" data-ref="1 Kings 17:5 (World English Bible)" data-verse-url="/bible/web/1-kings/17/5/"><span class="v-num">5</span><span class="v-txt">So he went and did according to the word of Yahweh; for he went and lived by the brook Cherith, that is before the Jordan.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/6/" data-ref="1 Kings 17:6 (World English Bible)" data-verse-url="/bible/web/1-kings/17/6/"><span class="v-num">6</span><span class="v-txt">The ravens brought him bread and flesh in the morning, and bread and flesh in the evening; and he drank of the brook.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/7/" data-ref="1 Kings 17:7 (World English Bible)" data-verse-url="/bible/web/1-kings/17/7/"><span class="v-num">7</span><span class="v-txt">It happened after a while, that the brook dried up, because there was no rain in the land.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/8/" data-ref="1 Kings 17:8 (World English Bible)" data-verse-url="/bible/web/1-kings/17/8/"><span class="v-num">8</span><span class="v-txt">The word of Yahweh came to him, saying,</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/9/" data-ref="1 Kings 17:9 (World English Bible)" data-verse-url="/bible/web/1-kings/17/9/"><span class="v-num">9</span><span class="v-txt">Arise, get you to Zarephath, which belongs to Sidon, and dwell there: behold, I have commanded a widow there to sustain you.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/10/" data-ref="1 Kings 17:10 (World English Bible)" data-verse-url="/bible/web/1-kings/17/10/"><span class="v-num">10</span><span class="v-txt">So he arose and went to Zarephath; and when he came to the gate of the city, behold, a widow was there gathering sticks: and he called to her, and said, Please get me a little water in a vessel, that I may drink.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/11/" data-ref="1 Kings 17:11 (World English Bible)" data-verse-url="/bible/web/1-kings/17/11/"><span class="v-num">11</span><span class="v-txt">As she was going to get it, he called to her, and said, Please bring me a morsel of bread in your hand.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/12/" data-ref="1 Kings 17:12 (World English Bible)" data-verse-url="/bible/web/1-kings/17/12/"><span class="v-num">12</span><span class="v-txt">She said, As Yahweh your God lives, I don't have a cake, but a handful of meal in the jar, and a little oil in the jar: and, behold, I am gathering two sticks, that I may go in and bake it for me and my son, that we may eat it, and die.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/13/" data-ref="1 Kings 17:13 (World English Bible)" data-verse-url="/bible/web/1-kings/17/13/"><span class="v-num">13</span><span class="v-txt">Elijah said to her, Don't be afraid; go and do as you have said; but make me of it a little cake first, and bring it forth to me, and afterward make for you and for your son.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/14/" data-ref="1 Kings 17:14 (World English Bible)" data-verse-url="/bible/web/1-kings/17/14/"><span class="v-num">14</span><span class="v-txt">For thus says Yahweh, the God of Israel, The jar of meal shall not empty, neither shall the jar of oil fail, until the day that Yahweh sends rain on the earth.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/15/" data-ref="1 Kings 17:15 (World English Bible)" data-verse-url="/bible/web/1-kings/17/15/"><span class="v-num">15</span><span class="v-txt">She went and did according to the saying of Elijah: and she, and he, and her house, ate many days.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/16/" data-ref="1 Kings 17:16 (World English Bible)" data-verse-url="/bible/web/1-kings/17/16/"><span class="v-num">16</span><span class="v-txt">The jar of meal didn't empty, neither did the jar of oil fail, according to the word of Yahweh, which he spoke by Elijah.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/17/" data-ref="1 Kings 17:17 (World English Bible)" data-verse-url="/bible/web/1-kings/17/17/"><span class="v-num">17</span><span class="v-txt">It happened after these things, that the son of the woman, the mistress of the house, fell sick; and his sickness was so sore, that there was no breath left in him.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/18/" data-ref="1 Kings 17:18 (World English Bible)" data-verse-url="/bible/web/1-kings/17/18/"><span class="v-num">18</span><span class="v-txt">She said to Elijah, What have I to do with you, you man of God? You have come to me to bring my sin to memory, and to kill my son!</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/19/" data-ref="1 Kings 17:19 (World English Bible)" data-verse-url="/bible/web/1-kings/17/19/"><span class="v-num">19</span><span class="v-txt">He said to her, Give me your son. He took him out of her bosom, and carried him up into the chamber, where he abode, and laid him on his own bed.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/20/" data-ref="1 Kings 17:20 (World English Bible)" data-verse-url="/bible/web/1-kings/17/20/"><span class="v-num">20</span><span class="v-txt">He cried to Yahweh, and said, Yahweh my God, have you also brought evil on the widow with whom I sojourn, by killing her son?</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/21/" data-ref="1 Kings 17:21 (World English Bible)" data-verse-url="/bible/web/1-kings/17/21/"><span class="v-num">21</span><span class="v-txt">He stretched himself on the child three times, and cried to Yahweh, and said, Yahweh my God, please let this child's soul come into him again.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/22/" data-ref="1 Kings 17:22 (World English Bible)" data-verse-url="/bible/web/1-kings/17/22/"><span class="v-num">22</span><span class="v-txt">Yahweh listened to the voice of Elijah; and the soul of the child came into him again, and he revived.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/23/" data-ref="1 Kings 17:23 (World English Bible)" data-verse-url="/bible/web/1-kings/17/23/"><span class="v-num">23</span><span class="v-txt">Elijah took the child, and brought him down out of the chamber into the house, and delivered him to his mother; and Elijah said, Behold, your son lives.</span></a>
+<a class="v-row" href="/bible/web/1-kings/17/24/" data-ref="1 Kings 17:24 (World English Bible)" data-verse-url="/bible/web/1-kings/17/24/"><span class="v-num">24</span><span class="v-txt">The woman said to Elijah, Now I know that you are a man of God, and that the word of Yahweh in your mouth is truth.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 14</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Chronicles 14:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">So Abijah rested with his fathers, and they buried him in the City of David. Then Asa his son reigned in his place. In his days the land was quiet for ten years.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Asa did [what was] good and right in the eyes of the LORD his God,</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">for he removed the altars of the foreign [gods] and the high places, and broke down the [sacred] pillars and cut down the wooden images.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He commanded Judah to seek the LORD God of their fathers, and to observe the law and the commandment.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">He also removed the high places and the incense altars from all the cities of Judah, and the kingdom was quiet under him.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And he built fortified cities in Judah, for the land had rest; he had no war in those years, because the LORD had given him rest.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Therefore he said to Judah, "Let us build these cities and make walls around [them,] and towers, gates, and bars, [while] the land [is] yet before us, because we have sought the LORD our God; we have sought [Him,] and He has given us rest on every side." So they built and prospered.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Asa had an army of three hundred thousand from Judah who carried shields and spears, and from Benjamin two hundred and eighty thousand men who carried shields and drew bows; all these [were] mighty men of valor.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then Zerah the Ethiopian came out against them with an army of a million men and three hundred chariots, and he came to Mareshah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">So Asa went out against him, and they set the troops in battle array in the Valley of Zephathah at Mareshah.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Asa cried out to the LORD his God, and said, "LORD, [it is] nothing for You to help, whether with many or with those who have no power; help us, O LORD our God, for we rest on You, and in Your name we go against this multitude. O LORD, You [are] our God; do not let man prevail against You!"</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So the LORD struck the Ethiopians before Asa and Judah, and the Ethiopians fled.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Asa and the people who [were] with him pursued them to Gerar. So the Ethiopians were overthrown, and they could not recover, for they were broken before the LORD and His army. And they carried away very much spoil.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then they defeated all the cities around Gerar, for the fear of the LORD came upon them; and they plundered all the cities, for there was exceedingly much spoil in them.</span></div>
-<div class="v-row" data-ref="2 Chronicles 14:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">They also attacked the livestock enclosures, and carried off sheep and camels in abundance, and returned to Jerusalem.</span></div>
+    <a class="v-row" href="/bible/nkjv/2-chronicles/14/1/" data-ref="2 Chronicles 14:1 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/1/"><span class="v-num">1</span><span class="v-txt">So Abijah rested with his fathers, and they buried him in the City of David. Then Asa his son reigned in his place. In his days the land was quiet for ten years.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/2/" data-ref="2 Chronicles 14:2 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/2/"><span class="v-num">2</span><span class="v-txt">Asa did [what was] good and right in the eyes of the LORD his God,</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/3/" data-ref="2 Chronicles 14:3 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/3/"><span class="v-num">3</span><span class="v-txt">for he removed the altars of the foreign [gods] and the high places, and broke down the [sacred] pillars and cut down the wooden images.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/4/" data-ref="2 Chronicles 14:4 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/4/"><span class="v-num">4</span><span class="v-txt">He commanded Judah to seek the LORD God of their fathers, and to observe the law and the commandment.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/5/" data-ref="2 Chronicles 14:5 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/5/"><span class="v-num">5</span><span class="v-txt">He also removed the high places and the incense altars from all the cities of Judah, and the kingdom was quiet under him.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/6/" data-ref="2 Chronicles 14:6 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/6/"><span class="v-num">6</span><span class="v-txt">And he built fortified cities in Judah, for the land had rest; he had no war in those years, because the LORD had given him rest.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/7/" data-ref="2 Chronicles 14:7 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/7/"><span class="v-num">7</span><span class="v-txt">Therefore he said to Judah, "Let us build these cities and make walls around [them,] and towers, gates, and bars, [while] the land [is] yet before us, because we have sought the LORD our God; we have sought [Him,] and He has given us rest on every side." So they built and prospered.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/8/" data-ref="2 Chronicles 14:8 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/8/"><span class="v-num">8</span><span class="v-txt">And Asa had an army of three hundred thousand from Judah who carried shields and spears, and from Benjamin two hundred and eighty thousand men who carried shields and drew bows; all these [were] mighty men of valor.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/9/" data-ref="2 Chronicles 14:9 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/9/"><span class="v-num">9</span><span class="v-txt">Then Zerah the Ethiopian came out against them with an army of a million men and three hundred chariots, and he came to Mareshah.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/10/" data-ref="2 Chronicles 14:10 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/10/"><span class="v-num">10</span><span class="v-txt">So Asa went out against him, and they set the troops in battle array in the Valley of Zephathah at Mareshah.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/11/" data-ref="2 Chronicles 14:11 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/11/"><span class="v-num">11</span><span class="v-txt">And Asa cried out to the LORD his God, and said, "LORD, [it is] nothing for You to help, whether with many or with those who have no power; help us, O LORD our God, for we rest on You, and in Your name we go against this multitude. O LORD, You [are] our God; do not let man prevail against You!"</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/12/" data-ref="2 Chronicles 14:12 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/12/"><span class="v-num">12</span><span class="v-txt">So the LORD struck the Ethiopians before Asa and Judah, and the Ethiopians fled.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/13/" data-ref="2 Chronicles 14:13 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/13/"><span class="v-num">13</span><span class="v-txt">And Asa and the people who [were] with him pursued them to Gerar. So the Ethiopians were overthrown, and they could not recover, for they were broken before the LORD and His army. And they carried away very much spoil.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/14/" data-ref="2 Chronicles 14:14 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/14/"><span class="v-num">14</span><span class="v-txt">Then they defeated all the cities around Gerar, for the fear of the LORD came upon them; and they plundered all the cities, for there was exceedingly much spoil in them.</span></a>
+<a class="v-row" href="/bible/nkjv/2-chronicles/14/15/" data-ref="2 Chronicles 14:15 (New King James Version)" data-verse-url="/bible/nkjv/2-chronicles/14/15/"><span class="v-num">15</span><span class="v-txt">They also attacked the livestock enclosures, and carried off sheep and camels in abundance, and returned to Jerusalem.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,25 +204,25 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The words of Jeremiah, the son of Hilkiah, of the priests who were in Anathoth in the land of Benjamin:</span></div>
-<div class="v-row" data-ref="Jeremiah 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">To whom the word of the Lord came in the days of Josiah, the son of Amon, king of Judah, in the thirteenth year of his rule.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And it came again in the days of Jehoiakim, the son of Josiah, king of Judah, up to the eleventh year of Zedekiah, the son of Josiah, king of Judah; till Jerusalem was taken away in the fifth month.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now the word of the Lord came to me, saying,</span></div>
-<div class="v-row" data-ref="Jeremiah 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Before you were formed in the body of your mother I had knowledge of you, and before your birth I made you holy; I have given you the work of being a prophet to the nations.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then said I, O Lord God! see, I have no power of words, for I am a child.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But the Lord said to me, Do not say, I am a child: for wherever I send you, you are to go, and whatever I give you orders to say, you are to say.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Have no fear because of them: for I am with you, to keep you safe, says the Lord.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then the Lord put out his hand, touching my mouth; and the Lord said to me, See, I have put my words in your mouth:</span></div>
-<div class="v-row" data-ref="Jeremiah 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">See, this day I have put you over the nations and over the kingdoms, for uprooting and smashing down, for destruction and overturning, for building up and planting.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Again the word of the Lord came to me, saying, Jeremiah, what do you see? And I said, I see a branch of an almond-tree.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then the Lord said to me, You have seen well: for I keep watch over my word to give effect to it.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And the word of the Lord came to me a second time, saying, What do you see? And I said, I see a boiling pot, and its face is from the north.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then the Lord said to me, Out of the north evil will come, bursting out on all the people of the land.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">For see, I will send for all the families of the kingdoms of the north, says the Lord; and they will come, everyone placing his high seat at the way into Jerusalem, and against its walls on every side, and against all the towns of Judah.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And I will give my decision against them on account of all their evil-doing; because they have given me up, burning perfumes to other gods and worshipping the works of their hands.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So make yourself ready, and go and say to them everything I give you orders to say: do not be overcome by fear of them, or I will send fear on you before them.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For see, this day have I made you a walled town, and an iron pillar, and walls of brass, against all the land, against the kings of Judah, against its captains, against its priests, and against the people of the land.</span></div>
-<div class="v-row" data-ref="Jeremiah 1:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">They will be fighting against you, but they will not overcome you: for I am with you, says the Lord, to give you salvation.</span></div>
+    <a class="v-row" href="/bible/bbe/jeremiah/1/1/" data-ref="Jeremiah 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/1/"><span class="v-num">1</span><span class="v-txt">The words of Jeremiah, the son of Hilkiah, of the priests who were in Anathoth in the land of Benjamin:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/2/" data-ref="Jeremiah 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/2/"><span class="v-num">2</span><span class="v-txt">To whom the word of the Lord came in the days of Josiah, the son of Amon, king of Judah, in the thirteenth year of his rule.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/3/" data-ref="Jeremiah 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/3/"><span class="v-num">3</span><span class="v-txt">And it came again in the days of Jehoiakim, the son of Josiah, king of Judah, up to the eleventh year of Zedekiah, the son of Josiah, king of Judah; till Jerusalem was taken away in the fifth month.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/4/" data-ref="Jeremiah 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/4/"><span class="v-num">4</span><span class="v-txt">Now the word of the Lord came to me, saying,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/5/" data-ref="Jeremiah 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/5/"><span class="v-num">5</span><span class="v-txt">Before you were formed in the body of your mother I had knowledge of you, and before your birth I made you holy; I have given you the work of being a prophet to the nations.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/6/" data-ref="Jeremiah 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/6/"><span class="v-num">6</span><span class="v-txt">Then said I, O Lord God! see, I have no power of words, for I am a child.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/7/" data-ref="Jeremiah 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/7/"><span class="v-num">7</span><span class="v-txt">But the Lord said to me, Do not say, I am a child: for wherever I send you, you are to go, and whatever I give you orders to say, you are to say.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/8/" data-ref="Jeremiah 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/8/"><span class="v-num">8</span><span class="v-txt">Have no fear because of them: for I am with you, to keep you safe, says the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/9/" data-ref="Jeremiah 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/9/"><span class="v-num">9</span><span class="v-txt">Then the Lord put out his hand, touching my mouth; and the Lord said to me, See, I have put my words in your mouth:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/10/" data-ref="Jeremiah 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/10/"><span class="v-num">10</span><span class="v-txt">See, this day I have put you over the nations and over the kingdoms, for uprooting and smashing down, for destruction and overturning, for building up and planting.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/11/" data-ref="Jeremiah 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/11/"><span class="v-num">11</span><span class="v-txt">Again the word of the Lord came to me, saying, Jeremiah, what do you see? And I said, I see a branch of an almond-tree.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/12/" data-ref="Jeremiah 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/12/"><span class="v-num">12</span><span class="v-txt">Then the Lord said to me, You have seen well: for I keep watch over my word to give effect to it.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/13/" data-ref="Jeremiah 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/13/"><span class="v-num">13</span><span class="v-txt">And the word of the Lord came to me a second time, saying, What do you see? And I said, I see a boiling pot, and its face is from the north.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/14/" data-ref="Jeremiah 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/14/"><span class="v-num">14</span><span class="v-txt">Then the Lord said to me, Out of the north evil will come, bursting out on all the people of the land.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/15/" data-ref="Jeremiah 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/15/"><span class="v-num">15</span><span class="v-txt">For see, I will send for all the families of the kingdoms of the north, says the Lord; and they will come, everyone placing his high seat at the way into Jerusalem, and against its walls on every side, and against all the towns of Judah.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/16/" data-ref="Jeremiah 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/16/"><span class="v-num">16</span><span class="v-txt">And I will give my decision against them on account of all their evil-doing; because they have given me up, burning perfumes to other gods and worshipping the works of their hands.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/17/" data-ref="Jeremiah 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/17/"><span class="v-num">17</span><span class="v-txt">So make yourself ready, and go and say to them everything I give you orders to say: do not be overcome by fear of them, or I will send fear on you before them.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/18/" data-ref="Jeremiah 1:18 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/18/"><span class="v-num">18</span><span class="v-txt">For see, this day have I made you a walled town, and an iron pillar, and walls of brass, against all the land, against the kings of Judah, against its captains, against its priests, and against the people of the land.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/1/19/" data-ref="Jeremiah 1:19 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/1/19/"><span class="v-num">19</span><span class="v-txt">They will be fighting against you, but they will not overcome you: for I am with you, says the Lord, to give you salvation.</span></a>
 
     
 <div class="app-cta">

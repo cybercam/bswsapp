@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="1 Corinthians 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">It is said, in fact, that there is among you a sin of the flesh, such as is not seen even among the Gentiles, that one of you has his father's wife.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And in place of feeling sorrow, you are pleased with yourselves, so that he who has done this thing has not been sent away from among you.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For I myself, being present in spirit though not in body, have come to a decision about him who has done this thing;</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">In the name of our Lord Jesus, when you have come together with my spirit, with the power of our Lord Jesus,</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">That this man is to be handed over to Satan for the destruction of the flesh, so that his spirit may have forgiveness in the day of the Lord Jesus.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">This pride of yours is not good. Do you not see that a little leaven makes a change in all the mass?</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Take away, then, the old leaven, so that you may be a new mass, even as you are without leaven. For Christ has been put to death as our Passover.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let us then keep the feast, not with old leaven, and not with the leaven of evil thoughts and acts, but with the unleavened bread of true thoughts and right feelings.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">In my letter I said to you that you were not to keep company with those who go after the desires of the flesh;</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But I had not in mind the sinners who are outside the church, or those who have a desire for and take the property of others, or those who give worship to images; for it is not possible to keep away from such people without going out of the world completely:</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But the sense of my letter was that if a brother had the name of being one who went after the desires of the flesh, or had the desire for other people's property, or was in the way of using violent language, or being the worse for drink, or took by force what was not his, you might not keep company with such a one, or take food with him.</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">For it is no business of mine to be judging those who are outside; but it is yours to be judging those who are among you;</span></div>
-<div class="v-row" data-ref="1 Corinthians 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">As for those who are outside, God is their judge. So put away the evil man from among you.</span></div>
+    <a class="v-row" href="/bible/bbe/1-corinthians/5/1/" data-ref="1 Corinthians 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/1/"><span class="v-num">1</span><span class="v-txt">It is said, in fact, that there is among you a sin of the flesh, such as is not seen even among the Gentiles, that one of you has his father's wife.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/2/" data-ref="1 Corinthians 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/2/"><span class="v-num">2</span><span class="v-txt">And in place of feeling sorrow, you are pleased with yourselves, so that he who has done this thing has not been sent away from among you.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/3/" data-ref="1 Corinthians 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/3/"><span class="v-num">3</span><span class="v-txt">For I myself, being present in spirit though not in body, have come to a decision about him who has done this thing;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/4/" data-ref="1 Corinthians 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/4/"><span class="v-num">4</span><span class="v-txt">In the name of our Lord Jesus, when you have come together with my spirit, with the power of our Lord Jesus,</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/5/" data-ref="1 Corinthians 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/5/"><span class="v-num">5</span><span class="v-txt">That this man is to be handed over to Satan for the destruction of the flesh, so that his spirit may have forgiveness in the day of the Lord Jesus.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/6/" data-ref="1 Corinthians 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/6/"><span class="v-num">6</span><span class="v-txt">This pride of yours is not good. Do you not see that a little leaven makes a change in all the mass?</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/7/" data-ref="1 Corinthians 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/7/"><span class="v-num">7</span><span class="v-txt">Take away, then, the old leaven, so that you may be a new mass, even as you are without leaven. For Christ has been put to death as our Passover.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/8/" data-ref="1 Corinthians 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/8/"><span class="v-num">8</span><span class="v-txt">Let us then keep the feast, not with old leaven, and not with the leaven of evil thoughts and acts, but with the unleavened bread of true thoughts and right feelings.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/9/" data-ref="1 Corinthians 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/9/"><span class="v-num">9</span><span class="v-txt">In my letter I said to you that you were not to keep company with those who go after the desires of the flesh;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/10/" data-ref="1 Corinthians 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/10/"><span class="v-num">10</span><span class="v-txt">But I had not in mind the sinners who are outside the church, or those who have a desire for and take the property of others, or those who give worship to images; for it is not possible to keep away from such people without going out of the world completely:</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/11/" data-ref="1 Corinthians 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/11/"><span class="v-num">11</span><span class="v-txt">But the sense of my letter was that if a brother had the name of being one who went after the desires of the flesh, or had the desire for other people's property, or was in the way of using violent language, or being the worse for drink, or took by force what was not his, you might not keep company with such a one, or take food with him.</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/12/" data-ref="1 Corinthians 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/12/"><span class="v-num">12</span><span class="v-txt">For it is no business of mine to be judging those who are outside; but it is yours to be judging those who are among you;</span></a>
+<a class="v-row" href="/bible/bbe/1-corinthians/5/13/" data-ref="1 Corinthians 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/1-corinthians/5/13/"><span class="v-num">13</span><span class="v-txt">As for those who are outside, God is their judge. So put away the evil man from among you.</span></a>
 
     
 <div class="app-cta">

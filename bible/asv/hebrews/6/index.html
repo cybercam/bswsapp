@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Hebrews 6:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Wherefore leaving the doctrine of the first principles of Christ, let us press on unto perfection; not laying again a foundation of repentance from dead works, and of faith toward God,</span></div>
-<div class="v-row" data-ref="Hebrews 6:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">of the teaching of baptisms, and of laying on of hands, and of resurrection of the dead, and of eternal judgment.</span></div>
-<div class="v-row" data-ref="Hebrews 6:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And this will we do, if God permit.</span></div>
-<div class="v-row" data-ref="Hebrews 6:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">For as touching those who were once enlightened and tasted of the heavenly gift, and were made partakers of the Holy Spirit,</span></div>
-<div class="v-row" data-ref="Hebrews 6:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">and tasted the good word of God, and the powers of the age to come,</span></div>
-<div class="v-row" data-ref="Hebrews 6:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and [then] fell away, it is impossible to renew them again unto repentance; seeing they crucify to themselves the Son of God afresh, and put him to an open shame.</span></div>
-<div class="v-row" data-ref="Hebrews 6:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For the land which hath drunk the rain that cometh oft upon it, and bringeth forth herbs meet for them for whose sake it is also tilled, receiveth blessing from God:</span></div>
-<div class="v-row" data-ref="Hebrews 6:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">but if it beareth thorns and thistles, it is rejected and nigh unto a curse; whose end is to be burned.</span></div>
-<div class="v-row" data-ref="Hebrews 6:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But, beloved, we are persuaded better things of you, and things that accompany salvation, though we thus speak:</span></div>
-<div class="v-row" data-ref="Hebrews 6:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">for God is not unrighteous to forget your work and the love which ye showed toward his name, in that ye ministered unto the saints, and still do minister.</span></div>
-<div class="v-row" data-ref="Hebrews 6:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And we desire that each one of you may show the same diligence unto the fulness of hope even to the end:</span></div>
-<div class="v-row" data-ref="Hebrews 6:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">that ye be not sluggish, but imitators of them who through faith and patience inherit the promises.</span></div>
-<div class="v-row" data-ref="Hebrews 6:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For when God made promise to Abraham, since he could swear by none greater, he sware by himself,</span></div>
-<div class="v-row" data-ref="Hebrews 6:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">saying, Surely blessing I will bless thee, and multiplying I will multiply thee.</span></div>
-<div class="v-row" data-ref="Hebrews 6:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And thus, having patiently endured, he obtained the promise.</span></div>
-<div class="v-row" data-ref="Hebrews 6:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For men swear by the greater: and in every dispute of theirs the oath is final for confirmation.</span></div>
-<div class="v-row" data-ref="Hebrews 6:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Wherein God, being minded to show more abundantly unto the heirs of the promise the immutability of his counsel, interposed with an oath;</span></div>
-<div class="v-row" data-ref="Hebrews 6:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">that by two immutable things, in which it is impossible for God to lie, we may have a strong encouragement, who have fled for refuge to lay hold of the hope set before us:</span></div>
-<div class="v-row" data-ref="Hebrews 6:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">which we have as an anchor of the soul, [a hope] both sure and stedfast and entering into that which is within the veil;</span></div>
-<div class="v-row" data-ref="Hebrews 6:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">whither as a forerunner Jesus entered for us, having become a high priest for ever after the order of Melchizedek.</span></div>
+    <a class="v-row" href="/bible/asv/hebrews/6/1/" data-ref="Hebrews 6:1 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/1/"><span class="v-num">1</span><span class="v-txt">Wherefore leaving the doctrine of the first principles of Christ, let us press on unto perfection; not laying again a foundation of repentance from dead works, and of faith toward God,</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/2/" data-ref="Hebrews 6:2 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/2/"><span class="v-num">2</span><span class="v-txt">of the teaching of baptisms, and of laying on of hands, and of resurrection of the dead, and of eternal judgment.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/3/" data-ref="Hebrews 6:3 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/3/"><span class="v-num">3</span><span class="v-txt">And this will we do, if God permit.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/4/" data-ref="Hebrews 6:4 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/4/"><span class="v-num">4</span><span class="v-txt">For as touching those who were once enlightened and tasted of the heavenly gift, and were made partakers of the Holy Spirit,</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/5/" data-ref="Hebrews 6:5 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/5/"><span class="v-num">5</span><span class="v-txt">and tasted the good word of God, and the powers of the age to come,</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/6/" data-ref="Hebrews 6:6 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/6/"><span class="v-num">6</span><span class="v-txt">and [then] fell away, it is impossible to renew them again unto repentance; seeing they crucify to themselves the Son of God afresh, and put him to an open shame.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/7/" data-ref="Hebrews 6:7 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/7/"><span class="v-num">7</span><span class="v-txt">For the land which hath drunk the rain that cometh oft upon it, and bringeth forth herbs meet for them for whose sake it is also tilled, receiveth blessing from God:</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/8/" data-ref="Hebrews 6:8 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/8/"><span class="v-num">8</span><span class="v-txt">but if it beareth thorns and thistles, it is rejected and nigh unto a curse; whose end is to be burned.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/9/" data-ref="Hebrews 6:9 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/9/"><span class="v-num">9</span><span class="v-txt">But, beloved, we are persuaded better things of you, and things that accompany salvation, though we thus speak:</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/10/" data-ref="Hebrews 6:10 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/10/"><span class="v-num">10</span><span class="v-txt">for God is not unrighteous to forget your work and the love which ye showed toward his name, in that ye ministered unto the saints, and still do minister.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/11/" data-ref="Hebrews 6:11 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/11/"><span class="v-num">11</span><span class="v-txt">And we desire that each one of you may show the same diligence unto the fulness of hope even to the end:</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/12/" data-ref="Hebrews 6:12 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/12/"><span class="v-num">12</span><span class="v-txt">that ye be not sluggish, but imitators of them who through faith and patience inherit the promises.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/13/" data-ref="Hebrews 6:13 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/13/"><span class="v-num">13</span><span class="v-txt">For when God made promise to Abraham, since he could swear by none greater, he sware by himself,</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/14/" data-ref="Hebrews 6:14 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/14/"><span class="v-num">14</span><span class="v-txt">saying, Surely blessing I will bless thee, and multiplying I will multiply thee.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/15/" data-ref="Hebrews 6:15 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/15/"><span class="v-num">15</span><span class="v-txt">And thus, having patiently endured, he obtained the promise.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/16/" data-ref="Hebrews 6:16 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/16/"><span class="v-num">16</span><span class="v-txt">For men swear by the greater: and in every dispute of theirs the oath is final for confirmation.</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/17/" data-ref="Hebrews 6:17 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/17/"><span class="v-num">17</span><span class="v-txt">Wherein God, being minded to show more abundantly unto the heirs of the promise the immutability of his counsel, interposed with an oath;</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/18/" data-ref="Hebrews 6:18 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/18/"><span class="v-num">18</span><span class="v-txt">that by two immutable things, in which it is impossible for God to lie, we may have a strong encouragement, who have fled for refuge to lay hold of the hope set before us:</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/19/" data-ref="Hebrews 6:19 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/19/"><span class="v-num">19</span><span class="v-txt">which we have as an anchor of the soul, [a hope] both sure and stedfast and entering into that which is within the veil;</span></a>
+<a class="v-row" href="/bible/asv/hebrews/6/20/" data-ref="Hebrews 6:20 (American Standard Version)" data-verse-url="/bible/asv/hebrews/6/20/"><span class="v-num">20</span><span class="v-txt">whither as a forerunner Jesus entered for us, having become a high priest for ever after the order of Melchizedek.</span></a>
 
     
 <div class="app-cta">

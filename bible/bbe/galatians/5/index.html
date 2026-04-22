@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Galatians 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Christ has truly made us free: then keep your free condition and let no man put a yoke on you again.</span></div>
-<div class="v-row" data-ref="Galatians 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">See, I Paul say to you, that if you undergo circumcision, Christ will be of no use to you.</span></div>
-<div class="v-row" data-ref="Galatians 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Yes, I give witness again to every man who undergoes circumcision, that he will have to keep all the law.</span></div>
-<div class="v-row" data-ref="Galatians 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">You are cut off from Christ, you who would have righteousness by the law; you are turned away from grace.</span></div>
-<div class="v-row" data-ref="Galatians 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">For we through the Spirit by faith are waiting for the hope of righteousness.</span></div>
-<div class="v-row" data-ref="Galatians 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Because in Christ Jesus, having circumcision or not having circumcision are equally of no profit; but only faith working through love.</span></div>
-<div class="v-row" data-ref="Galatians 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You were going on well; who was the cause of your not giving ear to what is true?</span></div>
-<div class="v-row" data-ref="Galatians 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">This ready belief did not come from him who had made you his.</span></div>
-<div class="v-row" data-ref="Galatians 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">A little leaven makes a change in all the mass.</span></div>
-<div class="v-row" data-ref="Galatians 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">I am certain about you in the Lord, that you will be of no other mind; but he who is troubling you will have his punishment, whoever he is.</span></div>
-<div class="v-row" data-ref="Galatians 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But I, brothers, if I am still preaching circumcision, why am I still attacked? then has the shame of the cross been taken away.</span></div>
-<div class="v-row" data-ref="Galatians 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">My desire is that they who give you trouble might even be cut off themselves.</span></div>
-<div class="v-row" data-ref="Galatians 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Because you, brothers, were marked out to be free; only do not make use of your free condition to give the flesh its chance, but through love be servants one to another.</span></div>
-<div class="v-row" data-ref="Galatians 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For all the law is made complete in one word, even in this, Have love for your neighbour as for yourself.</span></div>
-<div class="v-row" data-ref="Galatians 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But if you are given to fighting with one another, take care that you are not the cause of destruction one to another.</span></div>
-<div class="v-row" data-ref="Galatians 5:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But I say, Go on in the Spirit, and you will not come under the rule of the evil desires of the flesh.</span></div>
-<div class="v-row" data-ref="Galatians 5:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For the flesh has desires against the Spirit, and the Spirit against the flesh; because these are opposite the one to the other; so that you may not do the things which you have a mind to do.</span></div>
-<div class="v-row" data-ref="Galatians 5:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But if you are guided by the Spirit, you are not under the law.</span></div>
-<div class="v-row" data-ref="Galatians 5:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Now the works of the flesh are clear, which are these: evil desire, unclean things, wrong use of the senses,</span></div>
-<div class="v-row" data-ref="Galatians 5:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Worship of images, use of strange powers, hates, fighting, desire for what another has, angry feelings, attempts to get the better of others, divisions, false teachings,</span></div>
-<div class="v-row" data-ref="Galatians 5:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Envy, uncontrolled drinking and feasting, and such things: of which I give you word clearly, even as I did in the past, that they who do such things will have no part in the kingdom of God.</span></div>
-<div class="v-row" data-ref="Galatians 5:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But the fruit of the Spirit is love, joy, peace, a quiet mind, kind acts, well-doing, faith,</span></div>
-<div class="v-row" data-ref="Galatians 5:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Gentle behaviour, control over desires: against such there is no law.</span></div>
-<div class="v-row" data-ref="Galatians 5:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And those who are Christ's have put to death on the cross the flesh with its passions and its evil desires.</span></div>
-<div class="v-row" data-ref="Galatians 5:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">If we are living by the Spirit, by the Spirit let us be guided.</span></div>
-<div class="v-row" data-ref="Galatians 5:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Let us not be full of self-glory, making one another angry, having envy of one another.</span></div>
+    <a class="v-row" href="/bible/bbe/galatians/5/1/" data-ref="Galatians 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/1/"><span class="v-num">1</span><span class="v-txt">Christ has truly made us free: then keep your free condition and let no man put a yoke on you again.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/2/" data-ref="Galatians 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/2/"><span class="v-num">2</span><span class="v-txt">See, I Paul say to you, that if you undergo circumcision, Christ will be of no use to you.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/3/" data-ref="Galatians 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/3/"><span class="v-num">3</span><span class="v-txt">Yes, I give witness again to every man who undergoes circumcision, that he will have to keep all the law.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/4/" data-ref="Galatians 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/4/"><span class="v-num">4</span><span class="v-txt">You are cut off from Christ, you who would have righteousness by the law; you are turned away from grace.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/5/" data-ref="Galatians 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/5/"><span class="v-num">5</span><span class="v-txt">For we through the Spirit by faith are waiting for the hope of righteousness.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/6/" data-ref="Galatians 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/6/"><span class="v-num">6</span><span class="v-txt">Because in Christ Jesus, having circumcision or not having circumcision are equally of no profit; but only faith working through love.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/7/" data-ref="Galatians 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/7/"><span class="v-num">7</span><span class="v-txt">You were going on well; who was the cause of your not giving ear to what is true?</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/8/" data-ref="Galatians 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/8/"><span class="v-num">8</span><span class="v-txt">This ready belief did not come from him who had made you his.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/9/" data-ref="Galatians 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/9/"><span class="v-num">9</span><span class="v-txt">A little leaven makes a change in all the mass.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/10/" data-ref="Galatians 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/10/"><span class="v-num">10</span><span class="v-txt">I am certain about you in the Lord, that you will be of no other mind; but he who is troubling you will have his punishment, whoever he is.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/11/" data-ref="Galatians 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/11/"><span class="v-num">11</span><span class="v-txt">But I, brothers, if I am still preaching circumcision, why am I still attacked? then has the shame of the cross been taken away.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/12/" data-ref="Galatians 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/12/"><span class="v-num">12</span><span class="v-txt">My desire is that they who give you trouble might even be cut off themselves.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/13/" data-ref="Galatians 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/13/"><span class="v-num">13</span><span class="v-txt">Because you, brothers, were marked out to be free; only do not make use of your free condition to give the flesh its chance, but through love be servants one to another.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/14/" data-ref="Galatians 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/14/"><span class="v-num">14</span><span class="v-txt">For all the law is made complete in one word, even in this, Have love for your neighbour as for yourself.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/15/" data-ref="Galatians 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/15/"><span class="v-num">15</span><span class="v-txt">But if you are given to fighting with one another, take care that you are not the cause of destruction one to another.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/16/" data-ref="Galatians 5:16 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/16/"><span class="v-num">16</span><span class="v-txt">But I say, Go on in the Spirit, and you will not come under the rule of the evil desires of the flesh.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/17/" data-ref="Galatians 5:17 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/17/"><span class="v-num">17</span><span class="v-txt">For the flesh has desires against the Spirit, and the Spirit against the flesh; because these are opposite the one to the other; so that you may not do the things which you have a mind to do.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/18/" data-ref="Galatians 5:18 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/18/"><span class="v-num">18</span><span class="v-txt">But if you are guided by the Spirit, you are not under the law.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/19/" data-ref="Galatians 5:19 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/19/"><span class="v-num">19</span><span class="v-txt">Now the works of the flesh are clear, which are these: evil desire, unclean things, wrong use of the senses,</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/20/" data-ref="Galatians 5:20 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/20/"><span class="v-num">20</span><span class="v-txt">Worship of images, use of strange powers, hates, fighting, desire for what another has, angry feelings, attempts to get the better of others, divisions, false teachings,</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/21/" data-ref="Galatians 5:21 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/21/"><span class="v-num">21</span><span class="v-txt">Envy, uncontrolled drinking and feasting, and such things: of which I give you word clearly, even as I did in the past, that they who do such things will have no part in the kingdom of God.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/22/" data-ref="Galatians 5:22 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/22/"><span class="v-num">22</span><span class="v-txt">But the fruit of the Spirit is love, joy, peace, a quiet mind, kind acts, well-doing, faith,</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/23/" data-ref="Galatians 5:23 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/23/"><span class="v-num">23</span><span class="v-txt">Gentle behaviour, control over desires: against such there is no law.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/24/" data-ref="Galatians 5:24 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/24/"><span class="v-num">24</span><span class="v-txt">And those who are Christ's have put to death on the cross the flesh with its passions and its evil desires.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/25/" data-ref="Galatians 5:25 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/25/"><span class="v-num">25</span><span class="v-txt">If we are living by the Spirit, by the Spirit let us be guided.</span></a>
+<a class="v-row" href="/bible/bbe/galatians/5/26/" data-ref="Galatians 5:26 (Bible in Basic English)" data-verse-url="/bible/bbe/galatians/5/26/"><span class="v-num">26</span><span class="v-txt">Let us not be full of self-glory, making one another angry, having envy of one another.</span></a>
 
     
 <div class="app-cta">

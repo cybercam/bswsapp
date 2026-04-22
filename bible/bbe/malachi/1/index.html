@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Malachi 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word of the Lord to Israel by Malachi.</span></div>
-<div class="v-row" data-ref="Malachi 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">You have been loved by me, says the Lord. But you say, Where was your love for us? Was not Esau Jacob's brother? says the Lord: but Jacob was loved by me,</span></div>
-<div class="v-row" data-ref="Malachi 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Esau was hated, and I sent destruction on his mountains, and gave his heritage to the beasts of the waste land.</span></div>
-<div class="v-row" data-ref="Malachi 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Though Edom says, We are crushed down but we will come back, building up the waste places; this is what the Lord of armies has said: They may put up buildings, but I will have them pulled down; and they will be named The land of evil-doing, and The people against whom the Lord keeps his wrath for ever.</span></div>
-<div class="v-row" data-ref="Malachi 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And your eyes will see it; and you will say, The Lord is great even outside the limits of Israel.</span></div>
-<div class="v-row" data-ref="Malachi 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">A son gives honour to his father, and a servant has fear of his master: if then I am a father, where is my honour? and if I am a master, where is the fear of me? says the Lord of armies to you, O priests, who give no value to my name. And you say, How have we not given value to your name?</span></div>
-<div class="v-row" data-ref="Malachi 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You put unclean bread on my altar. And you say, How have we made it unclean? By your saying, The table of the Lord is of no value.</span></div>
-<div class="v-row" data-ref="Malachi 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And when you give what is blind for an offering, it is no evil! and when you give what is damaged and ill, it is no evil! Give it now to your ruler; will he be pleased with you, or will you have his approval? says the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And now, make request for the grace of God so that he may have mercy on us: this has been your doing: will he give his approval to any of you? says the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">If only there was one among you who would see that the doors were shut, so that you might not put a light to the fire on my altar for nothing! I have no pleasure in you, says the Lord of armies, and I will not take an offering from your hands.</span></div>
-<div class="v-row" data-ref="Malachi 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For, from the coming up of the sun till its going down, my name is great among the Gentiles; and in every place the smell of burning flesh is offered to my name, and a clean offering: for my name is great among the Gentiles, says the Lord of armies.</span></div>
-<div class="v-row" data-ref="Malachi 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">But you make it unholy by saying, The Lord's table has become unclean, and his food is of no value.</span></div>
-<div class="v-row" data-ref="Malachi 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And you say, See, what a weariness it is! and you let out your breath at it, says the Lord of armies; and you have given what has been cut about by beasts, and what is damaged in its feet and ill; this is the offering you give: will this be pleasing to me from your hands? says the Lord.</span></div>
-<div class="v-row" data-ref="Malachi 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A curse on the false man who has a male in his flock, and takes his oath, and gives to the Lord a damaged thing: for I am a great King, says the Lord of armies, and my name is to be feared among the Gentiles.</span></div>
+    <a class="v-row" href="/bible/bbe/malachi/1/1/" data-ref="Malachi 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/1/"><span class="v-num">1</span><span class="v-txt">The word of the Lord to Israel by Malachi.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/2/" data-ref="Malachi 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/2/"><span class="v-num">2</span><span class="v-txt">You have been loved by me, says the Lord. But you say, Where was your love for us? Was not Esau Jacob's brother? says the Lord: but Jacob was loved by me,</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/3/" data-ref="Malachi 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/3/"><span class="v-num">3</span><span class="v-txt">And Esau was hated, and I sent destruction on his mountains, and gave his heritage to the beasts of the waste land.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/4/" data-ref="Malachi 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/4/"><span class="v-num">4</span><span class="v-txt">Though Edom says, We are crushed down but we will come back, building up the waste places; this is what the Lord of armies has said: They may put up buildings, but I will have them pulled down; and they will be named The land of evil-doing, and The people against whom the Lord keeps his wrath for ever.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/5/" data-ref="Malachi 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/5/"><span class="v-num">5</span><span class="v-txt">And your eyes will see it; and you will say, The Lord is great even outside the limits of Israel.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/6/" data-ref="Malachi 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/6/"><span class="v-num">6</span><span class="v-txt">A son gives honour to his father, and a servant has fear of his master: if then I am a father, where is my honour? and if I am a master, where is the fear of me? says the Lord of armies to you, O priests, who give no value to my name. And you say, How have we not given value to your name?</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/7/" data-ref="Malachi 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/7/"><span class="v-num">7</span><span class="v-txt">You put unclean bread on my altar. And you say, How have we made it unclean? By your saying, The table of the Lord is of no value.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/8/" data-ref="Malachi 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/8/"><span class="v-num">8</span><span class="v-txt">And when you give what is blind for an offering, it is no evil! and when you give what is damaged and ill, it is no evil! Give it now to your ruler; will he be pleased with you, or will you have his approval? says the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/9/" data-ref="Malachi 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/9/"><span class="v-num">9</span><span class="v-txt">And now, make request for the grace of God so that he may have mercy on us: this has been your doing: will he give his approval to any of you? says the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/10/" data-ref="Malachi 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/10/"><span class="v-num">10</span><span class="v-txt">If only there was one among you who would see that the doors were shut, so that you might not put a light to the fire on my altar for nothing! I have no pleasure in you, says the Lord of armies, and I will not take an offering from your hands.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/11/" data-ref="Malachi 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/11/"><span class="v-num">11</span><span class="v-txt">For, from the coming up of the sun till its going down, my name is great among the Gentiles; and in every place the smell of burning flesh is offered to my name, and a clean offering: for my name is great among the Gentiles, says the Lord of armies.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/12/" data-ref="Malachi 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/12/"><span class="v-num">12</span><span class="v-txt">But you make it unholy by saying, The Lord's table has become unclean, and his food is of no value.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/13/" data-ref="Malachi 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/13/"><span class="v-num">13</span><span class="v-txt">And you say, See, what a weariness it is! and you let out your breath at it, says the Lord of armies; and you have given what has been cut about by beasts, and what is damaged in its feet and ill; this is the offering you give: will this be pleasing to me from your hands? says the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/malachi/1/14/" data-ref="Malachi 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/malachi/1/14/"><span class="v-num">14</span><span class="v-txt">A curse on the false man who has a male in his flock, and takes his oath, and gives to the Lord a damaged thing: for I am a great King, says the Lord of armies, and my name is to be feared among the Gentiles.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 16</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 16:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then I heard a loud voice from the temple saying to the seven angels, "Go and pour out the bowls of the wrath of God on the earth."</span></div>
-<div class="v-row" data-ref="Revelation 16:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So the first went and poured out his bowl upon the earth, and a foul and loathsome sore came upon the men who had the mark of the beast and those who worshiped his image.</span></div>
-<div class="v-row" data-ref="Revelation 16:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then the second angel poured out his bowl on the sea, and it became blood as of a dead [man;] and every living creature in the sea died.</span></div>
-<div class="v-row" data-ref="Revelation 16:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then the third angel poured out his bowl on the rivers and springs of water, and they became blood.</span></div>
-<div class="v-row" data-ref="Revelation 16:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And I heard the angel of the waters saying: "You are righteous, O Lord, The One who is and who was and who is to be, Because You have judged these things.</span></div>
-<div class="v-row" data-ref="Revelation 16:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For they have shed the blood of saints and prophets, And You have given them blood to drink. For it is their just due."</span></div>
-<div class="v-row" data-ref="Revelation 16:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I heard another from the altar saying, "Even so, Lord God Almighty, true and righteous [are] Your judgments."</span></div>
-<div class="v-row" data-ref="Revelation 16:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then the fourth angel poured out his bowl on the sun, and power was given to him to scorch men with fire.</span></div>
-<div class="v-row" data-ref="Revelation 16:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And men were scorched with great heat, and they blasphemed the name of God who has power over these plagues; and they did not repent and give Him glory.</span></div>
-<div class="v-row" data-ref="Revelation 16:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then the fifth angel poured out his bowl on the throne of the beast, and his kingdom became full of darkness; and they gnawed their tongues because of the pain.</span></div>
-<div class="v-row" data-ref="Revelation 16:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">They blasphemed the God of heaven because of their pains and their sores, and did not repent of their deeds.</span></div>
-<div class="v-row" data-ref="Revelation 16:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Then the sixth angel poured out his bowl on the great river Euphrates, and its water was dried up, so that the way of the kings from the east might be prepared.</span></div>
-<div class="v-row" data-ref="Revelation 16:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And I saw three unclean spirits like frogs [coming] out of the mouth of the dragon, out of the mouth of the beast, and out of the mouth of the false prophet.</span></div>
-<div class="v-row" data-ref="Revelation 16:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For they are spirits of demons, performing signs, [which] go out to the kings of the earth and of the whole world, to gather them to the battle of that great day of God Almighty.</span></div>
-<div class="v-row" data-ref="Revelation 16:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">"Behold, I am coming as a thief. Blessed [is] he who watches, and keeps his garments, lest he walk naked and they see his shame."</span></div>
-<div class="v-row" data-ref="Revelation 16:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And they gathered them together to the place called in Hebrew, Armageddon.</span></div>
-<div class="v-row" data-ref="Revelation 16:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Then the seventh angel poured out his bowl into the air, and a loud voice came out of the temple of heaven, from the throne, saying, "It is done!"</span></div>
-<div class="v-row" data-ref="Revelation 16:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And there were noises and thunderings and lightnings; and there was a great earthquake, such a mighty and great earthquake as had not occurred since men were on the earth.</span></div>
-<div class="v-row" data-ref="Revelation 16:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Now the great city was divided into three parts, and the cities of the nations fell. And great Babylon was remembered before God, to give her the cup of the wine of the fierceness of His wrath.</span></div>
-<div class="v-row" data-ref="Revelation 16:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Then every island fled away, and the mountains were not found.</span></div>
-<div class="v-row" data-ref="Revelation 16:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And great hail from heaven fell upon men, [each hailstone] about the weight of a talent. Men blasphemed God because of the plague of the hail, since that plague was exceedingly great.</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/16/1/" data-ref="Revelation 16:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/1/"><span class="v-num">1</span><span class="v-txt">Then I heard a loud voice from the temple saying to the seven angels, "Go and pour out the bowls of the wrath of God on the earth."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/2/" data-ref="Revelation 16:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/2/"><span class="v-num">2</span><span class="v-txt">So the first went and poured out his bowl upon the earth, and a foul and loathsome sore came upon the men who had the mark of the beast and those who worshiped his image.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/3/" data-ref="Revelation 16:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/3/"><span class="v-num">3</span><span class="v-txt">Then the second angel poured out his bowl on the sea, and it became blood as of a dead [man;] and every living creature in the sea died.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/4/" data-ref="Revelation 16:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/4/"><span class="v-num">4</span><span class="v-txt">Then the third angel poured out his bowl on the rivers and springs of water, and they became blood.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/5/" data-ref="Revelation 16:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/5/"><span class="v-num">5</span><span class="v-txt">And I heard the angel of the waters saying: "You are righteous, O Lord, The One who is and who was and who is to be, Because You have judged these things.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/6/" data-ref="Revelation 16:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/6/"><span class="v-num">6</span><span class="v-txt">For they have shed the blood of saints and prophets, And You have given them blood to drink. For it is their just due."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/7/" data-ref="Revelation 16:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/7/"><span class="v-num">7</span><span class="v-txt">And I heard another from the altar saying, "Even so, Lord God Almighty, true and righteous [are] Your judgments."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/8/" data-ref="Revelation 16:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/8/"><span class="v-num">8</span><span class="v-txt">Then the fourth angel poured out his bowl on the sun, and power was given to him to scorch men with fire.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/9/" data-ref="Revelation 16:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/9/"><span class="v-num">9</span><span class="v-txt">And men were scorched with great heat, and they blasphemed the name of God who has power over these plagues; and they did not repent and give Him glory.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/10/" data-ref="Revelation 16:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/10/"><span class="v-num">10</span><span class="v-txt">Then the fifth angel poured out his bowl on the throne of the beast, and his kingdom became full of darkness; and they gnawed their tongues because of the pain.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/11/" data-ref="Revelation 16:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/11/"><span class="v-num">11</span><span class="v-txt">They blasphemed the God of heaven because of their pains and their sores, and did not repent of their deeds.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/12/" data-ref="Revelation 16:12 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/12/"><span class="v-num">12</span><span class="v-txt">Then the sixth angel poured out his bowl on the great river Euphrates, and its water was dried up, so that the way of the kings from the east might be prepared.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/13/" data-ref="Revelation 16:13 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/13/"><span class="v-num">13</span><span class="v-txt">And I saw three unclean spirits like frogs [coming] out of the mouth of the dragon, out of the mouth of the beast, and out of the mouth of the false prophet.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/14/" data-ref="Revelation 16:14 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/14/"><span class="v-num">14</span><span class="v-txt">For they are spirits of demons, performing signs, [which] go out to the kings of the earth and of the whole world, to gather them to the battle of that great day of God Almighty.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/15/" data-ref="Revelation 16:15 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/15/"><span class="v-num">15</span><span class="v-txt">"Behold, I am coming as a thief. Blessed [is] he who watches, and keeps his garments, lest he walk naked and they see his shame."</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/16/" data-ref="Revelation 16:16 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/16/"><span class="v-num">16</span><span class="v-txt">And they gathered them together to the place called in Hebrew, Armageddon.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/17/" data-ref="Revelation 16:17 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/17/"><span class="v-num">17</span><span class="v-txt">Then the seventh angel poured out his bowl into the air, and a loud voice came out of the temple of heaven, from the throne, saying, "It is done!"</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/18/" data-ref="Revelation 16:18 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/18/"><span class="v-num">18</span><span class="v-txt">And there were noises and thunderings and lightnings; and there was a great earthquake, such a mighty and great earthquake as had not occurred since men were on the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/19/" data-ref="Revelation 16:19 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/19/"><span class="v-num">19</span><span class="v-txt">Now the great city was divided into three parts, and the cities of the nations fell. And great Babylon was remembered before God, to give her the cup of the wine of the fierceness of His wrath.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/20/" data-ref="Revelation 16:20 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/20/"><span class="v-num">20</span><span class="v-txt">Then every island fled away, and the mountains were not found.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/16/21/" data-ref="Revelation 16:21 (New King James Version)" data-verse-url="/bible/nkjv/revelation/16/21/"><span class="v-num">21</span><span class="v-txt">And great hail from heaven fell upon men, [each hailstone] about the weight of a talent. Men blasphemed God because of the plague of the hail, since that plague was exceedingly great.</span></a>
 
     
 <div class="app-cta">

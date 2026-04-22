@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Hosea 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Give ear to this, O priests; give attention, O Israel, and you, family of the king; for you are to be judged; you have been a deceit at Mizpah and a net stretched out on Tabor.</span></div>
-<div class="v-row" data-ref="Hosea 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They have gone deep in the evil ways of Shittim, but I am the judge of all.</span></div>
-<div class="v-row" data-ref="Hosea 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have knowledge of Ephraim, and Israel is not secret from me; for now, O Ephraim, you have been false to me, Israel has become unclean.</span></div>
-<div class="v-row" data-ref="Hosea 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Their works will not let them come back to their God, for a false spirit is in them and they have no knowledge of the Lord.</span></div>
-<div class="v-row" data-ref="Hosea 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And the pride of Israel gives an answer to his face; and Ephraim will have a fall through his sins, and the fall of Judah will be the same as theirs.</span></div>
-<div class="v-row" data-ref="Hosea 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They will go, with their flocks and their herds, in search of the Lord, but they will not see him; he has taken himself out of their view.</span></div>
-<div class="v-row" data-ref="Hosea 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They have been false to the Lord; they have given birth to strange children; now the new moon will make them waste with their fields.</span></div>
-<div class="v-row" data-ref="Hosea 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Let the horn be sounded in Gibeah and in Ramah; give a loud cry in Beth-aven, They are after you, O Benjamin.</span></div>
-<div class="v-row" data-ref="Hosea 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Ephraim will become a waste in the day of punishment; I have given knowledge among the tribes of Israel of what is certain.</span></div>
-<div class="v-row" data-ref="Hosea 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The rulers of Judah are like those who take away a landmark; I will let loose my wrath on them like flowing water.</span></div>
-<div class="v-row" data-ref="Hosea 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Ephraim is troubled; he is crushed by his judges, because he took pleasure in walking after deceit.</span></div>
-<div class="v-row" data-ref="Hosea 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And so to Ephraim I am like a wasting insect, and a destruction to the children of Judah.</span></div>
-<div class="v-row" data-ref="Hosea 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When Ephraim saw his disease and Judah his wound, then Ephraim went to Assyria and sent to the great king; but he is not able to make you well or give you help for your wound.</span></div>
-<div class="v-row" data-ref="Hosea 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For I will be to Ephraim as a lion, and as a young lion to the children of Judah; I, even I, will give him wounds and go away; I will take him away, and there will be no helper.</span></div>
-<div class="v-row" data-ref="Hosea 5:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I will go back to my place till they are made waste; in their trouble they will go after me early and will make search for me.</span></div>
+    <a class="v-row" href="/bible/bbe/hosea/5/1/" data-ref="Hosea 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/1/"><span class="v-num">1</span><span class="v-txt">Give ear to this, O priests; give attention, O Israel, and you, family of the king; for you are to be judged; you have been a deceit at Mizpah and a net stretched out on Tabor.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/2/" data-ref="Hosea 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/2/"><span class="v-num">2</span><span class="v-txt">They have gone deep in the evil ways of Shittim, but I am the judge of all.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/3/" data-ref="Hosea 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/3/"><span class="v-num">3</span><span class="v-txt">I have knowledge of Ephraim, and Israel is not secret from me; for now, O Ephraim, you have been false to me, Israel has become unclean.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/4/" data-ref="Hosea 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/4/"><span class="v-num">4</span><span class="v-txt">Their works will not let them come back to their God, for a false spirit is in them and they have no knowledge of the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/5/" data-ref="Hosea 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/5/"><span class="v-num">5</span><span class="v-txt">And the pride of Israel gives an answer to his face; and Ephraim will have a fall through his sins, and the fall of Judah will be the same as theirs.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/6/" data-ref="Hosea 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/6/"><span class="v-num">6</span><span class="v-txt">They will go, with their flocks and their herds, in search of the Lord, but they will not see him; he has taken himself out of their view.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/7/" data-ref="Hosea 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/7/"><span class="v-num">7</span><span class="v-txt">They have been false to the Lord; they have given birth to strange children; now the new moon will make them waste with their fields.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/8/" data-ref="Hosea 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/8/"><span class="v-num">8</span><span class="v-txt">Let the horn be sounded in Gibeah and in Ramah; give a loud cry in Beth-aven, They are after you, O Benjamin.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/9/" data-ref="Hosea 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/9/"><span class="v-num">9</span><span class="v-txt">Ephraim will become a waste in the day of punishment; I have given knowledge among the tribes of Israel of what is certain.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/10/" data-ref="Hosea 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/10/"><span class="v-num">10</span><span class="v-txt">The rulers of Judah are like those who take away a landmark; I will let loose my wrath on them like flowing water.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/11/" data-ref="Hosea 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/11/"><span class="v-num">11</span><span class="v-txt">Ephraim is troubled; he is crushed by his judges, because he took pleasure in walking after deceit.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/12/" data-ref="Hosea 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/12/"><span class="v-num">12</span><span class="v-txt">And so to Ephraim I am like a wasting insect, and a destruction to the children of Judah.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/13/" data-ref="Hosea 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/13/"><span class="v-num">13</span><span class="v-txt">When Ephraim saw his disease and Judah his wound, then Ephraim went to Assyria and sent to the great king; but he is not able to make you well or give you help for your wound.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/14/" data-ref="Hosea 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/14/"><span class="v-num">14</span><span class="v-txt">For I will be to Ephraim as a lion, and as a young lion to the children of Judah; I, even I, will give him wounds and go away; I will take him away, and there will be no helper.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/5/15/" data-ref="Hosea 5:15 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/5/15/"><span class="v-num">15</span><span class="v-txt">I will go back to my place till they are made waste; in their trouble they will go after me early and will make search for me.</span></a>
 
     
 <div class="app-cta">

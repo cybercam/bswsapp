@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 6</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="1 Timothy 6:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Let as many bondservants as are under the yoke count their own masters worthy of all honor, so that the name of God and [His] doctrine may not be blasphemed.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And those who have believing masters, let them not despise [them] because they are brethren, but rather serve [them] because those who are benefited are believers and beloved. Teach and exhort these things.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">If anyone teaches otherwise and does not consent to wholesome words, [even] the words of our Lord Jesus Christ, and to the doctrine which accords with godliness,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">he is proud, knowing nothing, but is obsessed with disputes and arguments over words, from which come envy, strife, reviling, evil suspicions,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">useless wranglings of men of corrupt minds and destitute of the truth, who suppose that godliness is a [means of] gain. From such withdraw yourself.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Now godliness with contentment is great gain.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For we brought nothing into [this] world, [and it is] certain we can carry nothing out.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And having food and clothing, with these we shall be content.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But those who desire to be rich fall into temptation and a snare, and [into] many foolish and harmful lusts which drown men in destruction and perdition.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For the love of money is a root of all [kinds of] evil, for which some have strayed from the faith in their greediness, and pierced themselves through with many sorrows.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But you, O man of God, flee these things and pursue righteousness, godliness, faith, love, patience, gentleness.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Fight the good fight of faith, lay hold on eternal life, to which you were also called and have confessed the good confession in the presence of many witnesses.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I urge you in the sight of God who gives life to all things, and [before] Christ Jesus who witnessed the good confession before Pontius Pilate,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">that you keep [this] commandment without spot, blameless until our Lord Jesus Christ's appearing,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">which He will manifest in His own time, [He who is] the blessed and only Potentate, the King of kings and Lord of lords,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">who alone has immortality, dwelling in unapproachable light, whom no man has seen or can see, to whom [be] honor and everlasting power. Amen.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Command those who are rich in this present age not to be haughty, nor to trust in uncertain riches but in the living God, who gives us richly all things to enjoy.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">[Let them] do good, that they be rich in good works, ready to give, willing to share,</span></div>
-<div class="v-row" data-ref="1 Timothy 6:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">storing up for themselves a good foundation for the time to come, that they may lay hold on eternal life.</span></div>
-<div class="v-row" data-ref="1 Timothy 6:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">O Timothy! Guard what was committed to your trust, avoiding the profane [and] idle babblings and contradictions of what is falsely called knowledge --</span></div>
-<div class="v-row" data-ref="1 Timothy 6:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">by professing it some have strayed concerning the faith. Grace [be] with you. Amen.</span></div>
+    <a class="v-row" href="/bible/nkjv/1-timothy/6/1/" data-ref="1 Timothy 6:1 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/1/"><span class="v-num">1</span><span class="v-txt">Let as many bondservants as are under the yoke count their own masters worthy of all honor, so that the name of God and [His] doctrine may not be blasphemed.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/2/" data-ref="1 Timothy 6:2 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/2/"><span class="v-num">2</span><span class="v-txt">And those who have believing masters, let them not despise [them] because they are brethren, but rather serve [them] because those who are benefited are believers and beloved. Teach and exhort these things.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/3/" data-ref="1 Timothy 6:3 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/3/"><span class="v-num">3</span><span class="v-txt">If anyone teaches otherwise and does not consent to wholesome words, [even] the words of our Lord Jesus Christ, and to the doctrine which accords with godliness,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/4/" data-ref="1 Timothy 6:4 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/4/"><span class="v-num">4</span><span class="v-txt">he is proud, knowing nothing, but is obsessed with disputes and arguments over words, from which come envy, strife, reviling, evil suspicions,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/5/" data-ref="1 Timothy 6:5 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/5/"><span class="v-num">5</span><span class="v-txt">useless wranglings of men of corrupt minds and destitute of the truth, who suppose that godliness is a [means of] gain. From such withdraw yourself.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/6/" data-ref="1 Timothy 6:6 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/6/"><span class="v-num">6</span><span class="v-txt">Now godliness with contentment is great gain.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/7/" data-ref="1 Timothy 6:7 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/7/"><span class="v-num">7</span><span class="v-txt">For we brought nothing into [this] world, [and it is] certain we can carry nothing out.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/8/" data-ref="1 Timothy 6:8 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/8/"><span class="v-num">8</span><span class="v-txt">And having food and clothing, with these we shall be content.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/9/" data-ref="1 Timothy 6:9 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/9/"><span class="v-num">9</span><span class="v-txt">But those who desire to be rich fall into temptation and a snare, and [into] many foolish and harmful lusts which drown men in destruction and perdition.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/10/" data-ref="1 Timothy 6:10 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/10/"><span class="v-num">10</span><span class="v-txt">For the love of money is a root of all [kinds of] evil, for which some have strayed from the faith in their greediness, and pierced themselves through with many sorrows.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/11/" data-ref="1 Timothy 6:11 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/11/"><span class="v-num">11</span><span class="v-txt">But you, O man of God, flee these things and pursue righteousness, godliness, faith, love, patience, gentleness.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/12/" data-ref="1 Timothy 6:12 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/12/"><span class="v-num">12</span><span class="v-txt">Fight the good fight of faith, lay hold on eternal life, to which you were also called and have confessed the good confession in the presence of many witnesses.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/13/" data-ref="1 Timothy 6:13 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/13/"><span class="v-num">13</span><span class="v-txt">I urge you in the sight of God who gives life to all things, and [before] Christ Jesus who witnessed the good confession before Pontius Pilate,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/14/" data-ref="1 Timothy 6:14 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/14/"><span class="v-num">14</span><span class="v-txt">that you keep [this] commandment without spot, blameless until our Lord Jesus Christ's appearing,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/15/" data-ref="1 Timothy 6:15 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/15/"><span class="v-num">15</span><span class="v-txt">which He will manifest in His own time, [He who is] the blessed and only Potentate, the King of kings and Lord of lords,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/16/" data-ref="1 Timothy 6:16 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/16/"><span class="v-num">16</span><span class="v-txt">who alone has immortality, dwelling in unapproachable light, whom no man has seen or can see, to whom [be] honor and everlasting power. Amen.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/17/" data-ref="1 Timothy 6:17 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/17/"><span class="v-num">17</span><span class="v-txt">Command those who are rich in this present age not to be haughty, nor to trust in uncertain riches but in the living God, who gives us richly all things to enjoy.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/18/" data-ref="1 Timothy 6:18 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/18/"><span class="v-num">18</span><span class="v-txt">[Let them] do good, that they be rich in good works, ready to give, willing to share,</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/19/" data-ref="1 Timothy 6:19 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/19/"><span class="v-num">19</span><span class="v-txt">storing up for themselves a good foundation for the time to come, that they may lay hold on eternal life.</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/20/" data-ref="1 Timothy 6:20 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/20/"><span class="v-num">20</span><span class="v-txt">O Timothy! Guard what was committed to your trust, avoiding the profane [and] idle babblings and contradictions of what is falsely called knowledge --</span></a>
+<a class="v-row" href="/bible/nkjv/1-timothy/6/21/" data-ref="1 Timothy 6:21 (New King James Version)" data-verse-url="/bible/nkjv/1-timothy/6/21/"><span class="v-num">21</span><span class="v-txt">by professing it some have strayed concerning the faith. Grace [be] with you. Amen.</span></a>
 
     
 <div class="app-cta">

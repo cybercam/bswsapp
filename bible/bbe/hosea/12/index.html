@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Hosea 12:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Ephraim's food is the wind, and he goes after the east wind: deceit and destruction are increasing day by day; they make an agreement with Assyria, and take oil into Egypt.</span></div>
-<div class="v-row" data-ref="Hosea 12:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The Lord has a cause against Judah, and will give punishment to Jacob for his ways; he will give him the reward of his acts.</span></div>
-<div class="v-row" data-ref="Hosea 12:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">In the body of his mother he took his brother by the foot, and in his strength he was fighting with God;</span></div>
-<div class="v-row" data-ref="Hosea 12:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">He had a fight with the angel and overcame him; he made request for grace to him with weeping; he came face to face with him in Beth-el and there his words came to him;</span></div>
-<div class="v-row" data-ref="Hosea 12:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Even the Lord, the God of armies; the Lord is his name.</span></div>
-<div class="v-row" data-ref="Hosea 12:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So then, come back to your God; keep mercy and right, and be waiting at all times on your God.</span></div>
-<div class="v-row" data-ref="Hosea 12:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">As for Canaan, the scales of deceit are in his hands; he takes pleasure in twisted ways.</span></div>
-<div class="v-row" data-ref="Hosea 12:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Ephraim said, Now I have got wealth and much property; in all my works no sin may be seen in me.</span></div>
-<div class="v-row" data-ref="Hosea 12:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But I am the Lord your God from the land of Egypt; I will give you tents for your living-places again as in the days of the holy meeting.</span></div>
-<div class="v-row" data-ref="Hosea 12:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">My word came to the ears of the prophets and I gave them visions in great number, and by the mouths of the prophets I made use of comparisons.</span></div>
-<div class="v-row" data-ref="Hosea 12:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In Gilead there is evil. They are quite without value; in Gilgal they make offerings of oxen; truly their altars are like masses of stones in the hollows of a ploughed field.</span></div>
-<div class="v-row" data-ref="Hosea 12:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Jacob went in flight into the field of Aram, and Israel became a servant for a wife, and for a wife he kept sheep.</span></div>
-<div class="v-row" data-ref="Hosea 12:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And by a prophet the Lord made Israel come up out of Egypt, and by a prophet he was kept safe.</span></div>
-<div class="v-row" data-ref="Hosea 12:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">I have been bitterly moved to wrath by Ephraim; so that his blood will be on him, and the Lord will make his shame come back on him.</span></div>
+    <a class="v-row" href="/bible/bbe/hosea/12/1/" data-ref="Hosea 12:1 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/1/"><span class="v-num">1</span><span class="v-txt">Ephraim's food is the wind, and he goes after the east wind: deceit and destruction are increasing day by day; they make an agreement with Assyria, and take oil into Egypt.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/2/" data-ref="Hosea 12:2 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/2/"><span class="v-num">2</span><span class="v-txt">The Lord has a cause against Judah, and will give punishment to Jacob for his ways; he will give him the reward of his acts.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/3/" data-ref="Hosea 12:3 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/3/"><span class="v-num">3</span><span class="v-txt">In the body of his mother he took his brother by the foot, and in his strength he was fighting with God;</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/4/" data-ref="Hosea 12:4 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/4/"><span class="v-num">4</span><span class="v-txt">He had a fight with the angel and overcame him; he made request for grace to him with weeping; he came face to face with him in Beth-el and there his words came to him;</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/5/" data-ref="Hosea 12:5 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/5/"><span class="v-num">5</span><span class="v-txt">Even the Lord, the God of armies; the Lord is his name.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/6/" data-ref="Hosea 12:6 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/6/"><span class="v-num">6</span><span class="v-txt">So then, come back to your God; keep mercy and right, and be waiting at all times on your God.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/7/" data-ref="Hosea 12:7 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/7/"><span class="v-num">7</span><span class="v-txt">As for Canaan, the scales of deceit are in his hands; he takes pleasure in twisted ways.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/8/" data-ref="Hosea 12:8 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/8/"><span class="v-num">8</span><span class="v-txt">And Ephraim said, Now I have got wealth and much property; in all my works no sin may be seen in me.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/9/" data-ref="Hosea 12:9 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/9/"><span class="v-num">9</span><span class="v-txt">But I am the Lord your God from the land of Egypt; I will give you tents for your living-places again as in the days of the holy meeting.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/10/" data-ref="Hosea 12:10 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/10/"><span class="v-num">10</span><span class="v-txt">My word came to the ears of the prophets and I gave them visions in great number, and by the mouths of the prophets I made use of comparisons.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/11/" data-ref="Hosea 12:11 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/11/"><span class="v-num">11</span><span class="v-txt">In Gilead there is evil. They are quite without value; in Gilgal they make offerings of oxen; truly their altars are like masses of stones in the hollows of a ploughed field.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/12/" data-ref="Hosea 12:12 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/12/"><span class="v-num">12</span><span class="v-txt">And Jacob went in flight into the field of Aram, and Israel became a servant for a wife, and for a wife he kept sheep.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/13/" data-ref="Hosea 12:13 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/13/"><span class="v-num">13</span><span class="v-txt">And by a prophet the Lord made Israel come up out of Egypt, and by a prophet he was kept safe.</span></a>
+<a class="v-row" href="/bible/bbe/hosea/12/14/" data-ref="Hosea 12:14 (Bible in Basic English)" data-verse-url="/bible/bbe/hosea/12/14/"><span class="v-num">14</span><span class="v-txt">I have been bitterly moved to wrath by Ephraim; so that his blood will be on him, and the Lord will make his shame come back on him.</span></a>
 
     
 <div class="app-cta">

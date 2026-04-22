@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,27 +204,27 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Joel 3:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">For, behold, in those days, and in that time, when I shall bring back the captivity of Judah and Jerusalem,</span></div>
-<div class="v-row" data-ref="Joel 3:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">I will gather all nations, and will bring them down into the valley of Jehoshaphat; and I will execute judgment upon them there for my people and for my heritage Israel, whom they have scattered among the nations: and they have parted my land,</span></div>
-<div class="v-row" data-ref="Joel 3:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and have cast lots for my people, and have given a boy for a harlot, and sold a girl for wine, that they may drink.</span></div>
-<div class="v-row" data-ref="Joel 3:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Yea, and what are ye to me, O Tyre, and Sidon, and all the regions of Philistia? will ye render me a recompense? and if ye recompense me, swiftly and speedily will I return your recompense upon your own head.</span></div>
-<div class="v-row" data-ref="Joel 3:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Forasmuch as ye have taken my silver and my gold, and have carried into your temples my goodly precious things,</span></div>
-<div class="v-row" data-ref="Joel 3:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">and have sold the children of Judah and the children of Jerusalem unto the sons of the Grecians, that ye may remove them far from their border;</span></div>
-<div class="v-row" data-ref="Joel 3:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">behold, I will stir them up out of the place whither ye have sold them, and will return your recompense upon your own head;</span></div>
-<div class="v-row" data-ref="Joel 3:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">and I will sell your sons and your daughters into the hand of the children of Judah, and they shall sell them to the men of Sheba, to a nation far off: for Jehovah hath spoken it.</span></div>
-<div class="v-row" data-ref="Joel 3:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Proclaim ye this among the nations; prepare war; stir up the mighty men; let all the men of war draw near, let them come up.</span></div>
-<div class="v-row" data-ref="Joel 3:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Beat your plowshares into swords, and your pruning-hooks into spears: let the weak say, I am strong.</span></div>
-<div class="v-row" data-ref="Joel 3:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Haste ye, and come, all ye nations round about, and gather yourselves together: thither cause thy mighty ones to come down, O Jehovah.</span></div>
-<div class="v-row" data-ref="Joel 3:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let the nations bestir themselves, and come up to the valley of Jehoshaphat; for there will I sit to judge all the nations round about.</span></div>
-<div class="v-row" data-ref="Joel 3:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Put ye in the sickle; for the harvest is ripe: come, tread ye; for the winepress is full, the vats overflow; for their wickedness is great.</span></div>
-<div class="v-row" data-ref="Joel 3:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Multitudes, multitudes in the valley of decision! for the day of Jehovah is near in the valley of decision.</span></div>
-<div class="v-row" data-ref="Joel 3:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The sun and the moon are darkened, and the stars withdraw their shining.</span></div>
-<div class="v-row" data-ref="Joel 3:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Jehovah will roar from Zion, and utter his voice from Jerusalem; and the heavens and the earth shall shake: but Jehovah will be a refuge unto his people, and a stronghold to the children of Israel.</span></div>
-<div class="v-row" data-ref="Joel 3:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">So shall ye know that I am Jehovah your God, dwelling in Zion my holy mountain: then shall Jerusalem be holy, and there shall no strangers pass through her any more.</span></div>
-<div class="v-row" data-ref="Joel 3:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And it shall come to pass in that day, that the mountains shall drop down sweet wine, and the hills shall flow with milk, and all the brooks of Judah shall flow with waters; and a fountain shall come forth from the house of Jehovah, and shall water the valley of Shittim.</span></div>
-<div class="v-row" data-ref="Joel 3:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Egypt shall be a desolation, and Edom shall be a desolate wilderness, for the violence done to the children of Judah, because they have shed innocent blood in their land.</span></div>
-<div class="v-row" data-ref="Joel 3:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">But Judah shall abide for ever, and Jerusalem from generation to generation.</span></div>
-<div class="v-row" data-ref="Joel 3:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And I will cleanse their blood, that I have not cleansed: for Jehovah dwelleth in Zion.</span></div>
+    <a class="v-row" href="/bible/asv/joel/3/1/" data-ref="Joel 3:1 (American Standard Version)" data-verse-url="/bible/asv/joel/3/1/"><span class="v-num">1</span><span class="v-txt">For, behold, in those days, and in that time, when I shall bring back the captivity of Judah and Jerusalem,</span></a>
+<a class="v-row" href="/bible/asv/joel/3/2/" data-ref="Joel 3:2 (American Standard Version)" data-verse-url="/bible/asv/joel/3/2/"><span class="v-num">2</span><span class="v-txt">I will gather all nations, and will bring them down into the valley of Jehoshaphat; and I will execute judgment upon them there for my people and for my heritage Israel, whom they have scattered among the nations: and they have parted my land,</span></a>
+<a class="v-row" href="/bible/asv/joel/3/3/" data-ref="Joel 3:3 (American Standard Version)" data-verse-url="/bible/asv/joel/3/3/"><span class="v-num">3</span><span class="v-txt">and have cast lots for my people, and have given a boy for a harlot, and sold a girl for wine, that they may drink.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/4/" data-ref="Joel 3:4 (American Standard Version)" data-verse-url="/bible/asv/joel/3/4/"><span class="v-num">4</span><span class="v-txt">Yea, and what are ye to me, O Tyre, and Sidon, and all the regions of Philistia? will ye render me a recompense? and if ye recompense me, swiftly and speedily will I return your recompense upon your own head.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/5/" data-ref="Joel 3:5 (American Standard Version)" data-verse-url="/bible/asv/joel/3/5/"><span class="v-num">5</span><span class="v-txt">Forasmuch as ye have taken my silver and my gold, and have carried into your temples my goodly precious things,</span></a>
+<a class="v-row" href="/bible/asv/joel/3/6/" data-ref="Joel 3:6 (American Standard Version)" data-verse-url="/bible/asv/joel/3/6/"><span class="v-num">6</span><span class="v-txt">and have sold the children of Judah and the children of Jerusalem unto the sons of the Grecians, that ye may remove them far from their border;</span></a>
+<a class="v-row" href="/bible/asv/joel/3/7/" data-ref="Joel 3:7 (American Standard Version)" data-verse-url="/bible/asv/joel/3/7/"><span class="v-num">7</span><span class="v-txt">behold, I will stir them up out of the place whither ye have sold them, and will return your recompense upon your own head;</span></a>
+<a class="v-row" href="/bible/asv/joel/3/8/" data-ref="Joel 3:8 (American Standard Version)" data-verse-url="/bible/asv/joel/3/8/"><span class="v-num">8</span><span class="v-txt">and I will sell your sons and your daughters into the hand of the children of Judah, and they shall sell them to the men of Sheba, to a nation far off: for Jehovah hath spoken it.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/9/" data-ref="Joel 3:9 (American Standard Version)" data-verse-url="/bible/asv/joel/3/9/"><span class="v-num">9</span><span class="v-txt">Proclaim ye this among the nations; prepare war; stir up the mighty men; let all the men of war draw near, let them come up.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/10/" data-ref="Joel 3:10 (American Standard Version)" data-verse-url="/bible/asv/joel/3/10/"><span class="v-num">10</span><span class="v-txt">Beat your plowshares into swords, and your pruning-hooks into spears: let the weak say, I am strong.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/11/" data-ref="Joel 3:11 (American Standard Version)" data-verse-url="/bible/asv/joel/3/11/"><span class="v-num">11</span><span class="v-txt">Haste ye, and come, all ye nations round about, and gather yourselves together: thither cause thy mighty ones to come down, O Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/12/" data-ref="Joel 3:12 (American Standard Version)" data-verse-url="/bible/asv/joel/3/12/"><span class="v-num">12</span><span class="v-txt">Let the nations bestir themselves, and come up to the valley of Jehoshaphat; for there will I sit to judge all the nations round about.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/13/" data-ref="Joel 3:13 (American Standard Version)" data-verse-url="/bible/asv/joel/3/13/"><span class="v-num">13</span><span class="v-txt">Put ye in the sickle; for the harvest is ripe: come, tread ye; for the winepress is full, the vats overflow; for their wickedness is great.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/14/" data-ref="Joel 3:14 (American Standard Version)" data-verse-url="/bible/asv/joel/3/14/"><span class="v-num">14</span><span class="v-txt">Multitudes, multitudes in the valley of decision! for the day of Jehovah is near in the valley of decision.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/15/" data-ref="Joel 3:15 (American Standard Version)" data-verse-url="/bible/asv/joel/3/15/"><span class="v-num">15</span><span class="v-txt">The sun and the moon are darkened, and the stars withdraw their shining.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/16/" data-ref="Joel 3:16 (American Standard Version)" data-verse-url="/bible/asv/joel/3/16/"><span class="v-num">16</span><span class="v-txt">And Jehovah will roar from Zion, and utter his voice from Jerusalem; and the heavens and the earth shall shake: but Jehovah will be a refuge unto his people, and a stronghold to the children of Israel.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/17/" data-ref="Joel 3:17 (American Standard Version)" data-verse-url="/bible/asv/joel/3/17/"><span class="v-num">17</span><span class="v-txt">So shall ye know that I am Jehovah your God, dwelling in Zion my holy mountain: then shall Jerusalem be holy, and there shall no strangers pass through her any more.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/18/" data-ref="Joel 3:18 (American Standard Version)" data-verse-url="/bible/asv/joel/3/18/"><span class="v-num">18</span><span class="v-txt">And it shall come to pass in that day, that the mountains shall drop down sweet wine, and the hills shall flow with milk, and all the brooks of Judah shall flow with waters; and a fountain shall come forth from the house of Jehovah, and shall water the valley of Shittim.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/19/" data-ref="Joel 3:19 (American Standard Version)" data-verse-url="/bible/asv/joel/3/19/"><span class="v-num">19</span><span class="v-txt">Egypt shall be a desolation, and Edom shall be a desolate wilderness, for the violence done to the children of Judah, because they have shed innocent blood in their land.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/20/" data-ref="Joel 3:20 (American Standard Version)" data-verse-url="/bible/asv/joel/3/20/"><span class="v-num">20</span><span class="v-txt">But Judah shall abide for ever, and Jerusalem from generation to generation.</span></a>
+<a class="v-row" href="/bible/asv/joel/3/21/" data-ref="Joel 3:21 (American Standard Version)" data-verse-url="/bible/asv/joel/3/21/"><span class="v-num">21</span><span class="v-txt">And I will cleanse their blood, that I have not cleansed: for Jehovah dwelleth in Zion.</span></a>
 
     
 <div class="app-cta">

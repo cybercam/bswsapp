@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 103</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 103:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">[A Psalm] of David. Bless the LORD, O my soul; And all that is within me, [bless] His holy name!</span></div>
-<div class="v-row" data-ref="Psalm 103:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Bless the LORD, O my soul, And forget not all His benefits:</span></div>
-<div class="v-row" data-ref="Psalm 103:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Who forgives all your iniquities, Who heals all your diseases,</span></div>
-<div class="v-row" data-ref="Psalm 103:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Who redeems your life from destruction, Who crowns you with lovingkindness and tender mercies,</span></div>
-<div class="v-row" data-ref="Psalm 103:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Who satisfies your mouth with good [things,] [So that] your youth is renewed like the eagle's.</span></div>
-<div class="v-row" data-ref="Psalm 103:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The LORD executes righteousness And justice for all who are oppressed.</span></div>
-<div class="v-row" data-ref="Psalm 103:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He made known His ways to Moses, His acts to the children of Israel.</span></div>
-<div class="v-row" data-ref="Psalm 103:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The LORD [is] merciful and gracious, Slow to anger, and abounding in mercy.</span></div>
-<div class="v-row" data-ref="Psalm 103:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He will not always strive [with us,] Nor will He keep [His anger] forever.</span></div>
-<div class="v-row" data-ref="Psalm 103:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">He has not dealt with us according to our sins, Nor punished us according to our iniquities.</span></div>
-<div class="v-row" data-ref="Psalm 103:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For as the heavens are high above the earth, [So] great is His mercy toward those who fear Him;</span></div>
-<div class="v-row" data-ref="Psalm 103:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">As far as the east is from the west, [So] far has He removed our transgressions from us.</span></div>
-<div class="v-row" data-ref="Psalm 103:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">As a father pities [his] children, [So] the LORD pities those who fear Him.</span></div>
-<div class="v-row" data-ref="Psalm 103:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">For He knows our frame; He remembers that we [are] dust.</span></div>
-<div class="v-row" data-ref="Psalm 103:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">[As for] man, his days [are] like grass; As a flower of the field, so he flourishes.</span></div>
-<div class="v-row" data-ref="Psalm 103:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">For the wind passes over it, and it is gone, And its place remembers it no more.</span></div>
-<div class="v-row" data-ref="Psalm 103:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">But the mercy of the LORD [is] from everlasting to everlasting On those who fear Him, And His righteousness to children's children,</span></div>
-<div class="v-row" data-ref="Psalm 103:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To such as keep His covenant, And to those who remember His commandments to do them.</span></div>
-<div class="v-row" data-ref="Psalm 103:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The LORD has established His throne in heaven, And His kingdom rules over all.</span></div>
-<div class="v-row" data-ref="Psalm 103:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Bless the LORD, you His angels, Who excel in strength, who do His word, Heeding the voice of His word.</span></div>
-<div class="v-row" data-ref="Psalm 103:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Bless the LORD, all [you] His hosts, [You] ministers of His, who do His pleasure.</span></div>
-<div class="v-row" data-ref="Psalm 103:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Bless the LORD, all His works, In all places of His dominion. Bless the LORD, O my soul!</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/103/1/" data-ref="Psalm 103:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/1/"><span class="v-num">1</span><span class="v-txt">[A Psalm] of David. Bless the LORD, O my soul; And all that is within me, [bless] His holy name!</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/2/" data-ref="Psalm 103:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/2/"><span class="v-num">2</span><span class="v-txt">Bless the LORD, O my soul, And forget not all His benefits:</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/3/" data-ref="Psalm 103:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/3/"><span class="v-num">3</span><span class="v-txt">Who forgives all your iniquities, Who heals all your diseases,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/4/" data-ref="Psalm 103:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/4/"><span class="v-num">4</span><span class="v-txt">Who redeems your life from destruction, Who crowns you with lovingkindness and tender mercies,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/5/" data-ref="Psalm 103:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/5/"><span class="v-num">5</span><span class="v-txt">Who satisfies your mouth with good [things,] [So that] your youth is renewed like the eagle's.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/6/" data-ref="Psalm 103:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/6/"><span class="v-num">6</span><span class="v-txt">The LORD executes righteousness And justice for all who are oppressed.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/7/" data-ref="Psalm 103:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/7/"><span class="v-num">7</span><span class="v-txt">He made known His ways to Moses, His acts to the children of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/8/" data-ref="Psalm 103:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/8/"><span class="v-num">8</span><span class="v-txt">The LORD [is] merciful and gracious, Slow to anger, and abounding in mercy.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/9/" data-ref="Psalm 103:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/9/"><span class="v-num">9</span><span class="v-txt">He will not always strive [with us,] Nor will He keep [His anger] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/10/" data-ref="Psalm 103:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/10/"><span class="v-num">10</span><span class="v-txt">He has not dealt with us according to our sins, Nor punished us according to our iniquities.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/11/" data-ref="Psalm 103:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/11/"><span class="v-num">11</span><span class="v-txt">For as the heavens are high above the earth, [So] great is His mercy toward those who fear Him;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/12/" data-ref="Psalm 103:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/12/"><span class="v-num">12</span><span class="v-txt">As far as the east is from the west, [So] far has He removed our transgressions from us.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/13/" data-ref="Psalm 103:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/13/"><span class="v-num">13</span><span class="v-txt">As a father pities [his] children, [So] the LORD pities those who fear Him.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/14/" data-ref="Psalm 103:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/14/"><span class="v-num">14</span><span class="v-txt">For He knows our frame; He remembers that we [are] dust.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/15/" data-ref="Psalm 103:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/15/"><span class="v-num">15</span><span class="v-txt">[As for] man, his days [are] like grass; As a flower of the field, so he flourishes.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/16/" data-ref="Psalm 103:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/16/"><span class="v-num">16</span><span class="v-txt">For the wind passes over it, and it is gone, And its place remembers it no more.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/17/" data-ref="Psalm 103:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/17/"><span class="v-num">17</span><span class="v-txt">But the mercy of the LORD [is] from everlasting to everlasting On those who fear Him, And His righteousness to children's children,</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/18/" data-ref="Psalm 103:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/18/"><span class="v-num">18</span><span class="v-txt">To such as keep His covenant, And to those who remember His commandments to do them.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/19/" data-ref="Psalm 103:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/19/"><span class="v-num">19</span><span class="v-txt">The LORD has established His throne in heaven, And His kingdom rules over all.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/20/" data-ref="Psalm 103:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/20/"><span class="v-num">20</span><span class="v-txt">Bless the LORD, you His angels, Who excel in strength, who do His word, Heeding the voice of His word.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/21/" data-ref="Psalm 103:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/21/"><span class="v-num">21</span><span class="v-txt">Bless the LORD, all [you] His hosts, [You] ministers of His, who do His pleasure.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/103/22/" data-ref="Psalm 103:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/103/22/"><span class="v-num">22</span><span class="v-txt">Bless the LORD, all His works, In all places of His dominion. Bless the LORD, O my soul!</span></a>
 
     
 <div class="app-cta">

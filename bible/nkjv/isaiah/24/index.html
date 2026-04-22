@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 24</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 24:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Behold, the LORD makes the earth empty and makes it waste, Distorts its surface And scatters abroad its inhabitants.</span></div>
-<div class="v-row" data-ref="Isaiah 24:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And it shall be: As with the people, so with the priest; As with the servant, so with his master; As with the maid, so with her mistress; As with the buyer, so with the seller; As with the lender, so with the borrower; As with the creditor, so with the debtor.</span></div>
-<div class="v-row" data-ref="Isaiah 24:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">The land shall be entirely emptied and utterly plundered, For the LORD has spoken this word.</span></div>
-<div class="v-row" data-ref="Isaiah 24:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">The earth mourns [and] fades away, The world languishes [and] fades away; The haughty people of the earth languish.</span></div>
-<div class="v-row" data-ref="Isaiah 24:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The earth is also defiled under its inhabitants, Because they have transgressed the laws, Changed the ordinance, Broken the everlasting covenant.</span></div>
-<div class="v-row" data-ref="Isaiah 24:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Therefore the curse has devoured the earth, And those who dwell in it are desolate. Therefore the inhabitants of the earth are burned, And few men [are] left.</span></div>
-<div class="v-row" data-ref="Isaiah 24:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The new wine fails, the vine languishes, All the merry-hearted sigh.</span></div>
-<div class="v-row" data-ref="Isaiah 24:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The mirth of the tambourine ceases, The noise of the jubilant ends, The joy of the harp ceases.</span></div>
-<div class="v-row" data-ref="Isaiah 24:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They shall not drink wine with a song; Strong drink is bitter to those who drink it.</span></div>
-<div class="v-row" data-ref="Isaiah 24:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The city of confusion is broken down; Every house is shut up, so that none may go in.</span></div>
-<div class="v-row" data-ref="Isaiah 24:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">[There is] a cry for wine in the streets, All joy is darkened, The mirth of the land is gone.</span></div>
-<div class="v-row" data-ref="Isaiah 24:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">In the city desolation is left, And the gate is stricken with destruction.</span></div>
-<div class="v-row" data-ref="Isaiah 24:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">When it shall be thus in the midst of the land among the people, [It shall be] like the shaking of an olive tree, Like the gleaning of grapes when the vintage is done.</span></div>
-<div class="v-row" data-ref="Isaiah 24:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">They shall lift up their voice, they shall sing; For the majesty of the LORD They shall cry aloud from the sea.</span></div>
-<div class="v-row" data-ref="Isaiah 24:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore glorify the LORD in the dawning light, The name of the LORD God of Israel in the coastlands of the sea.</span></div>
-<div class="v-row" data-ref="Isaiah 24:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">From the ends of the earth we have heard songs: "Glory to the righteous!" But I said, "I am ruined, ruined! Woe to me! The treacherous dealers have dealt treacherously, Indeed, the treacherous dealers have dealt very treacherously."</span></div>
-<div class="v-row" data-ref="Isaiah 24:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Fear and the pit and the snare [Are] upon you, O inhabitant of the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 24:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And it shall be [That] he who flees from the noise of the fear Shall fall into the pit, And he who comes up from the midst of the pit Shall be caught in the snare; For the windows from on high are open, And the foundations of the earth are shaken.</span></div>
-<div class="v-row" data-ref="Isaiah 24:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The earth is violently broken, The earth is split open, The earth is shaken exceedingly.</span></div>
-<div class="v-row" data-ref="Isaiah 24:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The earth shall reel to and fro like a drunkard, And shall totter like a hut; Its transgression shall be heavy upon it, And it will fall, and not rise again.</span></div>
-<div class="v-row" data-ref="Isaiah 24:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">It shall come to pass in that day [That] the LORD will punish on high the host of exalted ones, And on the earth the kings of the earth.</span></div>
-<div class="v-row" data-ref="Isaiah 24:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">They will be gathered together, [As] prisoners are gathered in the pit, And will be shut up in the prison; After many days they will be punished.</span></div>
-<div class="v-row" data-ref="Isaiah 24:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Then the moon will be disgraced And the sun ashamed; For the LORD of hosts will reign On Mount Zion and in Jerusalem And before His elders, gloriously.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/24/1/" data-ref="Isaiah 24:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/1/"><span class="v-num">1</span><span class="v-txt">Behold, the LORD makes the earth empty and makes it waste, Distorts its surface And scatters abroad its inhabitants.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/2/" data-ref="Isaiah 24:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/2/"><span class="v-num">2</span><span class="v-txt">And it shall be: As with the people, so with the priest; As with the servant, so with his master; As with the maid, so with her mistress; As with the buyer, so with the seller; As with the lender, so with the borrower; As with the creditor, so with the debtor.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/3/" data-ref="Isaiah 24:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/3/"><span class="v-num">3</span><span class="v-txt">The land shall be entirely emptied and utterly plundered, For the LORD has spoken this word.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/4/" data-ref="Isaiah 24:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/4/"><span class="v-num">4</span><span class="v-txt">The earth mourns [and] fades away, The world languishes [and] fades away; The haughty people of the earth languish.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/5/" data-ref="Isaiah 24:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/5/"><span class="v-num">5</span><span class="v-txt">The earth is also defiled under its inhabitants, Because they have transgressed the laws, Changed the ordinance, Broken the everlasting covenant.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/6/" data-ref="Isaiah 24:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/6/"><span class="v-num">6</span><span class="v-txt">Therefore the curse has devoured the earth, And those who dwell in it are desolate. Therefore the inhabitants of the earth are burned, And few men [are] left.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/7/" data-ref="Isaiah 24:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/7/"><span class="v-num">7</span><span class="v-txt">The new wine fails, the vine languishes, All the merry-hearted sigh.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/8/" data-ref="Isaiah 24:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/8/"><span class="v-num">8</span><span class="v-txt">The mirth of the tambourine ceases, The noise of the jubilant ends, The joy of the harp ceases.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/9/" data-ref="Isaiah 24:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/9/"><span class="v-num">9</span><span class="v-txt">They shall not drink wine with a song; Strong drink is bitter to those who drink it.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/10/" data-ref="Isaiah 24:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/10/"><span class="v-num">10</span><span class="v-txt">The city of confusion is broken down; Every house is shut up, so that none may go in.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/11/" data-ref="Isaiah 24:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/11/"><span class="v-num">11</span><span class="v-txt">[There is] a cry for wine in the streets, All joy is darkened, The mirth of the land is gone.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/12/" data-ref="Isaiah 24:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/12/"><span class="v-num">12</span><span class="v-txt">In the city desolation is left, And the gate is stricken with destruction.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/13/" data-ref="Isaiah 24:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/13/"><span class="v-num">13</span><span class="v-txt">When it shall be thus in the midst of the land among the people, [It shall be] like the shaking of an olive tree, Like the gleaning of grapes when the vintage is done.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/14/" data-ref="Isaiah 24:14 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/14/"><span class="v-num">14</span><span class="v-txt">They shall lift up their voice, they shall sing; For the majesty of the LORD They shall cry aloud from the sea.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/15/" data-ref="Isaiah 24:15 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/15/"><span class="v-num">15</span><span class="v-txt">Therefore glorify the LORD in the dawning light, The name of the LORD God of Israel in the coastlands of the sea.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/16/" data-ref="Isaiah 24:16 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/16/"><span class="v-num">16</span><span class="v-txt">From the ends of the earth we have heard songs: "Glory to the righteous!" But I said, "I am ruined, ruined! Woe to me! The treacherous dealers have dealt treacherously, Indeed, the treacherous dealers have dealt very treacherously."</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/17/" data-ref="Isaiah 24:17 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/17/"><span class="v-num">17</span><span class="v-txt">Fear and the pit and the snare [Are] upon you, O inhabitant of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/18/" data-ref="Isaiah 24:18 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/18/"><span class="v-num">18</span><span class="v-txt">And it shall be [That] he who flees from the noise of the fear Shall fall into the pit, And he who comes up from the midst of the pit Shall be caught in the snare; For the windows from on high are open, And the foundations of the earth are shaken.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/19/" data-ref="Isaiah 24:19 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/19/"><span class="v-num">19</span><span class="v-txt">The earth is violently broken, The earth is split open, The earth is shaken exceedingly.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/20/" data-ref="Isaiah 24:20 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/20/"><span class="v-num">20</span><span class="v-txt">The earth shall reel to and fro like a drunkard, And shall totter like a hut; Its transgression shall be heavy upon it, And it will fall, and not rise again.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/21/" data-ref="Isaiah 24:21 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/21/"><span class="v-num">21</span><span class="v-txt">It shall come to pass in that day [That] the LORD will punish on high the host of exalted ones, And on the earth the kings of the earth.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/22/" data-ref="Isaiah 24:22 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/22/"><span class="v-num">22</span><span class="v-txt">They will be gathered together, [As] prisoners are gathered in the pit, And will be shut up in the prison; After many days they will be punished.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/24/23/" data-ref="Isaiah 24:23 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/24/23/"><span class="v-num">23</span><span class="v-txt">Then the moon will be disgraced And the sun ashamed; For the LORD of hosts will reign On Mount Zion and in Jerusalem And before His elders, gloriously.</span></a>
 
     
 <div class="app-cta">

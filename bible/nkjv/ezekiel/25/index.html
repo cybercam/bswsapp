@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 25</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ezekiel 25:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word of the LORD came to me, saying,</span></div>
-<div class="v-row" data-ref="Ezekiel 25:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">"Son of man, set your face against the Ammonites, and prophesy against them.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"Say to the Ammonites, 'Hear the word of the Lord GOD! Thus says the Lord GOD: "Because you said, 'Aha!' against My sanctuary when it was profaned, and against the land of Israel when it was desolate, and against the house of Judah when they went into captivity,</span></div>
-<div class="v-row" data-ref="Ezekiel 25:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">"indeed, therefore, I will deliver you as a possession to the men of the East, and they shall set their encampments among you and make their dwellings among you; they shall eat your fruit, and they shall drink your milk.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">"And I will make Rabbah a stable for camels and Ammon a resting place for flocks. Then you shall know that I [am] the LORD."</span></div>
-<div class="v-row" data-ref="Ezekiel 25:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">'For thus says the Lord GOD: "Because you clapped [your] hands, stamped your feet, and rejoiced in heart with all your disdain for the land of Israel,</span></div>
-<div class="v-row" data-ref="Ezekiel 25:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"indeed, therefore, I will stretch out My hand against you, and give you as plunder to the nations; I will cut you off from the peoples, and I will cause you to perish from the countries; I will destroy you, and you shall know that I [am] the LORD."</span></div>
-<div class="v-row" data-ref="Ezekiel 25:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">' Thus says the Lord GOD: "Because Moab and Seir say, 'Look! The house of Judah [is] like all the nations,'</span></div>
-<div class="v-row" data-ref="Ezekiel 25:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">"therefore, behold, I will clear the territory of Moab of cities, of the cities on its frontier, the glory of the country, Beth Jeshimoth, Baal Meon, and Kirjathaim.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">"To the men of the East I will give it as a possession, together with the Ammonites, that the Ammonites may not be remembered among the nations.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"And I will execute judgments upon Moab, and they shall know that I [am] the LORD."</span></div>
-<div class="v-row" data-ref="Ezekiel 25:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">' Thus says the Lord GOD: "Because of what Edom did against the house of Judah by taking vengeance, and has greatly offended by avenging itself on them,"</span></div>
-<div class="v-row" data-ref="Ezekiel 25:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">'therefore thus says the Lord GOD: "I will also stretch out My hand against Edom, cut off man and beast from it, and make it desolate from Teman; Dedan shall fall by the sword.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"I will lay My vengeance on Edom by the hand of My people Israel, that they may do in Edom according to My anger and according to My fury; and they shall know My vengeance," says the Lord GOD.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">' Thus says the Lord GOD: "Because the Philistines dealt vengefully and took vengeance with a spiteful heart, to destroy because of the old hatred,"</span></div>
-<div class="v-row" data-ref="Ezekiel 25:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">'therefore thus says the Lord GOD: "I will stretch out My hand against the Philistines, and I will cut off the Cherethites and destroy the remnant of the seacoast.</span></div>
-<div class="v-row" data-ref="Ezekiel 25:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"I will execute great vengeance on them with furious rebukes; and they shall know that I [am] the LORD, when I lay My vengeance upon them." ' "</span></div>
+    <a class="v-row" href="/bible/nkjv/ezekiel/25/1/" data-ref="Ezekiel 25:1 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/1/"><span class="v-num">1</span><span class="v-txt">The word of the LORD came to me, saying,</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/2/" data-ref="Ezekiel 25:2 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/2/"><span class="v-num">2</span><span class="v-txt">"Son of man, set your face against the Ammonites, and prophesy against them.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/3/" data-ref="Ezekiel 25:3 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/3/"><span class="v-num">3</span><span class="v-txt">"Say to the Ammonites, 'Hear the word of the Lord GOD! Thus says the Lord GOD: "Because you said, 'Aha!' against My sanctuary when it was profaned, and against the land of Israel when it was desolate, and against the house of Judah when they went into captivity,</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/4/" data-ref="Ezekiel 25:4 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/4/"><span class="v-num">4</span><span class="v-txt">"indeed, therefore, I will deliver you as a possession to the men of the East, and they shall set their encampments among you and make their dwellings among you; they shall eat your fruit, and they shall drink your milk.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/5/" data-ref="Ezekiel 25:5 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/5/"><span class="v-num">5</span><span class="v-txt">"And I will make Rabbah a stable for camels and Ammon a resting place for flocks. Then you shall know that I [am] the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/6/" data-ref="Ezekiel 25:6 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/6/"><span class="v-num">6</span><span class="v-txt">'For thus says the Lord GOD: "Because you clapped [your] hands, stamped your feet, and rejoiced in heart with all your disdain for the land of Israel,</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/7/" data-ref="Ezekiel 25:7 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/7/"><span class="v-num">7</span><span class="v-txt">"indeed, therefore, I will stretch out My hand against you, and give you as plunder to the nations; I will cut you off from the peoples, and I will cause you to perish from the countries; I will destroy you, and you shall know that I [am] the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/8/" data-ref="Ezekiel 25:8 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/8/"><span class="v-num">8</span><span class="v-txt">' Thus says the Lord GOD: "Because Moab and Seir say, 'Look! The house of Judah [is] like all the nations,'</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/9/" data-ref="Ezekiel 25:9 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/9/"><span class="v-num">9</span><span class="v-txt">"therefore, behold, I will clear the territory of Moab of cities, of the cities on its frontier, the glory of the country, Beth Jeshimoth, Baal Meon, and Kirjathaim.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/10/" data-ref="Ezekiel 25:10 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/10/"><span class="v-num">10</span><span class="v-txt">"To the men of the East I will give it as a possession, together with the Ammonites, that the Ammonites may not be remembered among the nations.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/11/" data-ref="Ezekiel 25:11 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/11/"><span class="v-num">11</span><span class="v-txt">"And I will execute judgments upon Moab, and they shall know that I [am] the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/12/" data-ref="Ezekiel 25:12 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/12/"><span class="v-num">12</span><span class="v-txt">' Thus says the Lord GOD: "Because of what Edom did against the house of Judah by taking vengeance, and has greatly offended by avenging itself on them,"</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/13/" data-ref="Ezekiel 25:13 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/13/"><span class="v-num">13</span><span class="v-txt">'therefore thus says the Lord GOD: "I will also stretch out My hand against Edom, cut off man and beast from it, and make it desolate from Teman; Dedan shall fall by the sword.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/14/" data-ref="Ezekiel 25:14 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/14/"><span class="v-num">14</span><span class="v-txt">"I will lay My vengeance on Edom by the hand of My people Israel, that they may do in Edom according to My anger and according to My fury; and they shall know My vengeance," says the Lord GOD.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/15/" data-ref="Ezekiel 25:15 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/15/"><span class="v-num">15</span><span class="v-txt">' Thus says the Lord GOD: "Because the Philistines dealt vengefully and took vengeance with a spiteful heart, to destroy because of the old hatred,"</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/16/" data-ref="Ezekiel 25:16 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/16/"><span class="v-num">16</span><span class="v-txt">'therefore thus says the Lord GOD: "I will stretch out My hand against the Philistines, and I will cut off the Cherethites and destroy the remnant of the seacoast.</span></a>
+<a class="v-row" href="/bible/nkjv/ezekiel/25/17/" data-ref="Ezekiel 25:17 (New King James Version)" data-verse-url="/bible/nkjv/ezekiel/25/17/"><span class="v-num">17</span><span class="v-txt">"I will execute great vengeance on them with furious rebukes; and they shall know that I [am] the LORD, when I lay My vengeance upon them." ' "</span></a>
 
     
 <div class="app-cta">

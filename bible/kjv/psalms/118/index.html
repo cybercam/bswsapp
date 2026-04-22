@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,35 +204,35 @@ a:hover{text-decoration:underline}
       <h2>Chapter 118</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 118:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">O give thanks unto the LORD; for he is good: because his mercy endureth for ever.</span></div>
-<div class="v-row" data-ref="Psalm 118:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let Israel now say, that his mercy endureth for ever.</span></div>
-<div class="v-row" data-ref="Psalm 118:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let the house of Aaron now say, that his mercy endureth for ever.</span></div>
-<div class="v-row" data-ref="Psalm 118:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Let them now that fear the LORD say, that his mercy endureth for ever.</span></div>
-<div class="v-row" data-ref="Psalm 118:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I called upon the LORD in distress: the LORD answered me, and set me in a large place.</span></div>
-<div class="v-row" data-ref="Psalm 118:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The LORD is on my side; I will not fear: what can man do unto me?</span></div>
-<div class="v-row" data-ref="Psalm 118:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The LORD taketh my part with them that help me: therefore shall I see my desire upon them that hate me.</span></div>
-<div class="v-row" data-ref="Psalm 118:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">It is better to trust in the LORD than to put confidence in man.</span></div>
-<div class="v-row" data-ref="Psalm 118:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">It is better to trust in the LORD than to put confidence in princes.</span></div>
-<div class="v-row" data-ref="Psalm 118:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">All nations compassed me about: but in the name of the LORD will I destroy them.</span></div>
-<div class="v-row" data-ref="Psalm 118:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">They compassed me about; yea, they compassed me about: but in the name of the LORD I will destroy them.</span></div>
-<div class="v-row" data-ref="Psalm 118:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">They compassed me about like bees; they are quenched as the fire of thorns: for in the name of the LORD I will destroy them.</span></div>
-<div class="v-row" data-ref="Psalm 118:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Thou hast thrust sore at me that I might fall: but the LORD helped me.</span></div>
-<div class="v-row" data-ref="Psalm 118:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">The LORD is my strength and song, and is become my salvation.</span></div>
-<div class="v-row" data-ref="Psalm 118:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The voice of rejoicing and salvation is in the tabernacles of the righteous: the right hand of the LORD doeth valiantly.</span></div>
-<div class="v-row" data-ref="Psalm 118:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The right hand of the LORD is exalted: the right hand of the LORD doeth valiantly.</span></div>
-<div class="v-row" data-ref="Psalm 118:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">I shall not die, but live, and declare the works of the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 118:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">The LORD hath chastened me sore: but he hath not given me over unto death.</span></div>
-<div class="v-row" data-ref="Psalm 118:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Open to me the gates of righteousness: I will go into them, and I will praise the LORD:</span></div>
-<div class="v-row" data-ref="Psalm 118:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">This gate of the LORD, into which the righteous shall enter.</span></div>
-<div class="v-row" data-ref="Psalm 118:21 (King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I will praise thee: for thou hast heard me, and art become my salvation.</span></div>
-<div class="v-row" data-ref="Psalm 118:22 (King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">The stone which the builders refused is become the head stone of the corner.</span></div>
-<div class="v-row" data-ref="Psalm 118:23 (King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">This is the LORD'S doing; it is marvellous in our eyes.</span></div>
-<div class="v-row" data-ref="Psalm 118:24 (King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">This is the day which the LORD hath made; we will rejoice and be glad in it.</span></div>
-<div class="v-row" data-ref="Psalm 118:25 (King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Save now, I beseech thee, O LORD: O LORD, I beseech thee, send now prosperity.</span></div>
-<div class="v-row" data-ref="Psalm 118:26 (King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Blessed be he that cometh in the name of the LORD: we have blessed you out of the house of the LORD.</span></div>
-<div class="v-row" data-ref="Psalm 118:27 (King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">God is the LORD, which hath shewed us light: bind the sacrifice with cords, even unto the horns of the altar.</span></div>
-<div class="v-row" data-ref="Psalm 118:28 (King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Thou art my God, and I will praise thee: thou art my God, I will exalt thee.</span></div>
-<div class="v-row" data-ref="Psalm 118:29 (King James Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">O give thanks unto the LORD; for he is good: for his mercy endureth for ever.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/118/1/" data-ref="Psalm 118:1 (King James Version)" data-verse-url="/bible/kjv/psalms/118/1/"><span class="v-num">1</span><span class="v-txt">O give thanks unto the LORD; for he is good: because his mercy endureth for ever.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/2/" data-ref="Psalm 118:2 (King James Version)" data-verse-url="/bible/kjv/psalms/118/2/"><span class="v-num">2</span><span class="v-txt">Let Israel now say, that his mercy endureth for ever.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/3/" data-ref="Psalm 118:3 (King James Version)" data-verse-url="/bible/kjv/psalms/118/3/"><span class="v-num">3</span><span class="v-txt">Let the house of Aaron now say, that his mercy endureth for ever.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/4/" data-ref="Psalm 118:4 (King James Version)" data-verse-url="/bible/kjv/psalms/118/4/"><span class="v-num">4</span><span class="v-txt">Let them now that fear the LORD say, that his mercy endureth for ever.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/5/" data-ref="Psalm 118:5 (King James Version)" data-verse-url="/bible/kjv/psalms/118/5/"><span class="v-num">5</span><span class="v-txt">I called upon the LORD in distress: the LORD answered me, and set me in a large place.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/6/" data-ref="Psalm 118:6 (King James Version)" data-verse-url="/bible/kjv/psalms/118/6/"><span class="v-num">6</span><span class="v-txt">The LORD is on my side; I will not fear: what can man do unto me?</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/7/" data-ref="Psalm 118:7 (King James Version)" data-verse-url="/bible/kjv/psalms/118/7/"><span class="v-num">7</span><span class="v-txt">The LORD taketh my part with them that help me: therefore shall I see my desire upon them that hate me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/8/" data-ref="Psalm 118:8 (King James Version)" data-verse-url="/bible/kjv/psalms/118/8/"><span class="v-num">8</span><span class="v-txt">It is better to trust in the LORD than to put confidence in man.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/9/" data-ref="Psalm 118:9 (King James Version)" data-verse-url="/bible/kjv/psalms/118/9/"><span class="v-num">9</span><span class="v-txt">It is better to trust in the LORD than to put confidence in princes.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/10/" data-ref="Psalm 118:10 (King James Version)" data-verse-url="/bible/kjv/psalms/118/10/"><span class="v-num">10</span><span class="v-txt">All nations compassed me about: but in the name of the LORD will I destroy them.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/11/" data-ref="Psalm 118:11 (King James Version)" data-verse-url="/bible/kjv/psalms/118/11/"><span class="v-num">11</span><span class="v-txt">They compassed me about; yea, they compassed me about: but in the name of the LORD I will destroy them.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/12/" data-ref="Psalm 118:12 (King James Version)" data-verse-url="/bible/kjv/psalms/118/12/"><span class="v-num">12</span><span class="v-txt">They compassed me about like bees; they are quenched as the fire of thorns: for in the name of the LORD I will destroy them.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/13/" data-ref="Psalm 118:13 (King James Version)" data-verse-url="/bible/kjv/psalms/118/13/"><span class="v-num">13</span><span class="v-txt">Thou hast thrust sore at me that I might fall: but the LORD helped me.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/14/" data-ref="Psalm 118:14 (King James Version)" data-verse-url="/bible/kjv/psalms/118/14/"><span class="v-num">14</span><span class="v-txt">The LORD is my strength and song, and is become my salvation.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/15/" data-ref="Psalm 118:15 (King James Version)" data-verse-url="/bible/kjv/psalms/118/15/"><span class="v-num">15</span><span class="v-txt">The voice of rejoicing and salvation is in the tabernacles of the righteous: the right hand of the LORD doeth valiantly.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/16/" data-ref="Psalm 118:16 (King James Version)" data-verse-url="/bible/kjv/psalms/118/16/"><span class="v-num">16</span><span class="v-txt">The right hand of the LORD is exalted: the right hand of the LORD doeth valiantly.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/17/" data-ref="Psalm 118:17 (King James Version)" data-verse-url="/bible/kjv/psalms/118/17/"><span class="v-num">17</span><span class="v-txt">I shall not die, but live, and declare the works of the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/18/" data-ref="Psalm 118:18 (King James Version)" data-verse-url="/bible/kjv/psalms/118/18/"><span class="v-num">18</span><span class="v-txt">The LORD hath chastened me sore: but he hath not given me over unto death.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/19/" data-ref="Psalm 118:19 (King James Version)" data-verse-url="/bible/kjv/psalms/118/19/"><span class="v-num">19</span><span class="v-txt">Open to me the gates of righteousness: I will go into them, and I will praise the LORD:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/20/" data-ref="Psalm 118:20 (King James Version)" data-verse-url="/bible/kjv/psalms/118/20/"><span class="v-num">20</span><span class="v-txt">This gate of the LORD, into which the righteous shall enter.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/21/" data-ref="Psalm 118:21 (King James Version)" data-verse-url="/bible/kjv/psalms/118/21/"><span class="v-num">21</span><span class="v-txt">I will praise thee: for thou hast heard me, and art become my salvation.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/22/" data-ref="Psalm 118:22 (King James Version)" data-verse-url="/bible/kjv/psalms/118/22/"><span class="v-num">22</span><span class="v-txt">The stone which the builders refused is become the head stone of the corner.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/23/" data-ref="Psalm 118:23 (King James Version)" data-verse-url="/bible/kjv/psalms/118/23/"><span class="v-num">23</span><span class="v-txt">This is the LORD'S doing; it is marvellous in our eyes.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/24/" data-ref="Psalm 118:24 (King James Version)" data-verse-url="/bible/kjv/psalms/118/24/"><span class="v-num">24</span><span class="v-txt">This is the day which the LORD hath made; we will rejoice and be glad in it.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/25/" data-ref="Psalm 118:25 (King James Version)" data-verse-url="/bible/kjv/psalms/118/25/"><span class="v-num">25</span><span class="v-txt">Save now, I beseech thee, O LORD: O LORD, I beseech thee, send now prosperity.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/26/" data-ref="Psalm 118:26 (King James Version)" data-verse-url="/bible/kjv/psalms/118/26/"><span class="v-num">26</span><span class="v-txt">Blessed be he that cometh in the name of the LORD: we have blessed you out of the house of the LORD.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/27/" data-ref="Psalm 118:27 (King James Version)" data-verse-url="/bible/kjv/psalms/118/27/"><span class="v-num">27</span><span class="v-txt">God is the LORD, which hath shewed us light: bind the sacrifice with cords, even unto the horns of the altar.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/28/" data-ref="Psalm 118:28 (King James Version)" data-verse-url="/bible/kjv/psalms/118/28/"><span class="v-num">28</span><span class="v-txt">Thou art my God, and I will praise thee: thou art my God, I will exalt thee.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/118/29/" data-ref="Psalm 118:29 (King James Version)" data-verse-url="/bible/kjv/psalms/118/29/"><span class="v-num">29</span><span class="v-txt">O give thanks unto the LORD; for he is good: for his mercy endureth for ever.</span></a>
 
     
 <div class="app-cta">

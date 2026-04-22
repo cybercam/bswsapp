@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,18 +204,18 @@ a:hover{text-decoration:underline}
       <h2>Chapter 143</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 143:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Psalm of David. Hear my prayer, O LORD, Give ear to my supplications! In Your faithfulness answer me, [And] in Your righteousness.</span></div>
-<div class="v-row" data-ref="Psalm 143:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Do not enter into judgment with Your servant, For in Your sight no one living is righteous.</span></div>
-<div class="v-row" data-ref="Psalm 143:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For the enemy has persecuted my soul; He has crushed my life to the ground; He has made me dwell in darkness, Like those who have long been dead.</span></div>
-<div class="v-row" data-ref="Psalm 143:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Therefore my spirit is overwhelmed within me; My heart within me is distressed.</span></div>
-<div class="v-row" data-ref="Psalm 143:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">I remember the days of old; I meditate on all Your works; I muse on the work of Your hands.</span></div>
-<div class="v-row" data-ref="Psalm 143:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">I spread out my hands to You; My soul [longs] for You like a thirsty land. Selah</span></div>
-<div class="v-row" data-ref="Psalm 143:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Answer me speedily, O LORD; My spirit fails! Do not hide Your face from me, Lest I be like those who go down into the pit.</span></div>
-<div class="v-row" data-ref="Psalm 143:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Cause me to hear Your lovingkindness in the morning, For in You do I trust; Cause me to know the way in which I should walk, For I lift up my soul to You.</span></div>
-<div class="v-row" data-ref="Psalm 143:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Deliver me, O LORD, from my enemies; In You I take shelter.</span></div>
-<div class="v-row" data-ref="Psalm 143:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Teach me to do Your will, For You [are] my God; Your Spirit [is] good. Lead me in the land of uprightness.</span></div>
-<div class="v-row" data-ref="Psalm 143:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Revive me, O LORD, for Your name's sake! For Your righteousness' sake bring my soul out of trouble.</span></div>
-<div class="v-row" data-ref="Psalm 143:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">In Your mercy cut off my enemies, And destroy all those who afflict my soul; For I [am] Your servant.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/143/1/" data-ref="Psalm 143:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/1/"><span class="v-num">1</span><span class="v-txt">A Psalm of David. Hear my prayer, O LORD, Give ear to my supplications! In Your faithfulness answer me, [And] in Your righteousness.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/2/" data-ref="Psalm 143:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/2/"><span class="v-num">2</span><span class="v-txt">Do not enter into judgment with Your servant, For in Your sight no one living is righteous.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/3/" data-ref="Psalm 143:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/3/"><span class="v-num">3</span><span class="v-txt">For the enemy has persecuted my soul; He has crushed my life to the ground; He has made me dwell in darkness, Like those who have long been dead.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/4/" data-ref="Psalm 143:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/4/"><span class="v-num">4</span><span class="v-txt">Therefore my spirit is overwhelmed within me; My heart within me is distressed.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/5/" data-ref="Psalm 143:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/5/"><span class="v-num">5</span><span class="v-txt">I remember the days of old; I meditate on all Your works; I muse on the work of Your hands.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/6/" data-ref="Psalm 143:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/6/"><span class="v-num">6</span><span class="v-txt">I spread out my hands to You; My soul [longs] for You like a thirsty land. Selah</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/7/" data-ref="Psalm 143:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/7/"><span class="v-num">7</span><span class="v-txt">Answer me speedily, O LORD; My spirit fails! Do not hide Your face from me, Lest I be like those who go down into the pit.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/8/" data-ref="Psalm 143:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/8/"><span class="v-num">8</span><span class="v-txt">Cause me to hear Your lovingkindness in the morning, For in You do I trust; Cause me to know the way in which I should walk, For I lift up my soul to You.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/9/" data-ref="Psalm 143:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/9/"><span class="v-num">9</span><span class="v-txt">Deliver me, O LORD, from my enemies; In You I take shelter.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/10/" data-ref="Psalm 143:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/10/"><span class="v-num">10</span><span class="v-txt">Teach me to do Your will, For You [are] my God; Your Spirit [is] good. Lead me in the land of uprightness.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/11/" data-ref="Psalm 143:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/11/"><span class="v-num">11</span><span class="v-txt">Revive me, O LORD, for Your name's sake! For Your righteousness' sake bring my soul out of trouble.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/143/12/" data-ref="Psalm 143:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/143/12/"><span class="v-num">12</span><span class="v-txt">In Your mercy cut off my enemies, And destroy all those who afflict my soul; For I [am] Your servant.</span></a>
 
     
 <div class="app-cta">

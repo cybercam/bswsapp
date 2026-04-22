@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Joel 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word of the LORD that came to Joel the son of Pethuel.</span></div>
-<div class="v-row" data-ref="Joel 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Hear this, you elders, And give ear, all you inhabitants of the land! Has [anything like] this happened in your days, Or even in the days of your fathers?</span></div>
-<div class="v-row" data-ref="Joel 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Tell your children about it, [Let] your children [tell] their children, And their children another generation.</span></div>
-<div class="v-row" data-ref="Joel 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">What the chewing locust left, the swarming locust has eaten; What the swarming locust left, the crawling locust has eaten; And what the crawling locust left, the consuming locust has eaten.</span></div>
-<div class="v-row" data-ref="Joel 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Awake, you drunkards, and weep; And wail, all you drinkers of wine, Because of the new wine, For it has been cut off from your mouth.</span></div>
-<div class="v-row" data-ref="Joel 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For a nation has come up against My land, Strong, and without number; His teeth [are] the teeth of a lion, And he has the fangs of a fierce lion.</span></div>
-<div class="v-row" data-ref="Joel 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He has laid waste My vine, And ruined My fig tree; He has stripped it bare and thrown [it] away; Its branches are made white.</span></div>
-<div class="v-row" data-ref="Joel 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Lament like a virgin girded with sackcloth For the husband of her youth.</span></div>
-<div class="v-row" data-ref="Joel 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The grain offering and the drink offering Have been cut off from the house of the LORD; The priests mourn, who minister to the LORD.</span></div>
-<div class="v-row" data-ref="Joel 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The field is wasted, The land mourns; For the grain is ruined, The new wine is dried up, The oil fails.</span></div>
-<div class="v-row" data-ref="Joel 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Be ashamed, you farmers, Wail, you vinedressers, For the wheat and the barley; Because the harvest of the field has perished.</span></div>
-<div class="v-row" data-ref="Joel 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The vine has dried up, And the fig tree has withered; The pomegranate tree, The palm tree also, And the apple tree -- All the trees of the field are withered; Surely joy has withered away from the sons of men.</span></div>
-<div class="v-row" data-ref="Joel 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Gird yourselves and lament, you priests; Wail, you who minister before the altar; Come, lie all night in sackcloth, You who minister to my God; For the grain offering and the drink offering Are withheld from the house of your God.</span></div>
-<div class="v-row" data-ref="Joel 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Consecrate a fast, Call a sacred assembly; Gather the elders [And] all the inhabitants of the land [Into] the house of the LORD your God, And cry out to the LORD.</span></div>
-<div class="v-row" data-ref="Joel 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Alas for the day! For the day of the LORD [is] at hand; It shall come as destruction from the Almighty.</span></div>
-<div class="v-row" data-ref="Joel 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Is not the food cut off before our eyes, Joy and gladness from the house of our God?</span></div>
-<div class="v-row" data-ref="Joel 1:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The seed shrivels under the clods, Storehouses are in shambles; Barns are broken down, For the grain has withered.</span></div>
-<div class="v-row" data-ref="Joel 1:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">How the animals groan! The herds of cattle are restless, Because they have no pasture; Even the flocks of sheep suffer punishment.</span></div>
-<div class="v-row" data-ref="Joel 1:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">O LORD, to You I cry out; For fire has devoured the open pastures, And a flame has burned all the trees of the field.</span></div>
-<div class="v-row" data-ref="Joel 1:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">The beasts of the field also cry out to You, For the water brooks are dried up, And fire has devoured the open pastures.</span></div>
+    <a class="v-row" href="/bible/nkjv/joel/1/1/" data-ref="Joel 1:1 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/1/"><span class="v-num">1</span><span class="v-txt">The word of the LORD that came to Joel the son of Pethuel.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/2/" data-ref="Joel 1:2 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/2/"><span class="v-num">2</span><span class="v-txt">Hear this, you elders, And give ear, all you inhabitants of the land! Has [anything like] this happened in your days, Or even in the days of your fathers?</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/3/" data-ref="Joel 1:3 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/3/"><span class="v-num">3</span><span class="v-txt">Tell your children about it, [Let] your children [tell] their children, And their children another generation.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/4/" data-ref="Joel 1:4 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/4/"><span class="v-num">4</span><span class="v-txt">What the chewing locust left, the swarming locust has eaten; What the swarming locust left, the crawling locust has eaten; And what the crawling locust left, the consuming locust has eaten.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/5/" data-ref="Joel 1:5 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/5/"><span class="v-num">5</span><span class="v-txt">Awake, you drunkards, and weep; And wail, all you drinkers of wine, Because of the new wine, For it has been cut off from your mouth.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/6/" data-ref="Joel 1:6 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/6/"><span class="v-num">6</span><span class="v-txt">For a nation has come up against My land, Strong, and without number; His teeth [are] the teeth of a lion, And he has the fangs of a fierce lion.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/7/" data-ref="Joel 1:7 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/7/"><span class="v-num">7</span><span class="v-txt">He has laid waste My vine, And ruined My fig tree; He has stripped it bare and thrown [it] away; Its branches are made white.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/8/" data-ref="Joel 1:8 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/8/"><span class="v-num">8</span><span class="v-txt">Lament like a virgin girded with sackcloth For the husband of her youth.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/9/" data-ref="Joel 1:9 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/9/"><span class="v-num">9</span><span class="v-txt">The grain offering and the drink offering Have been cut off from the house of the LORD; The priests mourn, who minister to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/10/" data-ref="Joel 1:10 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/10/"><span class="v-num">10</span><span class="v-txt">The field is wasted, The land mourns; For the grain is ruined, The new wine is dried up, The oil fails.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/11/" data-ref="Joel 1:11 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/11/"><span class="v-num">11</span><span class="v-txt">Be ashamed, you farmers, Wail, you vinedressers, For the wheat and the barley; Because the harvest of the field has perished.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/12/" data-ref="Joel 1:12 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/12/"><span class="v-num">12</span><span class="v-txt">The vine has dried up, And the fig tree has withered; The pomegranate tree, The palm tree also, And the apple tree -- All the trees of the field are withered; Surely joy has withered away from the sons of men.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/13/" data-ref="Joel 1:13 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/13/"><span class="v-num">13</span><span class="v-txt">Gird yourselves and lament, you priests; Wail, you who minister before the altar; Come, lie all night in sackcloth, You who minister to my God; For the grain offering and the drink offering Are withheld from the house of your God.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/14/" data-ref="Joel 1:14 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/14/"><span class="v-num">14</span><span class="v-txt">Consecrate a fast, Call a sacred assembly; Gather the elders [And] all the inhabitants of the land [Into] the house of the LORD your God, And cry out to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/15/" data-ref="Joel 1:15 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/15/"><span class="v-num">15</span><span class="v-txt">Alas for the day! For the day of the LORD [is] at hand; It shall come as destruction from the Almighty.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/16/" data-ref="Joel 1:16 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/16/"><span class="v-num">16</span><span class="v-txt">Is not the food cut off before our eyes, Joy and gladness from the house of our God?</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/17/" data-ref="Joel 1:17 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/17/"><span class="v-num">17</span><span class="v-txt">The seed shrivels under the clods, Storehouses are in shambles; Barns are broken down, For the grain has withered.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/18/" data-ref="Joel 1:18 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/18/"><span class="v-num">18</span><span class="v-txt">How the animals groan! The herds of cattle are restless, Because they have no pasture; Even the flocks of sheep suffer punishment.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/19/" data-ref="Joel 1:19 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/19/"><span class="v-num">19</span><span class="v-txt">O LORD, to You I cry out; For fire has devoured the open pastures, And a flame has burned all the trees of the field.</span></a>
+<a class="v-row" href="/bible/nkjv/joel/1/20/" data-ref="Joel 1:20 (New King James Version)" data-verse-url="/bible/nkjv/joel/1/20/"><span class="v-num">20</span><span class="v-txt">The beasts of the field also cry out to You, For the water brooks are dried up, And fire has devoured the open pastures.</span></a>
 
     
 <div class="app-cta">

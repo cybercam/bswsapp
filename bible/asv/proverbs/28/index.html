@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 28</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 28:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The wicked flee when no man pursueth; But the righteous are bold as a lion.</span></div>
-<div class="v-row" data-ref="Proverbs 28:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For the transgression of a land many are the princes thereof; But by men of understanding [and] knowledge the state [thereof] shall be prolonged.</span></div>
-<div class="v-row" data-ref="Proverbs 28:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A needy man that oppresseth the poor Is [like] a sweeping rain which leaveth no food.</span></div>
-<div class="v-row" data-ref="Proverbs 28:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">They that forsake the law praise the wicked; But such as keep the law contend with them.</span></div>
-<div class="v-row" data-ref="Proverbs 28:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Evil men understand not justice; But they that seek Jehovah understand all things.</span></div>
-<div class="v-row" data-ref="Proverbs 28:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Better is the poor that walketh in his integrity, Than he that is perverse in [his] ways, though he be rich.</span></div>
-<div class="v-row" data-ref="Proverbs 28:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Whoso keepeth the law is a wise son; But he that is a companion of gluttons shameth his father.</span></div>
-<div class="v-row" data-ref="Proverbs 28:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He that augmenteth his substance by interest and increase, Gathereth it for him that hath pity on the poor.</span></div>
-<div class="v-row" data-ref="Proverbs 28:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He that turneth away his ear from hearing the law, Even his prayer is an abomination.</span></div>
-<div class="v-row" data-ref="Proverbs 28:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Whoso causeth the upright to go astray in an evil way, He shall fall himself into his own pit; But the perfect shall inherit good.</span></div>
-<div class="v-row" data-ref="Proverbs 28:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">The rich man is wise in his own conceit; But the poor that hath understanding searcheth him out.</span></div>
-<div class="v-row" data-ref="Proverbs 28:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">When the righteous triumph, there is great glory; But when the wicked rise, men hide themselves.</span></div>
-<div class="v-row" data-ref="Proverbs 28:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He that covereth his transgressions shall not prosper: But whoso confesseth and forsaketh them shall obtain mercy.</span></div>
-<div class="v-row" data-ref="Proverbs 28:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Happy is the man that feareth alway; But he that hardeneth his heart shall fall into mischief.</span></div>
-<div class="v-row" data-ref="Proverbs 28:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">[As] a roaring lion, and a ranging bear, [So is] a wicked ruler over a poor people.</span></div>
-<div class="v-row" data-ref="Proverbs 28:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The prince that lacketh understanding is also a great oppressor; [But] he that hateth covetousness shall prolong his days.</span></div>
-<div class="v-row" data-ref="Proverbs 28:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">A man that is laden with the blood of any person Shall flee unto the pit; Let no man stay him.</span></div>
-<div class="v-row" data-ref="Proverbs 28:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Whoso walketh uprightly shall be delivered; But he that is perverse in [his] ways shall fall at once.</span></div>
-<div class="v-row" data-ref="Proverbs 28:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He that tilleth his land shall have plenty of bread; But he that followeth after vain [persons] shall have poverty enough.</span></div>
-<div class="v-row" data-ref="Proverbs 28:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">A faithful man shall abound with blessings; But he that maketh haste to be rich shall not be unpunished.</span></div>
-<div class="v-row" data-ref="Proverbs 28:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">To have respect of persons is not good; Neither that a man should transgress for a piece of bread.</span></div>
-<div class="v-row" data-ref="Proverbs 28:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">he that hath an evil eye hasteth after riches, And knoweth not that want shall come upon him.</span></div>
-<div class="v-row" data-ref="Proverbs 28:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">He that rebuketh a man shall afterward find more favor Than he that flattereth with the tongue.</span></div>
-<div class="v-row" data-ref="Proverbs 28:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">Whoso robbeth his father or his mother, and saith, It is no transgression, The same is the companion of a destroyer.</span></div>
-<div class="v-row" data-ref="Proverbs 28:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">He that is of a greedy spirit stirreth up strife; But he that putteth his trust in Jehovah shall be made fat.</span></div>
-<div class="v-row" data-ref="Proverbs 28:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">He that trusteth in his own heart is a fool; But whoso walketh wisely, he shall be delivered.</span></div>
-<div class="v-row" data-ref="Proverbs 28:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He that giveth unto the poor shall not lack; But he that hideth his eyes shall have many a curse.</span></div>
-<div class="v-row" data-ref="Proverbs 28:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">When the wicked rise, men hide themselves; But when they perish, the righteous increase.</span></div>
+    <a class="v-row" href="/bible/asv/proverbs/28/1/" data-ref="Proverbs 28:1 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/1/"><span class="v-num">1</span><span class="v-txt">The wicked flee when no man pursueth; But the righteous are bold as a lion.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/2/" data-ref="Proverbs 28:2 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/2/"><span class="v-num">2</span><span class="v-txt">For the transgression of a land many are the princes thereof; But by men of understanding [and] knowledge the state [thereof] shall be prolonged.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/3/" data-ref="Proverbs 28:3 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/3/"><span class="v-num">3</span><span class="v-txt">A needy man that oppresseth the poor Is [like] a sweeping rain which leaveth no food.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/4/" data-ref="Proverbs 28:4 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/4/"><span class="v-num">4</span><span class="v-txt">They that forsake the law praise the wicked; But such as keep the law contend with them.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/5/" data-ref="Proverbs 28:5 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/5/"><span class="v-num">5</span><span class="v-txt">Evil men understand not justice; But they that seek Jehovah understand all things.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/6/" data-ref="Proverbs 28:6 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/6/"><span class="v-num">6</span><span class="v-txt">Better is the poor that walketh in his integrity, Than he that is perverse in [his] ways, though he be rich.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/7/" data-ref="Proverbs 28:7 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/7/"><span class="v-num">7</span><span class="v-txt">Whoso keepeth the law is a wise son; But he that is a companion of gluttons shameth his father.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/8/" data-ref="Proverbs 28:8 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/8/"><span class="v-num">8</span><span class="v-txt">He that augmenteth his substance by interest and increase, Gathereth it for him that hath pity on the poor.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/9/" data-ref="Proverbs 28:9 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/9/"><span class="v-num">9</span><span class="v-txt">He that turneth away his ear from hearing the law, Even his prayer is an abomination.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/10/" data-ref="Proverbs 28:10 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/10/"><span class="v-num">10</span><span class="v-txt">Whoso causeth the upright to go astray in an evil way, He shall fall himself into his own pit; But the perfect shall inherit good.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/11/" data-ref="Proverbs 28:11 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/11/"><span class="v-num">11</span><span class="v-txt">The rich man is wise in his own conceit; But the poor that hath understanding searcheth him out.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/12/" data-ref="Proverbs 28:12 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/12/"><span class="v-num">12</span><span class="v-txt">When the righteous triumph, there is great glory; But when the wicked rise, men hide themselves.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/13/" data-ref="Proverbs 28:13 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/13/"><span class="v-num">13</span><span class="v-txt">He that covereth his transgressions shall not prosper: But whoso confesseth and forsaketh them shall obtain mercy.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/14/" data-ref="Proverbs 28:14 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/14/"><span class="v-num">14</span><span class="v-txt">Happy is the man that feareth alway; But he that hardeneth his heart shall fall into mischief.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/15/" data-ref="Proverbs 28:15 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/15/"><span class="v-num">15</span><span class="v-txt">[As] a roaring lion, and a ranging bear, [So is] a wicked ruler over a poor people.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/16/" data-ref="Proverbs 28:16 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/16/"><span class="v-num">16</span><span class="v-txt">The prince that lacketh understanding is also a great oppressor; [But] he that hateth covetousness shall prolong his days.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/17/" data-ref="Proverbs 28:17 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/17/"><span class="v-num">17</span><span class="v-txt">A man that is laden with the blood of any person Shall flee unto the pit; Let no man stay him.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/18/" data-ref="Proverbs 28:18 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/18/"><span class="v-num">18</span><span class="v-txt">Whoso walketh uprightly shall be delivered; But he that is perverse in [his] ways shall fall at once.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/19/" data-ref="Proverbs 28:19 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/19/"><span class="v-num">19</span><span class="v-txt">He that tilleth his land shall have plenty of bread; But he that followeth after vain [persons] shall have poverty enough.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/20/" data-ref="Proverbs 28:20 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/20/"><span class="v-num">20</span><span class="v-txt">A faithful man shall abound with blessings; But he that maketh haste to be rich shall not be unpunished.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/21/" data-ref="Proverbs 28:21 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/21/"><span class="v-num">21</span><span class="v-txt">To have respect of persons is not good; Neither that a man should transgress for a piece of bread.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/22/" data-ref="Proverbs 28:22 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/22/"><span class="v-num">22</span><span class="v-txt">he that hath an evil eye hasteth after riches, And knoweth not that want shall come upon him.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/23/" data-ref="Proverbs 28:23 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/23/"><span class="v-num">23</span><span class="v-txt">He that rebuketh a man shall afterward find more favor Than he that flattereth with the tongue.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/24/" data-ref="Proverbs 28:24 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/24/"><span class="v-num">24</span><span class="v-txt">Whoso robbeth his father or his mother, and saith, It is no transgression, The same is the companion of a destroyer.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/25/" data-ref="Proverbs 28:25 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/25/"><span class="v-num">25</span><span class="v-txt">He that is of a greedy spirit stirreth up strife; But he that putteth his trust in Jehovah shall be made fat.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/26/" data-ref="Proverbs 28:26 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/26/"><span class="v-num">26</span><span class="v-txt">He that trusteth in his own heart is a fool; But whoso walketh wisely, he shall be delivered.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/27/" data-ref="Proverbs 28:27 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/27/"><span class="v-num">27</span><span class="v-txt">He that giveth unto the poor shall not lack; But he that hideth his eyes shall have many a curse.</span></a>
+<a class="v-row" href="/bible/asv/proverbs/28/28/" data-ref="Proverbs 28:28 (American Standard Version)" data-verse-url="/bible/asv/proverbs/28/28/"><span class="v-num">28</span><span class="v-txt">When the wicked rise, men hide themselves; But when they perish, the righteous increase.</span></a>
 
     
 <div class="app-cta">

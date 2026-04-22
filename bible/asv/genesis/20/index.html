@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 20:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And Abraham journeyed from thence toward the land of the South, and dwelt between Kadesh and Shur. And he sojourned in Gerar.</span></div>
-<div class="v-row" data-ref="Genesis 20:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Abraham said of Sarah his wife, She is my sister. And Abimelech king of Gerar sent, and took Sarah.</span></div>
-<div class="v-row" data-ref="Genesis 20:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But God came to Abimelech in a dream of the night, and said to him, Behold, thou art but a dead man, because of the woman whom thou hast taken. For she is a man's wife.</span></div>
-<div class="v-row" data-ref="Genesis 20:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Now Abimelech had not come near her. And he said, Lord, wilt thou slay even a righteous nation?</span></div>
-<div class="v-row" data-ref="Genesis 20:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Said he not himself unto me, She is my sister? And she, even she herself said, He is my brother. In the integrity of my heart and the innocency of my hands have I done this.</span></div>
-<div class="v-row" data-ref="Genesis 20:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And God said unto him in the dream, Yea, I know that in the integrity of thy heart thou has done this, and I also withheld thee from sinning against me. Therefore suffered I thee not to touch her.</span></div>
-<div class="v-row" data-ref="Genesis 20:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now therefore restore the man's wife. For he is a prophet, and he shall pray for thee, and thou shalt live. And if thou restore her not, know thou that thou shalt surely die, thou, and all that are thine.</span></div>
-<div class="v-row" data-ref="Genesis 20:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Abimelech rose early in the morning, and called all his servants, and told all these things in their ear. And the men were sore afraid.</span></div>
-<div class="v-row" data-ref="Genesis 20:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then Abimelech called Abraham, and said unto him, What hast thou done unto us? And wherein have I sinned against thee, that thou hast brought on me and on my kingdom a great sin? Thou hast done deeds unto me that ought not to be done.</span></div>
-<div class="v-row" data-ref="Genesis 20:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And Abimelech said unto Abraham, What sawest thou, that thou hast done this thing?</span></div>
-<div class="v-row" data-ref="Genesis 20:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And Abraham said, Because I thought, Surely the fear of God is not in this place. And they will slay me for my wife's sake.</span></div>
-<div class="v-row" data-ref="Genesis 20:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And moreover she is indeed my sister, the daughter of my father, but not the daughter of my mother; and she became my wife:</span></div>
-<div class="v-row" data-ref="Genesis 20:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">and it came to pass, when God caused me to wander from my father's house, that I said unto her, This is thy kindness which thou shalt show unto me. At every place whither we shall come, say of me, He is my brother.</span></div>
-<div class="v-row" data-ref="Genesis 20:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And Abimelech took sheep and oxen, and men-servants and women-servants, and gave them unto Abraham, and restored him Sarah his wife.</span></div>
-<div class="v-row" data-ref="Genesis 20:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Abimelech said, Behold, my land is before thee. Dwell where it pleaseth thee.</span></div>
-<div class="v-row" data-ref="Genesis 20:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And unto Sarah he said, Behold, I have given thy brother a thousand pieces of silver. Behold, it is for thee a covering of the eyes to all that are with thee. And in respect of all thou art righted.</span></div>
-<div class="v-row" data-ref="Genesis 20:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And Abraham prayed unto God. And God healed Abimelech, and his wife, and his maid-servants. And they bare children.</span></div>
-<div class="v-row" data-ref="Genesis 20:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For Jehovah had fast closed up all the wombs of the house of Abimelech, because of Sarah, Abraham's wife.</span></div>
+    <a class="v-row" href="/bible/asv/genesis/20/1/" data-ref="Genesis 20:1 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/1/"><span class="v-num">1</span><span class="v-txt">And Abraham journeyed from thence toward the land of the South, and dwelt between Kadesh and Shur. And he sojourned in Gerar.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/2/" data-ref="Genesis 20:2 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/2/"><span class="v-num">2</span><span class="v-txt">And Abraham said of Sarah his wife, She is my sister. And Abimelech king of Gerar sent, and took Sarah.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/3/" data-ref="Genesis 20:3 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/3/"><span class="v-num">3</span><span class="v-txt">But God came to Abimelech in a dream of the night, and said to him, Behold, thou art but a dead man, because of the woman whom thou hast taken. For she is a man's wife.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/4/" data-ref="Genesis 20:4 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/4/"><span class="v-num">4</span><span class="v-txt">Now Abimelech had not come near her. And he said, Lord, wilt thou slay even a righteous nation?</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/5/" data-ref="Genesis 20:5 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/5/"><span class="v-num">5</span><span class="v-txt">Said he not himself unto me, She is my sister? And she, even she herself said, He is my brother. In the integrity of my heart and the innocency of my hands have I done this.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/6/" data-ref="Genesis 20:6 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/6/"><span class="v-num">6</span><span class="v-txt">And God said unto him in the dream, Yea, I know that in the integrity of thy heart thou has done this, and I also withheld thee from sinning against me. Therefore suffered I thee not to touch her.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/7/" data-ref="Genesis 20:7 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/7/"><span class="v-num">7</span><span class="v-txt">Now therefore restore the man's wife. For he is a prophet, and he shall pray for thee, and thou shalt live. And if thou restore her not, know thou that thou shalt surely die, thou, and all that are thine.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/8/" data-ref="Genesis 20:8 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/8/"><span class="v-num">8</span><span class="v-txt">And Abimelech rose early in the morning, and called all his servants, and told all these things in their ear. And the men were sore afraid.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/9/" data-ref="Genesis 20:9 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/9/"><span class="v-num">9</span><span class="v-txt">Then Abimelech called Abraham, and said unto him, What hast thou done unto us? And wherein have I sinned against thee, that thou hast brought on me and on my kingdom a great sin? Thou hast done deeds unto me that ought not to be done.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/10/" data-ref="Genesis 20:10 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/10/"><span class="v-num">10</span><span class="v-txt">And Abimelech said unto Abraham, What sawest thou, that thou hast done this thing?</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/11/" data-ref="Genesis 20:11 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/11/"><span class="v-num">11</span><span class="v-txt">And Abraham said, Because I thought, Surely the fear of God is not in this place. And they will slay me for my wife's sake.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/12/" data-ref="Genesis 20:12 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/12/"><span class="v-num">12</span><span class="v-txt">And moreover she is indeed my sister, the daughter of my father, but not the daughter of my mother; and she became my wife:</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/13/" data-ref="Genesis 20:13 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/13/"><span class="v-num">13</span><span class="v-txt">and it came to pass, when God caused me to wander from my father's house, that I said unto her, This is thy kindness which thou shalt show unto me. At every place whither we shall come, say of me, He is my brother.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/14/" data-ref="Genesis 20:14 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/14/"><span class="v-num">14</span><span class="v-txt">And Abimelech took sheep and oxen, and men-servants and women-servants, and gave them unto Abraham, and restored him Sarah his wife.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/15/" data-ref="Genesis 20:15 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/15/"><span class="v-num">15</span><span class="v-txt">And Abimelech said, Behold, my land is before thee. Dwell where it pleaseth thee.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/16/" data-ref="Genesis 20:16 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/16/"><span class="v-num">16</span><span class="v-txt">And unto Sarah he said, Behold, I have given thy brother a thousand pieces of silver. Behold, it is for thee a covering of the eyes to all that are with thee. And in respect of all thou art righted.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/17/" data-ref="Genesis 20:17 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/17/"><span class="v-num">17</span><span class="v-txt">And Abraham prayed unto God. And God healed Abimelech, and his wife, and his maid-servants. And they bare children.</span></a>
+<a class="v-row" href="/bible/asv/genesis/20/18/" data-ref="Genesis 20:18 (American Standard Version)" data-verse-url="/bible/asv/genesis/20/18/"><span class="v-num">18</span><span class="v-txt">For Jehovah had fast closed up all the wombs of the house of Abimelech, because of Sarah, Abraham's wife.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,24 +204,24 @@ a:hover{text-decoration:underline}
       <h2>Chapter 88</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Psalm 88:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm. Of the sons of Korah. To the chief music-maker; put to Mahalath Leannoth. Maschil. Of Heman the Ezrahite. O Lord, God of my salvation, I have been crying to you for help by day and by night:</span></div>
-<div class="v-row" data-ref="Psalm 88:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Let my prayer come before you; give ear to my cry:</span></div>
-<div class="v-row" data-ref="Psalm 88:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">For my soul is full of evils, and my life has come near to the underworld.</span></div>
-<div class="v-row" data-ref="Psalm 88:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I am numbered among those who go down into the earth; I have become like a man for whom there is no help:</span></div>
-<div class="v-row" data-ref="Psalm 88:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">My soul is among the dead, like those in the underworld, to whom you give no more thought; for they are cut off from your care.</span></div>
-<div class="v-row" data-ref="Psalm 88:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">You have put me in the lowest deep, even in dark places.</span></div>
-<div class="v-row" data-ref="Psalm 88:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The weight of your wrath is crushing me, all your waves have overcome me. (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 88:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">You have sent my friends far away from me; you have made me a disgusting thing in their eyes: I am shut up, and not able to come out.</span></div>
-<div class="v-row" data-ref="Psalm 88:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">My eyes are wasting away because of my trouble: Lord, my cry has gone up to you every day, my hands are stretched out to you.</span></div>
-<div class="v-row" data-ref="Psalm 88:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Will you do works of wonder for the dead? will the shades come back to give you praise? (Selah.)</span></div>
-<div class="v-row" data-ref="Psalm 88:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Will the story of your mercy be given in the house of the dead? will news of your faith come to the place of destruction?</span></div>
-<div class="v-row" data-ref="Psalm 88:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">May there be knowledge of your wonders in the dark? or of your righteousness where memory is dead?</span></div>
-<div class="v-row" data-ref="Psalm 88:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But to you did I send up my cry, O Lord; in the morning my prayer came before you.</span></div>
-<div class="v-row" data-ref="Psalm 88:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Lord, why have you sent away my soul? why is your face covered from me?</span></div>
-<div class="v-row" data-ref="Psalm 88:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">I have been troubled and in fear of death from the time when I was young; your wrath is hard on me, and I have no strength.</span></div>
-<div class="v-row" data-ref="Psalm 88:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">The heat of your wrath has gone over me; I am broken by your cruel punishments.</span></div>
-<div class="v-row" data-ref="Psalm 88:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">They are round me all the day like water; they have made a circle about me.</span></div>
-<div class="v-row" data-ref="Psalm 88:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">You have sent my friends and lovers far from me; I am gone from the memory of those who are dear to me.</span></div>
+    <a class="v-row" href="/bible/bbe/psalms/88/1/" data-ref="Psalm 88:1 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/1/"><span class="v-num">1</span><span class="v-txt">A Song. A Psalm. Of the sons of Korah. To the chief music-maker; put to Mahalath Leannoth. Maschil. Of Heman the Ezrahite. O Lord, God of my salvation, I have been crying to you for help by day and by night:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/2/" data-ref="Psalm 88:2 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/2/"><span class="v-num">2</span><span class="v-txt">Let my prayer come before you; give ear to my cry:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/3/" data-ref="Psalm 88:3 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/3/"><span class="v-num">3</span><span class="v-txt">For my soul is full of evils, and my life has come near to the underworld.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/4/" data-ref="Psalm 88:4 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/4/"><span class="v-num">4</span><span class="v-txt">I am numbered among those who go down into the earth; I have become like a man for whom there is no help:</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/5/" data-ref="Psalm 88:5 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/5/"><span class="v-num">5</span><span class="v-txt">My soul is among the dead, like those in the underworld, to whom you give no more thought; for they are cut off from your care.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/6/" data-ref="Psalm 88:6 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/6/"><span class="v-num">6</span><span class="v-txt">You have put me in the lowest deep, even in dark places.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/7/" data-ref="Psalm 88:7 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/7/"><span class="v-num">7</span><span class="v-txt">The weight of your wrath is crushing me, all your waves have overcome me. (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/8/" data-ref="Psalm 88:8 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/8/"><span class="v-num">8</span><span class="v-txt">You have sent my friends far away from me; you have made me a disgusting thing in their eyes: I am shut up, and not able to come out.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/9/" data-ref="Psalm 88:9 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/9/"><span class="v-num">9</span><span class="v-txt">My eyes are wasting away because of my trouble: Lord, my cry has gone up to you every day, my hands are stretched out to you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/10/" data-ref="Psalm 88:10 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/10/"><span class="v-num">10</span><span class="v-txt">Will you do works of wonder for the dead? will the shades come back to give you praise? (Selah.)</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/11/" data-ref="Psalm 88:11 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/11/"><span class="v-num">11</span><span class="v-txt">Will the story of your mercy be given in the house of the dead? will news of your faith come to the place of destruction?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/12/" data-ref="Psalm 88:12 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/12/"><span class="v-num">12</span><span class="v-txt">May there be knowledge of your wonders in the dark? or of your righteousness where memory is dead?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/13/" data-ref="Psalm 88:13 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/13/"><span class="v-num">13</span><span class="v-txt">But to you did I send up my cry, O Lord; in the morning my prayer came before you.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/14/" data-ref="Psalm 88:14 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/14/"><span class="v-num">14</span><span class="v-txt">Lord, why have you sent away my soul? why is your face covered from me?</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/15/" data-ref="Psalm 88:15 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/15/"><span class="v-num">15</span><span class="v-txt">I have been troubled and in fear of death from the time when I was young; your wrath is hard on me, and I have no strength.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/16/" data-ref="Psalm 88:16 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/16/"><span class="v-num">16</span><span class="v-txt">The heat of your wrath has gone over me; I am broken by your cruel punishments.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/17/" data-ref="Psalm 88:17 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/17/"><span class="v-num">17</span><span class="v-txt">They are round me all the day like water; they have made a circle about me.</span></a>
+<a class="v-row" href="/bible/bbe/psalms/88/18/" data-ref="Psalm 88:18 (Bible in Basic English)" data-verse-url="/bible/bbe/psalms/88/18/"><span class="v-num">18</span><span class="v-txt">You have sent my friends and lovers far from me; I am gone from the memory of those who are dear to me.</span></a>
 
     
 <div class="app-cta">

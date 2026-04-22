@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,17 +204,17 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Hosea 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The word of the LORD that came to Hosea the son of Beeri, in the days of Uzziah, Jotham, Ahaz, [and] Hezekiah, kings of Judah, and in the days of Jeroboam the son of Joash, king of Israel.</span></div>
-<div class="v-row" data-ref="Hosea 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">[When] the LORD began to speak by Hosea, the LORD said to Hosea: "Go, take yourself a wife of harlotry And children of harlotry, For the land has committed great harlotry [By departing] from the LORD."</span></div>
-<div class="v-row" data-ref="Hosea 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">So he went and took Gomer the daughter of Diblaim, and she conceived and bore him a son.</span></div>
-<div class="v-row" data-ref="Hosea 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then the LORD said to him: "Call his name Jezreel, For in a little [while] I will avenge the bloodshed of Jezreel on the house of Jehu, And bring an end to the kingdom of the house of Israel.</span></div>
-<div class="v-row" data-ref="Hosea 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">It shall come to pass in that day That I will break the bow of Israel in the Valley of Jezreel."</span></div>
-<div class="v-row" data-ref="Hosea 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And she conceived again and bore a daughter. Then [God] said to him: "Call her name Lo-Ruhamah, For I will no longer have mercy on the house of Israel, But I will utterly take them away.</span></div>
-<div class="v-row" data-ref="Hosea 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Yet I will have mercy on the house of Judah, Will save them by the LORD their God, And will not save them by bow, Nor by sword or battle, By horses or horsemen."</span></div>
-<div class="v-row" data-ref="Hosea 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now when she had weaned Lo-Ruhamah, she conceived and bore a son.</span></div>
-<div class="v-row" data-ref="Hosea 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then [God] said: "Call his name Lo-Ammi, For you [are] not My people, And I will not be your [God.]</span></div>
-<div class="v-row" data-ref="Hosea 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">" Yet the number of the children of Israel Shall be as the sand of the sea, Which cannot be measured or numbered. And it shall come to pass In the place where it was said to them, 'You [are] not My people,' [There] it shall be said to them, '[You are] sons of the living God.'</span></div>
-<div class="v-row" data-ref="Hosea 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then the children of Judah and the children of Israel Shall be gathered together, And appoint for themselves one head; And they shall come up out of the land, For great [will be] the day of Jezreel!</span></div>
+    <a class="v-row" href="/bible/nkjv/hosea/1/1/" data-ref="Hosea 1:1 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/1/"><span class="v-num">1</span><span class="v-txt">The word of the LORD that came to Hosea the son of Beeri, in the days of Uzziah, Jotham, Ahaz, [and] Hezekiah, kings of Judah, and in the days of Jeroboam the son of Joash, king of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/2/" data-ref="Hosea 1:2 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/2/"><span class="v-num">2</span><span class="v-txt">[When] the LORD began to speak by Hosea, the LORD said to Hosea: "Go, take yourself a wife of harlotry And children of harlotry, For the land has committed great harlotry [By departing] from the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/3/" data-ref="Hosea 1:3 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/3/"><span class="v-num">3</span><span class="v-txt">So he went and took Gomer the daughter of Diblaim, and she conceived and bore him a son.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/4/" data-ref="Hosea 1:4 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/4/"><span class="v-num">4</span><span class="v-txt">Then the LORD said to him: "Call his name Jezreel, For in a little [while] I will avenge the bloodshed of Jezreel on the house of Jehu, And bring an end to the kingdom of the house of Israel.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/5/" data-ref="Hosea 1:5 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/5/"><span class="v-num">5</span><span class="v-txt">It shall come to pass in that day That I will break the bow of Israel in the Valley of Jezreel."</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/6/" data-ref="Hosea 1:6 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/6/"><span class="v-num">6</span><span class="v-txt">And she conceived again and bore a daughter. Then [God] said to him: "Call her name Lo-Ruhamah, For I will no longer have mercy on the house of Israel, But I will utterly take them away.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/7/" data-ref="Hosea 1:7 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/7/"><span class="v-num">7</span><span class="v-txt">Yet I will have mercy on the house of Judah, Will save them by the LORD their God, And will not save them by bow, Nor by sword or battle, By horses or horsemen."</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/8/" data-ref="Hosea 1:8 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/8/"><span class="v-num">8</span><span class="v-txt">Now when she had weaned Lo-Ruhamah, she conceived and bore a son.</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/9/" data-ref="Hosea 1:9 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/9/"><span class="v-num">9</span><span class="v-txt">Then [God] said: "Call his name Lo-Ammi, For you [are] not My people, And I will not be your [God.]</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/10/" data-ref="Hosea 1:10 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/10/"><span class="v-num">10</span><span class="v-txt">" Yet the number of the children of Israel Shall be as the sand of the sea, Which cannot be measured or numbered. And it shall come to pass In the place where it was said to them, 'You [are] not My people,' [There] it shall be said to them, '[You are] sons of the living God.'</span></a>
+<a class="v-row" href="/bible/nkjv/hosea/1/11/" data-ref="Hosea 1:11 (New King James Version)" data-verse-url="/bible/nkjv/hosea/1/11/"><span class="v-num">11</span><span class="v-txt">Then the children of Judah and the children of Israel Shall be gathered together, And appoint for themselves one head; And they shall come up out of the land, For great [will be] the day of Jezreel!</span></a>
 
     
 <div class="app-cta">

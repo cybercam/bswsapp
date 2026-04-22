@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,16 +204,16 @@ a:hover{text-decoration:underline}
       <h2>Chapter 24</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Jeremiah 24:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The Lord gave me a vision, and I saw two baskets full of figs put in front of the Temple of the Lord, after Nebuchadrezzar, king of Babylon, had taken prisoner Jeconiah, the son of Jehoiakim, king of Judah, and the chiefs of Judah, and the expert workmen and metal-workers from Jerusalem, and had taken them to Babylon.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">One basket had very good figs, like the figs which first come to growth: and the other basket had very bad figs, so bad that they were of no use for food.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then the Lord said to me, What do you see, Jeremiah? And I said, Figs; the good figs are very good, and the bad very bad, and of no use for food, they are so bad.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And the word of the Lord came to me, saying,</span></div>
-<div class="v-row" data-ref="Jeremiah 24:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">This is what the Lord, the God of Israel, has said: Like these good figs, so in my eyes will be the prisoners of Judah, whom I have sent from this place into the land of the Chaldaeans for their good.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For I will keep my eyes on them for good, and I will take them back again to this land, building them up and not pulling them down, planting them and not uprooting them.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And I will give them a heart to have knowledge of me, that I am the Lord: and they will be my people, and I will be their God: for they will come back to me with all their heart.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And like the bad figs which are so bad that they are of no use for food, so I will give up Zedekiah, king of Judah, and his chiefs and the rest of Jerusalem who are still in this land, and those who are in the land of Egypt:</span></div>
-<div class="v-row" data-ref="Jeremiah 24:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">I will give them up to be a cause of fear and of trouble among all the kingdoms of the earth; to be a name of shame and common talk and a cutting word and a curse in all the places wherever I will send them wandering.</span></div>
-<div class="v-row" data-ref="Jeremiah 24:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And I will send the sword, and need of food, and disease, among them till they are all cut off from the land which I gave to them and to their fathers.</span></div>
+    <a class="v-row" href="/bible/bbe/jeremiah/24/1/" data-ref="Jeremiah 24:1 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/1/"><span class="v-num">1</span><span class="v-txt">The Lord gave me a vision, and I saw two baskets full of figs put in front of the Temple of the Lord, after Nebuchadrezzar, king of Babylon, had taken prisoner Jeconiah, the son of Jehoiakim, king of Judah, and the chiefs of Judah, and the expert workmen and metal-workers from Jerusalem, and had taken them to Babylon.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/2/" data-ref="Jeremiah 24:2 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/2/"><span class="v-num">2</span><span class="v-txt">One basket had very good figs, like the figs which first come to growth: and the other basket had very bad figs, so bad that they were of no use for food.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/3/" data-ref="Jeremiah 24:3 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/3/"><span class="v-num">3</span><span class="v-txt">Then the Lord said to me, What do you see, Jeremiah? And I said, Figs; the good figs are very good, and the bad very bad, and of no use for food, they are so bad.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/4/" data-ref="Jeremiah 24:4 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/4/"><span class="v-num">4</span><span class="v-txt">And the word of the Lord came to me, saying,</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/5/" data-ref="Jeremiah 24:5 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/5/"><span class="v-num">5</span><span class="v-txt">This is what the Lord, the God of Israel, has said: Like these good figs, so in my eyes will be the prisoners of Judah, whom I have sent from this place into the land of the Chaldaeans for their good.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/6/" data-ref="Jeremiah 24:6 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/6/"><span class="v-num">6</span><span class="v-txt">For I will keep my eyes on them for good, and I will take them back again to this land, building them up and not pulling them down, planting them and not uprooting them.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/7/" data-ref="Jeremiah 24:7 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/7/"><span class="v-num">7</span><span class="v-txt">And I will give them a heart to have knowledge of me, that I am the Lord: and they will be my people, and I will be their God: for they will come back to me with all their heart.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/8/" data-ref="Jeremiah 24:8 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/8/"><span class="v-num">8</span><span class="v-txt">And like the bad figs which are so bad that they are of no use for food, so I will give up Zedekiah, king of Judah, and his chiefs and the rest of Jerusalem who are still in this land, and those who are in the land of Egypt:</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/9/" data-ref="Jeremiah 24:9 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/9/"><span class="v-num">9</span><span class="v-txt">I will give them up to be a cause of fear and of trouble among all the kingdoms of the earth; to be a name of shame and common talk and a cutting word and a curse in all the places wherever I will send them wandering.</span></a>
+<a class="v-row" href="/bible/bbe/jeremiah/24/10/" data-ref="Jeremiah 24:10 (Bible in Basic English)" data-verse-url="/bible/bbe/jeremiah/24/10/"><span class="v-num">10</span><span class="v-txt">And I will send the sword, and need of food, and disease, among them till they are all cut off from the land which I gave to them and to their fathers.</span></a>
 
     
 <div class="app-cta">

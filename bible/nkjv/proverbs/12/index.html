@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 12:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Whoever loves instruction loves knowledge, But he who hates correction [is] stupid.</span></div>
-<div class="v-row" data-ref="Proverbs 12:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A good [man] obtains favor from the LORD, But a man of wicked intentions He will condemn.</span></div>
-<div class="v-row" data-ref="Proverbs 12:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">A man is not established by wickedness, But the root of the righteous cannot be moved.</span></div>
-<div class="v-row" data-ref="Proverbs 12:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">An excellent wife [is] the crown of her husband, But she who causes shame [is] like rottenness in his bones.</span></div>
-<div class="v-row" data-ref="Proverbs 12:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The thoughts of the righteous [are] right, [But] the counsels of the wicked [are] deceitful.</span></div>
-<div class="v-row" data-ref="Proverbs 12:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The words of the wicked [are,] "Lie in wait for blood," But the mouth of the upright will deliver them.</span></div>
-<div class="v-row" data-ref="Proverbs 12:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The wicked are overthrown and [are] no more, But the house of the righteous will stand.</span></div>
-<div class="v-row" data-ref="Proverbs 12:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A man will be commended according to his wisdom, But he who is of a perverse heart will be despised.</span></div>
-<div class="v-row" data-ref="Proverbs 12:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Better [is the one] who is slighted but has a servant, Than he who honors himself but lacks bread.</span></div>
-<div class="v-row" data-ref="Proverbs 12:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">A righteous [man] regards the life of his animal, But the tender mercies of the wicked [are] cruel.</span></div>
-<div class="v-row" data-ref="Proverbs 12:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He who tills his land will be satisfied with bread, But he who follows frivolity [is] devoid of understanding.</span></div>
-<div class="v-row" data-ref="Proverbs 12:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The wicked covet the catch of evil [men,] But the root of the righteous yields [fruit.]</span></div>
-<div class="v-row" data-ref="Proverbs 12:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The wicked is ensnared by the transgression of [his] lips, But the righteous will come through trouble.</span></div>
-<div class="v-row" data-ref="Proverbs 12:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">A man will be satisfied with good by the fruit of [his] mouth, And the recompense of a man's hands will be rendered to him.</span></div>
-<div class="v-row" data-ref="Proverbs 12:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The way of a fool [is] right in his own eyes, But he who heeds counsel [is] wise.</span></div>
-<div class="v-row" data-ref="Proverbs 12:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">A fool's wrath is known at once, But a prudent [man] covers shame.</span></div>
-<div class="v-row" data-ref="Proverbs 12:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">He [who] speaks truth declares righteousness, But a false witness, deceit.</span></div>
-<div class="v-row" data-ref="Proverbs 12:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">There is one who speaks like the piercings of a sword, But the tongue of the wise [promotes] health.</span></div>
-<div class="v-row" data-ref="Proverbs 12:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The truthful lip shall be established forever, But a lying tongue [is] but for a moment.</span></div>
-<div class="v-row" data-ref="Proverbs 12:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of those who devise evil, But counselors of peace have joy.</span></div>
-<div class="v-row" data-ref="Proverbs 12:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">No grave trouble will overtake the righteous, But the wicked shall be filled with evil.</span></div>
-<div class="v-row" data-ref="Proverbs 12:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Lying lips [are] an abomination to the LORD, But those who deal truthfully [are] His delight.</span></div>
-<div class="v-row" data-ref="Proverbs 12:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A prudent man conceals knowledge, But the heart of fools proclaims foolishness.</span></div>
-<div class="v-row" data-ref="Proverbs 12:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The hand of the diligent will rule, But the lazy [man] will be put to forced labor.</span></div>
-<div class="v-row" data-ref="Proverbs 12:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Anxiety in the heart of man causes depression, But a good word makes it glad.</span></div>
-<div class="v-row" data-ref="Proverbs 12:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">The righteous should choose his friends carefully, For the way of the wicked leads them astray.</span></div>
-<div class="v-row" data-ref="Proverbs 12:27 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">The lazy [man] does not roast what he took in hunting, But diligence [is] man's precious possession.</span></div>
-<div class="v-row" data-ref="Proverbs 12:28 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">In the way of righteousness [is] life, And in [its] pathway [there is] no death.</span></div>
+    <a class="v-row" href="/bible/nkjv/proverbs/12/1/" data-ref="Proverbs 12:1 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/1/"><span class="v-num">1</span><span class="v-txt">Whoever loves instruction loves knowledge, But he who hates correction [is] stupid.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/2/" data-ref="Proverbs 12:2 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/2/"><span class="v-num">2</span><span class="v-txt">A good [man] obtains favor from the LORD, But a man of wicked intentions He will condemn.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/3/" data-ref="Proverbs 12:3 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/3/"><span class="v-num">3</span><span class="v-txt">A man is not established by wickedness, But the root of the righteous cannot be moved.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/4/" data-ref="Proverbs 12:4 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/4/"><span class="v-num">4</span><span class="v-txt">An excellent wife [is] the crown of her husband, But she who causes shame [is] like rottenness in his bones.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/5/" data-ref="Proverbs 12:5 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/5/"><span class="v-num">5</span><span class="v-txt">The thoughts of the righteous [are] right, [But] the counsels of the wicked [are] deceitful.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/6/" data-ref="Proverbs 12:6 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/6/"><span class="v-num">6</span><span class="v-txt">The words of the wicked [are,] "Lie in wait for blood," But the mouth of the upright will deliver them.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/7/" data-ref="Proverbs 12:7 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/7/"><span class="v-num">7</span><span class="v-txt">The wicked are overthrown and [are] no more, But the house of the righteous will stand.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/8/" data-ref="Proverbs 12:8 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/8/"><span class="v-num">8</span><span class="v-txt">A man will be commended according to his wisdom, But he who is of a perverse heart will be despised.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/9/" data-ref="Proverbs 12:9 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/9/"><span class="v-num">9</span><span class="v-txt">Better [is the one] who is slighted but has a servant, Than he who honors himself but lacks bread.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/10/" data-ref="Proverbs 12:10 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/10/"><span class="v-num">10</span><span class="v-txt">A righteous [man] regards the life of his animal, But the tender mercies of the wicked [are] cruel.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/11/" data-ref="Proverbs 12:11 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/11/"><span class="v-num">11</span><span class="v-txt">He who tills his land will be satisfied with bread, But he who follows frivolity [is] devoid of understanding.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/12/" data-ref="Proverbs 12:12 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/12/"><span class="v-num">12</span><span class="v-txt">The wicked covet the catch of evil [men,] But the root of the righteous yields [fruit.]</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/13/" data-ref="Proverbs 12:13 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/13/"><span class="v-num">13</span><span class="v-txt">The wicked is ensnared by the transgression of [his] lips, But the righteous will come through trouble.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/14/" data-ref="Proverbs 12:14 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/14/"><span class="v-num">14</span><span class="v-txt">A man will be satisfied with good by the fruit of [his] mouth, And the recompense of a man's hands will be rendered to him.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/15/" data-ref="Proverbs 12:15 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/15/"><span class="v-num">15</span><span class="v-txt">The way of a fool [is] right in his own eyes, But he who heeds counsel [is] wise.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/16/" data-ref="Proverbs 12:16 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/16/"><span class="v-num">16</span><span class="v-txt">A fool's wrath is known at once, But a prudent [man] covers shame.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/17/" data-ref="Proverbs 12:17 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/17/"><span class="v-num">17</span><span class="v-txt">He [who] speaks truth declares righteousness, But a false witness, deceit.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/18/" data-ref="Proverbs 12:18 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/18/"><span class="v-num">18</span><span class="v-txt">There is one who speaks like the piercings of a sword, But the tongue of the wise [promotes] health.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/19/" data-ref="Proverbs 12:19 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/19/"><span class="v-num">19</span><span class="v-txt">The truthful lip shall be established forever, But a lying tongue [is] but for a moment.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/20/" data-ref="Proverbs 12:20 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/20/"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of those who devise evil, But counselors of peace have joy.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/21/" data-ref="Proverbs 12:21 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/21/"><span class="v-num">21</span><span class="v-txt">No grave trouble will overtake the righteous, But the wicked shall be filled with evil.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/22/" data-ref="Proverbs 12:22 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/22/"><span class="v-num">22</span><span class="v-txt">Lying lips [are] an abomination to the LORD, But those who deal truthfully [are] His delight.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/23/" data-ref="Proverbs 12:23 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/23/"><span class="v-num">23</span><span class="v-txt">A prudent man conceals knowledge, But the heart of fools proclaims foolishness.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/24/" data-ref="Proverbs 12:24 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/24/"><span class="v-num">24</span><span class="v-txt">The hand of the diligent will rule, But the lazy [man] will be put to forced labor.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/25/" data-ref="Proverbs 12:25 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/25/"><span class="v-num">25</span><span class="v-txt">Anxiety in the heart of man causes depression, But a good word makes it glad.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/26/" data-ref="Proverbs 12:26 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/26/"><span class="v-num">26</span><span class="v-txt">The righteous should choose his friends carefully, For the way of the wicked leads them astray.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/27/" data-ref="Proverbs 12:27 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/27/"><span class="v-num">27</span><span class="v-txt">The lazy [man] does not roast what he took in hunting, But diligence [is] man's precious possession.</span></a>
+<a class="v-row" href="/bible/nkjv/proverbs/12/28/" data-ref="Proverbs 12:28 (New King James Version)" data-verse-url="/bible/nkjv/proverbs/12/28/"><span class="v-num">28</span><span class="v-txt">In the way of righteousness [is] life, And in [its] pathway [there is] no death.</span></a>
 
     
 <div class="app-cta">

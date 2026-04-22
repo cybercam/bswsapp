@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Ruth 1:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now there came a time, in the days of the judges, when there was no food in the land. And a certain man went from Beth-lehem-judah, he and his wife and his two sons, to make a living-place in the country of Moab.</span></div>
-<div class="v-row" data-ref="Ruth 1:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the name of the man was Elimelech, and the name of his wife Naomi, and the name of his two sons Mahlon and Chilion, Ephrathites of Beth-lehem-judah. And they came into the country of Moab, and were there for some time.</span></div>
-<div class="v-row" data-ref="Ruth 1:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And Elimelech, Naomi's husband, came to his end; and only her two sons were with her.</span></div>
-<div class="v-row" data-ref="Ruth 1:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And they took two women of Moab as their wives: the name of the one was Orpah, and the name of the other Ruth; and they went on living there for about ten years.</span></div>
-<div class="v-row" data-ref="Ruth 1:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And Mahlon and Chilion came to their end; and the woman was without her two sons and her husband.</span></div>
-<div class="v-row" data-ref="Ruth 1:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So she and her daughters-in-law got ready to go back from the country of Moab, for news had come to her in the country of Moab that the Lord, in mercy for his people, had given them food.</span></div>
-<div class="v-row" data-ref="Ruth 1:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And she went out of the place where she was, and her two daughters-in-law with her; and they went on their way to go back to the land of Judah.</span></div>
-<div class="v-row" data-ref="Ruth 1:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Naomi said to her two daughters-in-law, Go back to your mothers' houses: may the Lord be good to you as you have been good to the dead and to me:</span></div>
-<div class="v-row" data-ref="Ruth 1:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">May the Lord give you rest in the houses of your husbands. Then she gave them a kiss; and they were weeping bitterly.</span></div>
-<div class="v-row" data-ref="Ruth 1:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And they said to her, No, but we will go back with you to your people.</span></div>
-<div class="v-row" data-ref="Ruth 1:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But Naomi said, Go back, my daughters; why will you come with me? Have I more sons in my body, to become your husbands?</span></div>
-<div class="v-row" data-ref="Ruth 1:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Go back, my daughters, and go on your way; I am so old now that I may not have another husband. If I said, I have hopes, if I had a husband tonight, and might have sons,</span></div>
-<div class="v-row" data-ref="Ruth 1:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Would you keep yourselves till they were old enough? would you keep from having husbands for them? No, my daughters; but I am very sad for you that the hand of the Lord is against me.</span></div>
-<div class="v-row" data-ref="Ruth 1:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then again they were weeping; and Orpah gave her mother-in-law a kiss, but Ruth would not be parted from her.</span></div>
-<div class="v-row" data-ref="Ruth 1:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And Naomi said, See, your sister-in-law has gone back to her people and to her gods: go back after your sister-in-law.</span></div>
-<div class="v-row" data-ref="Ruth 1:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">But Ruth said, Give up requesting me to go away from you, or to go back without you: for where you go I will go; and where you take your rest I will take my rest; your people will be my people, and your God my God.</span></div>
-<div class="v-row" data-ref="Ruth 1:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Wherever death comes to you, death will come to me, and there will be my last resting-place; the Lord do so to me and more if we are parted by anything but death.</span></div>
-<div class="v-row" data-ref="Ruth 1:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And when she saw that Ruth was strong in her purpose to go with her she said no more.</span></div>
-<div class="v-row" data-ref="Ruth 1:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">So the two of them went on till they came to Beth-lehem. And when they came to Beth-lehem all the town was moved about them, and they said, Is this Naomi?</span></div>
-<div class="v-row" data-ref="Ruth 1:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And she said to them, Do not let my name be Naomi, but Mara, for the Ruler of all has given me a bitter fate.</span></div>
-<div class="v-row" data-ref="Ruth 1:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">I went out full, and the Lord has sent me back again with nothing; why do you give me the name Naomi, seeing that the Lord has given witness against me, and the Ruler of all has sent sorrow on me?</span></div>
-<div class="v-row" data-ref="Ruth 1:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">So Naomi came back out of the country of Moab, and Ruth the Moabitess, her daughter-in-law, with her; and they came to Beth-lehem in the first days of the grain-cutting.</span></div>
+    <a class="v-row" href="/bible/bbe/ruth/1/1/" data-ref="Ruth 1:1 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/1/"><span class="v-num">1</span><span class="v-txt">Now there came a time, in the days of the judges, when there was no food in the land. And a certain man went from Beth-lehem-judah, he and his wife and his two sons, to make a living-place in the country of Moab.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/2/" data-ref="Ruth 1:2 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/2/"><span class="v-num">2</span><span class="v-txt">And the name of the man was Elimelech, and the name of his wife Naomi, and the name of his two sons Mahlon and Chilion, Ephrathites of Beth-lehem-judah. And they came into the country of Moab, and were there for some time.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/3/" data-ref="Ruth 1:3 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/3/"><span class="v-num">3</span><span class="v-txt">And Elimelech, Naomi's husband, came to his end; and only her two sons were with her.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/4/" data-ref="Ruth 1:4 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/4/"><span class="v-num">4</span><span class="v-txt">And they took two women of Moab as their wives: the name of the one was Orpah, and the name of the other Ruth; and they went on living there for about ten years.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/5/" data-ref="Ruth 1:5 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/5/"><span class="v-num">5</span><span class="v-txt">And Mahlon and Chilion came to their end; and the woman was without her two sons and her husband.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/6/" data-ref="Ruth 1:6 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/6/"><span class="v-num">6</span><span class="v-txt">So she and her daughters-in-law got ready to go back from the country of Moab, for news had come to her in the country of Moab that the Lord, in mercy for his people, had given them food.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/7/" data-ref="Ruth 1:7 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/7/"><span class="v-num">7</span><span class="v-txt">And she went out of the place where she was, and her two daughters-in-law with her; and they went on their way to go back to the land of Judah.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/8/" data-ref="Ruth 1:8 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/8/"><span class="v-num">8</span><span class="v-txt">And Naomi said to her two daughters-in-law, Go back to your mothers' houses: may the Lord be good to you as you have been good to the dead and to me:</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/9/" data-ref="Ruth 1:9 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/9/"><span class="v-num">9</span><span class="v-txt">May the Lord give you rest in the houses of your husbands. Then she gave them a kiss; and they were weeping bitterly.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/10/" data-ref="Ruth 1:10 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/10/"><span class="v-num">10</span><span class="v-txt">And they said to her, No, but we will go back with you to your people.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/11/" data-ref="Ruth 1:11 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/11/"><span class="v-num">11</span><span class="v-txt">But Naomi said, Go back, my daughters; why will you come with me? Have I more sons in my body, to become your husbands?</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/12/" data-ref="Ruth 1:12 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/12/"><span class="v-num">12</span><span class="v-txt">Go back, my daughters, and go on your way; I am so old now that I may not have another husband. If I said, I have hopes, if I had a husband tonight, and might have sons,</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/13/" data-ref="Ruth 1:13 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/13/"><span class="v-num">13</span><span class="v-txt">Would you keep yourselves till they were old enough? would you keep from having husbands for them? No, my daughters; but I am very sad for you that the hand of the Lord is against me.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/14/" data-ref="Ruth 1:14 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/14/"><span class="v-num">14</span><span class="v-txt">Then again they were weeping; and Orpah gave her mother-in-law a kiss, but Ruth would not be parted from her.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/15/" data-ref="Ruth 1:15 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/15/"><span class="v-num">15</span><span class="v-txt">And Naomi said, See, your sister-in-law has gone back to her people and to her gods: go back after your sister-in-law.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/16/" data-ref="Ruth 1:16 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/16/"><span class="v-num">16</span><span class="v-txt">But Ruth said, Give up requesting me to go away from you, or to go back without you: for where you go I will go; and where you take your rest I will take my rest; your people will be my people, and your God my God.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/17/" data-ref="Ruth 1:17 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/17/"><span class="v-num">17</span><span class="v-txt">Wherever death comes to you, death will come to me, and there will be my last resting-place; the Lord do so to me and more if we are parted by anything but death.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/18/" data-ref="Ruth 1:18 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/18/"><span class="v-num">18</span><span class="v-txt">And when she saw that Ruth was strong in her purpose to go with her she said no more.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/19/" data-ref="Ruth 1:19 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/19/"><span class="v-num">19</span><span class="v-txt">So the two of them went on till they came to Beth-lehem. And when they came to Beth-lehem all the town was moved about them, and they said, Is this Naomi?</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/20/" data-ref="Ruth 1:20 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/20/"><span class="v-num">20</span><span class="v-txt">And she said to them, Do not let my name be Naomi, but Mara, for the Ruler of all has given me a bitter fate.</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/21/" data-ref="Ruth 1:21 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/21/"><span class="v-num">21</span><span class="v-txt">I went out full, and the Lord has sent me back again with nothing; why do you give me the name Naomi, seeing that the Lord has given witness against me, and the Ruler of all has sent sorrow on me?</span></a>
+<a class="v-row" href="/bible/bbe/ruth/1/22/" data-ref="Ruth 1:22 (Bible in Basic English)" data-verse-url="/bible/bbe/ruth/1/22/"><span class="v-num">22</span><span class="v-txt">So Naomi came back out of the country of Moab, and Ruth the Moabitess, her daughter-in-law, with her; and they came to Beth-lehem in the first days of the grain-cutting.</span></a>
 
     
 <div class="app-cta">

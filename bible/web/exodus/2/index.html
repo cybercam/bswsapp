@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,31 +204,31 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Exodus 2:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A man of the house of Levi went and took a daughter of Levi as his wife.</span></div>
-<div class="v-row" data-ref="Exodus 2:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">The woman conceived, and bore a son. When she saw that he was a fine child, she hid him three months.</span></div>
-<div class="v-row" data-ref="Exodus 2:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">When she could no longer hide him, she took a papyrus basket for him, and coated it with tar and with pitch. She put the child in it, and laid it in the reeds by the river's bank.</span></div>
-<div class="v-row" data-ref="Exodus 2:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">His sister stood far off, to see what would be done to him.</span></div>
-<div class="v-row" data-ref="Exodus 2:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Pharaoh's daughter came down to bathe at the river. Her maidens walked along by the riverside. She saw the basket among the reeds, and sent her handmaid to get it.</span></div>
-<div class="v-row" data-ref="Exodus 2:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">She opened it, and saw the child, and, behold, the baby cried. She had compassion on him, and said, "This is one of the Hebrews' children."</span></div>
-<div class="v-row" data-ref="Exodus 2:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Then his sister said to Pharaoh's daughter, "Should I go and call a nurse for you from the Hebrew women, that she may nurse the child for you?"</span></div>
-<div class="v-row" data-ref="Exodus 2:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Pharaoh's daughter said to her, "Go." The maiden went and called the child's mother.</span></div>
-<div class="v-row" data-ref="Exodus 2:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Pharaoh's daughter said to her, "Take this child away, and nurse him for me, and I will give you your wages." The woman took the child, and nursed it.</span></div>
-<div class="v-row" data-ref="Exodus 2:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The child grew, and she brought him to Pharaoh's daughter, and he became her son. She named him Moses, and said, "Because I drew him out of the water."</span></div>
-<div class="v-row" data-ref="Exodus 2:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">It happened in those days, when Moses had grown up, that he went out to his brothers, and looked at their burdens. He saw an Egyptian striking a Hebrew, one of his brothers.</span></div>
-<div class="v-row" data-ref="Exodus 2:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He looked this way and that way, and when he saw that there was no one, he killed the Egyptian, and hid him in the sand.</span></div>
-<div class="v-row" data-ref="Exodus 2:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He went out the second day, and, behold, two men of the Hebrews were fighting with each other. He said to him who did the wrong, "Why do you strike your fellow?"</span></div>
-<div class="v-row" data-ref="Exodus 2:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">He said, "Who made you a prince and a judge over us? Do you plan to kill me, as you killed the Egyptian?" Moses was afraid, and said, "Surely this thing is known."</span></div>
-<div class="v-row" data-ref="Exodus 2:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Now when Pharaoh heard this thing, he sought to kill Moses. But Moses fled from the face of Pharaoh, and lived in the land of Midian, and he sat down by a well.</span></div>
-<div class="v-row" data-ref="Exodus 2:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Now the priest of Midian had seven daughters. They came and drew water, and filled the troughs to water their father's flock.</span></div>
-<div class="v-row" data-ref="Exodus 2:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The shepherds came and drove them away; but Moses stood up and helped them, and watered their flock.</span></div>
-<div class="v-row" data-ref="Exodus 2:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">When they came to Reuel, their father, he said, "How is it that you have returned so early today?"</span></div>
-<div class="v-row" data-ref="Exodus 2:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">They said, "An Egyptian delivered us out of the hand of the shepherds, and moreover he drew water for us, and watered the flock."</span></div>
-<div class="v-row" data-ref="Exodus 2:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He said to his daughters, "Where is he? Why is it that you have left the man? Call him, that he may eat bread."</span></div>
-<div class="v-row" data-ref="Exodus 2:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Moses was content to dwell with the man. He gave Moses Zipporah, his daughter.</span></div>
-<div class="v-row" data-ref="Exodus 2:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">She bore a son, and he named him Gershom, for he said, "I have lived as a foreigner in a foreign land."</span></div>
-<div class="v-row" data-ref="Exodus 2:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">It happened in the course of those many days, that the king of Egypt died, and the children of Israel sighed because of the bondage, and they cried, and their cry came up to God because of the bondage.</span></div>
-<div class="v-row" data-ref="Exodus 2:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">God heard their groaning, and God remembered his covenant with Abraham, with Isaac, and with Jacob.</span></div>
-<div class="v-row" data-ref="Exodus 2:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">God saw the children of Israel, and God was concerned about them.</span></div>
+    <a class="v-row" href="/bible/web/exodus/2/1/" data-ref="Exodus 2:1 (World English Bible)" data-verse-url="/bible/web/exodus/2/1/"><span class="v-num">1</span><span class="v-txt">A man of the house of Levi went and took a daughter of Levi as his wife.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/2/" data-ref="Exodus 2:2 (World English Bible)" data-verse-url="/bible/web/exodus/2/2/"><span class="v-num">2</span><span class="v-txt">The woman conceived, and bore a son. When she saw that he was a fine child, she hid him three months.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/3/" data-ref="Exodus 2:3 (World English Bible)" data-verse-url="/bible/web/exodus/2/3/"><span class="v-num">3</span><span class="v-txt">When she could no longer hide him, she took a papyrus basket for him, and coated it with tar and with pitch. She put the child in it, and laid it in the reeds by the river's bank.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/4/" data-ref="Exodus 2:4 (World English Bible)" data-verse-url="/bible/web/exodus/2/4/"><span class="v-num">4</span><span class="v-txt">His sister stood far off, to see what would be done to him.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/5/" data-ref="Exodus 2:5 (World English Bible)" data-verse-url="/bible/web/exodus/2/5/"><span class="v-num">5</span><span class="v-txt">Pharaoh's daughter came down to bathe at the river. Her maidens walked along by the riverside. She saw the basket among the reeds, and sent her handmaid to get it.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/6/" data-ref="Exodus 2:6 (World English Bible)" data-verse-url="/bible/web/exodus/2/6/"><span class="v-num">6</span><span class="v-txt">She opened it, and saw the child, and, behold, the baby cried. She had compassion on him, and said, "This is one of the Hebrews' children."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/7/" data-ref="Exodus 2:7 (World English Bible)" data-verse-url="/bible/web/exodus/2/7/"><span class="v-num">7</span><span class="v-txt">Then his sister said to Pharaoh's daughter, "Should I go and call a nurse for you from the Hebrew women, that she may nurse the child for you?"</span></a>
+<a class="v-row" href="/bible/web/exodus/2/8/" data-ref="Exodus 2:8 (World English Bible)" data-verse-url="/bible/web/exodus/2/8/"><span class="v-num">8</span><span class="v-txt">Pharaoh's daughter said to her, "Go." The maiden went and called the child's mother.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/9/" data-ref="Exodus 2:9 (World English Bible)" data-verse-url="/bible/web/exodus/2/9/"><span class="v-num">9</span><span class="v-txt">Pharaoh's daughter said to her, "Take this child away, and nurse him for me, and I will give you your wages." The woman took the child, and nursed it.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/10/" data-ref="Exodus 2:10 (World English Bible)" data-verse-url="/bible/web/exodus/2/10/"><span class="v-num">10</span><span class="v-txt">The child grew, and she brought him to Pharaoh's daughter, and he became her son. She named him Moses, and said, "Because I drew him out of the water."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/11/" data-ref="Exodus 2:11 (World English Bible)" data-verse-url="/bible/web/exodus/2/11/"><span class="v-num">11</span><span class="v-txt">It happened in those days, when Moses had grown up, that he went out to his brothers, and looked at their burdens. He saw an Egyptian striking a Hebrew, one of his brothers.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/12/" data-ref="Exodus 2:12 (World English Bible)" data-verse-url="/bible/web/exodus/2/12/"><span class="v-num">12</span><span class="v-txt">He looked this way and that way, and when he saw that there was no one, he killed the Egyptian, and hid him in the sand.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/13/" data-ref="Exodus 2:13 (World English Bible)" data-verse-url="/bible/web/exodus/2/13/"><span class="v-num">13</span><span class="v-txt">He went out the second day, and, behold, two men of the Hebrews were fighting with each other. He said to him who did the wrong, "Why do you strike your fellow?"</span></a>
+<a class="v-row" href="/bible/web/exodus/2/14/" data-ref="Exodus 2:14 (World English Bible)" data-verse-url="/bible/web/exodus/2/14/"><span class="v-num">14</span><span class="v-txt">He said, "Who made you a prince and a judge over us? Do you plan to kill me, as you killed the Egyptian?" Moses was afraid, and said, "Surely this thing is known."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/15/" data-ref="Exodus 2:15 (World English Bible)" data-verse-url="/bible/web/exodus/2/15/"><span class="v-num">15</span><span class="v-txt">Now when Pharaoh heard this thing, he sought to kill Moses. But Moses fled from the face of Pharaoh, and lived in the land of Midian, and he sat down by a well.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/16/" data-ref="Exodus 2:16 (World English Bible)" data-verse-url="/bible/web/exodus/2/16/"><span class="v-num">16</span><span class="v-txt">Now the priest of Midian had seven daughters. They came and drew water, and filled the troughs to water their father's flock.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/17/" data-ref="Exodus 2:17 (World English Bible)" data-verse-url="/bible/web/exodus/2/17/"><span class="v-num">17</span><span class="v-txt">The shepherds came and drove them away; but Moses stood up and helped them, and watered their flock.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/18/" data-ref="Exodus 2:18 (World English Bible)" data-verse-url="/bible/web/exodus/2/18/"><span class="v-num">18</span><span class="v-txt">When they came to Reuel, their father, he said, "How is it that you have returned so early today?"</span></a>
+<a class="v-row" href="/bible/web/exodus/2/19/" data-ref="Exodus 2:19 (World English Bible)" data-verse-url="/bible/web/exodus/2/19/"><span class="v-num">19</span><span class="v-txt">They said, "An Egyptian delivered us out of the hand of the shepherds, and moreover he drew water for us, and watered the flock."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/20/" data-ref="Exodus 2:20 (World English Bible)" data-verse-url="/bible/web/exodus/2/20/"><span class="v-num">20</span><span class="v-txt">He said to his daughters, "Where is he? Why is it that you have left the man? Call him, that he may eat bread."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/21/" data-ref="Exodus 2:21 (World English Bible)" data-verse-url="/bible/web/exodus/2/21/"><span class="v-num">21</span><span class="v-txt">Moses was content to dwell with the man. He gave Moses Zipporah, his daughter.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/22/" data-ref="Exodus 2:22 (World English Bible)" data-verse-url="/bible/web/exodus/2/22/"><span class="v-num">22</span><span class="v-txt">She bore a son, and he named him Gershom, for he said, "I have lived as a foreigner in a foreign land."</span></a>
+<a class="v-row" href="/bible/web/exodus/2/23/" data-ref="Exodus 2:23 (World English Bible)" data-verse-url="/bible/web/exodus/2/23/"><span class="v-num">23</span><span class="v-txt">It happened in the course of those many days, that the king of Egypt died, and the children of Israel sighed because of the bondage, and they cried, and their cry came up to God because of the bondage.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/24/" data-ref="Exodus 2:24 (World English Bible)" data-verse-url="/bible/web/exodus/2/24/"><span class="v-num">24</span><span class="v-txt">God heard their groaning, and God remembered his covenant with Abraham, with Isaac, and with Jacob.</span></a>
+<a class="v-row" href="/bible/web/exodus/2/25/" data-ref="Exodus 2:25 (World English Bible)" data-verse-url="/bible/web/exodus/2/25/"><span class="v-num">25</span><span class="v-txt">God saw the children of Israel, and God was concerned about them.</span></a>
 
     
 <div class="app-cta">

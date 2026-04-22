@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 136</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 136:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Oh, give thanks to the LORD, for [He is] good! For His mercy [endures] forever.</span></div>
-<div class="v-row" data-ref="Psalm 136:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Oh, give thanks to the God of gods! For His mercy [endures] forever.</span></div>
-<div class="v-row" data-ref="Psalm 136:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Oh, give thanks to the Lord of lords! For His mercy [endures] forever:</span></div>
-<div class="v-row" data-ref="Psalm 136:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">To Him who alone does great wonders, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">To Him who by wisdom made the heavens, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">To Him who laid out the earth above the waters, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">To Him who made great lights, For His mercy [endures] forever --</span></div>
-<div class="v-row" data-ref="Psalm 136:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">The sun to rule by day, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">The moon and stars to rule by night, For His mercy [endures] forever.</span></div>
-<div class="v-row" data-ref="Psalm 136:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">To Him who struck Egypt in their firstborn, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And brought out Israel from among them, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">With a strong hand, and with an outstretched arm, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">To Him who divided the Red Sea in two, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And made Israel pass through the midst of it, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But overthrew Pharaoh and his army in the Red Sea, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">To Him who led His people through the wilderness, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">To Him who struck down great kings, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And slew famous kings, For His mercy [endures] forever --</span></div>
-<div class="v-row" data-ref="Psalm 136:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Sihon king of the Amorites, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And Og king of Bashan, For His mercy [endures] forever --</span></div>
-<div class="v-row" data-ref="Psalm 136:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And gave their land as a heritage, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">A heritage to Israel His servant, For His mercy [endures] forever.</span></div>
-<div class="v-row" data-ref="Psalm 136:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Who remembered us in our lowly state, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And rescued us from our enemies, For His mercy [endures] forever;</span></div>
-<div class="v-row" data-ref="Psalm 136:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Who gives food to all flesh, For His mercy [endures] forever.</span></div>
-<div class="v-row" data-ref="Psalm 136:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">Oh, give thanks to the God of heaven! For His mercy [endures] forever.</span></div>
+    <a class="v-row" href="/bible/nkjv/psalms/136/1/" data-ref="Psalm 136:1 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/1/"><span class="v-num">1</span><span class="v-txt">Oh, give thanks to the LORD, for [He is] good! For His mercy [endures] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/2/" data-ref="Psalm 136:2 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/2/"><span class="v-num">2</span><span class="v-txt">Oh, give thanks to the God of gods! For His mercy [endures] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/3/" data-ref="Psalm 136:3 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/3/"><span class="v-num">3</span><span class="v-txt">Oh, give thanks to the Lord of lords! For His mercy [endures] forever:</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/4/" data-ref="Psalm 136:4 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/4/"><span class="v-num">4</span><span class="v-txt">To Him who alone does great wonders, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/5/" data-ref="Psalm 136:5 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/5/"><span class="v-num">5</span><span class="v-txt">To Him who by wisdom made the heavens, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/6/" data-ref="Psalm 136:6 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/6/"><span class="v-num">6</span><span class="v-txt">To Him who laid out the earth above the waters, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/7/" data-ref="Psalm 136:7 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/7/"><span class="v-num">7</span><span class="v-txt">To Him who made great lights, For His mercy [endures] forever --</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/8/" data-ref="Psalm 136:8 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/8/"><span class="v-num">8</span><span class="v-txt">The sun to rule by day, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/9/" data-ref="Psalm 136:9 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/9/"><span class="v-num">9</span><span class="v-txt">The moon and stars to rule by night, For His mercy [endures] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/10/" data-ref="Psalm 136:10 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/10/"><span class="v-num">10</span><span class="v-txt">To Him who struck Egypt in their firstborn, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/11/" data-ref="Psalm 136:11 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/11/"><span class="v-num">11</span><span class="v-txt">And brought out Israel from among them, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/12/" data-ref="Psalm 136:12 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/12/"><span class="v-num">12</span><span class="v-txt">With a strong hand, and with an outstretched arm, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/13/" data-ref="Psalm 136:13 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/13/"><span class="v-num">13</span><span class="v-txt">To Him who divided the Red Sea in two, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/14/" data-ref="Psalm 136:14 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/14/"><span class="v-num">14</span><span class="v-txt">And made Israel pass through the midst of it, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/15/" data-ref="Psalm 136:15 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/15/"><span class="v-num">15</span><span class="v-txt">But overthrew Pharaoh and his army in the Red Sea, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/16/" data-ref="Psalm 136:16 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/16/"><span class="v-num">16</span><span class="v-txt">To Him who led His people through the wilderness, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/17/" data-ref="Psalm 136:17 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/17/"><span class="v-num">17</span><span class="v-txt">To Him who struck down great kings, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/18/" data-ref="Psalm 136:18 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/18/"><span class="v-num">18</span><span class="v-txt">And slew famous kings, For His mercy [endures] forever --</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/19/" data-ref="Psalm 136:19 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/19/"><span class="v-num">19</span><span class="v-txt">Sihon king of the Amorites, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/20/" data-ref="Psalm 136:20 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/20/"><span class="v-num">20</span><span class="v-txt">And Og king of Bashan, For His mercy [endures] forever --</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/21/" data-ref="Psalm 136:21 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/21/"><span class="v-num">21</span><span class="v-txt">And gave their land as a heritage, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/22/" data-ref="Psalm 136:22 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/22/"><span class="v-num">22</span><span class="v-txt">A heritage to Israel His servant, For His mercy [endures] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/23/" data-ref="Psalm 136:23 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/23/"><span class="v-num">23</span><span class="v-txt">Who remembered us in our lowly state, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/24/" data-ref="Psalm 136:24 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/24/"><span class="v-num">24</span><span class="v-txt">And rescued us from our enemies, For His mercy [endures] forever;</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/25/" data-ref="Psalm 136:25 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/25/"><span class="v-num">25</span><span class="v-txt">Who gives food to all flesh, For His mercy [endures] forever.</span></a>
+<a class="v-row" href="/bible/nkjv/psalms/136/26/" data-ref="Psalm 136:26 (New King James Version)" data-verse-url="/bible/nkjv/psalms/136/26/"><span class="v-num">26</span><span class="v-txt">Oh, give thanks to the God of heaven! For His mercy [endures] forever.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,34 +204,34 @@ a:hover{text-decoration:underline}
       <h2>Chapter 12</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 12:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">A lover of training is a lover of knowledge; but a hater of teaching is like a beast.</span></div>
-<div class="v-row" data-ref="Proverbs 12:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">A good man has grace in the eyes of the Lord; but the man of evil designs gets punishment from him.</span></div>
-<div class="v-row" data-ref="Proverbs 12:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">No man will make himself safe through evil-doing; but the root of upright men will never be moved.</span></div>
-<div class="v-row" data-ref="Proverbs 12:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">A woman of virtue is a crown to her husband; but she whose behaviour is a cause of shame is like a wasting disease in his bones.</span></div>
-<div class="v-row" data-ref="Proverbs 12:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">The purposes of upright men are right, but the designs of evil-doers are deceit.</span></div>
-<div class="v-row" data-ref="Proverbs 12:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">The words of sinners are destruction for the upright; but the mouth of upright men is their salvation.</span></div>
-<div class="v-row" data-ref="Proverbs 12:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Evil-doers are overturned and never seen again, but the house of upright men will keep its place.</span></div>
-<div class="v-row" data-ref="Proverbs 12:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">A man will be praised in the measure of his wisdom, but a wrong-minded man will be looked down on.</span></div>
-<div class="v-row" data-ref="Proverbs 12:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">He who is of low position and has a servant, is better than one who has a high opinion of himself and is in need of bread.</span></div>
-<div class="v-row" data-ref="Proverbs 12:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">An upright man has thought for the life of his beast, but the hearts of evil-doers are cruel.</span></div>
-<div class="v-row" data-ref="Proverbs 12:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">He who does work on his land will not be short of bread; but he who goes after foolish men is without sense.</span></div>
-<div class="v-row" data-ref="Proverbs 12:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">The resting-place of the sinner will come to destruction, but the root of upright men is for ever.</span></div>
-<div class="v-row" data-ref="Proverbs 12:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In the sin of the lips is a net which takes the sinner, but the upright man will come out of trouble.</span></div>
-<div class="v-row" data-ref="Proverbs 12:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">From the fruit of his mouth will a man have good food in full measure, and the work of a man's hands will be rewarded.</span></div>
-<div class="v-row" data-ref="Proverbs 12:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">The way of the foolish man seems right to him? but the wise man gives ear to suggestions.</span></div>
-<div class="v-row" data-ref="Proverbs 12:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">A foolish man lets his trouble be openly seen, but a sharp man keeps shame secret.</span></div>
-<div class="v-row" data-ref="Proverbs 12:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The breathing out of true words gives knowledge of righteousness; but a false witness gives out deceit.</span></div>
-<div class="v-row" data-ref="Proverbs 12:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">There are some whose uncontrolled talk is like the wounds of a sword, but the tongue of the wise makes one well again.</span></div>
-<div class="v-row" data-ref="Proverbs 12:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">True lips are certain for ever, but a false tongue is only for a minute.</span></div>
-<div class="v-row" data-ref="Proverbs 12:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of those whose designs are evil, but for those purposing peace there is joy.</span></div>
-<div class="v-row" data-ref="Proverbs 12:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">No trouble will come to upright men, but sinners will be full of evil.</span></div>
-<div class="v-row" data-ref="Proverbs 12:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">False lips are hated by the Lord, but those whose acts are true are his delight.</span></div>
-<div class="v-row" data-ref="Proverbs 12:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">A sharp man keeps back his knowledge; but the heart of foolish men makes clear their foolish thoughts.</span></div>
-<div class="v-row" data-ref="Proverbs 12:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">The hand of the ready worker will have authority, but he who is slow in his work will be put to forced work.</span></div>
-<div class="v-row" data-ref="Proverbs 12:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Care in the heart of a man makes it weighted down, but a good word makes it glad.</span></div>
-<div class="v-row" data-ref="Proverbs 12:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">The upright man is a guide to his neighbour, but the way of evil-doers is a cause of error to them.</span></div>
-<div class="v-row" data-ref="Proverbs 12:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He who is slow in his work does not go in search of food; but the ready worker gets much wealth.</span></div>
-<div class="v-row" data-ref="Proverbs 12:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">In the road of righteousness is life, but the way of the evil-doer goes to death.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/12/1/" data-ref="Proverbs 12:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/1/"><span class="v-num">1</span><span class="v-txt">A lover of training is a lover of knowledge; but a hater of teaching is like a beast.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/2/" data-ref="Proverbs 12:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/2/"><span class="v-num">2</span><span class="v-txt">A good man has grace in the eyes of the Lord; but the man of evil designs gets punishment from him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/3/" data-ref="Proverbs 12:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/3/"><span class="v-num">3</span><span class="v-txt">No man will make himself safe through evil-doing; but the root of upright men will never be moved.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/4/" data-ref="Proverbs 12:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/4/"><span class="v-num">4</span><span class="v-txt">A woman of virtue is a crown to her husband; but she whose behaviour is a cause of shame is like a wasting disease in his bones.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/5/" data-ref="Proverbs 12:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/5/"><span class="v-num">5</span><span class="v-txt">The purposes of upright men are right, but the designs of evil-doers are deceit.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/6/" data-ref="Proverbs 12:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/6/"><span class="v-num">6</span><span class="v-txt">The words of sinners are destruction for the upright; but the mouth of upright men is their salvation.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/7/" data-ref="Proverbs 12:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/7/"><span class="v-num">7</span><span class="v-txt">Evil-doers are overturned and never seen again, but the house of upright men will keep its place.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/8/" data-ref="Proverbs 12:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/8/"><span class="v-num">8</span><span class="v-txt">A man will be praised in the measure of his wisdom, but a wrong-minded man will be looked down on.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/9/" data-ref="Proverbs 12:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/9/"><span class="v-num">9</span><span class="v-txt">He who is of low position and has a servant, is better than one who has a high opinion of himself and is in need of bread.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/10/" data-ref="Proverbs 12:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/10/"><span class="v-num">10</span><span class="v-txt">An upright man has thought for the life of his beast, but the hearts of evil-doers are cruel.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/11/" data-ref="Proverbs 12:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/11/"><span class="v-num">11</span><span class="v-txt">He who does work on his land will not be short of bread; but he who goes after foolish men is without sense.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/12/" data-ref="Proverbs 12:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/12/"><span class="v-num">12</span><span class="v-txt">The resting-place of the sinner will come to destruction, but the root of upright men is for ever.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/13/" data-ref="Proverbs 12:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/13/"><span class="v-num">13</span><span class="v-txt">In the sin of the lips is a net which takes the sinner, but the upright man will come out of trouble.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/14/" data-ref="Proverbs 12:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/14/"><span class="v-num">14</span><span class="v-txt">From the fruit of his mouth will a man have good food in full measure, and the work of a man's hands will be rewarded.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/15/" data-ref="Proverbs 12:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/15/"><span class="v-num">15</span><span class="v-txt">The way of the foolish man seems right to him? but the wise man gives ear to suggestions.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/16/" data-ref="Proverbs 12:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/16/"><span class="v-num">16</span><span class="v-txt">A foolish man lets his trouble be openly seen, but a sharp man keeps shame secret.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/17/" data-ref="Proverbs 12:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/17/"><span class="v-num">17</span><span class="v-txt">The breathing out of true words gives knowledge of righteousness; but a false witness gives out deceit.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/18/" data-ref="Proverbs 12:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/18/"><span class="v-num">18</span><span class="v-txt">There are some whose uncontrolled talk is like the wounds of a sword, but the tongue of the wise makes one well again.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/19/" data-ref="Proverbs 12:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/19/"><span class="v-num">19</span><span class="v-txt">True lips are certain for ever, but a false tongue is only for a minute.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/20/" data-ref="Proverbs 12:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/20/"><span class="v-num">20</span><span class="v-txt">Deceit is in the heart of those whose designs are evil, but for those purposing peace there is joy.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/21/" data-ref="Proverbs 12:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/21/"><span class="v-num">21</span><span class="v-txt">No trouble will come to upright men, but sinners will be full of evil.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/22/" data-ref="Proverbs 12:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/22/"><span class="v-num">22</span><span class="v-txt">False lips are hated by the Lord, but those whose acts are true are his delight.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/23/" data-ref="Proverbs 12:23 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/23/"><span class="v-num">23</span><span class="v-txt">A sharp man keeps back his knowledge; but the heart of foolish men makes clear their foolish thoughts.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/24/" data-ref="Proverbs 12:24 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/24/"><span class="v-num">24</span><span class="v-txt">The hand of the ready worker will have authority, but he who is slow in his work will be put to forced work.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/25/" data-ref="Proverbs 12:25 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/25/"><span class="v-num">25</span><span class="v-txt">Care in the heart of a man makes it weighted down, but a good word makes it glad.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/26/" data-ref="Proverbs 12:26 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/26/"><span class="v-num">26</span><span class="v-txt">The upright man is a guide to his neighbour, but the way of evil-doers is a cause of error to them.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/27/" data-ref="Proverbs 12:27 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/27/"><span class="v-num">27</span><span class="v-txt">He who is slow in his work does not go in search of food; but the ready worker gets much wealth.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/12/28/" data-ref="Proverbs 12:28 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/12/28/"><span class="v-num">28</span><span class="v-txt">In the road of righteousness is life, but the way of the evil-doer goes to death.</span></a>
 
     
 <div class="app-cta">

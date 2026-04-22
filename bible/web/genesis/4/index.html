@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Genesis 4:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">The man knew Eve his wife. She conceived, and gave birth to Cain, and said, "I have gotten a man with Yahweh's help."</span></div>
-<div class="v-row" data-ref="Genesis 4:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Again she gave birth, to Cain's brother Abel. Abel was a keeper of sheep, but Cain was a tiller of the ground.</span></div>
-<div class="v-row" data-ref="Genesis 4:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">As time passed, it happened that Cain brought an offering to Yahweh from the fruit of the ground.</span></div>
-<div class="v-row" data-ref="Genesis 4:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Abel also brought some of the firstborn of his flock and of the fat of it. Yahweh respected Abel and his offering,</span></div>
-<div class="v-row" data-ref="Genesis 4:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">but he didn't respect Cain and his offering. Cain was very angry, and the expression on his face fell.</span></div>
-<div class="v-row" data-ref="Genesis 4:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Yahweh said to Cain, "Why are you angry? Why has the expression of your face fallen?</span></div>
-<div class="v-row" data-ref="Genesis 4:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If you do well, will it not be lifted up? If you don't do well, sin crouches at the door. Its desire is for you, but you are to rule over it."</span></div>
-<div class="v-row" data-ref="Genesis 4:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Cain said to Abel, his brother, "Let's go into the field." It happened, when they were in the field, that Cain rose up against Abel, his brother, and killed him.</span></div>
-<div class="v-row" data-ref="Genesis 4:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Yahweh said to Cain, "Where is Abel, your brother?" He said, "I don't know. Am I my brother's keeper?"</span></div>
-<div class="v-row" data-ref="Genesis 4:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Yahweh said, "What have you done? The voice of your brother's blood cries to me from the ground.</span></div>
-<div class="v-row" data-ref="Genesis 4:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Now you are cursed because of the ground, which has opened its mouth to receive your brother's blood from your hand.</span></div>
-<div class="v-row" data-ref="Genesis 4:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">From now on, when you till the ground, it won't yield its strength to you. You shall be a fugitive and a wanderer in the earth."</span></div>
-<div class="v-row" data-ref="Genesis 4:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Cain said to Yahweh, "My punishment is greater than I can bear.</span></div>
-<div class="v-row" data-ref="Genesis 4:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Behold, you have driven me out this day from the surface of the ground. I will be hidden from your face, and I will be a fugitive and a wanderer in the earth. It will happen that whoever finds me will kill me."</span></div>
-<div class="v-row" data-ref="Genesis 4:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Yahweh said to him, "Therefore whoever slays Cain, vengeance will be taken on him sevenfold." Yahweh appointed a sign for Cain, lest any finding him should strike him.</span></div>
-<div class="v-row" data-ref="Genesis 4:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Cain went out from Yahweh's presence, and dwelt in the land of Nod, on the east of Eden.</span></div>
-<div class="v-row" data-ref="Genesis 4:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Cain knew his wife. She conceived, and gave birth to Enoch. He built a city, and called the name of the city, after the name of his son, Enoch.</span></div>
-<div class="v-row" data-ref="Genesis 4:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To Enoch was born Irad. Irad became the father of Mehujael. Mehujael became the father of Methushael. Methushael became the father of Lamech.</span></div>
-<div class="v-row" data-ref="Genesis 4:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Lamech took two wives: the name of the one was Adah, and the name of the other Zillah.</span></div>
-<div class="v-row" data-ref="Genesis 4:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Adah gave birth to Jabal, who was the father of those who dwell in tents and have cattle.</span></div>
-<div class="v-row" data-ref="Genesis 4:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">His brother's name was Jubal, who was the father of all who handle the harp and pipe.</span></div>
-<div class="v-row" data-ref="Genesis 4:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Zillah also gave birth to Tubal Cain, the forger of every cutting instrument of brass and iron. Tubal Cain's sister was Naamah.</span></div>
-<div class="v-row" data-ref="Genesis 4:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Lamech said to his wives, "Adah and Zillah, Hear my voice, You wives of Lamech, listen to my speech, For I have slain a man for wounding me, A young man for bruising me.</span></div>
-<div class="v-row" data-ref="Genesis 4:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If Cain will be avenged seven times, Truly Lamech seventy-seven times."</span></div>
-<div class="v-row" data-ref="Genesis 4:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Adam knew his wife again. She gave birth to a son, and named him Seth. For, she said, "God has appointed me another child instead of Abel, for Cain killed him."</span></div>
-<div class="v-row" data-ref="Genesis 4:26 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">There was also born a son to Seth, and he named him Enosh. Then men began to call on Yahweh's name.</span></div>
+    <a class="v-row" href="/bible/web/genesis/4/1/" data-ref="Genesis 4:1 (World English Bible)" data-verse-url="/bible/web/genesis/4/1/"><span class="v-num">1</span><span class="v-txt">The man knew Eve his wife. She conceived, and gave birth to Cain, and said, "I have gotten a man with Yahweh's help."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/2/" data-ref="Genesis 4:2 (World English Bible)" data-verse-url="/bible/web/genesis/4/2/"><span class="v-num">2</span><span class="v-txt">Again she gave birth, to Cain's brother Abel. Abel was a keeper of sheep, but Cain was a tiller of the ground.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/3/" data-ref="Genesis 4:3 (World English Bible)" data-verse-url="/bible/web/genesis/4/3/"><span class="v-num">3</span><span class="v-txt">As time passed, it happened that Cain brought an offering to Yahweh from the fruit of the ground.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/4/" data-ref="Genesis 4:4 (World English Bible)" data-verse-url="/bible/web/genesis/4/4/"><span class="v-num">4</span><span class="v-txt">Abel also brought some of the firstborn of his flock and of the fat of it. Yahweh respected Abel and his offering,</span></a>
+<a class="v-row" href="/bible/web/genesis/4/5/" data-ref="Genesis 4:5 (World English Bible)" data-verse-url="/bible/web/genesis/4/5/"><span class="v-num">5</span><span class="v-txt">but he didn't respect Cain and his offering. Cain was very angry, and the expression on his face fell.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/6/" data-ref="Genesis 4:6 (World English Bible)" data-verse-url="/bible/web/genesis/4/6/"><span class="v-num">6</span><span class="v-txt">Yahweh said to Cain, "Why are you angry? Why has the expression of your face fallen?</span></a>
+<a class="v-row" href="/bible/web/genesis/4/7/" data-ref="Genesis 4:7 (World English Bible)" data-verse-url="/bible/web/genesis/4/7/"><span class="v-num">7</span><span class="v-txt">If you do well, will it not be lifted up? If you don't do well, sin crouches at the door. Its desire is for you, but you are to rule over it."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/8/" data-ref="Genesis 4:8 (World English Bible)" data-verse-url="/bible/web/genesis/4/8/"><span class="v-num">8</span><span class="v-txt">Cain said to Abel, his brother, "Let's go into the field." It happened, when they were in the field, that Cain rose up against Abel, his brother, and killed him.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/9/" data-ref="Genesis 4:9 (World English Bible)" data-verse-url="/bible/web/genesis/4/9/"><span class="v-num">9</span><span class="v-txt">Yahweh said to Cain, "Where is Abel, your brother?" He said, "I don't know. Am I my brother's keeper?"</span></a>
+<a class="v-row" href="/bible/web/genesis/4/10/" data-ref="Genesis 4:10 (World English Bible)" data-verse-url="/bible/web/genesis/4/10/"><span class="v-num">10</span><span class="v-txt">Yahweh said, "What have you done? The voice of your brother's blood cries to me from the ground.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/11/" data-ref="Genesis 4:11 (World English Bible)" data-verse-url="/bible/web/genesis/4/11/"><span class="v-num">11</span><span class="v-txt">Now you are cursed because of the ground, which has opened its mouth to receive your brother's blood from your hand.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/12/" data-ref="Genesis 4:12 (World English Bible)" data-verse-url="/bible/web/genesis/4/12/"><span class="v-num">12</span><span class="v-txt">From now on, when you till the ground, it won't yield its strength to you. You shall be a fugitive and a wanderer in the earth."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/13/" data-ref="Genesis 4:13 (World English Bible)" data-verse-url="/bible/web/genesis/4/13/"><span class="v-num">13</span><span class="v-txt">Cain said to Yahweh, "My punishment is greater than I can bear.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/14/" data-ref="Genesis 4:14 (World English Bible)" data-verse-url="/bible/web/genesis/4/14/"><span class="v-num">14</span><span class="v-txt">Behold, you have driven me out this day from the surface of the ground. I will be hidden from your face, and I will be a fugitive and a wanderer in the earth. It will happen that whoever finds me will kill me."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/15/" data-ref="Genesis 4:15 (World English Bible)" data-verse-url="/bible/web/genesis/4/15/"><span class="v-num">15</span><span class="v-txt">Yahweh said to him, "Therefore whoever slays Cain, vengeance will be taken on him sevenfold." Yahweh appointed a sign for Cain, lest any finding him should strike him.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/16/" data-ref="Genesis 4:16 (World English Bible)" data-verse-url="/bible/web/genesis/4/16/"><span class="v-num">16</span><span class="v-txt">Cain went out from Yahweh's presence, and dwelt in the land of Nod, on the east of Eden.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/17/" data-ref="Genesis 4:17 (World English Bible)" data-verse-url="/bible/web/genesis/4/17/"><span class="v-num">17</span><span class="v-txt">Cain knew his wife. She conceived, and gave birth to Enoch. He built a city, and called the name of the city, after the name of his son, Enoch.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/18/" data-ref="Genesis 4:18 (World English Bible)" data-verse-url="/bible/web/genesis/4/18/"><span class="v-num">18</span><span class="v-txt">To Enoch was born Irad. Irad became the father of Mehujael. Mehujael became the father of Methushael. Methushael became the father of Lamech.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/19/" data-ref="Genesis 4:19 (World English Bible)" data-verse-url="/bible/web/genesis/4/19/"><span class="v-num">19</span><span class="v-txt">Lamech took two wives: the name of the one was Adah, and the name of the other Zillah.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/20/" data-ref="Genesis 4:20 (World English Bible)" data-verse-url="/bible/web/genesis/4/20/"><span class="v-num">20</span><span class="v-txt">Adah gave birth to Jabal, who was the father of those who dwell in tents and have cattle.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/21/" data-ref="Genesis 4:21 (World English Bible)" data-verse-url="/bible/web/genesis/4/21/"><span class="v-num">21</span><span class="v-txt">His brother's name was Jubal, who was the father of all who handle the harp and pipe.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/22/" data-ref="Genesis 4:22 (World English Bible)" data-verse-url="/bible/web/genesis/4/22/"><span class="v-num">22</span><span class="v-txt">Zillah also gave birth to Tubal Cain, the forger of every cutting instrument of brass and iron. Tubal Cain's sister was Naamah.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/23/" data-ref="Genesis 4:23 (World English Bible)" data-verse-url="/bible/web/genesis/4/23/"><span class="v-num">23</span><span class="v-txt">Lamech said to his wives, "Adah and Zillah, Hear my voice, You wives of Lamech, listen to my speech, For I have slain a man for wounding me, A young man for bruising me.</span></a>
+<a class="v-row" href="/bible/web/genesis/4/24/" data-ref="Genesis 4:24 (World English Bible)" data-verse-url="/bible/web/genesis/4/24/"><span class="v-num">24</span><span class="v-txt">If Cain will be avenged seven times, Truly Lamech seventy-seven times."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/25/" data-ref="Genesis 4:25 (World English Bible)" data-verse-url="/bible/web/genesis/4/25/"><span class="v-num">25</span><span class="v-txt">Adam knew his wife again. She gave birth to a son, and named him Seth. For, she said, "God has appointed me another child instead of Abel, for Cain killed him."</span></a>
+<a class="v-row" href="/bible/web/genesis/4/26/" data-ref="Genesis 4:26 (World English Bible)" data-verse-url="/bible/web/genesis/4/26/"><span class="v-num">26</span><span class="v-txt">There was also born a son to Seth, and he named him Enosh. Then men began to call on Yahweh's name.</span></a>
 
     
 <div class="app-cta">

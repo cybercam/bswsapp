@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Esther 5:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now on the third day, Esther put on her queen's robes, and took her place in the inner room of the king's house, facing the king's house: and the king was seated on his high seat in the king's house, facing the doorway of the house.</span></div>
-<div class="v-row" data-ref="Esther 5:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And when the king saw Esther the queen waiting in the inner room, looking kindly on her he put out the rod of gold in his hand to her. So Esther came near and put her fingers on the top of the rod.</span></div>
-<div class="v-row" data-ref="Esther 5:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Then the king said, What is your desire, Queen Esther, and what is your request? I will give it to you, even to the half of my kingdom.</span></div>
-<div class="v-row" data-ref="Esther 5:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Esther in answer said, If it seems good to the king, let the king and Haman come today to the feast which I have made ready for him.</span></div>
-<div class="v-row" data-ref="Esther 5:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the king said, Let Haman come quickly, so that what Esther has said may be done. So the king and Haman came to the feast which Esther had made ready.</span></div>
-<div class="v-row" data-ref="Esther 5:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And while they were drinking wine the king said to Esther, What is your prayer? for it will be given to you and what is your request? for it will be done, even to the half of my kingdom.</span></div>
-<div class="v-row" data-ref="Esther 5:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Then Esther said in answer, My prayer and my request is this:</span></div>
-<div class="v-row" data-ref="Esther 5:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">If I have the king's approval, and if it is the king's pleasure to give me my prayer and do my request, let the king and Haman come to the feast which I will make ready for them, and tomorrow I will do as the king has said.</span></div>
-<div class="v-row" data-ref="Esther 5:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then on that day Haman went out full of joy and glad in heart; but when he saw Mordecai in the king's doorway, and he did not get to his feet or give any sign of fear before him, Haman was full of wrath against Mordecai.</span></div>
-<div class="v-row" data-ref="Esther 5:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">But controlling himself, he went to his house; and he sent for his friends and Zeresh, his wife.</span></div>
-<div class="v-row" data-ref="Esther 5:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And he gave them an account of the glories of his wealth, and the number of children he had, and the ways in which he had been honoured by the king, and how he had put him over the captains and servants of the king.</span></div>
-<div class="v-row" data-ref="Esther 5:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And Haman said further, Truly, Esther the queen let no man but myself come in to the feast which she had made ready for the king; and tomorrow again I am to be her guest with the king.</span></div>
-<div class="v-row" data-ref="Esther 5:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But all this is nothing to me while I see Mordecai the Jew seated by the king's doorway.</span></div>
-<div class="v-row" data-ref="Esther 5:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then his wife Zeresh and all his friends said to him, Let a pillar, fifty cubits high, be made ready for hanging him, and in the morning get the king to give orders for the hanging of Mordecai: then you will be able to go to the feast with the king with a glad heart. And Haman was pleased with the suggestion, and he had the pillar made.</span></div>
+    <a class="v-row" href="/bible/bbe/esther/5/1/" data-ref="Esther 5:1 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/1/"><span class="v-num">1</span><span class="v-txt">Now on the third day, Esther put on her queen's robes, and took her place in the inner room of the king's house, facing the king's house: and the king was seated on his high seat in the king's house, facing the doorway of the house.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/2/" data-ref="Esther 5:2 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/2/"><span class="v-num">2</span><span class="v-txt">And when the king saw Esther the queen waiting in the inner room, looking kindly on her he put out the rod of gold in his hand to her. So Esther came near and put her fingers on the top of the rod.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/3/" data-ref="Esther 5:3 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/3/"><span class="v-num">3</span><span class="v-txt">Then the king said, What is your desire, Queen Esther, and what is your request? I will give it to you, even to the half of my kingdom.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/4/" data-ref="Esther 5:4 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/4/"><span class="v-num">4</span><span class="v-txt">And Esther in answer said, If it seems good to the king, let the king and Haman come today to the feast which I have made ready for him.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/5/" data-ref="Esther 5:5 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/5/"><span class="v-num">5</span><span class="v-txt">Then the king said, Let Haman come quickly, so that what Esther has said may be done. So the king and Haman came to the feast which Esther had made ready.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/6/" data-ref="Esther 5:6 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/6/"><span class="v-num">6</span><span class="v-txt">And while they were drinking wine the king said to Esther, What is your prayer? for it will be given to you and what is your request? for it will be done, even to the half of my kingdom.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/7/" data-ref="Esther 5:7 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/7/"><span class="v-num">7</span><span class="v-txt">Then Esther said in answer, My prayer and my request is this:</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/8/" data-ref="Esther 5:8 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/8/"><span class="v-num">8</span><span class="v-txt">If I have the king's approval, and if it is the king's pleasure to give me my prayer and do my request, let the king and Haman come to the feast which I will make ready for them, and tomorrow I will do as the king has said.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/9/" data-ref="Esther 5:9 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/9/"><span class="v-num">9</span><span class="v-txt">Then on that day Haman went out full of joy and glad in heart; but when he saw Mordecai in the king's doorway, and he did not get to his feet or give any sign of fear before him, Haman was full of wrath against Mordecai.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/10/" data-ref="Esther 5:10 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/10/"><span class="v-num">10</span><span class="v-txt">But controlling himself, he went to his house; and he sent for his friends and Zeresh, his wife.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/11/" data-ref="Esther 5:11 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/11/"><span class="v-num">11</span><span class="v-txt">And he gave them an account of the glories of his wealth, and the number of children he had, and the ways in which he had been honoured by the king, and how he had put him over the captains and servants of the king.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/12/" data-ref="Esther 5:12 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/12/"><span class="v-num">12</span><span class="v-txt">And Haman said further, Truly, Esther the queen let no man but myself come in to the feast which she had made ready for the king; and tomorrow again I am to be her guest with the king.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/13/" data-ref="Esther 5:13 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/13/"><span class="v-num">13</span><span class="v-txt">But all this is nothing to me while I see Mordecai the Jew seated by the king's doorway.</span></a>
+<a class="v-row" href="/bible/bbe/esther/5/14/" data-ref="Esther 5:14 (Bible in Basic English)" data-verse-url="/bible/bbe/esther/5/14/"><span class="v-num">14</span><span class="v-txt">Then his wife Zeresh and all his friends said to him, Let a pillar, fifty cubits high, be made ready for hanging him, and in the morning get the king to give orders for the hanging of Mordecai: then you will be able to go to the feast with the king with a glad heart. And Haman was pleased with the suggestion, and he had the pillar made.</span></a>
 
     
 <div class="app-cta">

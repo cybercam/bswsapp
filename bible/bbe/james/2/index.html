@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="James 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My brothers, if you have the faith of our Lord Jesus Christ of glory, do not take a man's position into account.</span></div>
-<div class="v-row" data-ref="James 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For if a man comes into your Synagogue in fair clothing and with a gold ring, and a poor man comes in with dirty clothing,</span></div>
-<div class="v-row" data-ref="James 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And you do honour to the man in fair clothing and say, Come here and take this good place; and you say to the poor man, Take up your position there, or be seated at my feet;</span></div>
-<div class="v-row" data-ref="James 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Is there not a division in your minds? have you not become judges with evil thoughts?</span></div>
-<div class="v-row" data-ref="James 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Give ear, my dear brothers; are not those who are poor in the things of this world marked out by God to have faith as their wealth, and for their heritage the kingdom which he has said he will give to those who have love for him?</span></div>
-<div class="v-row" data-ref="James 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">But you have put the poor man to shame. Are not the men of wealth rulers over you? do they not take you by force before their judges?</span></div>
-<div class="v-row" data-ref="James 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Do they not say evil of the holy name which was given to you?</span></div>
-<div class="v-row" data-ref="James 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">But if you keep the greatest law of all, as it is given in the holy Writings, Have love for your neighbour as for yourself, you do well:</span></div>
-<div class="v-row" data-ref="James 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But if you take a man's position into account, you do evil, and are judged as evil-doers by the law.</span></div>
-<div class="v-row" data-ref="James 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For anyone who keeps all the law, but makes a slip in one point, is judged to have gone against it all.</span></div>
-<div class="v-row" data-ref="James 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">For he who said, Do not be untrue in married life, is the same who said, Put no man to death. Now if you are not untrue in married life, but you put a man to death, the law is broken.</span></div>
-<div class="v-row" data-ref="James 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Let your words and your acts be those of men who are to be judged by the law which makes free.</span></div>
-<div class="v-row" data-ref="James 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For the man who has had no mercy will be judged without mercy, but mercy takes pride in overcoming judging.</span></div>
-<div class="v-row" data-ref="James 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">What use is it, my brothers, for a man to say that he has faith, if he does nothing? will such a faith give him salvation?</span></div>
-<div class="v-row" data-ref="James 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">If a brother or a sister is without clothing and in need of the day's food,</span></div>
-<div class="v-row" data-ref="James 2:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And one of you says to them, Go in peace, be warm and full of food; but you do not give them the things of which their bodies have need, what profit is there in this?</span></div>
-<div class="v-row" data-ref="James 2:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Even so faith without works is dead.</span></div>
-<div class="v-row" data-ref="James 2:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">But a man may say, You have faith and I have works; let me see your faith without your works, and I will make my faith clear to you by my works.</span></div>
-<div class="v-row" data-ref="James 2:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">You have the belief that God is one, and you do well: the evil spirits have the same belief, shaking with fear.</span></div>
-<div class="v-row" data-ref="James 2:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Do you not see, O foolish man, that faith without works is of no use?</span></div>
-<div class="v-row" data-ref="James 2:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Was not the righteousness of Abraham our father judged by his works, when he made an offering of Isaac his son on the altar?</span></div>
-<div class="v-row" data-ref="James 2:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">You see that his faith was helping his works and was made complete by them;</span></div>
-<div class="v-row" data-ref="James 2:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And the holy Writings were put into effect which said, And Abraham had faith in God and it was put to his account as righteousness; and he was named the friend of God.</span></div>
-<div class="v-row" data-ref="James 2:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">You see that a man's righteousness is judged by his works and not by his faith only.</span></div>
-<div class="v-row" data-ref="James 2:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And in the same way, was not the righteousness of Rahab, the loose woman, judged by her works, when she took into her house those who were sent and let them go out by another way?</span></div>
-<div class="v-row" data-ref="James 2:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For as the body without the spirit is dead even so faith without works is dead.</span></div>
+    <a class="v-row" href="/bible/bbe/james/2/1/" data-ref="James 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/1/"><span class="v-num">1</span><span class="v-txt">My brothers, if you have the faith of our Lord Jesus Christ of glory, do not take a man's position into account.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/2/" data-ref="James 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/2/"><span class="v-num">2</span><span class="v-txt">For if a man comes into your Synagogue in fair clothing and with a gold ring, and a poor man comes in with dirty clothing,</span></a>
+<a class="v-row" href="/bible/bbe/james/2/3/" data-ref="James 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/3/"><span class="v-num">3</span><span class="v-txt">And you do honour to the man in fair clothing and say, Come here and take this good place; and you say to the poor man, Take up your position there, or be seated at my feet;</span></a>
+<a class="v-row" href="/bible/bbe/james/2/4/" data-ref="James 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/4/"><span class="v-num">4</span><span class="v-txt">Is there not a division in your minds? have you not become judges with evil thoughts?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/5/" data-ref="James 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/5/"><span class="v-num">5</span><span class="v-txt">Give ear, my dear brothers; are not those who are poor in the things of this world marked out by God to have faith as their wealth, and for their heritage the kingdom which he has said he will give to those who have love for him?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/6/" data-ref="James 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/6/"><span class="v-num">6</span><span class="v-txt">But you have put the poor man to shame. Are not the men of wealth rulers over you? do they not take you by force before their judges?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/7/" data-ref="James 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/7/"><span class="v-num">7</span><span class="v-txt">Do they not say evil of the holy name which was given to you?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/8/" data-ref="James 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/8/"><span class="v-num">8</span><span class="v-txt">But if you keep the greatest law of all, as it is given in the holy Writings, Have love for your neighbour as for yourself, you do well:</span></a>
+<a class="v-row" href="/bible/bbe/james/2/9/" data-ref="James 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/9/"><span class="v-num">9</span><span class="v-txt">But if you take a man's position into account, you do evil, and are judged as evil-doers by the law.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/10/" data-ref="James 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/10/"><span class="v-num">10</span><span class="v-txt">For anyone who keeps all the law, but makes a slip in one point, is judged to have gone against it all.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/11/" data-ref="James 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/11/"><span class="v-num">11</span><span class="v-txt">For he who said, Do not be untrue in married life, is the same who said, Put no man to death. Now if you are not untrue in married life, but you put a man to death, the law is broken.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/12/" data-ref="James 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/12/"><span class="v-num">12</span><span class="v-txt">Let your words and your acts be those of men who are to be judged by the law which makes free.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/13/" data-ref="James 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/13/"><span class="v-num">13</span><span class="v-txt">For the man who has had no mercy will be judged without mercy, but mercy takes pride in overcoming judging.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/14/" data-ref="James 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/14/"><span class="v-num">14</span><span class="v-txt">What use is it, my brothers, for a man to say that he has faith, if he does nothing? will such a faith give him salvation?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/15/" data-ref="James 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/15/"><span class="v-num">15</span><span class="v-txt">If a brother or a sister is without clothing and in need of the day's food,</span></a>
+<a class="v-row" href="/bible/bbe/james/2/16/" data-ref="James 2:16 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/16/"><span class="v-num">16</span><span class="v-txt">And one of you says to them, Go in peace, be warm and full of food; but you do not give them the things of which their bodies have need, what profit is there in this?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/17/" data-ref="James 2:17 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/17/"><span class="v-num">17</span><span class="v-txt">Even so faith without works is dead.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/18/" data-ref="James 2:18 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/18/"><span class="v-num">18</span><span class="v-txt">But a man may say, You have faith and I have works; let me see your faith without your works, and I will make my faith clear to you by my works.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/19/" data-ref="James 2:19 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/19/"><span class="v-num">19</span><span class="v-txt">You have the belief that God is one, and you do well: the evil spirits have the same belief, shaking with fear.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/20/" data-ref="James 2:20 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/20/"><span class="v-num">20</span><span class="v-txt">Do you not see, O foolish man, that faith without works is of no use?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/21/" data-ref="James 2:21 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/21/"><span class="v-num">21</span><span class="v-txt">Was not the righteousness of Abraham our father judged by his works, when he made an offering of Isaac his son on the altar?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/22/" data-ref="James 2:22 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/22/"><span class="v-num">22</span><span class="v-txt">You see that his faith was helping his works and was made complete by them;</span></a>
+<a class="v-row" href="/bible/bbe/james/2/23/" data-ref="James 2:23 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/23/"><span class="v-num">23</span><span class="v-txt">And the holy Writings were put into effect which said, And Abraham had faith in God and it was put to his account as righteousness; and he was named the friend of God.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/24/" data-ref="James 2:24 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/24/"><span class="v-num">24</span><span class="v-txt">You see that a man's righteousness is judged by his works and not by his faith only.</span></a>
+<a class="v-row" href="/bible/bbe/james/2/25/" data-ref="James 2:25 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/25/"><span class="v-num">25</span><span class="v-txt">And in the same way, was not the righteousness of Rahab, the loose woman, judged by her works, when she took into her house those who were sent and let them go out by another way?</span></a>
+<a class="v-row" href="/bible/bbe/james/2/26/" data-ref="James 2:26 (Bible in Basic English)" data-verse-url="/bible/bbe/james/2/26/"><span class="v-num">26</span><span class="v-txt">For as the body without the spirit is dead even so faith without works is dead.</span></a>
 
     
 <div class="app-cta">

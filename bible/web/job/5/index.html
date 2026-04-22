@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,33 +204,33 @@ a:hover{text-decoration:underline}
       <h2>Chapter 5</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Job 5:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">"Call now; is there any who will answer you? To which of the holy ones will you turn?</span></div>
-<div class="v-row" data-ref="Job 5:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">For resentment kills the foolish man, And jealousy kills the simple.</span></div>
-<div class="v-row" data-ref="Job 5:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root, But suddenly I cursed his habitation.</span></div>
-<div class="v-row" data-ref="Job 5:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">His children are far from safety, They are crushed in the gate. Neither is there any to deliver them,</span></div>
-<div class="v-row" data-ref="Job 5:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Whose harvest the hungry eats up, And take it even out of the thorns; The snare gapes for their substance.</span></div>
-<div class="v-row" data-ref="Job 5:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For affliction doesn't come forth from the dust, Neither does trouble spring out of the ground;</span></div>
-<div class="v-row" data-ref="Job 5:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">But man is born to trouble, As the sparks fly upward.</span></div>
-<div class="v-row" data-ref="Job 5:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">"But as for me, I would seek God, To God would I commit my cause;</span></div>
-<div class="v-row" data-ref="Job 5:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Who does great things that can't be fathomed, Marvelous things without number;</span></div>
-<div class="v-row" data-ref="Job 5:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Who gives rain on the earth, And sends waters on the fields;</span></div>
-<div class="v-row" data-ref="Job 5:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">So that he sets up on high those who are low, Those who mourn are exalted to safety.</span></div>
-<div class="v-row" data-ref="Job 5:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">He frustrates the devices of the crafty, So that their hands can't perform their enterprise.</span></div>
-<div class="v-row" data-ref="Job 5:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">He takes the wise in their own craftiness; The counsel of the cunning is carried headlong.</span></div>
-<div class="v-row" data-ref="Job 5:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">They meet with darkness in the day-time, And grope at noonday as in the night.</span></div>
-<div class="v-row" data-ref="Job 5:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But he saves from the sword of their mouth, Even the needy from the hand of the mighty.</span></div>
-<div class="v-row" data-ref="Job 5:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">So the poor has hope, And injustice shuts her mouth.</span></div>
-<div class="v-row" data-ref="Job 5:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">"Behold, happy is the man whom God corrects: Therefore do not despise the chastening of the Almighty.</span></div>
-<div class="v-row" data-ref="Job 5:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For he wounds, and binds up; He injures, and his hands make whole.</span></div>
-<div class="v-row" data-ref="Job 5:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He will deliver you in six troubles; Yes, in seven there shall no evil touch you.</span></div>
-<div class="v-row" data-ref="Job 5:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">In famine he will redeem you from death; In war, from the power of the sword.</span></div>
-<div class="v-row" data-ref="Job 5:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">You shall be hidden from the scourge of the tongue, Neither shall you be afraid of destruction when it comes.</span></div>
-<div class="v-row" data-ref="Job 5:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">At destruction and famine you shall laugh, Neither shall you be afraid of the animals of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:23 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">For you shall be in league with the stones of the field. The animals of the field shall be at peace with you.</span></div>
-<div class="v-row" data-ref="Job 5:24 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">You shall know that your tent is in peace. You shall visit your fold, and shall miss nothing.</span></div>
-<div class="v-row" data-ref="Job 5:25 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">You shall know also that your seed shall be great, Your offspring as the grass of the earth.</span></div>
-<div class="v-row" data-ref="Job 5:26 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">You shall come to your grave in a full age, Like a shock of grain comes in its season.</span></div>
-<div class="v-row" data-ref="Job 5:27 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">Look this, we have searched it, so it is; Hear it, and know it for your good."</span></div>
+    <a class="v-row" href="/bible/web/job/5/1/" data-ref="Job 5:1 (World English Bible)" data-verse-url="/bible/web/job/5/1/"><span class="v-num">1</span><span class="v-txt">"Call now; is there any who will answer you? To which of the holy ones will you turn?</span></a>
+<a class="v-row" href="/bible/web/job/5/2/" data-ref="Job 5:2 (World English Bible)" data-verse-url="/bible/web/job/5/2/"><span class="v-num">2</span><span class="v-txt">For resentment kills the foolish man, And jealousy kills the simple.</span></a>
+<a class="v-row" href="/bible/web/job/5/3/" data-ref="Job 5:3 (World English Bible)" data-verse-url="/bible/web/job/5/3/"><span class="v-num">3</span><span class="v-txt">I have seen the foolish taking root, But suddenly I cursed his habitation.</span></a>
+<a class="v-row" href="/bible/web/job/5/4/" data-ref="Job 5:4 (World English Bible)" data-verse-url="/bible/web/job/5/4/"><span class="v-num">4</span><span class="v-txt">His children are far from safety, They are crushed in the gate. Neither is there any to deliver them,</span></a>
+<a class="v-row" href="/bible/web/job/5/5/" data-ref="Job 5:5 (World English Bible)" data-verse-url="/bible/web/job/5/5/"><span class="v-num">5</span><span class="v-txt">Whose harvest the hungry eats up, And take it even out of the thorns; The snare gapes for their substance.</span></a>
+<a class="v-row" href="/bible/web/job/5/6/" data-ref="Job 5:6 (World English Bible)" data-verse-url="/bible/web/job/5/6/"><span class="v-num">6</span><span class="v-txt">For affliction doesn't come forth from the dust, Neither does trouble spring out of the ground;</span></a>
+<a class="v-row" href="/bible/web/job/5/7/" data-ref="Job 5:7 (World English Bible)" data-verse-url="/bible/web/job/5/7/"><span class="v-num">7</span><span class="v-txt">But man is born to trouble, As the sparks fly upward.</span></a>
+<a class="v-row" href="/bible/web/job/5/8/" data-ref="Job 5:8 (World English Bible)" data-verse-url="/bible/web/job/5/8/"><span class="v-num">8</span><span class="v-txt">"But as for me, I would seek God, To God would I commit my cause;</span></a>
+<a class="v-row" href="/bible/web/job/5/9/" data-ref="Job 5:9 (World English Bible)" data-verse-url="/bible/web/job/5/9/"><span class="v-num">9</span><span class="v-txt">Who does great things that can't be fathomed, Marvelous things without number;</span></a>
+<a class="v-row" href="/bible/web/job/5/10/" data-ref="Job 5:10 (World English Bible)" data-verse-url="/bible/web/job/5/10/"><span class="v-num">10</span><span class="v-txt">Who gives rain on the earth, And sends waters on the fields;</span></a>
+<a class="v-row" href="/bible/web/job/5/11/" data-ref="Job 5:11 (World English Bible)" data-verse-url="/bible/web/job/5/11/"><span class="v-num">11</span><span class="v-txt">So that he sets up on high those who are low, Those who mourn are exalted to safety.</span></a>
+<a class="v-row" href="/bible/web/job/5/12/" data-ref="Job 5:12 (World English Bible)" data-verse-url="/bible/web/job/5/12/"><span class="v-num">12</span><span class="v-txt">He frustrates the devices of the crafty, So that their hands can't perform their enterprise.</span></a>
+<a class="v-row" href="/bible/web/job/5/13/" data-ref="Job 5:13 (World English Bible)" data-verse-url="/bible/web/job/5/13/"><span class="v-num">13</span><span class="v-txt">He takes the wise in their own craftiness; The counsel of the cunning is carried headlong.</span></a>
+<a class="v-row" href="/bible/web/job/5/14/" data-ref="Job 5:14 (World English Bible)" data-verse-url="/bible/web/job/5/14/"><span class="v-num">14</span><span class="v-txt">They meet with darkness in the day-time, And grope at noonday as in the night.</span></a>
+<a class="v-row" href="/bible/web/job/5/15/" data-ref="Job 5:15 (World English Bible)" data-verse-url="/bible/web/job/5/15/"><span class="v-num">15</span><span class="v-txt">But he saves from the sword of their mouth, Even the needy from the hand of the mighty.</span></a>
+<a class="v-row" href="/bible/web/job/5/16/" data-ref="Job 5:16 (World English Bible)" data-verse-url="/bible/web/job/5/16/"><span class="v-num">16</span><span class="v-txt">So the poor has hope, And injustice shuts her mouth.</span></a>
+<a class="v-row" href="/bible/web/job/5/17/" data-ref="Job 5:17 (World English Bible)" data-verse-url="/bible/web/job/5/17/"><span class="v-num">17</span><span class="v-txt">"Behold, happy is the man whom God corrects: Therefore do not despise the chastening of the Almighty.</span></a>
+<a class="v-row" href="/bible/web/job/5/18/" data-ref="Job 5:18 (World English Bible)" data-verse-url="/bible/web/job/5/18/"><span class="v-num">18</span><span class="v-txt">For he wounds, and binds up; He injures, and his hands make whole.</span></a>
+<a class="v-row" href="/bible/web/job/5/19/" data-ref="Job 5:19 (World English Bible)" data-verse-url="/bible/web/job/5/19/"><span class="v-num">19</span><span class="v-txt">He will deliver you in six troubles; Yes, in seven there shall no evil touch you.</span></a>
+<a class="v-row" href="/bible/web/job/5/20/" data-ref="Job 5:20 (World English Bible)" data-verse-url="/bible/web/job/5/20/"><span class="v-num">20</span><span class="v-txt">In famine he will redeem you from death; In war, from the power of the sword.</span></a>
+<a class="v-row" href="/bible/web/job/5/21/" data-ref="Job 5:21 (World English Bible)" data-verse-url="/bible/web/job/5/21/"><span class="v-num">21</span><span class="v-txt">You shall be hidden from the scourge of the tongue, Neither shall you be afraid of destruction when it comes.</span></a>
+<a class="v-row" href="/bible/web/job/5/22/" data-ref="Job 5:22 (World English Bible)" data-verse-url="/bible/web/job/5/22/"><span class="v-num">22</span><span class="v-txt">At destruction and famine you shall laugh, Neither shall you be afraid of the animals of the earth.</span></a>
+<a class="v-row" href="/bible/web/job/5/23/" data-ref="Job 5:23 (World English Bible)" data-verse-url="/bible/web/job/5/23/"><span class="v-num">23</span><span class="v-txt">For you shall be in league with the stones of the field. The animals of the field shall be at peace with you.</span></a>
+<a class="v-row" href="/bible/web/job/5/24/" data-ref="Job 5:24 (World English Bible)" data-verse-url="/bible/web/job/5/24/"><span class="v-num">24</span><span class="v-txt">You shall know that your tent is in peace. You shall visit your fold, and shall miss nothing.</span></a>
+<a class="v-row" href="/bible/web/job/5/25/" data-ref="Job 5:25 (World English Bible)" data-verse-url="/bible/web/job/5/25/"><span class="v-num">25</span><span class="v-txt">You shall know also that your seed shall be great, Your offspring as the grass of the earth.</span></a>
+<a class="v-row" href="/bible/web/job/5/26/" data-ref="Job 5:26 (World English Bible)" data-verse-url="/bible/web/job/5/26/"><span class="v-num">26</span><span class="v-txt">You shall come to your grave in a full age, Like a shock of grain comes in its season.</span></a>
+<a class="v-row" href="/bible/web/job/5/27/" data-ref="Job 5:27 (World English Bible)" data-verse-url="/bible/web/job/5/27/"><span class="v-num">27</span><span class="v-txt">Look this, we have searched it, so it is; Hear it, and know it for your good."</span></a>
 
     
 <div class="app-cta">

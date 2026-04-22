@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,26 +204,26 @@ a:hover{text-decoration:underline}
       <h2>Chapter 49</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Psalm 49:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Hear this, all ye people; give ear, all ye inhabitants of the world:</span></div>
-<div class="v-row" data-ref="Psalm 49:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Both low and high, rich and poor, together.</span></div>
-<div class="v-row" data-ref="Psalm 49:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">My mouth shall speak of wisdom; and the meditation of my heart shall be of understanding.</span></div>
-<div class="v-row" data-ref="Psalm 49:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I will incline mine ear to a parable: I will open my dark saying upon the harp.</span></div>
-<div class="v-row" data-ref="Psalm 49:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Wherefore should I fear in the days of evil, when the iniquity of my heels shall compass me about?</span></div>
-<div class="v-row" data-ref="Psalm 49:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They that trust in their wealth, and boast themselves in the multitude of their riches;</span></div>
-<div class="v-row" data-ref="Psalm 49:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">None of them can by any means redeem his brother, nor give to God a ransom for him:</span></div>
-<div class="v-row" data-ref="Psalm 49:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For the redemption of their soul is precious, and it ceaseth for ever:)</span></div>
-<div class="v-row" data-ref="Psalm 49:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">That he should still live for ever, and not see corruption.</span></div>
-<div class="v-row" data-ref="Psalm 49:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For he seeth that wise men die, likewise the fool and the brutish person perish, and leave their wealth to others.</span></div>
-<div class="v-row" data-ref="Psalm 49:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Their inward thought is, that their houses shall continue for ever, and their dwelling places to all generations; they call their lands after their own names.</span></div>
-<div class="v-row" data-ref="Psalm 49:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Nevertheless man being in honour abideth not: he is like the beasts that perish.</span></div>
-<div class="v-row" data-ref="Psalm 49:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">This their way is their folly: yet their posterity approve their sayings. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 49:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Like sheep they are laid in the grave; death shall feed on them; and the upright shall have dominion over them in the morning; and their beauty shall consume in the grave from their dwelling.</span></div>
-<div class="v-row" data-ref="Psalm 49:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">But God will redeem my soul from the power of the grave: for he shall receive me. Selah.</span></div>
-<div class="v-row" data-ref="Psalm 49:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Be not thou afraid when one is made rich, when the glory of his house is increased;</span></div>
-<div class="v-row" data-ref="Psalm 49:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">For when he dieth he shall carry nothing away: his glory shall not descend after him.</span></div>
-<div class="v-row" data-ref="Psalm 49:18 (King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Though while he lived he blessed his soul: and men will praise thee, when thou doest well to thyself.</span></div>
-<div class="v-row" data-ref="Psalm 49:19 (King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">He shall go to the generation of his fathers; they shall never see light.</span></div>
-<div class="v-row" data-ref="Psalm 49:20 (King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Man that is in honour, and understandeth not, is like the beasts that perish.</span></div>
+    <a class="v-row" href="/bible/kjv/psalms/49/1/" data-ref="Psalm 49:1 (King James Version)" data-verse-url="/bible/kjv/psalms/49/1/"><span class="v-num">1</span><span class="v-txt">Hear this, all ye people; give ear, all ye inhabitants of the world:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/2/" data-ref="Psalm 49:2 (King James Version)" data-verse-url="/bible/kjv/psalms/49/2/"><span class="v-num">2</span><span class="v-txt">Both low and high, rich and poor, together.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/3/" data-ref="Psalm 49:3 (King James Version)" data-verse-url="/bible/kjv/psalms/49/3/"><span class="v-num">3</span><span class="v-txt">My mouth shall speak of wisdom; and the meditation of my heart shall be of understanding.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/4/" data-ref="Psalm 49:4 (King James Version)" data-verse-url="/bible/kjv/psalms/49/4/"><span class="v-num">4</span><span class="v-txt">I will incline mine ear to a parable: I will open my dark saying upon the harp.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/5/" data-ref="Psalm 49:5 (King James Version)" data-verse-url="/bible/kjv/psalms/49/5/"><span class="v-num">5</span><span class="v-txt">Wherefore should I fear in the days of evil, when the iniquity of my heels shall compass me about?</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/6/" data-ref="Psalm 49:6 (King James Version)" data-verse-url="/bible/kjv/psalms/49/6/"><span class="v-num">6</span><span class="v-txt">They that trust in their wealth, and boast themselves in the multitude of their riches;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/7/" data-ref="Psalm 49:7 (King James Version)" data-verse-url="/bible/kjv/psalms/49/7/"><span class="v-num">7</span><span class="v-txt">None of them can by any means redeem his brother, nor give to God a ransom for him:</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/8/" data-ref="Psalm 49:8 (King James Version)" data-verse-url="/bible/kjv/psalms/49/8/"><span class="v-num">8</span><span class="v-txt">For the redemption of their soul is precious, and it ceaseth for ever:)</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/9/" data-ref="Psalm 49:9 (King James Version)" data-verse-url="/bible/kjv/psalms/49/9/"><span class="v-num">9</span><span class="v-txt">That he should still live for ever, and not see corruption.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/10/" data-ref="Psalm 49:10 (King James Version)" data-verse-url="/bible/kjv/psalms/49/10/"><span class="v-num">10</span><span class="v-txt">For he seeth that wise men die, likewise the fool and the brutish person perish, and leave their wealth to others.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/11/" data-ref="Psalm 49:11 (King James Version)" data-verse-url="/bible/kjv/psalms/49/11/"><span class="v-num">11</span><span class="v-txt">Their inward thought is, that their houses shall continue for ever, and their dwelling places to all generations; they call their lands after their own names.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/12/" data-ref="Psalm 49:12 (King James Version)" data-verse-url="/bible/kjv/psalms/49/12/"><span class="v-num">12</span><span class="v-txt">Nevertheless man being in honour abideth not: he is like the beasts that perish.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/13/" data-ref="Psalm 49:13 (King James Version)" data-verse-url="/bible/kjv/psalms/49/13/"><span class="v-num">13</span><span class="v-txt">This their way is their folly: yet their posterity approve their sayings. Selah.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/14/" data-ref="Psalm 49:14 (King James Version)" data-verse-url="/bible/kjv/psalms/49/14/"><span class="v-num">14</span><span class="v-txt">Like sheep they are laid in the grave; death shall feed on them; and the upright shall have dominion over them in the morning; and their beauty shall consume in the grave from their dwelling.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/15/" data-ref="Psalm 49:15 (King James Version)" data-verse-url="/bible/kjv/psalms/49/15/"><span class="v-num">15</span><span class="v-txt">But God will redeem my soul from the power of the grave: for he shall receive me. Selah.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/16/" data-ref="Psalm 49:16 (King James Version)" data-verse-url="/bible/kjv/psalms/49/16/"><span class="v-num">16</span><span class="v-txt">Be not thou afraid when one is made rich, when the glory of his house is increased;</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/17/" data-ref="Psalm 49:17 (King James Version)" data-verse-url="/bible/kjv/psalms/49/17/"><span class="v-num">17</span><span class="v-txt">For when he dieth he shall carry nothing away: his glory shall not descend after him.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/18/" data-ref="Psalm 49:18 (King James Version)" data-verse-url="/bible/kjv/psalms/49/18/"><span class="v-num">18</span><span class="v-txt">Though while he lived he blessed his soul: and men will praise thee, when thou doest well to thyself.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/19/" data-ref="Psalm 49:19 (King James Version)" data-verse-url="/bible/kjv/psalms/49/19/"><span class="v-num">19</span><span class="v-txt">He shall go to the generation of his fathers; they shall never see light.</span></a>
+<a class="v-row" href="/bible/kjv/psalms/49/20/" data-ref="Psalm 49:20 (King James Version)" data-verse-url="/bible/kjv/psalms/49/20/"><span class="v-num">20</span><span class="v-txt">Man that is in honour, and understandeth not, is like the beasts that perish.</span></a>
 
     
 <div class="app-cta">

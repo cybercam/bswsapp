@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 34</h2>
       <span class="version-tag">World English Bible</span>
     </div>
-    <div class="v-row" data-ref="Psalm 34:1 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">By David; when he pretended to be insane before Abimelech, who drove him away, and he departed. I will bless Yahweh at all times. His praise will always be in my mouth.</span></div>
-<div class="v-row" data-ref="Psalm 34:2 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">My soul shall boast in Yahweh. The humble shall hear of it, and be glad.</span></div>
-<div class="v-row" data-ref="Psalm 34:3 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Oh magnify Yahweh with me. Let us exalt his name together.</span></div>
-<div class="v-row" data-ref="Psalm 34:4 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">I sought Yahweh, and he answered me, And delivered me from all my fears.</span></div>
-<div class="v-row" data-ref="Psalm 34:5 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">They looked to him, and were radiant. Their faces shall never be covered with shame.</span></div>
-<div class="v-row" data-ref="Psalm 34:6 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">This poor man cried, and Yahweh heard him, And saved him out of all his troubles.</span></div>
-<div class="v-row" data-ref="Psalm 34:7 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">The angel of Yahweh encamps round about those who fear him, And delivers them.</span></div>
-<div class="v-row" data-ref="Psalm 34:8 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Oh taste and see that Yahweh is good. Blessed is the man who takes refuge in him.</span></div>
-<div class="v-row" data-ref="Psalm 34:9 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Oh fear Yahweh, you his saints, For there is no lack with those who fear him.</span></div>
-<div class="v-row" data-ref="Psalm 34:10 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The young lions do lack, and suffer hunger, But those who seek Yahweh shall not lack any good thing.</span></div>
-<div class="v-row" data-ref="Psalm 34:11 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Come, you children, listen to me. I will teach you the fear of Yahweh.</span></div>
-<div class="v-row" data-ref="Psalm 34:12 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Who is someone who desires life, And loves many days, that he may see good?</span></div>
-<div class="v-row" data-ref="Psalm 34:13 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Keep your tongue from evil, And your lips from speaking lies.</span></div>
-<div class="v-row" data-ref="Psalm 34:14 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Depart from evil, and do good. Seek peace, and pursue it.</span></div>
-<div class="v-row" data-ref="Psalm 34:15 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Yahweh's eyes are toward the righteous. His ears listen to their cry.</span></div>
-<div class="v-row" data-ref="Psalm 34:16 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Yahweh's face is against those who do evil, To cut off the memory of them from the earth.</span></div>
-<div class="v-row" data-ref="Psalm 34:17 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">The righteous cry, and Yahweh hears, And delivers them out of all their troubles.</span></div>
-<div class="v-row" data-ref="Psalm 34:18 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Yahweh is near to those who have a broken heart, And saves those who have a crushed spirit.</span></div>
-<div class="v-row" data-ref="Psalm 34:19 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Many are the afflictions of the righteous, But Yahweh delivers him out of them all.</span></div>
-<div class="v-row" data-ref="Psalm 34:20 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">He protects all of his bones. Not one of them is broken.</span></div>
-<div class="v-row" data-ref="Psalm 34:21 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Evil shall kill the wicked. Those who hate the righteous shall be condemned.</span></div>
-<div class="v-row" data-ref="Psalm 34:22 (World English Bible)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Yahweh redeems the soul of his servants. None of those who take refuge in him shall be condemned. By David.</span></div>
+    <a class="v-row" href="/bible/web/psalms/34/1/" data-ref="Psalm 34:1 (World English Bible)" data-verse-url="/bible/web/psalms/34/1/"><span class="v-num">1</span><span class="v-txt">By David; when he pretended to be insane before Abimelech, who drove him away, and he departed. I will bless Yahweh at all times. His praise will always be in my mouth.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/2/" data-ref="Psalm 34:2 (World English Bible)" data-verse-url="/bible/web/psalms/34/2/"><span class="v-num">2</span><span class="v-txt">My soul shall boast in Yahweh. The humble shall hear of it, and be glad.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/3/" data-ref="Psalm 34:3 (World English Bible)" data-verse-url="/bible/web/psalms/34/3/"><span class="v-num">3</span><span class="v-txt">Oh magnify Yahweh with me. Let us exalt his name together.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/4/" data-ref="Psalm 34:4 (World English Bible)" data-verse-url="/bible/web/psalms/34/4/"><span class="v-num">4</span><span class="v-txt">I sought Yahweh, and he answered me, And delivered me from all my fears.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/5/" data-ref="Psalm 34:5 (World English Bible)" data-verse-url="/bible/web/psalms/34/5/"><span class="v-num">5</span><span class="v-txt">They looked to him, and were radiant. Their faces shall never be covered with shame.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/6/" data-ref="Psalm 34:6 (World English Bible)" data-verse-url="/bible/web/psalms/34/6/"><span class="v-num">6</span><span class="v-txt">This poor man cried, and Yahweh heard him, And saved him out of all his troubles.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/7/" data-ref="Psalm 34:7 (World English Bible)" data-verse-url="/bible/web/psalms/34/7/"><span class="v-num">7</span><span class="v-txt">The angel of Yahweh encamps round about those who fear him, And delivers them.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/8/" data-ref="Psalm 34:8 (World English Bible)" data-verse-url="/bible/web/psalms/34/8/"><span class="v-num">8</span><span class="v-txt">Oh taste and see that Yahweh is good. Blessed is the man who takes refuge in him.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/9/" data-ref="Psalm 34:9 (World English Bible)" data-verse-url="/bible/web/psalms/34/9/"><span class="v-num">9</span><span class="v-txt">Oh fear Yahweh, you his saints, For there is no lack with those who fear him.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/10/" data-ref="Psalm 34:10 (World English Bible)" data-verse-url="/bible/web/psalms/34/10/"><span class="v-num">10</span><span class="v-txt">The young lions do lack, and suffer hunger, But those who seek Yahweh shall not lack any good thing.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/11/" data-ref="Psalm 34:11 (World English Bible)" data-verse-url="/bible/web/psalms/34/11/"><span class="v-num">11</span><span class="v-txt">Come, you children, listen to me. I will teach you the fear of Yahweh.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/12/" data-ref="Psalm 34:12 (World English Bible)" data-verse-url="/bible/web/psalms/34/12/"><span class="v-num">12</span><span class="v-txt">Who is someone who desires life, And loves many days, that he may see good?</span></a>
+<a class="v-row" href="/bible/web/psalms/34/13/" data-ref="Psalm 34:13 (World English Bible)" data-verse-url="/bible/web/psalms/34/13/"><span class="v-num">13</span><span class="v-txt">Keep your tongue from evil, And your lips from speaking lies.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/14/" data-ref="Psalm 34:14 (World English Bible)" data-verse-url="/bible/web/psalms/34/14/"><span class="v-num">14</span><span class="v-txt">Depart from evil, and do good. Seek peace, and pursue it.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/15/" data-ref="Psalm 34:15 (World English Bible)" data-verse-url="/bible/web/psalms/34/15/"><span class="v-num">15</span><span class="v-txt">Yahweh's eyes are toward the righteous. His ears listen to their cry.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/16/" data-ref="Psalm 34:16 (World English Bible)" data-verse-url="/bible/web/psalms/34/16/"><span class="v-num">16</span><span class="v-txt">Yahweh's face is against those who do evil, To cut off the memory of them from the earth.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/17/" data-ref="Psalm 34:17 (World English Bible)" data-verse-url="/bible/web/psalms/34/17/"><span class="v-num">17</span><span class="v-txt">The righteous cry, and Yahweh hears, And delivers them out of all their troubles.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/18/" data-ref="Psalm 34:18 (World English Bible)" data-verse-url="/bible/web/psalms/34/18/"><span class="v-num">18</span><span class="v-txt">Yahweh is near to those who have a broken heart, And saves those who have a crushed spirit.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/19/" data-ref="Psalm 34:19 (World English Bible)" data-verse-url="/bible/web/psalms/34/19/"><span class="v-num">19</span><span class="v-txt">Many are the afflictions of the righteous, But Yahweh delivers him out of them all.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/20/" data-ref="Psalm 34:20 (World English Bible)" data-verse-url="/bible/web/psalms/34/20/"><span class="v-num">20</span><span class="v-txt">He protects all of his bones. Not one of them is broken.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/21/" data-ref="Psalm 34:21 (World English Bible)" data-verse-url="/bible/web/psalms/34/21/"><span class="v-num">21</span><span class="v-txt">Evil shall kill the wicked. Those who hate the righteous shall be condemned.</span></a>
+<a class="v-row" href="/bible/web/psalms/34/22/" data-ref="Psalm 34:22 (World English Bible)" data-verse-url="/bible/web/psalms/34/22/"><span class="v-num">22</span><span class="v-txt">Yahweh redeems the soul of his servants. None of those who take refuge in him shall be condemned. By David.</span></a>
 
     
 <div class="app-cta">

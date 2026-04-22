@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Jonah 1:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now the word of Jehovah came unto Jonah the son of Amittai, saying,</span></div>
-<div class="v-row" data-ref="Jonah 1:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Arise, go to Nineveh, that great city, and cry against it; for their wickedness is come up before me.</span></div>
-<div class="v-row" data-ref="Jonah 1:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">But Jonah rose up to flee unto Tarshish from the presence of Jehovah; and he went down to Joppa, and found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of Jehovah.</span></div>
-<div class="v-row" data-ref="Jonah 1:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">But Jehovah sent out a great wind upon the sea, and there was a mighty tempest on the sea, so that the ship was like to be broken.</span></div>
-<div class="v-row" data-ref="Jonah 1:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the mariners were afraid, and cried every man unto his god; and they cast forth the wares that were in the ship into the sea, to lighten it unto them. But Jonah was gone down into the innermost parts of the ship; and he lay, and was fast asleep.</span></div>
-<div class="v-row" data-ref="Jonah 1:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So the shipmaster came to him, and said unto him, What meanest thou, O sleeper? arise, call upon thy God, if so be that God will think upon us, that we perish not.</span></div>
-<div class="v-row" data-ref="Jonah 1:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">And they said every one to his fellow, Come, and let us cast lots, that we may know for whose cause this evil is upon us. So they cast lots, and the lot fell upon Jonah.</span></div>
-<div class="v-row" data-ref="Jonah 1:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Then said they unto him, Tell us, we pray thee, for whose cause this evil is upon us; what is thine occupation? and whence comest thou? what is thy country? and of what people art thou?</span></div>
-<div class="v-row" data-ref="Jonah 1:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And he said unto them, I am a Hebrew; and I fear Jehovah, the God of heaven, who hath made the sea and the dry land.</span></div>
-<div class="v-row" data-ref="Jonah 1:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Then were the men exceedingly afraid, and said unto him, What is this that thou hast done? For the men knew that he was fleeing from the presence of Jehovah, because he had told them.</span></div>
-<div class="v-row" data-ref="Jonah 1:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then said they unto him, What shall we do unto thee, that the sea may be calm unto us? for the sea grew more and more tempestuous.</span></div>
-<div class="v-row" data-ref="Jonah 1:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And he said unto them, Take me up, and cast me forth into the sea; so shall the sea be calm unto you: for I know that for my sake this great tempest is upon you.</span></div>
-<div class="v-row" data-ref="Jonah 1:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Nevertheless the men rowed hard to get them back to the land; but they could not: for the sea grew more and more tempestuous against them.</span></div>
-<div class="v-row" data-ref="Jonah 1:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Wherefore they cried unto Jehovah, and said, We beseech thee, O Jehovah, we beseech thee, let us not perish for this man's life, and lay not upon us innocent blood; for thou, O Jehovah, hast done as it pleased thee.</span></div>
-<div class="v-row" data-ref="Jonah 1:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So they took up Jonah, and cast him forth into the sea; and the sea ceased from its raging.</span></div>
-<div class="v-row" data-ref="Jonah 1:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Then the men feared Jehovah exceedingly; and they offered a sacrifice unto Jehovah, and made vows.</span></div>
-<div class="v-row" data-ref="Jonah 1:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And Jehovah prepared a great fish to swallow up Jonah; and Jonah was in the belly of the fish three days and three nights.</span></div>
+    <a class="v-row" href="/bible/asv/jonah/1/1/" data-ref="Jonah 1:1 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/1/"><span class="v-num">1</span><span class="v-txt">Now the word of Jehovah came unto Jonah the son of Amittai, saying,</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/2/" data-ref="Jonah 1:2 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/2/"><span class="v-num">2</span><span class="v-txt">Arise, go to Nineveh, that great city, and cry against it; for their wickedness is come up before me.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/3/" data-ref="Jonah 1:3 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/3/"><span class="v-num">3</span><span class="v-txt">But Jonah rose up to flee unto Tarshish from the presence of Jehovah; and he went down to Joppa, and found a ship going to Tarshish: so he paid the fare thereof, and went down into it, to go with them unto Tarshish from the presence of Jehovah.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/4/" data-ref="Jonah 1:4 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/4/"><span class="v-num">4</span><span class="v-txt">But Jehovah sent out a great wind upon the sea, and there was a mighty tempest on the sea, so that the ship was like to be broken.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/5/" data-ref="Jonah 1:5 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/5/"><span class="v-num">5</span><span class="v-txt">Then the mariners were afraid, and cried every man unto his god; and they cast forth the wares that were in the ship into the sea, to lighten it unto them. But Jonah was gone down into the innermost parts of the ship; and he lay, and was fast asleep.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/6/" data-ref="Jonah 1:6 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/6/"><span class="v-num">6</span><span class="v-txt">So the shipmaster came to him, and said unto him, What meanest thou, O sleeper? arise, call upon thy God, if so be that God will think upon us, that we perish not.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/7/" data-ref="Jonah 1:7 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/7/"><span class="v-num">7</span><span class="v-txt">And they said every one to his fellow, Come, and let us cast lots, that we may know for whose cause this evil is upon us. So they cast lots, and the lot fell upon Jonah.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/8/" data-ref="Jonah 1:8 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/8/"><span class="v-num">8</span><span class="v-txt">Then said they unto him, Tell us, we pray thee, for whose cause this evil is upon us; what is thine occupation? and whence comest thou? what is thy country? and of what people art thou?</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/9/" data-ref="Jonah 1:9 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/9/"><span class="v-num">9</span><span class="v-txt">And he said unto them, I am a Hebrew; and I fear Jehovah, the God of heaven, who hath made the sea and the dry land.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/10/" data-ref="Jonah 1:10 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/10/"><span class="v-num">10</span><span class="v-txt">Then were the men exceedingly afraid, and said unto him, What is this that thou hast done? For the men knew that he was fleeing from the presence of Jehovah, because he had told them.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/11/" data-ref="Jonah 1:11 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/11/"><span class="v-num">11</span><span class="v-txt">Then said they unto him, What shall we do unto thee, that the sea may be calm unto us? for the sea grew more and more tempestuous.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/12/" data-ref="Jonah 1:12 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/12/"><span class="v-num">12</span><span class="v-txt">And he said unto them, Take me up, and cast me forth into the sea; so shall the sea be calm unto you: for I know that for my sake this great tempest is upon you.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/13/" data-ref="Jonah 1:13 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/13/"><span class="v-num">13</span><span class="v-txt">Nevertheless the men rowed hard to get them back to the land; but they could not: for the sea grew more and more tempestuous against them.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/14/" data-ref="Jonah 1:14 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/14/"><span class="v-num">14</span><span class="v-txt">Wherefore they cried unto Jehovah, and said, We beseech thee, O Jehovah, we beseech thee, let us not perish for this man's life, and lay not upon us innocent blood; for thou, O Jehovah, hast done as it pleased thee.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/15/" data-ref="Jonah 1:15 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/15/"><span class="v-num">15</span><span class="v-txt">So they took up Jonah, and cast him forth into the sea; and the sea ceased from its raging.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/16/" data-ref="Jonah 1:16 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/16/"><span class="v-num">16</span><span class="v-txt">Then the men feared Jehovah exceedingly; and they offered a sacrifice unto Jehovah, and made vows.</span></a>
+<a class="v-row" href="/bible/asv/jonah/1/17/" data-ref="Jonah 1:17 (American Standard Version)" data-verse-url="/bible/asv/jonah/1/17/"><span class="v-num">17</span><span class="v-txt">And Jehovah prepared a great fish to swallow up Jonah; and Jonah was in the belly of the fish three days and three nights.</span></a>
 
     
 <div class="app-cta">

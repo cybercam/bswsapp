@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,21 +204,21 @@ a:hover{text-decoration:underline}
       <h2>Chapter 20</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Revelation 20:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then I saw an angel coming down from heaven, having the key to the bottomless pit and a great chain in his hand.</span></div>
-<div class="v-row" data-ref="Revelation 20:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">He laid hold of the dragon, that serpent of old, who is [the] Devil and Satan, and bound him for a thousand years;</span></div>
-<div class="v-row" data-ref="Revelation 20:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">and he cast him into the bottomless pit, and shut him up, and set a seal on him, so that he should deceive the nations no more till the thousand years were finished. But after these things he must be released for a little while.</span></div>
-<div class="v-row" data-ref="Revelation 20:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And I saw thrones, and they sat on them, and judgment was committed to them. Then [I saw] the souls of those who had been beheaded for their witness to Jesus and for the word of God, who had not worshiped the beast or his image, and had not received [his] mark on their foreheads or on their hands. And they lived and reigned with Christ for a thousand years.</span></div>
-<div class="v-row" data-ref="Revelation 20:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But the rest of the dead did not live again until the thousand years were finished. This [is] the first resurrection.</span></div>
-<div class="v-row" data-ref="Revelation 20:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Blessed and holy [is] he who has part in the first resurrection. Over such the second death has no power, but they shall be priests of God and of Christ, and shall reign with Him a thousand years.</span></div>
-<div class="v-row" data-ref="Revelation 20:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Now when the thousand years have expired, Satan will be released from his prison</span></div>
-<div class="v-row" data-ref="Revelation 20:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">and will go out to deceive the nations which are in the four corners of the earth, Gog and Magog, to gather them together to battle, whose number [is] as the sand of the sea.</span></div>
-<div class="v-row" data-ref="Revelation 20:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">They went up on the breadth of the earth and surrounded the camp of the saints and the beloved city. And fire came down from God out of heaven and devoured them.</span></div>
-<div class="v-row" data-ref="Revelation 20:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">The devil, who deceived them, was cast into the lake of fire and brimstone where the beast and the false prophet [are.] And they will be tormented day and night forever and ever.</span></div>
-<div class="v-row" data-ref="Revelation 20:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Then I saw a great white throne and Him who sat on it, from whose face the earth and the heaven fled away. And there was found no place for them.</span></div>
-<div class="v-row" data-ref="Revelation 20:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And I saw the dead, small and great, standing before God, and books were opened. And another book was opened, which is [the Book] of Life. And the dead were judged according to their works, by the things which were written in the books.</span></div>
-<div class="v-row" data-ref="Revelation 20:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">The sea gave up the dead who were in it, and Death and Hades delivered up the dead who were in them. And they were judged, each one according to his works.</span></div>
-<div class="v-row" data-ref="Revelation 20:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Then Death and Hades were cast into the lake of fire. This is the second death.</span></div>
-<div class="v-row" data-ref="Revelation 20:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And anyone not found written in the Book of Life was cast into the lake of fire.</span></div>
+    <a class="v-row" href="/bible/nkjv/revelation/20/1/" data-ref="Revelation 20:1 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/1/"><span class="v-num">1</span><span class="v-txt">Then I saw an angel coming down from heaven, having the key to the bottomless pit and a great chain in his hand.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/2/" data-ref="Revelation 20:2 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/2/"><span class="v-num">2</span><span class="v-txt">He laid hold of the dragon, that serpent of old, who is [the] Devil and Satan, and bound him for a thousand years;</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/3/" data-ref="Revelation 20:3 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/3/"><span class="v-num">3</span><span class="v-txt">and he cast him into the bottomless pit, and shut him up, and set a seal on him, so that he should deceive the nations no more till the thousand years were finished. But after these things he must be released for a little while.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/4/" data-ref="Revelation 20:4 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/4/"><span class="v-num">4</span><span class="v-txt">And I saw thrones, and they sat on them, and judgment was committed to them. Then [I saw] the souls of those who had been beheaded for their witness to Jesus and for the word of God, who had not worshiped the beast or his image, and had not received [his] mark on their foreheads or on their hands. And they lived and reigned with Christ for a thousand years.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/5/" data-ref="Revelation 20:5 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/5/"><span class="v-num">5</span><span class="v-txt">But the rest of the dead did not live again until the thousand years were finished. This [is] the first resurrection.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/6/" data-ref="Revelation 20:6 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/6/"><span class="v-num">6</span><span class="v-txt">Blessed and holy [is] he who has part in the first resurrection. Over such the second death has no power, but they shall be priests of God and of Christ, and shall reign with Him a thousand years.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/7/" data-ref="Revelation 20:7 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/7/"><span class="v-num">7</span><span class="v-txt">Now when the thousand years have expired, Satan will be released from his prison</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/8/" data-ref="Revelation 20:8 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/8/"><span class="v-num">8</span><span class="v-txt">and will go out to deceive the nations which are in the four corners of the earth, Gog and Magog, to gather them together to battle, whose number [is] as the sand of the sea.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/9/" data-ref="Revelation 20:9 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/9/"><span class="v-num">9</span><span class="v-txt">They went up on the breadth of the earth and surrounded the camp of the saints and the beloved city. And fire came down from God out of heaven and devoured them.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/10/" data-ref="Revelation 20:10 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/10/"><span class="v-num">10</span><span class="v-txt">The devil, who deceived them, was cast into the lake of fire and brimstone where the beast and the false prophet [are.] And they will be tormented day and night forever and ever.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/11/" data-ref="Revelation 20:11 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/11/"><span class="v-num">11</span><span class="v-txt">Then I saw a great white throne and Him who sat on it, from whose face the earth and the heaven fled away. And there was found no place for them.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/12/" data-ref="Revelation 20:12 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/12/"><span class="v-num">12</span><span class="v-txt">And I saw the dead, small and great, standing before God, and books were opened. And another book was opened, which is [the Book] of Life. And the dead were judged according to their works, by the things which were written in the books.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/13/" data-ref="Revelation 20:13 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/13/"><span class="v-num">13</span><span class="v-txt">The sea gave up the dead who were in it, and Death and Hades delivered up the dead who were in them. And they were judged, each one according to his works.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/14/" data-ref="Revelation 20:14 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/14/"><span class="v-num">14</span><span class="v-txt">Then Death and Hades were cast into the lake of fire. This is the second death.</span></a>
+<a class="v-row" href="/bible/nkjv/revelation/20/15/" data-ref="Revelation 20:15 (New King James Version)" data-verse-url="/bible/nkjv/revelation/20/15/"><span class="v-num">15</span><span class="v-txt">And anyone not found written in the Book of Life was cast into the lake of fire.</span></a>
 
     
 <div class="app-cta">

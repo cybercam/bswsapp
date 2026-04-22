@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,36 +204,36 @@ a:hover{text-decoration:underline}
       <h2>Chapter 22</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Job 22:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Then Eliphaz the Temanite made answer and said,</span></div>
-<div class="v-row" data-ref="Job 22:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Is it possible for a man to be of profit to God? No, for a man's wisdom is only of profit to himself.</span></div>
-<div class="v-row" data-ref="Job 22:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Is it of any interest to the Ruler of all that you are upright? or is it of use to him that your ways are without sin?</span></div>
-<div class="v-row" data-ref="Job 22:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Is it because you give him honour that he is sending punishment on you and is judging you?</span></div>
-<div class="v-row" data-ref="Job 22:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Is not your evil-doing great? and there is no end to your sins.</span></div>
-<div class="v-row" data-ref="Job 22:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For you have taken your brother's goods when he was not in your debt, and have taken away the clothing of those who have need of it.</span></div>
-<div class="v-row" data-ref="Job 22:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">You do not give water to the tired traveller, and from him who has no food you keep back bread.</span></div>
-<div class="v-row" data-ref="Job 22:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">For it was the man with power who had the land, and the man with an honoured name who was living in it.</span></div>
-<div class="v-row" data-ref="Job 22:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">You have sent widows away without hearing their cause, and you have taken away the support of the child who has no father.</span></div>
-<div class="v-row" data-ref="Job 22:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For this cause nets are round your feet, and you are overcome with sudden fear.</span></div>
-<div class="v-row" data-ref="Job 22:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Your light is made dark so that you are unable to see, and you are covered by a mass of waters.</span></div>
-<div class="v-row" data-ref="Job 22:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Is not God as high as heaven? and see the stars, how high they are!</span></div>
-<div class="v-row" data-ref="Job 22:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And you say, What knowledge has God? is he able to give decisions through the deep dark?</span></div>
-<div class="v-row" data-ref="Job 22:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Thick clouds are covering him, so that he is unable to see; and he is walking on the arch of heaven.</span></div>
-<div class="v-row" data-ref="Job 22:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Will you keep the old way by which evil men went?</span></div>
-<div class="v-row" data-ref="Job 22:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Who were violently taken away before their time, who were overcome by the rush of waters:</span></div>
-<div class="v-row" data-ref="Job 22:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Who said to God, Go away from us; and, What is the Ruler of all able to do to us?</span></div>
-<div class="v-row" data-ref="Job 22:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">Though he made their houses full of good things: but the purpose of the evil-doers is far from me!</span></div>
-<div class="v-row" data-ref="Job 22:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The upright saw it and were glad: and those who had done no wrong made sport of them,</span></div>
-<div class="v-row" data-ref="Job 22:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Saying, Truly, their substance is cut off, and their wealth is food for the fire.</span></div>
-<div class="v-row" data-ref="Job 22:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Put yourself now in a right relation with him and be at peace: so will you do well in your undertakings.</span></div>
-<div class="v-row" data-ref="Job 22:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Be pleased to take teaching from his mouth, and let his words be stored up in your heart.</span></div>
-<div class="v-row" data-ref="Job 22:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">If you come back to the Ruler of all, making yourself low before him; if you put evil far away from your tents;</span></div>
-<div class="v-row" data-ref="Job 22:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">And put your gold in the dust, even your gold of Ophir among the rocks of the valleys;</span></div>
-<div class="v-row" data-ref="Job 22:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">Then the Ruler of all will be your gold, and his teaching will be your silver;</span></div>
-<div class="v-row" data-ref="Job 22:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">For then you will have delight in the Ruler of all, and your face will be lifted up to God.</span></div>
-<div class="v-row" data-ref="Job 22:27 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">You will make your prayer to him, and be answered; and you will give effect to your oaths.</span></div>
-<div class="v-row" data-ref="Job 22:28 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">Your purposes will come about, and light will be shining on your ways.</span></div>
-<div class="v-row" data-ref="Job 22:29 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">For God makes low those whose hearts are lifted up, but he is a saviour to the poor in spirit.</span></div>
-<div class="v-row" data-ref="Job 22:30 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">He makes safe the man who is free from sin, and if your hands are clean, salvation will be yours.</span></div>
+    <a class="v-row" href="/bible/bbe/job/22/1/" data-ref="Job 22:1 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/1/"><span class="v-num">1</span><span class="v-txt">Then Eliphaz the Temanite made answer and said,</span></a>
+<a class="v-row" href="/bible/bbe/job/22/2/" data-ref="Job 22:2 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/2/"><span class="v-num">2</span><span class="v-txt">Is it possible for a man to be of profit to God? No, for a man's wisdom is only of profit to himself.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/3/" data-ref="Job 22:3 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/3/"><span class="v-num">3</span><span class="v-txt">Is it of any interest to the Ruler of all that you are upright? or is it of use to him that your ways are without sin?</span></a>
+<a class="v-row" href="/bible/bbe/job/22/4/" data-ref="Job 22:4 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/4/"><span class="v-num">4</span><span class="v-txt">Is it because you give him honour that he is sending punishment on you and is judging you?</span></a>
+<a class="v-row" href="/bible/bbe/job/22/5/" data-ref="Job 22:5 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/5/"><span class="v-num">5</span><span class="v-txt">Is not your evil-doing great? and there is no end to your sins.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/6/" data-ref="Job 22:6 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/6/"><span class="v-num">6</span><span class="v-txt">For you have taken your brother's goods when he was not in your debt, and have taken away the clothing of those who have need of it.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/7/" data-ref="Job 22:7 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/7/"><span class="v-num">7</span><span class="v-txt">You do not give water to the tired traveller, and from him who has no food you keep back bread.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/8/" data-ref="Job 22:8 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/8/"><span class="v-num">8</span><span class="v-txt">For it was the man with power who had the land, and the man with an honoured name who was living in it.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/9/" data-ref="Job 22:9 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/9/"><span class="v-num">9</span><span class="v-txt">You have sent widows away without hearing their cause, and you have taken away the support of the child who has no father.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/10/" data-ref="Job 22:10 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/10/"><span class="v-num">10</span><span class="v-txt">For this cause nets are round your feet, and you are overcome with sudden fear.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/11/" data-ref="Job 22:11 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/11/"><span class="v-num">11</span><span class="v-txt">Your light is made dark so that you are unable to see, and you are covered by a mass of waters.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/12/" data-ref="Job 22:12 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/12/"><span class="v-num">12</span><span class="v-txt">Is not God as high as heaven? and see the stars, how high they are!</span></a>
+<a class="v-row" href="/bible/bbe/job/22/13/" data-ref="Job 22:13 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/13/"><span class="v-num">13</span><span class="v-txt">And you say, What knowledge has God? is he able to give decisions through the deep dark?</span></a>
+<a class="v-row" href="/bible/bbe/job/22/14/" data-ref="Job 22:14 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/14/"><span class="v-num">14</span><span class="v-txt">Thick clouds are covering him, so that he is unable to see; and he is walking on the arch of heaven.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/15/" data-ref="Job 22:15 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/15/"><span class="v-num">15</span><span class="v-txt">Will you keep the old way by which evil men went?</span></a>
+<a class="v-row" href="/bible/bbe/job/22/16/" data-ref="Job 22:16 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/16/"><span class="v-num">16</span><span class="v-txt">Who were violently taken away before their time, who were overcome by the rush of waters:</span></a>
+<a class="v-row" href="/bible/bbe/job/22/17/" data-ref="Job 22:17 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/17/"><span class="v-num">17</span><span class="v-txt">Who said to God, Go away from us; and, What is the Ruler of all able to do to us?</span></a>
+<a class="v-row" href="/bible/bbe/job/22/18/" data-ref="Job 22:18 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/18/"><span class="v-num">18</span><span class="v-txt">Though he made their houses full of good things: but the purpose of the evil-doers is far from me!</span></a>
+<a class="v-row" href="/bible/bbe/job/22/19/" data-ref="Job 22:19 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/19/"><span class="v-num">19</span><span class="v-txt">The upright saw it and were glad: and those who had done no wrong made sport of them,</span></a>
+<a class="v-row" href="/bible/bbe/job/22/20/" data-ref="Job 22:20 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/20/"><span class="v-num">20</span><span class="v-txt">Saying, Truly, their substance is cut off, and their wealth is food for the fire.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/21/" data-ref="Job 22:21 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/21/"><span class="v-num">21</span><span class="v-txt">Put yourself now in a right relation with him and be at peace: so will you do well in your undertakings.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/22/" data-ref="Job 22:22 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/22/"><span class="v-num">22</span><span class="v-txt">Be pleased to take teaching from his mouth, and let his words be stored up in your heart.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/23/" data-ref="Job 22:23 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/23/"><span class="v-num">23</span><span class="v-txt">If you come back to the Ruler of all, making yourself low before him; if you put evil far away from your tents;</span></a>
+<a class="v-row" href="/bible/bbe/job/22/24/" data-ref="Job 22:24 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/24/"><span class="v-num">24</span><span class="v-txt">And put your gold in the dust, even your gold of Ophir among the rocks of the valleys;</span></a>
+<a class="v-row" href="/bible/bbe/job/22/25/" data-ref="Job 22:25 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/25/"><span class="v-num">25</span><span class="v-txt">Then the Ruler of all will be your gold, and his teaching will be your silver;</span></a>
+<a class="v-row" href="/bible/bbe/job/22/26/" data-ref="Job 22:26 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/26/"><span class="v-num">26</span><span class="v-txt">For then you will have delight in the Ruler of all, and your face will be lifted up to God.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/27/" data-ref="Job 22:27 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/27/"><span class="v-num">27</span><span class="v-txt">You will make your prayer to him, and be answered; and you will give effect to your oaths.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/28/" data-ref="Job 22:28 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/28/"><span class="v-num">28</span><span class="v-txt">Your purposes will come about, and light will be shining on your ways.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/29/" data-ref="Job 22:29 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/29/"><span class="v-num">29</span><span class="v-txt">For God makes low those whose hearts are lifted up, but he is a saviour to the poor in spirit.</span></a>
+<a class="v-row" href="/bible/bbe/job/22/30/" data-ref="Job 22:30 (Bible in Basic English)" data-verse-url="/bible/bbe/job/22/30/"><span class="v-num">30</span><span class="v-txt">He makes safe the man who is free from sin, and if your hands are clean, salvation will be yours.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Genesis 4:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now Adam knew Eve his wife, and she conceived and bore Cain, and said, "I have acquired a man from the LORD."</span></div>
-<div class="v-row" data-ref="Genesis 4:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then she bore again, this time his brother Abel. Now Abel was a keeper of sheep, but Cain was a tiller of the ground.</span></div>
-<div class="v-row" data-ref="Genesis 4:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And in the process of time it came to pass that Cain brought an offering of the fruit of the ground to the LORD.</span></div>
-<div class="v-row" data-ref="Genesis 4:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Abel also brought of the firstborn of his flock and of their fat. And the LORD respected Abel and his offering,</span></div>
-<div class="v-row" data-ref="Genesis 4:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">but He did not respect Cain and his offering. And Cain was very angry, and his countenance fell.</span></div>
-<div class="v-row" data-ref="Genesis 4:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">So the LORD said to Cain, "Why are you angry? And why has your countenance fallen?</span></div>
-<div class="v-row" data-ref="Genesis 4:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">"If you do well, will you not be accepted? And if you do not do well, sin lies at the door. And its desire [is] for you, but you should rule over it."</span></div>
-<div class="v-row" data-ref="Genesis 4:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Now Cain talked with Abel his brother; and it came to pass, when they were in the field, that Cain rose up against Abel his brother and killed him.</span></div>
-<div class="v-row" data-ref="Genesis 4:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then the LORD said to Cain, "Where [is] Abel your brother?" He said, "I do not know. [Am] I my brother's keeper?"</span></div>
-<div class="v-row" data-ref="Genesis 4:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And He said, "What have you done? The voice of your brother's blood cries out to Me from the ground.</span></div>
-<div class="v-row" data-ref="Genesis 4:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"So now you [are] cursed from the earth, which has opened its mouth to receive your brother's blood from your hand.</span></div>
-<div class="v-row" data-ref="Genesis 4:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">"When you till the ground, it shall no longer yield its strength to you. A fugitive and a vagabond you shall be on the earth."</span></div>
-<div class="v-row" data-ref="Genesis 4:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Cain said to the LORD, "My punishment [is] greater than I can bear!</span></div>
-<div class="v-row" data-ref="Genesis 4:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">"Surely You have driven me out this day from the face of the ground; I shall be hidden from Your face; I shall be a fugitive and a vagabond on the earth, and it will happen [that] anyone who finds me will kill me."</span></div>
-<div class="v-row" data-ref="Genesis 4:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the LORD said to him, "Therefore, whoever kills Cain, vengeance shall be taken on him sevenfold." And the LORD set a mark on Cain, lest anyone finding him should kill him.</span></div>
-<div class="v-row" data-ref="Genesis 4:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Then Cain went out from the presence of the LORD and dwelt in the land of Nod on the east of Eden.</span></div>
-<div class="v-row" data-ref="Genesis 4:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And Cain knew his wife, and she conceived and bore Enoch. And he built a city, and called the name of the city after the name of his son -- Enoch.</span></div>
-<div class="v-row" data-ref="Genesis 4:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">To Enoch was born Irad; and Irad begot Mehujael, and Mehujael begot Methushael, and Methushael begot Lamech.</span></div>
-<div class="v-row" data-ref="Genesis 4:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Then Lamech took for himself two wives: the name of one [was] Adah, and the name of the second [was] Zillah.</span></div>
-<div class="v-row" data-ref="Genesis 4:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And Adah bore Jabal. He was the father of those who dwell in tents and have livestock.</span></div>
-<div class="v-row" data-ref="Genesis 4:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">His brother's name [was] Jubal. He was the father of all those who play the harp and flute.</span></div>
-<div class="v-row" data-ref="Genesis 4:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And as for Zillah, she also bore Tubal-Cain, an instructor of every craftsman in bronze and iron. And the sister of Tubal-Cain [was] Naamah.</span></div>
-<div class="v-row" data-ref="Genesis 4:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">Then Lamech said to his wives: "Adah and Zillah, hear my voice; Wives of Lamech, listen to my speech! For I have killed a man for wounding me, Even a young man for hurting me.</span></div>
-<div class="v-row" data-ref="Genesis 4:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If Cain shall be avenged sevenfold, Then Lamech seventy-sevenfold."</span></div>
-<div class="v-row" data-ref="Genesis 4:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And Adam knew his wife again, and she bore a son and named him Seth, "For God has appointed another seed for me instead of Abel, whom Cain killed."</span></div>
-<div class="v-row" data-ref="Genesis 4:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">And as for Seth, to him also a son was born; and he named him Enosh. Then [men] began to call on the name of the LORD.</span></div>
+    <a class="v-row" href="/bible/nkjv/genesis/4/1/" data-ref="Genesis 4:1 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/1/"><span class="v-num">1</span><span class="v-txt">Now Adam knew Eve his wife, and she conceived and bore Cain, and said, "I have acquired a man from the LORD."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/2/" data-ref="Genesis 4:2 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/2/"><span class="v-num">2</span><span class="v-txt">Then she bore again, this time his brother Abel. Now Abel was a keeper of sheep, but Cain was a tiller of the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/3/" data-ref="Genesis 4:3 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/3/"><span class="v-num">3</span><span class="v-txt">And in the process of time it came to pass that Cain brought an offering of the fruit of the ground to the LORD.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/4/" data-ref="Genesis 4:4 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/4/"><span class="v-num">4</span><span class="v-txt">Abel also brought of the firstborn of his flock and of their fat. And the LORD respected Abel and his offering,</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/5/" data-ref="Genesis 4:5 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/5/"><span class="v-num">5</span><span class="v-txt">but He did not respect Cain and his offering. And Cain was very angry, and his countenance fell.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/6/" data-ref="Genesis 4:6 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/6/"><span class="v-num">6</span><span class="v-txt">So the LORD said to Cain, "Why are you angry? And why has your countenance fallen?</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/7/" data-ref="Genesis 4:7 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/7/"><span class="v-num">7</span><span class="v-txt">"If you do well, will you not be accepted? And if you do not do well, sin lies at the door. And its desire [is] for you, but you should rule over it."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/8/" data-ref="Genesis 4:8 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/8/"><span class="v-num">8</span><span class="v-txt">Now Cain talked with Abel his brother; and it came to pass, when they were in the field, that Cain rose up against Abel his brother and killed him.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/9/" data-ref="Genesis 4:9 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/9/"><span class="v-num">9</span><span class="v-txt">Then the LORD said to Cain, "Where [is] Abel your brother?" He said, "I do not know. [Am] I my brother's keeper?"</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/10/" data-ref="Genesis 4:10 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/10/"><span class="v-num">10</span><span class="v-txt">And He said, "What have you done? The voice of your brother's blood cries out to Me from the ground.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/11/" data-ref="Genesis 4:11 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/11/"><span class="v-num">11</span><span class="v-txt">"So now you [are] cursed from the earth, which has opened its mouth to receive your brother's blood from your hand.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/12/" data-ref="Genesis 4:12 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/12/"><span class="v-num">12</span><span class="v-txt">"When you till the ground, it shall no longer yield its strength to you. A fugitive and a vagabond you shall be on the earth."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/13/" data-ref="Genesis 4:13 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/13/"><span class="v-num">13</span><span class="v-txt">And Cain said to the LORD, "My punishment [is] greater than I can bear!</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/14/" data-ref="Genesis 4:14 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/14/"><span class="v-num">14</span><span class="v-txt">"Surely You have driven me out this day from the face of the ground; I shall be hidden from Your face; I shall be a fugitive and a vagabond on the earth, and it will happen [that] anyone who finds me will kill me."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/15/" data-ref="Genesis 4:15 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/15/"><span class="v-num">15</span><span class="v-txt">And the LORD said to him, "Therefore, whoever kills Cain, vengeance shall be taken on him sevenfold." And the LORD set a mark on Cain, lest anyone finding him should kill him.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/16/" data-ref="Genesis 4:16 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/16/"><span class="v-num">16</span><span class="v-txt">Then Cain went out from the presence of the LORD and dwelt in the land of Nod on the east of Eden.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/17/" data-ref="Genesis 4:17 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/17/"><span class="v-num">17</span><span class="v-txt">And Cain knew his wife, and she conceived and bore Enoch. And he built a city, and called the name of the city after the name of his son -- Enoch.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/18/" data-ref="Genesis 4:18 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/18/"><span class="v-num">18</span><span class="v-txt">To Enoch was born Irad; and Irad begot Mehujael, and Mehujael begot Methushael, and Methushael begot Lamech.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/19/" data-ref="Genesis 4:19 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/19/"><span class="v-num">19</span><span class="v-txt">Then Lamech took for himself two wives: the name of one [was] Adah, and the name of the second [was] Zillah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/20/" data-ref="Genesis 4:20 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/20/"><span class="v-num">20</span><span class="v-txt">And Adah bore Jabal. He was the father of those who dwell in tents and have livestock.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/21/" data-ref="Genesis 4:21 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/21/"><span class="v-num">21</span><span class="v-txt">His brother's name [was] Jubal. He was the father of all those who play the harp and flute.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/22/" data-ref="Genesis 4:22 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/22/"><span class="v-num">22</span><span class="v-txt">And as for Zillah, she also bore Tubal-Cain, an instructor of every craftsman in bronze and iron. And the sister of Tubal-Cain [was] Naamah.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/23/" data-ref="Genesis 4:23 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/23/"><span class="v-num">23</span><span class="v-txt">Then Lamech said to his wives: "Adah and Zillah, hear my voice; Wives of Lamech, listen to my speech! For I have killed a man for wounding me, Even a young man for hurting me.</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/24/" data-ref="Genesis 4:24 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/24/"><span class="v-num">24</span><span class="v-txt">If Cain shall be avenged sevenfold, Then Lamech seventy-sevenfold."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/25/" data-ref="Genesis 4:25 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/25/"><span class="v-num">25</span><span class="v-txt">And Adam knew his wife again, and she bore a son and named him Seth, "For God has appointed another seed for me instead of Abel, whom Cain killed."</span></a>
+<a class="v-row" href="/bible/nkjv/genesis/4/26/" data-ref="Genesis 4:26 (New King James Version)" data-verse-url="/bible/nkjv/genesis/4/26/"><span class="v-num">26</span><span class="v-txt">And as for Seth, to him also a son was born; and he named him Enosh. Then [men] began to call on the name of the LORD.</span></a>
 
     
 <div class="app-cta">

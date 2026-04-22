@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="2 Thessalonians 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now as to the coming of the Lord Jesus Christ, and our meeting with him, it is our desire, my brothers,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">That you may not be moved in mind or troubled by a spirit, or by a word, or by a letter as from us, with the suggestion that the day of the Lord is even now come;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Give no belief to false words: because there will first be a falling away from the faith, and the revelation of the man of sin, the son of destruction,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Who puts himself against all authority, lifting himself up over all which is named God or is given worship; so that he takes his seat in the Temple of God, putting himself forward as God.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Have you no memory of what I said when I was with you, giving you word of these things?</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And now it is clear to you what is keeping back his revelation till the time comes for him to be seen.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For the secret of evil is even now at work: but there is one who is keeping back the evil till he is taken out of the way.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And then will come the revelation of that evil one, whom the Lord Jesus will put to death with the breath of his mouth, and give to destruction by the revelation of his coming;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Even the one whose coming is marked by the working of Satan, with all power and signs and false wonders,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And with every deceit of wrongdoing among those whose fate is destruction; because they were quite without that love of the true faith by which they might have salvation.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And for this cause, God will give them up to the power of deceit and they will put their faith in what is false:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">So that they all may be judged, who had no faith in what is true, but took pleasure in evil.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But it is right for us to give praise to God at all times for you, brothers, loved by the Lord, because it was the purpose of God from the first that you might have salvation, being made holy by the Spirit and by faith in what is true:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And in this purpose he gave you a part through the good news of which we were the preachers, even that you might have part in the glory of our Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">So then, brothers, be strong in purpose, and keep the teaching which has been given to you by word or by letter from us.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Now our Lord Jesus Christ himself, and God our Father who had love for us and has given us eternal comfort and good hope through grace,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Give you comfort and strength in every good work and word.</span></div>
+    <a class="v-row" href="/bible/bbe/2-thessalonians/2/1/" data-ref="2 Thessalonians 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/1/"><span class="v-num">1</span><span class="v-txt">Now as to the coming of the Lord Jesus Christ, and our meeting with him, it is our desire, my brothers,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/2/" data-ref="2 Thessalonians 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/2/"><span class="v-num">2</span><span class="v-txt">That you may not be moved in mind or troubled by a spirit, or by a word, or by a letter as from us, with the suggestion that the day of the Lord is even now come;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/3/" data-ref="2 Thessalonians 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/3/"><span class="v-num">3</span><span class="v-txt">Give no belief to false words: because there will first be a falling away from the faith, and the revelation of the man of sin, the son of destruction,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/4/" data-ref="2 Thessalonians 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/4/"><span class="v-num">4</span><span class="v-txt">Who puts himself against all authority, lifting himself up over all which is named God or is given worship; so that he takes his seat in the Temple of God, putting himself forward as God.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/5/" data-ref="2 Thessalonians 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/5/"><span class="v-num">5</span><span class="v-txt">Have you no memory of what I said when I was with you, giving you word of these things?</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/6/" data-ref="2 Thessalonians 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/6/"><span class="v-num">6</span><span class="v-txt">And now it is clear to you what is keeping back his revelation till the time comes for him to be seen.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/7/" data-ref="2 Thessalonians 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/7/"><span class="v-num">7</span><span class="v-txt">For the secret of evil is even now at work: but there is one who is keeping back the evil till he is taken out of the way.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/8/" data-ref="2 Thessalonians 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/8/"><span class="v-num">8</span><span class="v-txt">And then will come the revelation of that evil one, whom the Lord Jesus will put to death with the breath of his mouth, and give to destruction by the revelation of his coming;</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/9/" data-ref="2 Thessalonians 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/9/"><span class="v-num">9</span><span class="v-txt">Even the one whose coming is marked by the working of Satan, with all power and signs and false wonders,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/10/" data-ref="2 Thessalonians 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/10/"><span class="v-num">10</span><span class="v-txt">And with every deceit of wrongdoing among those whose fate is destruction; because they were quite without that love of the true faith by which they might have salvation.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/11/" data-ref="2 Thessalonians 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/11/"><span class="v-num">11</span><span class="v-txt">And for this cause, God will give them up to the power of deceit and they will put their faith in what is false:</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/12/" data-ref="2 Thessalonians 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/12/"><span class="v-num">12</span><span class="v-txt">So that they all may be judged, who had no faith in what is true, but took pleasure in evil.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/13/" data-ref="2 Thessalonians 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/13/"><span class="v-num">13</span><span class="v-txt">But it is right for us to give praise to God at all times for you, brothers, loved by the Lord, because it was the purpose of God from the first that you might have salvation, being made holy by the Spirit and by faith in what is true:</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/14/" data-ref="2 Thessalonians 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/14/"><span class="v-num">14</span><span class="v-txt">And in this purpose he gave you a part through the good news of which we were the preachers, even that you might have part in the glory of our Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/15/" data-ref="2 Thessalonians 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/15/"><span class="v-num">15</span><span class="v-txt">So then, brothers, be strong in purpose, and keep the teaching which has been given to you by word or by letter from us.</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/16/" data-ref="2 Thessalonians 2:16 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/16/"><span class="v-num">16</span><span class="v-txt">Now our Lord Jesus Christ himself, and God our Father who had love for us and has given us eternal comfort and good hope through grace,</span></a>
+<a class="v-row" href="/bible/bbe/2-thessalonians/2/17/" data-ref="2 Thessalonians 2:17 (Bible in Basic English)" data-verse-url="/bible/bbe/2-thessalonians/2/17/"><span class="v-num">17</span><span class="v-txt">Give you comfort and strength in every good work and word.</span></a>
 
     
 <div class="app-cta">

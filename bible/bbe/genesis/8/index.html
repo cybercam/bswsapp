@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 8</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Genesis 8:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And God kept Noah in mind, and all the living things and the cattle which were with him in the ark: and God sent a wind over the earth, and the waters went down.</span></div>
-<div class="v-row" data-ref="Genesis 8:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And the fountains of the deep and the windows of heaven were shut, and the rain from heaven was stopped.</span></div>
-<div class="v-row" data-ref="Genesis 8:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And the waters went slowly back from the earth, and at the end of a hundred and fifty days the waters were lower.</span></div>
-<div class="v-row" data-ref="Genesis 8:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And on the seventeenth day of the seventh month the ark came to rest on the mountains of Ararat.</span></div>
-<div class="v-row" data-ref="Genesis 8:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">And still the waters went on falling, till on the first day of the tenth month the tops of the mountains were seen.</span></div>
-<div class="v-row" data-ref="Genesis 8:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Then, after forty days, through the open window of the ark which he had made,</span></div>
-<div class="v-row" data-ref="Genesis 8:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Noah sent out a raven, which went this way and that till the waters were gone from the earth.</span></div>
-<div class="v-row" data-ref="Genesis 8:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And he sent out a dove, to see if the waters had gone from the face of the earth;</span></div>
-<div class="v-row" data-ref="Genesis 8:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">But the dove saw no resting-place for her foot, and came back to the ark, for the waters were still over all the earth; and he put out his hand, and took her into the ark.</span></div>
-<div class="v-row" data-ref="Genesis 8:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And after waiting another seven days, he sent the dove out again;</span></div>
-<div class="v-row" data-ref="Genesis 8:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And the dove came back at evening, and in her mouth was an olive-leaf broken off: so Noah was certain that the waters had gone down on the earth.</span></div>
-<div class="v-row" data-ref="Genesis 8:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">And after seven days more, he sent the dove out again, but she did not come back to him.</span></div>
-<div class="v-row" data-ref="Genesis 8:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And in the six hundred and first year, on the first day of the first month, the waters were dry on the earth: and Noah took the cover off the ark and saw that the face of the earth was dry.</span></div>
-<div class="v-row" data-ref="Genesis 8:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">And on the twenty-seventh day of the second month the earth was dry.</span></div>
-<div class="v-row" data-ref="Genesis 8:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And God said to Noah,</span></div>
-<div class="v-row" data-ref="Genesis 8:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Go out of the ark, you and your wife and your sons and your sons' wives.</span></div>
-<div class="v-row" data-ref="Genesis 8:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Take out with you every living thing which is with you, birds and cattle and everything which goes on the earth, so that they may have offspring and be fertile and be increased on the earth.</span></div>
-<div class="v-row" data-ref="Genesis 8:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Noah went out with his sons and his wife and his sons' wives;</span></div>
-<div class="v-row" data-ref="Genesis 8:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And every beast and bird and every living thing of every sort which goes on the earth, went out of the ark.</span></div>
-<div class="v-row" data-ref="Genesis 8:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And Noah made an altar to the Lord, and from every clean beast and bird he made burned offerings on the altar.</span></div>
-<div class="v-row" data-ref="Genesis 8:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And when the sweet smell came up to the Lord, he said in his heart, I will not again put a curse on the earth because of man, for the thoughts of man's heart are evil from his earliest days; never again will I send destruction on all living things as I have done.</span></div>
-<div class="v-row" data-ref="Genesis 8:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">While the earth goes on, seed time and the getting in of the grain, cold and heat, summer and winter, day and night, will not come to an end.</span></div>
+    <a class="v-row" href="/bible/bbe/genesis/8/1/" data-ref="Genesis 8:1 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/1/"><span class="v-num">1</span><span class="v-txt">And God kept Noah in mind, and all the living things and the cattle which were with him in the ark: and God sent a wind over the earth, and the waters went down.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/2/" data-ref="Genesis 8:2 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/2/"><span class="v-num">2</span><span class="v-txt">And the fountains of the deep and the windows of heaven were shut, and the rain from heaven was stopped.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/3/" data-ref="Genesis 8:3 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/3/"><span class="v-num">3</span><span class="v-txt">And the waters went slowly back from the earth, and at the end of a hundred and fifty days the waters were lower.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/4/" data-ref="Genesis 8:4 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/4/"><span class="v-num">4</span><span class="v-txt">And on the seventeenth day of the seventh month the ark came to rest on the mountains of Ararat.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/5/" data-ref="Genesis 8:5 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/5/"><span class="v-num">5</span><span class="v-txt">And still the waters went on falling, till on the first day of the tenth month the tops of the mountains were seen.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/6/" data-ref="Genesis 8:6 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/6/"><span class="v-num">6</span><span class="v-txt">Then, after forty days, through the open window of the ark which he had made,</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/7/" data-ref="Genesis 8:7 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/7/"><span class="v-num">7</span><span class="v-txt">Noah sent out a raven, which went this way and that till the waters were gone from the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/8/" data-ref="Genesis 8:8 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/8/"><span class="v-num">8</span><span class="v-txt">And he sent out a dove, to see if the waters had gone from the face of the earth;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/9/" data-ref="Genesis 8:9 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/9/"><span class="v-num">9</span><span class="v-txt">But the dove saw no resting-place for her foot, and came back to the ark, for the waters were still over all the earth; and he put out his hand, and took her into the ark.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/10/" data-ref="Genesis 8:10 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/10/"><span class="v-num">10</span><span class="v-txt">And after waiting another seven days, he sent the dove out again;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/11/" data-ref="Genesis 8:11 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/11/"><span class="v-num">11</span><span class="v-txt">And the dove came back at evening, and in her mouth was an olive-leaf broken off: so Noah was certain that the waters had gone down on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/12/" data-ref="Genesis 8:12 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/12/"><span class="v-num">12</span><span class="v-txt">And after seven days more, he sent the dove out again, but she did not come back to him.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/13/" data-ref="Genesis 8:13 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/13/"><span class="v-num">13</span><span class="v-txt">And in the six hundred and first year, on the first day of the first month, the waters were dry on the earth: and Noah took the cover off the ark and saw that the face of the earth was dry.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/14/" data-ref="Genesis 8:14 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/14/"><span class="v-num">14</span><span class="v-txt">And on the twenty-seventh day of the second month the earth was dry.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/15/" data-ref="Genesis 8:15 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/15/"><span class="v-num">15</span><span class="v-txt">And God said to Noah,</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/16/" data-ref="Genesis 8:16 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/16/"><span class="v-num">16</span><span class="v-txt">Go out of the ark, you and your wife and your sons and your sons' wives.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/17/" data-ref="Genesis 8:17 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/17/"><span class="v-num">17</span><span class="v-txt">Take out with you every living thing which is with you, birds and cattle and everything which goes on the earth, so that they may have offspring and be fertile and be increased on the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/18/" data-ref="Genesis 8:18 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/18/"><span class="v-num">18</span><span class="v-txt">And Noah went out with his sons and his wife and his sons' wives;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/19/" data-ref="Genesis 8:19 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/19/"><span class="v-num">19</span><span class="v-txt">And every beast and bird and every living thing of every sort which goes on the earth, went out of the ark.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/20/" data-ref="Genesis 8:20 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/20/"><span class="v-num">20</span><span class="v-txt">And Noah made an altar to the Lord, and from every clean beast and bird he made burned offerings on the altar.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/21/" data-ref="Genesis 8:21 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/21/"><span class="v-num">21</span><span class="v-txt">And when the sweet smell came up to the Lord, he said in his heart, I will not again put a curse on the earth because of man, for the thoughts of man's heart are evil from his earliest days; never again will I send destruction on all living things as I have done.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/8/22/" data-ref="Genesis 8:22 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/8/22/"><span class="v-num">22</span><span class="v-txt">While the earth goes on, seed time and the getting in of the grain, cold and heat, summer and winter, day and night, will not come to an end.</span></a>
 
     
 <div class="app-cta">

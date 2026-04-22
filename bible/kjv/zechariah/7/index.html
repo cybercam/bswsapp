@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,20 +204,20 @@ a:hover{text-decoration:underline}
       <h2>Chapter 7</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="Zechariah 7:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And it came to pass in the fourth year of king Darius, that the word of the LORD came unto Zechariah in the fourth day of the ninth month, even in Chisleu;</span></div>
-<div class="v-row" data-ref="Zechariah 7:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">When they had sent unto the house of God Sherezer and Regemmelech, and their men, to pray before the LORD,</span></div>
-<div class="v-row" data-ref="Zechariah 7:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And to speak unto the priests which were in the house of the LORD of hosts, and to the prophets, saying, Should I weep in the fifth month, separating myself, as I have done these so many years?</span></div>
-<div class="v-row" data-ref="Zechariah 7:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Then came the word of the LORD of hosts unto me, saying,</span></div>
-<div class="v-row" data-ref="Zechariah 7:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Speak unto all the people of the land, and to the priests, saying, When ye fasted and mourned in the fifth and seventh month, even those seventy years, did ye at all fast unto me, even to me?</span></div>
-<div class="v-row" data-ref="Zechariah 7:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And when ye did eat, and when ye did drink, did not ye eat for yourselves, and drink for yourselves?</span></div>
-<div class="v-row" data-ref="Zechariah 7:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Should ye not hear the words which the LORD hath cried by the former prophets, when Jerusalem was inhabited and in prosperity, and the cities thereof round about her, when men inhabited the south and the plain?</span></div>
-<div class="v-row" data-ref="Zechariah 7:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And the word of the LORD came unto Zechariah, saying,</span></div>
-<div class="v-row" data-ref="Zechariah 7:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Thus speaketh the LORD of hosts, saying, Execute true judgment, and shew mercy and compassions every man to his brother:</span></div>
-<div class="v-row" data-ref="Zechariah 7:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And oppress not the widow, nor the fatherless, the stranger, nor the poor; and let none of you imagine evil against his brother in your heart.</span></div>
-<div class="v-row" data-ref="Zechariah 7:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">But they refused to hearken, and pulled away the shoulder, and stopped their ears, that they should not hear.</span></div>
-<div class="v-row" data-ref="Zechariah 7:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Yea, they made their hearts as an adamant stone, lest they should hear the law, and the words which the LORD of hosts hath sent in his spirit by the former prophets: therefore came a great wrath from the LORD of hosts.</span></div>
-<div class="v-row" data-ref="Zechariah 7:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Therefore it is come to pass, that as he cried, and they would not hear; so they cried, and I would not hear, saith the LORD of hosts:</span></div>
-<div class="v-row" data-ref="Zechariah 7:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">But I scattered them with a whirlwind among all the nations whom they knew not. Thus the land was desolate after them, that no man passed through nor returned: for they laid the pleasant land desolate.</span></div>
+    <a class="v-row" href="/bible/kjv/zechariah/7/1/" data-ref="Zechariah 7:1 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/1/"><span class="v-num">1</span><span class="v-txt">And it came to pass in the fourth year of king Darius, that the word of the LORD came unto Zechariah in the fourth day of the ninth month, even in Chisleu;</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/2/" data-ref="Zechariah 7:2 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/2/"><span class="v-num">2</span><span class="v-txt">When they had sent unto the house of God Sherezer and Regemmelech, and their men, to pray before the LORD,</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/3/" data-ref="Zechariah 7:3 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/3/"><span class="v-num">3</span><span class="v-txt">And to speak unto the priests which were in the house of the LORD of hosts, and to the prophets, saying, Should I weep in the fifth month, separating myself, as I have done these so many years?</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/4/" data-ref="Zechariah 7:4 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/4/"><span class="v-num">4</span><span class="v-txt">Then came the word of the LORD of hosts unto me, saying,</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/5/" data-ref="Zechariah 7:5 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/5/"><span class="v-num">5</span><span class="v-txt">Speak unto all the people of the land, and to the priests, saying, When ye fasted and mourned in the fifth and seventh month, even those seventy years, did ye at all fast unto me, even to me?</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/6/" data-ref="Zechariah 7:6 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/6/"><span class="v-num">6</span><span class="v-txt">And when ye did eat, and when ye did drink, did not ye eat for yourselves, and drink for yourselves?</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/7/" data-ref="Zechariah 7:7 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/7/"><span class="v-num">7</span><span class="v-txt">Should ye not hear the words which the LORD hath cried by the former prophets, when Jerusalem was inhabited and in prosperity, and the cities thereof round about her, when men inhabited the south and the plain?</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/8/" data-ref="Zechariah 7:8 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/8/"><span class="v-num">8</span><span class="v-txt">And the word of the LORD came unto Zechariah, saying,</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/9/" data-ref="Zechariah 7:9 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/9/"><span class="v-num">9</span><span class="v-txt">Thus speaketh the LORD of hosts, saying, Execute true judgment, and shew mercy and compassions every man to his brother:</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/10/" data-ref="Zechariah 7:10 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/10/"><span class="v-num">10</span><span class="v-txt">And oppress not the widow, nor the fatherless, the stranger, nor the poor; and let none of you imagine evil against his brother in your heart.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/11/" data-ref="Zechariah 7:11 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/11/"><span class="v-num">11</span><span class="v-txt">But they refused to hearken, and pulled away the shoulder, and stopped their ears, that they should not hear.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/12/" data-ref="Zechariah 7:12 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/12/"><span class="v-num">12</span><span class="v-txt">Yea, they made their hearts as an adamant stone, lest they should hear the law, and the words which the LORD of hosts hath sent in his spirit by the former prophets: therefore came a great wrath from the LORD of hosts.</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/13/" data-ref="Zechariah 7:13 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/13/"><span class="v-num">13</span><span class="v-txt">Therefore it is come to pass, that as he cried, and they would not hear; so they cried, and I would not hear, saith the LORD of hosts:</span></a>
+<a class="v-row" href="/bible/kjv/zechariah/7/14/" data-ref="Zechariah 7:14 (King James Version)" data-verse-url="/bible/kjv/zechariah/7/14/"><span class="v-num">14</span><span class="v-txt">But I scattered them with a whirlwind among all the nations whom they knew not. Thus the land was desolate after them, that no man passed through nor returned: for they laid the pleasant land desolate.</span></a>
 
     
 <div class="app-cta">

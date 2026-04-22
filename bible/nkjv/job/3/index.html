@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 3</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Job 3:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">After this Job opened his mouth and cursed the day of his [birth.]</span></div>
-<div class="v-row" data-ref="Job 3:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">And Job spoke, and said:</span></div>
-<div class="v-row" data-ref="Job 3:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">"May the day perish on which I was born, And the night [in which] it was said, 'A male child is conceived.'</span></div>
-<div class="v-row" data-ref="Job 3:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">May that day be darkness; May God above not seek it, Nor the light shine upon it.</span></div>
-<div class="v-row" data-ref="Job 3:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">May darkness and the shadow of death claim it; May a cloud settle on it; May the blackness of the day terrify it.</span></div>
-<div class="v-row" data-ref="Job 3:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">[As for] that night, may darkness seize it; May it not rejoice among the days of the year, May it not come into the number of the months.</span></div>
-<div class="v-row" data-ref="Job 3:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Oh, may that night be barren! May no joyful shout come into it!</span></div>
-<div class="v-row" data-ref="Job 3:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">May those curse it who curse the day, Those who are ready to arouse Leviathan.</span></div>
-<div class="v-row" data-ref="Job 3:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">May the stars of its morning be dark; May it look for light, but [have] none, And not see the dawning of the day;</span></div>
-<div class="v-row" data-ref="Job 3:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Because it did not shut up the doors of my [mother's] womb, Nor hide sorrow from my eyes.</span></div>
-<div class="v-row" data-ref="Job 3:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">"Why did I not die at birth? [Why] did I [not] perish when I came from the womb?</span></div>
-<div class="v-row" data-ref="Job 3:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Why did the knees receive me? Or why the breasts, that I should nurse?</span></div>
-<div class="v-row" data-ref="Job 3:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">For now I would have lain still and been quiet, I would have been asleep; Then I would have been at rest</span></div>
-<div class="v-row" data-ref="Job 3:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">With kings and counselors of the earth, Who built ruins for themselves,</span></div>
-<div class="v-row" data-ref="Job 3:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Or with princes who had gold, Who filled their houses [with] silver;</span></div>
-<div class="v-row" data-ref="Job 3:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Or [why] was I not hidden like a stillborn child, Like infants who never saw light?</span></div>
-<div class="v-row" data-ref="Job 3:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">There the wicked cease [from] troubling, And there the weary are at rest.</span></div>
-<div class="v-row" data-ref="Job 3:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">[There] the prisoners rest together; They do not hear the voice of the oppressor.</span></div>
-<div class="v-row" data-ref="Job 3:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">The small and great are there, And the servant [is] free from his master.</span></div>
-<div class="v-row" data-ref="Job 3:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">"Why is light given to him who is in misery, And life to the bitter of soul,</span></div>
-<div class="v-row" data-ref="Job 3:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">Who long for death, but it does not [come,] And search for it more than hidden treasures;</span></div>
-<div class="v-row" data-ref="Job 3:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">Who rejoice exceedingly, [And] are glad when they can find the grave?</span></div>
-<div class="v-row" data-ref="Job 3:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">[Why is light given] to a man whose way is hidden, And whom God has hedged in?</span></div>
-<div class="v-row" data-ref="Job 3:24 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">For my sighing comes before I eat, And my groanings pour out like water.</span></div>
-<div class="v-row" data-ref="Job 3:25 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">For the thing I greatly feared has come upon me, And what I dreaded has happened to me.</span></div>
-<div class="v-row" data-ref="Job 3:26 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">I am not at ease, nor am I quiet; I have no rest, for trouble comes."</span></div>
+    <a class="v-row" href="/bible/nkjv/job/3/1/" data-ref="Job 3:1 (New King James Version)" data-verse-url="/bible/nkjv/job/3/1/"><span class="v-num">1</span><span class="v-txt">After this Job opened his mouth and cursed the day of his [birth.]</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/2/" data-ref="Job 3:2 (New King James Version)" data-verse-url="/bible/nkjv/job/3/2/"><span class="v-num">2</span><span class="v-txt">And Job spoke, and said:</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/3/" data-ref="Job 3:3 (New King James Version)" data-verse-url="/bible/nkjv/job/3/3/"><span class="v-num">3</span><span class="v-txt">"May the day perish on which I was born, And the night [in which] it was said, 'A male child is conceived.'</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/4/" data-ref="Job 3:4 (New King James Version)" data-verse-url="/bible/nkjv/job/3/4/"><span class="v-num">4</span><span class="v-txt">May that day be darkness; May God above not seek it, Nor the light shine upon it.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/5/" data-ref="Job 3:5 (New King James Version)" data-verse-url="/bible/nkjv/job/3/5/"><span class="v-num">5</span><span class="v-txt">May darkness and the shadow of death claim it; May a cloud settle on it; May the blackness of the day terrify it.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/6/" data-ref="Job 3:6 (New King James Version)" data-verse-url="/bible/nkjv/job/3/6/"><span class="v-num">6</span><span class="v-txt">[As for] that night, may darkness seize it; May it not rejoice among the days of the year, May it not come into the number of the months.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/7/" data-ref="Job 3:7 (New King James Version)" data-verse-url="/bible/nkjv/job/3/7/"><span class="v-num">7</span><span class="v-txt">Oh, may that night be barren! May no joyful shout come into it!</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/8/" data-ref="Job 3:8 (New King James Version)" data-verse-url="/bible/nkjv/job/3/8/"><span class="v-num">8</span><span class="v-txt">May those curse it who curse the day, Those who are ready to arouse Leviathan.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/9/" data-ref="Job 3:9 (New King James Version)" data-verse-url="/bible/nkjv/job/3/9/"><span class="v-num">9</span><span class="v-txt">May the stars of its morning be dark; May it look for light, but [have] none, And not see the dawning of the day;</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/10/" data-ref="Job 3:10 (New King James Version)" data-verse-url="/bible/nkjv/job/3/10/"><span class="v-num">10</span><span class="v-txt">Because it did not shut up the doors of my [mother's] womb, Nor hide sorrow from my eyes.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/11/" data-ref="Job 3:11 (New King James Version)" data-verse-url="/bible/nkjv/job/3/11/"><span class="v-num">11</span><span class="v-txt">"Why did I not die at birth? [Why] did I [not] perish when I came from the womb?</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/12/" data-ref="Job 3:12 (New King James Version)" data-verse-url="/bible/nkjv/job/3/12/"><span class="v-num">12</span><span class="v-txt">Why did the knees receive me? Or why the breasts, that I should nurse?</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/13/" data-ref="Job 3:13 (New King James Version)" data-verse-url="/bible/nkjv/job/3/13/"><span class="v-num">13</span><span class="v-txt">For now I would have lain still and been quiet, I would have been asleep; Then I would have been at rest</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/14/" data-ref="Job 3:14 (New King James Version)" data-verse-url="/bible/nkjv/job/3/14/"><span class="v-num">14</span><span class="v-txt">With kings and counselors of the earth, Who built ruins for themselves,</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/15/" data-ref="Job 3:15 (New King James Version)" data-verse-url="/bible/nkjv/job/3/15/"><span class="v-num">15</span><span class="v-txt">Or with princes who had gold, Who filled their houses [with] silver;</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/16/" data-ref="Job 3:16 (New King James Version)" data-verse-url="/bible/nkjv/job/3/16/"><span class="v-num">16</span><span class="v-txt">Or [why] was I not hidden like a stillborn child, Like infants who never saw light?</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/17/" data-ref="Job 3:17 (New King James Version)" data-verse-url="/bible/nkjv/job/3/17/"><span class="v-num">17</span><span class="v-txt">There the wicked cease [from] troubling, And there the weary are at rest.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/18/" data-ref="Job 3:18 (New King James Version)" data-verse-url="/bible/nkjv/job/3/18/"><span class="v-num">18</span><span class="v-txt">[There] the prisoners rest together; They do not hear the voice of the oppressor.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/19/" data-ref="Job 3:19 (New King James Version)" data-verse-url="/bible/nkjv/job/3/19/"><span class="v-num">19</span><span class="v-txt">The small and great are there, And the servant [is] free from his master.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/20/" data-ref="Job 3:20 (New King James Version)" data-verse-url="/bible/nkjv/job/3/20/"><span class="v-num">20</span><span class="v-txt">"Why is light given to him who is in misery, And life to the bitter of soul,</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/21/" data-ref="Job 3:21 (New King James Version)" data-verse-url="/bible/nkjv/job/3/21/"><span class="v-num">21</span><span class="v-txt">Who long for death, but it does not [come,] And search for it more than hidden treasures;</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/22/" data-ref="Job 3:22 (New King James Version)" data-verse-url="/bible/nkjv/job/3/22/"><span class="v-num">22</span><span class="v-txt">Who rejoice exceedingly, [And] are glad when they can find the grave?</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/23/" data-ref="Job 3:23 (New King James Version)" data-verse-url="/bible/nkjv/job/3/23/"><span class="v-num">23</span><span class="v-txt">[Why is light given] to a man whose way is hidden, And whom God has hedged in?</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/24/" data-ref="Job 3:24 (New King James Version)" data-verse-url="/bible/nkjv/job/3/24/"><span class="v-num">24</span><span class="v-txt">For my sighing comes before I eat, And my groanings pour out like water.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/25/" data-ref="Job 3:25 (New King James Version)" data-verse-url="/bible/nkjv/job/3/25/"><span class="v-num">25</span><span class="v-txt">For the thing I greatly feared has come upon me, And what I dreaded has happened to me.</span></a>
+<a class="v-row" href="/bible/nkjv/job/3/26/" data-ref="Job 3:26 (New King James Version)" data-verse-url="/bible/nkjv/job/3/26/"><span class="v-num">26</span><span class="v-txt">I am not at ease, nor am I quiet; I have no rest, for trouble comes."</span></a>
 
     
 <div class="app-cta">

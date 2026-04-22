@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,32 +204,32 @@ a:hover{text-decoration:underline}
       <h2>Chapter 4</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Genesis 4:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">And the man had connection with Eve his wife, and she became with child and gave birth to Cain, and said, I have got a man from the Lord.</span></div>
-<div class="v-row" data-ref="Genesis 4:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Then again she became with child and gave birth to Abel, his brother. And Abel was a keeper of sheep, but Cain was a farmer.</span></div>
-<div class="v-row" data-ref="Genesis 4:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">And after a time, Cain gave to the Lord an offering of the fruits of the earth.</span></div>
-<div class="v-row" data-ref="Genesis 4:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">And Abel gave an offering of the young lambs of his flock and of their fat. And the Lord was pleased with Abel's offering;</span></div>
-<div class="v-row" data-ref="Genesis 4:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">But in Cain and his offering he had no pleasure. And Cain was angry and his face became sad.</span></div>
-<div class="v-row" data-ref="Genesis 4:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And the Lord said to Cain, Why are you angry? and why is your face sad?</span></div>
-<div class="v-row" data-ref="Genesis 4:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">If you do well, will you not have honour? and if you do wrong, sin is waiting at the door, desiring to have you, but do not let it be your master.</span></div>
-<div class="v-row" data-ref="Genesis 4:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And Cain said to his brother, Let us go into the field: and when they were in the field, Cain made an attack on his brother Abel and put him to death.</span></div>
-<div class="v-row" data-ref="Genesis 4:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">And the Lord said to Cain, Where is your brother Abel? And he said, I have no idea: am I my brother's keeper?</span></div>
-<div class="v-row" data-ref="Genesis 4:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And he said, What have you done? the voice of your brother's blood is crying to me from the earth.</span></div>
-<div class="v-row" data-ref="Genesis 4:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And now you are cursed from the earth, whose mouth is open to take your brother's blood from your hand;</span></div>
-<div class="v-row" data-ref="Genesis 4:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">No longer will the earth give you her fruit as the reward of your work; you will be a wanderer in flight over the earth.</span></div>
-<div class="v-row" data-ref="Genesis 4:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">And Cain said, My punishment is greater than my strength.</span></div>
-<div class="v-row" data-ref="Genesis 4:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">You have sent me out this day from the face of the earth and from before your face; I will be a wanderer in flight over the earth, and whoever sees me will put me to death.</span></div>
-<div class="v-row" data-ref="Genesis 4:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">And the Lord said, Truly, if Cain is put to death, seven lives will be taken for his. And the Lord put a mark on Cain so that no one might put him to death.</span></div>
-<div class="v-row" data-ref="Genesis 4:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">And Cain went away from before the face of the Lord, and made his living-place in the land of Nod on the east of Eden.</span></div>
-<div class="v-row" data-ref="Genesis 4:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">And Cain had connection with his wife and she became with child and gave birth to Enoch: and he made a town, and gave the town the name of Enoch after his son.</span></div>
-<div class="v-row" data-ref="Genesis 4:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">And Enoch had a son Irad: and Irad became the father of Mehujael: and Mehujael became the father of Methushael: and Methushael became the father of Lamech.</span></div>
-<div class="v-row" data-ref="Genesis 4:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">And Lamech had two wives; the name of the one was Adah, and the name of the other Zillah.</span></div>
-<div class="v-row" data-ref="Genesis 4:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">And Adah gave birth to Jabal: he was the father of such as are living in tents and keep cattle.</span></div>
-<div class="v-row" data-ref="Genesis 4:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">And his brother's name was Jubal: he was the father of all players on instruments of music.</span></div>
-<div class="v-row" data-ref="Genesis 4:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And Zillah gave birth to Tubal-cain, who is the father of every maker of cutting instruments of brass and iron: and the sister of Tubal-cain was Naamah.</span></div>
-<div class="v-row" data-ref="Genesis 4:23 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">And Lamech said to his wives, Adah and Zillah, give ear to my voice; you wives of Lamech, give attention to my words, for I would put a man to death for a wound, and a young man for a blow;</span></div>
-<div class="v-row" data-ref="Genesis 4:24 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">If seven lives are to be taken as punishment for Cain's death, seventy-seven will be taken for Lamech's.</span></div>
-<div class="v-row" data-ref="Genesis 4:25 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">And Adam had connection with his wife again, and she gave birth to a son to whom she gave the name of Seth: for she said, God has given me another seed in place of Abel, whom Cain put to death.</span></div>
-<div class="v-row" data-ref="Genesis 4:26 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">And Seth had a son, and he gave him the name of Enosh: at this time men first made use of the name of the Lord in worship.</span></div>
+    <a class="v-row" href="/bible/bbe/genesis/4/1/" data-ref="Genesis 4:1 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/1/"><span class="v-num">1</span><span class="v-txt">And the man had connection with Eve his wife, and she became with child and gave birth to Cain, and said, I have got a man from the Lord.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/2/" data-ref="Genesis 4:2 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/2/"><span class="v-num">2</span><span class="v-txt">Then again she became with child and gave birth to Abel, his brother. And Abel was a keeper of sheep, but Cain was a farmer.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/3/" data-ref="Genesis 4:3 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/3/"><span class="v-num">3</span><span class="v-txt">And after a time, Cain gave to the Lord an offering of the fruits of the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/4/" data-ref="Genesis 4:4 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/4/"><span class="v-num">4</span><span class="v-txt">And Abel gave an offering of the young lambs of his flock and of their fat. And the Lord was pleased with Abel's offering;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/5/" data-ref="Genesis 4:5 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/5/"><span class="v-num">5</span><span class="v-txt">But in Cain and his offering he had no pleasure. And Cain was angry and his face became sad.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/6/" data-ref="Genesis 4:6 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/6/"><span class="v-num">6</span><span class="v-txt">And the Lord said to Cain, Why are you angry? and why is your face sad?</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/7/" data-ref="Genesis 4:7 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/7/"><span class="v-num">7</span><span class="v-txt">If you do well, will you not have honour? and if you do wrong, sin is waiting at the door, desiring to have you, but do not let it be your master.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/8/" data-ref="Genesis 4:8 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/8/"><span class="v-num">8</span><span class="v-txt">And Cain said to his brother, Let us go into the field: and when they were in the field, Cain made an attack on his brother Abel and put him to death.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/9/" data-ref="Genesis 4:9 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/9/"><span class="v-num">9</span><span class="v-txt">And the Lord said to Cain, Where is your brother Abel? And he said, I have no idea: am I my brother's keeper?</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/10/" data-ref="Genesis 4:10 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/10/"><span class="v-num">10</span><span class="v-txt">And he said, What have you done? the voice of your brother's blood is crying to me from the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/11/" data-ref="Genesis 4:11 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/11/"><span class="v-num">11</span><span class="v-txt">And now you are cursed from the earth, whose mouth is open to take your brother's blood from your hand;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/12/" data-ref="Genesis 4:12 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/12/"><span class="v-num">12</span><span class="v-txt">No longer will the earth give you her fruit as the reward of your work; you will be a wanderer in flight over the earth.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/13/" data-ref="Genesis 4:13 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/13/"><span class="v-num">13</span><span class="v-txt">And Cain said, My punishment is greater than my strength.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/14/" data-ref="Genesis 4:14 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/14/"><span class="v-num">14</span><span class="v-txt">You have sent me out this day from the face of the earth and from before your face; I will be a wanderer in flight over the earth, and whoever sees me will put me to death.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/15/" data-ref="Genesis 4:15 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/15/"><span class="v-num">15</span><span class="v-txt">And the Lord said, Truly, if Cain is put to death, seven lives will be taken for his. And the Lord put a mark on Cain so that no one might put him to death.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/16/" data-ref="Genesis 4:16 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/16/"><span class="v-num">16</span><span class="v-txt">And Cain went away from before the face of the Lord, and made his living-place in the land of Nod on the east of Eden.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/17/" data-ref="Genesis 4:17 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/17/"><span class="v-num">17</span><span class="v-txt">And Cain had connection with his wife and she became with child and gave birth to Enoch: and he made a town, and gave the town the name of Enoch after his son.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/18/" data-ref="Genesis 4:18 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/18/"><span class="v-num">18</span><span class="v-txt">And Enoch had a son Irad: and Irad became the father of Mehujael: and Mehujael became the father of Methushael: and Methushael became the father of Lamech.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/19/" data-ref="Genesis 4:19 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/19/"><span class="v-num">19</span><span class="v-txt">And Lamech had two wives; the name of the one was Adah, and the name of the other Zillah.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/20/" data-ref="Genesis 4:20 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/20/"><span class="v-num">20</span><span class="v-txt">And Adah gave birth to Jabal: he was the father of such as are living in tents and keep cattle.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/21/" data-ref="Genesis 4:21 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/21/"><span class="v-num">21</span><span class="v-txt">And his brother's name was Jubal: he was the father of all players on instruments of music.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/22/" data-ref="Genesis 4:22 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/22/"><span class="v-num">22</span><span class="v-txt">And Zillah gave birth to Tubal-cain, who is the father of every maker of cutting instruments of brass and iron: and the sister of Tubal-cain was Naamah.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/23/" data-ref="Genesis 4:23 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/23/"><span class="v-num">23</span><span class="v-txt">And Lamech said to his wives, Adah and Zillah, give ear to my voice; you wives of Lamech, give attention to my words, for I would put a man to death for a wound, and a young man for a blow;</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/24/" data-ref="Genesis 4:24 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/24/"><span class="v-num">24</span><span class="v-txt">If seven lives are to be taken as punishment for Cain's death, seventy-seven will be taken for Lamech's.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/25/" data-ref="Genesis 4:25 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/25/"><span class="v-num">25</span><span class="v-txt">And Adam had connection with his wife again, and she gave birth to a son to whom she gave the name of Seth: for she said, God has given me another seed in place of Abel, whom Cain put to death.</span></a>
+<a class="v-row" href="/bible/bbe/genesis/4/26/" data-ref="Genesis 4:26 (Bible in Basic English)" data-verse-url="/bible/bbe/genesis/4/26/"><span class="v-num">26</span><span class="v-txt">And Seth had a son, and he gave him the name of Enosh: at this time men first made use of the name of the Lord in worship.</span></a>
 
     
 <div class="app-cta">

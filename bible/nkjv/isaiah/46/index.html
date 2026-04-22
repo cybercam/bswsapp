@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,19 +204,19 @@ a:hover{text-decoration:underline}
       <h2>Chapter 46</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Isaiah 46:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Bel bows down, Nebo stoops; Their idols were on the beasts and on the cattle. Your carriages [were] heavily loaded, A burden to the weary [beast.]</span></div>
-<div class="v-row" data-ref="Isaiah 46:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">They stoop, they bow down together; They could not deliver the burden, But have themselves gone into captivity.</span></div>
-<div class="v-row" data-ref="Isaiah 46:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">" Listen to Me, O house of Jacob, And all the remnant of the house of Israel, Who have been upheld [by Me] from birth, Who have been carried from the womb:</span></div>
-<div class="v-row" data-ref="Isaiah 46:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Even to [your] old age, I [am] He, And [even] to gray hairs I will carry [you!] I have made, and I will bear; Even I will carry, and will deliver [you.]</span></div>
-<div class="v-row" data-ref="Isaiah 46:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">" To whom will you liken Me, and make [Me] equal And compare Me, that we should be alike?</span></div>
-<div class="v-row" data-ref="Isaiah 46:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">They lavish gold out of the bag, And weigh silver on the scales; They hire a goldsmith, and he makes it a god; They prostrate themselves, yes, they worship.</span></div>
-<div class="v-row" data-ref="Isaiah 46:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">They bear it on the shoulder, they carry it And set it in its place, and it stands; From its place it shall not move. Though [one] cries out to it, yet it cannot answer Nor save him out of his trouble.</span></div>
-<div class="v-row" data-ref="Isaiah 46:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">" Remember this, and show yourselves men; Recall to mind, O you transgressors.</span></div>
-<div class="v-row" data-ref="Isaiah 46:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Remember the former things of old, For I [am] God, and [there is] no other; [I am] God, and [there is] none like Me,</span></div>
-<div class="v-row" data-ref="Isaiah 46:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">Declaring the end from the beginning, And from ancient times [things] that are not [yet] done, Saying, 'My counsel shall stand, And I will do all My pleasure,'</span></div>
-<div class="v-row" data-ref="Isaiah 46:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Calling a bird of prey from the east, The man who executes My counsel, from a far country. Indeed I have spoken [it;] I will also bring it to pass. I have purposed [it;] I will also do it.</span></div>
-<div class="v-row" data-ref="Isaiah 46:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">" Listen to Me, you stubborn-hearted, Who [are] far from righteousness:</span></div>
-<div class="v-row" data-ref="Isaiah 46:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">I bring My righteousness near, it shall not be far off; My salvation shall not linger. And I will place salvation in Zion, For Israel My glory.</span></div>
+    <a class="v-row" href="/bible/nkjv/isaiah/46/1/" data-ref="Isaiah 46:1 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/1/"><span class="v-num">1</span><span class="v-txt">Bel bows down, Nebo stoops; Their idols were on the beasts and on the cattle. Your carriages [were] heavily loaded, A burden to the weary [beast.]</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/2/" data-ref="Isaiah 46:2 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/2/"><span class="v-num">2</span><span class="v-txt">They stoop, they bow down together; They could not deliver the burden, But have themselves gone into captivity.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/3/" data-ref="Isaiah 46:3 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/3/"><span class="v-num">3</span><span class="v-txt">" Listen to Me, O house of Jacob, And all the remnant of the house of Israel, Who have been upheld [by Me] from birth, Who have been carried from the womb:</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/4/" data-ref="Isaiah 46:4 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/4/"><span class="v-num">4</span><span class="v-txt">Even to [your] old age, I [am] He, And [even] to gray hairs I will carry [you!] I have made, and I will bear; Even I will carry, and will deliver [you.]</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/5/" data-ref="Isaiah 46:5 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/5/"><span class="v-num">5</span><span class="v-txt">" To whom will you liken Me, and make [Me] equal And compare Me, that we should be alike?</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/6/" data-ref="Isaiah 46:6 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/6/"><span class="v-num">6</span><span class="v-txt">They lavish gold out of the bag, And weigh silver on the scales; They hire a goldsmith, and he makes it a god; They prostrate themselves, yes, they worship.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/7/" data-ref="Isaiah 46:7 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/7/"><span class="v-num">7</span><span class="v-txt">They bear it on the shoulder, they carry it And set it in its place, and it stands; From its place it shall not move. Though [one] cries out to it, yet it cannot answer Nor save him out of his trouble.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/8/" data-ref="Isaiah 46:8 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/8/"><span class="v-num">8</span><span class="v-txt">" Remember this, and show yourselves men; Recall to mind, O you transgressors.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/9/" data-ref="Isaiah 46:9 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/9/"><span class="v-num">9</span><span class="v-txt">Remember the former things of old, For I [am] God, and [there is] no other; [I am] God, and [there is] none like Me,</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/10/" data-ref="Isaiah 46:10 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/10/"><span class="v-num">10</span><span class="v-txt">Declaring the end from the beginning, And from ancient times [things] that are not [yet] done, Saying, 'My counsel shall stand, And I will do all My pleasure,'</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/11/" data-ref="Isaiah 46:11 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/11/"><span class="v-num">11</span><span class="v-txt">Calling a bird of prey from the east, The man who executes My counsel, from a far country. Indeed I have spoken [it;] I will also bring it to pass. I have purposed [it;] I will also do it.</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/12/" data-ref="Isaiah 46:12 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/12/"><span class="v-num">12</span><span class="v-txt">" Listen to Me, you stubborn-hearted, Who [are] far from righteousness:</span></a>
+<a class="v-row" href="/bible/nkjv/isaiah/46/13/" data-ref="Isaiah 46:13 (New King James Version)" data-verse-url="/bible/nkjv/isaiah/46/13/"><span class="v-num">13</span><span class="v-txt">I bring My righteousness near, it shall not be far off; My salvation shall not linger. And I will place salvation in Zion, For Israel My glory.</span></a>
 
     
 <div class="app-cta">

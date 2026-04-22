@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,28 +204,28 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">Bible in Basic English</span>
     </div>
-    <div class="v-row" data-ref="Proverbs 2:1 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">My son, if you will take my words to your heart, storing up my laws in your mind;</span></div>
-<div class="v-row" data-ref="Proverbs 2:2 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">So that your ear gives attention to wisdom, and your heart is turned to knowledge;</span></div>
-<div class="v-row" data-ref="Proverbs 2:3 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Truly, if you are crying out for good sense, and your request is for knowledge;</span></div>
-<div class="v-row" data-ref="Proverbs 2:4 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">If you are looking for her as for silver, and searching for her as for stored-up wealth;</span></div>
-<div class="v-row" data-ref="Proverbs 2:5 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Then the fear of the Lord will be clear to you, and knowledge of God will be yours.</span></div>
-<div class="v-row" data-ref="Proverbs 2:6 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">For the Lord gives wisdom; out of his mouth come knowledge and reason:</span></div>
-<div class="v-row" data-ref="Proverbs 2:7 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">He has salvation stored up for the upright, he is a breastplate to those in whom there is no evil;</span></div>
-<div class="v-row" data-ref="Proverbs 2:8 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">He keeps watch on the ways which are right, and takes care of those who have the fear of him.</span></div>
-<div class="v-row" data-ref="Proverbs 2:9 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Then you will have knowledge of righteousness and right acting, and upright behaviour, even of every good way.</span></div>
-<div class="v-row" data-ref="Proverbs 2:10 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">For wisdom will come into your heart, and knowledge will be pleasing to your soul;</span></div>
-<div class="v-row" data-ref="Proverbs 2:11 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Wise purposes will be watching over you, and knowledge will keep you;</span></div>
-<div class="v-row" data-ref="Proverbs 2:12 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">Giving you salvation from the evil man, from those whose words are false;</span></div>
-<div class="v-row" data-ref="Proverbs 2:13 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Who give up the way of righteousness, to go by dark roads;</span></div>
-<div class="v-row" data-ref="Proverbs 2:14 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Who take pleasure in wrongdoing, and have joy in the evil designs of the sinner;</span></div>
-<div class="v-row" data-ref="Proverbs 2:15 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Whose ways are not straight, and whose footsteps are turned to evil:</span></div>
-<div class="v-row" data-ref="Proverbs 2:16 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">To take you out of the power of the strange woman, who says smooth words with her tongue;</span></div>
-<div class="v-row" data-ref="Proverbs 2:17 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Who is false to the husband of her early years, and does not keep the agreement of her God in mind:</span></div>
-<div class="v-row" data-ref="Proverbs 2:18 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">For her house is on the way down to death; her footsteps go down to the shades:</span></div>
-<div class="v-row" data-ref="Proverbs 2:19 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Those who go to her do not come back again; their feet do not keep in the ways of life:</span></div>
-<div class="v-row" data-ref="Proverbs 2:20 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">So that you may go in the way of good men, and keep in the footsteps of the upright.</span></div>
-<div class="v-row" data-ref="Proverbs 2:21 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">For the upright will be living in the land, and the good will have it for their heritage.</span></div>
-<div class="v-row" data-ref="Proverbs 2:22 (Bible in Basic English)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">But sinners will be cut off from the land, and those whose acts are false will be uprooted.</span></div>
+    <a class="v-row" href="/bible/bbe/proverbs/2/1/" data-ref="Proverbs 2:1 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/1/"><span class="v-num">1</span><span class="v-txt">My son, if you will take my words to your heart, storing up my laws in your mind;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/2/" data-ref="Proverbs 2:2 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/2/"><span class="v-num">2</span><span class="v-txt">So that your ear gives attention to wisdom, and your heart is turned to knowledge;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/3/" data-ref="Proverbs 2:3 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/3/"><span class="v-num">3</span><span class="v-txt">Truly, if you are crying out for good sense, and your request is for knowledge;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/4/" data-ref="Proverbs 2:4 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/4/"><span class="v-num">4</span><span class="v-txt">If you are looking for her as for silver, and searching for her as for stored-up wealth;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/5/" data-ref="Proverbs 2:5 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/5/"><span class="v-num">5</span><span class="v-txt">Then the fear of the Lord will be clear to you, and knowledge of God will be yours.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/6/" data-ref="Proverbs 2:6 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/6/"><span class="v-num">6</span><span class="v-txt">For the Lord gives wisdom; out of his mouth come knowledge and reason:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/7/" data-ref="Proverbs 2:7 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/7/"><span class="v-num">7</span><span class="v-txt">He has salvation stored up for the upright, he is a breastplate to those in whom there is no evil;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/8/" data-ref="Proverbs 2:8 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/8/"><span class="v-num">8</span><span class="v-txt">He keeps watch on the ways which are right, and takes care of those who have the fear of him.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/9/" data-ref="Proverbs 2:9 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/9/"><span class="v-num">9</span><span class="v-txt">Then you will have knowledge of righteousness and right acting, and upright behaviour, even of every good way.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/10/" data-ref="Proverbs 2:10 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/10/"><span class="v-num">10</span><span class="v-txt">For wisdom will come into your heart, and knowledge will be pleasing to your soul;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/11/" data-ref="Proverbs 2:11 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/11/"><span class="v-num">11</span><span class="v-txt">Wise purposes will be watching over you, and knowledge will keep you;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/12/" data-ref="Proverbs 2:12 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/12/"><span class="v-num">12</span><span class="v-txt">Giving you salvation from the evil man, from those whose words are false;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/13/" data-ref="Proverbs 2:13 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/13/"><span class="v-num">13</span><span class="v-txt">Who give up the way of righteousness, to go by dark roads;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/14/" data-ref="Proverbs 2:14 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/14/"><span class="v-num">14</span><span class="v-txt">Who take pleasure in wrongdoing, and have joy in the evil designs of the sinner;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/15/" data-ref="Proverbs 2:15 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/15/"><span class="v-num">15</span><span class="v-txt">Whose ways are not straight, and whose footsteps are turned to evil:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/16/" data-ref="Proverbs 2:16 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/16/"><span class="v-num">16</span><span class="v-txt">To take you out of the power of the strange woman, who says smooth words with her tongue;</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/17/" data-ref="Proverbs 2:17 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/17/"><span class="v-num">17</span><span class="v-txt">Who is false to the husband of her early years, and does not keep the agreement of her God in mind:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/18/" data-ref="Proverbs 2:18 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/18/"><span class="v-num">18</span><span class="v-txt">For her house is on the way down to death; her footsteps go down to the shades:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/19/" data-ref="Proverbs 2:19 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/19/"><span class="v-num">19</span><span class="v-txt">Those who go to her do not come back again; their feet do not keep in the ways of life:</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/20/" data-ref="Proverbs 2:20 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/20/"><span class="v-num">20</span><span class="v-txt">So that you may go in the way of good men, and keep in the footsteps of the upright.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/21/" data-ref="Proverbs 2:21 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/21/"><span class="v-num">21</span><span class="v-txt">For the upright will be living in the land, and the good will have it for their heritage.</span></a>
+<a class="v-row" href="/bible/bbe/proverbs/2/22/" data-ref="Proverbs 2:22 (Bible in Basic English)" data-verse-url="/bible/bbe/proverbs/2/22/"><span class="v-num">22</span><span class="v-txt">But sinners will be cut off from the land, and those whose acts are false will be uprooted.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,29 +204,29 @@ a:hover{text-decoration:underline}
       <h2>Chapter 1</h2>
       <span class="version-tag">New King James Version</span>
     </div>
-    <div class="v-row" data-ref="Ephesians 1:1 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Paul, an apostle of Jesus Christ by the will of God, To the saints who are in Ephesus, and faithful in Christ Jesus:</span></div>
-<div class="v-row" data-ref="Ephesians 1:2 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God our Father and the Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="Ephesians 1:3 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Blessed [be] the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly [places] in Christ,</span></div>
-<div class="v-row" data-ref="Ephesians 1:4 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">just as He chose us in Him before the foundation of the world, that we should be holy and without blame before Him in love,</span></div>
-<div class="v-row" data-ref="Ephesians 1:5 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">having predestined us to adoption as sons by Jesus Christ to Himself, according to the good pleasure of His will,</span></div>
-<div class="v-row" data-ref="Ephesians 1:6 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">to the praise of the glory of His grace, by which He has made us accepted in the Beloved.</span></div>
-<div class="v-row" data-ref="Ephesians 1:7 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">In Him we have redemption through His blood, the forgiveness of sins, according to the riches of His grace</span></div>
-<div class="v-row" data-ref="Ephesians 1:8 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">which He made to abound toward us in all wisdom and prudence,</span></div>
-<div class="v-row" data-ref="Ephesians 1:9 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">having made known to us the mystery of His will, according to His good pleasure which He purposed in Himself,</span></div>
-<div class="v-row" data-ref="Ephesians 1:10 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">that in the dispensation of the fullness of the times He might gather together in one all things in Christ, both which are in heaven and which are on earth -- in Him.</span></div>
-<div class="v-row" data-ref="Ephesians 1:11 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">In Him also we have obtained an inheritance, being predestined according to the purpose of Him who works all things according to the counsel of His will,</span></div>
-<div class="v-row" data-ref="Ephesians 1:12 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">that we who first trusted in Christ should be to the praise of His glory.</span></div>
-<div class="v-row" data-ref="Ephesians 1:13 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">In Him you also [trusted,] after you heard the word of truth, the gospel of your salvation; in whom also, having believed, you were sealed with the Holy Spirit of promise,</span></div>
-<div class="v-row" data-ref="Ephesians 1:14 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">who is the guarantee of our inheritance until the redemption of the purchased possession, to the praise of His glory.</span></div>
-<div class="v-row" data-ref="Ephesians 1:15 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore I also, after I heard of your faith in the Lord Jesus and your love for all the saints,</span></div>
-<div class="v-row" data-ref="Ephesians 1:16 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">do not cease to give thanks for you, making mention of you in my prayers:</span></div>
-<div class="v-row" data-ref="Ephesians 1:17 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">that the God of our Lord Jesus Christ, the Father of glory, may give to you the spirit of wisdom and revelation in the knowledge of Him,</span></div>
-<div class="v-row" data-ref="Ephesians 1:18 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">the eyes of your understanding being enlightened; that you may know what is the hope of His calling, what are the riches of the glory of His inheritance in the saints,</span></div>
-<div class="v-row" data-ref="Ephesians 1:19 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">and what [is] the exceeding greatness of His power toward us who believe, according to the working of His mighty power</span></div>
-<div class="v-row" data-ref="Ephesians 1:20 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">which He worked in Christ when He raised Him from the dead and seated [Him] at His right hand in the heavenly [places,]</span></div>
-<div class="v-row" data-ref="Ephesians 1:21 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">far above all principality and power and might and dominion, and every name that is named, not only in this age but also in that which is to come.</span></div>
-<div class="v-row" data-ref="Ephesians 1:22 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">And He put all [things] under His feet, and gave Him [to be] head over all [things] to the church,</span></div>
-<div class="v-row" data-ref="Ephesians 1:23 (New King James Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">which is His body, the fullness of Him who fills all in all.</span></div>
+    <a class="v-row" href="/bible/nkjv/ephesians/1/1/" data-ref="Ephesians 1:1 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/1/"><span class="v-num">1</span><span class="v-txt">Paul, an apostle of Jesus Christ by the will of God, To the saints who are in Ephesus, and faithful in Christ Jesus:</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/2/" data-ref="Ephesians 1:2 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/2/"><span class="v-num">2</span><span class="v-txt">Grace to you and peace from God our Father and the Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/3/" data-ref="Ephesians 1:3 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/3/"><span class="v-num">3</span><span class="v-txt">Blessed [be] the God and Father of our Lord Jesus Christ, who has blessed us with every spiritual blessing in the heavenly [places] in Christ,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/4/" data-ref="Ephesians 1:4 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/4/"><span class="v-num">4</span><span class="v-txt">just as He chose us in Him before the foundation of the world, that we should be holy and without blame before Him in love,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/5/" data-ref="Ephesians 1:5 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/5/"><span class="v-num">5</span><span class="v-txt">having predestined us to adoption as sons by Jesus Christ to Himself, according to the good pleasure of His will,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/6/" data-ref="Ephesians 1:6 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/6/"><span class="v-num">6</span><span class="v-txt">to the praise of the glory of His grace, by which He has made us accepted in the Beloved.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/7/" data-ref="Ephesians 1:7 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/7/"><span class="v-num">7</span><span class="v-txt">In Him we have redemption through His blood, the forgiveness of sins, according to the riches of His grace</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/8/" data-ref="Ephesians 1:8 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/8/"><span class="v-num">8</span><span class="v-txt">which He made to abound toward us in all wisdom and prudence,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/9/" data-ref="Ephesians 1:9 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/9/"><span class="v-num">9</span><span class="v-txt">having made known to us the mystery of His will, according to His good pleasure which He purposed in Himself,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/10/" data-ref="Ephesians 1:10 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/10/"><span class="v-num">10</span><span class="v-txt">that in the dispensation of the fullness of the times He might gather together in one all things in Christ, both which are in heaven and which are on earth -- in Him.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/11/" data-ref="Ephesians 1:11 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/11/"><span class="v-num">11</span><span class="v-txt">In Him also we have obtained an inheritance, being predestined according to the purpose of Him who works all things according to the counsel of His will,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/12/" data-ref="Ephesians 1:12 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/12/"><span class="v-num">12</span><span class="v-txt">that we who first trusted in Christ should be to the praise of His glory.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/13/" data-ref="Ephesians 1:13 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/13/"><span class="v-num">13</span><span class="v-txt">In Him you also [trusted,] after you heard the word of truth, the gospel of your salvation; in whom also, having believed, you were sealed with the Holy Spirit of promise,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/14/" data-ref="Ephesians 1:14 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/14/"><span class="v-num">14</span><span class="v-txt">who is the guarantee of our inheritance until the redemption of the purchased possession, to the praise of His glory.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/15/" data-ref="Ephesians 1:15 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/15/"><span class="v-num">15</span><span class="v-txt">Therefore I also, after I heard of your faith in the Lord Jesus and your love for all the saints,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/16/" data-ref="Ephesians 1:16 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/16/"><span class="v-num">16</span><span class="v-txt">do not cease to give thanks for you, making mention of you in my prayers:</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/17/" data-ref="Ephesians 1:17 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/17/"><span class="v-num">17</span><span class="v-txt">that the God of our Lord Jesus Christ, the Father of glory, may give to you the spirit of wisdom and revelation in the knowledge of Him,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/18/" data-ref="Ephesians 1:18 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/18/"><span class="v-num">18</span><span class="v-txt">the eyes of your understanding being enlightened; that you may know what is the hope of His calling, what are the riches of the glory of His inheritance in the saints,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/19/" data-ref="Ephesians 1:19 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/19/"><span class="v-num">19</span><span class="v-txt">and what [is] the exceeding greatness of His power toward us who believe, according to the working of His mighty power</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/20/" data-ref="Ephesians 1:20 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/20/"><span class="v-num">20</span><span class="v-txt">which He worked in Christ when He raised Him from the dead and seated [Him] at His right hand in the heavenly [places,]</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/21/" data-ref="Ephesians 1:21 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/21/"><span class="v-num">21</span><span class="v-txt">far above all principality and power and might and dominion, and every name that is named, not only in this age but also in that which is to come.</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/22/" data-ref="Ephesians 1:22 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/22/"><span class="v-num">22</span><span class="v-txt">And He put all [things] under His feet, and gave Him [to be] head over all [things] to the church,</span></a>
+<a class="v-row" href="/bible/nkjv/ephesians/1/23/" data-ref="Ephesians 1:23 (New King James Version)" data-verse-url="/bible/nkjv/ephesians/1/23/"><span class="v-num">23</span><span class="v-txt">which is His body, the fullness of Him who fills all in all.</span></a>
 
     
 <div class="app-cta">

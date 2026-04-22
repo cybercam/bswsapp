@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,23 +204,23 @@ a:hover{text-decoration:underline}
       <h2>Chapter 2</h2>
       <span class="version-tag">King James Version</span>
     </div>
-    <div class="v-row" data-ref="2 Thessalonians 2:1 (King James Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Now we beseech you, brethren, by the coming of our Lord Jesus Christ, and by our gathering together unto him,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:2 (King James Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">That ye be not soon shaken in mind, or be troubled, neither by spirit, nor by word, nor by letter as from us, as that the day of Christ is at hand.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:3 (King James Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Let no man deceive you by any means: for that day shall not come, except there come a falling away first, and that man of sin be revealed, the son of perdition;</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:4 (King James Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Who opposeth and exalteth himself above all that is called God, or that is worshipped; so that he as God sitteth in the temple of God, shewing himself that he is God.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:5 (King James Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Remember ye not, that, when I was yet with you, I told you these things?</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:6 (King James Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">And now ye know what withholdeth that he might be revealed in his time.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:7 (King James Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">For the mystery of iniquity doth already work: only he who now letteth will let, until he be taken out of the way.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:8 (King James Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">And then shall that Wicked be revealed, whom the Lord shall consume with the spirit of his mouth, and shall destroy with the brightness of his coming:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:9 (King James Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Even him, whose coming is after the working of Satan with all power and signs and lying wonders,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:10 (King James Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">And with all deceivableness of unrighteousness in them that perish; because they received not the love of the truth, that they might be saved.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:11 (King James Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">And for this cause God shall send them strong delusion, that they should believe a lie:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:12 (King James Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">That they all might be damned who believed not the truth, but had pleasure in unrighteousness.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:13 (King James Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">But we are bound to give thanks alway to God for you, brethren beloved of the Lord, because God hath from the beginning chosen you to salvation through sanctification of the Spirit and belief of the truth:</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:14 (King James Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Whereunto he called you by our gospel, to the obtaining of the glory of our Lord Jesus Christ.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:15 (King James Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">Therefore, brethren, stand fast, and hold the traditions which ye have been taught, whether by word, or our epistle.</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:16 (King James Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">Now our Lord Jesus Christ himself, and God, even our Father, which hath loved us, and hath given us everlasting consolation and good hope through grace,</span></div>
-<div class="v-row" data-ref="2 Thessalonians 2:17 (King James Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">Comfort your hearts, and stablish you in every good word and work.</span></div>
+    <a class="v-row" href="/bible/kjv/2-thessalonians/2/1/" data-ref="2 Thessalonians 2:1 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/1/"><span class="v-num">1</span><span class="v-txt">Now we beseech you, brethren, by the coming of our Lord Jesus Christ, and by our gathering together unto him,</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/2/" data-ref="2 Thessalonians 2:2 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/2/"><span class="v-num">2</span><span class="v-txt">That ye be not soon shaken in mind, or be troubled, neither by spirit, nor by word, nor by letter as from us, as that the day of Christ is at hand.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/3/" data-ref="2 Thessalonians 2:3 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/3/"><span class="v-num">3</span><span class="v-txt">Let no man deceive you by any means: for that day shall not come, except there come a falling away first, and that man of sin be revealed, the son of perdition;</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/4/" data-ref="2 Thessalonians 2:4 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/4/"><span class="v-num">4</span><span class="v-txt">Who opposeth and exalteth himself above all that is called God, or that is worshipped; so that he as God sitteth in the temple of God, shewing himself that he is God.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/5/" data-ref="2 Thessalonians 2:5 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/5/"><span class="v-num">5</span><span class="v-txt">Remember ye not, that, when I was yet with you, I told you these things?</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/6/" data-ref="2 Thessalonians 2:6 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/6/"><span class="v-num">6</span><span class="v-txt">And now ye know what withholdeth that he might be revealed in his time.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/7/" data-ref="2 Thessalonians 2:7 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/7/"><span class="v-num">7</span><span class="v-txt">For the mystery of iniquity doth already work: only he who now letteth will let, until he be taken out of the way.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/8/" data-ref="2 Thessalonians 2:8 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/8/"><span class="v-num">8</span><span class="v-txt">And then shall that Wicked be revealed, whom the Lord shall consume with the spirit of his mouth, and shall destroy with the brightness of his coming:</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/9/" data-ref="2 Thessalonians 2:9 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/9/"><span class="v-num">9</span><span class="v-txt">Even him, whose coming is after the working of Satan with all power and signs and lying wonders,</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/10/" data-ref="2 Thessalonians 2:10 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/10/"><span class="v-num">10</span><span class="v-txt">And with all deceivableness of unrighteousness in them that perish; because they received not the love of the truth, that they might be saved.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/11/" data-ref="2 Thessalonians 2:11 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/11/"><span class="v-num">11</span><span class="v-txt">And for this cause God shall send them strong delusion, that they should believe a lie:</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/12/" data-ref="2 Thessalonians 2:12 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/12/"><span class="v-num">12</span><span class="v-txt">That they all might be damned who believed not the truth, but had pleasure in unrighteousness.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/13/" data-ref="2 Thessalonians 2:13 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/13/"><span class="v-num">13</span><span class="v-txt">But we are bound to give thanks alway to God for you, brethren beloved of the Lord, because God hath from the beginning chosen you to salvation through sanctification of the Spirit and belief of the truth:</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/14/" data-ref="2 Thessalonians 2:14 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/14/"><span class="v-num">14</span><span class="v-txt">Whereunto he called you by our gospel, to the obtaining of the glory of our Lord Jesus Christ.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/15/" data-ref="2 Thessalonians 2:15 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/15/"><span class="v-num">15</span><span class="v-txt">Therefore, brethren, stand fast, and hold the traditions which ye have been taught, whether by word, or our epistle.</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/16/" data-ref="2 Thessalonians 2:16 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/16/"><span class="v-num">16</span><span class="v-txt">Now our Lord Jesus Christ himself, and God, even our Father, which hath loved us, and hath given us everlasting consolation and good hope through grace,</span></a>
+<a class="v-row" href="/bible/kjv/2-thessalonians/2/17/" data-ref="2 Thessalonians 2:17 (King James Version)" data-verse-url="/bible/kjv/2-thessalonians/2/17/"><span class="v-num">17</span><span class="v-txt">Comfort your hearts, and stablish you in every good word and work.</span></a>
 
     
 <div class="app-cta">

@@ -72,6 +72,8 @@ a:hover{text-decoration:underline}
 @media(min-width:900px){
   #sidebar{transform:translateX(0)}
   #wrap{margin-left:280px}
+  body.sidebar-collapsed #sidebar{transform:translateX(-100%)}
+  body.sidebar-collapsed #wrap{margin-left:0}
 }
 
 /* Sidebar internals */
@@ -98,11 +100,21 @@ a:hover{text-decoration:underline}
 .ch-head .version-tag{display:inline-block;margin-top:8px;font-size:11px;font-family:'Cinzel',serif;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:3px 12px}
 
 /* Verses */
-.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
-.v-row:hover,.v-row.sel{background:var(--card)}
+.v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent;border-left:3px solid transparent;color:inherit;text-decoration:none}
+.v-row:hover{background:var(--card)}
+.v-row.sel{background:var(--card);border-left-color:var(--accent);padding-left:7px}
+.v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
+
+/* Verse detail */
+.verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
+.verse-detail-ref{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin-bottom:10px}
+.verse-detail-text{font-family:'Lora',Georgia,serif;font-size:clamp(20px,4vw,28px);line-height:1.7;color:var(--text)}
+.verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
+.verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -192,40 +204,40 @@ a:hover{text-decoration:underline}
       <h2>Chapter 41</h2>
       <span class="version-tag">American Standard Version</span>
     </div>
-    <div class="v-row" data-ref="Job 41:1 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">1</span><span class="v-txt">Canst thou draw out leviathan with a fishhook? Or press down his tongue with a cord?</span></div>
-<div class="v-row" data-ref="Job 41:2 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">2</span><span class="v-txt">Canst thou put a rope into his nose? Or pierce his jaw through with a hook?</span></div>
-<div class="v-row" data-ref="Job 41:3 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">3</span><span class="v-txt">Will he make many supplications unto thee? Or will he speak soft words unto thee?</span></div>
-<div class="v-row" data-ref="Job 41:4 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">4</span><span class="v-txt">Will he make a covenant with thee, That thou shouldest take him for a servant for ever?</span></div>
-<div class="v-row" data-ref="Job 41:5 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">5</span><span class="v-txt">Wilt thou play with him as with a bird? Or wilt thou bind him for thy maidens?</span></div>
-<div class="v-row" data-ref="Job 41:6 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">6</span><span class="v-txt">Will the bands [of fishermen] make traffic of him? Will they part him among the merchants?</span></div>
-<div class="v-row" data-ref="Job 41:7 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">7</span><span class="v-txt">Canst thou fill his skin with barbed irons, Or his head with fish-spears?</span></div>
-<div class="v-row" data-ref="Job 41:8 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">8</span><span class="v-txt">Lay thy hand upon him; Remember the battle, and do so no more.</span></div>
-<div class="v-row" data-ref="Job 41:9 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">9</span><span class="v-txt">Behold, the hope of him is in vain: Will not one be cast down even at the sight of him?</span></div>
-<div class="v-row" data-ref="Job 41:10 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">10</span><span class="v-txt">None is so fierce that he dare stir him up; Who then is he that can stand before me?</span></div>
-<div class="v-row" data-ref="Job 41:11 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">11</span><span class="v-txt">Who hath first given unto me, that I should repay him? [Whatsoever is] under the whole heaven is mine.</span></div>
-<div class="v-row" data-ref="Job 41:12 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">12</span><span class="v-txt">I will not keep silence concerning his limbs, Nor his mighty strength, nor his goodly frame.</span></div>
-<div class="v-row" data-ref="Job 41:13 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">13</span><span class="v-txt">Who can strip off his outer garment? Who shall come within his jaws?</span></div>
-<div class="v-row" data-ref="Job 41:14 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">14</span><span class="v-txt">Who can open the doors of his face? Round about his teeth is terror.</span></div>
-<div class="v-row" data-ref="Job 41:15 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">15</span><span class="v-txt">[His] strong scales are [his] pride, Shut up together [as with] a close seal.</span></div>
-<div class="v-row" data-ref="Job 41:16 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">16</span><span class="v-txt">One is so near to another, That no air can come between them.</span></div>
-<div class="v-row" data-ref="Job 41:17 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">17</span><span class="v-txt">They are joined one to another; They stick together, so that they cannot be sundered.</span></div>
-<div class="v-row" data-ref="Job 41:18 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">18</span><span class="v-txt">His sneezings flash forth light, And his eyes are like the eyelids of the morning.</span></div>
-<div class="v-row" data-ref="Job 41:19 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">19</span><span class="v-txt">Out of his mouth go burning torches, And sparks of fire leap forth.</span></div>
-<div class="v-row" data-ref="Job 41:20 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">20</span><span class="v-txt">Out of his nostrils a smoke goeth, As of a boiling pot and [burning] rushes.</span></div>
-<div class="v-row" data-ref="Job 41:21 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">21</span><span class="v-txt">His breath kindleth coals, And a flame goeth forth from his mouth.</span></div>
-<div class="v-row" data-ref="Job 41:22 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">22</span><span class="v-txt">In his neck abideth strength, And terror danceth before him.</span></div>
-<div class="v-row" data-ref="Job 41:23 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">23</span><span class="v-txt">The flakes of his flesh are joined together: They are firm upon him; They cannot be moved.</span></div>
-<div class="v-row" data-ref="Job 41:24 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">24</span><span class="v-txt">His heart is as firm as a stone; Yea, firm as the nether millstone.</span></div>
-<div class="v-row" data-ref="Job 41:25 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">25</span><span class="v-txt">When he raiseth himself up, the mighty are afraid: By reason of consternation they are beside themselves.</span></div>
-<div class="v-row" data-ref="Job 41:26 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">26</span><span class="v-txt">If one lay at him with the sword, it cannot avail; Nor the spear, the dart, nor the pointed shaft.</span></div>
-<div class="v-row" data-ref="Job 41:27 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">27</span><span class="v-txt">He counteth iron as straw, [And] brass as rotten wood.</span></div>
-<div class="v-row" data-ref="Job 41:28 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">28</span><span class="v-txt">The arrow cannot make him flee: Sling-stones are turned with him into stubble.</span></div>
-<div class="v-row" data-ref="Job 41:29 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">29</span><span class="v-txt">Clubs are counted as stubble: He laugheth at the rushing of the javelin.</span></div>
-<div class="v-row" data-ref="Job 41:30 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">30</span><span class="v-txt">His underparts are [like] sharp potsherds: He spreadeth [as it were] a threshing-wain upon the mire.</span></div>
-<div class="v-row" data-ref="Job 41:31 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">31</span><span class="v-txt">He maketh the deep to boil like a pot: He maketh the sea like a pot of ointment.</span></div>
-<div class="v-row" data-ref="Job 41:32 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">32</span><span class="v-txt">He maketh a path to shine after him; One would think the deep to be hoary.</span></div>
-<div class="v-row" data-ref="Job 41:33 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">33</span><span class="v-txt">Upon earth there is not his like, That is made without fear.</span></div>
-<div class="v-row" data-ref="Job 41:34 (American Standard Version)" onclick="selectVerse(this)"><span class="v-num">34</span><span class="v-txt">He beholdeth everything that is high: He is king over all the sons of pride.</span></div>
+    <a class="v-row" href="/bible/asv/job/41/1/" data-ref="Job 41:1 (American Standard Version)" data-verse-url="/bible/asv/job/41/1/"><span class="v-num">1</span><span class="v-txt">Canst thou draw out leviathan with a fishhook? Or press down his tongue with a cord?</span></a>
+<a class="v-row" href="/bible/asv/job/41/2/" data-ref="Job 41:2 (American Standard Version)" data-verse-url="/bible/asv/job/41/2/"><span class="v-num">2</span><span class="v-txt">Canst thou put a rope into his nose? Or pierce his jaw through with a hook?</span></a>
+<a class="v-row" href="/bible/asv/job/41/3/" data-ref="Job 41:3 (American Standard Version)" data-verse-url="/bible/asv/job/41/3/"><span class="v-num">3</span><span class="v-txt">Will he make many supplications unto thee? Or will he speak soft words unto thee?</span></a>
+<a class="v-row" href="/bible/asv/job/41/4/" data-ref="Job 41:4 (American Standard Version)" data-verse-url="/bible/asv/job/41/4/"><span class="v-num">4</span><span class="v-txt">Will he make a covenant with thee, That thou shouldest take him for a servant for ever?</span></a>
+<a class="v-row" href="/bible/asv/job/41/5/" data-ref="Job 41:5 (American Standard Version)" data-verse-url="/bible/asv/job/41/5/"><span class="v-num">5</span><span class="v-txt">Wilt thou play with him as with a bird? Or wilt thou bind him for thy maidens?</span></a>
+<a class="v-row" href="/bible/asv/job/41/6/" data-ref="Job 41:6 (American Standard Version)" data-verse-url="/bible/asv/job/41/6/"><span class="v-num">6</span><span class="v-txt">Will the bands [of fishermen] make traffic of him? Will they part him among the merchants?</span></a>
+<a class="v-row" href="/bible/asv/job/41/7/" data-ref="Job 41:7 (American Standard Version)" data-verse-url="/bible/asv/job/41/7/"><span class="v-num">7</span><span class="v-txt">Canst thou fill his skin with barbed irons, Or his head with fish-spears?</span></a>
+<a class="v-row" href="/bible/asv/job/41/8/" data-ref="Job 41:8 (American Standard Version)" data-verse-url="/bible/asv/job/41/8/"><span class="v-num">8</span><span class="v-txt">Lay thy hand upon him; Remember the battle, and do so no more.</span></a>
+<a class="v-row" href="/bible/asv/job/41/9/" data-ref="Job 41:9 (American Standard Version)" data-verse-url="/bible/asv/job/41/9/"><span class="v-num">9</span><span class="v-txt">Behold, the hope of him is in vain: Will not one be cast down even at the sight of him?</span></a>
+<a class="v-row" href="/bible/asv/job/41/10/" data-ref="Job 41:10 (American Standard Version)" data-verse-url="/bible/asv/job/41/10/"><span class="v-num">10</span><span class="v-txt">None is so fierce that he dare stir him up; Who then is he that can stand before me?</span></a>
+<a class="v-row" href="/bible/asv/job/41/11/" data-ref="Job 41:11 (American Standard Version)" data-verse-url="/bible/asv/job/41/11/"><span class="v-num">11</span><span class="v-txt">Who hath first given unto me, that I should repay him? [Whatsoever is] under the whole heaven is mine.</span></a>
+<a class="v-row" href="/bible/asv/job/41/12/" data-ref="Job 41:12 (American Standard Version)" data-verse-url="/bible/asv/job/41/12/"><span class="v-num">12</span><span class="v-txt">I will not keep silence concerning his limbs, Nor his mighty strength, nor his goodly frame.</span></a>
+<a class="v-row" href="/bible/asv/job/41/13/" data-ref="Job 41:13 (American Standard Version)" data-verse-url="/bible/asv/job/41/13/"><span class="v-num">13</span><span class="v-txt">Who can strip off his outer garment? Who shall come within his jaws?</span></a>
+<a class="v-row" href="/bible/asv/job/41/14/" data-ref="Job 41:14 (American Standard Version)" data-verse-url="/bible/asv/job/41/14/"><span class="v-num">14</span><span class="v-txt">Who can open the doors of his face? Round about his teeth is terror.</span></a>
+<a class="v-row" href="/bible/asv/job/41/15/" data-ref="Job 41:15 (American Standard Version)" data-verse-url="/bible/asv/job/41/15/"><span class="v-num">15</span><span class="v-txt">[His] strong scales are [his] pride, Shut up together [as with] a close seal.</span></a>
+<a class="v-row" href="/bible/asv/job/41/16/" data-ref="Job 41:16 (American Standard Version)" data-verse-url="/bible/asv/job/41/16/"><span class="v-num">16</span><span class="v-txt">One is so near to another, That no air can come between them.</span></a>
+<a class="v-row" href="/bible/asv/job/41/17/" data-ref="Job 41:17 (American Standard Version)" data-verse-url="/bible/asv/job/41/17/"><span class="v-num">17</span><span class="v-txt">They are joined one to another; They stick together, so that they cannot be sundered.</span></a>
+<a class="v-row" href="/bible/asv/job/41/18/" data-ref="Job 41:18 (American Standard Version)" data-verse-url="/bible/asv/job/41/18/"><span class="v-num">18</span><span class="v-txt">His sneezings flash forth light, And his eyes are like the eyelids of the morning.</span></a>
+<a class="v-row" href="/bible/asv/job/41/19/" data-ref="Job 41:19 (American Standard Version)" data-verse-url="/bible/asv/job/41/19/"><span class="v-num">19</span><span class="v-txt">Out of his mouth go burning torches, And sparks of fire leap forth.</span></a>
+<a class="v-row" href="/bible/asv/job/41/20/" data-ref="Job 41:20 (American Standard Version)" data-verse-url="/bible/asv/job/41/20/"><span class="v-num">20</span><span class="v-txt">Out of his nostrils a smoke goeth, As of a boiling pot and [burning] rushes.</span></a>
+<a class="v-row" href="/bible/asv/job/41/21/" data-ref="Job 41:21 (American Standard Version)" data-verse-url="/bible/asv/job/41/21/"><span class="v-num">21</span><span class="v-txt">His breath kindleth coals, And a flame goeth forth from his mouth.</span></a>
+<a class="v-row" href="/bible/asv/job/41/22/" data-ref="Job 41:22 (American Standard Version)" data-verse-url="/bible/asv/job/41/22/"><span class="v-num">22</span><span class="v-txt">In his neck abideth strength, And terror danceth before him.</span></a>
+<a class="v-row" href="/bible/asv/job/41/23/" data-ref="Job 41:23 (American Standard Version)" data-verse-url="/bible/asv/job/41/23/"><span class="v-num">23</span><span class="v-txt">The flakes of his flesh are joined together: They are firm upon him; They cannot be moved.</span></a>
+<a class="v-row" href="/bible/asv/job/41/24/" data-ref="Job 41:24 (American Standard Version)" data-verse-url="/bible/asv/job/41/24/"><span class="v-num">24</span><span class="v-txt">His heart is as firm as a stone; Yea, firm as the nether millstone.</span></a>
+<a class="v-row" href="/bible/asv/job/41/25/" data-ref="Job 41:25 (American Standard Version)" data-verse-url="/bible/asv/job/41/25/"><span class="v-num">25</span><span class="v-txt">When he raiseth himself up, the mighty are afraid: By reason of consternation they are beside themselves.</span></a>
+<a class="v-row" href="/bible/asv/job/41/26/" data-ref="Job 41:26 (American Standard Version)" data-verse-url="/bible/asv/job/41/26/"><span class="v-num">26</span><span class="v-txt">If one lay at him with the sword, it cannot avail; Nor the spear, the dart, nor the pointed shaft.</span></a>
+<a class="v-row" href="/bible/asv/job/41/27/" data-ref="Job 41:27 (American Standard Version)" data-verse-url="/bible/asv/job/41/27/"><span class="v-num">27</span><span class="v-txt">He counteth iron as straw, [And] brass as rotten wood.</span></a>
+<a class="v-row" href="/bible/asv/job/41/28/" data-ref="Job 41:28 (American Standard Version)" data-verse-url="/bible/asv/job/41/28/"><span class="v-num">28</span><span class="v-txt">The arrow cannot make him flee: Sling-stones are turned with him into stubble.</span></a>
+<a class="v-row" href="/bible/asv/job/41/29/" data-ref="Job 41:29 (American Standard Version)" data-verse-url="/bible/asv/job/41/29/"><span class="v-num">29</span><span class="v-txt">Clubs are counted as stubble: He laugheth at the rushing of the javelin.</span></a>
+<a class="v-row" href="/bible/asv/job/41/30/" data-ref="Job 41:30 (American Standard Version)" data-verse-url="/bible/asv/job/41/30/"><span class="v-num">30</span><span class="v-txt">His underparts are [like] sharp potsherds: He spreadeth [as it were] a threshing-wain upon the mire.</span></a>
+<a class="v-row" href="/bible/asv/job/41/31/" data-ref="Job 41:31 (American Standard Version)" data-verse-url="/bible/asv/job/41/31/"><span class="v-num">31</span><span class="v-txt">He maketh the deep to boil like a pot: He maketh the sea like a pot of ointment.</span></a>
+<a class="v-row" href="/bible/asv/job/41/32/" data-ref="Job 41:32 (American Standard Version)" data-verse-url="/bible/asv/job/41/32/"><span class="v-num">32</span><span class="v-txt">He maketh a path to shine after him; One would think the deep to be hoary.</span></a>
+<a class="v-row" href="/bible/asv/job/41/33/" data-ref="Job 41:33 (American Standard Version)" data-verse-url="/bible/asv/job/41/33/"><span class="v-num">33</span><span class="v-txt">Upon earth there is not his like, That is made without fear.</span></a>
+<a class="v-row" href="/bible/asv/job/41/34/" data-ref="Job 41:34 (American Standard Version)" data-verse-url="/bible/asv/job/41/34/"><span class="v-num">34</span><span class="v-txt">He beholdeth everything that is high: He is king over all the sons of pride.</span></a>
 
     
 <div class="app-cta">
