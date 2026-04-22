@@ -47,6 +47,7 @@ RETRY_DELAY_SEC   = 1.0
 CDN_BASE       = "https://cdn.jsdelivr.net/gh/cybercam/bibles_json@main"
 GITHUB_RAW     = "https://raw.githubusercontent.com/cybercam/bibles_json/main"
 PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app"
+READER_UI_SCRIPT_SRC = f"/{OUT_DIR}/assets/reader-ui.js"
 
 # All 15 versions confirmed in the repo
 VERSIONS = [
@@ -829,29 +830,6 @@ def topbar_html(crumb):
 </header>"""
 
 
-def verse_action_bar():
-    return f"""
-<div id="vbar">
-  <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
-  <button id="font-dec-vbar-btn" aria-label="Decrease verse font size">A-</button>
-  <button id="font-inc-vbar-btn" aria-label="Increase verse font size">A+</button>
-  <button id="tts-chapter-btn">Read Chapter</button>
-  <button id="tts-loop-btn">Loop Off</button>
-  <button id="tts-auto-btn">Auto-Read Off</button>
-  <button id="copy-btn">Copy</button>
-  <button id="share-btn">Share</button>
-  <button id="tts-play-btn">Speak</button>
-  <button id="tts-stop-btn">Stop</button>
-  <button id="tts-download-btn">Download</button>
-  <button id="clear-sel-btn">Clear</button>
-  <div class="vbar-speed">
-    <label for="tts-rate">Speed</label>
-    <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1.0"/>
-  </div>
-  <a class="cta-btn" href="{PLAY_STORE_URL}" target="_blank" rel="noopener">Memorize in App ↗</a>
-</div>"""
-
-
 def theme_sheet():
     return """
 <div id="tsheet">
@@ -942,9 +920,8 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
     <p style="font-size:13px;color:var(--muted)">Select a version above to compare.</p>
   </aside>
 </div>
-{verse_action_bar()}
 {theme_sheet()}
-<script>{SHARED_JS}</script>
+<script src="{READER_UI_SCRIPT_SRC}" defer></script>
 </body>
 </html>"""
 
@@ -1054,7 +1031,7 @@ def generate_bible_index(active_versions, x_default_id):
   </div>
 </div>
 {theme_sheet()}
-<script>{SHARED_JS}</script>
+<script src="{READER_UI_SCRIPT_SRC}" defer></script>
 </body>
 </html>"""
 
