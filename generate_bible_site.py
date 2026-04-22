@@ -355,6 +355,7 @@ a:hover{text-decoration:underline}
 #vbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;gap:8px;padding:10px 14px;transform:translateY(100%);transition:transform .2s ease;z-index:100;flex-wrap:wrap;align-items:center}
 #vbar.on{transform:translateY(0)}
 #vbar button{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;flex:1;min-width:110px}
+#vbar button.on{border-color:var(--accent);color:var(--accent)}
 #vbar .cta-btn{flex:2}
 #vbar .vbar-meta{font-size:11px;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:.04em;min-width:100%;margin-bottom:2px}
 #vbar .vbar-speed{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;min-width:180px}
@@ -484,8 +485,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // TTS controls
+  initTtsToggles();
   document.getElementById('tts-play-btn')?.addEventListener('click', speakSelection);
+  document.getElementById('tts-chapter-btn')?.addEventListener('click', speakChapter);
   document.getElementById('tts-stop-btn')?.addEventListener('click', () => speechSynthesis?.cancel());
+  document.getElementById('tts-loop-btn')?.addEventListener('click', toggleLoopMode);
+  document.getElementById('tts-auto-btn')?.addEventListener('click', toggleAutoReadMode);
+  document.getElementById('tts-download-btn')?.addEventListener('click', downloadAudioFallback);
   document.getElementById('clear-sel-btn')?.addEventListener('click', clearSelectedVerses);
 
   // Sidebar search
@@ -498,6 +504,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (q.length < 3) { document.getElementById('sr').innerHTML=''; return; }
       st = setTimeout(() => sidebarSearch(q), 280);
     });
+  }
+
+  // Auto-read chapter on load when enabled
+  if (localStorage.getItem('bsws_auto_read_chapter') === '1') {
+    setTimeout(() => speakChapter(), 500);
   }
 });
 
@@ -565,18 +576,100 @@ function bestVoiceForLang(lang) {
   return [...pool].sort((a, b) => score(b) - score(a))[0] || null;
 }
 
-function speakSelection() {
-  const selected = getSelectedVerses();
-  if (!selected.length || !('speechSynthesis' in window)) return;
+function getTtsRate() {
+  const rate = Number(document.getElementById('tts-rate')?.value || '1.0');
+  return Math.min(1.5, Math.max(0.7, rate));
+}
+
+function getLoopMode() {
+  return localStorage.getItem('bsws_tts_loop') === '1';
+}
+
+function speakText(text) {
+  if (!text || !('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
-  const text = selected.map(v => `${v.ref}. ${v.txt}`).join(' ');
   const u = new SpeechSynthesisUtterance(text);
   u.lang = document.documentElement.lang || 'en';
   const voice = bestVoiceForLang(u.lang);
   if (voice) u.voice = voice;
-  const rate = Number(document.getElementById('tts-rate')?.value || '1.0');
-  u.rate = Math.min(1.5, Math.max(0.7, rate));
+  u.rate = getTtsRate();
+  u.onend = () => {
+    if (getLoopMode()) {
+      setTimeout(() => speakText(text), 250);
+    }
+  };
   speechSynthesis.speak(u);
+}
+
+function speakSelection() {
+  const selected = getSelectedVerses();
+  if (!selected.length) return;
+  const text = selected.map(v => `${v.ref}. ${v.txt}`).join(' ');
+  speakText(text);
+}
+
+function speakChapter() {
+  const rows = [...document.querySelectorAll('.v-row')];
+  if (!rows.length) return;
+  const text = rows.map(r => {
+    const ref = r.dataset.ref || '';
+    const verse = r.querySelector('.v-txt')?.textContent || '';
+    return `${ref}. ${verse}`;
+  }).join(' ');
+  speakText(text);
+}
+
+function toggleLoopMode() {
+  const next = getLoopMode() ? '0' : '1';
+  localStorage.setItem('bsws_tts_loop', next);
+  renderTtsToggles();
+}
+
+function toggleAutoReadMode() {
+  const enabled = localStorage.getItem('bsws_auto_read_chapter') === '1';
+  localStorage.setItem('bsws_auto_read_chapter', enabled ? '0' : '1');
+  renderTtsToggles();
+}
+
+function renderTtsToggles() {
+  const loopBtn = document.getElementById('tts-loop-btn');
+  const autoBtn = document.getElementById('tts-auto-btn');
+  const loopOn = getLoopMode();
+  const autoOn = localStorage.getItem('bsws_auto_read_chapter') === '1';
+  if (loopBtn) {
+    loopBtn.textContent = loopOn ? 'Loop On' : 'Loop Off';
+    loopBtn.classList.toggle('on', loopOn);
+  }
+  if (autoBtn) {
+    autoBtn.textContent = autoOn ? 'Auto-Read On' : 'Auto-Read Off';
+    autoBtn.classList.toggle('on', autoOn);
+  }
+}
+
+function initTtsToggles() {
+  if (localStorage.getItem('bsws_tts_loop') === null) {
+    localStorage.setItem('bsws_tts_loop', '0');
+  }
+  if (localStorage.getItem('bsws_auto_read_chapter') === null) {
+    localStorage.setItem('bsws_auto_read_chapter', '0');
+  }
+  renderTtsToggles();
+}
+
+function downloadAudioFallback() {
+  const selected = getSelectedVerses();
+  const hasSelection = selected.length > 0;
+  const text = hasSelection
+    ? selected.map(v => `${v.ref} ${v.txt}`).join('\n\n')
+    : [...document.querySelectorAll('.v-row')].map(r => `${r.dataset.ref || ''} ${r.querySelector('.v-txt')?.textContent || ''}`).join('\n');
+
+  // Browser SpeechSynthesis cannot reliably export MP3. Provide downloadable text fallback.
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = hasSelection ? 'selected-verses.txt' : 'chapter-verses.txt';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
 }
 
 function sidebarSearch(q) {
@@ -740,10 +833,14 @@ def verse_action_bar():
     return f"""
 <div id="vbar">
   <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
+  <button id="tts-chapter-btn">Read Chapter</button>
+  <button id="tts-loop-btn">Loop Off</button>
+  <button id="tts-auto-btn">Auto-Read Off</button>
   <button id="copy-btn">Copy</button>
   <button id="share-btn">Share</button>
   <button id="tts-play-btn">Speak</button>
   <button id="tts-stop-btn">Stop</button>
+  <button id="tts-download-btn">Download</button>
   <button id="clear-sel-btn">Clear</button>
   <div class="vbar-speed">
     <label for="tts-rate">Speed</label>
