@@ -49,6 +49,11 @@ CDN_BASE       = "https://cdn.jsdelivr.net/gh/cybercam/bibles_json@main"
 GITHUB_RAW     = "https://raw.githubusercontent.com/cybercam/bibles_json/main"
 PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app"
 READER_UI_SCRIPT_SRC = f"/{OUT_DIR}/assets/reader-ui.js"
+LOCAL_BIBLE_DATA_DIR = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data")
+INTERLINEAR_RAW_BASE = "https://raw.githubusercontent.com/cybercam/interlinear/main"
+INTERLINEAR_CACHE_DIR = Path(".interlinear_cache")
+LOCAL_CROSSREFS_JSON = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data/crossrefs_mobile.json")
+LOCAL_STRONGS_JSON = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data/strongs/dictionary.json")
 OTHER_LANGUAGE_PAGES = [
     ("telugu-bible.html", "Telugu Bible"),
     ("english-bible.html", "English Bible"),
@@ -154,6 +159,19 @@ def download_json(version_id):
         except (json.JSONDecodeError, OSError, UnicodeError) as e:
             print(f"  [warn] corrupt cache for {version_id}: {e} — re-downloading")
 
+    local_file = LOCAL_BIBLE_DATA_DIR / f"bible_{version_id}.json"
+    if local_file.exists():
+        try:
+            raw = local_file.read_text(encoding="utf-8")
+            if raw.strip():
+                data = json.loads(raw)
+                with open(cache_file, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False)
+                print(f"  [local] {version_id} from {local_file}")
+                return data
+        except Exception as e:
+            print(f"  [warn] local bible file failed for {version_id}: {e}")
+
     urls = [
         f"{CDN_BASE}/bible_{version_id}.json",
         f"{GITHUB_RAW}/bible_{version_id}.json",
@@ -244,6 +262,82 @@ def normalise(data):
         books.append({"b": b_num, "n": book_name, "ch": chs})
     books.sort(key=lambda x: x["b"])
     return {"books": books}
+
+
+def load_local_json(path: Path, label: str):
+    try:
+        raw = path.read_text(encoding="utf-8")
+        if not raw.strip():
+            print(f"  [warn] {label} is empty: {path}")
+            return {}
+        return json.loads(raw)
+    except Exception as e:
+        print(f"  [warn] could not load {label} from {path}: {e}")
+        return {}
+
+
+def fetch_remote_json_cached(name: str, url: str):
+    INTERLINEAR_CACHE_DIR.mkdir(exist_ok=True)
+    cache_file = INTERLINEAR_CACHE_DIR / name
+    if cache_file.exists():
+        try:
+            return json.loads(cache_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "BSWS-Generator/1.0"})
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            raw = resp.read().decode("utf-8")
+        data = json.loads(raw)
+        cache_file.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        return data
+    except Exception as e:
+        print(f"  [warn] failed remote json {name}: {e}")
+        return {}
+
+
+def load_interlinear_book_mapping():
+    mapping = fetch_remote_json_cached("bookMapping.json", f"{INTERLINEAR_RAW_BASE}/bookMapping.json")
+    out = {}
+    for key, meta in mapping.items():
+        try:
+            out[int(key)] = str(meta.get("abbrev", "")).strip()
+        except Exception:
+            continue
+    return out
+
+
+def load_interlinear_book_tokens(abbrev: str):
+    if not abbrev:
+        return {}
+    data = fetch_remote_json_cached(f"{abbrev}.json", f"{INTERLINEAR_RAW_BASE}/{abbrev}.json")
+    chapters = data.get("chapters", {}) if isinstance(data, dict) else {}
+    if not isinstance(chapters, dict):
+        return {}
+    return chapters
+
+
+def build_verse_lookup(all_books, version_id):
+    lookup = {}
+    for bk in all_books:
+        b_num = bk.get("b")
+        b_name_source = bk.get("n", "")
+        b_name = display_book_name(bk, version_id)
+        bslug = book_slug(b_name_source)
+        for ch in bk.get("ch", []):
+            c_num = ch.get("c")
+            verses = ch.get("v", {})
+            for v_num, txt in verses.items():
+                key = f"{b_num}_{c_num}_{v_num}"
+                lookup[key] = {
+                    "book_num": b_num,
+                    "chapter_num": c_num,
+                    "verse_num": v_num,
+                    "book_name": b_name,
+                    "book_slug": bslug,
+                    "text": txt,
+                }
+    return lookup
 
 
 def book_slug(book_name):
@@ -365,6 +459,26 @@ a:hover{text-decoration:underline}
 .verse-detail-meta{font-size:13px;color:var(--muted);line-height:1.6;margin-top:14px}
 .verse-detail-links{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
 .verse-detail-links a{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Cinzel',serif}
+.detail-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:18px 0}
+.detail-panel{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px}
+.detail-panel h3{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.08em;color:var(--accent);margin:0 0 10px}
+.xref-list{display:flex;flex-direction:column;gap:8px}
+.xref-item{display:flex;flex-direction:column;gap:3px;padding:9px;border:1px solid var(--border);border-radius:8px;background:var(--card)}
+.xref-item a{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.04em}
+.xref-item .x-txt{font-size:13px;color:var(--muted);line-height:1.5}
+.interlinear-verse{display:flex;flex-wrap:wrap;gap:8px}
+.inter-token{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;min-width:88px;text-align:left;cursor:pointer}
+.inter-token .w{display:block;font-size:13px;color:var(--text);font-weight:600}
+.inter-token .g{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.inter-token .s{display:block;font-size:10px;color:var(--accent);margin-top:3px;font-family:'Cinzel',serif}
+#lex-drawer{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--bg2);border-top:1px solid var(--border);padding:14px;transform:translateY(100%);transition:transform .2s ease}
+#lex-drawer.on{transform:translateY(0)}
+#lex-drawer .close{float:right}
+#lex-drawer h4{font-family:'Cinzel',serif;color:var(--accent);font-size:13px;margin:0 0 8px}
+#lex-drawer p{font-size:13px;color:var(--text);line-height:1.5;margin:6px 0}
+@media(min-width:900px){
+  .detail-grid{grid-template-columns:1fr 1fr}
+}
 
 /* Chapter nav */
 .ch-nav{display:flex;justify-content:space-between;gap:10px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border)}
@@ -388,6 +502,13 @@ a:hover{text-decoration:underline}
 #vbar .vbar-speed{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;min-width:180px}
 #vbar .vbar-speed label{font-size:11px;color:var(--muted);font-family:'Cinzel',serif}
 #vbar .vbar-speed input{width:90px}
+#vbar #vbar-close-btn{flex:0;min-width:auto;padding:10px 12px}
+body.vbar-hidden #vbar{transform:translateY(100%)}
+@media(max-width:899px){
+  #vbar{transition:transform .2s ease}
+  #reader{padding-bottom:170px}
+  body.vbar-hidden #reader{padding-bottom:40px}
+}
 
 /* Theme sheet */
 #tsheet{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:16px 14px 28px;transform:translateY(100%);transition:transform .25s ease;z-index:110}
@@ -969,6 +1090,10 @@ def generate_verse_detail_page(
     chapter_url,
     active_versions,
     x_default_id,
+    verse_lookup,
+    crossrefs_data,
+    strongs_dict,
+    interlinear_chapters,
 ):
     canonical = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/"
     title = f"{book_name} {ch_num}:{vnum} — {vlabel} | Bible Study with Steffi"
@@ -997,6 +1122,63 @@ def generate_verse_detail_page(
         else '<a class="disabled">Next Verse →</a>'
     )
 
+    # Cross references use canonical book_chapter_verse keys from the source app.
+    # Determine book number from lookup by current verse to avoid depending on display strings.
+    current_lookup = None
+    for k, info in verse_lookup.items():
+        if (
+            info.get("book_slug") == bslug
+            and int(info.get("chapter_num", -1)) == int(ch_num)
+            and int(info.get("verse_num", -1)) == int(vnum)
+        ):
+            current_lookup = info
+            break
+    bnum = current_lookup.get("book_num") if current_lookup else None
+    xref_key = f"{bnum}_{ch_num}_{vnum}" if bnum is not None else ""
+    xrefs = crossrefs_data.get(xref_key, []) if xref_key else []
+    xref_items = []
+    for ref in xrefs[:16]:
+        info = verse_lookup.get(ref)
+        if not info:
+            continue
+        ref_url = verse_detail_rel_url(version_id, info["book_slug"], info["chapter_num"], info["verse_num"])
+        xref_items.append(
+            f'<div class="xref-item"><a href="{ref_url}">{info["book_name"]} {info["chapter_num"]}:{info["verse_num"]}</a><p class="x-txt">{html.escape(str(info["text"]))}</p></div>'
+        )
+    xref_html = (
+        '<div class="detail-panel"><h3>Cross References</h3><div class="xref-list">' + "".join(xref_items) + "</div></div>"
+        if xref_items
+        else '<div class="detail-panel"><h3>Cross References</h3><p class="verse-detail-meta">No cross references available for this verse yet.</p></div>'
+    )
+
+    inter_tokens = []
+    chapter_tokens = interlinear_chapters.get(str(ch_num), {}) if isinstance(interlinear_chapters, dict) else {}
+    raw_tokens = chapter_tokens.get(str(vnum), []) if isinstance(chapter_tokens, dict) else []
+    if isinstance(raw_tokens, list):
+        inter_tokens = raw_tokens
+    inter_parts = []
+    for tok in inter_tokens[:80]:
+        strong = str(tok.get("s", "")).strip()
+        lex = strongs_dict.get(strong, {}) if strong else {}
+        btn = (
+            f'<button class="inter-token" type="button" data-strong="{html.escape(strong)}" '
+            f'data-lemma="{html.escape(str(lex.get("lemma","")))}" '
+            f'data-xlit="{html.escape(str(lex.get("xlit","")))}" '
+            f'data-def="{html.escape(str(lex.get("def","")))}" '
+            f'data-kjv="{html.escape(str(lex.get("kjv","")))}" '
+            f'data-deriv="{html.escape(str(lex.get("deriv","")))}">'
+            f'<span class="w">{html.escape(str(tok.get("w","")))}</span>'
+            f'<span class="g">{html.escape(str(tok.get("t","")))}</span>'
+            f'<span class="s">{html.escape(strong)}</span>'
+            "</button>"
+        )
+        inter_parts.append(btn)
+    interlinear_html = (
+        '<div class="detail-panel"><h3>Interlinear</h3><div class="interlinear-verse">' + "".join(inter_parts) + "</div></div>"
+        if inter_parts
+        else '<div class="detail-panel"><h3>Interlinear</h3><p class="verse-detail-meta">Interlinear data not available for this verse.</p></div>'
+    )
+
     head = html_head(title, description, canonical, lang_code, hreflang_str, keywords)
     return f"""{head}
 <body>
@@ -1016,9 +1198,21 @@ def generate_verse_detail_page(
         <a href="{chapter_url}">Open Full Chapter</a>
       </div>
     </article>
+    <section class="detail-grid">
+      {xref_html}
+      {interlinear_html}
+    </section>
     <nav class="ch-nav">{prev_link}{next_link}</nav>
     {app_cta_banner()}
   </main>
+</div>
+<div id="lex-drawer" aria-live="polite">
+  <button type="button" id="lex-close-btn" class="icon-btn close" aria-label="Close word study">Close</button>
+  <h4 id="lex-strong"></h4>
+  <p id="lex-lemma"></p>
+  <p id="lex-def"></p>
+  <p id="lex-kjv"></p>
+  <p id="lex-deriv"></p>
 </div>
 {theme_sheet()}
 <script src="{READER_UI_SCRIPT_SRC}" defer></script>
@@ -1244,6 +1438,16 @@ def main():
 
         bible = normalise(data_raw)
         all_books = bible["books"]
+        verse_lookup = build_verse_lookup(all_books, version_id)
+
+        crossrefs_data = {}
+        strongs_dict = {}
+        interlinear_map = {}
+        interlinear_book_cache = {}
+        if version_id == "telugu":
+            crossrefs_data = load_local_json(LOCAL_CROSSREFS_JSON, "crossrefs_mobile.json")
+            strongs_dict = load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
+            interlinear_map = load_interlinear_book_mapping()
 
         # Flat list of all (book, chapter) for prev/next navigation
         all_chapters = []
@@ -1294,6 +1498,14 @@ def main():
             total_pages += 1
             version_pages += 1
 
+            interlinear_chapters_for_book = {}
+            if version_id == "telugu":
+                abbrev = interlinear_map.get(book.get("b"), "")
+                if abbrev:
+                    if abbrev not in interlinear_book_cache:
+                        interlinear_book_cache[abbrev] = load_interlinear_book_tokens(abbrev)
+                    interlinear_chapters_for_book = interlinear_book_cache.get(abbrev, {})
+
             verse_items = sorted(chapter["v"].items(), key=lambda x: int(x[0]))
             for v_idx, (vnum, vtext) in enumerate(verse_items):
                 prev_verse_url = (
@@ -1322,6 +1534,10 @@ def main():
                     chapter_url=chapter_url,
                     active_versions=active_versions,
                     x_default_id=x_default_id,
+                    verse_lookup=verse_lookup,
+                    crossrefs_data=crossrefs_data,
+                    strongs_dict=strongs_dict,
+                    interlinear_chapters=interlinear_chapters_for_book,
                 )
                 verse_out_path = ver_dir / bslug / str(ch_num) / str(vnum)
                 verse_out_path.mkdir(parents=True, exist_ok=True)

@@ -58,6 +58,7 @@ function injectVerseActionBar() {
   bar.id = "vbar";
   bar.innerHTML = `
   <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
+  <button id="vbar-close-btn" aria-label="Hide action bar">▾</button>
   <button id="font-dec-vbar-btn" aria-label="Decrease verse font size">A-</button>
   <button id="font-inc-vbar-btn" aria-label="Increase verse font size">A+</button>
   <button id="tts-chapter-btn">Read Chapter</button>
@@ -75,6 +76,51 @@ function injectVerseActionBar() {
   </div>
   <a class="cta-btn" href="https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app" target="_blank" rel="noopener">Memorize in App ↗</a>`;
   document.body.appendChild(bar);
+}
+
+function initMobileVbarBehavior() {
+  const bar = document.getElementById("vbar");
+  if (!bar) return;
+  const closeBtn = document.getElementById("vbar-close-btn");
+  let lastY = window.scrollY || 0;
+  let ticking = false;
+  const hide = () => document.body.classList.add("vbar-hidden");
+  const show = () => document.body.classList.remove("vbar-hidden");
+  closeBtn?.addEventListener("click", hide);
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth >= 900) return;
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY || 0;
+      if (y > lastY + 10 && y > 80) hide();
+      if (y < lastY - 10) show();
+      lastY = y;
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+function initVerseDetailInteractions() {
+  const drawer = document.getElementById("lex-drawer");
+  if (!drawer) return;
+  const strongEl = document.getElementById("lex-strong");
+  const lemmaEl = document.getElementById("lex-lemma");
+  const defEl = document.getElementById("lex-def");
+  const kjvEl = document.getElementById("lex-kjv");
+  const derivEl = document.getElementById("lex-deriv");
+  const close = () => drawer.classList.remove("on");
+  document.getElementById("lex-close-btn")?.addEventListener("click", close);
+  document.querySelectorAll(".inter-token").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      strongEl.textContent = btn.dataset.strong || "Strong's";
+      lemmaEl.textContent = [btn.dataset.lemma, btn.dataset.xlit].filter(Boolean).join(" · ");
+      defEl.textContent = btn.dataset.def || "";
+      kjvEl.textContent = btn.dataset.kjv ? `KJV: ${btn.dataset.kjv}` : "";
+      derivEl.textContent = btn.dataset.deriv ? `Derivation: ${btn.dataset.deriv}` : "";
+      drawer.classList.add("on");
+    });
+  });
 }
 
 function updateVbarState() {
@@ -318,6 +364,8 @@ function initReaderUi() {
 
   applyTheme(localStorage.getItem("bsws_theme") || "reader");
   injectVerseActionBar();
+  initMobileVbarBehavior();
+  initVerseDetailInteractions();
 
   document.getElementById("par-btn")?.addEventListener("click", () => {
     document.getElementById("par-panel")?.classList.toggle("on");
