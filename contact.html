@@ -16,7 +16,7 @@
 <meta name="twitter:description" content="Reach Bible Study with Steffi through our contact form.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LcE7sMsAAAAAHoNtFvcN2pd3IMMVZrTNejClrmI"></script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -261,7 +261,20 @@ a { color: inherit; }
   margin-bottom: 24px;
 }
 
-.g-recaptcha { margin-top: 4px; }
+.recaptcha-legal {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-top: 12px;
+  max-width: 42em;
+}
+
+.recaptcha-legal a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 @media (max-width: 640px) {
   .legal-card { padding: 28px 20px; }
@@ -310,6 +323,7 @@ a { color: inherit; }
       >
         <input type="hidden" name="_subject" value="Bible Study with Steffi — Website contact">
         <input type="hidden" name="_next" value="https://bswsapp.com/contact.html?thanks=1">
+        <input type="hidden" name="g-recaptcha-response" id="recaptcha-token" value="">
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0">
 
         <div class="form-field">
@@ -325,36 +339,52 @@ a { color: inherit; }
           <textarea id="message" name="message" required maxlength="8000" placeholder="How can we help?"></textarea>
         </div>
 
-        <div class="g-recaptcha" data-sitekey="6LcE7sMsAAAAAHoNtFvcN2pd3IMMVZrTNejClrmI"></div>
+        <p class="recaptcha-legal">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" rel="noopener noreferrer" target="_blank">Terms of Service</a> apply.</p>
 
         <div class="form-actions">
           <button type="submit" class="btn-submit">Send message</button>
         </div>
       </form>
 
-      <p class="form-note">This form is delivered through <a href="https://formspree.io/" rel="noopener noreferrer" target="_blank">Formspree</a> and may use <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google reCAPTCHA</a>. See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+      <p class="form-note">This form is delivered through <a href="https://formspree.io/" rel="noopener noreferrer" target="_blank">Formspree</a> and uses <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">Google reCAPTCHA v3</a> (risk analysis; no checkbox). See our <a href="privacy-policy.html">Privacy Policy</a>.</p>
     </article>
   </div>
 </main>
 
 <script>
 (function () {
+  var RECAPTCHA_SITE_KEY = '6LcE7sMsAAAAAHoNtFvcN2pd3IMMVZrTNejClrmI';
+
   if (new URLSearchParams(window.location.search).get('thanks') === '1') {
-    var el = document.getElementById('form-success');
-    if (el) el.hidden = false;
-    var form = document.getElementById('contact-form');
-    if (form) form.hidden = true;
+    var ok = document.getElementById('form-success');
+    if (ok) ok.hidden = false;
+    var done = document.getElementById('contact-form');
+    if (done) done.hidden = true;
   }
+
   var form = document.getElementById('contact-form');
   if (!form) return;
+
   form.addEventListener('submit', function (e) {
-    if (typeof grecaptcha === 'undefined') return;
-    var key = form.querySelector('.g-recaptcha');
-    if (!key || !key.getAttribute('data-sitekey') || key.getAttribute('data-sitekey').indexOf('REPLACE') !== -1) return;
-    if (!grecaptcha.getResponse()) {
-      e.preventDefault();
-      alert('Please complete the CAPTCHA before sending.');
+    e.preventDefault();
+    var tokenInput = document.getElementById('recaptcha-token');
+    var btn = form.querySelector('.btn-submit');
+    if (typeof grecaptcha === 'undefined') {
+      alert('Could not load reCAPTCHA. Please refresh and try again.');
+      return;
     }
+    if (btn) btn.disabled = true;
+    grecaptcha.ready(function () {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'contact' })
+        .then(function (token) {
+          if (tokenInput) tokenInput.value = token;
+          form.submit();
+        })
+        .catch(function () {
+          if (btn) btn.disabled = false;
+          alert('reCAPTCHA could not verify this request. Please try again.');
+        });
+    });
   });
 })();
 </script>
