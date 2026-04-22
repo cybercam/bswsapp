@@ -19,6 +19,36 @@ function applyTheme(id) {
   document.querySelectorAll(".t-btn").forEach((btn) => btn.classList.toggle("on", btn.dataset.t === id));
 }
 
+const VERSE_LINKS_STORAGE_KEY = "bsws_enable_verse_links";
+
+function areVerseLinksEnabled() {
+  return localStorage.getItem(VERSE_LINKS_STORAGE_KEY) === "1";
+}
+
+function setVerseLinksEnabled(enabled) {
+  localStorage.setItem(VERSE_LINKS_STORAGE_KEY, enabled ? "1" : "0");
+  renderVerseLinksToggle();
+}
+
+function renderVerseLinksToggle() {
+  const btn = document.getElementById("verse-links-btn");
+  if (!btn) return;
+  const enabled = areVerseLinksEnabled();
+  btn.textContent = enabled ? "Verse Details On" : "Verse Details Off";
+  btn.classList.toggle("on", enabled);
+  btn.setAttribute("aria-pressed", enabled ? "true" : "false");
+}
+
+function initVerseLinksToggle() {
+  if (localStorage.getItem(VERSE_LINKS_STORAGE_KEY) === null) {
+    localStorage.setItem(VERSE_LINKS_STORAGE_KEY, "0");
+  }
+  renderVerseLinksToggle();
+  document.getElementById("verse-links-btn")?.addEventListener("click", () => {
+    setVerseLinksEnabled(!areVerseLinksEnabled());
+  });
+}
+
 function openSidebar() {
   document.getElementById("sidebar")?.classList.add("open");
   document.getElementById("overlay")?.classList.add("active");
@@ -318,11 +348,12 @@ function sidebarSearch(q) {
     item.appendChild(txtEl);
     item.addEventListener("click", () => {
       const verseUrl = res.el.dataset.verseUrl;
-      if (verseUrl) {
+      if (verseUrl && areVerseLinksEnabled()) {
         window.location.href = verseUrl;
         return;
       }
       res.el.scrollIntoView({ behavior: "smooth", block: "center" });
+      selectVerse(res.el);
       closeSidebar();
     });
     sr.appendChild(item);
@@ -378,9 +409,20 @@ function initReaderUi() {
   document.getElementById("font-inc-vbar-btn")?.addEventListener("click", () => updateFontScale(0.1));
   document.getElementById("font-dec-vbar-btn")?.addEventListener("click", () => updateFontScale(-0.1));
 
+  initVerseLinksToggle();
+
   document.querySelectorAll(".v-row").forEach((row) => {
     row.addEventListener("click", (e) => {
-      if (e.metaKey || e.ctrlKey || e.shiftKey) {
+      if (e.defaultPrevented) return;
+      if (e.button !== 0) return;
+
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
+        e.preventDefault();
+        selectVerse(row);
+        return;
+      }
+
+      if (!areVerseLinksEnabled()) {
         e.preventDefault();
         selectVerse(row);
       }
