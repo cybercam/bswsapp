@@ -7,7 +7,7 @@ then generates one HTML file per chapter for every version.
 
 Run this from the ROOT of your cybercam/bswsapp repo:
   python3 generate_bible_site.py
-  python3 generate_bible_site.py --only telugu   # subset build
+  python3 generate_bible_site.py --only telugu   # one (or few) versions; avoids huge disk spikes
 
 Then:
   git add .
@@ -62,13 +62,17 @@ OTHER_LANGUAGE_PAGES = [
     ("kannada-bible.html", "Kannada Bible"),
     ("malayalam-bible.html", "Malayalam Bible"),
     ("bengali-bible.html", "Bengali Bible"),
+    ("odia-bible.html", "Odia Bible"),
     ("marathi-bible.html", "Marathi Bible"),
+    ("gujarati-bible.html", "Gujarati Bible"),
+    ("punjabi-bible.html", "Punjabi Bible"),
+    ("urdu-bible.html", "Urdu Bible"),
+    ("assamese-bible.html", "Assamese Bible"),
 ]
 
-# All 15 versions confirmed in the repo
+# All versions shipped on the site (build incrementally with --only when disk is tight)
 VERSIONS = [
     # id,          label,                      lang,  script,   group
-    ("asv",        "American Standard Version","en",  "latin",  "English"),
     ("bbe",        "Bible in Basic English",   "en",  "latin",  "English"),
     ("kjv",        "King James Version",       "en",  "latin",  "English"),
     ("nkjv",       "New King James Version",   "en",  "latin",  "English"),
@@ -115,11 +119,56 @@ BOOK_SLUGS = {
 
 # hreflang codes per version
 HREFLANG = {
-    "asv":"en","bbe":"en","kjv":"en","nkjv":"en","web":"en","ylt":"en",
+    "bbe":"en","kjv":"en","nkjv":"en","web":"en","ylt":"en",
     "bengali":"bn","gujarati":"gu","hindi":"hi","kannada":"kn",
     "malayalam":"ml","marathi":"mr","nepali":"ne","odia":"or","tamil":"ta",
     "telugu":"te",
 }
+
+# Indian `VERSIONS` rows get verse-detail extras (crossrefs, Strong's, interlinear) like Telugu.
+def version_has_verse_detail_features(version_id: str) -> bool:
+    for vid, _label, _lng, _script, group in VERSIONS:
+        if vid == version_id:
+            return group == "Indian"
+    return False
+
+
+# BCP47 lang → (Google Fonts API family slug, CSS font-family name) for reader + verse-detail body text.
+INDIC_LANG_SCRIPT_FONT = {
+    "te": ("Noto+Sans+Telugu", "Noto Sans Telugu"),
+    "hi": ("Noto+Sans+Devanagari", "Noto Sans Devanagari"),
+    "mr": ("Noto+Sans+Devanagari", "Noto Sans Devanagari"),
+    "ne": ("Noto+Sans+Devanagari", "Noto Sans Devanagari"),
+    "ta": ("Noto+Sans+Tamil", "Noto Sans Tamil"),
+    "kn": ("Noto+Sans+Kannada", "Noto Sans Kannada"),
+    "ml": ("Noto+Sans+Malayalam", "Noto Sans Malayalam"),
+    "bn": ("Noto+Sans+Bengali", "Noto Sans Bengali"),
+    "gu": ("Noto+Sans+Gujarati", "Noto Sans Gujarati"),
+    "or": ("Noto+Sans+Oriya", "Noto Sans Oriya"),
+}
+
+
+def script_font_link_for_lang(lang: str) -> str:
+    spec = INDIC_LANG_SCRIPT_FONT.get(lang)
+    if not spec:
+        return ""
+    slug, _fam = spec
+    return (
+        f'<link href="https://fonts.googleapis.com/css2?family={slug}:wght@400;500;600;700&display=swap" '
+        'rel="stylesheet"/>\n'
+    )
+
+
+def indic_script_face_css() -> str:
+    """:lang(...) rules so verse text uses a readable Noto stack for each Indian site language."""
+    lines = []
+    for lang, (_slug, family) in INDIC_LANG_SCRIPT_FONT.items():
+        sel = (
+            f":lang({lang}) body,:lang({lang}) .v-txt,:lang({lang}) .verse-detail-text,"
+            f":lang({lang}) .book-btn,:lang({lang}) #s-search,:lang({lang}) .sr-txt"
+        )
+        lines.append(f"{sel}{{font-family:'{family}','Lora',Georgia,serif}}")
+    return "\n".join(lines)
 
 # Telugu display names by canonical book order (user-provided app aliases)
 TELUGU_BOOK_NAMES = {
@@ -381,7 +430,8 @@ def display_book_name(book: dict, version_id: str) -> str:
 
 # ─── HTML TEMPLATES ───────────────────────────────────────────────────────────
 
-SHARED_CSS = """
+SHARED_CSS = (
+    """
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 /* Default tokens = "reader" theme (first paint before JS; editorial / spiritual reading) */
 :root{
@@ -450,7 +500,6 @@ a:hover{text-decoration:underline}
 .v-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
 .v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
-:lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
 
 /* Verse detail */
 .verse-detail-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px}
@@ -542,6 +591,10 @@ body.vbar-hidden #vbar{transform:translateY(100%)}
 .hero h1{font-family:'Cinzel',serif;font-size:clamp(22px,5vw,36px);color:var(--accent);margin-bottom:10px}
 .hero p{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;margin:0 auto 24px}
 """
+    + "\n"
+    + indic_script_face_css()
+    + "\n"
+)
 
 SHARED_JS = """
 // ── Theme ── (default "reader" = warm editorial light, high contrast for long-form reading)
@@ -562,6 +615,23 @@ function applyTheme(id) {
   document.documentElement.setAttribute('data-theme', id);
   localStorage.setItem('bsws_theme', id);
   document.querySelectorAll('.t-btn').forEach(b => b.classList.toggle('on', b.dataset.t === id));
+}
+
+const VERSE_LINKS_STORAGE_KEY = 'bsws_enable_verse_links';
+function areVerseLinksEnabled() {
+  return localStorage.getItem(VERSE_LINKS_STORAGE_KEY) === '1';
+}
+function setVerseLinksEnabled(enabled) {
+  localStorage.setItem(VERSE_LINKS_STORAGE_KEY, enabled ? '1' : '0');
+  renderVerseLinksToggle();
+}
+function renderVerseLinksToggle() {
+  const btn = document.getElementById('verse-links-btn');
+  if (!btn) return;
+  const enabled = areVerseLinksEnabled();
+  btn.textContent = enabled ? 'Verse Details On' : 'Verse Details Off';
+  btn.classList.toggle('on', enabled);
+  btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
 }
 
 // ── Sidebar ──
@@ -600,6 +670,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('font-dec-btn')?.addEventListener('click', () => updateFontScale(-0.1));
   document.getElementById('font-inc-vbar-btn')?.addEventListener('click', () => updateFontScale(0.1));
   document.getElementById('font-dec-vbar-btn')?.addEventListener('click', () => updateFontScale(-0.1));
+  if (localStorage.getItem(VERSE_LINKS_STORAGE_KEY) === null) {
+    localStorage.setItem(VERSE_LINKS_STORAGE_KEY, '0');
+  }
+  renderVerseLinksToggle();
+  document.getElementById('verse-links-btn')?.addEventListener('click', () => {
+    setVerseLinksEnabled(!areVerseLinksEnabled());
+  });
+
+  // Verse detail navigation toggle (Off = plain chapter reading)
+  document.addEventListener('click', e => {
+    const row = e.target.closest('.v-row');
+    if (!row || areVerseLinksEnabled()) return;
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    e.preventDefault();
+    selectVerse(row);
+  });
 
   // Verse action bar — dismiss on outside click
   document.addEventListener('click', e => {
@@ -910,7 +996,7 @@ def html_head(title, description, canonical, lang, hreflang_links, keywords=""):
 <link rel="icon" href="/assets/favicon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-{"<link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"/>" + chr(10) if lang == "te" else ""}<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+{script_font_link_for_lang(lang)}<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
 <style>{SHARED_CSS}</style>
 </head>"""
 
@@ -974,6 +1060,7 @@ def topbar_html(crumb):
   <button type="button" id="font-dec-btn" class="icon-btn" aria-label="Decrease verse font size">A-</button>
   <button type="button" id="font-inc-btn" class="icon-btn" aria-label="Increase verse font size">A+</button>
   <button type="button" id="par-btn" class="icon-btn" aria-label="Compare parallel Bible versions">||</button>
+  <button type="button" id="verse-links-btn" class="icon-btn" aria-label="Toggle verse detail page links" aria-pressed="false">Verse Details Off</button>
   <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
 </header>"""
 
@@ -1225,6 +1312,9 @@ def generate_verse_detail_page(
 def generate_bible_index(active_versions, x_default_id):
     canonical = f"{SITE_URL}/{OUT_DIR}/"
     n = len(active_versions)
+    # Hero + SEO: reflect what this generator run actually built (active_versions).
+    # Version cards: always list the full catalog (VERSIONS) so /bible/ stays a directory
+    # even when using --only for faster partial builds.
     if n == 1:
         vid0, vlbl0, vlng0, *_ = active_versions[0]
         index_lang = vlng0 if vlng0 != "en" else "en"
@@ -1236,12 +1326,12 @@ def generate_bible_index(active_versions, x_default_id):
             else f"{vid0} bible online, bible reading free, bswsapp"
         )
         hero_title = "Read the Bible Online"
-        hero_p = f"Free Bible reader — {vlbl0}. No ads, no login required."
+        hero_p = (
+            f"Free Bible reader — {vlbl0}. No ads, no login required. "
+            "Browse all available translations below."
+        )
         hero_cta_href = f"/{OUT_DIR}/{vid0}/john/1/"
         hero_cta_label = f"Start reading — John 1 ({vlbl0})"
-        english_section = ""
-        indian_section = ""
-        one_grid = f'<div class="ver-grid"><a href="/{OUT_DIR}/{vid0}/john/1/" class="ver-card"><div class="vc-label">{vlbl0}</div><div class="vc-sub">Open reader</div></a></div>'
     else:
         index_lang = "en"
         title = "Read Bible Online Free — Telugu, Hindi, Tamil + 16 Versions | Bible Study with Steffi"
@@ -1261,29 +1351,30 @@ def generate_bible_index(active_versions, x_default_id):
         )
         hero_cta_href = f"/{OUT_DIR}/{x_default_id}/john/1/"
         hero_cta_label = "Start Reading — John 1"
-        english_cards = ""
-        indian_cards = ""
-        for vid, vlbl, vlng, vscript, vgroup in active_versions:
-            card = f'<a href="/{OUT_DIR}/{vid}/john/1/" class="ver-card"><div class="vc-label">{vlbl}</div><div class="vc-sub">{vgroup} · {vlng.upper()}</div></a>'
-            if vgroup == "English":
-                english_cards += card
-            else:
-                indian_cards += card
-        english_section = (
-            '<div class="group-title">English Versions</div><div class="ver-grid">'
-            + english_cards
-            + "</div>"
-            if english_cards
-            else ""
-        )
-        indian_section = (
-            '<div class="group-title">Indian Languages</div><div class="ver-grid">'
-            + indian_cards
-            + "</div>"
-            if indian_cards
-            else ""
-        )
-        one_grid = english_section + indian_section
+
+    english_cards = ""
+    indian_cards = ""
+    for vid, vlbl, vlng, vscript, vgroup in VERSIONS:
+        card = f'<a href="/{OUT_DIR}/{vid}/john/1/" class="ver-card"><div class="vc-label">{vlbl}</div><div class="vc-sub">{vgroup} · {vlng.upper()}</div></a>'
+        if vgroup == "English":
+            english_cards += card
+        else:
+            indian_cards += card
+    english_section = (
+        '<div class="group-title">English Versions</div><div class="ver-grid">'
+        + english_cards
+        + "</div>"
+        if english_cards
+        else ""
+    )
+    indian_section = (
+        '<div class="group-title">Indian Languages</div><div class="ver-grid">'
+        + indian_cards
+        + "</div>"
+        if indian_cards
+        else ""
+    )
+    one_grid = english_section + indian_section
 
     language_cards = "".join(
         f'<a href="/{fname}" class="ver-card"><div class="vc-label">{label}</div><div class="vc-sub">Language landing page</div></a>'
@@ -1390,7 +1481,11 @@ def main():
         "--only",
         metavar="IDS",
         default="",
-        help="Comma-separated version ids to build (e.g. telugu). Default: all versions.",
+        help=(
+            "Comma-separated version ids to build (e.g. telugu). Default: all versions. "
+            "Note: /bible/ index still lists all VERSIONS as reader cards; only chapter/verse "
+            "pages are limited by this flag."
+        ),
     )
     args = parser.parse_args()
 
@@ -1444,7 +1539,7 @@ def main():
         strongs_dict = {}
         interlinear_map = {}
         interlinear_book_cache = {}
-        if version_id == "telugu":
+        if version_has_verse_detail_features(version_id):
             crossrefs_data = load_local_json(LOCAL_CROSSREFS_JSON, "crossrefs_mobile.json")
             strongs_dict = load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
             interlinear_map = load_interlinear_book_mapping()
@@ -1499,7 +1594,7 @@ def main():
             version_pages += 1
 
             interlinear_chapters_for_book = {}
-            if version_id == "telugu":
+            if version_has_verse_detail_features(version_id):
                 abbrev = interlinear_map.get(book.get("b"), "")
                 if abbrev:
                     if abbrev not in interlinear_book_cache:
