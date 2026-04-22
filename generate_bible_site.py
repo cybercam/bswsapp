@@ -860,6 +860,7 @@ def generate_sitemap(all_urls):
 ROBOTS_TXT = f"""User-agent: *
 Allow: /
 
+Sitemap: {SITE_URL}/sitemap.xml
 Sitemap: {SITE_URL}/bible/sitemap.xml
 """
 
