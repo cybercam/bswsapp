@@ -335,7 +335,7 @@ a:hover{text-decoration:underline}
 .v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
 .v-row:hover,.v-row.sel{background:var(--card)}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
-.v-txt{font-family:'Lora',Georgia,serif;font-size:clamp(16px,4vw,19px);line-height:1.9;color:var(--text)}
+.v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
 
 /* Chapter nav */
@@ -352,10 +352,14 @@ a:hover{text-decoration:underline}
 .cta-btn:hover{opacity:.88;text-decoration:none}
 
 /* Verse action bar */
-#vbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;gap:8px;padding:10px 14px;transform:translateY(100%);transition:transform .2s ease;z-index:100}
+#vbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;gap:8px;padding:10px 14px;transform:translateY(100%);transition:transform .2s ease;z-index:100;flex-wrap:wrap;align-items:center}
 #vbar.on{transform:translateY(0)}
-#vbar button{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;flex:1}
+#vbar button{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;flex:1;min-width:110px}
 #vbar .cta-btn{flex:2}
+#vbar .vbar-meta{font-size:11px;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:.04em;min-width:100%;margin-bottom:2px}
+#vbar .vbar-speed{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;min-width:180px}
+#vbar .vbar-speed label{font-size:11px;color:var(--muted);font-family:'Cinzel',serif}
+#vbar .vbar-speed input{width:90px}
 
 /* Theme sheet */
 #tsheet{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:16px 14px 28px;transform:translateY(100%);transition:transform .25s ease;z-index:110}
@@ -441,40 +445,48 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('wrap').classList.toggle('par-open');
   });
 
+  // Font size controls
+  initFontScale();
+  document.getElementById('font-inc-btn')?.addEventListener('click', () => updateFontScale(0.1));
+  document.getElementById('font-dec-btn')?.addEventListener('click', () => updateFontScale(-0.1));
+
   // Verse action bar — dismiss on outside click
   document.addEventListener('click', e => {
     if (!e.target.closest('.v-row') && !e.target.closest('#vbar')) {
-      document.querySelectorAll('.v-row.sel').forEach(r => r.classList.remove('sel'));
-      document.getElementById('vbar')?.classList.remove('on');
+      clearSelectedVerses();
     }
   });
 
-  // Copy btn
+  // Copy btn (supports multi-select)
   document.getElementById('copy-btn')?.addEventListener('click', () => {
-    const sel = document.querySelector('.v-row.sel');
-    if (!sel) return;
-    const ref = sel.dataset.ref || '';
-    const txt = sel.querySelector('.v-txt')?.textContent || '';
-    navigator.clipboard.writeText('"' + txt + '" — ' + ref).then(() => {
+    const selected = getSelectedVerses();
+    if (!selected.length) return;
+    const payload = selected.map(v => '"' + v.txt + '" — ' + v.ref).join('\\n\\n');
+    navigator.clipboard.writeText(payload).then(() => {
       const btn = document.getElementById('copy-btn');
       btn.textContent = 'Copied ✓';
-      setTimeout(() => btn.textContent = 'Copy', 2000);
+      setTimeout(() => btn.textContent = 'Copy', 1800);
     });
   });
 
-  // Share btn
+  // Share btn (supports multi-select)
   document.getElementById('share-btn')?.addEventListener('click', () => {
-    const sel = document.querySelector('.v-row.sel');
-    if (!sel) return;
-    const ref = sel.dataset.ref || '';
-    const txt = sel.querySelector('.v-txt')?.textContent || '';
+    const selected = getSelectedVerses();
+    if (!selected.length) return;
     const url = window.location.href;
+    const payload = selected.map(v => '"' + v.txt + '" — ' + v.ref).join('\\n\\n');
+    const title = selected.length === 1 ? selected[0].ref : `${selected.length} verses`;
     if (navigator.share) {
-      navigator.share({ title: ref, text: '"' + txt + '" — ' + ref, url });
+      navigator.share({ title, text: payload, url });
     } else {
-      navigator.clipboard.writeText('"' + txt + '" — ' + ref + '\\n' + url);
+      navigator.clipboard.writeText(payload + '\\n\\n' + url);
     }
   });
+
+  // TTS controls
+  document.getElementById('tts-play-btn')?.addEventListener('click', speakSelection);
+  document.getElementById('tts-stop-btn')?.addEventListener('click', () => speechSynthesis?.cancel());
+  document.getElementById('clear-sel-btn')?.addEventListener('click', clearSelectedVerses);
 
   // Sidebar search
   const si = document.getElementById('s-search');
@@ -489,10 +501,82 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function selectVerse(row) {
+function updateVbarState() {
+  const rows = document.querySelectorAll('.v-row.sel');
+  const vbar = document.getElementById('vbar');
+  const meta = document.getElementById('vbar-meta');
+  if (!vbar || !meta) return;
+  const n = rows.length;
+  meta.textContent = `${n} verse${n === 1 ? '' : 's'} selected`;
+  vbar.classList.toggle('on', n > 0);
+}
+
+function getSelectedVerses() {
+  return [...document.querySelectorAll('.v-row.sel')].map(sel => ({
+    ref: sel.dataset.ref || '',
+    txt: sel.querySelector('.v-txt')?.textContent || '',
+  }));
+}
+
+function clearSelectedVerses() {
   document.querySelectorAll('.v-row.sel').forEach(r => r.classList.remove('sel'));
-  row.classList.add('sel');
-  document.getElementById('vbar')?.classList.add('on');
+  updateVbarState();
+}
+
+function selectVerse(row) {
+  row.classList.toggle('sel');
+  updateVbarState();
+}
+
+function initFontScale() {
+  const saved = Number(localStorage.getItem('bsws_font_scale') || '1.0');
+  const clamped = Math.min(1.5, Math.max(0.8, saved));
+  localStorage.setItem('bsws_font_scale', String(clamped));
+  applyFontScale(clamped);
+}
+
+function applyFontScale(scale) {
+  document.documentElement.style.setProperty('--verse-font-size', `${(18 * scale).toFixed(1)}px`);
+}
+
+function updateFontScale(delta) {
+  const current = Number(localStorage.getItem('bsws_font_scale') || '1.0');
+  const next = Math.min(1.5, Math.max(0.8, Math.round((current + delta) * 10) / 10));
+  localStorage.setItem('bsws_font_scale', String(next));
+  applyFontScale(next);
+}
+
+function bestVoiceForLang(lang) {
+  const voices = speechSynthesis?.getVoices?.() || [];
+  if (!voices.length) return null;
+  const normalized = (lang || 'en').toLowerCase();
+  const byLang = voices.filter(v => (v.lang || '').toLowerCase().startsWith(normalized));
+  const pool = byLang.length ? byLang : voices;
+  const score = v => {
+    const n = (v.name || '').toLowerCase();
+    let s = 0;
+    if (n.includes('neural')) s += 5;
+    if (n.includes('google')) s += 4;
+    if (n.includes('microsoft')) s += 3;
+    if (n.includes('premium') || n.includes('enhanced')) s += 2;
+    if (v.default) s += 1;
+    return s;
+  };
+  return [...pool].sort((a, b) => score(b) - score(a))[0] || null;
+}
+
+function speakSelection() {
+  const selected = getSelectedVerses();
+  if (!selected.length || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const text = selected.map(v => `${v.ref}. ${v.txt}`).join(' ');
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = document.documentElement.lang || 'en';
+  const voice = bestVoiceForLang(u.lang);
+  if (voice) u.voice = voice;
+  const rate = Number(document.getElementById('tts-rate')?.value || '1.0');
+  u.rate = Math.min(1.5, Math.max(0.7, rate));
+  speechSynthesis.speak(u);
 }
 
 function sidebarSearch(q) {
@@ -642,8 +726,11 @@ def topbar_html(crumb):
   <button type="button" id="menu-btn" class="icon-btn icon-btn--menu" aria-label="Open Bible navigation menu">
     <span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span>
   </button>
+  <a href="/" class="icon-btn" aria-label="Back to main website">Home</a>
   <span class="logo">Bible Study with Steffi</span>
   <span class="crumb">{crumb}</span>
+  <button type="button" id="font-dec-btn" class="icon-btn" aria-label="Decrease verse font size">A-</button>
+  <button type="button" id="font-inc-btn" class="icon-btn" aria-label="Increase verse font size">A+</button>
   <button type="button" id="par-btn" class="icon-btn" aria-label="Compare parallel Bible versions">||</button>
   <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
 </header>"""
@@ -652,8 +739,16 @@ def topbar_html(crumb):
 def verse_action_bar():
     return f"""
 <div id="vbar">
+  <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
   <button id="copy-btn">Copy</button>
   <button id="share-btn">Share</button>
+  <button id="tts-play-btn">Speak</button>
+  <button id="tts-stop-btn">Stop</button>
+  <button id="clear-sel-btn">Clear</button>
+  <div class="vbar-speed">
+    <label for="tts-rate">Speed</label>
+    <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1.0"/>
+  </div>
   <a class="cta-btn" href="{PLAY_STORE_URL}" target="_blank" rel="noopener">Memorize in App ↗</a>
 </div>"""
 
