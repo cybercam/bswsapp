@@ -104,6 +104,23 @@ HREFLANG = {
     "telugu":"te",
 }
 
+# Telugu display names by canonical book order (user-provided app aliases)
+TELUGU_BOOK_NAMES = {
+    1: "ఆదికాండము", 2: "నిర్గమకాండము", 3: "లేవీయకాండము", 4: "సంఖ్యాకాండము", 5: "ద్వితీయోపదేశకాండము",
+    6: "యెహోషువ", 7: "న్యాయాధిపతులు", 8: "రూతు", 9: "1 సమూయేలు", 10: "2 సమూయేలు",
+    11: "1 రాజులు", 12: "2 రాజులు", 13: "1 దినవృత్తాంతములు", 14: "2 దినవృత్తాంతములు", 15: "ఎజ్రా",
+    16: "నెహెమ్యా", 17: "ఎస్తేరు", 18: "యోబు", 19: "కీర్తనలు", 20: "సామెతలు",
+    21: "ప్రసంగి", 22: "పరమగీతము", 23: "యెషయా", 24: "యిర్మియా", 25: "విలాపవాక్యములు",
+    26: "యెహెజ్కేలు", 27: "దానియేలు", 28: "హోషేయ", 29: "యోవేలు", 30: "ఆమోసు",
+    31: "ఓబద్యా", 32: "యోనా", 33: "మీకా", 34: "నహూము", 35: "హబక్కూకు",
+    36: "జెఫన్యా", 37: "హగ్గయి", 38: "జెకర్యా", 39: "మలాకీ", 40: "మత్తయి",
+    41: "మార్కు", 42: "లూకా", 43: "యోహాను", 44: "అపొస్తలుల కార్యములు", 45: "రోమీయులకు",
+    46: "1 కొరింథీయులకు", 47: "2 కొరింథీయులకు", 48: "గలతీయులకు", 49: "ఎఫెసీయులకు", 50: "ఫిలిప్పీయులకు",
+    51: "కొలస్సీయులకు", 52: "1 థెస్సలొనీకయులకు", 53: "2 థెస్సలొనీకయులకు", 54: "1 తిమోతికి", 55: "2 తిమోతికి",
+    56: "తీతుకు", 57: "ఫిలేమోనుకు", 58: "హెబ్రీయులకు", 59: "యాకోబు", 60: "1 పేతురు",
+    61: "2 పేతురు", 62: "1 యోహాను", 63: "2 యోహాను", 64: "3 యోహాను", 65: "యూదా", 66: "ప్రకటన గ్రంథము",
+}
+
 # ─── HELPERS ──────────────────────────────────────────────────────────────────
 
 def download_json(version_id):
@@ -245,6 +262,13 @@ def version_label(version_id):
     return version_id.upper()
 
 
+def display_book_name(book: dict, version_id: str) -> str:
+    """Render Telugu names for Telugu version, fallback to source JSON name."""
+    if version_id == "telugu":
+        return TELUGU_BOOK_NAMES.get(book.get("b"), book.get("n", ""))
+    return book.get("n", "")
+
+
 # ─── HTML TEMPLATES ───────────────────────────────────────────────────────────
 
 SHARED_CSS = """
@@ -311,7 +335,7 @@ a:hover{text-decoration:underline}
 .v-row{display:flex;gap:10px;padding:9px 10px;cursor:pointer;border-radius:7px;transition:background .12s;-webkit-tap-highlight-color:transparent}
 .v-row:hover,.v-row.sel{background:var(--card)}
 .v-num{font-family:'Cinzel',serif;font-size:11px;color:var(--vnum);min-width:26px;padding-top:5px;flex-shrink:0;text-align:right;font-weight:600}
-.v-txt{font-family:'Lora',Georgia,serif;font-size:clamp(16px,4vw,19px);line-height:1.9;color:var(--text)}
+.v-txt{font-family:'Lora',Georgia,serif;font-size:var(--verse-font-size,clamp(16px,4vw,19px));line-height:1.9;color:var(--text)}
 :lang(te) body,:lang(te) .v-txt,:lang(te) .book-btn,:lang(te) #s-search,:lang(te) .sr-txt{font-family:'Noto Sans Telugu','Lora',Georgia,serif}
 
 /* Chapter nav */
@@ -328,10 +352,15 @@ a:hover{text-decoration:underline}
 .cta-btn:hover{opacity:.88;text-decoration:none}
 
 /* Verse action bar */
-#vbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;gap:8px;padding:10px 14px;transform:translateY(100%);transition:transform .2s ease;z-index:100}
+#vbar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;gap:8px;padding:10px 14px;transform:translateY(100%);transition:transform .2s ease;z-index:100;flex-wrap:wrap;align-items:center}
 #vbar.on{transform:translateY(0)}
-#vbar button{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;flex:1}
+#vbar button{background:var(--bg2);color:var(--text);border:1px solid var(--border);border-radius:7px;padding:10px 14px;font-family:'Cinzel',serif;font-size:11px;cursor:pointer;flex:1;min-width:110px}
+#vbar button.on{border-color:var(--accent);color:var(--accent)}
 #vbar .cta-btn{flex:2}
+#vbar .vbar-meta{font-size:11px;color:var(--muted);font-family:'Cinzel',serif;letter-spacing:.04em;min-width:100%;margin-bottom:2px}
+#vbar .vbar-speed{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:6px 10px;min-width:180px}
+#vbar .vbar-speed label{font-size:11px;color:var(--muted);font-family:'Cinzel',serif}
+#vbar .vbar-speed input{width:90px}
 
 /* Theme sheet */
 #tsheet{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);padding:16px 14px 28px;transform:translateY(100%);transition:transform .25s ease;z-index:110}
@@ -417,40 +446,53 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('wrap').classList.toggle('par-open');
   });
 
+  // Font size controls
+  initFontScale();
+  document.getElementById('font-inc-btn')?.addEventListener('click', () => updateFontScale(0.1));
+  document.getElementById('font-dec-btn')?.addEventListener('click', () => updateFontScale(-0.1));
+
   // Verse action bar — dismiss on outside click
   document.addEventListener('click', e => {
     if (!e.target.closest('.v-row') && !e.target.closest('#vbar')) {
-      document.querySelectorAll('.v-row.sel').forEach(r => r.classList.remove('sel'));
-      document.getElementById('vbar')?.classList.remove('on');
+      clearSelectedVerses();
     }
   });
 
-  // Copy btn
+  // Copy btn (supports multi-select)
   document.getElementById('copy-btn')?.addEventListener('click', () => {
-    const sel = document.querySelector('.v-row.sel');
-    if (!sel) return;
-    const ref = sel.dataset.ref || '';
-    const txt = sel.querySelector('.v-txt')?.textContent || '';
-    navigator.clipboard.writeText('"' + txt + '" — ' + ref).then(() => {
+    const selected = getSelectedVerses();
+    if (!selected.length) return;
+    const payload = selected.map(v => '"' + v.txt + '" — ' + v.ref).join('\\n\\n');
+    navigator.clipboard.writeText(payload).then(() => {
       const btn = document.getElementById('copy-btn');
       btn.textContent = 'Copied ✓';
-      setTimeout(() => btn.textContent = 'Copy', 2000);
+      setTimeout(() => btn.textContent = 'Copy', 1800);
     });
   });
 
-  // Share btn
+  // Share btn (supports multi-select)
   document.getElementById('share-btn')?.addEventListener('click', () => {
-    const sel = document.querySelector('.v-row.sel');
-    if (!sel) return;
-    const ref = sel.dataset.ref || '';
-    const txt = sel.querySelector('.v-txt')?.textContent || '';
+    const selected = getSelectedVerses();
+    if (!selected.length) return;
     const url = window.location.href;
+    const payload = selected.map(v => '"' + v.txt + '" — ' + v.ref).join('\\n\\n');
+    const title = selected.length === 1 ? selected[0].ref : `${selected.length} verses`;
     if (navigator.share) {
-      navigator.share({ title: ref, text: '"' + txt + '" — ' + ref, url });
+      navigator.share({ title, text: payload, url });
     } else {
-      navigator.clipboard.writeText('"' + txt + '" — ' + ref + '\\n' + url);
+      navigator.clipboard.writeText(payload + '\\n\\n' + url);
     }
   });
+
+  // TTS controls
+  initTtsToggles();
+  document.getElementById('tts-play-btn')?.addEventListener('click', speakSelection);
+  document.getElementById('tts-chapter-btn')?.addEventListener('click', speakChapter);
+  document.getElementById('tts-stop-btn')?.addEventListener('click', () => speechSynthesis?.cancel());
+  document.getElementById('tts-loop-btn')?.addEventListener('click', toggleLoopMode);
+  document.getElementById('tts-auto-btn')?.addEventListener('click', toggleAutoReadMode);
+  document.getElementById('tts-download-btn')?.addEventListener('click', downloadAudioFallback);
+  document.getElementById('clear-sel-btn')?.addEventListener('click', clearSelectedVerses);
 
   // Sidebar search
   const si = document.getElementById('s-search');
@@ -463,12 +505,171 @@ document.addEventListener('DOMContentLoaded', () => {
       st = setTimeout(() => sidebarSearch(q), 280);
     });
   }
+
+  // Auto-read chapter on load when enabled
+  if (localStorage.getItem('bsws_auto_read_chapter') === '1') {
+    setTimeout(() => speakChapter(), 500);
+  }
 });
 
-function selectVerse(row) {
+function updateVbarState() {
+  const rows = document.querySelectorAll('.v-row.sel');
+  const vbar = document.getElementById('vbar');
+  const meta = document.getElementById('vbar-meta');
+  if (!vbar || !meta) return;
+  const n = rows.length;
+  meta.textContent = `${n} verse${n === 1 ? '' : 's'} selected`;
+  vbar.classList.toggle('on', n > 0);
+}
+
+function getSelectedVerses() {
+  return [...document.querySelectorAll('.v-row.sel')].map(sel => ({
+    ref: sel.dataset.ref || '',
+    txt: sel.querySelector('.v-txt')?.textContent || '',
+  }));
+}
+
+function clearSelectedVerses() {
   document.querySelectorAll('.v-row.sel').forEach(r => r.classList.remove('sel'));
-  row.classList.add('sel');
-  document.getElementById('vbar')?.classList.add('on');
+  updateVbarState();
+}
+
+function selectVerse(row) {
+  row.classList.toggle('sel');
+  updateVbarState();
+}
+
+function initFontScale() {
+  const saved = Number(localStorage.getItem('bsws_font_scale') || '1.0');
+  const clamped = Math.min(1.5, Math.max(0.8, saved));
+  localStorage.setItem('bsws_font_scale', String(clamped));
+  applyFontScale(clamped);
+}
+
+function applyFontScale(scale) {
+  document.documentElement.style.setProperty('--verse-font-size', `${(18 * scale).toFixed(1)}px`);
+}
+
+function updateFontScale(delta) {
+  const current = Number(localStorage.getItem('bsws_font_scale') || '1.0');
+  const next = Math.min(1.5, Math.max(0.8, Math.round((current + delta) * 10) / 10));
+  localStorage.setItem('bsws_font_scale', String(next));
+  applyFontScale(next);
+}
+
+function bestVoiceForLang(lang) {
+  const voices = speechSynthesis?.getVoices?.() || [];
+  if (!voices.length) return null;
+  const normalized = (lang || 'en').toLowerCase();
+  const byLang = voices.filter(v => (v.lang || '').toLowerCase().startsWith(normalized));
+  const pool = byLang.length ? byLang : voices;
+  const score = v => {
+    const n = (v.name || '').toLowerCase();
+    let s = 0;
+    if (n.includes('neural')) s += 5;
+    if (n.includes('google')) s += 4;
+    if (n.includes('microsoft')) s += 3;
+    if (n.includes('premium') || n.includes('enhanced')) s += 2;
+    if (v.default) s += 1;
+    return s;
+  };
+  return [...pool].sort((a, b) => score(b) - score(a))[0] || null;
+}
+
+function getTtsRate() {
+  const rate = Number(document.getElementById('tts-rate')?.value || '1.0');
+  return Math.min(1.5, Math.max(0.7, rate));
+}
+
+function getLoopMode() {
+  return localStorage.getItem('bsws_tts_loop') === '1';
+}
+
+function speakText(text) {
+  if (!text || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = document.documentElement.lang || 'en';
+  const voice = bestVoiceForLang(u.lang);
+  if (voice) u.voice = voice;
+  u.rate = getTtsRate();
+  u.onend = () => {
+    if (getLoopMode()) {
+      setTimeout(() => speakText(text), 250);
+    }
+  };
+  speechSynthesis.speak(u);
+}
+
+function speakSelection() {
+  const selected = getSelectedVerses();
+  if (!selected.length) return;
+  const text = selected.map(v => `${v.ref}. ${v.txt}`).join(' ');
+  speakText(text);
+}
+
+function speakChapter() {
+  const rows = [...document.querySelectorAll('.v-row')];
+  if (!rows.length) return;
+  const text = rows.map(r => {
+    const ref = r.dataset.ref || '';
+    const verse = r.querySelector('.v-txt')?.textContent || '';
+    return `${ref}. ${verse}`;
+  }).join(' ');
+  speakText(text);
+}
+
+function toggleLoopMode() {
+  const next = getLoopMode() ? '0' : '1';
+  localStorage.setItem('bsws_tts_loop', next);
+  renderTtsToggles();
+}
+
+function toggleAutoReadMode() {
+  const enabled = localStorage.getItem('bsws_auto_read_chapter') === '1';
+  localStorage.setItem('bsws_auto_read_chapter', enabled ? '0' : '1');
+  renderTtsToggles();
+}
+
+function renderTtsToggles() {
+  const loopBtn = document.getElementById('tts-loop-btn');
+  const autoBtn = document.getElementById('tts-auto-btn');
+  const loopOn = getLoopMode();
+  const autoOn = localStorage.getItem('bsws_auto_read_chapter') === '1';
+  if (loopBtn) {
+    loopBtn.textContent = loopOn ? 'Loop On' : 'Loop Off';
+    loopBtn.classList.toggle('on', loopOn);
+  }
+  if (autoBtn) {
+    autoBtn.textContent = autoOn ? 'Auto-Read On' : 'Auto-Read Off';
+    autoBtn.classList.toggle('on', autoOn);
+  }
+}
+
+function initTtsToggles() {
+  if (localStorage.getItem('bsws_tts_loop') === null) {
+    localStorage.setItem('bsws_tts_loop', '0');
+  }
+  if (localStorage.getItem('bsws_auto_read_chapter') === null) {
+    localStorage.setItem('bsws_auto_read_chapter', '0');
+  }
+  renderTtsToggles();
+}
+
+function downloadAudioFallback() {
+  const selected = getSelectedVerses();
+  const hasSelection = selected.length > 0;
+  const text = hasSelection
+    ? selected.map(v => `${v.ref} ${v.txt}`).join('\n\n')
+    : [...document.querySelectorAll('.v-row')].map(r => `${r.dataset.ref || ''} ${r.querySelector('.v-txt')?.textContent || ''}`).join('\n');
+
+  // Browser SpeechSynthesis cannot reliably export MP3. Provide downloadable text fallback.
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = hasSelection ? 'selected-verses.txt' : 'chapter-verses.txt';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1500);
 }
 
 function sidebarSearch(q) {
@@ -573,15 +774,15 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
     ot_done = False
     for bk in all_books:
         if bk["b"] == 40 and not ot_done:
-            books_html += '<div class="s-section">New Testament</div>'
+            books_html += '<div class="s-section">' + ("క్రొత్త నిబంధన" if version_id == "telugu" else "New Testament") + '</div>'
             ot_done = True
         if bk["b"] == 1 and not ot_done:
-            books_html += '<div class="s-section">Old Testament</div>'
+            books_html += '<div class="s-section">' + ("పాత నిబంధన" if version_id == "telugu" else "Old Testament") + '</div>'
             ot_done = False
         slug = book_slug(bk["n"])
         active = "on" if bk["b"] == current_book_num else ""
         url = f"/{OUT_DIR}/{version_id}/{slug}/1/"
-        books_html += f'<a href="{url}" class="book-btn {active}">{bk["n"]}</a>'
+        books_html += f'<a href="{url}" class="book-btn {active}">{display_book_name(bk, version_id)}</a>'
 
     # Chapter grid for current book
     current_book = next((b for b in all_books if b["b"] == current_book_num), None)
@@ -618,8 +819,11 @@ def topbar_html(crumb):
   <button type="button" id="menu-btn" class="icon-btn icon-btn--menu" aria-label="Open Bible navigation menu">
     <span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span>
   </button>
+  <a href="/" class="icon-btn" aria-label="Back to main website">Home</a>
   <span class="logo">Bible Study with Steffi</span>
   <span class="crumb">{crumb}</span>
+  <button type="button" id="font-dec-btn" class="icon-btn" aria-label="Decrease verse font size">A-</button>
+  <button type="button" id="font-inc-btn" class="icon-btn" aria-label="Increase verse font size">A+</button>
   <button type="button" id="par-btn" class="icon-btn" aria-label="Compare parallel Bible versions">||</button>
   <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
 </header>"""
@@ -628,8 +832,20 @@ def topbar_html(crumb):
 def verse_action_bar():
     return f"""
 <div id="vbar">
+  <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
+  <button id="tts-chapter-btn">Read Chapter</button>
+  <button id="tts-loop-btn">Loop Off</button>
+  <button id="tts-auto-btn">Auto-Read Off</button>
   <button id="copy-btn">Copy</button>
   <button id="share-btn">Share</button>
+  <button id="tts-play-btn">Speak</button>
+  <button id="tts-stop-btn">Stop</button>
+  <button id="tts-download-btn">Download</button>
+  <button id="clear-sel-btn">Clear</button>
+  <div class="vbar-speed">
+    <label for="tts-rate">Speed</label>
+    <input id="tts-rate" type="range" min="0.7" max="1.5" step="0.1" value="1.0"/>
+  </div>
   <a class="cta-btn" href="{PLAY_STORE_URL}" target="_blank" rel="noopener">Memorize in App ↗</a>
 </div>"""
 
@@ -659,10 +875,11 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
                            book, chapter, all_books,
                            prev_url, next_url,
                            active_versions, x_default_id):
-    book_name   = book["n"]
+    book_name_source = book["n"]
+    book_name = display_book_name(book, version_id)
     book_num    = book["b"]
     ch_num      = chapter["c"]
-    bslug       = book_slug(book_name)
+    bslug       = book_slug(book_name_source)
     canonical   = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/"
     verses      = chapter["v"]
 
