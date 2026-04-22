@@ -104,6 +104,23 @@ HREFLANG = {
     "telugu":"te",
 }
 
+# Telugu display names by canonical book order (user-provided app aliases)
+TELUGU_BOOK_NAMES = {
+    1: "ఆదికాండము", 2: "నిర్గమకాండము", 3: "లేవీయకాండము", 4: "సంఖ్యాకాండము", 5: "ద్వితీయోపదేశకాండము",
+    6: "యెహోషువ", 7: "న్యాయాధిపతులు", 8: "రూతు", 9: "1 సమూయేలు", 10: "2 సమూయేలు",
+    11: "1 రాజులు", 12: "2 రాజులు", 13: "1 దినవృత్తాంతములు", 14: "2 దినవృత్తాంతములు", 15: "ఎజ్రా",
+    16: "నెహెమ్యా", 17: "ఎస్తేరు", 18: "యోబు", 19: "కీర్తనలు", 20: "సామెతలు",
+    21: "ప్రసంగి", 22: "పరమగీతము", 23: "యెషయా", 24: "యిర్మియా", 25: "విలాపవాక్యములు",
+    26: "యెహెజ్కేలు", 27: "దానియేలు", 28: "హోషేయ", 29: "యోవేలు", 30: "ఆమోసు",
+    31: "ఓబద్యా", 32: "యోనా", 33: "మీకా", 34: "నహూము", 35: "హబక్కూకు",
+    36: "జెఫన్యా", 37: "హగ్గయి", 38: "జెకర్యా", 39: "మలాకీ", 40: "మత్తయి",
+    41: "మార్కు", 42: "లూకా", 43: "యోహాను", 44: "అపొస్తలుల కార్యములు", 45: "రోమీయులకు",
+    46: "1 కొరింథీయులకు", 47: "2 కొరింథీయులకు", 48: "గలతీయులకు", 49: "ఎఫెసీయులకు", 50: "ఫిలిప్పీయులకు",
+    51: "కొలస్సీయులకు", 52: "1 థెస్సలొనీకయులకు", 53: "2 థెస్సలొనీకయులకు", 54: "1 తిమోతికి", 55: "2 తిమోతికి",
+    56: "తీతుకు", 57: "ఫిలేమోనుకు", 58: "హెబ్రీయులకు", 59: "యాకోబు", 60: "1 పేతురు",
+    61: "2 పేతురు", 62: "1 యోహాను", 63: "2 యోహాను", 64: "3 యోహాను", 65: "యూదా", 66: "ప్రకటన గ్రంథము",
+}
+
 # ─── HELPERS ──────────────────────────────────────────────────────────────────
 
 def download_json(version_id):
@@ -243,6 +260,13 @@ def version_label(version_id):
         if vid == version_id:
             return label
     return version_id.upper()
+
+
+def display_book_name(book: dict, version_id: str) -> str:
+    """Render Telugu names for Telugu version, fallback to source JSON name."""
+    if version_id == "telugu":
+        return TELUGU_BOOK_NAMES.get(book.get("b"), book.get("n", ""))
+    return book.get("n", "")
 
 
 # ─── HTML TEMPLATES ───────────────────────────────────────────────────────────
@@ -573,15 +597,15 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
     ot_done = False
     for bk in all_books:
         if bk["b"] == 40 and not ot_done:
-            books_html += '<div class="s-section">New Testament</div>'
+            books_html += '<div class="s-section">' + ("క్రొత్త నిబంధన" if version_id == "telugu" else "New Testament") + '</div>'
             ot_done = True
         if bk["b"] == 1 and not ot_done:
-            books_html += '<div class="s-section">Old Testament</div>'
+            books_html += '<div class="s-section">' + ("పాత నిబంధన" if version_id == "telugu" else "Old Testament") + '</div>'
             ot_done = False
         slug = book_slug(bk["n"])
         active = "on" if bk["b"] == current_book_num else ""
         url = f"/{OUT_DIR}/{version_id}/{slug}/1/"
-        books_html += f'<a href="{url}" class="book-btn {active}">{bk["n"]}</a>'
+        books_html += f'<a href="{url}" class="book-btn {active}">{display_book_name(bk, version_id)}</a>'
 
     # Chapter grid for current book
     current_book = next((b for b in all_books if b["b"] == current_book_num), None)
@@ -659,10 +683,11 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
                            book, chapter, all_books,
                            prev_url, next_url,
                            active_versions, x_default_id):
-    book_name   = book["n"]
+    book_name_source = book["n"]
+    book_name = display_book_name(book, version_id)
     book_num    = book["b"]
     ch_num      = chapter["c"]
-    bslug       = book_slug(book_name)
+    bslug       = book_slug(book_name_source)
     canonical   = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/"
     verses      = chapter["v"]
 
