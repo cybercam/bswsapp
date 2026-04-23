@@ -60,6 +60,7 @@ ASSET_STYLE_PATH = "assets/style.css"
 ASSET_READER_JS_PATH = "assets/reader.js"
 ASSET_INTERLINEAR_CSS_PATH = "assets/interlinear.css"
 ASSET_STRONGS_JS_PATH = "assets/strongs.js"
+ASSET_NAV_JS_PATTERN = "assets/nav-{version_id}.js"
 LOCAL_BIBLE_DATA_DIR = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data")
 INTERLINEAR_RAW_BASE = "https://raw.githubusercontent.com/cybercam/interlinear/main"
 INTERLINEAR_CACHE_DIR = Path(".interlinear_cache")
@@ -1055,6 +1056,10 @@ def output_asset_href(relative_asset_path: str) -> str:
     return f"/{OUT_DIR}/{relative_asset_path}"
 
 
+def output_nav_asset_href(version_id: str) -> str:
+    return output_asset_href(ASSET_NAV_JS_PATTERN.format(version_id=version_id))
+
+
 def parse_modules(raw_modules: str) -> set[str]:
     raw = (raw_modules or "all").strip().lower()
     if raw == "all":
@@ -1118,6 +1123,50 @@ function bindStrongsDrawer() {{
 }}
 
 document.addEventListener('DOMContentLoaded', bindStrongsDrawer);
+"""
+
+
+def generate_nav_js(version_id: str, all_books: list, display_version_id: str) -> str:
+    nav_data = []
+    for bk in all_books:
+        bslug = book_slug(bk["n"])
+        dname = display_book_name(bk, display_version_id)
+        nav_data.append([bk["b"], bslug, dname, len(bk.get("ch", []))])
+    data_json = json.dumps(nav_data, ensure_ascii=False, separators=(",", ":"))
+    return f"""
+(function() {{
+  const NAV = {data_json};
+  const mountBooks = document.getElementById('bsws-nav-books');
+  const mountChapters = document.getElementById('ch-grid');
+  if (!mountBooks || !mountChapters) return;
+  const outDir = window.__BSWS_OUT_DIR__;
+  const versionId = window.__BSWS_VERSION_ID__;
+  const currentBookNum = Number(window.__BSWS_BOOK_NUM__ || 1);
+  const currentChapter = Number(window.__BSWS_CH__ || 1);
+
+  const activeBook = NAV.find((b) => Number(b[0]) === currentBookNum) || NAV[0];
+  const currentSlug = activeBook ? activeBook[1] : 'genesis';
+
+  let chapterHtml = '';
+  const chapterCount = activeBook ? Number(activeBook[3]) : 0;
+  for (let c = 1; c <= chapterCount; c++) {{
+    const active = c === currentChapter ? 'on' : '';
+    chapterHtml += `<a href="/${{outDir}}/${{versionId}}/${{currentSlug}}/${{c}}/" class="ch-btn ${{active}}">${{c}}</a>`;
+  }}
+  mountChapters.innerHTML = chapterHtml;
+
+  let booksHtml = '';
+  let insertedNt = false;
+  for (const [bookNum, slug, dname] of NAV) {{
+    if (bookNum === 40 && !insertedNt) {{
+      booksHtml += '<div class="s-section">New Testament</div>';
+      insertedNt = true;
+    }}
+    const active = Number(bookNum) === currentBookNum ? 'on' : '';
+    booksHtml += `<a href="/${{outDir}}/${{versionId}}/${{slug}}/1/" class="book-btn ${{active}}">${{dname}}</a>`;
+  }}
+  mountBooks.innerHTML = booksHtml;
+}})();
 """
 
 
@@ -1208,30 +1257,6 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
     current_book = next((b for b in all_books if b["b"] == current_book_num), None)
     cur_slug = book_slug(current_book["n"]) if current_book else "genesis"
 
-    books_html = ""
-    ot_done = False
-    for bk in all_books:
-        if bk["b"] == 40 and not ot_done:
-            books_html += '<div class="s-section">' + ("క్రొత్త నిబంధన" if version_id == "telugu" else "New Testament") + '</div>'
-            ot_done = True
-        if bk["b"] == 1 and not ot_done:
-            books_html += '<div class="s-section">' + ("పాత నిబంధన" if version_id == "telugu" else "Old Testament") + '</div>'
-            ot_done = False
-        slug = book_slug(bk["n"])
-        active = "on" if bk["b"] == current_book_num else ""
-        url = f"/{OUT_DIR}/{version_id}/{slug}/1/"
-        books_html += f'<a href="{url}" class="book-btn {active}">{display_book_name(bk, version_id)}</a>'
-
-    # Chapter grid for current book
-    current_book = next((b for b in all_books if b["b"] == current_book_num), None)
-    ch_html = ""
-    if current_book:
-        slug = book_slug(current_book["n"])
-        for c in range(1, len(current_book["ch"]) + 1):
-            active = "on" if c == current_ch else ""
-            url = f"/{OUT_DIR}/{version_id}/{slug}/{c}/"
-            ch_html += f'<a href="{url}" class="ch-btn {active}">{c}</a>'
-
     # Version selector options (only built / active translations)
     ver_opts = ""
     for vid, vlbl, *_ in active_versions:
@@ -1245,9 +1270,10 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
   {parallel_jump_html}
   <input id="s-search" type="search" placeholder="Search this chapter…" autocomplete="off"/>
   <div id="sr"></div>
-  {'<div class="s-section">Chapters</div><div id="ch-grid">' + ch_html + '</div>' if ch_html else ''}
+  <div class="s-section">Chapters</div>
+  <div id="ch-grid"></div>
   <div class="s-section">Books</div>
-  {books_html}
+  <div id="bsws-nav-books"></div>
 </aside>
 <div id="overlay"></div>"""
 
@@ -1348,6 +1374,15 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
         else ""
     )
     parallel_jump = build_parallel_jump_block(version_id, bslug, ch_num, active_versions)
+    nav_bootstrap = (
+        "<script>"
+        f"window.__BSWS_OUT_DIR__={json.dumps(str(OUT_DIR))};"
+        f"window.__BSWS_VERSION_ID__={json.dumps(version_id)};"
+        f"window.__BSWS_BOOK_NUM__={book_num};"
+        f"window.__BSWS_CH__={ch_num};"
+        "</script>"
+    )
+    nav_script = f'<script src="{output_nav_asset_href(version_id)}" defer></script>'
 
     return f"""{head}
 <body>
@@ -1366,6 +1401,8 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
   </main>
 </div>
 {theme_sheet()}
+{nav_bootstrap}
+{nav_script}
 <script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
 </body>
 </html>"""
@@ -1990,12 +2027,18 @@ self.addEventListener('fetch', (e) => {{
 """
 
 
-def write_shared_assets(dry_run: bool, strongs_dict: dict) -> None:
+def write_shared_assets(dry_run: bool, strongs_dict: dict, bible_by_id: dict, active_versions: list) -> None:
     assets_dir = OUT_DIR / "assets"
     write_if_changed(assets_dir / "style.css", SHARED_CSS, dry_run)
     write_if_changed(assets_dir / "reader.js", SHARED_JS, dry_run)
     write_if_changed(assets_dir / "interlinear.css", INTERLINEAR_CSS, dry_run)
     write_if_changed(assets_dir / "strongs.js", generate_strongs_js(strongs_dict), dry_run)
+    for version_id, _vlabel, _lang_code, _script, _group in active_versions:
+        bible = bible_by_id.get(version_id)
+        if not bible:
+            continue
+        nav_js = generate_nav_js(version_id, bible.get("books", []), version_id)
+        write_if_changed(assets_dir / f"nav-{version_id}.js", nav_js, dry_run)
     write_if_changed(OUT_DIR / "manifest.json", generate_manifest_json(), dry_run)
     write_if_changed(Path("sw.js"), generate_service_worker(), dry_run)
 
@@ -2097,7 +2140,12 @@ def main():
         if not global_strongs_dict:
             global_strongs_dict = load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
         print("\n[assets] Writing shared assets...")
-        write_shared_assets(dry_run=args.dry_run, strongs_dict=global_strongs_dict)
+        write_shared_assets(
+            dry_run=args.dry_run,
+            strongs_dict=global_strongs_dict,
+            bible_by_id=bible_by_id,
+            active_versions=active_versions,
+        )
 
     if should_run("indexes", selected_modules):
         print("\n[indexes] Writing bible and version indexes...")
