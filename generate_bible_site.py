@@ -19,9 +19,11 @@ Output:
   bible/sitemap.xml             ← chapter + verse detail URLs for Google
   bible/<version>/<book>/<ch>/index.html           ← one page per chapter
   bible/<version>/<book>/<ch>/<verse>/index.html   ← one page per verse
+  bible/parallel/<v1>/<v2>/<book>/<ch>/index.html  ← two-column parallel (see PARALLEL_LINK_MODE)
 """
 
 import argparse
+import hashlib
 import html
 import json
 import os
@@ -31,6 +33,7 @@ import urllib.error
 import urllib.request
 from datetime import date
 from pathlib import Path
+from typing import Optional
 
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
 
@@ -42,13 +45,21 @@ TODAY      = date.today().isoformat()
 # Must exist in VERSIONS — used for x-default hreflang, hero CTA, and JSON-LD SearchAction.
 DEFAULT_VERSION_ID = "kjv"
 
+# Parallel reader: /bible/parallel/{primary}/{secondary}/{book}/{ch}/
+# "web_hub" — (v, web) and (web, v) for each non-web v in the active build (manageable file count).
+# "all" — every ordered pair primary != secondary among active versions (very large for full 15-version builds).
+PARALLEL_LINK_MODE = "web_hub"
+
 DOWNLOAD_ATTEMPTS = 3
 RETRY_DELAY_SEC   = 1.0
 
 CDN_BASE       = "https://cdn.jsdelivr.net/gh/cybercam/bibles_json@main"
 GITHUB_RAW     = "https://raw.githubusercontent.com/cybercam/bibles_json/main"
 PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app"
-READER_UI_SCRIPT_SRC = f"/{OUT_DIR}/assets/reader-ui.js"
+ASSET_STYLE_PATH = "assets/style.css"
+ASSET_READER_JS_PATH = "assets/reader.js"
+ASSET_INTERLINEAR_CSS_PATH = "assets/interlinear.css"
+ASSET_STRONGS_JS_PATH = "assets/strongs.js"
 LOCAL_BIBLE_DATA_DIR = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data")
 INTERLINEAR_RAW_BASE = "https://raw.githubusercontent.com/cybercam/interlinear/main"
 INTERLINEAR_CACHE_DIR = Path(".interlinear_cache")
@@ -124,6 +135,8 @@ HREFLANG = {
     "malayalam":"ml","marathi":"mr","nepali":"ne","odia":"or","tamil":"ta",
     "telugu":"te",
 }
+
+ALL_MODULES = {"assets", "indexes", "chapters", "verses", "parallel", "sitemap"}
 
 # Indian `VERSIONS` rows get verse-detail extras (crossrefs, Strong's, interlinear) like Telugu.
 def version_has_verse_detail_features(version_id: str) -> bool:
@@ -421,6 +434,74 @@ def version_label(version_id):
     return version_id.upper()
 
 
+def version_group(version_id: str) -> str:
+    for vid, _label, _lng, _script, group in VERSIONS:
+        if vid == version_id:
+            return group
+    return "English"
+
+
+def version_lang(version_id: str) -> str:
+    for vid, _label, lng, *_rest in VERSIONS:
+        if vid == version_id:
+            return lng
+    return "en"
+
+
+def iter_parallel_version_pairs(active_versions, x_default_id: str):
+    """Ordered (primary, secondary) chapter pairs to pre-generate under bible/parallel/."""
+    ids = [v[0] for v in active_versions]
+    if len(ids) < 2:
+        return
+    if PARALLEL_LINK_MODE == "all":
+        for va in ids:
+            for vb in ids:
+                if va != vb:
+                    yield va, vb
+        return
+    hub = "web" if "web" in ids else (x_default_id if x_default_id in ids else ids[0])
+    for v in ids:
+        if v == hub:
+            continue
+        yield v, hub
+        yield hub, v
+
+
+def default_parallel_secondary(primary_id: str, active_ids: set) -> Optional[str]:
+    """Default right-column version for the || link from a single-version chapter page."""
+    if len(active_ids) < 2:
+        return None
+    if primary_id not in active_ids:
+        return None
+    if version_group(primary_id) == "Indian":
+        if "web" in active_ids:
+            return "web"
+        for vid in active_ids:
+            if vid != primary_id:
+                return vid
+        return None
+    for vid, _l, _lc, _s, g in VERSIONS:
+        if vid in active_ids and vid != primary_id and g == "Indian":
+            return vid
+    if "kjv" in active_ids and primary_id != "kjv":
+        return "kjv"
+    if "web" in active_ids and primary_id != "web":
+        return "web"
+    for vid in active_ids:
+        if vid != primary_id:
+            return vid
+    return None
+
+
+def verse_get(verses: dict, vnum: int) -> str:
+    s = str(vnum)
+    if s in verses:
+        return str(verses[s] or "")
+    if vnum in verses:
+        return str(verses[vnum] or "")
+    return ""
+
+
 def display_book_name(book: dict, version_id: str) -> str:
     """Render Telugu names for Telugu version, fallback to source JSON name."""
     if version_id == "telugu":
@@ -515,16 +596,6 @@ a:hover{text-decoration:underline}
 .xref-item{display:flex;flex-direction:column;gap:3px;padding:9px;border:1px solid var(--border);border-radius:8px;background:var(--card)}
 .xref-item a{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.04em}
 .xref-item .x-txt{font-size:13px;color:var(--muted);line-height:1.5}
-.interlinear-verse{display:flex;flex-wrap:wrap;gap:8px}
-.inter-token{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;min-width:88px;text-align:left;cursor:pointer}
-.inter-token .w{display:block;font-size:13px;color:var(--text);font-weight:600}
-.inter-token .g{display:block;font-size:11px;color:var(--muted);margin-top:2px}
-.inter-token .s{display:block;font-size:10px;color:var(--accent);margin-top:3px;font-family:'Cinzel',serif}
-#lex-drawer{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--bg2);border-top:1px solid var(--border);padding:14px;transform:translateY(100%);transition:transform .2s ease}
-#lex-drawer.on{transform:translateY(0)}
-#lex-drawer .close{float:right}
-#lex-drawer h4{font-family:'Cinzel',serif;color:var(--accent);font-size:13px;margin:0 0 8px}
-#lex-drawer p{font-size:13px;color:var(--text);line-height:1.5;margin:6px 0}
 @media(min-width:900px){
   .detail-grid{grid-template-columns:1fr 1fr}
 }
@@ -576,6 +647,16 @@ body.vbar-hidden #vbar{transform:translateY(100%)}
 }
 .par-ver-select{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-family:'Lora',serif;font-size:13px;margin-bottom:16px;cursor:pointer}
 .par-head{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.par-jump-select{width:100%;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-family:'Lora',serif;font-size:13px;margin:0 14px 10px;width:calc(100% - 28px);cursor:pointer}
+
+/* Parallel reader (two-column chapter) */
+#reader.parallel-reader{max-width:min(1160px,calc(100vw - 40px))}
+.par-rows{display:flex;flex-direction:column;gap:0}
+.par-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;padding:10px 0;border-bottom:1px solid var(--border)}
+@media(max-width:720px){.par-row{grid-template-columns:1fr}}
+.par-cell{min-width:0}
+.par-cell .v-row{margin:0}
+.par-col-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;text-transform:uppercase}
 
 /* Loading */
 .loading{text-align:center;padding:60px 20px;color:var(--muted);font-family:'Cinzel',serif;font-size:13px;letter-spacing:.1em}
@@ -948,10 +1029,108 @@ function sidebarSearch(q) {
     sr.appendChild(p);
   }
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+"""
+
+INTERLINEAR_CSS = """
+.interlinear-verse{display:flex;flex-wrap:wrap;gap:8px}
+.inter-token{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;min-width:88px;text-align:left;cursor:pointer}
+.inter-token .w{display:block;font-size:13px;color:var(--text);font-weight:600}
+.inter-token .g{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.inter-token .s{display:block;font-size:10px;color:var(--accent);margin-top:3px;font-family:'Cinzel',serif}
+#lex-drawer{position:fixed;left:0;right:0;bottom:0;z-index:120;background:var(--bg2);border-top:1px solid var(--border);padding:14px;transform:translateY(100%);transition:transform .2s ease}
+#lex-drawer.on{transform:translateY(0)}
+#lex-drawer .close{float:right}
+#lex-drawer h4{font-family:'Cinzel',serif;color:var(--accent);font-size:13px;margin:0 0 8px}
+#lex-drawer p{font-size:13px;color:var(--text);line-height:1.5;margin:6px 0}
 """
 
 
-def html_head(title, description, canonical, lang, hreflang_links, keywords=""):
+def output_asset_href(relative_asset_path: str) -> str:
+    return f"/{OUT_DIR}/{relative_asset_path}"
+
+
+def parse_modules(raw_modules: str) -> set[str]:
+    raw = (raw_modules or "all").strip().lower()
+    if raw == "all":
+        return set(ALL_MODULES)
+    selected = {m.strip() for m in raw.split(",") if m.strip()}
+    unknown = selected - ALL_MODULES
+    if unknown:
+        raise SystemExit(
+            f"Unknown module(s): {sorted(unknown)}. Valid modules: {sorted(ALL_MODULES)}"
+        )
+    return selected
+
+
+def should_run(module: str, selected_modules: set[str]) -> bool:
+    return module in selected_modules
+
+
+def write_if_changed(path: Path, content: str, dry_run: bool) -> bool:
+    new_hash = hashlib.sha256(content.encode("utf-8")).hexdigest()[:16]
+    hash_path = path.with_suffix(path.suffix + ".hash")
+    old_hash = hash_path.read_text(encoding="utf-8").strip() if hash_path.exists() else ""
+    if old_hash == new_hash and path.exists():
+        print(f"    [skip] {path}")
+        return False
+    if dry_run:
+        print(f"    [dry-run] write {path}")
+        return True
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+    hash_path.write_text(new_hash, encoding="utf-8")
+    return True
+
+
+def generate_strongs_js(strongs_dict: dict) -> str:
+    payload = json.dumps(strongs_dict or {}, ensure_ascii=False, separators=(",", ":"))
+    return f"""
+const STRONGS_DICT = {payload};
+
+function bindStrongsDrawer() {{
+  const drawer = document.getElementById('lex-drawer');
+  if (!drawer) return;
+  const closeBtn = document.getElementById('lex-close-btn');
+  const setText = (id, text) => {{
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text || '';
+  }};
+  document.querySelectorAll('.inter-token').forEach((btn) => {{
+    btn.addEventListener('click', () => {{
+      const strong = (btn.dataset.strong || '').trim();
+      const lex = STRONGS_DICT[strong] || {{}};
+      setText('lex-strong', strong || 'Word Study');
+      setText('lex-lemma', lex.lemma ? `Lemma: ${{lex.lemma}}` : '');
+      setText('lex-def', lex.def ? `Definition: ${{lex.def}}` : '');
+      setText('lex-kjv', lex.kjv ? `KJV usage: ${{lex.kjv}}` : '');
+      setText('lex-deriv', lex.deriv ? `Derivation: ${{lex.deriv}}` : '');
+      drawer.classList.add('on');
+    }});
+  }});
+  closeBtn?.addEventListener('click', () => drawer.classList.remove('on'));
+}}
+
+document.addEventListener('DOMContentLoaded', bindStrongsDrawer);
+"""
+
+
+def html_head(
+    title,
+    description,
+    canonical,
+    lang,
+    hreflang_links,
+    keywords="",
+    robots_meta="",
+    extra_head="",
+):
     desc_attr = html.escape(description, quote=True)
     title_attr = html.escape(title, quote=True)
     ld_webpage = json.dumps(
@@ -979,6 +1158,7 @@ def html_head(title, description, canonical, lang, hreflang_links, keywords=""):
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+{robots_meta}
 <title>{title}</title>
 <meta name="description" content="{desc_attr}"/>
 {"<meta name='keywords' content='" + html.escape(keywords, quote=True) + "'/>" if keywords else ""}
@@ -994,14 +1174,37 @@ def html_head(title, description, canonical, lang, hreflang_links, keywords=""):
 <meta name="twitter:description" content="{desc_attr}"/>
 <script type="application/ld+json">{ld_webpage}</script>
 <link rel="icon" href="/assets/favicon.png"/>
+<link rel="manifest" href="{output_asset_href('manifest.json')}"/>
+<meta name="theme-color" content="#1e1040"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="BSWS Bible"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 {script_font_link_for_lang(lang)}<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
-<style>{SHARED_CSS}</style>
+<link rel="stylesheet" href="{output_asset_href(ASSET_STYLE_PATH)}"/>
+{extra_head}
 </head>"""
 
 
-def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, active_versions):
+def build_parallel_jump_block(version_id: str, bslug: str, ch_num: int, active_versions) -> str:
+    if len(active_versions) < 2:
+        return ""
+    opts = "".join(
+        f'<option value="{html.escape(vid)}">{html.escape(vlbl)}</option>'
+        for vid, vlbl, *_ in active_versions
+        if vid != version_id
+    )
+    if not opts:
+        return ""
+    return f"""<div class="s-section">Parallel</div>
+<select class="par-jump-select" aria-label="Open two-column parallel reader" onchange="if(!this.value)return;try{{localStorage.setItem('bsws_parallel_secondary',this.value);}}catch(e){{}}window.location='/{OUT_DIR}/parallel/{version_id}/'+this.value+'/{bslug}/{ch_num}/';">
+<option value="" selected disabled>Compare with…</option>
+{opts}</select>"""
+
+
+def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, active_versions, parallel_jump_html=""):
     current_book = next((b for b in all_books if b["b"] == current_book_num), None)
     cur_slug = book_slug(current_book["n"]) if current_book else "genesis"
 
@@ -1039,6 +1242,7 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
 <aside id="sidebar">
   <div class="s-section">Version</div>
   <select class="s-ver" onchange="window.location='/{OUT_DIR}/'+this.value+'/{cur_slug}/{current_ch}/'">{ver_opts}</select>
+  {parallel_jump_html}
   <input id="s-search" type="search" placeholder="Search this chapter…" autocomplete="off"/>
   <div id="sr"></div>
   {'<div class="s-section">Chapters</div><div id="ch-grid">' + ch_html + '</div>' if ch_html else ''}
@@ -1048,7 +1252,11 @@ def sidebar_html(all_books, current_book_num, current_ch, version_id, vlabel, ac
 <div id="overlay"></div>"""
 
 
-def topbar_html(crumb):
+def topbar_html(crumb, parallel_link_html="", show_verse_links_toggle=True):
+    verse_toggle = ""
+    if show_verse_links_toggle:
+        verse_toggle = """  <button type="button" id="verse-links-btn" class="icon-btn" aria-label="Toggle verse detail page links" aria-pressed="false">Verse Details Off</button>
+"""
     return f"""
 <header id="topbar">
   <button type="button" id="menu-btn" class="icon-btn icon-btn--menu" aria-label="Open Bible navigation menu">
@@ -1059,9 +1267,7 @@ def topbar_html(crumb):
   <span class="crumb">{crumb}</span>
   <button type="button" id="font-dec-btn" class="icon-btn" aria-label="Decrease verse font size">A-</button>
   <button type="button" id="font-inc-btn" class="icon-btn" aria-label="Increase verse font size">A+</button>
-  <button type="button" id="par-btn" class="icon-btn" aria-label="Compare parallel Bible versions">||</button>
-  <button type="button" id="verse-links-btn" class="icon-btn" aria-label="Toggle verse detail page links" aria-pressed="false">Verse Details Off</button>
-  <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
+{parallel_link_html}{verse_toggle}  <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
 </header>"""
 
 
@@ -1133,10 +1339,20 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
 
     head = html_head(title, description, canonical, lang_code, hreflang_str, keywords)
 
+    active_ids = {v[0] for v in active_versions}
+    ds = default_parallel_secondary(version_id, active_ids)
+    parallel_href = f"/{OUT_DIR}/parallel/{version_id}/{ds}/{bslug}/{ch_num}/" if ds else ""
+    parallel_link_html = (
+        f'  <a id="par-link" class="icon-btn" href="{parallel_href}" aria-label="Open parallel two-column view">||</a>\n'
+        if parallel_href
+        else ""
+    )
+    parallel_jump = build_parallel_jump_block(version_id, bslug, ch_num, active_versions)
+
     return f"""{head}
 <body>
-{topbar_html(f"{book_name} {ch_num} · {vlabel}")}
-{sidebar_html(all_books, book_num, ch_num, version_id, vlabel, active_versions)}
+{topbar_html(f"{book_name} {ch_num} · {vlabel}", parallel_link_html=parallel_link_html)}
+{sidebar_html(all_books, book_num, ch_num, version_id, vlabel, active_versions, parallel_jump_html=parallel_jump)}
 <div id="wrap">
   <main id="reader">
     <div class="ch-head">
@@ -1148,16 +1364,200 @@ def generate_chapter_page(bible_data, version_id, vlabel, lang_code,
     {app_cta_banner()}
     <nav class="ch-nav">{prev_link}{next_link}</nav>
   </main>
-  <aside id="par-panel">
-    <p class="par-head">Parallel Version</p>
-    <select class="par-ver-select" onchange="window.location='/{OUT_DIR}/'+this.value+'/{bslug}/{ch_num}/'">
-      {''.join(f'<option value="{vid}">{vlab}</option>' for vid,vlab,*_ in active_versions)}
-    </select>
-    <p style="font-size:13px;color:var(--muted)">Select a version above to compare.</p>
-  </aside>
 </div>
 {theme_sheet()}
-<script src="{READER_UI_SCRIPT_SRC}" defer></script>
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
+</body>
+</html>"""
+
+
+def get_chapter_verses(bible: dict, book_num: int, ch_num: int) -> dict:
+    for bk in bible.get("books", []):
+        if bk.get("b") != book_num:
+            continue
+        for ch in bk.get("ch", []):
+            if ch.get("c") == ch_num:
+                return ch.get("v") or {}
+    return {}
+
+
+def sidebar_parallel_html(
+    all_books,
+    current_book_num,
+    current_ch,
+    vp,
+    vs,
+    active_versions,
+):
+    """Navigation sidebar for parallel reader: URLs stay under /bible/parallel/{vp}/{vs}/…"""
+    current_book = next((b for b in all_books if b["b"] == current_book_num), None)
+    cur_slug = book_slug(current_book["n"]) if current_book else "genesis"
+
+    pref = f"/{OUT_DIR}/parallel/{vp}/{vs}"
+    books_html = ""
+    ot_done = False
+    for bk in all_books:
+        if bk["b"] == 40 and not ot_done:
+            books_html += '<div class="s-section">' + ("క్రొత్త నిబంధన" if vp == "telugu" else "New Testament") + "</div>"
+            ot_done = True
+        if bk["b"] == 1 and not ot_done:
+            books_html += '<div class="s-section">' + ("పాత నిబంధన" if vp == "telugu" else "Old Testament") + "</div>"
+            ot_done = False
+        slug = book_slug(bk["n"])
+        active = "on" if bk["b"] == current_book_num else ""
+        url = f"{pref}/{slug}/1/"
+        books_html += f'<a href="{url}" class="book-btn {active}">{display_book_name(bk, vp)}</a>'
+
+    ch_html = ""
+    if current_book:
+        slug = book_slug(current_book["n"])
+        for c in range(1, len(current_book["ch"]) + 1):
+            active = "on" if c == current_ch else ""
+            url = f"{pref}/{slug}/{c}/"
+            ch_html += f'<a href="{url}" class="ch-btn {active}">{c}</a>'
+
+    pri_opts = "".join(
+        f'<option value="{html.escape(vid)}"{" selected" if vid == vp else ""}>{html.escape(vlbl)}</option>'
+        for vid, vlbl, *_ in active_versions
+    )
+    sec_opts = "".join(
+        f'<option value="{html.escape(vid)}"{" selected" if vid == vs else ""}>{html.escape(vlbl)}</option>'
+        for vid, vlbl, *_ in active_versions
+    )
+
+    return f"""
+<aside id="sidebar">
+  <div class="s-section">Parallel columns</div>
+  <label class="s-section" for="par-pri" style="padding-top:8px">Left column</label>
+  <select id="par-pri" class="s-ver" aria-label="Primary translation" onchange="var p=this.value;var s=document.getElementById('par-sec').value;if(p===s)return;window.location='/{OUT_DIR}/parallel/'+p+'/'+s+'/{cur_slug}/{current_ch}/';">{pri_opts}</select>
+  <label class="s-section" for="par-sec" style="padding-top:8px">Right column</label>
+  <select id="par-sec" class="s-ver" aria-label="Secondary translation" onchange="try{{localStorage.setItem('bsws_parallel_secondary',this.value);}}catch(e){{}}var p=document.getElementById('par-pri').value;var s=this.value;if(p===s)return;window.location='/{OUT_DIR}/parallel/'+p+'/'+s+'/{cur_slug}/{current_ch}/';">{sec_opts}</select>
+  <input id="s-search" type="search" placeholder="Search this chapter (left column)…" autocomplete="off"/>
+  <div id="sr"></div>
+  {'<div class="s-section">Chapters</div><div id="ch-grid">' + ch_html + '</div>' if ch_html else ''}
+  <div class="s-section">Books</div>
+  {books_html}
+</aside>
+<div id="overlay"></div>"""
+
+
+def generate_parallel_chapter_page(
+    bible_p: dict,
+    bible_s: dict,
+    vp: str,
+    vs: str,
+    vlabel_p: str,
+    vlabel_s: str,
+    lang_p: str,
+    book_p: dict,
+    chapter_p: dict,
+    all_books,
+    prev_url: Optional[str],
+    next_url: Optional[str],
+    active_versions,
+    x_default_id: str,
+):
+    book_name_p = display_book_name(book_p, vp)
+    book_name_s = display_book_name(book_p, vs)
+    book_num = book_p["b"]
+    ch_num = chapter_p["c"]
+    bslug = book_slug(book_p["n"])
+    verses_p = chapter_p.get("v") or {}
+    verses_s = get_chapter_verses(bible_s, book_num, ch_num)
+
+    canonical_primary = f"{SITE_URL}/{OUT_DIR}/{vp}/{bslug}/{ch_num}/"
+    title = f"{book_name_p} {ch_num} — {vlabel_p} / {vlabel_s} (parallel) | Bible Study with Steffi"
+    prev1 = first_verse_preview(verses_p, 80)
+    prev2 = first_verse_preview(verses_s, 80)
+    description = (
+        f"Parallel Bible: {book_name_p} chapter {ch_num} — {vlabel_p} and {vlabel_s}. "
+        f'"{prev1[:60]}…" / "{prev2[:60]}…" — Bible Study with Steffi.'
+        if prev1 and prev2
+        else f"Parallel Bible: {book_name_p} chapter {ch_num} in {vlabel_p} and {vlabel_s} — Bible Study with Steffi."
+    )
+    keywords = f"{book_name_p} {ch_num}, parallel bible, {vlabel_p}, {vlabel_s}, bswsapp"
+
+    robots = '<meta name="robots" content="noindex,follow"/>'
+    extra_font = (
+        script_font_link_for_lang(version_lang(vs))
+        if version_lang(vs) != lang_p
+        else ""
+    )
+    head = html_head(
+        title,
+        description,
+        canonical_primary,
+        lang_p,
+        "",
+        keywords,
+        robots_meta=robots,
+        extra_head=extra_font,
+    )
+
+    def _vkeys(d):
+        o = set()
+        for x in d.keys():
+            try:
+                o.add(int(x))
+            except (TypeError, ValueError):
+                continue
+        return o
+
+    nums = sorted(_vkeys(verses_p) | _vkeys(verses_s))
+    par_rows = ""
+    for vn in nums:
+        tp = verse_get(verses_p, vn)
+        ts = verse_get(verses_s, vn)
+        safe_tp = html.escape(tp, quote=False)
+        safe_ts = html.escape(ts, quote=False)
+        ref_p = f"{book_name_p} {ch_num}:{vn} ({vlabel_p})".replace('"', "&quot;")
+        ref_s = f"{book_name_s} {ch_num}:{vn} ({vlabel_s})".replace('"', "&quot;")
+        url_p = verse_detail_rel_url(vp, bslug, ch_num, vn)
+        url_s = verse_detail_rel_url(vs, bslug, ch_num, vn)
+        par_rows += f"""<div class="par-row">
+  <div class="par-cell">
+    <a class="v-row v-pr" href="{url_p}" data-ref="{ref_p}" data-verse-url="{url_p}"><span class="v-num">{vn}</span><span class="v-txt">{safe_tp or "—"}</span></a>
+  </div>
+  <div class="par-cell">
+    <a class="v-row v-sc" href="{url_s}" data-ref="{ref_s}" data-verse-url="{url_s}"><span class="v-num">{vn}</span><span class="v-txt">{safe_ts or "—"}</span></a>
+  </div>
+</div>
+"""
+
+    prev_link = f'<a href="{prev_url}">← Previous</a>' if prev_url else '<a class="disabled">← Previous</a>'
+    next_link = f'<a href="{next_url}">Next →</a>' if next_url else '<a class="disabled">Next →</a>'
+    single_url = f"/{OUT_DIR}/{vp}/{bslug}/{ch_num}/"
+    exit_parallel = f'  <a class="icon-btn" href="{single_url}" aria-label="Single-column reader (left translation only)">Single</a>\n'
+
+    font_s = script_font_link_for_lang(version_lang(vs)) if version_lang(vs) != lang_p else ""
+    # Inject secondary script font if different from primary (extra link before closing head — already closed in html_head)
+    # Fonts for secondary are loaded via :lang on body is single; use second link in head by extending html_head — skip for simplicity (Noto stacks in CSS cover many cases)
+
+    crumb = f"{book_name_p} {ch_num} · {vlabel_p} ∥ {vlabel_s}"
+    return f"""{head}
+<body>
+{topbar_html(crumb, parallel_link_html=exit_parallel, show_verse_links_toggle=True)}
+{sidebar_parallel_html(all_books, book_num, ch_num, vp, vs, active_versions)}
+<div id="wrap">
+  <main id="reader" class="parallel-reader">
+    <div class="ch-head">
+      <h1>{html.escape(book_name_p)}</h1>
+      <h2>Chapter {ch_num} · Parallel</h2>
+      <span class="version-tag">{html.escape(vlabel_p)} · {html.escape(vlabel_s)}</span>
+    </div>
+    <div class="par-rows" aria-label="Verse-by-verse parallel columns">
+      <div class="par-row par-skip-row" aria-hidden="true">
+        <div class="par-cell"><div class="par-col-label">{html.escape(vlabel_p)}</div></div>
+        <div class="par-cell"><div class="par-col-label">{html.escape(vlabel_s)}</div></div>
+      </div>
+{par_rows}
+    </div>
+    {app_cta_banner()}
+    <nav class="ch-nav">{prev_link}{next_link}</nav>
+  </main>
+</div>
+{theme_sheet()}
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
 </body>
 </html>"""
 
@@ -1182,6 +1582,7 @@ def generate_verse_detail_page(
     strongs_dict,
     interlinear_chapters,
 ):
+    has_verse_features = version_has_verse_detail_features(version_id)
     canonical = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/"
     title = f"{book_name} {ch_num}:{vnum} — {vlabel} | Bible Study with Steffi"
     description = f"Read {book_name} {ch_num}:{vnum} in {vlabel}. Bible verse detail with chapter navigation and context."
@@ -1222,7 +1623,7 @@ def generate_verse_detail_page(
             break
     bnum = current_lookup.get("book_num") if current_lookup else None
     xref_key = f"{bnum}_{ch_num}_{vnum}" if bnum is not None else ""
-    xrefs = crossrefs_data.get(xref_key, []) if xref_key else []
+    xrefs = crossrefs_data.get(xref_key, []) if (xref_key and has_verse_features) else []
     xref_items = []
     for ref in xrefs[:16]:
         info = verse_lookup.get(ref)
@@ -1239,21 +1640,16 @@ def generate_verse_detail_page(
     )
 
     inter_tokens = []
-    chapter_tokens = interlinear_chapters.get(str(ch_num), {}) if isinstance(interlinear_chapters, dict) else {}
+    chapter_tokens = interlinear_chapters.get(str(ch_num), {}) if (has_verse_features and isinstance(interlinear_chapters, dict)) else {}
     raw_tokens = chapter_tokens.get(str(vnum), []) if isinstance(chapter_tokens, dict) else []
     if isinstance(raw_tokens, list):
         inter_tokens = raw_tokens
     inter_parts = []
     for tok in inter_tokens[:80]:
         strong = str(tok.get("s", "")).strip()
-        lex = strongs_dict.get(strong, {}) if strong else {}
         btn = (
             f'<button class="inter-token" type="button" data-strong="{html.escape(strong)}" '
-            f'data-lemma="{html.escape(str(lex.get("lemma","")))}" '
-            f'data-xlit="{html.escape(str(lex.get("xlit","")))}" '
-            f'data-def="{html.escape(str(lex.get("def","")))}" '
-            f'data-kjv="{html.escape(str(lex.get("kjv","")))}" '
-            f'data-deriv="{html.escape(str(lex.get("deriv","")))}">'
+            '>'
             f'<span class="w">{html.escape(str(tok.get("w","")))}</span>'
             f'<span class="g">{html.escape(str(tok.get("t","")))}</span>'
             f'<span class="s">{html.escape(strong)}</span>'
@@ -1266,7 +1662,29 @@ def generate_verse_detail_page(
         else '<div class="detail-panel"><h3>Interlinear</h3><p class="verse-detail-meta">Interlinear data not available for this verse.</p></div>'
     )
 
-    head = html_head(title, description, canonical, lang_code, hreflang_str, keywords)
+    interlinear_head = (
+        f'<link rel="stylesheet" href="{output_asset_href(ASSET_INTERLINEAR_CSS_PATH)}"/>'
+        if has_verse_features
+        else ""
+    )
+    head = html_head(title, description, canonical, lang_code, hreflang_str, keywords, extra_head=interlinear_head)
+    strongs_script = (
+        f'<script src="{output_asset_href(ASSET_STRONGS_JS_PATH)}" defer></script>'
+        if has_verse_features
+        else ""
+    )
+    lex_drawer = (
+        """<div id="lex-drawer" aria-live="polite">
+  <button type="button" id="lex-close-btn" class="icon-btn close" aria-label="Close word study">Close</button>
+  <h4 id="lex-strong"></h4>
+  <p id="lex-lemma"></p>
+  <p id="lex-def"></p>
+  <p id="lex-kjv"></p>
+  <p id="lex-deriv"></p>
+</div>"""
+        if has_verse_features
+        else ""
+    )
     return f"""{head}
 <body>
 {topbar_html(crumb)}
@@ -1293,16 +1711,10 @@ def generate_verse_detail_page(
     {app_cta_banner()}
   </main>
 </div>
-<div id="lex-drawer" aria-live="polite">
-  <button type="button" id="lex-close-btn" class="icon-btn close" aria-label="Close word study">Close</button>
-  <h4 id="lex-strong"></h4>
-  <p id="lex-lemma"></p>
-  <p id="lex-def"></p>
-  <p id="lex-kjv"></p>
-  <p id="lex-deriv"></p>
-</div>
+{lex_drawer}
 {theme_sheet()}
-<script src="{READER_UI_SCRIPT_SRC}" defer></script>
+{strongs_script}
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
 </body>
 </html>"""
 
@@ -1427,7 +1839,70 @@ def generate_bible_index(active_versions, x_default_id):
   </div>
 </div>
 {theme_sheet()}
-<script src="{READER_UI_SCRIPT_SRC}" defer></script>
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
+</body>
+</html>"""
+
+
+def generate_version_index_page(version_id, vlabel, lang_code, all_books):
+    cards = []
+    for bk in all_books:
+        bslug = book_slug(bk["n"])
+        dname = display_book_name(bk, version_id)
+        num_ch = len(bk["ch"])
+        cards.append(
+            f'<a href="/{OUT_DIR}/{version_id}/{bslug}/1/" class="ver-card">'
+            f'<div class="vc-label">{html.escape(dname)}</div>'
+            f'<div class="vc-sub">{num_ch} chapters</div></a>'
+        )
+    head = html_head(
+        title=f"{vlabel} — Bible Study with Steffi",
+        description=f"Read the full {vlabel} Bible online.",
+        canonical=f"{SITE_URL}/{OUT_DIR}/{version_id}/",
+        lang=lang_code,
+        hreflang_links="",
+    )
+    return f"""{head}
+<body>
+<header id="topbar">
+  <a class="logo" href="/{OUT_DIR}/">Bible Study with Steffi</a>
+  <span class="crumb">{html.escape(vlabel)}</span>
+  <button type="button" id="theme-btn" class="icon-btn" aria-label="Reading theme and colors">Aa</button>
+</header>
+<div id="wrap"><main id="reader"><div class="ver-grid">{"".join(cards)}</div></main></div>
+{theme_sheet()}
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
+</body>
+</html>"""
+
+
+def generate_book_index_page(version_id, vlabel, lang_code, book):
+    bslug = book_slug(book["n"])
+    dname = display_book_name(book, version_id)
+    chapter_links = []
+    for ch in book.get("ch", []):
+        c = ch.get("c")
+        chapter_links.append(
+            f'<a class="ch-btn" href="/{OUT_DIR}/{version_id}/{bslug}/{c}/">{c}</a>'
+        )
+    head = html_head(
+        title=f"{dname} — {vlabel}",
+        description=f"Read {dname} in {vlabel}.",
+        canonical=f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/",
+        lang=lang_code,
+        hreflang_links="",
+    )
+    return f"""{head}
+<body>
+{topbar_html(f"{html.escape(dname)} · {html.escape(vlabel)}", show_verse_links_toggle=False)}
+<div id="wrap">
+  <main id="reader">
+    <div class="ch-head"><h1>{html.escape(dname)}</h1><h2>Select a chapter</h2></div>
+    <div id="ch-grid">{"".join(chapter_links)}</div>
+  </main>
+</div>
+{theme_sheet()}
+<script src="{output_asset_href(ASSET_READER_JS_PATH)}" defer></script>
 </body>
 </html>"""
 
@@ -1457,6 +1932,74 @@ Sitemap: {SITE_URL}/bible/sitemap.xml
 """
 
 
+def generate_manifest_json() -> str:
+    return json.dumps(
+        {
+            "name": "Bible Study with Steffi",
+            "short_name": "BSWS Bible",
+            "description": "Read the Bible in multiple languages.",
+            "start_url": f"/{OUT_DIR}/",
+            "display": "standalone",
+            "background_color": "#0d0820",
+            "theme_color": "#1e1040",
+            "lang": "en",
+            "icons": [
+                {"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
+                {"src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png"},
+            ],
+        },
+        indent=2,
+        ensure_ascii=False,
+    )
+
+
+def generate_service_worker() -> str:
+    return f"""
+const CACHE_NAME = 'bsws-bible-v2';
+const PRECACHE = [
+  '/{OUT_DIR}/',
+  '/{OUT_DIR}/{ASSET_STYLE_PATH}',
+  '/{OUT_DIR}/{ASSET_READER_JS_PATH}',
+  '/{OUT_DIR}/manifest.json',
+];
+
+self.addEventListener('install', (e) => {{
+  e.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(PRECACHE)));
+  self.skipWaiting();
+}});
+
+self.addEventListener('activate', (e) => {{
+  e.waitUntil(caches.keys().then((keys) =>
+    Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+  ));
+  self.clients.claim();
+}});
+
+self.addEventListener('fetch', (e) => {{
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then((cached) => cached || fetch(e.request).then((res) => {{
+      if (res.ok && e.request.url.includes('/{OUT_DIR}/')) {{
+        const clone = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(e.request, clone));
+      }}
+      return res;
+    }}))
+  );
+}});
+"""
+
+
+def write_shared_assets(dry_run: bool, strongs_dict: dict) -> None:
+    assets_dir = OUT_DIR / "assets"
+    write_if_changed(assets_dir / "style.css", SHARED_CSS, dry_run)
+    write_if_changed(assets_dir / "reader.js", SHARED_JS, dry_run)
+    write_if_changed(assets_dir / "interlinear.css", INTERLINEAR_CSS, dry_run)
+    write_if_changed(assets_dir / "strongs.js", generate_strongs_js(strongs_dict), dry_run)
+    write_if_changed(OUT_DIR / "manifest.json", generate_manifest_json(), dry_run)
+    write_if_changed(Path("sw.js"), generate_service_worker(), dry_run)
+
+
 def resolve_active_versions(only_csv: str):
     """Return VERSIONS rows to build. Empty only_csv means all versions."""
     valid_ids = {v[0] for v in VERSIONS}
@@ -1474,6 +2017,7 @@ def resolve_active_versions(only_csv: str):
 # ─── MAIN ─────────────────────────────────────────────────────────────────────
 
 def main():
+    global OUT_DIR
     parser = argparse.ArgumentParser(
         description="Generate static Bible HTML under ./bible/",
     )
@@ -1487,7 +2031,29 @@ def main():
             "pages are limited by this flag."
         ),
     )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Count and report outputs without writing files.",
+    )
+    parser.add_argument(
+        "--output",
+        default="bible",
+        help="Output directory (default: bible).",
+    )
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="Skip chapter/verse generation for versions that already have output.",
+    )
+    parser.add_argument(
+        "--modules",
+        default="all",
+        help="Comma-separated modules: assets,indexes,chapters,verses,parallel,sitemap (default: all).",
+    )
     args = parser.parse_args()
+    OUT_DIR = Path(args.output)
+    selected_modules = parse_modules(args.modules)
 
     print("=" * 60)
     print("  BSWS Phase 3 — Static Bible Site Generator")
@@ -1511,27 +2077,69 @@ def main():
 
     all_sitemap_urls = []
     total_pages = 0
+    bible_by_id = {}
+    global_strongs_dict = {}
 
-    # Write Bible index page
-    print("\n[1/3] Generating bible/index.html...")
-    with open(OUT_DIR / "index.html", "w", encoding="utf-8") as f:
-        f.write(generate_bible_index(active_versions, x_default_id))
-    # bible/ root URL is emitted inside generate_sitemap() (high priority); do not duplicate here.
-
-    # Process each version
     print(
-        f"\n[2/3] Generating chapter pages for {len(active_versions)} version(s): "
+        f"\n[prep] Loading JSON data for {len(active_versions)} version(s): "
         f"{', '.join(v[0] for v in active_versions)}..."
     )
     for version_id, vlabel, lang_code, script, group in active_versions:
-        print(f"\n  ▸ {vlabel} ({version_id})")
-
         data_raw = download_json(version_id)
         if not data_raw:
-            print(f"    Skipped — could not load JSON")
+            print(f"  [warn] skipped {version_id} — could not load JSON")
             continue
 
         bible = normalise(data_raw)
+        bible_by_id[version_id] = bible
+
+    if should_run("assets", selected_modules):
+        if not global_strongs_dict:
+            global_strongs_dict = load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
+        print("\n[assets] Writing shared assets...")
+        write_shared_assets(dry_run=args.dry_run, strongs_dict=global_strongs_dict)
+
+    if should_run("indexes", selected_modules):
+        print("\n[indexes] Writing bible and version indexes...")
+        write_if_changed(
+            OUT_DIR / "index.html",
+            generate_bible_index(active_versions, x_default_id),
+            args.dry_run,
+        )
+        for version_id, vlabel, lang_code, script, group in active_versions:
+            bible = bible_by_id.get(version_id)
+            if not bible:
+                continue
+            ver_dir = OUT_DIR / version_id
+            ver_dir.mkdir(parents=True, exist_ok=True)
+            write_if_changed(
+                ver_dir / "index.html",
+                generate_version_index_page(version_id, vlabel, lang_code, bible["books"]),
+                args.dry_run,
+            )
+            for book in bible["books"]:
+                bslug = book_slug(book["n"])
+                write_if_changed(
+                    ver_dir / bslug / "index.html",
+                    generate_book_index_page(version_id, vlabel, lang_code, book),
+                    args.dry_run,
+                )
+
+    if should_run("chapters", selected_modules) or should_run("verses", selected_modules):
+        print(
+            f"\n[content] Generating chapters/verses for {len(active_versions)} version(s): "
+            f"{', '.join(v[0] for v in active_versions)}..."
+        )
+
+    for version_id, vlabel, lang_code, script, group in active_versions:
+        if not (should_run("chapters", selected_modules) or should_run("verses", selected_modules)):
+            break
+
+        print(f"\n  ▸ {vlabel} ({version_id})")
+        bible = bible_by_id.get(version_id)
+        if not bible:
+            print(f"    Skipped — could not load JSON")
+            continue
         all_books = bible["books"]
         verse_lookup = build_verse_lookup(all_books, version_id)
 
@@ -1541,7 +2149,7 @@ def main():
         interlinear_book_cache = {}
         if version_has_verse_detail_features(version_id):
             crossrefs_data = load_local_json(LOCAL_CROSSREFS_JSON, "crossrefs_mobile.json")
-            strongs_dict = load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
+            strongs_dict = global_strongs_dict or load_local_json(LOCAL_STRONGS_JSON, "strongs dictionary")
             interlinear_map = load_interlinear_book_mapping()
 
         # Flat list of all (book, chapter) for prev/next navigation
@@ -1552,6 +2160,10 @@ def main():
 
         ver_dir = OUT_DIR / version_id
         ver_dir.mkdir(exist_ok=True)
+
+        if args.resume and ver_dir.exists() and any(ver_dir.iterdir()):
+            print(f"    [RESUME] Skipping {version_id} — output already exists.")
+            continue
 
         version_pages = 0
         version_verse_pages = 0
@@ -1585,13 +2197,14 @@ def main():
 
             out_path = ver_dir / bslug / str(ch_num)
             out_path.mkdir(parents=True, exist_ok=True)
-            with open(out_path / "index.html", "w", encoding="utf-8") as f:
-                f.write(html)
+            if should_run("chapters", selected_modules):
+                write_if_changed(out_path / "index.html", html, args.dry_run)
 
             page_url = f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/"
-            all_sitemap_urls.append(page_url)
-            total_pages += 1
-            version_pages += 1
+            if should_run("chapters", selected_modules):
+                all_sitemap_urls.append(page_url)
+                total_pages += 1
+                version_pages += 1
 
             interlinear_chapters_for_book = {}
             if version_has_verse_detail_features(version_id):
@@ -1636,38 +2249,96 @@ def main():
                 )
                 verse_out_path = ver_dir / bslug / str(ch_num) / str(vnum)
                 verse_out_path.mkdir(parents=True, exist_ok=True)
-                with open(verse_out_path / "index.html", "w", encoding="utf-8") as f:
-                    f.write(verse_html)
-                all_sitemap_urls.append(f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/")
-                total_pages += 1
-                version_verse_pages += 1
+                if should_run("verses", selected_modules):
+                    write_if_changed(verse_out_path / "index.html", verse_html, args.dry_run)
+                    all_sitemap_urls.append(f"{SITE_URL}/{OUT_DIR}/{version_id}/{bslug}/{ch_num}/{vnum}/")
+                    total_pages += 1
+                    version_verse_pages += 1
 
         print(
             f"    ✓ {version_pages} chapter pages + {version_verse_pages} verse pages "
             f"for {version_id} (running total: {total_pages})"
         )
 
-    # Sitemap
-    print(f"\n[3/3] Writing sitemap.xml ({len(all_sitemap_urls)} URLs)...")
-    with open(OUT_DIR / "sitemap.xml", "w", encoding="utf-8") as f:
-        f.write(generate_sitemap(all_sitemap_urls))
+    # Parallel two-column chapters (same book/chapter, two built translations)
+    if should_run("parallel", selected_modules):
+        print(
+            f"\n[parallel] Generating parallel chapter pages (mode={PARALLEL_LINK_MODE!r})..."
+        )
+    parallel_pages = 0
+    par_root = OUT_DIR / "parallel"
+    pairs = list(iter_parallel_version_pairs(active_versions, x_default_id))
+    for vp, vs in pairs:
+        if not should_run("parallel", selected_modules):
+            break
+        bible_p = bible_by_id.get(vp)
+        bible_s = bible_by_id.get(vs)
+        if not bible_p or not bible_s:
+            continue
+        vlabel_p = version_label(vp)
+        vlabel_s = version_label(vs)
+        all_books_p = bible_p["books"]
+        all_chapters = []
+        for bk in all_books_p:
+            for ch in bk["ch"]:
+                all_chapters.append((bk, ch))
 
-    # robots.txt in repo root
-    with open("robots.txt", "w", encoding="utf-8") as f:
-        f.write(ROBOTS_TXT)
+        for idx, (book, chapter) in enumerate(all_chapters):
+            bslug = book_slug(book["n"])
+            ch_num = chapter["c"]
+            pref = f"/{OUT_DIR}/parallel/{vp}/{vs}"
+            prev_url = None
+            next_url = None
+            if idx > 0:
+                pb, pc = all_chapters[idx - 1]
+                prev_url = f"{pref}/{book_slug(pb['n'])}/{pc['c']}/"
+            if idx < len(all_chapters) - 1:
+                nb, nc = all_chapters[idx + 1]
+                next_url = f"{pref}/{book_slug(nb['n'])}/{nc['c']}/"
+
+            html_par = generate_parallel_chapter_page(
+                bible_p=bible_p,
+                bible_s=bible_s,
+                vp=vp,
+                vs=vs,
+                vlabel_p=vlabel_p,
+                vlabel_s=vlabel_s,
+                lang_p=version_lang(vp),
+                book_p=book,
+                chapter_p=chapter,
+                all_books=all_books_p,
+                prev_url=prev_url,
+                next_url=next_url,
+                active_versions=active_versions,
+                x_default_id=x_default_id,
+            )
+            out_path = par_root / vp / vs / bslug / str(ch_num)
+            out_path.mkdir(parents=True, exist_ok=True)
+            write_if_changed(out_path / "index.html", html_par, args.dry_run)
+            parallel_pages += 1
+            total_pages += 1
+
+    if should_run("parallel", selected_modules):
+        print(f"    ✓ {parallel_pages} parallel chapter pages (not added to sitemap; noindex)")
+
+    if should_run("sitemap", selected_modules):
+        print(f"\n[sitemap] Writing sitemap.xml ({len(all_sitemap_urls)} URLs)...")
+        write_if_changed(OUT_DIR / "sitemap.xml", generate_sitemap(all_sitemap_urls), args.dry_run)
+
+        # robots.txt in repo root
+        write_if_changed(Path("robots.txt"), ROBOTS_TXT, args.dry_run)
 
     print("\n" + "=" * 60)
-    print(f"  ✅ Done! {total_pages} chapter pages generated.")
+    if args.dry_run:
+        print(f"  [DRY RUN] Would write/update {total_pages} content pages.")
+    else:
+        print(f"  ✅ Done! {total_pages} pages generated (chapters + verses + parallel).")
     print(f"  📁 Output: ./{OUT_DIR}/")
-    print(f"  🗺  Sitemap: ./{OUT_DIR}/sitemap.xml ({len(all_sitemap_urls)} URLs)")
-    print(f"  🤖 robots.txt: ./robots.txt")
+    if should_run("sitemap", selected_modules):
+        print(f"  🗺  Sitemap: ./{OUT_DIR}/sitemap.xml ({len(all_sitemap_urls)} URLs)")
+        print(f"  🤖 robots.txt: ./robots.txt")
     print()
-    print("  Next steps:")
-    print("  1. git add .")
-    print('  2. git commit -m "Phase 3: static Bible pages"')
-    print("  3. git push")
-    print("  4. Submit sitemap to Google Search Console:")
-    print(f"     {SITE_URL}/bible/sitemap.xml")
+    print("  Next steps: run targeted modules and verify output.")
     print("=" * 60)
 
 
