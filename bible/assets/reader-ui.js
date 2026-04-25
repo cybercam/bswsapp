@@ -256,8 +256,14 @@ function speakSelection() {
   speakText(text);
 }
 
+function primaryVerseRowsForReading() {
+  const prim = [...document.querySelectorAll(".v-row.v-pr")];
+  if (prim.length) return prim;
+  return [...document.querySelectorAll(".v-row")];
+}
+
 function speakChapter() {
-  const rows = [...document.querySelectorAll(".v-row")];
+  const rows = primaryVerseRowsForReading();
   if (!rows.length) return;
   const text = rows
     .map((r) => {
@@ -306,9 +312,7 @@ function downloadAudioFallback() {
   const hasSelection = selected.length > 0;
   const text = hasSelection
     ? buildSelectedExportPayload(selected)
-    : [
-        ...document.querySelectorAll(".v-row"),
-      ]
+    : primaryVerseRowsForReading()
         .map((r) => `"${r.querySelector(".v-txt")?.textContent || ""}" — ${cleanVerseRef(r.dataset.ref || "")}`)
         .join("\n\n") + `\n\n${window.location.href}`;
   const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
@@ -319,8 +323,39 @@ function downloadAudioFallback() {
   setTimeout(() => URL.revokeObjectURL(link.href), 1500);
 }
 
+const PARALLEL_SECONDARY_KEY = "bsws_parallel_secondary";
+
+function applyStoredParallelHref() {
+  const a = document.getElementById("par-link");
+  if (!a) return;
+  const href = a.getAttribute("href");
+  if (!href || href.indexOf("/parallel/") === -1) return;
+  let sec = "";
+  try {
+    sec = localStorage.getItem(PARALLEL_SECONDARY_KEY) || "";
+  } catch (_) {
+    return;
+  }
+  if (!sec || !/^[a-z0-9-]+$/.test(sec)) return;
+  let u;
+  try {
+    u = new URL(href, window.location.origin);
+  } catch (_) {
+    return;
+  }
+  const parts = u.pathname.split("/").filter(Boolean);
+  if (parts.length < 6 || parts[0] !== "bible" || parts[1] !== "parallel") return;
+  const primary = parts[2];
+  if (sec === primary) return;
+  parts[3] = sec;
+  const nextPath = `/${parts.join("/")}/`;
+  a.setAttribute("href", nextPath);
+}
+
 function sidebarSearch(q) {
-  const rows = document.querySelectorAll(".v-row");
+  const rows = document.querySelectorAll(".v-row.v-pr").length
+    ? document.querySelectorAll(".v-row.v-pr")
+    : document.querySelectorAll(".v-row");
   const lowerQ = q.toLowerCase();
   const results = [];
   rows.forEach((r) => {
@@ -399,9 +434,12 @@ function initReaderUi() {
   initVerseDetailInteractions();
 
   document.getElementById("par-btn")?.addEventListener("click", () => {
+    if (!document.getElementById("par-panel")) return;
     document.getElementById("par-panel")?.classList.toggle("on");
     document.getElementById("wrap")?.classList.toggle("par-open");
   });
+
+  applyStoredParallelHref();
 
   initFontScale();
   document.getElementById("font-inc-btn")?.addEventListener("click", () => updateFontScale(0.1));
