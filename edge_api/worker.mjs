@@ -1,6 +1,7 @@
 import { BSI_BOOK_NAMES } from "./bsiBookNames.mjs";
 
 const CDN_FALLBACK = "https://raw.githubusercontent.com/cybercam/bibles_json/main";
+const INTERLINEAR_BASE = "https://raw.githubusercontent.com/cybercam/interlinear/main";
 const ALL_VERSIONS = new Set([
   "bbe",
   "kjv",
@@ -58,6 +59,16 @@ const BOOK_INDEX = {
   "2-thessalonians": 53, "1-timothy": 54, "2-timothy": 55, titus: 56, philemon: 57, hebrews: 58, james: 59,
   "1-peter": 60, "2-peter": 61, "1-john": 62, "2-john": 63, "3-john": 64, jude: 65, revelation: 66,
 };
+const BOOK_SLUG_BY_NUM = Object.fromEntries(
+  Object.entries(BOOK_INDEX).map(([slug, num]) => [num, slug]),
+);
+const BOOK_TITLE_BY_NUM = Object.fromEntries(
+  Object.entries(BOOK_SLUG_BY_NUM).map(([num, slug]) => [num, slug.replaceAll("-", " ")]),
+);
+
+let crossrefsPromise = null;
+let interlinearBookMappingPromise = null;
+const interlinearBookDataPromiseCache = new Map();
 
 function jsonResponse(payload, status = 200) {
   return new Response(JSON.stringify(payload), {
@@ -115,6 +126,56 @@ async function fetchBibleJson(version, requestUrl) {
   return res.json();
 }
 
+async function loadCrossrefs(requestUrl) {
+  if (!crossrefsPromise) {
+    crossrefsPromise = (async () => {
+      const sameHost = `${requestUrl.origin}/bible/data/crossrefs_mobile.json`;
+      const altHost = `${requestUrl.origin}/data/crossrefs_mobile.json`;
+      for (const url of [sameHost, altHost]) {
+        try {
+          const res = await fetch(url);
+          if (res.ok) return await res.json();
+        } catch {
+          // continue
+        }
+      }
+      return {};
+    })();
+  }
+  return crossrefsPromise;
+}
+
+async function loadInterlinearBookMapping() {
+  if (!interlinearBookMappingPromise) {
+    interlinearBookMappingPromise = (async () => {
+      try {
+        const res = await fetch(`${INTERLINEAR_BASE}/bookMapping.json`);
+        if (!res.ok) return {};
+        return await res.json();
+      } catch {
+        return {};
+      }
+    })();
+  }
+  return interlinearBookMappingPromise;
+}
+
+async function loadInterlinearBookData(abbrev) {
+  if (!abbrev) return {};
+  if (!interlinearBookDataPromiseCache.has(abbrev)) {
+    interlinearBookDataPromiseCache.set(abbrev, (async () => {
+      try {
+        const res = await fetch(`${INTERLINEAR_BASE}/${abbrev}.json`);
+        if (!res.ok) return {};
+        return await res.json();
+      } catch {
+        return {};
+      }
+    })());
+  }
+  return interlinearBookDataPromiseCache.get(abbrev);
+}
+
 function findChapter(data, bookNum, chapterNum) {
   const book = (data.books || []).find((b) => Number(b.b) === bookNum);
   if (!book) return { book: null, chapter: null };
@@ -149,8 +210,36 @@ function chapterHtml({ version, bookSlug, chapterNum, chapter, canonical, bookNa
 </html>`;
 }
 
-function verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical, bookName }) {
+function verseHtml({
+  version,
+  bookSlug,
+  chapterNum,
+  verseNum,
+  verseText,
+  canonical,
+  bookName,
+  prevVerseNum,
+  nextVerseNum,
+  crossrefs,
+  interlinearTokens,
+}) {
   const versionLabel = displayVersion(version);
+  const navPrev = prevVerseNum
+    ? `<a href="/bible/${version}/${bookSlug}/${chapterNum}/${prevVerseNum}/">← Previous verse</a>`
+    : `<span style="opacity:.5">← Previous verse</span>`;
+  const navNext = nextVerseNum
+    ? `<a href="/bible/${version}/${bookSlug}/${chapterNum}/${nextVerseNum}/">Next verse →</a>`
+    : `<span style="opacity:.5">Next verse →</span>`;
+  const crossrefHtml = crossrefs.length
+    ? `<section><h2>Cross references</h2><ul>${crossrefs
+      .map((r) => `<li><a href="${r.url}">${escapeHtml(r.label)}</a></li>`)
+      .join("")}</ul></section>`
+    : `<section><h2>Cross references</h2><p>No cross references available for this verse.</p></section>`;
+  const interlinearHtml = interlinearTokens.length
+    ? `<section><h2>Interlinear</h2><div style="display:flex;flex-wrap:wrap;gap:8px">${interlinearTokens
+      .map((t) => `<span style="display:inline-flex;flex-direction:column;border:1px solid #ececec;border-radius:8px;padding:6px 8px;min-width:84px"><strong>${escapeHtml(t.w || "")}</strong><small>${escapeHtml(t.t || "")}</small><small style="color:#6b3fa0">${escapeHtml(t.s || "")}</small></span>`)
+      .join("")}</div></section>`
+    : `<section><h2>Interlinear</h2><p>Interlinear data is unavailable for this verse.</p></section>`;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -159,12 +248,15 @@ function verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonic
   <title>${escapeHtml(bookName)} ${chapterNum}:${verseNum} — ${escapeHtml(versionLabel)} | Dynamic Reader</title>
   <link rel="canonical" href="${canonical}" />
   <meta name="robots" content="index,follow" />
-  <style>body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;line-height:1.6}sup{color:#7a35d7;font-weight:700}a{color:#7a35d7}</style>
+  <style>body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:980px;margin:24px auto;padding:0 16px;line-height:1.6}sup{color:#7a35d7;font-weight:700}a{color:#7a35d7}section{margin-top:20px}.row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}</style>
 </head>
 <body>
   <h1>${escapeHtml(bookName)} ${chapterNum}:${verseNum} · ${escapeHtml(versionLabel)}</h1>
   <p><a href="/bible/${version}/${bookSlug}/${chapterNum}/">Back to chapter</a></p>
   <p><sup>${verseNum}</sup> ${escapeHtml(verseText || "")}</p>
+  <div class="row">${navPrev}${navNext}</div>
+  ${crossrefHtml}
+  ${interlinearHtml}
 </body>
 </html>`;
 }
@@ -210,6 +302,42 @@ async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl
   if (!verseText) {
     return jsonResponse({ error: "verse not found" }, 404);
   }
+  const verseKeys = Object.keys(chapter.v || {})
+    .map((n) => Number(n))
+    .filter((n) => Number.isInteger(n) && n > 0)
+    .sort((a, b) => a - b);
+  const verseIdx = verseKeys.indexOf(verseNum);
+  const prevVerseNum = verseIdx > 0 ? verseKeys[verseIdx - 1] : null;
+  const nextVerseNum = verseIdx >= 0 && verseIdx < verseKeys.length - 1 ? verseKeys[verseIdx + 1] : null;
+
+  const crossrefsData = await loadCrossrefs(requestUrl);
+  const bcv = `${bookNum}_${chapterNum}_${verseNum}`;
+  const refs = Array.isArray(crossrefsData?.[bcv]) ? crossrefsData[bcv] : [];
+  const crossrefs = refs.slice(0, 40).map((ref) => {
+    const [rb, rc, rv] = String(ref).split("_").map((n) => Number(n));
+    const slug = BOOK_SLUG_BY_NUM[rb];
+    if (!slug || !rc || !rv) return null;
+    const label = `${displayBookName(version, rb, BOOK_TITLE_BY_NUM[rb] || slug)} ${rc}:${rv}`;
+    return {
+      key: `${rb}_${rc}_${rv}`,
+      label,
+      url: `/bible/${version}/${slug}/${rc}/${rv}/`,
+    };
+  }).filter(Boolean);
+
+  const mapping = await loadInterlinearBookMapping();
+  const mapItem = mapping?.[String(bookNum)] || mapping?.[bookNum];
+  const abbrev = mapItem?.abbrev || "";
+  let interlinearTokens = [];
+  if (abbrev) {
+    const interBook = await loadInterlinearBookData(abbrev);
+    const chapterMap = interBook?.chapters?.[String(chapterNum)] || interBook?.chapters?.[chapterNum];
+    const verseTokens = chapterMap?.[String(verseNum)] || chapterMap?.[verseNum];
+    if (Array.isArray(verseTokens)) {
+      interlinearTokens = verseTokens.slice(0, 80);
+    }
+  }
+
   if (wantsJson) {
     return jsonResponse({
       version,
@@ -218,10 +346,26 @@ async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl
       verse: verseNum,
       bookName,
       text: verseText,
+      prevVerseNum,
+      nextVerseNum,
+      crossrefs,
+      interlinearTokens,
     });
   }
   const canonical = `${requestUrl.origin}/bible/${version}/${bookSlug}/${chapterNum}/${verseNum}/`;
-  return htmlResponse(verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical, bookName }));
+  return htmlResponse(verseHtml({
+    version,
+    bookSlug,
+    chapterNum,
+    verseNum,
+    verseText,
+    canonical,
+    bookName,
+    prevVerseNum,
+    nextVerseNum,
+    crossrefs,
+    interlinearTokens,
+  }));
 }
 
 function parallelChapterHtml({
@@ -251,8 +395,8 @@ function parallelChapterHtml({
     const pv = primaryVerses[String(v)] ?? primaryVerses[v] ?? "";
     const sv = secondaryVerses[String(v)] ?? secondaryVerses[v] ?? "";
     return `<tr>
-      <td><a href="/bible/${primary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(pv)}</a></td>
-      <td><a href="/bible/${secondary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(sv)}</a></td>
+      <td><a href="/bible/parallel/${primary}/${secondary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(pv)}</a></td>
+      <td><a href="/bible/parallel/${primary}/${secondary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(sv)}</a></td>
     </tr>`;
   }).join("\n");
 

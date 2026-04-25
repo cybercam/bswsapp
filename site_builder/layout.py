@@ -150,6 +150,7 @@ def topbar_html(crumb, parallel_link_html="", show_verse_links_toggle=True):
     <span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span><span class="hb-line" aria-hidden="true"></span>
   </button>
   <a href="/" class="icon-btn" aria-label="Back to main website">Home</a>
+  <a href="/{config.OUT_DIR}/" class="icon-btn" aria-label="Go to Bible index">Bibles</a>
   <span class="logo">Bible Study with Steffi</span>
   <span class="crumb">{crumb}</span>
   <button type="button" id="font-dec-btn" class="icon-btn" aria-label="Decrease verse font size">A-</button>
