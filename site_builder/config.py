@@ -1,4 +1,5 @@
 """Site generator configuration."""
+import json
 from datetime import date
 from pathlib import Path
 
@@ -27,6 +28,7 @@ ASSET_INTERLINEAR_CSS_PATH = "assets/interlinear.css"
 ASSET_STRONGS_JS_PATH = "assets/strongs.js"
 ASSET_NAV_JS_PATTERN = "assets/nav-{version_id}.js"
 LOCAL_BIBLE_DATA_DIR = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data")
+BSI_BOOK_NAMES_JSON = Path(__file__).with_name("bsi_book_names.json")
 INTERLINEAR_RAW_BASE = "https://raw.githubusercontent.com/cybercam/interlinear/main"
 INTERLINEAR_CACHE_DIR = Path(".interlinear_cache")
 LOCAL_CROSSREFS_JSON = Path("/Users/ajaykumarm/Desktop/files/BibleStudyWithSteffi/src/data/crossrefs_mobile.json")
@@ -66,6 +68,50 @@ VERSIONS = [
     ("tamil",      "தமிழ் பரிசுத்த வேதாகமம்",  "ta",  "latin",  "Indian"),
     ("telugu",     "తెలుగు బైబిల్",             "te",  "telugu", "Indian"),
 ]
+
+# Static chapter/verse generation remains enabled for Telugu + English versions.
+STATIC_CHAPTER_VERSION_IDS = {
+    "bbe",
+    "kjv",
+    "nkjv",
+    "web",
+    "ylt",
+    "telugu",
+}
+
+# Indian-language versions to be served dynamically (static index + book landing pages only).
+DYNAMIC_CHAPTER_VERSION_IDS = {
+    "bengali",
+    "gujarati",
+    "hindi",
+    "kannada",
+    "malayalam",
+    "marathi",
+    "nepali",
+    "odia",
+    "tamil",
+}
+
+
+def _load_bsi_book_names_by_number() -> dict[str, dict[int, str]]:
+    """Load localized 66-book names keyed by version id and canonical book number."""
+    try:
+        raw = json.loads(BSI_BOOK_NAMES_JSON.read_text(encoding="utf-8"))
+    except Exception as exc:
+        raise RuntimeError(f"Failed to load BSI book names from {BSI_BOOK_NAMES_JSON}: {exc}") from exc
+    out: dict[str, dict[int, str]] = {}
+    for version_id, names in raw.items():
+        if not isinstance(names, list) or len(names) != 66:
+            raise ValueError(
+                f"BSI names for '{version_id}' must be a 66-item list, got {type(names).__name__} len={len(names) if isinstance(names, list) else 'n/a'}"
+            )
+        out[version_id] = {idx + 1: str(name or "").strip() for idx, name in enumerate(names)}
+        if any(not v for v in out[version_id].values()):
+            raise ValueError(f"BSI names for '{version_id}' contain empty book labels")
+    return out
+
+
+BSI_BOOK_NAMES_BY_NUMBER = _load_bsi_book_names_by_number()
 
 # Book slug map (English name → URL-safe slug)
 BOOK_SLUGS = {
@@ -152,6 +198,8 @@ INDIC_LANG_SCRIPT_FONT = {
     "or": ("Noto+Sans+Oriya", "Noto Sans Oriya"),
 }
 
+# Deprecated legacy map kept temporarily for backward compatibility references.
+# Runtime book-name rendering now uses BSI_BOOK_NAMES_BY_NUMBER across languages.
 TELUGU_BOOK_NAMES = {
     1: "ఆదికాండము",
     2: "నిర్గమకాండము",

@@ -3,11 +3,12 @@ from typing import Optional
 
 from . import config
 from .config import (
+    BSI_BOOK_NAMES_BY_NUMBER,
     BOOK_SLUGS,
+    DYNAMIC_CHAPTER_VERSION_IDS,
     HREFLANG,
     INDIC_LANG_SCRIPT_FONT,
     PARALLEL_LINK_MODE,
-    TELUGU_BOOK_NAMES,
     VERSIONS,
 )
 
@@ -145,9 +146,18 @@ def verse_get(verses: dict, vnum: int) -> str:
 
 
 def display_book_name(book: dict, version_id: str) -> str:
-    """Render Telugu names for Telugu version, fallback to source JSON name."""
-    if version_id == "telugu":
-        return TELUGU_BOOK_NAMES.get(book.get("b"), book.get("n", ""))
+    """Render localized BSI names where configured; fallback to source JSON otherwise."""
+    by_num = BSI_BOOK_NAMES_BY_NUMBER.get(version_id)
+    if by_num:
+        b_num = book.get("b")
+        label = by_num.get(b_num)
+        if not label:
+            raise ValueError(f"Missing localized BSI book name for version={version_id} book={b_num}")
+        return label
+    if version_id in DYNAMIC_CHAPTER_VERSION_IDS:
+        raise ValueError(
+            f"Dynamic language version '{version_id}' requires BSI_BOOK_NAMES_BY_NUMBER coverage"
+        )
     return book.get("n", "")
 
 

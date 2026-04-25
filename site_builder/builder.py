@@ -6,10 +6,12 @@ from . import assets
 from . import config
 from .config import (
     DEFAULT_VERSION_ID,
+    DYNAMIC_CHAPTER_VERSION_IDS,
     LOCAL_CROSSREFS_JSON,
     LOCAL_STRONGS_JSON,
     PARALLEL_LINK_MODE,
     SITE_URL,
+    STATIC_CHAPTER_VERSION_IDS,
     VERSIONS,
     apply_cli_config,
     version_has_verse_detail_features,
@@ -126,6 +128,15 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--dynamic-versions",
+        metavar="IDS",
+        default=",".join(sorted(DYNAMIC_CHAPTER_VERSION_IDS)),
+        help=(
+            "Comma-separated version ids that should skip static chapter/verse generation "
+            "(dynamic edge-rendered content). Default: configured Indian language set."
+        ),
+    )
+    parser.add_argument(
         "--sitemap-url-log",
         metavar="PATH",
         default="",
@@ -158,6 +169,18 @@ def main() -> None:
 
     active_versions = resolve_active_versions(args.only)
     active_ids = {v[0] for v in active_versions}
+    dynamic_versions = {x.strip() for x in (args.dynamic_versions or "").split(",") if x.strip()}
+    invalid_dynamic = dynamic_versions - active_ids - {v[0] for v in VERSIONS}
+    if invalid_dynamic:
+        raise SystemExit(
+            f"Unknown --dynamic-versions id(s): {sorted(invalid_dynamic)}. Valid ids: {sorted(v[0] for v in VERSIONS)}"
+        )
+    # Protect Telugu + English defaults unless explicitly overridden.
+    protected_static = STATIC_CHAPTER_VERSION_IDS & dynamic_versions
+    if protected_static:
+        raise SystemExit(
+            f"--dynamic-versions cannot include static chapter versions: {sorted(protected_static)}"
+        )
     # Keep x-default stable across partial builds. Production may regenerate one
     # translation at a time, but hreflang x-default should still point at the
     # neutral/default reader rather than the currently active regional version.
@@ -254,6 +277,9 @@ def main() -> None:
             break
 
         print(f"\n  ▸ {vlabel} ({version_id})")
+        if version_id in dynamic_versions:
+            print("    [dynamic] Skipping static chapter/verse generation (edge-rendered language).")
+            continue
         bible = bible_by_id.get(version_id)
         if not bible:
             print(f"    Skipped — could not load JSON")
@@ -409,6 +435,8 @@ def main() -> None:
     for vp, vs in pairs:
         if not should_run("parallel", effective_modules):
             break
+        if vp in dynamic_versions or vs in dynamic_versions:
+            continue
         bible_p = bible_by_id.get(vp)
         bible_s = bible_by_id.get(vs)
         if not bible_p or not bible_s:
