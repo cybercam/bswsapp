@@ -1,4 +1,40 @@
+import { BSI_BOOK_NAMES } from "./bsiBookNames.mjs";
+
 const CDN_FALLBACK = "https://raw.githubusercontent.com/cybercam/bibles_json/main";
+const ALL_VERSIONS = new Set([
+  "bbe",
+  "kjv",
+  "nkjv",
+  "web",
+  "ylt",
+  "bengali",
+  "gujarati",
+  "hindi",
+  "kannada",
+  "malayalam",
+  "marathi",
+  "nepali",
+  "odia",
+  "tamil",
+  "telugu",
+]);
+const VERSION_DISPLAY = {
+  bbe: "Bible in Basic English",
+  kjv: "King James Version",
+  nkjv: "New King James Version",
+  web: "World English Bible",
+  ylt: "Young's Literal Translation",
+  bengali: "বাংলা বাইবেল",
+  gujarati: "ગુજરાતી બાઇબલ",
+  hindi: "हिन्दी बाइबिल",
+  kannada: "ಕನ್ನಡ ಬೈಬಲ್",
+  malayalam: "മലയാളം ബൈബിൾ",
+  marathi: "मराठी बायबल",
+  nepali: "नेपाली बाइबल",
+  odia: "ଓଡ଼ିଆ ବାଇବେଲ",
+  tamil: "தமிழ் பரிசுத்த வேதாகமம்",
+  telugu: "తెలుగు బైబిల్",
+};
 const DYNAMIC_VERSIONS = new Set([
   "bengali",
   "gujarati",
@@ -43,6 +79,30 @@ function htmlResponse(html, status = 200) {
   });
 }
 
+function escapeHtml(input) {
+  return String(input ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function displayVersion(version) {
+  return VERSION_DISPLAY[version] || version;
+}
+
+function displayBookName(version, bookNum, fallbackName) {
+  const list = BSI_BOOK_NAMES[version];
+  if (Array.isArray(list) && Number.isInteger(bookNum) && bookNum >= 1 && bookNum <= 66) {
+    const mapped = list[bookNum - 1];
+    if (mapped && String(mapped).trim()) {
+      return String(mapped);
+    }
+  }
+  return fallbackName || "";
+}
+
 async function fetchBibleJson(version, requestUrl) {
   const sameHostUrl = `${requestUrl.origin}/bible/data/bible_${version}.json`;
   let res = await fetch(sameHostUrl);
@@ -62,51 +122,56 @@ function findChapter(data, bookNum, chapterNum) {
   return { book, chapter: chapter || null };
 }
 
-function chapterHtml({ version, bookSlug, chapterNum, chapter, canonical }) {
+function chapterHtml({ version, bookSlug, chapterNum, chapter, canonical, bookName }) {
   const verses = Object.entries(chapter?.v || {}).sort((a, b) => Number(a[0]) - Number(b[0]));
   const verseLines = verses
-    .map(([n, t]) => `<p><sup>${n}</sup> ${String(t || "")}</p>`)
+    .map(([n, t]) => `<p><sup>${n}</sup> <a href="/bible/${version}/${bookSlug}/${chapterNum}/${n}/">${escapeHtml(t || "")}</a></p>`)
     .join("\n");
+  const secondary = version === "web" ? "kjv" : "web";
+  const versionLabel = displayVersion(version);
+  const secondaryLabel = displayVersion(secondary);
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${version} ${bookSlug} ${chapterNum} | Dynamic Reader</title>
+  <title>${escapeHtml(bookName)} ${chapterNum} — ${escapeHtml(versionLabel)} | Dynamic Reader</title>
   <link rel="canonical" href="${canonical}" />
   <meta name="robots" content="index,follow" />
   <style>body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;line-height:1.6}sup{color:#7a35d7;font-weight:700}a{color:#7a35d7}</style>
 </head>
 <body>
-  <h1>${version} / ${bookSlug} / ${chapterNum}</h1>
+  <h1>${escapeHtml(bookName)} ${chapterNum} · ${escapeHtml(versionLabel)}</h1>
   <p><a href="/bible/${version}/">Back to language index</a></p>
+  <p><a href="/bible/parallel/${version}/${secondary}/${bookSlug}/${chapterNum}/">Parallel view (${escapeHtml(versionLabel)} + ${escapeHtml(secondaryLabel)})</a></p>
   ${verseLines}
 </body>
 </html>`;
 }
 
-function verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical }) {
+function verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical, bookName }) {
+  const versionLabel = displayVersion(version);
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${version} ${bookSlug} ${chapterNum}:${verseNum} | Dynamic Reader</title>
+  <title>${escapeHtml(bookName)} ${chapterNum}:${verseNum} — ${escapeHtml(versionLabel)} | Dynamic Reader</title>
   <link rel="canonical" href="${canonical}" />
   <meta name="robots" content="index,follow" />
   <style>body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;line-height:1.6}sup{color:#7a35d7;font-weight:700}a{color:#7a35d7}</style>
 </head>
 <body>
-  <h1>${version} / ${bookSlug} / ${chapterNum}:${verseNum}</h1>
+  <h1>${escapeHtml(bookName)} ${chapterNum}:${verseNum} · ${escapeHtml(versionLabel)}</h1>
   <p><a href="/bible/${version}/${bookSlug}/${chapterNum}/">Back to chapter</a></p>
-  <p><sup>${verseNum}</sup> ${String(verseText || "")}</p>
+  <p><sup>${verseNum}</sup> ${escapeHtml(verseText || "")}</p>
 </body>
 </html>`;
 }
 
 async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl, wantsJson) {
-  if (!DYNAMIC_VERSIONS.has(version)) {
-    return jsonResponse({ error: `version '${version}' is not configured for dynamic routing` }, 404);
+  if (!ALL_VERSIONS.has(version)) {
+    return jsonResponse({ error: `unsupported version '${version}'` }, 404);
   }
   const bookNum = BOOK_INDEX[bookSlug];
   if (!bookNum) {
@@ -124,6 +189,7 @@ async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl
   if (!book || !chapter) {
     return jsonResponse({ error: "chapter not found" }, 404);
   }
+  const bookName = displayBookName(version, bookNum, book.n || bookSlug);
 
   if (verseNum == null) {
     if (wantsJson) {
@@ -132,11 +198,12 @@ async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl
         bookSlug,
         chapter: chapterNum,
         bookNumber: bookNum,
+        bookName,
         verses: chapter.v || {},
       });
     }
     const canonical = `${requestUrl.origin}/bible/${version}/${bookSlug}/${chapterNum}/`;
-    return htmlResponse(chapterHtml({ version, bookSlug, chapterNum, chapter, canonical }));
+    return htmlResponse(chapterHtml({ version, bookSlug, chapterNum, chapter, canonical, bookName }));
   }
 
   const verseText = (chapter.v || {})[String(verseNum)] ?? (chapter.v || {})[verseNum];
@@ -149,11 +216,206 @@ async function handleDynamic(version, bookSlug, chapterNum, verseNum, requestUrl
       bookSlug,
       chapter: chapterNum,
       verse: verseNum,
+      bookName,
       text: verseText,
     });
   }
   const canonical = `${requestUrl.origin}/bible/${version}/${bookSlug}/${chapterNum}/${verseNum}/`;
-  return htmlResponse(verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical }));
+  return htmlResponse(verseHtml({ version, bookSlug, chapterNum, verseNum, verseText, canonical, bookName }));
+}
+
+function parallelChapterHtml({
+  primary,
+  secondary,
+  bookSlug,
+  chapterNum,
+  primaryChapter,
+  secondaryChapter,
+  canonical,
+  primaryBookName,
+  secondaryBookName,
+}) {
+  const primaryLabel = displayVersion(primary);
+  const secondaryLabel = displayVersion(secondary);
+  const primaryVerses = primaryChapter?.v || {};
+  const secondaryVerses = secondaryChapter?.v || {};
+  const verseNums = [...new Set([
+    ...Object.keys(primaryVerses),
+    ...Object.keys(secondaryVerses),
+  ])]
+    .map((n) => Number(n))
+    .filter((n) => Number.isInteger(n) && n > 0)
+    .sort((a, b) => a - b);
+
+  const rows = verseNums.map((v) => {
+    const pv = primaryVerses[String(v)] ?? primaryVerses[v] ?? "";
+    const sv = secondaryVerses[String(v)] ?? secondaryVerses[v] ?? "";
+    return `<tr>
+      <td><a href="/bible/${primary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(pv)}</a></td>
+      <td><a href="/bible/${secondary}/${bookSlug}/${chapterNum}/${v}/"><sup>${v}</sup> ${escapeHtml(sv)}</a></td>
+    </tr>`;
+  }).join("\n");
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parallel ${escapeHtml(primaryBookName)} ${chapterNum} — ${escapeHtml(primaryLabel)} / ${escapeHtml(secondaryLabel)}</title>
+  <link rel="canonical" href="${canonical}" />
+  <meta name="robots" content="index,follow" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:1100px;margin:24px auto;padding:0 16px}
+    table{width:100%;border-collapse:collapse}
+    th,td{vertical-align:top;padding:10px;border-bottom:1px solid #ececec;text-align:left;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    sup{color:#7a35d7;font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>Parallel ${escapeHtml(primaryBookName)} ${chapterNum} · ${escapeHtml(primaryLabel)} + ${escapeHtml(secondaryLabel)}</h1>
+  <p><a href="/bible/${primary}/${bookSlug}/${chapterNum}/">Back to ${escapeHtml(primaryLabel)} chapter</a> · <a href="/bible/${secondary}/${bookSlug}/${chapterNum}/">Back to ${escapeHtml(secondaryLabel)} chapter</a></p>
+  <table>
+    <thead><tr><th>${escapeHtml(primaryLabel)}</th><th>${escapeHtml(secondaryLabel)}</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+</body>
+</html>`;
+}
+
+function parallelVerseHtml({
+  primary,
+  secondary,
+  bookSlug,
+  chapterNum,
+  verseNum,
+  primaryText,
+  secondaryText,
+  canonical,
+  primaryBookName,
+  secondaryBookName,
+}) {
+  const primaryLabel = displayVersion(primary);
+  const secondaryLabel = displayVersion(secondary);
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parallel ${escapeHtml(primaryBookName)} ${chapterNum}:${verseNum} — ${escapeHtml(primaryLabel)} / ${escapeHtml(secondaryLabel)}</title>
+  <link rel="canonical" href="${canonical}" />
+  <meta name="robots" content="index,follow" />
+  <style>
+    body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:980px;margin:24px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .card{border:1px solid #ececec;border-radius:10px;padding:12px}
+    sup{color:#7a35d7;font-weight:700}
+  </style>
+</head>
+<body>
+  <h1>Parallel ${escapeHtml(primaryBookName)} ${chapterNum}:${verseNum} · ${escapeHtml(primaryLabel)} + ${escapeHtml(secondaryLabel)}</h1>
+  <p><a href="/bible/parallel/${primary}/${secondary}/${bookSlug}/${chapterNum}/">Back to parallel chapter</a></p>
+  <div class="grid">
+    <div class="card"><h3>${escapeHtml(primaryLabel)}</h3><p><sup>${verseNum}</sup> ${escapeHtml(primaryText)}</p></div>
+    <div class="card"><h3>${escapeHtml(secondaryLabel)}</h3><p><sup>${verseNum}</sup> ${escapeHtml(secondaryText)}</p></div>
+  </div>
+</body>
+</html>`;
+}
+
+async function handleDynamicParallel(primary, secondary, bookSlug, chapterNum, verseNum, requestUrl, wantsJson) {
+  if (!ALL_VERSIONS.has(primary) || !ALL_VERSIONS.has(secondary)) {
+    return jsonResponse({ error: "unsupported parallel version pair" }, 404);
+  }
+  if (primary === secondary) {
+    return jsonResponse({ error: "parallel versions must be different" }, 400);
+  }
+  const bookNum = BOOK_INDEX[bookSlug];
+  if (!bookNum) {
+    return jsonResponse({ error: `unknown book slug '${bookSlug}'` }, 404);
+  }
+
+  let primaryData;
+  let secondaryData;
+  try {
+    [primaryData, secondaryData] = await Promise.all([
+      fetchBibleJson(primary, requestUrl),
+      fetchBibleJson(secondary, requestUrl),
+    ]);
+  } catch (err) {
+    return jsonResponse({ error: String(err.message || err) }, 502);
+  }
+
+  const { book: primaryBook, chapter: primaryChapter } = findChapter(primaryData, bookNum, chapterNum);
+  const { book: secondaryBook, chapter: secondaryChapter } = findChapter(secondaryData, bookNum, chapterNum);
+  if (!primaryChapter || !secondaryChapter) {
+    return jsonResponse({ error: "parallel chapter not found" }, 404);
+  }
+  const primaryBookName = displayBookName(primary, bookNum, primaryBook?.n || bookSlug);
+  const secondaryBookName = displayBookName(secondary, bookNum, secondaryBook?.n || bookSlug);
+
+  if (verseNum == null) {
+    if (wantsJson) {
+      return jsonResponse({
+        primary,
+        secondary,
+        bookSlug,
+        chapter: chapterNum,
+        primaryBookName,
+        secondaryBookName,
+        primaryVerses: primaryChapter.v || {},
+        secondaryVerses: secondaryChapter.v || {},
+      });
+    }
+    const canonical = `${requestUrl.origin}/bible/parallel/${primary}/${secondary}/${bookSlug}/${chapterNum}/`;
+    return htmlResponse(
+      parallelChapterHtml({
+        primary,
+        secondary,
+        bookSlug,
+        chapterNum,
+        primaryChapter,
+        secondaryChapter,
+        canonical,
+        primaryBookName,
+        secondaryBookName,
+      }),
+    );
+  }
+
+  const primaryText = (primaryChapter.v || {})[String(verseNum)] ?? (primaryChapter.v || {})[verseNum];
+  const secondaryText = (secondaryChapter.v || {})[String(verseNum)] ?? (secondaryChapter.v || {})[verseNum];
+  if (!primaryText && !secondaryText) {
+    return jsonResponse({ error: "parallel verse not found" }, 404);
+  }
+  if (wantsJson) {
+    return jsonResponse({
+      primary,
+      secondary,
+      bookSlug,
+      chapter: chapterNum,
+      verse: verseNum,
+      primaryBookName,
+      secondaryBookName,
+      primaryText: primaryText || "",
+      secondaryText: secondaryText || "",
+    });
+  }
+  const canonical = `${requestUrl.origin}/bible/parallel/${primary}/${secondary}/${bookSlug}/${chapterNum}/${verseNum}/`;
+  return htmlResponse(
+    parallelVerseHtml({
+      primary,
+      secondary,
+      bookSlug,
+      chapterNum,
+      verseNum,
+      primaryText: primaryText || "",
+      secondaryText: secondaryText || "",
+      canonical,
+      primaryBookName,
+      secondaryBookName,
+    }),
+  );
 }
 
 export default {
@@ -167,6 +429,22 @@ export default {
       // /api/bible/{version}/{book}/{chapter}/{verse?}
       p = parts.slice(1);
     }
+    // /bible/parallel/{primary}/{secondary}/{book}/{chapter}/{verse?}
+    if (p.length >= 6 && p[0] === "bible" && p[1] === "parallel") {
+      const primary = p[2];
+      const secondary = p[3];
+      const bookSlug = p[4];
+      const chapterNum = Number(p[5]);
+      const verseNum = p.length >= 7 ? Number(p[6]) : null;
+      if (!Number.isInteger(chapterNum) || chapterNum < 1) {
+        return jsonResponse({ error: "invalid chapter" }, 400);
+      }
+      if (verseNum !== null && (!Number.isInteger(verseNum) || verseNum < 1)) {
+        return jsonResponse({ error: "invalid verse" }, 400);
+      }
+      return handleDynamicParallel(primary, secondary, bookSlug, chapterNum, verseNum, url, wantsJson);
+    }
+
     // /bible/{version}/{book}/{chapter}/{verse?}
     if (p.length >= 4 && p[0] === "bible") {
       const version = p[1];
