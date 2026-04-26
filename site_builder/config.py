@@ -155,7 +155,7 @@ OG_LOCALE = {
     "tamil":"ta_IN","telugu":"te_IN",
 }
 
-ALL_MODULES = {"assets", "indexes", "chapters", "verses", "parallel", "popular", "sitemap"}
+ALL_MODULES = {"assets", "indexes", "chapters", "verses", "parallel", "popular", "notfound", "sitemap"}
 
 # Short attribution lines for generated chapter pages (no unverified publisher/copyright claims).
 VERSION_ATTRIBUTION_HTML = {

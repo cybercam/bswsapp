@@ -24,6 +24,10 @@ This folder contains a deployable edge handler for dynamic Bible chapter/verse r
 Notes:
 - Dynamic chapter + verse routes are now available for dynamic and static versions as fallback.
 - Parallel routes are dynamically rendered so they can be enabled for dynamic versions immediately.
+- Telugu can remain a static chapter/verse language. Mixed pairs like
+  `/bible/parallel/telugu/hindi/john/1/` still need the `/bible/parallel/*`
+  worker route, because the static generator intentionally does not emit every
+  static/dynamic parallel combination.
 
 ## Deploy notes
 

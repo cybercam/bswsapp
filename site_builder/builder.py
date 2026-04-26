@@ -43,6 +43,7 @@ from .templates.index_pages import (
     generate_book_index_page,
     generate_version_index_page,
 )
+from .templates.not_found import generate_not_found_page
 from .templates.parallel import generate_parallel_chapter_page
 from .templates.popular_verses import generate_popular_verse_landing_page
 from .templates.verse_detail import generate_verse_detail_page
@@ -115,7 +116,7 @@ def main() -> None:
     parser.add_argument(
         "--modules",
         default="all",
-        help="Comma-separated modules: assets,indexes,chapters,verses,parallel,popular,sitemap (default: all).",
+        help="Comma-separated modules: assets,indexes,chapters,verses,parallel,popular,notfound,sitemap (default: all).",
     )
     parser.add_argument(
         "--books",
@@ -558,6 +559,12 @@ def main() -> None:
             popular_pages += 1
             total_pages += 1
         print(f"    ✓ {popular_pages} popular verse landing page(s)")
+
+    if should_run("notfound", effective_modules):
+        print("\n[notfound] Writing theme-aware 404 pages...")
+        not_found_html = generate_not_found_page()
+        write_if_changed(Path("404.html"), not_found_html, args.dry_run)
+        write_if_changed(config.OUT_DIR / "404.html", not_found_html, args.dry_run)
 
     if should_run("sitemap", effective_modules):
         if sitemap_log_path and sitemap_log_path.exists():
