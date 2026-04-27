@@ -19,6 +19,34 @@ function applyTheme(id) {
   document.querySelectorAll(".t-btn").forEach((btn) => btn.classList.toggle("on", btn.dataset.t === id));
 }
 
+/** Theme sheet inside #tsheet only; repopulate if missing or broken (Indian-language static pages). */
+function ensureThemeSwatches() {
+  const tsheet = document.getElementById("tsheet");
+  if (!tsheet) return;
+  let swatches = tsheet.querySelector(".t-swatches");
+  if (!swatches) {
+    swatches = document.createElement("div");
+    swatches.className = "t-swatches";
+    tsheet.appendChild(swatches);
+  }
+  const existing = swatches.querySelectorAll("button.t-btn").length;
+  if (existing >= Object.keys(THEMES).length) return;
+  swatches.replaceChildren();
+  Object.keys(THEMES).forEach((id) => {
+    const theme = THEMES[id];
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "t-btn";
+    btn.dataset.t = id;
+    btn.textContent = id.charAt(0).toUpperCase() + id.slice(1);
+    btn.style.background = theme["--bg2"];
+    btn.style.color = theme["--text"];
+    btn.style.borderColor = theme["--border"];
+    btn.addEventListener("click", () => applyTheme(id));
+    swatches.appendChild(btn);
+  });
+}
+
 const VERSE_LINKS_STORAGE_KEY = "bsws_enable_verse_links";
 
 function areVerseLinksEnabled() {
@@ -409,24 +437,15 @@ function initReaderUi() {
   document.getElementById("overlay")?.addEventListener("click", closeSidebar);
 
   document.getElementById("theme-btn")?.addEventListener("click", () => {
-    document.getElementById("tsheet")?.classList.toggle("on");
+    const ts = document.getElementById("tsheet");
+    if (!ts) return;
+    const open = !ts.classList.contains("on");
+    ts.classList.toggle("on", open);
+    ts.style.zIndex = open ? "240" : "";
+    if (open) ensureThemeSwatches();
   });
 
-  const swatches = document.querySelector(".t-swatches");
-  if (swatches && swatches.children.length === 0) {
-    Object.keys(THEMES).forEach((id) => {
-      const theme = THEMES[id];
-      const btn = document.createElement("button");
-      btn.className = "t-btn";
-      btn.dataset.t = id;
-      btn.textContent = id.charAt(0).toUpperCase() + id.slice(1);
-      btn.style.background = theme["--bg2"];
-      btn.style.color = theme["--text"];
-      btn.style.borderColor = theme["--border"];
-      btn.addEventListener("click", () => applyTheme(id));
-      swatches.appendChild(btn);
-    });
-  }
+  ensureThemeSwatches();
 
   applyTheme(localStorage.getItem("bsws_theme") || "reader");
   injectVerseActionBar();
@@ -468,6 +487,7 @@ function initReaderUi() {
   });
 
   document.addEventListener("click", (e) => {
+    if (e.target.closest("#tsheet")) return;
     if (!e.target.closest(".v-row") && !e.target.closest("#vbar")) clearSelectedVerses();
   });
 

@@ -1,4 +1,3 @@
-SHARED_JS = """
 // ── Theme ── (default "reader" = warm editorial light, high contrast for long-form reading)
 const THEMES = {
   reader:     { '--bg':'#FAFAF8','--bg2':'#F2EFE8','--card':'#FFFFFF','--border':'#DDD8CE','--text':'#1C1917','--muted':'#57534E','--accent':'#9A3412','--vnum':'#B45309' },
@@ -36,25 +35,90 @@ function renderVerseLinksToggle() {
   btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
 }
 
+function injectVerseActionBarIfMissing() {
+  if (!document.querySelector('.v-row')) return;
+  if (document.getElementById('vbar')) return;
+  const bar = document.createElement('div');
+  bar.id = 'vbar';
+  bar.setAttribute('role', 'toolbar');
+  bar.setAttribute('aria-label', 'Selected verses');
+  bar.innerHTML = `
+  <div id="vbar-meta" class="vbar-meta">0 verses selected</div>
+  <div class="vbar-row vbar-row--primary">
+    <button type="button" id="copy-btn">Copy</button>
+    <button type="button" id="share-btn">Share</button>
+    <button type="button" id="clear-sel-btn">Clear</button>
+    <button type="button" id="vbar-more-btn" class="vbar-more" aria-expanded="false" aria-controls="vbar-advanced">More</button>
+    <button type="button" id="vbar-close-btn" aria-label="Hide verse toolbar">Hide</button>
+  </div>
+  <div id="vbar-advanced" class="vbar-advanced">
+    <button type="button" id="tts-play-btn">Read selection</button>
+    <button type="button" id="tts-chapter-btn">Read chapter</button>
+    <button type="button" id="tts-stop-btn">Stop</button>
+    <button type="button" id="tts-loop-btn">Loop Off</button>
+    <button type="button" id="tts-auto-btn">Auto-Read Off</button>
+    <button type="button" id="tts-download-btn">Download text</button>
+    <div class="vbar-speed"><label for="tts-rate">Speed</label><input type="range" id="tts-rate" min="0.7" max="1.5" step="0.05" value="1"/></div>
+    <button type="button" id="font-dec-vbar-btn" aria-label="Decrease verse font size">A−</button>
+    <button type="button" id="font-inc-vbar-btn" aria-label="Increase verse font size">A+</button>
+  </div>
+`;
+  document.body.appendChild(bar);
+}
+
 // ── Sidebar ──
 function openSidebar()  { document.getElementById('sidebar').classList.add('open'); document.getElementById('overlay').classList.add('active'); }
 function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('active'); }
 document.addEventListener('DOMContentLoaded', () => {
+  injectVerseActionBarIfMissing();
   document.getElementById('menu-btn')?.addEventListener('click', openSidebar);
   document.getElementById('overlay')?.addEventListener('click', closeSidebar);
 
-  // Theme sheet
-  document.getElementById('theme-btn')?.addEventListener('click', () => document.getElementById('tsheet').classList.toggle('on'));
-  const swatches = document.querySelector('.t-swatches');
-  if (swatches) {
+  // Theme sheet (scope to #tsheet; repopulate only if theme buttons missing)
+  document.getElementById('theme-btn')?.addEventListener('click', () => {
+    const ts = document.getElementById('tsheet');
+    if (!ts) return;
+    const open = !ts.classList.contains('on');
+    ts.classList.toggle('on', open);
+    ts.style.zIndex = open ? '240' : '';
+    if (!open) return;
+    let sw = ts.querySelector('.t-swatches');
+    if (!sw) {
+      sw = document.createElement('div');
+      sw.className = 't-swatches';
+      ts.appendChild(sw);
+    }
+    if (sw.querySelectorAll('button.t-btn').length >= Object.keys(THEMES).length) return;
+    sw.replaceChildren();
     Object.keys(THEMES).forEach(id => {
       const t = THEMES[id];
       const btn = document.createElement('button');
+      btn.type = 'button';
       btn.className = 't-btn'; btn.dataset.t = id; btn.textContent = id.charAt(0).toUpperCase()+id.slice(1);
       btn.style.background = t['--bg2']; btn.style.color = t['--text']; btn.style.borderColor = t['--border'];
       btn.addEventListener('click', () => applyTheme(id));
-      swatches.appendChild(btn);
+      sw.appendChild(btn);
     });
+  });
+  {
+    const ts = document.getElementById('tsheet');
+    let swatches = ts?.querySelector('.t-swatches');
+    if (ts && !swatches) {
+      swatches = document.createElement('div');
+      swatches.className = 't-swatches';
+      ts.appendChild(swatches);
+    }
+    if (swatches && swatches.querySelectorAll('button.t-btn').length === 0) {
+      Object.keys(THEMES).forEach(id => {
+        const t = THEMES[id];
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 't-btn'; btn.dataset.t = id; btn.textContent = id.charAt(0).toUpperCase()+id.slice(1);
+        btn.style.background = t['--bg2']; btn.style.color = t['--text']; btn.style.borderColor = t['--border'];
+        btn.addEventListener('click', () => applyTheme(id));
+        swatches.appendChild(btn);
+      });
+    }
   }
 
   // Init theme
@@ -82,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Verse detail navigation toggle (Off = plain chapter reading)
   document.addEventListener('click', e => {
+    if (e.target.closest('#tsheet')) return;
     const row = e.target.closest('.v-row');
     if (!row || areVerseLinksEnabled()) return;
     if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
@@ -91,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Verse action bar — dismiss on outside click
   document.addEventListener('click', e => {
+    if (e.target.closest('#tsheet')) return;
     if (!e.target.closest('.v-row') && !e.target.closest('#vbar')) {
       clearSelectedVerses();
     }
@@ -410,4 +476,3 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
-"""
