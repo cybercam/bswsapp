@@ -1,5 +1,6 @@
-
-const CACHE_NAME = 'bsws-bible-v2';
+// v3: pages are fetched from the network first so site updates reach returning visitors;
+// the cache is only an offline fallback. Static assets are served from cache, refreshed in the background.
+const CACHE_NAME = 'bsws-bible-v3';
 const PRECACHE = [
   '/bible/',
   '/bible/assets/style.css',
@@ -19,15 +20,24 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
+function cachePut(request, response) {
+  if (response.ok && request.url.includes('/bible/')) {
+    const copy = response.clone();
+    caches.open(CACHE_NAME).then((c) => c.put(request, copy));
+  }
+  return response;
+}
+
 self.addEventListener('fetch', (e) => {
-  if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then((cached) => cached || fetch(e.request).then((res) => {
-      if (res.ok && e.request.url.includes('/bible/')) {
-        const clone = res.clone();
-        caches.open(CACHE_NAME).then((c) => c.put(e.request, clone));
-      }
-      return res;
-    }))
-  );
+  const req = e.request;
+  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  const isPage = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+  if (isPage) {
+    e.respondWith(fetch(req).then((res) => cachePut(req, res)).catch(() => caches.match(req)));
+    return;
+  }
+  e.respondWith(caches.match(req).then((cached) => {
+    const network = fetch(req).then((res) => cachePut(req, res)).catch(() => cached);
+    return cached || network;
+  }));
 });

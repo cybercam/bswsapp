@@ -809,8 +809,8 @@ function downloadAudioFallback() {
   const selected = getSelectedVerses();
   const hasSelection = selected.length > 0;
   const text = hasSelection
-    ? selected.map(v => `${v.ref} ${v.txt}`).join('\n\n')
-    : [...document.querySelectorAll('.v-row')].map(r => `${r.dataset.ref || ''} ${r.querySelector('.v-txt')?.textContent || ''}`).join('\n');
+    ? selected.map(v => `${v.ref} ${v.txt}`).join('\\n\\n')
+    : [...document.querySelectorAll('.v-row')].map(r => `${r.dataset.ref || ''} ${r.querySelector('.v-txt')?.textContent || ''}`).join('\\n');
 
   // Browser SpeechSynthesis cannot reliably export MP3. Provide downloadable text fallback.
   const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
