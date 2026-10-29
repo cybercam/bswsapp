@@ -1,4 +1,3 @@
-SHARED_JS = """
 // ── Theme ── (default "reader" = warm editorial light, high contrast for long-form reading)
 const THEMES = {
   reader:     { '--bg':'#FAFAF8','--bg2':'#F2EFE8','--card':'#FFFFFF','--border':'#DDD8CE','--text':'#1C1917','--muted':'#57534E','--accent':'#9A3412','--vnum':'#B45309' },
@@ -134,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!selected.length) return;
     const url = window.location.href;
     const heading = buildShareHeading(selected);
-    const quotes = selected.map(v => '"' + (v.txt || '').trim() + '"').join('\\n');
-    const textBody = heading + '\\n\\n' + quotes;
+    const quotes = selected.map(v => '"' + (v.txt || '').trim() + '"').join('\n');
+    const textBody = heading + '\n\n' + quotes;
     const title = heading;
     if (navigator.share) {
       navigator.share({ title, text: textBody, url });
@@ -199,8 +198,8 @@ function buildShareHeading(selected) {
 function buildClipBlock(selected) {
   const url = window.location.href;
   const heading = buildShareHeading(selected);
-  const quotes = selected.map((v) => '"' + (v.txt || '').trim() + '"').join('\\n');
-  return heading + '\\n\\n' + quotes + '\\n\\n' + url;
+  const quotes = selected.map((v) => '"' + (v.txt || '').trim() + '"').join('\n');
+  return heading + '\n\n' + quotes + '\n\n' + url;
 }
 
 function getSelectedVerses() {
@@ -410,4 +409,3 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').catch(() => {});
   });
 }
-"""
