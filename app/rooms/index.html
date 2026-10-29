@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Room Invite | Bible Study with Steffi</title>
+<meta name="description" content="You have been invited to a chat room in Bible Study with Steffi.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.png">
+<style>
+  :root { --bg: #FBF8F2; --card: #FFFFFF; --text: #1F1A2E; --muted: #5E5870; --accent: #3B1F6E; --on-accent: #FFFFFF; --border: #E6E0D6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #14111C; --card: #1E1A29; --text: #F2EEF8; --muted: #B3ACC4; --accent: #B9A2EC; --on-accent: #14111C; --border: #332D42; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+         background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { width: 100%; max-width: 420px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 8px; }
+  p { color: var(--muted); margin: 0 0 20px; }
+  .code { font: 600 28px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 4px; padding: 14px; border: 1px dashed var(--border); border-radius: 12px; margin: 0 0 20px; color: var(--text); }
+  a.btn { display: block; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: 600; margin-top: 10px; }
+  a.primary { background: var(--accent); color: var(--on-accent); }
+  a.secondary { border: 1px solid var(--border); color: var(--text); }
+  .hint { font-size: 13px; margin-top: 18px; }
+  [hidden] { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>You're invited to a room</h1>
+  <p id="lead">Chat and play live Bible quizzes together in Bible Study with Steffi.</p>
+  <div class="code" id="code" hidden></div>
+  <a class="btn primary" id="open" href="#">Open in the app</a>
+  <a class="btn secondary" id="store" href="https://play.google.com/store/apps/details?id=com.biblestudywithsteffi.app">Get it on Google Play</a>
+  <p class="hint" id="hint">If the app doesn't open, update Bible Study with Steffi from Google Play, then tap the invite link again. Or open Rooms in the app and enter the code above.</p>
+</main>
+<script>
+  (function () {
+    var PKG = 'com.biblestudywithsteffi.app';
+    var STORE = 'https://play.google.com/store/apps/details?id=' + PKG;
+    var raw = new URLSearchParams(location.search).get('invite') || '';
+    var code = raw.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12);
+    var open = document.getElementById('open');
+    if (code.length < 6) {
+      document.getElementById('lead').textContent = 'This invite link is incomplete. Ask your friend to share it again.';
+      open.hidden = true;
+      return;
+    }
+    var codeEl = document.getElementById('code');
+    codeEl.textContent = code;
+    codeEl.hidden = false;
+    var path = 'app/rooms/' + encodeURIComponent(code);
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    open.href = isAndroid
+      ? 'intent://' + path + '#Intent;scheme=biblestudywithsteffi;package=' + PKG +
+        ';S.browser_fallback_url=' + encodeURIComponent(STORE) + ';end'
+      : 'biblestudywithsteffi://' + path;
+  })();
+</script>
+</body>
+</html>
