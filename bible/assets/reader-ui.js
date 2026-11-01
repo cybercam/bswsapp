@@ -583,3 +583,26 @@ document.addEventListener("DOMContentLoaded", () => {
   tip.querySelector("button").onclick = () => { localStorage.setItem("bsws_tip_verse", "1"); tip.remove(); };
   document.body.appendChild(tip);
 });
+
+// Parallel panel: list every Bible and open the side-by-side view (/bible/parallel/<this>/<other>/…)
+// instead of switching to the chosen Bible. The pages' inline onchange only offered the current one.
+const PARALLEL_VERSIONS = {
+  telugu: "తెలుగు", kjv: "KJV", nkjv: "NKJV", web: "WEB", ylt: "YLT", bbe: "BBE",
+  bengali: "বাংলা", gujarati: "ગુજરાતી", hindi: "हिन्दी", kannada: "ಕನ್ನಡ", malayalam: "മലയാളം",
+  marathi: "मराठी", nepali: "नेपाली", odia: "ଓଡ଼ିଆ", tamil: "தமிழ்",
+};
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.querySelector(".par-ver-select");
+  const m = location.pathname.match(/^\/bible\/([a-z_]+)\/([^/]+)\/(\d+)/);
+  if (!select || !m) return;
+  const [, current, book, chapter] = m;
+  select.onchange = null;
+  select.removeAttribute("onchange");
+  select.innerHTML = "<option value=''>Choose a Bible…</option>" + Object.entries(PARALLEL_VERSIONS)
+    .filter(([id]) => id !== current)
+    .map(([id, label]) => `<option value="${id}">${label}</option>`)
+    .join("");
+  select.addEventListener("change", () => {
+    if (select.value) location.href = `/bible/parallel/${current}/${select.value}/${book}/${chapter}/`;
+  });
+});
