@@ -159,6 +159,21 @@ function updateVbarState() {
   if (!meta) return;
   const n = selectedRows.length;
   meta.textContent = `${n} verse${n === 1 ? "" : "s"} selected`;
+  // One verse selected: offer its detail page (cross-references, notes) in the action bar.
+  const bar = document.getElementById("vbar");
+  if (bar) {
+    let open = document.getElementById("vbar-open");
+    if (!open) {
+      open = document.createElement("a");
+      open.id = "vbar-open";
+      open.className = "icon-btn";
+      open.textContent = "Verse details \u2197";
+      bar.appendChild(open);
+    }
+    const url = n === 1 ? (selectedRows[0].dataset.verseUrl || selectedRows[0].getAttribute("href")) : null;
+    open.style.display = url ? "" : "none";
+    if (url) open.href = url;
+  }
 }
 
 function getSelectedVerses() {
@@ -235,18 +250,45 @@ function getLoopMode() {
   return localStorage.getItem("bsws_tts_loop") === "1";
 }
 
-function speakText(text) {
+function speakText(text, retried) {
   if (!text || !("speechSynthesis" in window)) return;
+  // Voices load asynchronously; on the first tap the list can still be empty.
+  if (!speechSynthesis.getVoices().length && !retried) {
+    speechSynthesis.addEventListener("voiceschanged", () => speakText(text, true), { once: true });
+    setTimeout(() => speakText(text, true), 800);
+    return;
+  }
   speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = document.documentElement.lang || "en";
-  const voice = bestVoiceForLang(utterance.lang);
-  if (voice) utterance.voice = voice;
-  utterance.rate = getTtsRate();
-  utterance.onend = () => {
-    if (getLoopMode()) setTimeout(() => speakText(text), 250);
+  const lang = (document.documentElement.lang || "en").toLowerCase();
+  const voice = bestVoiceForLang(lang);
+  if (!lang.startsWith("en") && !(voice && (voice.lang || "").toLowerCase().startsWith(lang.slice(0, 2)))) {
+    showTtsHelp(lang);
+    return;
+  }
+  // Long utterances stop after ~15 s in Chrome/Android, so read sentence-sized pieces in order.
+  const chunks = String(text).match(/[^.!?\u0964\u0965\n]{1,220}[.!?\u0964\u0965]?/g) || [text];
+  let i = 0;
+  const next = () => {
+    if (i >= chunks.length) {
+      if (getLoopMode()) setTimeout(() => speakText(text), 250);
+      return;
+    }
+    const u = new SpeechSynthesisUtterance(chunks[i++].trim());
+    u.lang = lang;
+    if (voice) u.voice = voice;
+    u.rate = getTtsRate();
+    u.onend = next;
+    u.onerror = next;
+    speechSynthesis.speak(u);
   };
-  speechSynthesis.speak(utterance);
+  next();
+}
+
+function showTtsHelp(lang) {
+  if (sessionStorage.getItem("bsws_tts_help")) return;
+  sessionStorage.setItem("bsws_tts_help", "1");
+  const name = new Intl.DisplayNames(["en"], { type: "language" }).of(lang.slice(0, 2)) || lang;
+  alert(`Audio needs a ${name} voice on this device.\n\nAndroid: Settings \u2192 Text-to-speech \u2192 Google \u2192 Install voice data \u2192 ${name}.\nThen reload this page.`);
 }
 
 function speakSelection() {
@@ -529,3 +571,15 @@ function initReaderUi() {
 
 document.addEventListener("DOMContentLoaded", initReaderUi);
 
+
+
+// First visit: explain that tapping a verse selects it (audio, share, verse details).
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.querySelector(".v-row") || localStorage.getItem("bsws_tip_verse")) return;
+  const tip = document.createElement("div");
+  tip.setAttribute("role", "status");
+  tip.style.cssText = "position:fixed;left:12px;right:12px;bottom:16px;z-index:50;padding:12px 14px;border-radius:12px;background:#3B1F6E;color:#fff;font:14px/1.4 system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;gap:10px;align-items:center";
+  tip.innerHTML = "<span style='flex:1'>Tip: tap any verse to listen, share, or open <b>Verse details</b> (cross-references).</span><button style='background:#fff;color:#3B1F6E;border:0;border-radius:8px;padding:6px 10px;font-weight:600'>Got it</button>";
+  tip.querySelector("button").onclick = () => { localStorage.setItem("bsws_tip_verse", "1"); tip.remove(); };
+  document.body.appendChild(tip);
+});
